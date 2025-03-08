@@ -1,0 +1,2074 @@
+{
+  "abstract": [
+    {
+      "text": "Play, pause, and seek through a media presentation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/controlling-the-transport-behavior-of-a-player"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Controlling the transport behavior of a player"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AVFoundation provides comprehensive support for playing media assets, including local and remote file-based media and also media streamed with HTTP Live Streaming. The framework models its media assets using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which provides a consistent interface to load and inspect your media, regardless of its type or location. Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to play media assets in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, which model the dynamic state of an asset such as its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/currentTime()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Understanding how to effectively use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is essential for anyone building a custom player UI or otherwise requiring programmatic control of playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Observe-playback-readiness",
+          "level": 3,
+          "text": "Observe playback readiness",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a player item, it starts with a status of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which means the system hasn’t attempted to load its media for playback. Only when you associate the item with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object does the system begin loading an asset’s media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To know when the player item is ready for playback, observe the value of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/status-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Add this observation before you call the player’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, because associating the player item with a player is the system’s cue to load the item’s media:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func playMedia(at url: URL) {",
+            "    let asset = AVAsset(url: url)",
+            "    let playerItem = AVPlayerItem(",
+            "        asset: asset,",
+            "        automaticallyLoadedAssetKeys: [.tracks, .duration, .commonMetadata]",
+            "    )",
+            "    // Register to observe the status property before associating with player.",
+            "    playerItem.publisher(for: \\.status)",
+            "        .removeDuplicates()",
+            "        .receive(on: DispatchQueue.main)",
+            "        .sink { [weak self] status in",
+            "            guard let self else { return }",
+            "            switch status {",
+            "            case .readyToPlay:",
+            "                // Ready to play. Present playback UI.",
+            "            case .failed:",
+            "                // A failure while loading media occurred.",
+            "            default:",
+            "                break",
+            "            }",
+            "        }",
+            "        .store(in: &subscriptions)",
+            "    ",
+            "    // Set the item as the player's current item.",
+            "    player.replaceCurrentItem(with: playerItem)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the player item reaches a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state, present or enable your playback UI. Alternatively, if a failure occurs, show the appropriate status in the player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-the-playback-rate",
+          "level": 3,
+          "text": "Control the playback rate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A player provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/play()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/pause()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods as its primary means of controlling its playback rate. When a player item is ready for playback, call the player’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/play()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to request that playback begins at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/defaultRate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which has an initial value of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (the natural rate). By default, a player automatically waits to start playback until it has sufficient media data available to minimize stalling. You can determine whether a player is in a paused, waiting to play, or playing state by observing its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Published var isPlaying = false",
+            "",
+            "private func observePlayingState() {",
+            "    player.publisher(for: \\.timeControlStatus)",
+            "        .receive(on: DispatchQueue.main)",
+            "        .map { $0 == .playing }",
+            "        .assign(to: &$isPlaying)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Observe changes to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property by observing notifications of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rateDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Observing this notification is similar to key-value observing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, but provides additional information about the reason for the rate change. Retrieve the reason from the notification’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rateDidChangeReasonKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constant:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Observe changes to the playback rate asynchronously.",
+            "private func observeRateChanges() async {",
+            "    let name = AVPlayer.rateDidChangeNotification",
+            "    for await notification in NotificationCenter.default.notifications(named: name) {",
+            "        guard let reason = notification.userInfo?[AVPlayer.rateDidChangeReasonKey] as? AVPlayer.RateDidChangeReason else {",
+            "            continue",
+            "        }",
+            "        switch reason {",
+            "        case .appBackgrounded:",
+            "            // The app transitioned to the background.",
+            "        case .audioSessionInterrupted:",
+            "            // The system interrupts the app’s audio session.",
+            "        case .setRateCalled:",
+            "            // The app set the player’s rate.",
+            "        case .setRateFailed:",
+            "            // An attempt to change the player’s rate failed.",
+            "        default:",
+            "            break",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Seek-through-the-media-timeline",
+          "level": 3,
+          "text": "Seek through the media timeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can seek through a media timeline in several ways using the methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The most common way is to use the player’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing it a destination ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. Call this method in an asynchronous context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle time update request from user interface.",
+            "func seek(to timeInterval: TimeInterval) async {",
+            "    // Create a CMTime value for the passed in time interval.",
+            "    let time = CMTime(seconds: timeInterval, preferredTimescale: 600)",
+            "    await avPlayer.seek(to: time)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call this method a single time to seek to the location, but you can also call it continuously such as when you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Slider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is a convenient way to quickly seek through your presentation, but it’s tuned for speed rather than precision. This means the actual time to which the player seeks may differ slightly from the time you request. If you need to implement precise seeking behavior, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which lets you indicate the tolerated amount of deviation from your target time (before and after). For example, if you need to provide sample-accurate seeking behavior, specify tolerance values of zero:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Seek precisely to the specified time.",
+            "await avPlayer.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset": {
+      "abstract": [
+        {
+          "text": "An object that models timed audiovisual media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/defaultRate": {
+      "abstract": [
+        {
+          "text": "A default rate at which to begin playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/defaultRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultRate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/defaultrate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/pause()": {
+      "abstract": [
+        {
+          "text": "Pauses playback of the current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/pause()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pause"
+        }
+      ],
+      "role": "symbol",
+      "title": "pause()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/pause()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/play()": {
+      "abstract": [
+        {
+          "text": "Begins playback of the current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "play"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/play()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "play"
+        }
+      ],
+      "role": "symbol",
+      "title": "play()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/play()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rate": {
+      "abstract": [
+        {
+          "text": "The current playback rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rate"
+        }
+      ],
+      "role": "symbol",
+      "title": "rate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/rate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that a player posts when its rate changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rateDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rateDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerRateDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "rateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/ratedidchangenotification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rateDidChangeReasonKey": {
+      "abstract": [
+        {
+          "text": "A key to retrieve the reason for the rate change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rateDidChangeReasonKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/rateDidChangeReasonKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerRateDidChangeReasonKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "rateDidChangeReasonKey",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/ratedidchangereasonkey"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)": {
+      "abstract": [
+        {
+          "text": "Replaces the current item with a new item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceCurrentItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerItem",
+          "text": "AVPlayerItem"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "replaceCurrentItemWithPlayerItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "replaceCurrentItem(with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/replacecurrentitem(with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r": {
+      "abstract": [
+        {
+          "text": "Requests that the player seek to a specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "seekToTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "seek(to:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/seek(to:)-87h2r"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:)": {
+      "abstract": [
+        {
+          "text": "Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toleranceBefore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toleranceAfter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "seekToTime:toleranceBefore:toleranceAfter:"
+        }
+      ],
+      "role": "symbol",
+      "title": "seek(to:toleranceBefore:toleranceAfter:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/seek(to:tolerancebefore:toleranceafter:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeControlStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayer",
+          "text": "AVPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVPlayerTimeControlStatus",
+          "text": "TimeControlStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeControlStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeControlStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer/timecontrolstatus-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay": {
+      "abstract": [
+        {
+          "text": "The item is ready to play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readyToPlay"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemStatusReadyToPlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem.Status.readyToPlay",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/status-swift.enum/readytoplay"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown": {
+      "abstract": [
+        {
+          "text": "The item’s status is unknown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknown"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemStatusUnknown"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem.Status.unknown",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/status-swift.enum/unknown"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/currentTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current time of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/currentTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentTime()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/currenttime()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/status-swift.property": {
+      "abstract": [
+        {
+          "text": "The status of the player item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerItem",
+          "text": "AVPlayerItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVPlayerItemStatus",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem/status-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem/status-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack": {
+      "abstract": [
+        {
+          "text": "An object that represents the presentation state of an asset track during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemTrack"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemTrack",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemtrack"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper": {
+      "abstract": [
+        {
+          "text": "An object that loops media content using a queue player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLooper"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLooper"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerLooper",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlooper"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer": {
+      "abstract": [
+        {
+          "text": "An object that plays a sequence of player items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVQueuePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVQueuePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVQueuePlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avqueueplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback": {
+      "abstract": [
+        {
+          "text": "Manage the playback of media assets and interstitial content, independent of how you present that content in your interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-playback",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media playback",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-playback"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTime": {
+      "abstract": [
+        {
+          "text": "A structure that represents time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTime",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTime"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Slider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a value from a bounded linear range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Slider"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Slider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Slider",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Slider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo": {
+      "abstract": [
+        {
+          "text": "Storage for values or objects related to this notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/notification/1779652-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-control",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper"
+      ],
+      "title": "Playback control"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Playback-control",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemTrack",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLooper"
+              ],
+              "title": "Playback control"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1seek(to:)-87h2r/title",
+          "value": "seekToTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1seek(to:)-87h2r/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "seekToTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/title",
+          "value": "AVQueuePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1status-swift.property/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1status-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1defaultRate/title",
+          "value": "defaultRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1defaultRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1Status-swift.enum~1unknown/title",
+          "value": "AVPlayerItemStatusUnknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1Status-swift.enum~1unknown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemStatusUnknown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLooper/title",
+          "value": "AVPlayerLooper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLooper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLooper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLooper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLooper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTime/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemTrack/title",
+          "value": "AVPlayerItemTrack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemTrack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemTrack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1Status-swift.enum~1readyToPlay/title",
+          "value": "AVPlayerItemStatusReadyToPlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1Status-swift.enum~1readyToPlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemStatusReadyToPlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1pause()/title",
+          "value": "pause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1pause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pause"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/title",
+          "value": "AVAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1timeControlStatus-swift.property/title",
+          "value": "timeControlStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1timeControlStatus-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeControlStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1seek(to:toleranceBefore:toleranceAfter:)/title",
+          "value": "seekToTime:toleranceBefore:toleranceAfter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1seek(to:toleranceBefore:toleranceAfter:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "seekToTime:toleranceBefore:toleranceAfter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1replaceCurrentItem(with:)/title",
+          "value": "replaceCurrentItemWithPlayerItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1replaceCurrentItem(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceCurrentItemWithPlayerItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/title",
+          "value": "AVPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1rate/title",
+          "value": "rate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1rate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1rateDidChangeNotification/title",
+          "value": "AVPlayerRateDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1rateDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerRateDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1currentTime()/title",
+          "value": "currentTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem~1currentTime()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1play()/title",
+          "value": "play"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1play()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "play"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1rateDidChangeReasonKey/title",
+          "value": "AVPlayerRateDidChangeReasonKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer~1rateDidChangeReasonKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerRateDidChangeReasonKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/controlling-the-transport-behavior-of-a-player"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/controlling-the-transport-behavior-of-a-player"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

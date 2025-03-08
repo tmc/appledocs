@@ -1,0 +1,209 @@
+{
+  "abstract": [
+    {
+      "text": "A constant that specifies an error value that indicates the user canceled a printing operation.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1506795-user_cancellation_constant"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1506795,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "User Cancellation Constant"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This constant is provided for compatibility with old applications and printer drivers that expect the ",
+              "type": "text"
+            },
+            {
+              "code": "iPrAbort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error code to be returned when the user cancels a printing operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default idle function checks for Command-period keyboard events during printing, and sets the error condition equal to ",
+              "type": "text"
+            },
+            {
+              "code": "kPMCancel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if one occurs. Your application can check for this condition using the ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, and should cancel the print job if ",
+              "type": "text"
+            },
+            {
+              "code": "kPMCancel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you supply your own idle function (not needed in Mac OS 8, 9, or X), your function must check for Command-period keyboard events, and set the error condition using the function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionSetError",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/kpmcancel": {
+      "abstract": [
+        {
+          "text": "Specifies that the user clicked the Cancel button in a Print or Page Setup dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kPMCancel"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/kpmcancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kPMCancel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/kpmcancel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1609891",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/kpmcancel"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1506795-user_cancellation_constant"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/core_printing/1506795-user_cancellation_constant"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

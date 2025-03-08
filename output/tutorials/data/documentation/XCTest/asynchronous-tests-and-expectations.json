@@ -1,0 +1,1153 @@
+{
+  "abstract": [
+    {
+      "text": "Verify that asynchronous code behaves as expected.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xctest/documentation/XCTest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xctest/documentation/XCTest/asynchronous-tests-and-expectations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XCTest"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Asynchronous Tests and Expectations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Asynchronous code doesn’t execute directly within the current flow of code. This might be because the code runs on a different thread or dispatch queue, in a delegate method, or in a callback, or because it’s a Swift function marked with ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides two approaches for testing asynchronous code. For Swift code that uses ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for concurrency, you mark your test methods ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to test asynchronously. For any other types of asynchronous code, within your test you create one or more ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "expectations",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which are objects that XCTest uses to handle waiting. Then you ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fulfill",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " those expectations when the asynchronous code finishes running to tell XCTest to stop waiting. Your test method waits until all expectations are fulfilled or a specified timeout expires.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-Asynchronous-Tests-with-Swift-Concurrency",
+          "level": 3,
+          "text": "Build Asynchronous Tests with Swift Concurrency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test Swift code that uses ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for concurrency, mark your test method ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executes your test method asynchronously so that your test waits until ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func testDownloadWebDataWithConcurrency() async throws {",
+            "    // Create a URL for a webpage to download.",
+            "    let url = URL(string: \"https://apple.com\")!",
+            "    ",
+            "    // Use an asynchronous function to download the webpage.",
+            "    let dataAndResponse: (data: Data, response: URLResponse) = try await URLSession.shared.data(from: url, delegate: nil)",
+            "    ",
+            "    // Assert that the actual response matches the expected response.",
+            "    let httpResponse = try XCTUnwrap(dataAndResponse.response as? HTTPURLResponse, \"Expected an HTTPURLResponse.\")",
+            "    XCTAssertEqual(httpResponse.statusCode, 200, \"Expected a 200 OK response.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the asynchronous task completes, perform assertions to confirm that the task’s actual results meet your expected results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your test encounters a thrown error, ",
+              "type": "text"
+            },
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " records a test failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your test code needs to run on the Main actor, specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "@MainActor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for your test method or class. If you don’t specify an actor, the test method executes on an arbitrary actor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Build-Asynchronous-Tests-with-Expectations",
+          "level": 3,
+          "text": "Build Asynchronous Tests with Expectations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you can’t use Swift ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use expectations to test asynchronous code. For example, use expectations when there isn’t a Swift ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " alternative available or when your asynchronous code runs in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Objective-C",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An asynchronous block in a dispatch queue",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A delegate method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An asynchronous callback, closure, or completion block",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Future",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Promise",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Swift Combine",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A situation where it needs to complete within a specific amount of time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you perform an asynchronous task in your test method, create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a description of the task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an expectation for an asynchronous task.",
+            "let expectation = XCTestExpectation(description: \"Open a file asynchronously.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start the asynchronous task, and then tell the test to wait for the expectation to complete within an amount of time you specify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fileManager = ExampleFileManager()",
+            "",
+            "// Perform the asynchronous task.",
+            "fileManager.openFileAsync(with: \"exampleFilename\") { file, error in",
+            "    //...",
+            "}",
+            "",
+            "// Wait for the expectation to fulfill or time out.",
+            "wait(for: [expectation], timeout: 10.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the asynchronous task returns (for example, in a callback), perform assertions to confirm that the task’s actual results meet your expected results. When the task completes, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation/fulfill()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the expectation to indicate to the test that it can stop waiting and proceed with the next test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fileManager.openFileAsync(with: \"exampleFilename\") { file, error in",
+            "",
+            "    // Assert that the asynchronous task worked.",
+            "    XCTAssertNotNil(file, \"Expected to load a file.\")",
+            "",
+            "    // Assert that no errors occurred opening the file asynchronously.",
+            "    XCTAssertNil(error, \"Expected no errors loading a file.\")",
+            "    ",
+            "    // Fulfill the expectation.",
+            "    expectation.fulfill()",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the test doesn’t execute the ",
+              "type": "text"
+            },
+            {
+              "code": "fulfill()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method before the wait statement’s timeout expires, ",
+              "type": "text"
+            },
+            {
+              "code": "XCTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " records a test failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xctest/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTDarwinNotificationExpectation": {
+      "abstract": [
+        {
+          "text": "An expectation that is fulfilled when an expected Darwin notification is received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTDarwinNotificationExpectation"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTDarwinNotificationExpectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTDarwinNotificationExpectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTDarwinNotificationExpectation",
+      "type": "topic",
+      "url": "/documentation/xctest/xctdarwinnotificationexpectation"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTKVOExpectation": {
+      "abstract": [
+        {
+          "text": "An expectation that a specific key-value observing (KVO) condition fulfills.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTKVOExpectation"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTKVOExpectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTKVOExpectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTKVOExpectation",
+      "type": "topic",
+      "url": "/documentation/xctest/xctkvoexpectation"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTKeyPathExpectation": {
+      "abstract": [
+        {
+          "text": "An expectation that a specific key-value observing (KVO) condition fulfills.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTKeyPathExpectation"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTKeyPathExpectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTKeyPathExpectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTKeyPathExpectation",
+      "type": "topic",
+      "url": "/documentation/xctest/xctkeypathexpectation"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTNSNotificationExpectation": {
+      "abstract": [
+        {
+          "text": "An expectation that is fulfilled when an expected ",
+          "type": "text"
+        },
+        {
+          "code": "NSNotification",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTNSNotificationExpectation"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTNSNotificationExpectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTNSNotificationExpectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTNSNotificationExpectation",
+      "type": "topic",
+      "url": "/documentation/xctest/xctnsnotificationexpectation"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTNSPredicateExpectation": {
+      "abstract": [
+        {
+          "text": "An expectation that’s fulfilled when an ",
+          "type": "text"
+        },
+        {
+          "code": "NSPredicate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is satisfied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTNSPredicateExpectation"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTNSPredicateExpectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTNSPredicateExpectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTNSPredicateExpectation",
+      "type": "topic",
+      "url": "/documentation/xctest/xctnspredicateexpectation"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTWaiter": {
+      "abstract": [
+        {
+          "text": "Waits for the fulfillment of a group of expectations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTWaiter"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTWaiter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTWaiter"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTWaiter",
+      "type": "topic",
+      "url": "/documentation/xctest/xctwaiter"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation": {
+      "abstract": [
+        {
+          "text": "An expected outcome in an asynchronous test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestExpectation"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTestExpectation"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTestExpectation",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestexpectation"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation/fulfill()": {
+      "abstract": [
+        {
+          "text": "Marks the expectation as having been met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fulfill"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation/fulfill()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fulfill"
+        }
+      ],
+      "role": "symbol",
+      "title": "fulfill()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestexpectation/fulfill()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Expectations",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation"
+      ],
+      "title": "Expectations"
+    },
+    {
+      "anchor": "Key-Value-Observing-Expectations",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTKVOExpectation",
+        "doc://com.apple.xctest/documentation/XCTest/XCTKeyPathExpectation"
+      ],
+      "title": "Key Value Observing Expectations"
+    },
+    {
+      "anchor": "Notification-Based-Expectations",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTNSNotificationExpectation",
+        "doc://com.apple.xctest/documentation/XCTest/XCTDarwinNotificationExpectation"
+      ],
+      "title": "Notification-Based Expectations"
+    },
+    {
+      "anchor": "Predicate-Based-Expectations",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTNSPredicateExpectation"
+      ],
+      "title": "Predicate-Based Expectations"
+    },
+    {
+      "anchor": "Expectation-Waiters",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTWaiter"
+      ],
+      "title": "Expectation Waiters"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Expectations",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTestExpectation"
+              ],
+              "title": "Expectations"
+            },
+            {
+              "anchor": "Key-Value-Observing-Expectations",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTKVOExpectation"
+              ],
+              "title": "Key Value Observing Expectations"
+            },
+            {
+              "anchor": "Notification-Based-Expectations",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTNSNotificationExpectation",
+                "doc://com.apple.xctest/documentation/XCTest/XCTDarwinNotificationExpectation"
+              ],
+              "title": "Notification-Based Expectations"
+            },
+            {
+              "anchor": "Predicate-Based-Expectations",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTNSPredicateExpectation"
+              ],
+              "title": "Predicate-Based Expectations"
+            },
+            {
+              "anchor": "Expectation-Waiters",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTWaiter"
+              ],
+              "title": "Expectation Waiters"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTKVOExpectation/title",
+          "value": "XCTKVOExpectation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTKVOExpectation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTKVOExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTKVOExpectation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTKVOExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTWaiter/title",
+          "value": "XCTWaiter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTWaiter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTWaiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTWaiter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTWaiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTNSPredicateExpectation/title",
+          "value": "XCTNSPredicateExpectation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTNSPredicateExpectation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTNSPredicateExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTNSPredicateExpectation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTNSPredicateExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTDarwinNotificationExpectation/title",
+          "value": "XCTDarwinNotificationExpectation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTDarwinNotificationExpectation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTDarwinNotificationExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTDarwinNotificationExpectation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTDarwinNotificationExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTNSNotificationExpectation/title",
+          "value": "XCTNSNotificationExpectation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTNSNotificationExpectation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTNSNotificationExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTNSNotificationExpectation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTNSNotificationExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestExpectation~1fulfill()/title",
+          "value": "fulfill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestExpectation~1fulfill()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fulfill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestExpectation/title",
+          "value": "XCTestExpectation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestExpectation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTestExpectation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestExpectation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTestExpectation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xctest/asynchronous-tests-and-expectations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xctest/asynchronous-tests-and-expectations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

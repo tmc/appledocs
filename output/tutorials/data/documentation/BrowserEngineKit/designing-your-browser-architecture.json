@@ -1,0 +1,1031 @@
+{
+  "abstract": [
+    {
+      "text": "Isolate privileged access to operating system resources and private data from untrusted code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Designing your browser architecture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A browser is a complex app with many components: a graphical user interface (GUI), network communications, media playing, content parsing and rendering, and JavaScript execution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Improve the security of your browser for people using your app by creating separate extensions that are responsible for different parts of your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system runs your app and each of its extensions in separate processes with their own sandboxed access to operating system resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Communicate between your app and its extensions, and between extensions, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-the-GUI-and-handle-user-input",
+          "level": 2,
+          "text": "Present the GUI and handle user input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app presents the browser GUI, handles input from the person using the browser, and coordinates with the extensions to provide the browser features.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display user interface and handle input.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on managing extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use other API as necessary to provide common app features, for example, store a person’s preferences with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A browser app has a restricted app sandbox that stops the app from accessing some APIs.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app can’t get the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and can’t detect the presence of other apps using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/canOpenURL(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your browser engine uses custom text rendering and layout routines to display text on a web page, your browser app needs to adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "BETextInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to integrate with standard text interactions like showing text selection and displaying the contextual menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-networking-extension",
+          "level": 2,
+          "text": "Create a networking extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your browser can create one instance of a networking extension, which uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or socket APIs to retrieve remote resources and submit HTTP POST data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When web content extensions need to fetch additional resources, for example, images referenced in HTML documents, they communicate with the network extension to make the request and retrieve the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-content-extensions",
+          "level": 2,
+          "text": "Create content extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a content extension to host your browser’s rendering engine, which parses HTML documents and CSS style sheets, runs Javascript, and prepares the resulting document object for display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create as many content extensions as your app needs to securely process browser contents, for example, one extension for each browser tab that a person uses, or one extension for each document and iframe with which your app works.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Content extensions work with untrusted data from remote sources, so don’t access a person’s data or operating system resources from a content extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, design protocols for communicating between your content extensions and your browser app and the other extensions that permit limited requests to access specific resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your content extension uses just-in-time (JIT) compilation to run JavaScript code, you need to toggle the memory that contains the compiled code from writable to executable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-video-and-graphics",
+          "level": 2,
+          "text": "Process video and graphics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your browser can create one instance of a rendering extension, which uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to directly access the GPU to process video and other complex graphical data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system maintains a low level for the maximum memory that the rendering extension may allocate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your rendering extension uses more than the permitted maximum memory, the operating system may stop the extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To avoid requesting too much memory in the rendering extension, your content extension can claim ownership of memory that the rendering extension uses to render its content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension": {
+      "abstract": [
+        {
+          "text": "Adhere to operating-system limits on GPU memory use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Attributing memory to a content extension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/attributing-memory-to-a-content-extension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine": {
+      "abstract": [
+        {
+          "text": "Create a web browser app and associated extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Developing a browser app that uses an alternative browser engine",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/developing-a-browser-app-that-uses-an-alternative-browser-engine"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Coordinate helper processes to efficiently support your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing the browser extension life cycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/managing-the-browser-extension-lifecycle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time": {
+      "abstract": [
+        {
+          "text": "Toggle memory between being writable and executable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting code compiled just in time",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/protecting-code-compiled-just-in-time"
+    },
+    "doc://com.apple.documentation/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier": {
+      "abstract": [
+        {
+          "text": "The UUID that is specific to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "advertisingIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "advertisingIdentifier",
+      "type": "topic",
+      "url": "/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/canOpenURL(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether an app is available to handle a URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canOpenURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/canOpenURL(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canOpenURL(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/canOpenURL(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIKeyInput",
+          "text": "UIKeyInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextInput"
+    },
+    "doc://com.apple.documentation/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/XPC"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser": {
+      "abstract": [
+        {
+          "text": "Configure your browser app so users can set it as the default on their device instead of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to be the default web browser",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine",
+        "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1canOpenURL(_:)/title",
+          "value": "canOpenURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1canOpenURL(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "canOpenURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AdSupport~1ASIdentifierManager~1advertisingIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUUID",
+              "text": "NSUUID"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "advertisingIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIKeyInput",
+              "text": "UIKeyInput"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlsession/title",
+          "value": "URLSession"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlsession/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/designing-your-browser-architecture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/designing-your-browser-architecture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

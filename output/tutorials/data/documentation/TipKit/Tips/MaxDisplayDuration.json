@@ -1,0 +1,457 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies the maximum amount of time a tip is displayed before it is invalidated.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TipKit/documentation/TipKit",
+        "doc://com.apple.TipKit/documentation/TipKit/Tips"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TipKit/documentation/TipKit/Tips/MaxDisplayDuration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "TipKit",
+    "externalID": "s:6TipKit4TipsO18MaxDisplayDurationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MaxDisplayDuration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TipKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MaxDisplayDuration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Tips.MaxDisplayDuration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MaxDisplayDuration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this option to automatically invalidate a tip after it has been displayed for a specified time interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is a cumulative value; if a tip specifies a 2 minute maximum display duration and is displayed for 1 minute on Monday",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and 1 minute on Tuesday it will be automatically invalidated and no longer appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tip views have a minimum display duration of 60 seconds before they can be automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "invalidated by ",
+              "type": "text"
+            },
+            {
+              "code": "MaxDisplayDuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in order to avoid appearing and disappearing too quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default tips have no maximum display duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FavoriteBackyardTip: Tip {",
+            "    var options: [any Option] {",
+            "        // Tip will automatically be invalidated ",
+            "        // after it has been displayed for 5 minutes.",
+            "        MaxDisplayDuration(300.0)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TipKit/documentation/TipKit": {
+      "abstract": [
+        {
+          "text": "Display tips that help people discover features in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TipKit",
+      "type": "topic",
+      "url": "/documentation/tipkit"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipOption": {
+      "abstract": [
+        {
+          "text": "A type that represents the various customizations that you can make to a tip’s behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TipOption"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TipOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "TipOption",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipoption"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips": {
+      "abstract": [
+        {
+          "text": "TipKit namespace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tips"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tips"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/MaxDisplayDuration": {
+      "abstract": [
+        {
+          "text": "Specifies the maximum amount of time a tip is displayed before it is invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaxDisplayDuration"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/MaxDisplayDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaxDisplayDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips.MaxDisplayDuration",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/maxdisplayduration"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/MaxDisplayDuration/init(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/MaxDisplayDuration/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/maxdisplayduration/init(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.TipKit/documentation/TipKit/TipOption"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/MaxDisplayDuration/init(_:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tipkit/tips/maxdisplayduration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

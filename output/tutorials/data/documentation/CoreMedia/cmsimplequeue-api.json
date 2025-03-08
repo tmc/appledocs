@@ -1,0 +1,1042 @@
+{
+  "abstract": [
+    {
+      "text": "A simple, lockless FIFO queue of elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmsimplequeue-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMSimpleQueue APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simple queues are Core Foundation-based objects that implement a simple, lockless FIFO queue of (",
+              "type": "text"
+            },
+            {
+              "code": "void *",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") elements. The elements in the queue can be pointers or simple pointer-sized numeric values (",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements aren’t allowed). If the elements are pointers to allocated memory buffers, handle lifetime management externally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A simple queue can safely handle one enqueueing thread and one dequeueing thread. Simple queues are lockless, so enqueues and dequeues can occur on the Core Audio ",
+              "type": "text"
+            },
+            {
+              "code": "ioProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " thread, where the system forbids locking and blocking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can query the state of a simple queue to get the current number of elements and the maximum capacity of the queue. You can also determine the queue’s fullness, which the system provides as a percentage of its capacity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can reset a simple queue, which returns it to its newly created state, with no elements in the queue (but with the maximum capacity unchanged).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueue": {
+      "abstract": [
+        {
+          "text": "A reference to an instance that provides a simple lockless queue of elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueue",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeue"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueCreate(allocator:capacity:queueOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a queue that has the specified capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queueOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueCreate(allocator:capacity:queueOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueCreate(allocator:capacity:queueOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuecreate(allocator:capacity:queueout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueDequeue(_:)": {
+      "abstract": [
+        {
+          "text": "Dequeues an element from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueDequeue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueDequeue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueDequeue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueDequeue(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuedequeue(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueEnqueue(_:element:)": {
+      "abstract": [
+        {
+          "text": "Enqueues an element in the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueEnqueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueEnqueue(_:element:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueEnqueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueEnqueue(_:element:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeueenqueue(_:element:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCapacity(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of elements that the queue can hold.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetCapacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCapacity(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetCapacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueGetCapacity(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuegetcapacity(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCount(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of elements currently in the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueGetCount(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuegetcount(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetFullness": {
+      "abstract": [
+        {
+          "text": "A convenience macro that returns a queue’s fullness as a percentage of its capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetFullness"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetFullness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSimpleQueueGetFullness",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuegetfullness"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetHead(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the element at the head of the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetHead"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetHead(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetHead"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueGetHead(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuegethead(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier of sample buffer objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuegettypeid()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueReset(_:)": {
+      "abstract": [
+        {
+          "text": "Resets the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueReset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSimpleQueueRef",
+          "text": "CMSimpleQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueReset(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSimpleQueueReset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSimpleQueueReset(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsimplequeuereset(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmbufferqueue-api": {
+      "abstract": [
+        {
+          "text": "A queue of timed buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmbufferqueue-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMBufferQueue APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmbufferqueue-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api": {
+      "abstract": [
+        {
+          "text": "An object that optimizes memory allocation when working with large blocks of memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMMemoryPool APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmmemorypool-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/simple-queue-errors": {
+      "abstract": [
+        {
+          "text": "Error codes that simple queue operations generate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/simple-queue-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Simple Queue Error Codes",
+      "type": "topic",
+      "url": "/documentation/coremedia/simple-queue-errors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Queues",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmbufferqueue-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api"
+      ],
+      "title": "Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Queue",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueCreate(allocator:capacity:queueOut:)"
+      ],
+      "title": "Creating a Queue"
+    },
+    {
+      "anchor": "Managing-Queues",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueEnqueue(_:element:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueDequeue(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueReset(_:)"
+      ],
+      "title": "Managing Queues"
+    },
+    {
+      "anchor": "Inspecting-Queues",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetHead(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCapacity(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCount(_:)"
+      ],
+      "title": "Inspecting Queues"
+    },
+    {
+      "anchor": "Accessing-the-Type-Identifier",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetTypeID()"
+      ],
+      "title": "Accessing the Type Identifier"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueue"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/simple-queue-errors"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Queue",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueCreate(allocator:capacity:queueOut:)"
+              ],
+              "title": "Creating a Queue"
+            },
+            {
+              "anchor": "Managing-Queues",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueEnqueue(_:element:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueDequeue(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueReset(_:)"
+              ],
+              "title": "Managing Queues"
+            },
+            {
+              "anchor": "Inspecting-Queues",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetHead(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCapacity(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetCount(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetFullness"
+              ],
+              "title": "Inspecting Queues"
+            },
+            {
+              "anchor": "Accessing-the-Type-Identifier",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueueGetTypeID()"
+              ],
+              "title": "Accessing the Type Identifier"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMSimpleQueue"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/simple-queue-errors"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Queues",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmbufferqueue-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmmemorypool-api"
+              ],
+              "title": "Queues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueReset(_:)/title",
+          "value": "CMSimpleQueueReset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueReset(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueReset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueDequeue(_:)/title",
+          "value": "CMSimpleQueueDequeue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueDequeue(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueDequeue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueCreate(allocator:capacity:queueOut:)/title",
+          "value": "CMSimpleQueueCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueCreate(allocator:capacity:queueOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueue/title",
+          "value": "CMSimpleQueueRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetCapacity(_:)/title",
+          "value": "CMSimpleQueueGetCapacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetCapacity(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueGetCapacity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetHead(_:)/title",
+          "value": "CMSimpleQueueGetHead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetHead(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueGetHead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueEnqueue(_:element:)/title",
+          "value": "CMSimpleQueueEnqueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueEnqueue(_:element:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueEnqueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetTypeID()/title",
+          "value": "CMSimpleQueueGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetCount(_:)/title",
+          "value": "CMSimpleQueueGetCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMSimpleQueueGetCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSimpleQueueGetCount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmsimplequeue-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmsimplequeue-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

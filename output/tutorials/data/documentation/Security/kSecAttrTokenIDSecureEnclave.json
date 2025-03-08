@@ -1,0 +1,811 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies an item should be stored in the device’s Secure Enclave.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/kSecAttrTokenIDSecureEnclave"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@kSecAttrTokenIDSecureEnclave",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "kSecAttrTokenIDSecureEnclave"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CFStringRef",
+        "text": "CFString"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "kSecAttrTokenIDSecureEnclave"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "kSecAttrTokenIDSecureEnclave"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecAttrTokenIDSecureEnclave"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFString"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.security/documentation/Security/protecting-keys-with-the-secure-enclave"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The only keychain items supported by the Secure Enclave are 256-bit elliptic curve private keys (those that have key type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeyTypeEC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Such keys must be generated directly on the Secure Enclave using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyGeneratePair(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrTokenID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrTokenIDSecureEnclave",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the parameters dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "It is not possible to import pre-existing keys into the Secure Enclave.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyGeneratePair(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an asymmetric key pair.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyGeneratePair"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyGeneratePair(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyGeneratePair"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyGeneratePair(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeygeneratepair(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrKeyTypeEC": {
+      "abstract": [
+        {
+          "text": "Elliptic curve algorithm.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeyTypeEC"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrKeyTypeEC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrKeyTypeEC"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrKeyTypeEC",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrkeytypeec"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrTokenID": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates that a cryptographic key is in an external store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrTokenID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenID"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrTokenID",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrtokenid"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrTokenIDSecureEnclave": {
+      "abstract": [
+        {
+          "text": "Specifies an item should be stored in the device’s Secure Enclave.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenIDSecureEnclave"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrTokenIDSecureEnclave",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrTokenIDSecureEnclave"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrTokenIDSecureEnclave",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrtokenidsecureenclave"
+    },
+    "doc://com.apple.security/documentation/Security/protecting-keys-with-the-secure-enclave": {
+      "abstract": [
+        {
+          "text": "Create an extra layer of security for your private keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/protecting-keys-with-the-secure-enclave",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting keys with the Secure Enclave",
+      "type": "topic",
+      "url": "/documentation/security/protecting-keys-with-the-secure-enclave"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFStringRef": {
+      "abstract": [
+        {
+          "text": "A reference to a CFString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "kSecAttrTokenIDSecureEnclave"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrTokenIDSecureEnclave"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CFStringRef",
+                    "text": "CFStringRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "kSecAttrTokenIDSecureEnclave"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeyTypeEC/title",
+          "value": "kSecAttrKeyTypeEC"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrKeyTypeEC/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrKeyTypeEC"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrTokenID/title",
+          "value": "kSecAttrTokenID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrTokenID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrTokenID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyGeneratePair(_:_:_:)/title",
+          "value": "SecKeyGeneratePair"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyGeneratePair(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyGeneratePair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFStringRef/title",
+          "value": "CFStringRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrTokenIDSecureEnclave/title",
+          "value": "kSecAttrTokenIDSecureEnclave"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrTokenIDSecureEnclave/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrTokenIDSecureEnclave"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/ksecattrtokenidsecureenclave"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/ksecattrtokenidsecureenclave"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

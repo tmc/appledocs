@@ -1,0 +1,312 @@
+{
+  "abstract": [
+    {
+      "text": "Verify your server interaction before deployment by operating in a development environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/testing-your-classkit-catalog-implementation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing Your ClassKit Catalog Implementation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you deploy your ClassKit Catalog API changes, you can test them in a development environment that isn’t available to teachers. Use a query parameter in your API calls to choose the development environment, and then use a device in development mode to inspect your updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Contexts that you publish in the development environment may be visible to other developers using the development environment in Schoolwork.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Target-the-Development-Environment",
+          "level": 3,
+          "text": "Target the Development Environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For calls that you make to the ClassKit Catalog API, you set the ",
+              "type": "text"
+            },
+            {
+              "code": "environment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter. During normal operation, you set the value of this parameter to ",
+              "type": "text"
+            },
+            {
+              "code": "production",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, the following ",
+              "type": "text"
+            },
+            {
+              "code": "curl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command retrieves the main app context of an example app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v -X GET \"https://classkit-catalog.apple.com/v1/contexts?identifierPath=%5B%22com.apple.example.app%22%5D&locale=en-us&environment=production\" -H \"Authorization: Bearer <JWT>\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to work with the development environment, set the parameter to ",
+              "type": "text"
+            },
+            {
+              "code": "development",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v -X GET \"https://classkit-catalog.apple.com/v1/contexts?identifierPath=%5B%22com.apple.example.app%22%5D&locale=en-us&environment=development\" -H \"Authorization: Bearer <JWT>\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can read and write the development environment just like the production environment. Data isn’t shared between the two environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-Your-Changes",
+          "level": 3,
+          "text": "Test Your Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After uploading content to the development environment, you can inspect the changes. On an iOS device that you use for development, with the Schoolwork app installed, go to Settings > Developer, and choose ClassKit API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3671033",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the ClassKit Catalog Environment section to choose either the Production or Development environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3671032",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you choose Development, the Schoolwork app on that device shows you data you uploaded to the development environment instead of the production environment data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api": {
+      "abstract": [
+        {
+          "text": "Establish your identity to the ClassKit Catalog server by providing a cryptographically signed token for each call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating Calls to the ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/authenticating-calls-to-the-classkit-catalog-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3671032": {
+      "alt": "Screenshot of the ClassKit API developer settings on an iPad.",
+      "identifier": "media-3671032",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0090a16cfca0e9ec6e6ca8355fd80530/media-3671032@2x.png"
+        }
+      ]
+    },
+    "media-3671033": {
+      "alt": "Screenshot of the Developer settings on an iPad with ClassKit API shown at the top.",
+      "identifier": "media-3671033",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b5720ec71157b78655e1e00ce1af7ee/media-3671033@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/authenticating-calls-to-the-classkit-catalog-api"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/testing-your-classkit-catalog-implementation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

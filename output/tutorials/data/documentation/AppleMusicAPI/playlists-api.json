@@ -1,0 +1,825 @@
+{
+  "abstract": [
+    {
+      "text": "Get the contents of playlists, add new playlists to the user’s library, and add tracks to an existing playlist.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.1",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/playlists-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Playlists"
+  },
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Add-Tracks-to-a-Library-Playlist": {
+      "abstract": [
+        {
+          "text": "Add new tracks to the end of a library playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Add-Tracks-to-a-Library-Playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Add Tracks to a Library Playlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add Tracks to a Library Playlist",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/add-tracks-to-a-library-playlist"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Add-a-Resource-to-a-Library": {
+      "abstract": [
+        {
+          "text": "Add a catalog resource to a user’s iCloud Music Library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Add-a-Resource-to-a-Library",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Add a Resource to a Library"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a Resource to a Library",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/add-a-resource-to-a-library"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Create-a-New-Library-Playlist": {
+      "abstract": [
+        {
+          "text": "Create a new playlist in a user’s library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Create-a-New-Library-Playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a New Library Playlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a New Library Playlist",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/create-a-new-library-playlist"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Create-a-New-Library-Playlist-Folder": {
+      "abstract": [
+        {
+          "text": "Create a new playlist folder in a user’s library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Create-a-New-Library-Playlist-Folder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a New Library Playlist Folder"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a New Library Playlist Folder",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/create-a-new-library-playlist-folder"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-5l22w": {
+      "abstract": [
+        {
+          "text": "Fetch a library playlist’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-5l22w",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Playlist's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-5l22w"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-707nb": {
+      "abstract": [
+        {
+          "text": "Fetch a playlist’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-707nb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Playlist's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-707nb"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-r5gv": {
+      "abstract": [
+        {
+          "text": "Fetch a library playlist folder’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-r5gv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Playlist Folder’s Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-r5gv"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-view-on-this-resource-by-name-6i3ek": {
+      "abstract": [
+        {
+          "text": "Fetch related resources for a single playlist’s relationship view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-view-on-this-resource-by-name-6i3ek",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a view on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Playlist’s Relationship View Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-view-on-this-resource-by-name-6i3ek"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Playlists": {
+      "abstract": [
+        {
+          "text": "Fetch all the library playlists in alphabetical order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Playlists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Library Playlists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Library Playlists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-all-library-playlists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Playlists": {
+      "abstract": [
+        {
+          "text": "Fetch one or more playlists by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Playlists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Catalog Playlists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Catalog Playlists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-catalog-playlists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlist-Folders": {
+      "abstract": [
+        {
+          "text": "Fetch one or more library playlist folders by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlist-Folders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Library Playlist Folders"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Library Playlist Folders",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-library-playlist-folders"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlists": {
+      "abstract": [
+        {
+          "text": "Fetch one or more library playlists by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Library Playlists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Library Playlists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-library-playlists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Root-Library-Playlists-Folder": {
+      "abstract": [
+        {
+          "text": "Fetch the root library playlists folder for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Root-Library-Playlists-Folder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Root Library Playlists Folder"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Root Library Playlists Folder",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-root-library-playlists-folder"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Playlist": {
+      "abstract": [
+        {
+          "text": "Fetch a playlist by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Catalog Playlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Playlist",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-catalog-playlist"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist": {
+      "abstract": [
+        {
+          "text": "Fetch a library playlist by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Library Playlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Playlist",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-library-playlist"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist-Folder": {
+      "abstract": [
+        {
+          "text": "Fetch a library playlist folder by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist-Folder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Library Playlist Folder"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Library Playlist Folder",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-library-playlist-folder"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-charts-playlists-by-storefront-value": {
+      "abstract": [
+        {
+          "text": "Fetch one or more Charts Playlists by using their Storefront value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-charts-playlists-by-storefront-value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get charts playlists by storefront value"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Charts Playlists by Storefront Value",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-charts-playlists-by-storefront-value"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistCreationRequest": {
+      "abstract": [
+        {
+          "text": "A request to create a new playlist in a user’s library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistCreationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistCreationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistCreationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistCreationRequest",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylistcreationrequest"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFolderCreationRequest": {
+      "abstract": [
+        {
+          "text": "Request object to create a new library playlist folder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFolderCreationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFolderCreationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFolderCreationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistFolderCreationRequest",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylistfoldercreationrequest"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFolders": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a library playlist folder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFolders"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFolders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFolders"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistFolders",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylistfolders"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFoldersResponse": {
+      "abstract": [
+        {
+          "text": "The response to a library playlist folders request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFoldersResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFoldersResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFoldersResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistFoldersResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylistfoldersresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistTracksRequest": {
+      "abstract": [
+        {
+          "text": "A request to add tracks to a library playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistTracksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistTracksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistTracksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistTracksRequest",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylisttracksrequest"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylists": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a library playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylists"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylists"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse": {
+      "abstract": [
+        {
+          "text": "The response to a library playlists request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplaylistsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsTracksRelationshipResponse": {
+      "abstract": [
+        {
+          "text": "The response to a library playlists tracks relationship request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistsTracksRelationshipResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsTracksRelationshipResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistsTracksRelationshipResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistsTracksRelationshipResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/libraryplayliststracksrelationshipresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Playlists": {
+      "abstract": [
+        {
+          "text": "A resource object that represents a playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Playlists"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Playlists",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Playlists"
+        }
+      ],
+      "role": "symbol",
+      "title": "Playlists",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/playlists"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PlaylistsResponse": {
+      "abstract": [
+        {
+          "text": "The response to a playlists request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaylistsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PlaylistsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaylistsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaylistsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/playlistsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/apple-music-stations": {
+      "abstract": [
+        {
+          "text": "Get information about streaming content offered by Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/apple-music-stations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Music Stations",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/apple-music-stations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playlists-and-Stations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/apple-music-stations"
+      ],
+      "title": "Playlists and Stations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Requesting-a-Catalog-Playlist",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Playlist",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-707nb",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-view-on-this-resource-by-name-6i3ek",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Playlists",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-charts-playlists-by-storefront-value"
+      ],
+      "title": "Requesting a Catalog Playlist"
+    },
+    {
+      "anchor": "Requesting-a-Library-Playlist",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-5l22w",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlists",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-All-Library-Playlists"
+      ],
+      "title": "Requesting a Library Playlist"
+    },
+    {
+      "anchor": "Handling-Library-Playlist-Folders",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Root-Library-Playlists-Folder",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Library-Playlist-Folder",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-r5gv",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Library-Playlist-Folders",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Create-a-New-Library-Playlist-Folder",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFolderCreationRequest"
+      ],
+      "title": "Handling Library Playlist Folders"
+    },
+    {
+      "anchor": "Creating-and-Modifying-User-Playlists",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Create-a-New-Library-Playlist",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Add-Tracks-to-a-Library-Playlist",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Add-a-Resource-to-a-Library",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistCreationRequest",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistTracksRequest"
+      ],
+      "title": "Creating and Modifying User Playlists"
+    },
+    {
+      "anchor": "Handling-the-Response",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Playlists",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PlaylistsResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylists",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistsTracksRelationshipResponse",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFolders",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/LibraryPlaylistFoldersResponse"
+      ],
+      "title": "Handling the Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/playlists-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

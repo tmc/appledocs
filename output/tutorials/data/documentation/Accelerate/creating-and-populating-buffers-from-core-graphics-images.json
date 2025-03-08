@@ -1,0 +1,799 @@
+{
+  "abstract": [
+    {
+      "text": "Initialize vImage buffers from Core Graphics images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating and Populating Buffers from Core Graphics Images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures are the basic data structures that vImage uses for working with images. They describe an image’s dimensions and contain the pixel data that vImage routines operate on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you’ll initialize a source buffer from an image and initialize and allocate a destination buffer to receive the result of a vImage operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-a-Source-Buffer-from-a-Core-Graphics-Image",
+          "level": 3,
+          "text": "Initialize a Source Buffer from a Core Graphics Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage functions that initialize a buffer’s size and data require an instantiated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. Typically, you declare a buffer as a variable because these functions mutate the buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can initialize a vImage buffer from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that’s acquired from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/cgImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an image. In the following example, the image is named ",
+              "type": "text"
+            },
+            {
+              "code": "Flowers_2.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function initializes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with the image data using the format discussed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard",
+            "    let cgImage = UIImage(named: \"Flowers_2.jpg\")?.cgImage,",
+            "    var sourceBuffer = try? vImage_Buffer(cgImage: cgImage,",
+            "                                          format: format) else {",
+            "                                            return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-and-Allocate-a-Destination-Buffer",
+          "level": 3,
+          "text": "Initialize and Allocate a Destination Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, in addition to creating a buffer to represent your source image, you create a destination buffer to receive the result of the vImage operation. In this case, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(width:height:bitsPerPixel:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to initialize a buffer of a specified size and the correct memory allocation for the bit-depth of the image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard var destinationBuffer = try? vImage_Buffer(width: Int(sourceBuffer.width),",
+            "                                                 height: Int(sourceBuffer.height),",
+            "                                                 bitsPerPixel: format.bitsPerPixel) else {",
+            "                                                    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Free-the-Buffer-Memory",
+          "level": 3,
+          "text": "Free the Buffer Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’re finished with buffers that have have their own memory allocation, it’s important that you free the memory allocated to them:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffer.free()",
+            "destinationBuffer.free()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images": {
+      "abstract": [
+        {
+          "text": "Reflect, shear, rotate, and scale image buffers using vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying geometric transforms to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-geometric-transforms-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending": {
+      "abstract": [
+        {
+          "text": "Combine two images by using alpha blending to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with alpha blending",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-alpha-blending"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes": {
+      "abstract": [
+        {
+          "text": "Combine two images by using blend modes to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with vImage blend modes",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-vimage-blend-modes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer": {
+      "abstract": [
+        {
+          "text": "Create displayable representations of vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Graphics Image from a vImage Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-core-graphics-image-from-a-vimage-buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the contents of a Core Graphics image using the supplied image format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:format:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(cgimage:format:flags:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(width:height:bitsPerPixel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the specified width, height, and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(width:height:bitsPerPixel:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(width:height:bitsPerPixel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(width:height:bitsperpixel:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting bitmap data between Core Graphics images and vImage buffers",
+      "type": "topic",
+      "url": "/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage/cgImage": {
+      "abstract": [
+        {
+          "text": "The underlying Quartz image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage/cgImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cgImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage/cgImage"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      "title": "Image Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1cgImage/title",
+          "value": "CGImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage~1cgImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGImageRef",
+              "text": "CGImageRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImage"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

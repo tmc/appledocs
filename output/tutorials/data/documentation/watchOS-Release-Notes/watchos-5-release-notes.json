@@ -1,0 +1,1581 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "watchOS 5 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS 5 SDK provides support for developing watchOS apps for Apple Watch devices running watchOS 5. For information about new features in watchOS 5, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/watchos/whats-new/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The SDK comes bundled with Xcode 10 available from the Mac App Store. For information about Xcode 10, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " HTTP/2 implementation has been updated to support HTTP/2 connection reuse per RFC 7540 Section 9.1.1. This requires an HTTP/2 server to present a certificate which covers more than one server hostname. The certificate may use the Subject Alternative Name extension or wildcarded domain names. In addition, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requires name resolution to resolve the different hostnames to the same IP address. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " might reuse HTTP/2 connections across different domain names when these conditions are satisfied. (37507838)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ftp://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "file://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " URL schemes for Proxy Automatic Configuration (PAC) are deprecated. HTTP and HTTPS are the only supported URL schemes for PAC. This affects all PAC configurations including, but not limited to, configurations set via Settings,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "System Preferences, profiles, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (37811761)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "WatchKit",
+          "level": 3,
+          "text": "WatchKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tint color of a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceVolumeControl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " can now be set by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. (40565782)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceController/updateUserActivity(_:userInfo:webpageURL:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method doesn’t properly register activities. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceController/update(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead. (39840960)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:withCompletion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method doesn’t receive grouped updates for threaded notifications. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Downloads a proxy autoconfiguration script and executes it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "proxyAutoConfigURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "targetURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "cb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+          "text": "CFProxyAutoConfigurationResultCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "clientContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamClientContext",
+          "text": "CFStreamClientContext"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+          "text": "CFRunLoopSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceController/update(_:)": {
+      "abstract": [
+        {
+          "text": "Registers the current user activity with the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceController/update(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceController/update(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceController/updateUserActivity(_:userInfo:webpageURL:)": {
+      "abstract": [
+        {
+          "text": "Registers the current user activity with the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "webpageURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceController/updateUserActivity(_:userInfo:webpageURL:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateUserActivity(_:userInfo:webpageURL:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceController/updateUserActivity(_:userInfo:webpageURL:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceVolumeControl": {
+      "abstract": [
+        {
+          "text": "An interface element that provides control of the audio volume from the watch or a paired iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceVolumeControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceVolumeControl",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceVolumeControl"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the volume control’s tint color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTintColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "tintColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTintColor(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:)": {
+      "abstract": [
+        {
+          "text": "Delivers a notification object to your interface controller for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotification",
+          "text": "UNNotification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didReceive(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:withCompletion:)": {
+      "abstract": [
+        {
+          "text": "Delivers a notification object to your interface controller for processing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotification",
+          "text": "UNNotification"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletion"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKUserNotificationInterfaceType",
+          "text": "WKUserNotificationInterfaceType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:withCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didReceive(_:withCompletion:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKUserNotificationInterfaceController/didReceive(_:withCompletion:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-10-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary containing information about the proxy to use within this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionProxyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionProxyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 5.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-5_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_1_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_1_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 5.1.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-5_1_3-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 5.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-5_3-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the watchOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes"
+    },
+    "https://developer.apple.com/watchos/whats-new/": {
+      "identifier": "https://developer.apple.com/watchos/whats-new/",
+      "title": "What’s New in watchOS",
+      "titleInlineContent": [
+        {
+          "text": "What’s New in watchOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/watchos/whats-new/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "watchOS-5",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_3-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_1_3-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-5_1-release-notes"
+      ],
+      "title": "watchOS 5"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceController~1updateUserActivity(_:userInfo:webpageURL:)/title",
+          "value": "updateUserActivity:userInfo:webpageURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceController~1updateUserActivity(_:userInfo:webpageURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "type"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "userInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "webpageURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "webpageURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceVolumeControl/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceController~1update(_:)/title",
+          "value": "updateUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceController~1update(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKUserNotificationInterfaceController~1didReceive(_:withCompletion:)/title",
+          "value": "didReceiveNotification:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKUserNotificationInterfaceController~1didReceive(_:withCompletion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotification:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotification",
+              "text": "UNNotification"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "notification"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withCompletion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@WKUserNotificationInterfaceType",
+              "text": "WKUserNotificationInterfaceType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceVolumeControl~1setTintColor(_:)/title",
+          "value": "setTintColor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceVolumeControl~1setTintColor(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTintColor:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIColor",
+              "text": "UIColor"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "tintColor"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/title",
+          "value": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+              "text": "CFRunLoopSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "proxyAutoConfigURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+              "text": "CFProxyAutoConfigurationResultCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cb"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CFStreamClientContext",
+              "text": "CFStreamClientContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "clientContext"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKUserNotificationInterfaceController~1didReceive(_:)/title",
+          "value": "didReceiveNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKUserNotificationInterfaceController~1didReceive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotification:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotification",
+              "text": "UNNotification"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "notification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

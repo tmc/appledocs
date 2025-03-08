@@ -1,0 +1,2380 @@
+{
+  "abstract": [
+    {
+      "text": "A type that advises WidgetKit when to update a widget’s display.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9WidgetKit16TimelineProviderP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TimelineProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TimelineProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "TimelineProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TimelineProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At various times, WidgetKit requests a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "timeline",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from the provider. A",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timeline is an array of objects conforming to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timeline entry has a date, and you can specify additional properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for displaying the widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider a widget that displays the health level of a game",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "character. In the game, when the character’s health level is below 100",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "percent, it recovers at a rate of 25 percent per hour. If the character’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "health level is 25 percent, the provider creates a timeline consisting of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following entries:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "TimelineProvider-TimelineEntries.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the structure encapsulating this information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetailEntry: TimelineEntry {",
+            "    var date: Date",
+            "    var healthLevel: Double",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit asks for timeline entries in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A single immediate snapshot, representing the widget’s current state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of entries, including the current moment and, if known, any",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "future dates when the widget’s state will change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit makes the snapshot request when displaying the widget in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transient situations, such as when the user is adding a widget. WidgetKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides a ",
+              "type": "text"
+            },
+            {
+              "code": "context",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter that includes details about how to use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entry, including whether it’s a preview for the widget gallery, and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "family, or size, of the widget to display. If ",
+              "type": "text"
+            },
+            {
+              "code": "context.isPreview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the widget appears in the widget gallery and requires a quick",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "response from your provider. If the information you need to generate the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "snapshot is not readily available, or requires additional time to load, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample data instead. For example, if determining the character’s health",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "level requires fetching data from a server, the widget could show the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "health level at 75 percent. The following code shows how the game widget",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might implement its snapshot method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetailProvider: TimelineProvider {",
+            "    func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {",
+            "        let date = Date()",
+            "        let entry: CharacterDetailEntry",
+            "",
+            "        if context.isPreview && !hasHealthLevel {",
+            "            entry = CharacterDetailEntry(date: date, healthLevel: 0.75)",
+            "        } else {",
+            "            entry = CharacterDetailEntry(date: date, healthLevel: currentHealthLevel)",
+            "        }",
+            "        completion(entry)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit makes the timeline request after the user adds your widget from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the widget gallery. Because your widget extension is not always running,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "WidgetKit needs to know when to activate it to update the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget. The timeline your provider generates informs WidgetKit when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "would like to update the widget. The following example shows how the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample code project creates a timeline for its leaderboard widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getTimeline(in context: Context, completion: @escaping (Timeline<LeaderboardEntry>) -> Void) {",
+            "    EmojiRanger.loadLeaderboardData { (heros, error) in",
+            "        guard let heros else {",
+            "            let timeline = Timeline(entries: [LeaderboardEntry(date: Date(), heros: EmojiRanger.availableHeros)], policy: .atEnd)",
+            "",
+            "            completion(timeline)",
+            "",
+            "            return",
+            "        }",
+            "        let timeline = Timeline(entries: [LeaderboardEntry(date: Date(), heros: heros)], policy: .atEnd)",
+            "        completion(timeline)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your provider needs to do asynchronous work to generate the timeline,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as fetching data from a server, store a reference to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handler and call it when you are done with your asynchronous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-a-refresh-policy",
+          "level": 3,
+          "text": "Determine a refresh policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating the timeline, the provider specifies a refresh policy that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls when WidgetKit requests a new timeline. The default",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior is to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/atEnd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to request a new timeline after the last date",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specified by the entries in a timeline. However, if there is a different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "date when WidgetKit should request a new timeline, you can specify a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "refresh policy of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/after(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, a dragon will appear in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2.5 hours and might engage in battle with the game character. Because the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "outcome of this battle may change the character’s health level, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provider can tell WidgetKit to request a new timeline after the battle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Request a timeline refresh after 2.5 hours.",
+            "let date = Calendar.current.date(byAdding: .minute, value: 150, to: Date())!",
+            "let timeline = Timeline(entries: entries, policy: .after(date))",
+            "completion(timeline)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other examples of when it makes sense to use a different date include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a widget displaying stock market details, you might specify the next",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "market opening or closing date because information typically doesn’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "change overnight or during weekends.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A flight tracking widget might continue showing a “flight",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "landed” indication after the flight lands. In this case, you could",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "specify a date later than when the flight lands so that its status",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "remains visible for a while before being cleared.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if future events are unpredictable, you can tell WidgetKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to not request a new timeline at all by specifying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/never",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "policy. In that case, your app calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when a new timeline is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available. Some examples of when using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/never",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " makes sense include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the user has a widget configured to display the health of a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "character, but that character is no longer actively engaging in battle",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and its health level won’t change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When a widget’s content is dependent on the user being logged into an",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "account and they aren’t currently logged in.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In both examples, when your app determines that the status has changed, it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and WidgetKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requests a new timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Refresh-widgets-efficiently",
+          "level": 3,
+          "text": "Refresh widgets efficiently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each configured widget receives a limited number of refreshes every day. Several",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "factors affect how many refreshes a widget receives, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether the containing app is running in the foreground or background, how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frequently the widget is shown onscreen, and what types of activities the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "containing app engages in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "WidgetKit does not impose this limit when debugging your widget in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Xcode. To verify that your widget behaves correctly, test your app and",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "widget’s behavior outside of Xcode’s debugger.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following approaches to optimize your widget refreshes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have the containing app prepare data for the widget in advance of when the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "widget needs it. Use a shared group container to store the data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use background processing time in your app to keep shared data up to date.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/using-background-tasks-to-update-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the most appropriate refresh policy for the information being shown,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "as described in the preceding section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " only when information",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the widget is currently displaying changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app is in the foreground, has an active media session, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is using the standard location service, refreshes don’t count against the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget’s daily limit. For more information about media sessions and location",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "services, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/configuring-your-app-to-use-location-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "TimelineProvider-TimelineEntries.png": {
+      "alt": "A diagram showing a timeline with four entries, starting with the current time at 25 percent health, and hourly entries for the next three hours at 50, 75, and 100 percent health",
+      "identifier": "TimelineProvider-TimelineEntries.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29bc360745daea7649534c8cb207cc46/TimelineProvider-TimelineEntries@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f8f683a52f81f28a1dcda97d3e3e02a/TimelineProvider-TimelineEntries~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App": {
+      "abstract": [
+        {
+          "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit/converting-a-clockkit-app"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/keeping-a-widget-up-to-date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline": {
+      "abstract": [
+        {
+          "text": "An object that specifies a date for WidgetKit to update a widget’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "Timeline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timeline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry": {
+      "abstract": [
+        {
+          "text": "A type that specifies the date to display a widget, and, optionally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicates the current relevance of the widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineEntry",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/Context": {
+      "abstract": [
+        {
+          "text": "An object that contains details about how a widget is rendered, including its size and whether it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appears in the widget gallery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProvider.Context",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/context"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/Entry": {
+      "abstract": [
+        {
+          "text": "A type that specifies the date to display a widget, and, optionally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicates the current relevance of the widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit13TimelineEntryP",
+          "text": "TimelineEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/Entry",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Entry",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/entry"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides a timeline entry that represents the current time and state of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "getSnapshot(in:completion:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/getsnapshot(in:completion:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an array of timeline entries for the current time and,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally, any future times to update a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimeline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit8TimelineV",
+          "text": "Timeline"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "getTimeline(in:completion:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/gettimeline(in:completion:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)": {
+      "abstract": [
+        {
+          "text": "Provides a timeline entry representing a placeholder version of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "placeholder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit16TimelineProviderP5EntryQa",
+          "text": "Entry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "placeholder(in:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/placeholder(in:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/relevance()": {
+      "abstract": [
+        {
+          "text": "Provides an object containing attributes that describe when a specific",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget could be relevant.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relevance"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A9RelevanceV",
+          "text": "WidgetRelevance"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/relevance()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "relevance()",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider/relevance()"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext": {
+      "abstract": [
+        {
+          "text": "An object that contains details about how a widget is rendered, including",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its size and whether it appears in the widget gallery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProviderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProviderContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProviderContext",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovidercontext"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/after(_:)": {
+      "abstract": [
+        {
+          "text": "A policy that specifies a future date for WidgetKit to request a new",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit20TimelineReloadPolicyV",
+          "text": "TimelineReloadPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/after(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "after(_:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelinereloadpolicy/after(_:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/atEnd": {
+      "abstract": [
+        {
+          "text": "A policy that specifies that WidgetKit requests a new timeline after",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the last date in a timeline passes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "atEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit20TimelineReloadPolicyV",
+          "text": "TimelineReloadPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/atEnd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atEnd",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelinereloadpolicy/atend"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/never": {
+      "abstract": [
+        {
+          "text": "A policy that specifies that the app prompts WidgetKit when a new",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "timeline is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "never"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit20TimelineReloadPolicyV",
+          "text": "TimelineReloadPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineReloadPolicy/never",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "never",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelinereloadpolicy/never"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured widgets and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading widget timelines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)": {
+      "abstract": [
+        {
+          "text": "Reloads the timelines for all widgets of a particular kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadTimelines"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadTimelines(ofKind:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter/reloadtimelines(ofkind:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/configuring-your-app-to-use-location-services": {
+      "abstract": [
+        {
+          "text": "Prepare your app to start collecting location data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/configuring-your-app-to-use-location-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app to use location services",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/configuring-your-app-to-use-location-services"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/using-background-tasks-to-update-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your app to perform tasks in the background to make efficient use of processing time and power.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/using-background-tasks-to-update-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Using background tasks to update your app",
+      "type": "topic",
+      "url": "/documentation/UIKit/using-background-tasks-to-update-your-app"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Timeline-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider"
+      ],
+      "title": "Timeline management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Generating-Timelines",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getSnapshot(in:completion:)",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/getTimeline(in:completion:)",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/placeholder(in:)",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/Entry",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/Context"
+      ],
+      "title": "Generating Timelines"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider/relevance()"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/timelineprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

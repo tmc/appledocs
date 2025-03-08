@@ -1,0 +1,857 @@
+{
+  "abstract": [
+    {
+      "text": "Any child accessibility element’s properties are merged",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "into the new accessibility element.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/combine"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SwiftUI",
+    "externalID": "s:7SwiftUI26AccessibilityChildBehaviorV7combineACvpZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "combine"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7SwiftUI26AccessibilityChildBehaviorV",
+        "text": "AccessibilityChildBehavior"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "combine"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "combine"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI26AccessibilityChildBehaviorV",
+              "text": "AccessibilityChildBehavior"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this behavior when you want a view represented by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single accessibility element. The new accessibility element",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "merges properties from all non-hidden children. Some",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties may be transformed or ignored to achieve the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ideal combined result. For example, not all of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityTraits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are merged and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityActionKind/default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may become a named action (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityActionKind/init(named:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct UserCell: View {",
+            "    var user: User",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            Image(user.image)",
+            "            Text(user.name)",
+            "            Button(\"Options\", action: showOptions)",
+            "        }",
+            "        .accessibilityElement(children: .combine)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new accessibility element is created when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view contains multiple or zero accessibility elements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view wraps a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "/",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If an accessibility element is not created, the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " of the existing",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "accessibility element is modified.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityActionKind/default": {
+      "abstract": [
+        {
+          "text": "The value that represents the default accessibility action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23AccessibilityActionKindV",
+          "text": "AccessibilityActionKind"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityActionKind/default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityactionkind/default"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityActionKind/init(named:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityActionKind/init(named:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityactionkind/init(named:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior": {
+      "abstract": [
+        {
+          "text": "Defines the behavior for the child elements of the new parent element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityChildBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitychildbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/combine": {
+      "abstract": [
+        {
+          "text": "Any child accessibility element’s properties are merged",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "into the new accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "combine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26AccessibilityChildBehaviorV",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/combine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "combine",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitychildbehavior/combine"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/contain": {
+      "abstract": [
+        {
+          "text": "Any child accessibility elements become children of the new",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26AccessibilityChildBehaviorV",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/contain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contain",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitychildbehavior/contain"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/ignore": {
+      "abstract": [
+        {
+          "text": "Any child accessibility elements become hidden.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26AccessibilityChildBehaviorV",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/ignore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ignore",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitychildbehavior/ignore"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityTraits": {
+      "abstract": [
+        {
+          "text": "A set of accessibility traits that describe how an element behaves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityTraits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityTraits",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitytraits"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper that you use to integrate an AppKit view into your SwiftUI view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/contain",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior/ignore"
+      ],
+      "title": "Getting behaviors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/accessibilitychildbehavior/combine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

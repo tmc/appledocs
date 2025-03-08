@@ -1,0 +1,939 @@
+{
+  "abstract": [
+    {
+      "text": "Add content to a playground book by creating new folders and property lists.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Structuring Content for Swift Playgrounds"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine playground books, chapters, pages, Swift modules, and cutscenes to provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a logical narrative or instructional structure to your content. For example, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use books to package root-level Swift Playgrounds content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use chapters to group pages and cutscenes within a book.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use pages to write the primary teaching or exploratory content of the book.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use modules to implement live views and provide the APIs learners write code against.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide user-editable modules to give learners a space to store and reuse code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Intersperse cutscenes with pages to introduce or summarize concepts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each part of a playground book must include a manifest property list that contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "metadata and references to shared resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Modules are available starting with Swift Playgrounds 3, and version",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "6 of the Swift Playgrounds book format. For previous versions, place code in the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Sources folder of a book, chapter, or page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Determine-Book-Level-Information",
+          "level": 3,
+          "text": "Determine Book-Level Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You write key details about a playground book in its ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comes with a default manifest that you update with specific details about your book,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like its title and the file path for the cover image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the book-level manifest to configure the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " An array of strings you use to order the chapters in a book. Each string is the name of a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".playgroundchapter",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " directory that contains the content and resources for a chapter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Chapters",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string that uniquely identifies your book among all others. The identifier must be in reverse-DNS format, and you should use a domain that you or your organization controls. For example, if you own ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "example.com",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", you might set a book’s ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ContentIdentifier",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " property to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.example.mybook",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ContentIdentifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string containing the version number of a book. The string can only contain sequences of numbers and periods, such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "2.0.1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Increment the version of the book when you publish updates to it.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ContentVersion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string that contains the minimum version of iOS (10.0 or later) required to run your book. You prefix the version number with the string ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ios",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". For example, the version string for iOS 11.3 is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ios11.3",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "DeploymentTarget",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The default language and region for the book, as a Language ID. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html#//apple_ref/doc/uid/10000171i-CH15-SW6",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "DevelopmentRegion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string containing a reference to a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".png",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " image file that’s stored in the book’s Resources folder and used as the book icon. The icon must be an image with a 4:3 aspect ratio. The recommended image size is 400 × 300 pixels.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ImageReference",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string you use to provide a title for a book. This title becomes the learner-facing name displayed in Swift Playgrounds.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string containing the version of the Swift Playgrounds book format used to write the book. Use ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "6.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Version",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string containing the version of Swift that the playground book uses. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "5.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "SwiftVersion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string containing the minimum version of the Swift Playgrounds app that your book requires. The default is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1.2",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "MinimumSwiftPlaygroundsVersion",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string you use to determine the degree to which a learner has control over user-editable modules in the book. The module mode must be one of the following types:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "\"Full\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "—User-editable modules that the user can add and remove as needed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "\"Limited\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "—A nonremovable user module that you supply with your book.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "\"Disabled\"",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "—No user-editable modules are available.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This property is available starting with Swift Playgrounds 3.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "UserModuleMode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a folder with a manifest that describes the chapter’s name and page order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Chapter to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-chapter-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and cutscene metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Cutscene to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-cutscene-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and a content file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Page to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-page-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/creating-and-running-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Build a playground book from a template, and run it in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/creating-and-running-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Running a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/creating-and-running-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Reuse common assets throughout a book to reduce its size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing Resources in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/sharing-resources-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, make code available across multiple chapters to teach the value of reusable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Modules to Share Code in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-modules-to-share-code-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template": {
+      "identifier": "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template",
+      "title": "Swift Playgrounds Author Template",
+      "titleInlineContent": [
+        {
+          "text": "Swift",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Playgrounds Author Template",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430",
+      "title": "CFBundleDevelopmentRegion",
+      "titleInlineContent": [
+        {
+          "text": "CFBundleDevelopmentRegion",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430"
+    },
+    "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html#//apple_ref/doc/uid/10000171i-CH15-SW6": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html#//apple_ref/doc/uid/10000171i-CH15-SW6",
+      "title": "Language IDs",
+      "titleInlineContent": [
+        {
+          "text": "Language IDs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html#//apple_ref/doc/uid/10000171i-CH15-SW6"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playground-Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/creating-and-running-a-playground-book"
+      ],
+      "title": "Playground Setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Book-Structure",
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book"
+      ],
+      "title": "Book Structure"
+    }
+  ]
+}

@@ -1,0 +1,423 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Ventura 13.1 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 13.1 SDK provides support to develop apps for Mac computers running macOS Ventura 13.1. The SDK comes bundled with Xcode 14.2, available from the Mac App Store. For information on the compatibility requirements for Xcode 14.2, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_2-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Endpoint-Security",
+          "level": 3,
+          "text": "Endpoint Security",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Third-party security products using the Endpoint Security API might lose Full Disk Access authorization and stop functioning, even though the product remains visible in System Settings. This issue doesn’t affect authorization granted via MDM. (100857507)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In order to improve compiler type-checking performance, we’ve deprecated, and will eventually remove some existing Table initializers. They have been replaced with initializers which require an additional parameter that explicitly specifies the type they generate their contents from. This improves type-check performance by avoiding the need to infer a shared type from the bodies of separate closure parameters. For now, these problematic intiializers have been deprecated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new initializers add the parameter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "of:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The following shows a Table before, and after adoption of the new API:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "// before (will now produce an error):",
+                    "Table {",
+                    "  TableColumn(\"Name\", value: \\.name)",
+                    "  TableColumn(\"Email\", value: \\.email)",
+                    "} rows: {",
+                    "  ForEach(people) { person in",
+                    "      TableRow(person)",
+                    "  }",
+                    "}",
+                    "",
+                    "// after:",
+                    "Table(of: Person.self) {",
+                    "  TableColumn(\"Name\", value: \\.name)",
+                    "  TableColumn(\"Email\", value: \\.email)",
+                    "} rows: {",
+                    "  ForEach(people) { person in",
+                    "      TableRow(person)",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(101009480)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI-Navigation",
+          "level": 3,
+          "text": "SwiftUI Navigation",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: NavigationStack on macOS supports animated transitions. Either pass the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "path",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationStack",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with an animated binding (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$path.binding",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), or mutate the path within a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "withAnimation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " body. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transition",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier now has an effect on pushed destinations. For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "private struct AnimatedStacks: View {",
+            "    @State private var path: [Int] = []",
+            "    private var colors: [Color] = [.red, .green, .blue, .pink]",
+            "",
+            "    var body: some View {",
+            "        NavigationStack(path: $path.animation()) {",
+            "            VStack {",
+            "                List(0..<3) { int in",
+            "                    NavigationLink(value: int) {",
+            "                        Text(\"Animated Option\")",
+            "                    }",
+            "                }",
+            "                Button(\"Option 2\") {",
+            "                    withAnimation {",
+            "                        path.append(3)",
+            "                    }",
+            "                }",
+            "            }",
+            "            .navigationDestination(for: Int.self) { int in",
+            "                if int == 2 {",
+            "                    colors[int].transition(.opacity)",
+            "                } else {",
+            "                    colors[int]",
+            "                }",
+            "            }",
+            "        }",
+            "        .toolbar {",
+            "            Spacer()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "(95714581)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 14.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-14_2-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-13",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes"
+      ],
+      "title": "macOS 13"
+    }
+  ]
+}

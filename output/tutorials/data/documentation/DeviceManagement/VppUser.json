@@ -1,0 +1,678 @@
+{
+  "abstract": [
+    {
+      "text": "A user within the purchase program.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppUser"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-apps:vpp:VppUser",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "VppUser"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VppUser"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "VppUser"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: VPP License Management"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "VppUser"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier supplied by the client when registering a user. An identifier must be unique within the organization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "clientUserIdStr",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user’s email address.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "email",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The hash of the user’s iTunes Store ID. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "itsIdHash",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field is included only when the user is associated with an iTunes Store account.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "itsIdHash",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The list of licenses which have been assigned to this user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "licenses",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLicense",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:VppLicense",
+              "text": "VppLicense"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The status of the user’s account in VPP. Possible values are:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Registered",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Indicates the user has been created, but is not yet associated with an iTunes account.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Associated",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Indicates that the user has been associated with an iTunes account. When a user is associated with an iTunes account, an ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "itsIdHash",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " is generated for the user.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Retired",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Indicates the user has been retired via  ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Deleted",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Indicates that a VPP user is retired and its associated iTunes user has since been invited and associated with a new VPP user that shares the same ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "clientUserIdStr",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ". Because there are two VPP users with distinct ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "userId",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " values but the same ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "clientUserIdStr",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " value, the Deleted status is used to ensure database consistency.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A user with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Deleted",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " status will never change status; its sole purpose is to ensure that your software can recognize that the userId is no longer associated with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "clientUserIdStr",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " record, and update any internal references appropriately.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier assigned by the VPP when registering the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User": {
+      "abstract": [
+        {
+          "text": "Retire a user account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Retire-a-User",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retire a User"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retire a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/retire-a-user"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAsset": {
+      "abstract": [
+        {
+          "text": "A particular asset in the purchase program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppAsset",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppasset"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignment": {
+      "abstract": [
+        {
+          "text": "An assignment’s properties and their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppAssignment"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppAssignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppAssignment",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppassignment"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation": {
+      "abstract": [
+        {
+          "text": "An association between a license and a user or device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppAssociation"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppAssociation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppAssociation",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppassociation"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppErrorCode": {
+      "abstract": [
+        {
+          "text": "An error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppErrorCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppErrorCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppErrorCode",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpperrorcode"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLicense": {
+      "abstract": [
+        {
+          "text": "A license for a product in the purchase program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppLicense"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLicense",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppLicense"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppLicense",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpplicense"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLocation": {
+      "abstract": [
+        {
+          "text": "A location used for managing purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppLocation",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpplocation"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppUser": {
+      "abstract": [
+        {
+          "text": "A user within the purchase program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppUser"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppUser",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppuser"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Objects-and-Data-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAsset",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssignment",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLicense",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLocation",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppErrorCode"
+      ],
+      "title": "Objects and Data Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/vppuser"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

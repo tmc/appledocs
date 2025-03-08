@@ -1,0 +1,735 @@
+{
+  "abstract": [
+    {
+      "text": "A four-byte value that indicates a locale.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Metadata_atoms_and_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Locale_indicator"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Locale indicator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The locale indicator is formatted as a four-byte value. It is formed from two two-byte values: a country indicator, and a language indicator. In each case, the two-byte field has the possible values shown in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Meaning",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This atom provides the default value of this datum for any locale not explicitly listed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "255",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an index into the country or language list (the upper byte is 0).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "otherwise",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an ISO 3166 code (for the country code) or a packed ISO 639-2/T code (for the language).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that both ISO 3166 and ISO 639-2/T codes have a nonzero value in their top byte, and so will have a value > ",
+              "type": "text"
+            },
+            {
+              "code": "255",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Software applications that read metadata may be customized for a specific set of countries or languages. If a metadata writer does not want to limit a metadata item to a specific set of countries, it should use the reserved value ",
+              "type": "text"
+            },
+            {
+              "code": "ZZ",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from ISO 3166 as its country code. Similarly if the metadata writer does not want to limit the user’s language (this is not recommended) it uses the value ‘und’ (undetermined) from the ISO 639-2/T specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A software application matches a country code if either (a) the value to be matched to is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (default) or (b) the codes are equal. A software application matches to a list of codes if its value is a member of that list. A software application matches to a locale if both country and language match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows some example metadata tags.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Country",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Language",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Meaning",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "eng",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All speakers of English, regardless of country",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "GB",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All people in the United Kingdom, regardless of language",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CA",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fra",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "French speakers in Canada",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DE,GB,FR,IT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People in Germany, France, United Kingdom, and Italy, regardless of language",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DE,GB,FR,IT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "deu,fra",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People in Germany, France, United Kingdom, and Italy, who speak German or French",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default, all speakers in all countries",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reiterate, if the country_indicator value is in the range ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "255",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it is interpreted as the 1-based index for a country list in the Country Language atom in the Metadata atom. If the language_indicator value is in the range ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "255",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it is interpreted as the 1-based index for a language list in the Language List atom in the Metadata atom. Otherwise, the country_indicator or language_indicator is unspecified (",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") or holds the immediate value for a single country or language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_D_Metadata_handling": {
+      "abstract": [
+        {
+          "text": "Handling metadata in other file formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_D_Metadata_handling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metadata handling",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_d_metadata_handling"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Data_ordering": {
+      "abstract": [
+        {
+          "text": "Represent multiple representations of the same information, differing either by language or storage type or by the size or nature of the data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Data_ordering",
+      "kind": "article",
+      "role": "article",
+      "title": "Data ordering",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/data_ordering"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Direction_definition": {
+      "abstract": [
+        {
+          "text": "Define a direction in metadata keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Direction_definition",
+      "kind": "article",
+      "role": "article",
+      "title": "Direction definition",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/direction_definition"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Extensibility": {
+      "abstract": [
+        {
+          "text": "Avoid issues building extensibility into your file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Extensibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Extensibility",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/extensibility"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Localization_list_sets": {
+      "abstract": [
+        {
+          "text": "Provide metadata for more than one country or language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Localization_list_sets",
+      "kind": "article",
+      "role": "article",
+      "title": "Localization list sets",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/localization_list_sets"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Location_metadata": {
+      "abstract": [
+        {
+          "text": "Storing the location coordinates, as well as several auxiliary pieces of information about a location, as metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Location_metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Location metadata",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/location_metadata"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Metadata_atoms_and_types": {
+      "abstract": [
+        {
+          "text": "Store metadata in QuickTime Movie files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Metadata_atoms_and_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metadata atoms and types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_atoms_and_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys": {
+      "abstract": [
+        {
+          "text": "Use QuickTime keys to hold data in a Metadata atom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime metadata keys",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_metadata_keys"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Type_indicator": {
+      "abstract": [
+        {
+          "text": "Four bytes that indicate a type of data that QuickTime supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Type_indicator",
+      "kind": "article",
+      "role": "article",
+      "title": "Type indicator",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/type_indicator"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types": {
+      "abstract": [
+        {
+          "text": "Basic data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Well-known types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/well-known_types"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Types-and-usage",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Extensibility",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Localization_list_sets",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Type_indicator",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Data_ordering",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Well-known_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Location_metadata",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_metadata_keys",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Direction_definition",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_D_Metadata_handling"
+      ],
+      "title": "Types and usage"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/locale_indicator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

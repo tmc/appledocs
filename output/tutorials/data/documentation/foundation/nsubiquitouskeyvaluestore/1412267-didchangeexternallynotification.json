@@ -1,0 +1,469 @@
+{
+  "abstract": [
+    {
+      "text": "Posted when the value of one or more keys in the local key-value store changed due to incoming data pushed from iCloud.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/preferences",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412267,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSUbiquitousKeyValueStoreDidChangeExternallyNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class let "
+      },
+      {
+        "kind": "identifier",
+        "text": "didChangeExternallyNotification"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSUbiquitousKeyValueStore"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "didChangeExternallyNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didChangeExternallyNotification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This notification is sent only upon a change received from iCloud; it is not sent when your app sets a value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user info dictionary can contain the reason for the notification as well as a list of which values changed, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key, when present, indicates why the key-value store changed. Its value is one of the constants in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", when present, is an array of strings, each the name of a key whose value changed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object whose contents changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Early in your app’s launch sequence, register for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " notification using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. Specify the default key-value store object (obtained using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class method) as the object whose notifications you want to receive.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification": {
+      "abstract": [
+        {
+          "text": "Posted when the value of one or more keys in the local key-value store changed due to incoming data pushed from iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeExternallyNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeExternallyNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1413949-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Change Reason Values",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1433687-change_reason_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStoreChangedKeysKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStoreChangeReasonKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsubiquitouskeyvaluestoredidchangeexternallynotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

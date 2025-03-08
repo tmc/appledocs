@@ -1,0 +1,1392 @@
+{
+  "abstract": [
+    {
+      "text": "Set up a watchOS app that installs and runs without a companion iOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating independent watchOS apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch users have come to expect that the apps on their watches just work, even",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when they don’t have their iPhones with them. To ensure the best experience for all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple Watch users, create an independent watchOS app that doesn’t require",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a companion iOS app for iPhone. You can do this in two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a watch-only app that doesn’t have a companion iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a watchOS app that has a companion iOS app, but people can install and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "run independently of the companion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a watch-only app for apps that only run on Apple Watch. If you have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS and iOS apps that are substantially similar, release them as companion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can purchase watchOS apps directly from the App Store on Apple Watch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "They can make in-app purchases directly on Apple Watch as well. If you create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a watchOS app with a companion iOS app, the in-app purchases are universal.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Users make the purchase once, and the content is available in both watchOS and iOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-watchOS-project",
+          "level": 3,
+          "text": "Create your watchOS project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a watchOS project in Xcode, you have two choices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use this option to create an app that’s only available on Apple Watch, with no related iPhone app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Watch-only App",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use this option to create a watchOS app and an iOS app that deliver similar or related experiences.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Watch App with New Companion iOS App",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-watch-only-app",
+          "level": 3,
+          "text": "Create a watch-only app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build a watch-only app, start a new project in Xcode, select the App template",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the watchOS tab, and then click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a name, and choose the Watch-only App option. Select Include Tests, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the main window, Xcode’s Project navigator displays the folders and files for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project. The Watch App folder contains the code and assets for your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Watch AppTests and Watch AppUITests folders contain the unit and user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface tests for your app, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode also creates four targets for your app and its tests, which you can view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the project editor. The root target is a stub that acts as an iOS wrapper",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your project. Xcode needs this stub to properly handle your watch-only app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and uses it to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the root bundle identifier. The system uses this bundle identifier for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Universal Purchase and cross-device communication, such as Device Discovery.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Package your app for distribution to the App Store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode doesn’t create an iOS executable for the stub. When someone installs your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watch-only app, nothing installs on the paired iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other three targets represent the functional portions of your project: your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, its unit tests, and its user interface tests, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-watch-app-with-a-companion-iOS-app",
+          "level": 3,
+          "text": "Create a watch app with a companion iOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a watchOS app with a companion iOS app, the resulting watchOS app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can either be dependent upon, or independent of, the iOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your watchOS app relies on the companion iOS app to function properly. By default, Xcode creates a dependent watchOS app when you create a watchOS app with a companion iOS app. When a watchOS app is dependent, people need to purchase and install both versions of the app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Dependent watchOS app",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your watchOS app doesn’t need the companion iOS app to operate properly. People can choose to install the watchOS app, the iOS app, or both. To create an independent watchOS app, you need to convert a dependent watchOS app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Independent watchOS app",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system downloads and installs the watchOS app directly to Apple Watch for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both dependent and independent apps. However, the user can’t launch a dependent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS app until the iOS app finishes installing on iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-a-dependent-watchOS-app-to-an-independent-watchOS-app",
+          "level": 3,
+          "text": "Convert a dependent watchOS app to an independent watchOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating a watchOS app with a companion iOS app, you can convert the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resulting dependent watchOS app to be independent of the iOS app. To convert",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your watchOS app, perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your watchOS project to view the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the General tab, select the Watch App target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Deployment Info section, select the Supports Running Without iOS App",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Installation option. By default, when you create a new project, this option",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is in a disabled state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-independent-watchos-apps-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-your-watchOS-app-runs-independently",
+          "level": 3,
+          "text": "Ensure your watchOS app runs independently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Watch-only and Independent watchOS apps function without a companion iOS app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performing tasks like downloading data, setting up the user’s account, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuring the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure you test all of these functions in your watch app to ensure they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behave as expected. For example, make sure your watch app can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create new accounts and sign in users. For more information, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request permission for any system services the app requires so that the user",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doesn’t need to authorize an app on their iPhone. Frameworks that support",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "independent watchOS apps display their authorization form directly on Apple",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Watch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download data directly to the watch. Independent watchOS apps can’t rely on",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to transfer data or files from a companion iOS app. If you need to sync data",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "between devices, consider using CloudKit, or syncing through your own server.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send push notifications, including complication pushes, directly to the watch.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtension/registerForRemoteNotifications()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An independent watchOS app can use Watch Connectivity to transfer information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from its companion iOS app when the iOS device is available. However, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "independent watchOS app can’t use Watch Connectivity as its main source of data,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so it needs to be capable of accessing information on its own.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-independent-watchos-apps-1": {
+      "alt": "A screenshot of Xcode’s new project sheet, with the Watch-only App option in a selected state.",
+      "identifier": "creating-independent-watchos-apps-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/226bc2583485631dfbe6dcfbc9284800/creating-independent-watchos-apps-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b07170c62890024a45e2244a9529fd88/creating-independent-watchos-apps-1~dark@2x.png"
+        }
+      ]
+    },
+    "creating-independent-watchos-apps-2": {
+      "alt": "A screenshot of a watch face displaying the App Store on Apple Watch.",
+      "identifier": "creating-independent-watchos-apps-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/92a97cfa0808e3acca2d664c2f957e03/creating-independent-watchos-apps-2@2x.png"
+        }
+      ]
+    },
+    "creating-independent-watchos-apps-3": {
+      "alt": "An Xcode screenshot showing the dialog for creating a new project with  watchOS as the selected target operating system. In the Application section, the App template is in a selected state.",
+      "identifier": "creating-independent-watchos-apps-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65fd4f9309f53a3d067a078f01ab5dee/creating-independent-watchos-apps-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2b0057c68cd649ec7b63da438502259/creating-independent-watchos-apps-3~dark@2x.png"
+        }
+      ]
+    },
+    "creating-independent-watchos-apps-4": {
+      "alt": "An Xcode screenshot showing the available options for a new target, which include entering a product name and organization identifier, and choosing a team. The Watch-only App and Include Tests options are each in a selected state.",
+      "identifier": "creating-independent-watchos-apps-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a216bc4b7aef5abca82a80857fd67c9/creating-independent-watchos-apps-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6f23be03b37b37036c8fde50d4ed123/creating-independent-watchos-apps-4~dark@2x.png"
+        }
+      ]
+    },
+    "creating-independent-watchos-apps-5": {
+      "alt": "A screenshot of Xcode’s Project navigator for a watch-only app. The project contains three folders: Watch App, Watch AppTests, and Watch AppUITests.",
+      "identifier": "creating-independent-watchos-apps-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/35a31b3b57be6da6e3e49154ffedae0a/creating-independent-watchos-apps-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03054b4ca85a42e0017cb8d863047f40/creating-independent-watchos-apps-5~dark@2x.png"
+        }
+      ]
+    },
+    "creating-independent-watchos-apps-6": {
+      "alt": "A screenshot of Xcode’s Project navigator for a watch-only app. The project",
+      "identifier": "creating-independent-watchos-apps-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94c2cbfdf3c83f299149fda6173e1ae7/creating-independent-watchos-apps-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ddfb139ecf370a277914ac7e108037d/creating-independent-watchos-apps-6~dark@2x.png"
+        }
+      ]
+    },
+    "creating-independent-watchos-apps-7": {
+      "alt": "A screenshot of Xcode’s project editor with the Watch App target and the General tab each in a selected state. In the Deployment Info section, the Supports Running Without iOS App Installation option is in a selected state.",
+      "identifier": "creating-independent-watchos-apps-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72b21a80df95ca0d73aced5d2ca6ab92/creating-independent-watchos-apps-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/187ef9aa757e911f90c7b2a26022e136/creating-independent-watchos-apps-7~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ActionButtonArticle"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity": {
+      "abstract": [
+        {
+          "text": "Implement two-way communication between an iOS app and its paired watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Watch Connectivity",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtension/registerForRemoteNotifications()": {
+      "abstract": [
+        {
+          "text": "Register to receive remote notifications from the Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForRemoteNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtension/registerForRemoteNotifications()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForRemoteNotifications()",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtension/registerForRemoteNotifications()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create an account sign-up and sign-in strategy for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/authenticating-users-on-apple-watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap": {
+      "abstract": [
+        {
+          "text": "Customize your app’s response to the double-tap gesture on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap",
+      "images": [
+        {
+          "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling the double-tap gesture on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/enabling-double-tap"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date": {
+      "abstract": [
+        {
+          "text": "Ensure that your app’s content is relevant and up to date.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your watchOS content up to date",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/keeping-your-watchos-app-s-content-up-to-date"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines": {
+      "abstract": [
+        {
+          "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating watchOS apps with timelines",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-watchos-apps-with-timelines"
+    },
+    "enabling-double-tap-on-watch-PageImage-card.png": {
+      "alt": "A stylistic representation of the double tap gesture on Apple Watch.",
+      "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31d5e805205ce0e598c55fdb76989025/enabling-double-tap-on-watch-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/235637bc0a7bc531746ce17b9ed199b3/enabling-double-tap-on-watch-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-experience",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+        "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap"
+      ],
+      "title": "App experience"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtension~1registerForRemoteNotifications()/title",
+          "value": "registerForRemoteNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtension~1registerForRemoteNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForRemoteNotifications"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

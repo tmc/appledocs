@@ -1,0 +1,692 @@
+{
+  "abstract": [
+    {
+      "text": "Configure webhooks that connect Xcode Cloud to other services and tools.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Webhooks-in-Xcode-Cloud"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring webhooks in Xcode Cloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might use custom services and tools in your development process and for project management purposes and need to connect them to Xcode Cloud. For example, you might want to show build information from Xcode Cloud on your team’s dashboard, automate the merge process for pull requests (PRs), automatically open or close issues in your issue tracking tool, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To connect Xcode Cloud with a custom tool or service, you need to configure an HTTPS endpoint that can receive HTTP requests from Xcode Cloud, referred to as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "webhook",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". By configuring a webhook, you enable Xcode Cloud to send a rich JSON payload to another service or tool at certain moments during the build process. The service or tool can then parse the JSON payload and use the received information to provide its functionality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can configure up to five webhooks per Xcode Cloud product.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud sends an HTTP request to each webhook’s configured HTTPS endpoint every time it creates, starts, and finishes a build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Configuring-Webhooks-in-Xcode-Cloud-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about creating webhooks in Xcode Cloud, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-Xcode-Cloud-webhook",
+          "level": 3,
+          "text": "Create an Xcode Cloud webhook",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a webhook in Xcode Cloud:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", choose an app and select the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the sidebar, choose Settings > Webhooks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) to add a new webhook.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a unique, easily recognizable name for the webhook, like “Team Dashboard” or “Issue Tracker”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the URL of an app or service that’s capable of receiving and handling HTTPS requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your service or tool receives a request from Xcode Cloud, respond with an HTTP status code that indicates success. If you return a retry-able server error or Xcode Cloud doesn’t receive a response within 30 seconds, it resends the webhook request until it receives a successful response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to configure a project or workspace to use Xcode Cloud before you can create a webhook.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Debug-a-webhook",
+          "level": 3,
+          "text": "Debug a webhook",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new webhook, plan to spend some time making sure your service or tool can parse the JSON payload that Xcode Cloud sends. To help you debug an integration problem, Xcode Cloud records a delivery report for each webhook request it sends. It includes detailed request and response metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access a webhook’s delivery report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " choose your app and select the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the sidebar, choose Settings > Webhooks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a webhook and review its delivery reports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Review-the-payload",
+          "level": 3,
+          "text": "Review the payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With each webhook request, Xcode Cloud includes detailed information about the app you configured in App Store Connect, the workflow that started the build, the build itself, your Git repository, and more. Use this information to provide functionality in your custom tool or service. For example, use the payload information to display Xcode Cloud build information on your team’s dashboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on webhook payloads, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippet shows the payload Xcode Cloud sends with a request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"webhook\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"name\": \"Issue Tracker\",",
+            "        \"url\": \"https://issues.example.com/webhooks\"",
+            "    },",
+            "    \"metadata\" : {",
+            "        \"type\" : \"metadata\",",
+            "        \"attributes\" : {",
+            "            \"createdDate\" : \"2021-06-07T10:00:00.000000-07:00\",",
+            "            \"eventType\" : \"BUILD_COMPLETED\"",
+            "        }",
+            "    },",
+            "    \"app\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"apps\"",
+            "    },",
+            "    \"ciWorkflow\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"ciWorkflows\",",
+            "        \"attributes\": {",
+            "            \"name\": \"Pull Requests\",",
+            "            \"description\": \"Starts Builds from Pull Requests.\",",
+            "            \"isEnabled\": true,",
+            "            \"isLockedForEditing\": false",
+            "        }",
+            "    },",
+            "    \"ciProduct\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"ciProducts\",",
+            "        \"attributes\": {",
+            "            \"name\": \"Example App\",",
+            "            \"createdDate\": \"2021-06-07T10:00:00.000000-07:00\",",
+            "            \"productType\": \"APP\"",
+            "        }",
+            "    },",
+            "    \"ciBuildRun\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"ciBuildRuns\",",
+            "        \"attributes\": {",
+            "            \"number\": 12,",
+            "            \"createdDate\": \"2021-06-07T10:00:00.000000-07:00\",",
+            "            \"sourceCommit\": {",
+            "                \"commitSha\": \"0123456789abcdefghij01234567890abcdefghi\",",
+            "                \"author\": {",
+            "                    \"displayName\": \"Anne Johnson\"",
+            "                },",
+            "                \"committer\": {",
+            "                    \"displayName\": \"Anne Johnson\"",
+            "                },",
+            "                \"htmlUrl\": \"https://example.com/commit/abcdef1234567890\"",
+            "            },",
+            "            \"destinationCommit\": {",
+            "                \"commitSha\": \"abcdefghij01234567890abcdefghi0123456789\",",
+            "                \"author\": {",
+            "                    \"displayName\": \"Juan Chavez\"",
+            "                },",
+            "                \"committer\": {",
+            "                    \"displayName\": \"Juan Chavez\"",
+            "                },",
+            "                \"htmlUrl\": \"https://example.com/commit/abcdef1234567890\"",
+            "            },",
+            "            \"isPullRequestBuild\": true,",
+            "            \"executionProgress\": \"COMPLETE\",",
+            "            \"completionStatus\": \"SUCCEEDED\"",
+            "        }",
+            "    },",
+            "    \"ciBuildActions\": [{",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"ciBuildActions\",",
+            "        \"attributes\": {",
+            "            \"name\": \"analyze\",",
+            "            \"actionType\": \"ANALYZE\",",
+            "            \"issueCounts\": {",
+            "                \"analyzerWarnings\": 10,",
+            "                \"errors\": 0,",
+            "                \"testFailures\": 0,",
+            "                \"warnings\": 0",
+            "            },",
+            "            \"executionProgress\": \"COMPLETE\",",
+            "            \"completionStatus\": \"SUCCEEDED\",",
+            "            \"isRequiredToPass\": false",
+            "        },",
+            "        \"relationships\": {}",
+            "    }, {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"ciBuildActions\",",
+            "        \"attributes\": {",
+            "            \"name\": \"build\",",
+            "            \"actionType\": \"ARCHIVE\",",
+            "            \"issueCounts\": {",
+            "                \"analyzerWarnings\": 0,",
+            "                \"errors\": 0,",
+            "                \"testFailures\": 0,",
+            "                \"warnings\": 3",
+            "            },",
+            "            \"executionProgress\": \"COMPLETE\",",
+            "            \"completionStatus\": \"SUCCEEDED\",",
+            "            \"isRequiredToPass\": true",
+            "        },",
+            "        \"relationships\": {",
+            "            \"builds\": {",
+            "                \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "                \"type\": \"builds\",",
+            "                \"attributes\": {",
+            "                    \"platform\": \"IOS\"",
+            "                }",
+            "            }",
+            "        }",
+            "    }],",
+            "    \"scmProvider\": {",
+            "        \"type\": \"scmProviders\",",
+            "        \"attributes\": {",
+            "            \"scmProviderType\": {",
+            "                \"scmProviderType\": \"GITHUB_CLOUD\",",
+            "                \"displayName\": \"GitHub\",",
+            "                \"isOnPremise\": false",
+            "            },",
+            "            \"endpoint\": \"https://github.com/example/example.git\"",
+            "        }",
+            "    },",
+            "    \"scmRepository\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"scmRepositories\",",
+            "        \"attributes\": {",
+            "            \"httpCloneUrl\": \"https://github.com/example/test.git\",",
+            "            \"sshCloneUrl\": \"ssh://git@github.com/example/test.git\",",
+            "            \"ownerName\": \"example\",",
+            "            \"repositoryName\": \"example app\"",
+            "        }",
+            "    },",
+            "    \"scmPullRequest\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"scmPullRequests\",",
+            "        \"attributes\": {",
+            "            \"title\": \"Add accessibility labels.\",",
+            "            \"number\": 123,",
+            "            \"htmlUrl\": \"https://example.com/example/example-app/pull/123\",",
+            "            \"sourceRepositoryOwner\": \"example\",",
+            "            \"sourceRepositoryName\": \"example source repository name\",",
+            "            \"sourceBranchName\": \"annejohnson/new-features\",",
+            "            \"destinationRepositoryOwner\": \"example\",",
+            "            \"destinationRepositoryName\": \"example destination repository name\",",
+            "            \"destinationBranchName\": \"main\",",
+            "            \"isClosed\": false,",
+            "            \"isCrossRepository\": false",
+            "        }",
+            "    },",
+            "    \"scmGitReference\": {",
+            "        \"id\": \"12345678-abcd-1234-5678-a12345bc4567\",",
+            "        \"type\": \"scmGitReferences\",",
+            "        \"attributes\": {",
+            "            \"name\": \"annejohnson/new-feature\",",
+            "            \"canonicalName\": \"refs/heads/annejohnson/new-feature\",",
+            "            \"isDeleted\": false,",
+            "            \"kind\": \"BRANCH\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Configuring-Webhooks-in-Xcode-Cloud-1": {
+      "alt": "An illustration that shows the different moments when Xcode Cloud sends a JSON payload to the configured endpoint: when it creates, starts, and finishes a new build.",
+      "identifier": "Configuring-Webhooks-in-Xcode-Cloud-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a9e7a570ecb8754fe39342feeff1aa9/Configuring-Webhooks-in-Xcode-Cloud-1@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack": {
+      "abstract": [
+        {
+          "text": "Connect Xcode Cloud to Slack to keep your team informed about the latest Xcode Cloud builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting Xcode Cloud to Slack",
+      "type": "topic",
+      "url": "/documentation/xcode/connecting-xcode-cloud-to-slack"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload": {
+      "abstract": [
+        {
+          "text": "Review details of the webhook payload that Xcode Cloud sends, including the product, workflow, build, actions, results, and SCM metadata associated with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode Cloud webhook payload reference",
+      "type": "topic",
+      "url": "/documentation/xcode/webhook-payload"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10269": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10269",
+      "title": "Customize your advanced Xcode Cloud workflows",
+      "titleInlineContent": [
+        {
+          "text": "Customize your advanced Xcode Cloud workflows",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10269"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload",
+        "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack"
+      ],
+      "title": "Notifications"
+    }
+  ]
+}

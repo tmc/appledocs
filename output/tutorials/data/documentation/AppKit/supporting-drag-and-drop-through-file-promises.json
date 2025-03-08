@@ -1,0 +1,901 @@
+{
+  "abstract": [
+    {
+      "text": "Receive and provide file promises to support dragged app files and pasteboard operations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/supporting-drag-and-drop-through-file-promises"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Supporting Drag and Drop Through File Promises"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project creates a meme generator that combines an image and text into a composite meme image which can be exported as a JPEG. The sample shows you how to support both file URLs and file promises when accepting images from Mail, Safari, Photos, and other apps that support drag and drop. It also demonstrates how to provide file promises to other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app may need to support file promises because drag and drop on macOS uses an NSPasteboard, which is separate from the normal copy-and-paste clipboard. When dragging content that isnʼt yet a file on disk at the time dragging began, an app may put a file promise onto the pasteboard instead of a file URL, to avoid blocking the main thread. File promises are different from URLs because they can be read and written asynchronously at a later time, on a background queue separate from the main queue. macOS Sierra introduced modern APIs to handle file promises.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see this sample in action, build and run the project, then drag an image from another app or location, such as Finder, Mail, or Safari, into the app window. Dragging the image into the window imports it into a form the sample app can parse and consume. Add text to the image by clicking on the text button in the upper-right corner and typing. Reposition the text box by dragging and dropping it within the app window. Dragging the composite image outside the app window exports it as a JPEG.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below are the various ways a drag and drop can occur that will involve either a ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseReceiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag sent by ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image out to the Finder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image out to Mail.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image out to Photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag received by ",
+              "type": "text"
+            },
+            {
+              "code": "NSFilePromiseReceiver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image in from Safari (from a website with a jpg, png, etc).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image in from Photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag in a very large photo from Photos app — helps test the progress UI when receiving large photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, a drag and drop involves just the image file’s URL, without a file promise:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image from Finder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an image from a Mail attachment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Support-Image-Import-by-Accepting-File-Promises",
+          "level": 3,
+          "text": "Support Image Import by Accepting File Promises",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When setting up the view that supports drag and drop, register drag types provided by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This registration allows the view to accept file promises that handle dragged images from Safari or Mail. The sample does this in the first view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidLoad",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "view.registerForDraggedTypes(NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) })"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle file promises before handling URLs, because the file promise generally represents the higher-quality image and should take precedence when both types are supported. This sample provides a background operation queue, so the read/write operation doesn’t block the main thread. Until the file promise is fulfilled, this sample shows a spinner or loading indicator in the image view subclass to give the user immediate feedback that the app is processing the drop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case let filePromiseReceiver as NSFilePromiseReceiver:",
+            "    self.prepareForUpdate()",
+            "    filePromiseReceiver.receivePromisedFiles(atDestination: self.destinationURL, options: [:],",
+            "                                             operationQueue: self.workQueue) { (fileURL, error) in",
+            "        if let error = error {",
+            "            self.handleError(error)",
+            "        } else {",
+            "            self.handleFile(at: fileURL)",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample continues to handle file URLs, in case the app from which a user drags the image doesn’t provide file promises.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case let fileURL as URL:",
+            "    self.handleFile(at: fileURL)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-Image-Export-by-Providing-File-Promises",
+          "level": 3,
+          "text": "Support Image Export by Providing File Promises",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample creates and writes images into formats that other apps like Safari, Mail, and Finder can consume. It does this by providing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to the dragging pasteboard and conforming to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by implementing three delegate methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses the first method to provide the title of the file. It uses a hard-coded string for simplicity, but depending on use case, take the ",
+              "type": "text"
+            },
+            {
+              "code": "fileType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter into account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {",
+            "    let droppedFileName = NSLocalizedString(\"DropFileTitle\", comment: \"\")",
+            "    return droppedFileName + \".jpg\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample provides a background operation queue in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate/operationQueue(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so the file reading and writing happen without blocking the app’s UI. This method is optional, but defaulting to the main queue can block an app’s UI for writing large files to disk. When possible, provide a background queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {",
+            "    return workQueue",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The third delegate method performs the actual writing of the file to disk when it’s time to fulfill the file promise. Add custom logic necessary to transform the image from your app into a file format that other apps are likely to understand, such as the JPEG format this sample uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL, completionHandler: @escaping (Error?) -> Void) {",
+            "    do {",
+            "        if let snapshot = filePromiseProvider.userInfo as? ImageCanvas.SnapshotItem {",
+            "            try snapshot.jpegRepresentation?.write(to: url)",
+            "        } else {",
+            "            throw RuntimeError.unavailableSnapshot",
+            "        }",
+            "        completionHandler(nil)",
+            "    } catch let error {",
+            "        completionHandler(error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d25f50af13b3/SupportingDragAndDropThroughFilePromises.zip": {
+      "checksum": "d25f50af13b39cda0fdb24604ee6ce3e7d11213bdf4d791c0ac605413b6950b48d03ec3e255e4bf3b32bc36233261ad5ede248d8ef6a7617fdfc45e71fff1179",
+      "identifier": "d25f50af13b3/SupportingDragAndDropThroughFilePromises.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d25f50af13b3/SupportingDragAndDropThroughFilePromises.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides a promise for the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides the name of the promised file and writes the file to the destination directory when the file promise is fulfilled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProviderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseProviderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseProviderDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseproviderdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate/operationQueue(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the operation queue from which to issue the write request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "operationQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFilePromiseProvider",
+          "text": "NSFilePromiseProvider"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate/operationQueue(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "operationQueueForFilePromiseProvider:"
+        }
+      ],
+      "role": "symbol",
+      "title": "operationQueue(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromiseproviderdelegate/operationqueue(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver": {
+      "abstract": [
+        {
+          "text": "An object that receives a file promise from the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseReceiver"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFilePromiseReceiver"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFilePromiseReceiver",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfilepromisereceiver"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard": {
+      "abstract": [
+        {
+          "text": "Organize your app’s data and preferences, and share that data on the pasteboard or in iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents, Data, and Pasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/documents-data-and-pasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Collection View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-collection-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Table View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-table-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d25f50af13b3/SupportingDragAndDropThroughFilePromises.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-Promises",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver"
+      ],
+      "title": "File Promises"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "File-Promises",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-collection-view-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProvider",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSFilePromiseReceiver"
+              ],
+              "title": "File Promises"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/title",
+          "value": "NSFilePromiseProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate~1operationQueue(for:)/title",
+          "value": "operationQueueForFilePromiseProvider:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate~1operationQueue(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "operationQueueForFilePromiseProvider:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/title",
+          "value": "NSFilePromiseProviderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseProviderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/title",
+          "value": "NSFilePromiseReceiver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFilePromiseReceiver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFilePromiseReceiver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/supporting-drag-and-drop-through-file-promises"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/supporting-drag-and-drop-through-file-promises"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

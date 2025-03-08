@@ -1,0 +1,1633 @@
+{
+  "abstract": [
+    {
+      "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Placing entities using head and device transform"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to create and display content that appears at a person’s head location, and follows a person’s view as they move their head in immersive spaces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchorEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider/queryDeviceAnchor(atTimestamp:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the transform of the person’s head and Apple Vision Pro to place content relative to them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample creates the following two views and allows you to toggle between them:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A hummingbird and a feeder directly in front of the person wearing the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A hummingbird that flies to stay in the view of the person wearing the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "identifier": "head-tracking-sim.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project uses RealityKit and ARKit, respectively, to position the entities relative to the person.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can run the sample app in either Simulator or on-device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10078?time=678",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/design/human-interface-guidelines/motion",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in the Human Interface Guidelines for guidance on continuously head-tracked entities.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Show-entities-at-a-persons-head-position",
+          "level": 2,
+          "text": "Show entities at a person’s head position",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch the hummingbird feeder at the position of the wearer’s head, the sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "AnchorEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the anchoring target of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum/head",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This target provides the center of the wearer’s head, rather than the position of the device itself.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can only use ",
+              "type": "text"
+            },
+            {
+              "code": "AnchorEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in an immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Although it allows you to anchor content to the wearer’s head, you can’t access its transform because there’s no authorization required.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you attempt to access the transform, the property returns the identity transform instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can get the transform of an ",
+                  "type": "text"
+                },
+                {
+                  "code": "AnchorEntity",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with a different",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", such as a hand, by using a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/SpatialTrackingSession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and requesting authorization from the person using the app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates an ",
+              "type": "text"
+            },
+            {
+              "code": "AnchorEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that anchors to the wearer’s head, and sets the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct/once",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to stop tracking after the initial anchor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The head-positioned entity root contains both the feeder entity and the hummingbird entity, which the sample loads from Reality Composer Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app adds the root entity as a subentity of the head anchor to track it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample then offsets the feeder from the center of the wearer’s head by setting the position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startHeadPositionMode(content: RealityViewContent) {",
+            "    // Reset the rotation so it aligns with the feeder.",
+            "    hummingbird.transform.rotation = simd_quatf()",
+            "    ",
+            "    // Create an anchor for the head and set the tracking mode to `.once`.",
+            "    let headAnchor = AnchorEntity(.head)",
+            "    headAnchor.anchoring.trackingMode = .once",
+            "    headAnchor.name = \"headAnchor\"",
+            "    // Add the `AnchorEntity` to the scene.",
+            "    headAnchorRoot.addChild(headAnchor)",
+            "    ",
+            "    // Add the feeder as a subentity of the root containing the head-positioned entities.",
+            "    headPositionedEntitiesRoot.addChild(feeder)",
+            "    ",
+            "    // Add the hummingbird to the root containing the head-positioned entities and set the position to be further away than the feeder.",
+            "    headPositionedEntitiesRoot.addChild(hummingbird)",
+            "    hummingbird.setPosition([0, 0, -0.15], relativeTo: headPositionedEntitiesRoot)",
+            "    ",
+            "    // Add the head-positioned entities to the anchor, and set the position to be in front of the wearer.",
+            "    headAnchor.addChild(headPositionedEntitiesRoot)",
+            "    headPositionedEntitiesRoot.setPosition([0, 0, -0.6], relativeTo: headAnchor)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Move-entities-relative-to-device-transform",
+          "level": 2,
+          "text": "Move entities relative to device transform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample contains a hummingbird that reacts to the wearer while they move around.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It achieves this by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/System",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and using ",
+              "type": "text"
+            },
+            {
+              "code": "queryDeviceAnchor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to update the entities in the scene with each scene update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can only use ",
+              "type": "text"
+            },
+            {
+              "code": "queryDeviceAnchor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in an immersive space, but it doesn’t require authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "queryDeviceAnchor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " gives you the transform of the device, not the wearer’s head.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you want to get the visual transform of the center of the wearer’s head, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "AnchorEntity(.head)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample starts by creating a RealityKit system, which allows you to update the entities with each scene update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information on creating a system class and using components to query entities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the system, the app creates a query for entities with the ",
+              "type": "text"
+            },
+            {
+              "code": "FollowComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public struct FollowSystem: System {",
+            "    static let query = EntityQuery(where: .has(FollowComponent.self))",
+            "    private let arkitSession = ARKitSession()",
+            "    private let worldTrackingProvider = WorldTrackingProvider()",
+            "    //...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample starts the session by using the ",
+              "type": "text"
+            },
+            {
+              "code": "ARKitSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to run the ",
+              "type": "text"
+            },
+            {
+              "code": "WorldTrackingProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public struct FollowSystem: System {",
+            "    //...",
+            "",
+            "    public init(scene: RealityKit.Scene) {",
+            "        startSession()",
+            "    }",
+            "",
+            "    func startSession() {",
+            "        Task {",
+            "            do {",
+            "                try await arkitSession.run([worldTrackingProvider])",
+            "            } catch {",
+            "                print(\"Error: \\(error)\")",
+            "            }",
+            "        }",
+            "    }",
+            "",
+            "    //...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample adds a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Component",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " named ",
+              "type": "text"
+            },
+            {
+              "code": "FollowComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the root entity of the hummingbird entity, and then uses it to query the entities in the scene to apply the movement to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Make sure to register both the system and the component.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to query the device anchor and move the entity accordingly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public struct FollowSystem: System {",
+            "    //...",
+            "",
+            "    public func update(context: SceneUpdateContext) {",
+            "        // Check whether the world-tracking provider is running.",
+            "        guard worldTrackingProvider.state == .running else { return }",
+            "        ",
+            "        // Query the device anchor at the current time.",
+            "        guard let deviceAnchor = worldTrackingProvider.queryDeviceAnchor(atTimestamp: CACurrentMediaTime()) else { return }",
+            "        ",
+            "        // Find the transform of the device.",
+            "        let deviceTransform = Transform(matrix: deviceAnchor.originFromAnchorTransform)",
+            "        ",
+            "        // Iterate through each entity in the scene containing `FollowComponent`.",
+            "        let entities = context.entities(matching: Self.query, updatingSystemWhen: .rendering)",
+            "        ",
+            "        for entity in entities {",
+            "            // Move the entity to the device's transform.",
+            "            entity.move(to: deviceTransform, relativeTo: entity.parent, duration: 1.2, timingFunction: .easeInOut)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample keeps the hummingbird at the top right of the wearer’s field of vision by setting the hummingbird’s position relative to its root entity and offsetting it on the ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "z",
+              "type": "codeVoice"
+            },
+            {
+              "text": " axes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startFollowMode() {",
+            "    //...",
+            "    ",
+            "    // Set the hummingbird as a subentity of its root, and move it to the top-right corner.",
+            "    followRoot.addChild(hummingbird)",
+            "    hummingbird.setPosition([0.4, 0.2, -1], relativeTo: followRoot)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "87329c74e5cd/PlacingEntitiesUsingHeadAndDeviceTransform.zip": {
+      "checksum": "87329c74e5cde8defe19d9537a310bfa0f605911dc085f02d0317018f5a5bb852faf724e50eb059e0b0deb51d3d3cd78c04dad718f8fc9effd85aa2c8b844d09",
+      "identifier": "87329c74e5cd/PlacingEntitiesUsingHeadAndDeviceTransform.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/87329c74e5cd/PlacingEntitiesUsingHeadAndDeviceTransform.zip"
+    },
+    "BOT-anist-PageImage-card.png": {
+      "alt": "A screenshot from the Apple Vision Pro simulator with a single floating window. The window contains a robot on the right side, and controls to customize the robots appearance on the left.",
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": "",
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": "A screenshot of destination video's custom studio environment.",
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the device pose and anchors in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WorldTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/WorldTrackingProvider"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider/queryDeviceAnchor(atTimestamp:)": {
+      "abstract": [
+        {
+          "text": "The predicted pose of the current device at a given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryDeviceAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit12DeviceAnchorV",
+          "text": "DeviceAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider/queryDeviceAnchor(atTimestamp:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queryDeviceAnchor(atTimestamp:)",
+      "type": "topic",
+      "url": "/documentation/ARKit/WorldTrackingProvider/queryDeviceAnchor(atTimestamp:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchorEntity": {
+      "abstract": [
+        {
+          "text": "An anchor that tethers entities to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchorEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchorEntity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchorEntity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum": {
+      "abstract": [
+        {
+          "text": "Defines the kinds of real world objects to which an anchor entity can be tethered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Target"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchoringComponent.Target",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchoringComponent/Target-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum/head": {
+      "abstract": [
+        {
+          "text": "An anchor point attached to the user’s head.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "head"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum/head",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchoringComponent.Target.head",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchoringComponent/Target-swift.enum/head"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct": {
+      "abstract": [
+        {
+          "text": "Decides how the `Entity` tracks its target anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchoringComponent.TrackingMode",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct/once": {
+      "abstract": [
+        {
+          "text": "Anchors the entity to the target on the first frame the target is found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "once"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV",
+          "text": "TrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct/once",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "once",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct/once"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Component"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/SpatialTrackingSession": {
+      "abstract": [
+        {
+          "text": "An object that incorporates spatial tracking capabilities into your RealityKit apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTrackingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/SpatialTrackingSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpatialTrackingSession",
+      "type": "topic",
+      "url": "/documentation/RealityKit/SpatialTrackingSession"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/System": {
+      "abstract": [
+        {
+          "text": "An object that affects multiple entities in every update of a RealityKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/System",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/RealityKit/System"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Apply behaviors and physical effects to the objects and characters in a RealityKit scene with the Entity Component System (ECS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing systems for entities in a scene",
+      "type": "topic",
+      "url": "/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/BOT-anist": {
+      "abstract": [
+        {
+          "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+      "images": [
+        {
+          "identifier": "BOT-anist-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "BOT-anist",
+      "type": "topic",
+      "url": "/documentation/visionos/bot-anist"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience": {
+      "abstract": [
+        {
+          "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+      "images": [
+        {
+          "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an immersive media viewing experience",
+      "type": "topic",
+      "url": "/documentation/visionos/building-an-immersive-media-viewing-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing": {
+      "abstract": [
+        {
+          "text": "Create screenshots and record high-quality video of your visionOS app and its surroundings for app previews.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing screenshots and video from Apple Vision Pro for 2D viewing",
+      "type": "topic",
+      "url": "/documentation/visionos/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionos/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+      "images": [
+        {
+          "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing object tracking in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-object-tracking-in-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionos/swift-splash"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms": {
+      "abstract": [
+        {
+          "text": "Learn how to use Transforms to move, scale, and rotate entities in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Using transforms to move, scale, and rotate entities",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-transforms"
+    },
+    "head-tracking-sim.mp4": {
+      "alt": "A video of a visionOS app in Simulator. A hummingbird flits behind a feeder in front of the person. The toggle changes to a view where the hummingbird flies to stay in the view as the person moves around.",
+      "identifier": "head-tracking-sim.mp4",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1994a29826928f9ae1065aff6d7e1387/head-tracking-sim.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/54659783bf373bcd25da77d328ce6445/head-tracking-sim~dark.mp4"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/motion": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/motion",
+      "title": "Motion",
+      "titleInlineContent": [
+        {
+          "text": "Motion",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/motion"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10078?time=678": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10078?time=678",
+      "title": "Design considerations for vision and motion",
+      "titleInlineContent": [
+        {
+          "text": "Design considerations for vision and motion",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10078?time=678"
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": "An illustration of a globe within a bounding box.",
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": "A screenshot that shows the app's video player in the Studio environment in visionOS. The screenshot shows the contents of the video player reflecting onto the surrounding environment.",
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "87329c74e5cd/PlacingEntitiesUsingHeadAndDeviceTransform.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "RealityKit-and-Reality-Composer-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+        "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+        "doc://com.apple.visionOS/documentation/visionOS/diorama",
+        "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms",
+        "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app"
+      ],
+      "title": "RealityKit and Reality Composer Pro"
+    }
+  ]
+}

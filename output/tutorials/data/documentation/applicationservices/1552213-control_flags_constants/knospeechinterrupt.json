@@ -1,0 +1,238 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+        "doc://com.apple.documentation/documentation/applicationservices/1552213-control_flags_constants"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1552213-control_flags_constants/knospeechinterrupt"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1459033,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@Ea@kNoEndingProsody@kNoSpeechInterrupt",
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "parent": {
+      "title": "Control Flags Constants"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "econst",
+    "title": "kNoSpeechInterrupt"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "identifier",
+              "text": "kNoSpeechInterrupt"
+            },
+            {
+              "kind": "text",
+              "text": " = 2"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Does not interrupt current speech. The ",
+              "type": "text"
+            },
+            {
+              "code": "kNoSpeechInterrupt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flagbit is used to control the behavior of ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " whencalled on a speech channel that is still busy. When the flag bitis not set, ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " behavessimilarly to ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakText",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".Any speech currently being produced on the specified speech channelis immediately interrupted, and then the new text buffer is spoken.When the ",
+              "type": "text"
+            },
+            {
+              "code": "kNoSpeechInterrupt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flagbit is set, however, a request to speak on a channel that is stillbusy processing a prior text buffer will result in an error. Thenew buffer is ignored and the error ",
+              "type": "text"
+            },
+            {
+              "code": "synthNotReady",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isreturned. If the prior text buffer has been fully processed, thenew buffer is spoken normally. One way of achieving continuous speech without using callback functions is to continually call ",
+              "type": "text"
+            },
+            {
+              "code": "SpeakBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "kNoSpeechInterrupt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flagbit set until the function returns ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".The function will then execute as soon as the first text bufferhas been processed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1552213-control_flags_constants": {
+      "abstract": [
+        {
+          "text": "Flags that indicate which synthesizer features are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552213-control_flags_constants",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Control Flags Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1552213-control_flags_constants"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1552213-control_flags_constants/knospeechinterrupt"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/knospeechinterrupt"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

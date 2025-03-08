@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "Develop a spatial board game where multiple players interact with pieces on a table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "creating-tabletop-games-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TabletopKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating tabletop games"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can run this sample code in Simulator to see the game layout, but to experience multiplayer, you need two or more Apple Vision Pro devices. This sample uses Group Activities for multiplayer, which doesn’t support Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10091: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10091/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 2,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the sample code project, do the following in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Xcode > Settings > Accounts. Then, click the Add button (+), and add your Apple ID account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the target in the Project navigator, click the Signing & Capabilities pane, and choose your team from the Team menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, enter a unique identifier in the Bundle Identifier text field. Otherwise, use the existing bundle ID that ends in your team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For multiplayer, verify that the target contains the Group Activities capability below Signing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Run-the-sample-code-in-Simulator",
+          "level": 2,
+          "text": "Run the sample code in Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t have an Apple Vision Pro device, you can run the sample code in Simulator and interact with some equipment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the Apple Vision Pro visionOS Simulator from the run destination menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the sample.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can drag pawns to various spots on the conveyor belt, pick up cards and place them in front of you, and toss the die.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-a-multiplayer-game-on-devices",
+          "level": 2,
+          "text": "Start a multiplayer game on devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To experience the game with multiple players, run the sample on multiple Apple Vision Pro devices using the same developer Team ID and bundle ID for each player.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect two Apple Vision Pro devices to your Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, click Register Device in the Signing & Capabilities pane to create the provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in using a different Apple ID on each device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the sample on the two devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Join a FaceTime call with all participants.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On one device, tap the SharePlay button in the toolbar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the other devices, tap Accept in the SharePlay dialog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that the SharePlay badge turns green.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Players who join the FaceTime call can drag the pawns, pick up cards, and toss the die.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4bbc0858702e/CreatingTabletopGames.zip": {
+      "checksum": "4bbc0858702e668b09dfec72f0923e05591cc3feed47e14adac3cbcc764b34572b59e8ab1779572a4a32867a44e09af3406969eb7f0d9089820d4eee78f6e07a",
+      "identifier": "4bbc0858702e/CreatingTabletopGames.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4bbc0858702e/CreatingTabletopGames.zip"
+    },
+    "creating-tabletop-games-PageImage-card.png": {
+      "alt": null,
+      "identifier": "creating-tabletop-games-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5f59743df3d9b99dcf78117bc482672/creating-tabletop-games-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/216dff3d0207d0d68fd8841437084f04/creating-tabletop-games-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit": {
+      "abstract": [
+        {
+          "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabletopKit",
+      "type": "topic",
+      "url": "/documentation/tabletopkit"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game when you render it using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityTabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entitytabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup": {
+      "abstract": [
+        {
+          "text": "An object that represents the arrangement of seats, equipment, and counters around the game table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSetup",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame": {
+      "abstract": [
+        {
+          "text": "An object that manages the setup and gameplay of a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape": {
+      "abstract": [
+        {
+          "text": "An object that represents the physical properties of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopShape",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopshape"
+    },
+    "https://developer.apple.com/wwdc24/10091/": {
+      "identifier": "https://developer.apple.com/wwdc24/10091/",
+      "title": "Meet TabletopKit for visionOS",
+      "titleInlineContent": [
+        {
+          "text": "Meet TabletopKit for visionOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10091/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4bbc0858702e/CreatingTabletopGames.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabletopkit/tabletopkitsample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

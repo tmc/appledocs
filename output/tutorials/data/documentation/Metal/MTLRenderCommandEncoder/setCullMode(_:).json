@@ -1,0 +1,1114 @@
+{
+  "abstract": [
+    {
+      "text": "Configures how the render pipeline determines which primitives to remove.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setCullMode(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLRenderCommandEncoder(im)setCullMode:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setCullMode"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@MTLCullMode",
+        "text": "MTLCullMode"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "setCullMode:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setCullMode(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCullMode"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cullMode"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLCullMode",
+              "text": "MTLCullMode"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " value that configures how the render pipeline determines which primitives to remove from the pipeline.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cullMode"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method configures which primitives the render pipeline removes, if any, based on the direction of each primitive’s face relative to the scene’s camera. For example, you can correctly cull hidden surfaces on some geometric models, such as a sphere made of filled triangles, if it uses orientable surfaces. A surface is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "orientable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " if its primitives consistently use the same ordering for its vertices. Metal defines vertex ordering with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type, which includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding/clockwise",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding/counterClockwise",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can tell the render pipeline which direction your primitives face by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setFrontFacing(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which affects the primitives the culling mode removes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The render pass’s default culling mode is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCullMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines whether to perform culling and which type of primitive to cull.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCullMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcullmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCullMode/none": {
+      "abstract": [
+        {
+          "text": "Does not cull any primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode/none",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCullModeNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCullMode.none",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcullmode/none"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setCullMode(_:)": {
+      "abstract": [
+        {
+          "text": "Configures how the render pipeline determines which primitives to remove.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCullMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCullMode",
+          "text": "MTLCullMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setCullMode(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCullMode:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setCullMode(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setcullmode(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setFrontFacing(_:)": {
+      "abstract": [
+        {
+          "text": "Configures which face of a primitive, such as a triangle, is the front.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFrontFacing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLWinding",
+          "text": "MTLWinding"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setFrontFacing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFrontFacingWinding:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setFrontFacing(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setfrontfacing(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setTriangleFillMode(_:)": {
+      "abstract": [
+        {
+          "text": "Configures how subsequent draw commands rasterize triangle and triangle strip primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTriangleFillMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTriangleFillMode",
+          "text": "MTLTriangleFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setTriangleFillMode(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTriangleFillMode:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setTriangleFillMode(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/settrianglefillmode(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLWinding": {
+      "abstract": [
+        {
+          "text": "The vertex winding rule that determines a front-facing primitive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLWinding"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLWinding"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLWinding",
+      "type": "topic",
+      "url": "/documentation/metal/mtlwinding"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLWinding/clockwise": {
+      "abstract": [
+        {
+          "text": "Primitives whose vertices are specified in clockwise order are front-facing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clockwise"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding/clockwise",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLWindingClockwise"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLWinding.clockwise",
+      "type": "topic",
+      "url": "/documentation/metal/mtlwinding/clockwise"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLWinding/counterClockwise": {
+      "abstract": [
+        {
+          "text": "Primitives whose vertices are specified in counter-clockwise order are front-facing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "counterClockwise"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding/counterClockwise",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLWindingCounterClockwise"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLWinding.counterClockwise",
+      "type": "topic",
+      "url": "/documentation/metal/mtlwinding/counterclockwise"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Rendering-Behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setTriangleFillMode(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setFrontFacing(_:)"
+      ],
+      "title": "Configuring Rendering Behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "setCullMode:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCullMode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Rendering-Behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setTriangleFillMode(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setFrontFacing(_:)"
+              ],
+              "title": "Configuring Rendering Behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "setCullMode:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@MTLCullMode",
+                    "text": "MTLCullMode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "cullMode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " value that configures how the render pipeline determines which primitives to remove from the pipeline.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "cullMode"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/title",
+          "value": "MTLCullMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setCullMode(_:)/title",
+          "value": "setCullMode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setCullMode(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCullMode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setTriangleFillMode(_:)/title",
+          "value": "setTriangleFillMode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setTriangleFillMode(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTriangleFillMode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding~1counterClockwise/title",
+          "value": "MTLWindingCounterClockwise"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding~1counterClockwise/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWindingCounterClockwise"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding~1clockwise/title",
+          "value": "MTLWindingClockwise"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding~1clockwise/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWindingClockwise"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setFrontFacing(_:)/title",
+          "value": "setFrontFacingWinding:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setFrontFacing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFrontFacingWinding:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode~1none/title",
+          "value": "MTLCullModeNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullModeNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/title",
+          "value": "MTLWinding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWinding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWinding"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlrendercommandencoder/setcullmode(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlrendercommandencoder/setcullmode(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

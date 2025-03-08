@@ -1,0 +1,3862 @@
+{
+  "abstract": [
+    {
+      "text": "A query that describes the criteria to apply when searching for records in a database.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKQuery",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CKQuery"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKQuery"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKQuery"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a query as the first step in the search process. The query stores the search parameters, including the type of records to search, the match criteria (predicate) to apply, and the sort parameters to apply to the results. Then you use the query to initialize an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which you execute to generate the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always designate a record type and predicate when you create a query object. The record type narrows the scope of the search to one type of record, and the predicate defines the conditions for matching records of that type. Predicates usually compare one or more fields of a record to constant values, but you can create predicates that return all records of a specific type or perform more nuanced searches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because you can’t change the record type and predicate after initialization, you can use the same query to initialize multiple instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", each of which targets a different database or record zone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Building-Your-Predicates",
+          "level": 3,
+          "text": "Building Your Predicates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object defines the logical conditions for determining whether a record is a match for a query. Queries support only a subset of the predicate behaviors that the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class offers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Predicate-Rules-for-Query-Objects",
+          "level": 4,
+          "text": "Predicate Rules for Query Objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The predicates you create for your query objects must follow these rules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Predicates derive from a format string. You can’t use value or block-based predicates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Predicates use only the operators in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery#Supported-Predicate-Operators",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Predicates operate only on fields that contain the following types of data:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key names in predicates correspond to fields in the currently evaluated record. Key names can include the names of the record’s metadata properties, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "creationDate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or any data fields you add to the record. You can’t use key paths to specify fields in related records.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Predicates support the following variable substitution strings:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%@",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for value objects, such as strings, numbers, and dates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "%K",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the name of a field. This substitution variable indicates that the system uses the substitution string to look up a field name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With one exception, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CONTAINS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operator is only for testing list membership. The exception is when you use it to perform full-text searches in conjunction with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key path. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key path causes the server to look in searchable string-based fields for the specified token string. For example, a predicate string of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@\"self contains 'blue'\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " searches for the word ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "blue",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " in all fields that you mark for inclusion in full-text searches. You can’t use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key path to search in fields with a type that isn’t a string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can combine the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ANY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SOME",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " aggregate operators with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CONTAINS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operators to perform list membership tests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "distanceToLocation:fromLocation:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operator function performs a radius-based location comparison and that comparison must determine whether the location value is inside the circular area you provide. You can’t use it to search for locations outside the specified circular area. Location indexes have a resolution of no less than 10 km.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CloudKit doesn’t support the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ALL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " aggregate operator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CloudKit doesn’t support the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NOT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compound operator in the following cases:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t use it to negate an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AND",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compound predicate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t use it in tokenized queries, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self CONTAINS 'value'",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t use it with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "distanceToLocation:fromLocation:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t use it in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BETWEEN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " queries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Supported-Predicate-Operators",
+          "level": 4,
+          "text": "Supported Predicate Operators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the operators you can use in predicates for a query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported operators",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Basic comparisons",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "==",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ">=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "=>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "=<",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ">",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "!=",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BETWEEN",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean value predicates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "TRUEPREDICATE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FALSEPREDICATE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Basic compound predicates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AND",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "&&",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NOT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String comparisons",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "BEGINSWITH",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aggregate operations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CONTAINS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Functions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "distanceToLocation:fromLocation:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "now",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tokenize:using:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specifying an unsupported operator or data type in your query’s predicate results in an error when you execute the query. For more information about creating predicate objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sample-Predicate-Format-Strings",
+          "level": 4,
+          "text": "Sample Predicate Format Strings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To match records that link to a different record with an ID you know, create a predicate that matches a field that contains a reference as Listing 1 shows. In the example, the ",
+              "type": "text"
+            },
+            {
+              "code": "employee",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the record contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that points to another record. When the query executes, a match occurs when the ID in the locally created ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is the same ID as in the specified field of the record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Matching the ID of a record",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CKReference* recordToMatch = [[CKReference alloc] initWithRecordID:employeeID action:CKReferenceActionNone];",
+            "NSPredicate* predicate = [NSPredicate predicateWithFormat:@\"employee == %@\", recordToMatch];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To match the contents of a field to a specific value, use a predicate similar to the ones in Listing 2. All of the listed predicates generate the same set of results, which in the example means that the ",
+              "type": "text"
+            },
+            {
+              "code": "favoriteColors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains the value ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "red",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The value in the field must match the value you specify in the predicate exactly. String-based comparisons are case-insensitive, but otherwise, all comparisons must be an exact match of the specified value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. Matching a field to a specific value",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSPredicate predicate = nil;",
+            "predicate = [NSPredicate predicateWithFormat:@\"ANY favoriteColors = 'red'\"];",
+            "predicate = [NSPredicate predicateWithFormat:@\"favoriteColors CONTAINS 'red'\"];",
+            "predicate = [NSPredicate predicateWithFormat:@\"'red' IN favoriteColors\"];",
+            "predicate = [NSPredicate predicateWithFormat:@\"%K CONTAINS %@\", @\"favoriteColors\", @\"red\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can match more than one value at a time by using a predicate similar to the ones in Listing 3. In the example, the predicates report a match if the value in the ",
+              "type": "text"
+            },
+            {
+              "code": "favoriteColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of a record matches either of the values ",
+              "type": "text"
+            },
+            {
+              "code": "red",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "green",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 3. Matching a field to one or more values",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSPredicate predicate = nil;",
+            "predicate = [NSPredicate predicateWithFormat:@\"ANY { 'red', 'green' } = favoriteColor\"];",
+            "predicate = [NSPredicate predicateWithFormat:@\"favoriteColor IN { 'red', 'green' }\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For fields that contain string values, you can match the beginning portion of the string using the ",
+              "type": "text"
+            },
+            {
+              "code": "BEGINSWITH",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator as Listing 4 shows. You can’t use other string comparison operators, such as ",
+              "type": "text"
+            },
+            {
+              "code": "CONTAINS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "ENDSWITH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When using this operator, the field must contain a string value and must start with the string you specify. Matches are case-sensitive. In the examples, the predicate matches records where the ",
+              "type": "text"
+            },
+            {
+              "code": "favoriteColors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains the strings ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "red",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "reddish",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "red",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "green",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "duct",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tape",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 4. Matching a field that starts with a string value",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSString* matchString = @\"red\";",
+            "NSPredicate predicate = nil;",
+            "predicate = [NSPredicate predicateWithFormat:@\"ANY favoriteColors BEGINSWITH 'red'\"]",
+            "predicate = [NSPredicate predicateWithFormat:@\"ANY favoriteColors BEGINSWITH %@\", matchString]"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform a tokenized search of a record’s fields, use the special operator ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A tokenized search searches any fields where you enable full-text search, which is all string-based fields by default. CloudKit treats each distinct word in the tokenized string as a separate token for the purpose of searching. Comparisons are case- and diacritic-insensitive. These token strings can be in a single field or in multiple fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 5 shows an example that searches the fields of a record for the token strings ",
+              "type": "text"
+            },
+            {
+              "code": "bob",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "smith",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 5. Matching a field that contains one or more tokens",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSPredicate predicate = nil;",
+            "predicate = [NSPredicate predicateWithFormat:@\"self contains 'bob smith'\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To search for multiple tokens present in the fields, use the ",
+              "type": "text"
+            },
+            {
+              "code": "AND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " predicate operator, as Listing 6 shows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 6. Matching a field that contains multiple tokens",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSPredicate predicate = nil;",
+            "predicate = [NSPredicate predicateWithFormat:@\"self contains 'bob' AND self contains __'__smith__'__\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test whether two locations are near each other, create a predicate using the ",
+              "type": "text"
+            },
+            {
+              "code": "distanceToLocation:fromLocation:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function as Listing 7 shows. Predicates that use this function must have the structure in the listing. In your code, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "location",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable with a field name from one of your records. This data type for the field must be a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Similarly, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "fixedLoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "radius",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values with appropriate values from your app. The ",
+              "type": "text"
+            },
+            {
+              "code": "fixedLoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is the geographic coordinate that marks the center of a circle with the specified radius. In this example, the predicate returns a match if the location in the record is within 10 kilometers of the specified latitude and longitude.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 7. Matching by distance from a location",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CLLocation* fixedLoc = [[CLLocation alloc] initWithLatitude:37.331913 longitude:-122.030210];",
+            "CGFloat radius = 10; // kilometers",
+            "NSPredicate predicate =",
+            "   [NSPredicate predicateWithFormat:@\"distanceToLocation:fromLocation:(location, %@) < %f\", fixedLoc, radius]];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve all records of a specific type, use the ",
+              "type": "text"
+            },
+            {
+              "code": "TRUEPREDICATE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " expression as Listing 8 shows. A predicate with this operator always evaluates to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and, therefore, matches every record. When using such an operator, use a cursor to batch the results into smaller groups for processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "distanceToLocation:fromLocation:",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " operator function performs a radius-based location comparison, and that comparison must determine whether the location value is inside the circular area you provide. You can’t use it to search for locations outside the specified circular area. Location indexes have a resolution of no less than 10 km.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 8. Retrieving all records of a specific type",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSPredicate predicate = nil;",
+            "predicate = [NSPredicate predicateWithFormat:@\"TRUEPREDICATE\"];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Indexes-and-Full-Text-Search",
+          "level": 3,
+          "text": "Indexes and Full-Text Search",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Indexes make it possible to search the contents of your records efficiently. During development, the server indexes all fields with data types it can use in the predicate of a query. This automatic indexing makes it easier to experiment with queries during development, but the indexes require space in a database and require time to generate and maintain. So when migrating to a production environment, remove the indexes for any fields that you don’t use in queries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Full-text search is another feature that is on by default for all fields during development. When you move to the production environment, disable full-text search for fields with content you don’t need to search. As with removing indexes, disabling full-text search improves the performance of your tokenized searches. To configure the indexing and full-text search options for fields in your schema, use CloudKit Dashboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a full-text search, CloudKit ignores the following words if they appear in the token strings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "a",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "by",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "not",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "then",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "an",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "for",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "of",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "there",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "and",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "if",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "on",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "these",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "are",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "in",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "or",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "they",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "as",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "into",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "such",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "this",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "at",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "is",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "that",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "to",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "be",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "it",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "the",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "was",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "but",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "their",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "will",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "with",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Executing-a-Search-Using-Your-Query-Object",
+          "level": 3,
+          "text": "Executing a Search Using Your Query Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To execute a query, do one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " using your query. Run the operation directly or add it to an operation queue to perform the query and deliver the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase/perform(_:inZoneWith:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to execute the query. Process the results in your completion handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Queries always run asynchronously and deliver results to a completion handler that you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of record zones and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabase"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabase",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabase"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase/perform(_:inZoneWith:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Searches for records matching a predicate in the specified record zone.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKQuery",
+          "text": "CKQuery"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inZoneWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZone",
+          "text": "CKRecordZone"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZoneID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase/perform(_:inZoneWith:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performQuery:inZoneWithID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "perform(_:inZoneWith:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabase/perform(_:inzonewith:completionhandler:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKLocationSortDescriptor": {
+      "abstract": [
+        {
+          "text": "An object for sorting records that contain location data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKLocationSortDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKLocationSortDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKLocationSortDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKLocationSortDescriptor",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cklocationsortdescriptor"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery": {
+      "abstract": [
+        {
+          "text": "A query that describes the criteria to apply when searching for records in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQuery",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery#Supported-Predicate-Operators": {
+      "abstract": [],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery#Supported-Predicate-Operators",
+      "kind": "section",
+      "title": "Supported Predicate Operators",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery#Supported-Predicate-Operators"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates an operation group from a serialized instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/init(coder:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(recordType:predicate:)": {
+      "abstract": [
+        {
+          "text": "Creates a query with the specified record type and predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(recordType:predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recordType:predicate:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/init(recordtype:predicate:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/initWithRecordType:predicate:": {
+      "abstract": [
+        {
+          "text": "Creates a query with the specified record type and predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:predicate:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/initWithRecordType:predicate:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:predicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithRecordType:predicate:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/initwithrecordtype:predicate:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/predicate": {
+      "abstract": [
+        {
+          "text": "The predicate to use for matching records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/predicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/predicate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/recordType-3clp": {
+      "abstract": [
+        {
+          "text": "The record type to search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "recordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/recordType-3clp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/recordtype-3clp"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/recordType-6ajii": {
+      "abstract": [
+        {
+          "text": "The record type to search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/recordType-6ajii",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/recordtype-6ajii"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/sortDescriptors": {
+      "abstract": [
+        {
+          "text": "The sort descriptors for organizing the query’s results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSortDescriptor",
+          "text": "NSSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/sortDescriptors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sortDescriptors"
+        }
+      ],
+      "role": "symbol",
+      "title": "sortDescriptors",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckquery/sortdescriptors"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation": {
+      "abstract": [
+        {
+          "text": "An operation for executing queries in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKQueryOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKQueryOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKQueryOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckqueryoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference": {
+      "abstract": [
+        {
+          "text": "A relationship between two records in a record zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.Reference",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/reference"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocation": {
+      "abstract": [
+        {
+          "text": "The latitude, longitude, and course information reported by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocation",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "abstract": [
+        {
+          "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789",
+      "title": "Predicate Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Predicate Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKLocationSortDescriptor"
+      ],
+      "title": "Queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Query",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(coder:)",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(recordType:predicate:)"
+      ],
+      "title": "Creating a Query"
+    },
+    {
+      "anchor": "Accessing-the-Query-Parameters",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/recordType-6ajii",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/predicate",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/sortDescriptors"
+      ],
+      "title": "Accessing the Query Parameters"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CKQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.cloudkit/documentation/CloudKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Query",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/initWithRecordType:predicate:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/init(coder:)"
+              ],
+              "title": "Creating a Query"
+            },
+            {
+              "anchor": "Accessing-the-Query-Parameters",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/recordType-3clp",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/predicate",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQuery/sortDescriptors"
+              ],
+              "title": "Accessing the Query Parameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Queries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKQueryOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKLocationSortDescriptor"
+              ],
+              "title": "Queries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CKQuery"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation/title",
+          "value": "CKQueryOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQueryOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQueryOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/title",
+          "value": "CKReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery/title",
+          "value": "CKQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery~1sortDescriptors/title",
+          "value": "sortDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery~1sortDescriptors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sortDescriptors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/title",
+          "value": "CKDatabase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase~1perform(_:inZoneWith:completionHandler:)/title",
+          "value": "performQuery:inZoneWithID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase~1perform(_:inZoneWith:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performQuery:inZoneWithID:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery~1predicate/title",
+          "value": "predicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery~1predicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "predicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdate/abstract",
+          "value": [
+            {
+              "text": "A representation of a specific point in time, independent of any calendar or time zone.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKQuery~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKLocationSortDescriptor/title",
+          "value": "CKLocationSortDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKLocationSortDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKLocationSortDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKLocationSortDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKLocationSortDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/ckquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/ckquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3305 @@
+{
+  "abstract": [
+    {
+      "text": "Build standard content lockups and rows of content shelves for your tvOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-a-tvOS-media-catalog-app-in-SwiftUI"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a tvOS media catalog app in SwiftUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to create the standard content lockups for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tvOS, and provides best practices for building out rows of content shelves. It",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also includes examples for product pages, search views, and tab views,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the new sidebar adaptive tab view style that provides a sidebar in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tvOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10207: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10207/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project contains the following examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "StackView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " implements an example landing page for a content catalog",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app, defining several shelves with a showcase or hero header area above them.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "It also gives an example of an above- and below-the-fold switching animation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ButtonsView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " provides a showcase of the various button styles available",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in tvOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DescriptionView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " provides an example of how to build a product page",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "similar to those you see on the Apple TV app, with a custom material blur.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SearchView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " shows an example of a simple search page using the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)-18a8f",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "modifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SidebarContentView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " shows how to make a sectioned sidebar using the new",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "tab bar APIs in tvOS 18.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "HeroHeaderView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " gives an example of creating a material gradient to blur",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "content in a certain area, fading it into unblurred content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-content-lockups",
+          "level": 3,
+          "text": "Create content lockups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PrimitiveButtonStyle/borderless",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button style provides the primary lockup style you use in tvOS, including all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the focus interactions and hover effects. The button’s title and any nearby",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section titles automatically move out of the way of the button’s image as it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scales up on focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a separate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button’s label closure to ensure the correct vertical appearance. Using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " usually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results in a horizontal layout, and, depending on the current label style,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may not give you the appearance you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button { /* action */ } label: {",
+            "    Image(\"discovery_portrait\")",
+            "        .resizable()",
+            "        .frame(width: 250, height: 375)",
+            "    Text(\"Borderless Portrait\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the button style locates the first ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within the button’s label",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and attaches a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect/highlight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hover effect to it, providing lift, a specular highlight, and gimbal motion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure the hover effect applies to exactly the right view, you can manually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attach it to a particular subview of the button’s label using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier. For instance, to ensure an SF Symbols image hovers along with its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button { /* action */ } label: {",
+            "    Image(systemName: \"person.circle\")",
+            "        .font(.title)",
+            "        .background(Color.blue.grayscale(0.7))",
+            "        .hoverEffect(.highlight)",
+            "    Text(\"Shaped\")",
+            "}",
+            ".buttonBorderShape(.circle)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also attach the hover effect to a custom view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button { /* action */ } label: {",
+            "    CodeSampleArtwork(size: .appIconSize)",
+            "        .frame(width: 400, height: 240)",
+            "        .hoverEffect(.highlight)",
+            "    Text(\"Custom Icon View\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-information-dense-lockups",
+          "level": 3,
+          "text": "Show information-dense lockups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For lockups with more dense information, consider using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PrimitiveButtonStyle/card",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button style, which provides a platter and a more subtle motion effect on focus.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Providing containers with padding as the button’s label gives you something",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "similar to the search result lockups on the Apple TV app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button { /* action */ } label: {",
+            "    HStack(alignment: .top, spacing: 10) {",
+            "        Image( . . . )",
+            "            .resizable()",
+            "            .aspectRatio(contentMode: .fit)",
+            "            .clipShape(RoundedRectangle(cornerRadius: 12))",
+            "",
+            "        VStack(alignment: .leading) {",
+            "            Text(asset.title)",
+            "                .font(.body)",
+            "            Text(\"Subtitle text goes here, limited to two lines.\")",
+            "                .font(.caption2)",
+            "                .foregroundStyle(.secondary)",
+            "                .lineLimit(2)",
+            "            Spacer(minLength: 0)",
+            "            HStack(spacing: 4) {",
+            "                ForEach(1..<4) { _ in",
+            "                    Image(systemName: \"ellipsis.rectangle.fill\")",
+            "                }",
+            "            }",
+            "            .foregroundStyle(.secondary)",
+            "        }",
+            "    }",
+            "    .padding(12)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a standard card-based lockup appearance while keeping your button’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declarations clean at the point of use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CardOverlayLabelStyle: LabelStyle {",
+            "    func makeBody(configuration: Configuration) -> some View {",
+            "        ZStack(alignment: .bottomLeading) {",
+            "            configuration.icon",
+            "                .resizable()",
+            "                .aspectRatio(400/240, contentMode: .fit)",
+            "                .overlay {",
+            "                    LinearGradient(",
+            "                        stops: [",
+            "                            .init(color: .black.opacity(0.6), location: 0.1),",
+            "                            .init(color: .black.opacity(0.2), location: 0.25),",
+            "                            .init(color: .black.opacity(0), location: 0.4)",
+            "                        ],",
+            "                        startPoint: .bottom, endPoint: .top",
+            "                    )",
+            "                }",
+            "                .overlay {",
+            "                    RoundedRectangle(cornerRadius: 12)",
+            "                        .stroke(lineWidth: 2)",
+            "                        .foregroundStyle(.quaternary)",
+            "                }",
+            "",
+            "            configuration.title",
+            "                .font(.caption.bold())",
+            "                .foregroundStyle(.secondary)",
+            "                .padding(6)",
+            "        }",
+            "        .frame(maxWidth: 400)",
+            "    }",
+            "}",
+            "",
+            "Button { /* action */ } label: {",
+            "    Label(\"Title at the bottom\", image: \"discovery_landscape\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-content-shelves",
+          "level": 3,
+          "text": "Display content shelves",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Content shelves are usually horizontal stacks in scroll views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-3.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Disabling scroll clipping is necessary to allow the focus effects to scale up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and lift each lockup. Shelves typically contain only a single style of lockup,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so assign your button style on the outside of the shelf container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.horizontal) {",
+            "    LazyHStack(spacing: 40) {",
+            "        ForEach(Asset.allCases) { asset in",
+            "            // . . .",
+            "        }",
+            "    }",
+            "}",
+            ".scrollClipDisabled()",
+            ".buttonStyle(.borderless)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To arrange your lockups nicely, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:count:span:spacing:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to let SwiftUI determine the best size for each. You can specify how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "many lockups you want on the screen, and the amount of spacing your stack view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides. Then SwiftUI arranges the content so that the edges of the leading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and trailing items align with the leading and trailing safe area insets of its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For borderless buttons, you can attach the modifier to the ",
+              "type": "text"
+            },
+            {
+              "code": "Image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within the button’s label closure to make the image the source of the frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calculations and alignments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "asset.portraitImage",
+            "    .resizable()",
+            "    .aspectRatio(250 / 375, contentMode: .fit)",
+            "    .containerRelativeFrame(.horizontal, count: 6, spacing: 40)",
+            "Text(asset.title)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-content-above-and-below-the-fold",
+          "level": 3,
+          "text": "Show content above and below the fold",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a landing page you can implement above- and below-the-fold appearances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through a combination of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a background view with a gradient mask.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-4.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define your showcase or header section as a stack with a container relative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frame to make it take up a particular percentage of the available space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Attach a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/focusSection()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to the stack as well, so that its full width can act as a target for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "focus movement, which it then diverts to its content. Otherwise, moving",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "focus up from the right side of the shelves below might fail, or might jump all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the way to the tab bar because the focus engine searches for the nearest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "focusable view along a straight line from the currently focused item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack(alignment: .leading) {",
+            "    // Header content.",
+            "}",
+            ".frame(maxWidth: .infinity, alignment: .leading)",
+            ".focusSection()",
+            ".containerRelativeFrame(.vertical, alignment: .topLeading) {",
+            "    length, _ in length * 0.8",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code above is the above-the-fold section. To detect when focus moves below",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the fold, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollVisibilityChange(threshold:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to detect when the header view moves more than halfway off the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".onScrollVisibilityChange { visible in",
+            "    // When the header scrolls more than 50% offscreen, toggle",
+            "    // to the below-the-fold state.",
+            "    withAnimation {",
+            "        belowFold = !visible",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define the background of your landing page using a full-screen image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a material in an overlay. Then you can turn the material into a gradient",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by masking it with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you can adjust the opacity of that gradient’s stops according to the view’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "above- or below-the-fold status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Image(\"beach_landscape\")",
+            "    .resizable()",
+            "    .aspectRatio(contentMode: .fill)",
+            "    .overlay {",
+            "        // Build the gradient material by filling an area with a material, and",
+            "        // then masking that area using a linear gradient.",
+            "        Rectangle()",
+            "            .fill(.regularMaterial)",
+            "            .mask {",
+            "                LinearGradient(",
+            "                    stops: [",
+            "                        .init(color: .black, location: 0.25),",
+            "                        .init(color: .black.opacity(belowFold ? 1 : 0.3), location: 0.375),",
+            "                        .init(color: .black.opacity(belowFold ? 1 : 0), location: 0.5)",
+            "                    ],",
+            "                    startPoint: .bottom, endPoint: .top",
+            "                )",
+            "            }",
+            "    }",
+            "    .ignoresSafeArea()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adjusting the opacity of the gradient stops, rather than swapping out the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mask view, you achieve a smooth animation between the above-the-fold appearance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where the material fades out above a certain height to reveal the image behind,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the below-the-fold appearance where the entire image blurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Snap-at-the-fold-point",
+          "level": 3,
+          "text": "Snap at the fold point",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement a custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a fold-snapping effect. Then add a check to determine whether the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target of a scroll event is crossing a fold threshold, and update that target to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "either the top of the page (if moving upward) or to the top of your first",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content shelf (if moving downward). With your view already tracking the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "above/below fold state, it can pass that information into the behavior to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indicate which operation to check for.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView {",
+            "    // . . .",
+            "}",
+            ".scrollTargetBehavior(",
+            "    FoldSnappingScrollTargetBehavior(",
+            "        aboveFold: !belowFold, showcaseHeight: showcaseHeight))",
+            "",
+            "struct FoldSnappingScrollTargetBehavior: ScrollTargetBehavior {",
+            "    var aboveFold: Bool",
+            "    var showcaseHeight: CGFloat",
+            "",
+            "    func updateTarget(_ target: inout ScrollTarget, context: TargetContext) {",
+            "        // The view is above the fold and not moving far enough down, so make no",
+            "        // change.",
+            "        if aboveFold && target.rect.minY < showcaseHeight * 0.3 {",
+            "            return",
+            "        }",
+            "",
+            "        // The view is below the fold, and the header isn't coming onscreen, so",
+            "        // make no change.",
+            "        if !aboveFold && target.rect.minY > showcaseHeight {",
+            "            return",
+            "        }",
+            "",
+            "        // Upward movement: Require revealing over 30% of the header, or don't let",
+            "        // the scroll go upward.",
+            "        let showcaseRevealThreshold = showcaseHeight * 0.7",
+            "        let snapToHideRange = showcaseRevealThreshold...showcaseHeight",
+            "",
+            "        if aboveFold || snapToHideRange.contains(target.rect.origin.y) {",
+            "            // Snap to align the first content shelf at the top of the screen.",
+            "            target.rect.origin.y = showcaseHeight",
+            "        }",
+            "        else {",
+            "            // Snap upward to reveal the header.",
+            "            target.rect.origin.y = 0",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-product-highlight-pages",
+          "level": 3,
+          "text": "Provide product highlight pages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s common for product pages to use a material gradient appearance with above-",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and below-the-fold snapping. You most likely need to tune the gradient a little",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "differently to account for a taller bar of content at the bottom of the screen,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but you typically want to keep the content’s showcase image, with a suitable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blur, as a background for the view when scrolling below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-5.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This makes each product’s page unique, with its defining artwork tinting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. This is the same effect that root screen on the Apple TV uses — the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system blurs the most recently displayed top-shelf image and uses it as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background of the tvOS home screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your description view, you may want to display a stack of bordered buttons,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and stretch each to the same width. SwiftUI implements bordered buttons by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attaching a background to their labels, so increasing the size of the button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view isn’t necessarily going to cause the background platter to grow. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to specify that the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "label content",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is able to expand, and its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "background then expands as well. Attaching a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to the button’s label content achieves this for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack(spacing: 12) {",
+            "    Button { /* action */ } label: {",
+            "        Text(\"Sign Up\")",
+            "            .font(.body.bold())",
+            "            .frame(maxWidth: .infinity)",
+            "    }",
+            "",
+            "    Button { /* action */ } label: {",
+            "        Text(\"Buy or Rent\")",
+            "            .font(.body.bold())",
+            "            .frame(maxWidth: .infinity)",
+            "    }",
+            "",
+            "    Button { /* action */ } label: {",
+            "        Label(\"Add to Up Next\", systemImage: \"plus\")",
+            "            .font(.body.bold())",
+            "            .frame(maxWidth: .infinity)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When displaying your content’s description, allow it to truncate on the page,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and place it within a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "code": ".plain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " style. People can then select it, and you can present the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "full description using an overlay view that you attach with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".fullScreenCover(isPresented: $showDescription) {",
+            "    VStack(alignment: .center) {",
+            "        Text(loremIpsum)",
+            "            .frame(maxWidth: 600)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Search-for-content",
+          "level": 3,
+          "text": "Search for content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For your search page, prefer using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVGrid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to contain your results, and a landscape orientation for the lockups themselves.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This allows more content to appear onscreen at one time, with several rows of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "three to five items per row. A tall content container area makes it much easier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to see the effects of changes to your search term.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-6.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The search implementation consists of simple view modifiers that function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identically on each Apple platform. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)-18a8f",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier provides the entire search UI for you, binding the search field to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provided text. By attaching a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier, you can present a list of potential search keyword completions. These",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are commonly ",
+              "type": "text"
+            },
+            {
+              "code": "Text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, but ",
+              "type": "text"
+            },
+            {
+              "code": "Button",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to sort your search results so that the content of your grid is stable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and predictable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.vertical) {",
+            "    LazyVGrid(",
+            "        columns: Array(repeating: .init(.flexible(), spacing: 40), count: 4), ",
+            "        spacing: 40",
+            "    ) {",
+            "        ForEach(/* matching assets, sorted */) { asset in",
+            "            Button { /* action */ } label: {",
+            "                asset.landscapeImage",
+            "                    .resizable()",
+            "                    .aspectRatio(16 / 9, contentMode: .fit)",
+            "                Text(asset.title)",
+            "            }",
+            "        }",
+            "    }",
+            "    .buttonStyle(.borderless)",
+            "}",
+            ".scrollClipDisabled()",
+            ".searchable(text: $searchTerm)",
+            ".searchSuggestions {",
+            "    ForEach(/* keywords matching search term */, id: \\.self) { suggestion in",
+            "        Text(suggestion)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4151095c6511/CreatingATvOSMediaCatalogAppInSwiftUI.zip": {
+      "checksum": "4151095c651105206eb29f38a8b6e97e3335367d03d71437cc5241a51219dcbd28d3ea2ec5d75666fac53f6061e51bed60b1f063b31fa43cf9829671dec6ccc8",
+      "identifier": "4151095c6511/CreatingATvOSMediaCatalogAppInSwiftUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4151095c6511/CreatingATvOSMediaCatalogAppInSwiftUI.zip"
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-1.png": {
+      "alt": "Four borderless buttons, each with an image above a textual title. From left to right, the buttons include a portrait image titled Borderless Portrait, a landscape image titled Borderless Landscape, a tvOS app icon titled Custom Icon View, and a circular symbol depicting a person’s head and shoulders titled Shaped.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/218a6c23ea7eeea05fea1eca434e9386/Creating-a-tvOS-media-catalog-app-in-SwiftUI-1@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-2.png": {
+      "alt": "Two buttons in landscape orientation. On the left is an image with rounded corners and a faint border, with text toward its lower edge that says: Title at the bottom. On the right is the same image with rounded corners and a faint border, and two lines of text at the top reading: Title at the top and Some subtitle text as well. Text at its lower edge reads: Additional info at the bottom.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0dba5d52bde841370d4fff33e7a2a177/Creating-a-tvOS-media-catalog-app-in-SwiftUI-2@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-3.png": {
+      "alt": "Two horizontal rows of buttons displaying colorful icons. The upper row is titled Movie Shelf and contains images in portrait orientation with titles below them. The left-most icon is enlarged and raised with a drop shadow, and its title is lower to avoid occlusion. The lower row contains square icons, each a different color, with no titles.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-3.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6794f99687cba0250dfabfb34fa8004f/Creating-a-tvOS-media-catalog-app-in-SwiftUI-3@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-4.png": {
+      "alt": "An Apple TV app screen showing a large photograph of a sailboat at sunset. At the top of the screen is a tab bar with items arranged left to right titled Stack, Buttons, Description, and Search. The Stack item is currently selected. Below the tab bar is the title: tvOS with SwiftUI in large text. Toward the bottom of the screen are two buttons titled Show and More Info. Just visible at the bottom of the screen is a horizontal row of images with rounded corners with the title Movie Shelf above them.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-4.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c824a7a724260f438c265b8f15bb8ba5/Creating-a-tvOS-media-catalog-app-in-SwiftUI-4@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-5.png": {
+      "alt": "An Apple TV app screen showing a large photograph of a sailboat at sunset. At the top of the screen is a tab bar with items arranged left to right titled Stack, Buttons, Description, and Search. The Description item is currently selected. Below the tab bar the word Title appears in large text. In the lower quarter of the screen is a three-column section that contains information about a product. The left column has the title Signup Information above three vertically stacked buttons titled Sign Up, Buy or Rent, and Add to Up Next. The middle column contains a block of placeholder text, and the right column contains two vertically-stacked lines of text. The first says Starring: Stars, costars, and extras, and the second says Director: Someone great.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-5.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25f2a78f4c6b403406e488573b04d49e/Creating-a-tvOS-media-catalog-app-in-SwiftUI-5@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-6.png": {
+      "alt": "An Apple TV app screen showing a search pane. At the top of the screen is a tab bar with items arranged left to right titled Stack, Buttons, Description, and Search. The “Search” item is currently selected. Below the tab bar is a search field with a magnifying class icon to its left and the letter P entered. Below that is a keyboard containing roman letters, and below that is a list of words in rounded rectangles representing potential matches. At the bottom is a four-by-two grid of landscape-orientation images with titles below them.",
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-6.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dbf1dcdcb6c6894261196da38dcfbe61/Creating-a-tvOS-media-catalog-app-in-SwiftUI-6@2x.png"
+        }
+      ]
+    },
+    "Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f8f5afc34a7f95c0fa6bd64a4a4ca9b3/Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/146ac72c6b4ce7d798f5817eba25d7f6/Creating-a-tvOS-media-catalog-app-in-SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/swiftui/button"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect/highlight": {
+      "abstract": [
+        {
+          "text": "An effect  that morphs the pointer into a platter behind the view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and shows a light source indicating position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highlight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11HoverEffectV",
+          "text": "HoverEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffect/highlight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highlight",
+      "type": "topic",
+      "url": "/documentation/swiftui/hovereffect/highlight"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/swiftui/image"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/swiftui/label"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle": {
+      "abstract": [
+        {
+          "text": "A type that applies a custom appearance to all labels within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LabelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LabelStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVGrid": {
+      "abstract": [
+        {
+          "text": "A container view that arranges its child views in a grid that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "grows vertically, creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVGrid"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVGrid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVGrid"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVGrid",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvgrid"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient": {
+      "abstract": [
+        {
+          "text": "A linear gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/lineargradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PrimitiveButtonStyle/borderless": {
+      "abstract": [
+        {
+          "text": "A button style that doesn’t apply a border.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "BorderlessButtonStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "borderless"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21BorderlessButtonStyleV",
+          "text": "BorderlessButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PrimitiveButtonStyle/borderless",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "borderless",
+      "type": "topic",
+      "url": "/documentation/swiftui/primitivebuttonstyle/borderless"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PrimitiveButtonStyle/card": {
+      "abstract": [
+        {
+          "text": "A button style that doesn’t pad the content, and applies a motion effect",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when a button has focus.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "CardButtonStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "card"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15CardButtonStyleV",
+          "text": "CardButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PrimitiveButtonStyle/card",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "card",
+      "type": "topic",
+      "url": "/documentation/swiftui/primitivebuttonstyle/card"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior": {
+      "abstract": [
+        {
+          "text": "A type that defines the scroll behavior of a scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollTargetBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollTargetBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollTargetBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrolltargetbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:count:span:spacing:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with a size relative",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to the nearest container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerRelativeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "span"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "spacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerRelativeFrame(_:count:span:spacing:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerRelativeFrame(_:count:span:spacing:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/containerrelativeframe(_:count:span:spacing:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/focusSection()": {
+      "abstract": [
+        {
+          "text": "Indicates that the view’s frame and cohort of focusable descendants",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "should be used to guide focus movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focusSection"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/focusSection()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "focusSection()",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/focussection()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame having the specified size",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)": {
+      "abstract": [
+        {
+          "text": "Presents a modal view that covers as much of the screen as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "possible when binding to a Boolean value you provide is true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullScreenCover"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onDismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fullScreenCover(isPresented:onDismiss:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/fullscreencover(ispresented:ondismiss:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect to this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11HoverEffectV",
+          "text": "HoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/hoverEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/hovereffect(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollVisibilityChange(threshold:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to be called when the view crosses the threshold to be considered on/off screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onScrollVisibilityChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "threshold"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onScrollVisibilityChange(threshold:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onScrollVisibilityChange(threshold:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/onscrollvisibilitychange(threshold:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the search suggestions for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchSuggestions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchSuggestions(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchsuggestions(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)-18a8f": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20SearchFieldPlacementV",
+          "text": "SearchFieldPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)-18a8f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:placement:prompt:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:placement:prompt:)-18a8f"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc24/10207/": {
+      "identifier": "https://developer.apple.com/wwdc24/10207/",
+      "title": "Migrate your TVML app to SwiftUI",
+      "titleInlineContent": [
+        {
+          "text": "Migrate your TVML app to SwiftUI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10207/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4151095c6511/CreatingATvOSMediaCatalogAppInSwiftUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/creating-a-tvos-media-catalog-app-in-swiftui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

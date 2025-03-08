@@ -1,0 +1,888 @@
+{
+  "abstract": [
+    {
+      "text": "Position and size views using a stack view or Auto Layout constraints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/view-layout"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "View Layout"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you design your app’s interface, you position views and other interface elements in your app’s windows and size them appropriately. However, the size and position of those views may need to change at runtime for a few reasons:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user resizes the window containing your views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s language choice requires size changes for labels and text-based views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects adjust the position of their contained views automatically when interface dimensions change. Alternatively, Auto Layout constraints let you specify the rules that determine the precise size and position of the views in your interface",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDictionaryOfVariableBindings": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDictionaryOfVariableBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDictionaryOfVariableBindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionaryOfVariableBindings",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdictionaryofvariablebindings"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutAnchor",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutanchor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint": {
+      "abstract": [
+        {
+          "text": "The relationship between two user interface objects that must be satisfied by the constraint-based layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutconstraint"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutDimension": {
+      "abstract": [
+        {
+          "text": "A factory class for creating size-based layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutDimension"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutDimension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutDimension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutDimension",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutdimension"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide": {
+      "abstract": [
+        {
+          "text": "A rectangular area that can interact with Auto Layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutguide"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutXAxisAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating horizontal layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutXAxisAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutXAxisAnchor",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutxaxisanchor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutYAxisAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating vertical layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutYAxisAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutYAxisAnchor",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutyaxisanchor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStackView": {
+      "abstract": [
+        {
+          "text": "A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStackView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstackview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a UI control should redisplay when space is restricted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceCompression"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceCompression"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceCompression",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacecompression"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/animation": {
+      "abstract": [
+        {
+          "text": "Animate your views and other content to create a more engaging experience for users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/appkit/animation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance Customization",
+      "type": "topic",
+      "url": "/documentation/appkit/appearance-customization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics": {
+      "abstract": [
+        {
+          "text": "Play sounds and haptic feedback, and incorporate speech recognition and synthesis into your interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound, Speech, and Haptics",
+      "type": "topic",
+      "url": "/documentation/appkit/sound-speech-and-haptics"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app": {
+      "abstract": [
+        {
+          "text": "Incorporate scanned documents and pictures from a user’s iPhone, iPad, or iPod touch into your Mac app using Continuity Camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Continuity Camera in Your Mac App",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-continuity-camera-in-your-mac-app"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/view-management": {
+      "abstract": [
+        {
+          "text": "Manage your user interface, including the size and position of views in a window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/view-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View Management",
+      "type": "topic",
+      "url": "/documentation/appkit/view-management"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and handle user input and events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/views-and-controls"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens": {
+      "abstract": [
+        {
+          "text": "Organize your view hierarchies and facilitate their display onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows, Panels, and Screens",
+      "type": "topic",
+      "url": "/documentation/appkit/windows-panels-and-screens"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+        "doc://com.apple.appkit/documentation/AppKit/view-management",
+        "doc://com.apple.appkit/documentation/AppKit/appearance-customization",
+        "doc://com.apple.appkit/documentation/AppKit/animation",
+        "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens",
+        "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics",
+        "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app"
+      ],
+      "title": "User Interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Stack-View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSStackView"
+      ],
+      "title": "Stack View"
+    },
+    {
+      "anchor": "Auto-Layout-Constraints",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint"
+      ],
+      "title": "Auto Layout Constraints"
+    },
+    {
+      "anchor": "Layout-Guides",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutDimension"
+      ],
+      "title": "Layout Guides"
+    },
+    {
+      "anchor": "Anchors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutXAxisAnchor",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutYAxisAnchor"
+      ],
+      "title": "Anchors"
+    },
+    {
+      "anchor": "View-Compression",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression"
+      ],
+      "title": "View Compression"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Stack-View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSStackView"
+              ],
+              "title": "Stack View"
+            },
+            {
+              "anchor": "Auto-Layout-Constraints",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint"
+              ],
+              "title": "Auto Layout Constraints"
+            },
+            {
+              "anchor": "Layout-Guides",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutDimension"
+              ],
+              "title": "Layout Guides"
+            },
+            {
+              "anchor": "Anchors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutXAxisAnchor",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutYAxisAnchor"
+              ],
+              "title": "Anchors"
+            },
+            {
+              "anchor": "View-Compression",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDictionaryOfVariableBindings",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression"
+              ],
+              "title": "View Compression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-Interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+                "doc://com.apple.appkit/documentation/AppKit/view-management",
+                "doc://com.apple.appkit/documentation/AppKit/appearance-customization",
+                "doc://com.apple.appkit/documentation/AppKit/animation",
+                "doc://com.apple.appkit/documentation/AppKit/windows-panels-and-screens",
+                "doc://com.apple.appkit/documentation/AppKit/sound-speech-and-haptics",
+                "doc://com.apple.appkit/documentation/AppKit/supporting-continuity-camera-in-your-mac-app"
+              ],
+              "title": "User Interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutYAxisAnchor/title",
+          "value": "NSLayoutYAxisAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutYAxisAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutYAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutYAxisAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutYAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceCompression/title",
+          "value": "NSUserInterfaceCompression"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceCompression/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceCompression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceCompression/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceCompression"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/title",
+          "value": "NSStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutGuide/title",
+          "value": "NSLayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutAnchor/title",
+          "value": "NSLayoutAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutDimension/title",
+          "value": "NSLayoutDimension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutDimension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutDimension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutDimension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutDimension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutXAxisAnchor/title",
+          "value": "NSLayoutXAxisAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutXAxisAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutXAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutXAxisAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutXAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint/title",
+          "value": "NSLayoutConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/view-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/view-layout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

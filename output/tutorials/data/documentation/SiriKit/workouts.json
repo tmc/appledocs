@@ -1,0 +1,1566 @@
+{
+  "abstract": [
+    {
+      "text": "Start, end, and manage fitness routines.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/workouts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Workouts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can start, pause, resume, cancel, or end workouts with Siri. Your Intents app extension directs any workout-related requests to your app, which manages the actual workouts. SiriKit automatically asks users to unlock their device, as needed, before launching your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use an Intents UI app extension to provide a custom interface for workout-related intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3743227",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "A request to cancel an active workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCancelWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCancelWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCancelWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/intents/incancelworkoutintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntentHandling": {
+      "abstract": [
+        {
+          "text": "The interface that handles requests to cancel a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCancelWorkoutIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCancelWorkoutIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCancelWorkoutIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/incancelworkoutintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a cancel workout intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCancelWorkoutIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCancelWorkoutIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCancelWorkoutIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/incancelworkoutintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "A request to end the current workout that also validates workout parameters and saves the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEndWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEndWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEndWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inendworkoutintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface that handles requests to complete a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEndWorkoutIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEndWorkoutIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEndWorkoutIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inendworkoutintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to an end workout intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEndWorkoutIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEndWorkoutIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEndWorkoutIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inendworkoutintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "A request to pause the current workout that also stops the gathering of workout data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPauseWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPauseWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPauseWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inpauseworkoutintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface that handles requests to pause a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPauseWorkoutIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPauseWorkoutIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPauseWorkoutIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inpauseworkoutintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a pause workout intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPauseWorkoutIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPauseWorkoutIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPauseWorkoutIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inpauseworkoutintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "A request to resume a paused workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INResumeWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INResumeWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INResumeWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inresumeworkoutintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntentHandling": {
+      "abstract": [
+        {
+          "text": "The interface that handles requests to resume a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INResumeWorkoutIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INResumeWorkoutIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INResumeWorkoutIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inresumeworkoutintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a resume workout intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INResumeWorkoutIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INResumeWorkoutIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INResumeWorkoutIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inresumeworkoutintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "A request to start a workout for the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/intents/instartworkoutintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface that handles requests to start a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartWorkoutIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/instartworkoutintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a start workout intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartWorkoutIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartWorkoutIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/instartworkoutintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitType": {
+      "abstract": [
+        {
+          "text": "Describes the unit of measure with constants for a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutGoalUnitType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutGoalUnitType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutGoalUnitType",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutgoalunittype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the units of a workout goal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutGoalUnitTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutGoalUnitTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutGoalUnitTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutgoalunittyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationType": {
+      "abstract": [
+        {
+          "text": "Describes the location of a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutLocationType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutLocationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutLocationType",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutlocationtype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the location type where the workout occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutLocationTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutLocationTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutLocationTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutlocationtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutNameIdentifier": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the type of workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutNameIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutNameIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutNameIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutNameIdentifier",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutnameidentifier"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/car-commands": {
+      "abstract": [
+        {
+          "text": "Manage vehicle door locks and get the vehicle’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Car Commands",
+      "type": "topic",
+      "url": "/documentation/sirikit/car-commands"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit": {
+      "abstract": [
+        {
+          "text": "Add an Intent Extension to your app that handles requests to control workouts with Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Workout Requests with SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit/handling-workout-requests-with-sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers": {
+      "abstract": [
+        {
+          "text": "Identify intents that user notifications specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Class Identifiers",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-class-identifiers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes": {
+      "abstract": [
+        {
+          "text": "Create and manage notes and to-do list items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists and Notes",
+      "type": "topic",
+      "url": "/documentation/sirikit/lists-and-notes"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/media": {
+      "abstract": [
+        {
+          "text": "Listen and control audio through Siri Intents, or listen and watch media content from your app with shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media",
+      "type": "topic",
+      "url": "/documentation/sirikit/media"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/messaging": {
+      "abstract": [
+        {
+          "text": "Send messages and search the user’s received messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Messaging",
+      "type": "topic",
+      "url": "/documentation/sirikit/messaging"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/payments": {
+      "abstract": [
+        {
+          "text": "Send payments between users or pay bills.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/payments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payments",
+      "type": "topic",
+      "url": "/documentation/sirikit/payments"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations": {
+      "abstract": [
+        {
+          "text": "Create and manage restaurant reservations with help from the Maps app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Restaurant Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/restaurant-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/ride-booking": {
+      "abstract": [
+        {
+          "text": "Book rides and report their status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ride Booking",
+      "type": "topic",
+      "url": "/documentation/sirikit/ride-booking"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/voip-calling": {
+      "abstract": [
+        {
+          "text": "Initiate calls and search the user’s call history.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VoIP Calling",
+      "type": "topic",
+      "url": "/documentation/sirikit/voip-calling"
+    },
+    "media-3743227": {
+      "alt": "A screenshot of an Apple watch with Siri active and responding to the user’s request to start a running workout.",
+      "identifier": "media-3743227",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c7c087363697a38d4861b2aef8b03a38/media-3743227@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+        "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+        "doc://com.apple.sirikit/documentation/SiriKit/media",
+        "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+        "doc://com.apple.sirikit/documentation/SiriKit/payments",
+        "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+        "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers"
+      ],
+      "title": "Standard Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/handling-workout-requests-with-sirikit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Start-a-Workout",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INStartWorkoutIntentResponse"
+      ],
+      "title": "Start a Workout"
+    },
+    {
+      "anchor": "Pause-a-Workout",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INPauseWorkoutIntentResponse"
+      ],
+      "title": "Pause a Workout"
+    },
+    {
+      "anchor": "Resume-a-Workout",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INResumeWorkoutIntentResponse"
+      ],
+      "title": "Resume a Workout"
+    },
+    {
+      "anchor": "Cancel-a-Workout",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INCancelWorkoutIntentResponse"
+      ],
+      "title": "Cancel a Workout"
+    },
+    {
+      "anchor": "End-a-Workout",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INEndWorkoutIntentResponse"
+      ],
+      "title": "End a Workout"
+    },
+    {
+      "anchor": "Workout-Data-Objects",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutNameIdentifier",
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitType",
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationType"
+      ],
+      "title": "Workout Data Objects"
+    },
+    {
+      "anchor": "Resolution-Results",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult"
+      ],
+      "title": "Resolution Results"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntent/title",
+          "value": "INStartWorkoutIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntent/title",
+          "value": "INPauseWorkoutIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPauseWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPauseWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntentHandling/title",
+          "value": "INEndWorkoutIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEndWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEndWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntentResponse/title",
+          "value": "INPauseWorkoutIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPauseWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPauseWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntentHandling/title",
+          "value": "INResumeWorkoutIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INResumeWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INResumeWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntent/title",
+          "value": "INCancelWorkoutIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitType/title",
+          "value": "INWorkoutGoalUnitType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutGoalUnitType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutGoalUnitType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntentResponse/title",
+          "value": "INStartWorkoutIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntentResponse/title",
+          "value": "INEndWorkoutIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEndWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEndWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntentHandling/title",
+          "value": "INPauseWorkoutIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPauseWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPauseWorkoutIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPauseWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntentHandling/title",
+          "value": "INCancelWorkoutIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntentResponse/title",
+          "value": "INCancelWorkoutIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCancelWorkoutIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCancelWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntentResponse/title",
+          "value": "INResumeWorkoutIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INResumeWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INResumeWorkoutIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationType/title",
+          "value": "INWorkoutLocationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutLocationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutLocationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntent/title",
+          "value": "INResumeWorkoutIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INResumeWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INResumeWorkoutIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INResumeWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitTypeResolutionResult/title",
+          "value": "INWorkoutGoalUnitTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutGoalUnitTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutGoalUnitTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntent/title",
+          "value": "INEndWorkoutIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEndWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEndWorkoutIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEndWorkoutIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationTypeResolutionResult/title",
+          "value": "INWorkoutLocationTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutLocationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutLocationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntentHandling/title",
+          "value": "INStartWorkoutIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartWorkoutIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartWorkoutIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutNameIdentifier/title",
+          "value": "INWorkoutNameIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutNameIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutNameIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutNameIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutNameIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

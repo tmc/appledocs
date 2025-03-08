@@ -1,0 +1,1144 @@
+{
+  "abstract": [
+    {
+      "text": "A layer object that wraps an embedding filter and manages its deinitialization.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the BNNSGraph API instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Accelerate",
+    "externalID": "s:10Accelerate4BNNSO14EmbeddingLayerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EmbeddingLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EmbeddingLayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": true,
+        "message": "Use the BNNSGraph API instead.",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "BNNS.EmbeddingLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EmbeddingLayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an embedding layer to access dictionary items based on the integer indices that the input tensor defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code shows how to access three dictionary items at indices ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The dictionary contains seven items that are five-element vectors. Therefore, the indices descriptor has the shape ",
+              "type": "text"
+            },
+            {
+              "code": "(3)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the dictionary descriptor has the shape ",
+              "type": "text"
+            },
+            {
+              "code": "(5, 7)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the output descriptor has the shape ",
+              "type": "text"
+            },
+            {
+              "code": "(5, 3)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let lookupIndices: [Int8] = [1, 5, 2]",
+            "let input = BNNSNDArrayDescriptor.allocate(initializingFrom: lookupIndices,",
+            "                                           shape: .vector(lookupIndices.count))",
+            "",
+            "// The dictionary contains 7 embeddings of 5-element vectors",
+            "let dictionaryData: [Float] = [ 01, 02, 03, 04, 05,     // Dictionary item 0",
+            "                                11, 12, 13, 14, 15,     // Dictionary item 1",
+            "                                21, 22, 23, 24, 25,     // Dictionary item 2",
+            "                                31, 32, 33, 34, 35,     // Dictionary item 3",
+            "                                41, 42, 43, 44, 45,     // Dictionary item 4",
+            "                                51, 52, 53, 54, 55,     // Dictionary item 5",
+            "                                61, 62, 63, 64, 65]     // Dictionary item 6",
+            "",
+            "let dictionaryItemSize = 5",
+            "let dictionaryItemCount = 7",
+            "",
+            "let dictionary = BNNSNDArrayDescriptor.allocate(",
+            "    initializingFrom: dictionaryData,",
+            "    shape: .matrixLastMajor(dictionaryItemSize,",
+            "                            dictionaryItemCount))",
+            "",
+            "let output = BNNSNDArrayDescriptor.allocateUninitialized(",
+            "    scalarType: Float.self,",
+            "    shape: .matrixLastMajor(dictionaryItemSize,",
+            "                            lookupIndices.count))",
+            "",
+            "let layer = BNNS.EmbeddingLayer(input: input,",
+            "                                output: output,",
+            "                                dictionary: dictionary,",
+            "                                paddingIndex: 0,",
+            "                                maximumNorm: 0,",
+            "                                normType: .euclidean,",
+            "                                scalesGradientByFrequency: false)",
+            "",
+            "try? layer?.apply(batchSize: 1,",
+            "                  input: input,",
+            "                  output: output)",
+            "",
+            "// Prints:",
+            "// [11.0, 12.0, 13.0, 14.0, 15.0,",
+            "// 51.0, 52.0, 53.0, 54.0, 55.0,",
+            "// 21.0, 22.0, 23.0, 24.0, 25.0]",
+            "print(output.makeArray(of: Float.self)!)",
+            "",
+            "input.deallocate()",
+            "output.deallocate()",
+            "dictionary.deallocate()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The embedding layer supports clipping to a maximum norm. The following code accesses the second and third items from a dictionary that contains three 2 x 3 matrices. The code initializes the embedding layer with a maximum norm that is the infinity-norm of the first dictionary item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let lookupIndices: [Int8] = [1, 2]",
+            "let input = BNNSNDArrayDescriptor.allocate(initializingFrom: lookupIndices,",
+            "                                           shape: .vector(lookupIndices.count))",
+            "",
+            "",
+            "// The dictionary contains 3 embeddings of 2 x 3 matrices.",
+            "let dictionaryData: [Float] = [0.1, 0.2, 0.3,",
+            "                               0.4, 0.5, 0.6,",
+            "                               ",
+            "                               1, 3, 5,",
+            "                               2, 4, 6,",
+            "                               ",
+            "                               60, 50, 40,",
+            "                               30, 20, 10]",
+            "",
+            "let dictionaryItemRowCount = 2",
+            "let dictionaryItemColumnCount = 3",
+            "let dictionaryItemCount = 3",
+            "",
+            "let dictionary = BNNSNDArrayDescriptor.allocate(",
+            "    initializingFrom: dictionaryData,",
+            "    shape: .tensor3DLastMajor(dictionaryItemRowCount,",
+            "                              dictionaryItemColumnCount,",
+            "                              dictionaryItemCount))",
+            "",
+            "let output = BNNSNDArrayDescriptor.allocateUninitialized(",
+            "    scalarType: Float.self,",
+            "    shape: .tensor3DLastMajor(dictionaryItemRowCount,",
+            "                              dictionaryItemColumnCount,",
+            "                              lookupIndices.count))",
+            "",
+            "let layer = BNNS.EmbeddingLayer(input: input,",
+            "                                output: output,",
+            "                                dictionary: dictionary,",
+            "                                paddingIndex: 0,",
+            "                                maximumNorm: 0.6,",
+            "                                normType: .lInfinity,",
+            "                                scalesGradientByFrequency: false)",
+            "",
+            "try? layer?.apply(batchSize: 1,",
+            "                  input: input,",
+            "                  output: output)",
+            "",
+            "// Prints:",
+            "// [0.1, 0.3, 0.5,",
+            "// 0.2, 0.4, 0.6,",
+            "//",
+            "// 0.6, 0.5, 0.4,",
+            "// 0.3, 0.2, 0.1]",
+            "print(output.makeArray(of: Float.self)!)",
+            "",
+            "input.deallocate()",
+            "output.deallocate()",
+            "dictionary.deallocate()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to BNNS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer": {
+      "abstract": [
+        {
+          "text": "A layer object that wraps an embedding filter and manages its deinitialization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmbeddingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmbeddingLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.EmbeddingLayer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/embeddinglayer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/apply(batchSize:input:output:)": {
+      "abstract": [
+        {
+          "text": "Applies the layer to a set of input objects, writing the result to a set of output objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/apply(batchSize:input:output:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(batchSize:input:output:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/embeddinglayer/apply(batchsize:input:output:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/applyBackward(batchSize:input:output:outputGradient:generatingWeightsGradient:)": {
+      "abstract": [
+        {
+          "text": "Applies the layer backward to generate input gradients.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyBackward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "generatingWeightsGradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/applyBackward(batchSize:input:output:outputGradient:generatingWeightsGradient:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyBackward(batchSize:input:output:outputGradient:generatingWeightsGradient:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/embeddinglayer/applybackward(batchsize:input:output:outputgradient:generatingweightsgradient:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/init(input:output:dictionary:paddingIndex:maximumNorm:normType:scalesGradientByFrequency:filterParameters:)": {
+      "abstract": [
+        {
+          "text": "Returns a new embedding layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSNDArrayDescriptor",
+          "text": "BNNSNDArrayDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "paddingIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumNorm"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "normType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO",
+          "text": "BNNS"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate4BNNSO4NormV",
+          "text": "Norm"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scalesGradientByFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/init(input:output:dictionary:paddingIndex:maximumNorm:normType:scalesGradientByFrequency:filterParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(input:output:dictionary:paddingIndex:maximumNorm:normType:scalesGradientByFrequency:filterParameters:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/embeddinglayer/init(input:output:dictionary:paddingindex:maximumnorm:normtype:scalesgradientbyfrequency:filterparameters:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Layer": {
+      "abstract": [
+        {
+          "text": "The base class for layer objects that wrap filters and manage deinitialization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Layer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layer"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.Layer",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/layer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Norm": {
+      "abstract": [
+        {
+          "text": "Constants that describe norm types.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Norm"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Norm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Norm"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNS.Norm",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns/norm"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterCreateLayerEmbedding(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new embedding layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterCreateLayerEmbedding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSLayerParametersEmbedding",
+          "text": "BNNSLayerParametersEmbedding"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@BNNSFilter",
+          "text": "BNNSFilter"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterCreateLayerEmbedding(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSFilterCreateLayerEmbedding"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSFilterCreateLayerEmbedding(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsfiltercreatelayerembedding(_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerParametersEmbedding": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters of an embedding layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerParametersEmbedding"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerParametersEmbedding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerParametersEmbedding"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSLayerParametersEmbedding",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnslayerparametersembedding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Layer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Embedding-layers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerParametersEmbedding",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSFilterCreateLayerEmbedding(_:_:)"
+      ],
+      "title": "Embedding layers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Embedding-Layer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/init(input:output:dictionary:paddingIndex:maximumNorm:normType:scalesGradientByFrequency:filterParameters:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/Norm"
+      ],
+      "title": "Creating an Embedding Layer"
+    },
+    {
+      "anchor": "Applying-an-Embedding-Layer",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/apply(batchSize:input:output:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNS/EmbeddingLayer/applyBackward(batchSize:input:output:outputGradient:generatingWeightsGradient:)"
+      ],
+      "title": "Applying an Embedding Layer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerParametersEmbedding/title",
+          "value": "BNNSLayerParametersEmbedding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerParametersEmbedding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerParametersEmbedding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerParametersEmbedding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerParametersEmbedding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterCreateLayerEmbedding(_:_:)/title",
+          "value": "BNNSFilterCreateLayerEmbedding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSFilterCreateLayerEmbedding(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSFilterCreateLayerEmbedding"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnns/embeddinglayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

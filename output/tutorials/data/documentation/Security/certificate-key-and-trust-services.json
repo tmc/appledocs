@@ -1,0 +1,413 @@
+{
+  "abstract": [
+    {
+      "text": "Establish trust using certificates and cryptographic keys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Certificate, Key, and Trust Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The certificate, key, and trust services API is a collection of functions and data structures that you use to conduct secure and authenticated data transactions. Specifically, you use this API to manage and use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Certificates and identities.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " A certificate is a collection of data that identifies its owner in a tamper-evident way. When you use a certificate to distribute a public key, a receiver can be confident of its origin. You can also package a certificate together with its corresponding private key in an identity object that you keep secret.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Policies and trust services.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When you receive a certificate, before you can use the embedded public key, you have to answer the question, “Can I trust this certificate?” You conduct an evaluation of trust according to a set of criteria, or a trust policy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Cryptographic keys.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " After you have a key whose origin you trust, you can begin to conduct cryptographic operations, such as encryption or data signing and verification. These operations in turn typically serve a larger purpose, such as authenticating a user, transmitting data securely, or verifying that a block of data is unaltered since being sealed with a signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Rely on the classes of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SecurityInterface",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework to ensure a consistent experience when displaying certificates and trust settings to the user and when the user chooses among identities or modifies keychain settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SecurityInterface": {
+      "abstract": [
+        {
+          "text": "Provide user interface elements for security features such as authorization, access to digital certificates, and access to items in keychains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SecurityInterface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security Interface",
+      "type": "topic",
+      "url": "/documentation/SecurityInterface"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/certificates": {
+      "abstract": [
+        {
+          "text": "Manage digital certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificates",
+      "type": "topic",
+      "url": "/documentation/security/certificates"
+    },
+    "doc://com.apple.security/documentation/Security/identities": {
+      "abstract": [
+        {
+          "text": "Combine certificates and cryptographic keys into identities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/identities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identities",
+      "type": "topic",
+      "url": "/documentation/security/identities"
+    },
+    "doc://com.apple.security/documentation/Security/keys": {
+      "abstract": [
+        {
+          "text": "Generate, store, and use cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys",
+      "type": "topic",
+      "url": "/documentation/security/keys"
+    },
+    "doc://com.apple.security/documentation/Security/policies": {
+      "abstract": [
+        {
+          "text": "Obtain policies for establishing trust.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/policies",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Policies",
+      "type": "topic",
+      "url": "/documentation/security/policies"
+    },
+    "doc://com.apple.security/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/trust",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/security/trust"
+    },
+    "doc://com.apple.security/documentation/Security/working-with-concurrency": {
+      "abstract": [
+        {
+          "text": "Learn about thread safety issues related to the certificate, key, and trust services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/working-with-concurrency",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Concurrency",
+      "type": "topic",
+      "url": "/documentation/security/working-with-concurrency"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+      "title": "Cryptographic Services Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cryptographic Services Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+        "doc://com.apple.documentation/documentation/SecurityInterface"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "API-Components",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/certificates",
+        "doc://com.apple.security/documentation/Security/keys",
+        "doc://com.apple.security/documentation/Security/identities",
+        "doc://com.apple.security/documentation/Security/policies",
+        "doc://com.apple.security/documentation/Security/trust"
+      ],
+      "title": "API Components"
+    },
+    {
+      "anchor": "Thread-Safety",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/working-with-concurrency"
+      ],
+      "title": "Thread Safety"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "API-Components",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/certificates",
+                "doc://com.apple.security/documentation/Security/keys",
+                "doc://com.apple.security/documentation/Security/identities",
+                "doc://com.apple.security/documentation/Security/policies",
+                "doc://com.apple.security/documentation/Security/trust"
+              ],
+              "title": "API Components"
+            },
+            {
+              "anchor": "Thread-Safety",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/working-with-concurrency"
+              ],
+              "title": "Thread Safety"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+                "doc://com.apple.documentation/documentation/SecurityInterface"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/certificate-key-and-trust-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/certificate-key-and-trust-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

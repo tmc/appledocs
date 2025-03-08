@@ -1,0 +1,4102 @@
+{
+  "abstract": [
+    {
+      "text": "Encode a render pass to draw graphics into an image.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/render-passes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Render Passes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A render pass processes and rasterizes geometry to one or more output attachments using a render pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Render passes consist of:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A set of input resources, such as buffers and textures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A render pipeline that configures the GPU that does work with the input resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Draw commands",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Vertex shaders, the GPU core functions that process and transform a scene’s geometry",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional tessellation stage that adds fine details to a scene’s geometry",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fragment shaders, the GPU core functions that produce the final color values for each pixel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional outputs that can include color, depth, and stencil attachments, and their load and store operations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample for implementation details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBufferLayoutStrideDynamic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBufferLayoutStrideDynamic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBufferLayoutStrideDynamic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBufferLayoutStrideDynamic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBufferLayoutStrideDynamic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbufferlayoutstridedynamic"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLClearColor": {
+      "abstract": [
+        {
+          "text": "An RGBA value used for a color pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLClearColor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLClearColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLClearColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLClearColor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlclearcolor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D": {
+      "abstract": [
+        {
+          "text": "A coordinate in the viewport.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCoordinate2D",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcoordinate2d"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new 2D point with the specified coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2DMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCoordinate2D",
+          "text": "MTLCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCoordinate2DMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCoordinate2DMake(_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcoordinate2dmake(_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCullMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines whether to perform culling and which type of primitive to cull.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCullMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcullmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines how to deal with fragments outside of the near or far planes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDepthClipMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDepthClipMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDepthClipMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtldepthclipmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDepthStencilDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that configures new ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLDepthStencilState",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDepthStencilDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDepthStencilDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDepthStencilDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDepthStencilDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtldepthstencildescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDepthStencilState": {
+      "abstract": [
+        {
+          "text": "A depth and stencil state object that specifies the depth and stencil configuration and operations used in a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDepthStencilState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDepthStencilState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDepthStencilState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDepthStencilState",
+      "type": "topic",
+      "url": "/documentation/metal/mtldepthstencilstate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDrawable": {
+      "abstract": [
+        {
+          "text": "A displayable resource that can be rendered or written to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDrawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDrawable",
+      "type": "topic",
+      "url": "/documentation/metal/mtldrawable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDrawablePresentedHandler": {
+      "abstract": [
+        {
+          "text": "A block of code invoked after a drawable is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDrawablePresentedHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDrawablePresentedHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDrawablePresentedHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDrawablePresentedHandler",
+      "type": "topic",
+      "url": "/documentation/metal/mtldrawablepresentedhandler"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndexType": {
+      "abstract": [
+        {
+          "text": "The index type for an index buffer that references vertices of geometric primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndexType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndexType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndexType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndexType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindextype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLoadAction": {
+      "abstract": [
+        {
+          "text": "Types of actions performed for an attachment at the start of a rendering pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLoadAction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLoadAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLoadAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLoadAction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlloadaction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that configures new render pipeline state objects for mesh shading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMeshRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMeshRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMeshRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmeshrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMultisampleDepthResolveFilter": {
+      "abstract": [
+        {
+          "text": "Filtering options for controlling an MSAA depth resolve operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMultisampleDepthResolveFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMultisampleDepthResolveFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMultisampleDepthResolveFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMultisampleDepthResolveFilter",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmultisampledepthresolvefilter"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMultisampleStencilResolveFilter": {
+      "abstract": [
+        {
+          "text": "Constants used to control the multisample stencil resolve operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMultisampleStencilResolveFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMultisampleStencilResolveFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMultisampleStencilResolveFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMultisampleStencilResolveFilter",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmultisamplestencilresolvefilter"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An object that splits up a single render pass so that it can be simultaneously encoded from multiple threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLParallelRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLParallelRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLParallelRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlparallelrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor": {
+      "abstract": [
+        {
+          "text": "The mutability options for a buffer that a render or compute pipeline uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelinebufferdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of pipeline buffer descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineBufferDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineBufferDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelinebufferdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineOption": {
+      "abstract": [
+        {
+          "text": "Options that determine how Metal prepares the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineOption",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelineoption"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType": {
+      "abstract": [
+        {
+          "text": "The geometric primitive type for drawing commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPrimitiveType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPrimitiveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPrimitiveType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlprimitivetype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLQuadTessellationFactorsHalf": {
+      "abstract": [
+        {
+          "text": "The per-patch tessellation factors for a quad patch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLQuadTessellationFactorsHalf"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLQuadTessellationFactorsHalf",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLQuadTessellationFactorsHalf"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLQuadTessellationFactorsHalf",
+      "type": "topic",
+      "url": "/documentation/metal/mtlquadtessellationfactorshalf"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap": {
+      "abstract": [
+        {
+          "text": "A compiled read-only object that determines how to apply variable rasterization rates when rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateMap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure new rasterization rate maps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMapDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRasterizationRateMapDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRasterizationRateMapDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrasterizationratemapdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A render target that serves as the output destination for pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A color render target that serves as the output destination for color pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassColorAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassColorAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassColorAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpasscolorattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of render pass color attachment descriptor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassColorAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassColorAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassColorAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpasscolorattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A depth render target that serves as the output destination for depth pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDepthAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDepthAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassDepthAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdepthattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor": {
+      "abstract": [
+        {
+          "text": "A group of render targets that hold the results of a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of where to store GPU counter information at the start and end of a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassSampleBufferAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of sample buffer attachments for a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassSampleBufferAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A stencil render target that serves as the output destination for stencil pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassStencilAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassStencilAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassStencilAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassstencilattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A color render target that specifies the color configuration and color operations for a render pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineColorAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineColorAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineColorAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of render pipeline color attachment descriptor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineColorAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineColorAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineColorAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinecolorattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineFunctionsDescriptor": {
+      "abstract": [
+        {
+          "text": "A collection of functions for updating a render pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineFunctionsDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineFunctionsDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineFunctionsDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineFunctionsDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinefunctionsdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLScissorRect": {
+      "abstract": [
+        {
+          "text": "A rectangle for the scissor fragment test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLScissorRect"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLScissorRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLScissorRect",
+      "type": "topic",
+      "url": "/documentation/metal/mtlscissorrect"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that defines the front-facing or back-facing stencil operations of a depth and stencil state object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStencilDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStencilDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStencilDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstencildescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStoreAction": {
+      "abstract": [
+        {
+          "text": "Types of actions performed for an attachment at the end of a rendering pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStoreAction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStoreAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStoreAction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoreaction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions": {
+      "abstract": [
+        {
+          "text": "Options that modify a store action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLStoreActionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStoreActionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStoreActionOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoreactionoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a tile-shading render pipeline’s color render target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineColorAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineColorAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTileRenderPipelineColorAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtltilerenderpipelinecolorattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of color attachment descriptors for the tile render pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineColorAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineColorAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTileRenderPipelineColorAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtltilerenderpipelinecolorattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that configures new render pipeline state objects for tile shading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTileRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTileRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtltilerenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode": {
+      "abstract": [
+        {
+          "text": "Specifies how to rasterize triangle and triangle strip primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTriangleFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTriangleFillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTriangleFillMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtltrianglefillmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTriangleTessellationFactorsHalf": {
+      "abstract": [
+        {
+          "text": "The per-patch tessellation factors for a triangle patch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTriangleTessellationFactorsHalf"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTriangleTessellationFactorsHalf",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTriangleTessellationFactorsHalf"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTriangleTessellationFactorsHalf",
+      "type": "topic",
+      "url": "/documentation/metal/mtltriangletessellationfactorshalf"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping": {
+      "abstract": [
+        {
+          "text": "An offset applied to a render target index and viewport index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAmplificationViewMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAmplificationViewMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexAmplificationViewMapping",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexamplificationviewmapping"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that determines how to store attribute data in memory and map it to the arguments of a vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAttributeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAttributeDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexAttributeDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexattributedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of vertex attribute descriptor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAttributeDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAttributeDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexAttributeDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexattributedescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that configures how a render pipeline fetches data to send to the vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexBufferLayoutDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexBufferLayoutDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexBufferLayoutDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexbufferlayoutdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of vertex buffer layout descriptor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexBufferLayoutDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexBufferLayoutDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexBufferLayoutDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexbufferlayoutdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that describes how to organize and map data to a vertex function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLViewport": {
+      "abstract": [
+        {
+          "text": "A 3D rectangular region for the viewport clipping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLViewport"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLViewport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLViewport"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLViewport",
+      "type": "topic",
+      "url": "/documentation/metal/mtlviewport"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines what, if anything, the GPU writes to the results buffer, after the GPU executes the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVisibilityResultMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVisibilityResultMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVisibilityResultMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvisibilityresultmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLWinding": {
+      "abstract": [
+        {
+          "text": "The vertex winding rule that determines a front-facing primitive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLWinding"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLWinding"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLWinding",
+      "type": "topic",
+      "url": "/documentation/metal/mtlwinding"
+    },
+    "doc://com.apple.metal/documentation/Metal/blit-passes": {
+      "abstract": [
+        {
+          "text": "Encode a block information transfer pass to adjust and copy data to and from GPU resources, such as buffers and textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/blit-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blit Passes",
+      "type": "topic",
+      "url": "/documentation/metal/blit-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing": {
+      "abstract": [
+        {
+          "text": "Determine which pixels are visible in a scene by using a depth texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating Primitive Visibility Using Depth Testing",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-primitive-visibility-using-depth-testing"
+    },
+    "doc://com.apple.metal/documentation/Metal/compute-passes": {
+      "abstract": [
+        {
+          "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compute Passes",
+      "type": "topic",
+      "url": "/documentation/metal/compute-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map": {
+      "abstract": [
+        {
+          "text": "Define the rasterization rates for each part of your render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Rasterization Rate Map",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-rasterization-rate-map"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification": {
+      "abstract": [
+        {
+          "text": "Run draw commands that render to different outputs using the same vertex data multiple times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Rendering Performance with Vertex Amplification",
+      "type": "topic",
+      "url": "/documentation/metal/improving-rendering-performance-with-vertex-amplification"
+    },
+    "doc://com.apple.metal/documentation/Metal/indirect-command-encoding": {
+      "abstract": [
+        {
+          "text": "Store draw commands in Metal buffers and run them at a later time on the GPU, either once or repeatedly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Indirect Command Encoding",
+      "type": "topic",
+      "url": "/documentation/metal/indirect-command-encoding"
+    },
+    "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically": {
+      "abstract": [
+        {
+          "text": "Configure the position of samples when rendering to a multisampled render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning Samples Programmatically",
+      "type": "topic",
+      "url": "/documentation/metal/positioning-samples-programmatically"
+    },
+    "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Build a representation of your scene’s geometry using triangles and bounding volumes to quickly trace rays through the scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ray Tracing with Acceleration Structures",
+      "type": "topic",
+      "url": "/documentation/metal/ray-tracing-with-acceleration-structures"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates": {
+      "abstract": [
+        {
+          "text": "Configure a rasterization rate map to vary rasterization rates depending on the amount of detail needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering at Different Rasterization Rates",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-at-different-rasterization-rates"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select a destination texture slice in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Texture Slices in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select viewports and their corresponding scissor rectangles in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Viewports in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-viewports-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map": {
+      "abstract": [
+        {
+          "text": "Create offscreen textures to hold intermediate rasterized data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering with a Rasterization Rate Map",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-with-a-rasterization-rate-map"
+    },
+    "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content": {
+      "abstract": [
+        {
+          "text": "Use the rate map data to scale the content to fill your destination texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Scaling Variable Rasterization Rate Content",
+      "type": "topic",
+      "url": "/documentation/metal/scaling-variable-rasterization-rate-content"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions": {
+      "abstract": [
+        {
+          "text": "Set actions that define how a render pass loads and stores a render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Load and Store Actions",
+      "type": "topic",
+      "url": "/documentation/metal/setting-load-and-store-actions"
+    },
+    "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly": {
+      "abstract": [
+        {
+          "text": "Use indirect commands if you don’t know your draw or dispatch call arguments when you encode the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Drawing and Dispatch Arguments Indirectly",
+      "type": "topic",
+      "url": "/documentation/metal/specifying-drawing-and-dispatch-arguments-indirectly"
+    },
+    "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass": {
+      "abstract": [
+        {
+          "text": "Inform Metal when your app uses programmable sample positions for its depth render targets or copies MSAA depth data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Data a Pass Makes with Custom Sample Positions for a Subsequent Pass",
+      "type": "topic",
+      "url": "/documentation/metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Command-Encoders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/compute-passes",
+        "doc://com.apple.metal/documentation/Metal/blit-passes",
+        "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+        "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures"
+      ],
+      "title": "Command Encoders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Encoding-a-Render-Pass",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode",
+        "doc://com.apple.metal/documentation/Metal/MTLWinding",
+        "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+        "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType",
+        "doc://com.apple.metal/documentation/Metal/MTLIndexType",
+        "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode",
+        "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode"
+      ],
+      "title": "Encoding a Render Pass"
+    },
+    {
+      "anchor": "Encoding-a-Render-Pass-in-Parallel",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLLoadAction",
+        "doc://com.apple.metal/documentation/Metal/MTLStoreAction",
+        "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions"
+      ],
+      "title": "Encoding a Render Pass in Parallel"
+    },
+    {
+      "anchor": "Configuring-a-Render-Command-Encoder",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLClearColor",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLMultisampleDepthResolveFilter",
+        "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLMultisampleStencilResolveFilter",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor"
+      ],
+      "title": "Configuring a Render Command Encoder"
+    },
+    {
+      "anchor": "Render-Pipeline-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineFunctionsDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLPipelineOption"
+      ],
+      "title": "Render Pipeline States"
+    },
+    {
+      "anchor": "Dynamic-Render-Pipeline-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLViewport",
+        "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping",
+        "doc://com.apple.metal/documentation/Metal/MTLQuadTessellationFactorsHalf",
+        "doc://com.apple.metal/documentation/Metal/MTLTriangleTessellationFactorsHalf"
+      ],
+      "title": "Dynamic Render Pipeline States"
+    },
+    {
+      "anchor": "Render-Pass-Inputs",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLVertexDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLBufferLayoutStrideDynamic"
+      ],
+      "title": "Render Pass Inputs"
+    },
+    {
+      "anchor": "Render-Pass-Outputs",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+        "doc://com.apple.metal/documentation/Metal/MTLDrawablePresentedHandler"
+      ],
+      "title": "Render Pass Outputs"
+    },
+    {
+      "anchor": "Depth-Testing",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+        "doc://com.apple.metal/documentation/Metal/MTLDepthStencilState",
+        "doc://com.apple.metal/documentation/Metal/MTLDepthStencilDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor"
+      ],
+      "title": "Depth Testing"
+    },
+    {
+      "anchor": "Rasterization-Settings",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+        "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+        "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+        "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+        "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+        "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)"
+      ],
+      "title": "Rasterization Settings"
+    },
+    {
+      "anchor": "Optimizing-Techniques",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+        "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command",
+        "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+      ],
+      "title": "Optimizing Techniques"
+    },
+    {
+      "anchor": "Advanced-Multisampling",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically",
+        "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+      ],
+      "title": "Advanced Multisampling"
+    },
+    {
+      "anchor": "Applying-Rendering-Techniques",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions",
+        "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification"
+      ],
+      "title": "Applying Rendering Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Encoding-a-Render-Pass",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode",
+                "doc://com.apple.metal/documentation/Metal/MTLWinding",
+                "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+                "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType",
+                "doc://com.apple.metal/documentation/Metal/MTLIndexType",
+                "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode",
+                "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode"
+              ],
+              "title": "Encoding a Render Pass"
+            },
+            {
+              "anchor": "Encoding-a-Render-Pass-in-Parallel",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLLoadAction",
+                "doc://com.apple.metal/documentation/Metal/MTLStoreAction",
+                "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions"
+              ],
+              "title": "Encoding a Render Pass in Parallel"
+            },
+            {
+              "anchor": "Configuring-a-Render-Command-Encoder",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLClearColor",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLMultisampleDepthResolveFilter",
+                "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLMultisampleStencilResolveFilter",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptor"
+              ],
+              "title": "Configuring a Render Command Encoder"
+            },
+            {
+              "anchor": "Render-Pipeline-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineFunctionsDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLMeshRenderPipelineDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLPipelineOption"
+              ],
+              "title": "Render Pipeline States"
+            },
+            {
+              "anchor": "Dynamic-Render-Pipeline-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLViewport",
+                "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping",
+                "doc://com.apple.metal/documentation/Metal/MTLQuadTessellationFactorsHalf",
+                "doc://com.apple.metal/documentation/Metal/MTLTriangleTessellationFactorsHalf"
+              ],
+              "title": "Dynamic Render Pipeline States"
+            },
+            {
+              "anchor": "Render-Pass-Inputs",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLVertexDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexAttributeDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLVertexBufferLayoutDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLBufferLayoutStrideDynamic"
+              ],
+              "title": "Render Pass Inputs"
+            },
+            {
+              "anchor": "Render-Pass-Outputs",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLDrawable",
+                "doc://com.apple.metal/documentation/Metal/MTLDrawablePresentedHandler"
+              ],
+              "title": "Render Pass Outputs"
+            },
+            {
+              "anchor": "Depth-Testing",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+                "doc://com.apple.metal/documentation/Metal/MTLDepthStencilState",
+                "doc://com.apple.metal/documentation/Metal/MTLDepthStencilDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLStencilDescriptor"
+              ],
+              "title": "Depth Testing"
+            },
+            {
+              "anchor": "Rasterization-Settings",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/rendering-at-different-rasterization-rates",
+                "doc://com.apple.metal/documentation/Metal/creating-a-rasterization-rate-map",
+                "doc://com.apple.metal/documentation/Metal/rendering-with-a-rasterization-rate-map",
+                "doc://com.apple.metal/documentation/Metal/scaling-variable-rasterization-rate-content",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMapDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLRasterizationRateMap",
+                "doc://com.apple.metal/documentation/Metal/MTLCoordinate2D",
+                "doc://com.apple.metal/documentation/Metal/MTLCoordinate2DMake(_:_:)"
+              ],
+              "title": "Rasterization Settings"
+            },
+            {
+              "anchor": "Optimizing-Techniques",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+                "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command",
+                "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+              ],
+              "title": "Optimizing Techniques"
+            },
+            {
+              "anchor": "Advanced-Multisampling",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically",
+                "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+              ],
+              "title": "Advanced Multisampling"
+            },
+            {
+              "anchor": "Applying-Rendering-Techniques",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions",
+                "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification"
+              ],
+              "title": "Applying Rendering Techniques"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Command-Encoders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/compute-passes",
+                "doc://com.apple.metal/documentation/Metal/blit-passes",
+                "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+                "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures"
+              ],
+              "title": "Command Encoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawablePresentedHandler/title",
+          "value": "MTLDrawablePresentedHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawablePresentedHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawablePresentedHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawablePresentedHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawablePresentedHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMultisampleDepthResolveFilter/title",
+          "value": "MTLMultisampleDepthResolveFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMultisampleDepthResolveFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMultisampleDepthResolveFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMultisampleDepthResolveFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMultisampleDepthResolveFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMeshRenderPipelineDescriptor/title",
+          "value": "MTLMeshRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMeshRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMeshRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMeshRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMeshRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleFillMode/title",
+          "value": "MTLTriangleFillMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleFillMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTriangleFillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleFillMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTriangleFillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/title",
+          "value": "MTLRenderPipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor/title",
+          "value": "MTLVertexAttributeDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAttributeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAttributeDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor/title",
+          "value": "MTLStencilDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStencilDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStencilDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStencilDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLScissorRect/title",
+          "value": "MTLScissorRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLScissorRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLScissorRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLScissorRect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLScissorRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptorArray/title",
+          "value": "MTLRenderPassColorAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassColorAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassColorAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDepthAttachmentDescriptor/title",
+          "value": "MTLRenderPassDepthAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDepthAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDepthAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDepthAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDepthAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/title",
+          "value": "MTLDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDrawable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2DMake(_:_:)/title",
+          "value": "MTLCoordinate2DMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2DMake(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2DMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineFunctionsDescriptor/title",
+          "value": "MTLRenderPipelineFunctionsDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineFunctionsDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineFunctionsDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineFunctionsDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineFunctionsDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLQuadTessellationFactorsHalf/title",
+          "value": "MTLQuadTessellationFactorsHalf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLQuadTessellationFactorsHalf/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLQuadTessellationFactorsHalf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLQuadTessellationFactorsHalf/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLQuadTessellationFactorsHalf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassSampleBufferAttachmentDescriptorArray/title",
+          "value": "MTLRenderPassSampleBufferAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassSampleBufferAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassSampleBufferAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/title",
+          "value": "MTLRenderPassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLClearColor/title",
+          "value": "MTLClearColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLClearColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLClearColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLClearColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLClearColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineColorAttachmentDescriptorArray/title",
+          "value": "MTLRenderPipelineColorAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineColorAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineColorAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineColorAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineColorAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthStencilState/title",
+          "value": "MTLDepthStencilState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthStencilState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthStencilState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthStencilState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthStencilState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthStencilDescriptor/title",
+          "value": "MTLDepthStencilDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthStencilDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthStencilDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthStencilDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthStencilDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineColorAttachmentDescriptorArray/title",
+          "value": "MTLTileRenderPipelineColorAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineColorAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineColorAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineColorAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineColorAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassSampleBufferAttachmentDescriptor/title",
+          "value": "MTLRenderPassSampleBufferAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassSampleBufferAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassSampleBufferAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptor/title",
+          "value": "MTLRenderPassColorAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineColorAttachmentDescriptor/title",
+          "value": "MTLTileRenderPipelineColorAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineColorAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineColorAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexBufferLayoutDescriptor/title",
+          "value": "MTLVertexBufferLayoutDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexBufferLayoutDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexBufferLayoutDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexBufferLayoutDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexBufferLayoutDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/title",
+          "value": "MTLWinding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWinding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWinding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMultisampleStencilResolveFilter/title",
+          "value": "MTLMultisampleStencilResolveFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMultisampleStencilResolveFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMultisampleStencilResolveFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMultisampleStencilResolveFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMultisampleStencilResolveFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexDescriptor/title",
+          "value": "MTLVertexDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction/title",
+          "value": "MTLStoreAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleTessellationFactorsHalf/title",
+          "value": "MTLTriangleTessellationFactorsHalf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleTessellationFactorsHalf/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTriangleTessellationFactorsHalf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleTessellationFactorsHalf/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTriangleTessellationFactorsHalf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineDescriptor/title",
+          "value": "MTLTileRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTileRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTileRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexBufferLayoutDescriptorArray/title",
+          "value": "MTLVertexBufferLayoutDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexBufferLayoutDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexBufferLayoutDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexBufferLayoutDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexBufferLayoutDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassStencilAttachmentDescriptor/title",
+          "value": "MTLRenderPassStencilAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassStencilAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassStencilAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassStencilAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassStencilAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptorArray/title",
+          "value": "MTLPipelineBufferDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder/title",
+          "value": "MTLParallelRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLParallelRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLParallelRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveType/title",
+          "value": "MTLPrimitiveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPrimitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPrimitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/title",
+          "value": "MTLCoordinate2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCoordinate2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/title",
+          "value": "MTLCullMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBufferLayoutStrideDynamic/title",
+          "value": "MTLBufferLayoutStrideDynamic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBufferLayoutStrideDynamic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBufferLayoutStrideDynamic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode/title",
+          "value": "MTLVisibilityResultMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibilityResultMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibilityResultMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/title",
+          "value": "MTLRasterizationRateMapDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMapDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMapDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/title",
+          "value": "MTLRasterizationRateMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRasterizationRateMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRasterizationRateMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineColorAttachmentDescriptor/title",
+          "value": "MTLRenderPipelineColorAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineColorAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineColorAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLViewport/title",
+          "value": "MTLViewport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLViewport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLViewport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLViewport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLViewport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthClipMode/title",
+          "value": "MTLDepthClipMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthClipMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthClipMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthClipMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthClipMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor/title",
+          "value": "MTLRenderPassAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction/title",
+          "value": "MTLLoadAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLoadAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLoadAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreActionOptions/title",
+          "value": "MTLStoreActionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreActionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreActionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/title",
+          "value": "MTLPipelineOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor/title",
+          "value": "MTLPipelineBufferDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptorArray/title",
+          "value": "MTLVertexAttributeDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAttributeDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAttributeDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAttributeDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndexType/title",
+          "value": "MTLIndexType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndexType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndexType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndexType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndexType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping/title",
+          "value": "MTLVertexAmplificationViewMapping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAmplificationViewMapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAmplificationViewMapping"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/render-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/render-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

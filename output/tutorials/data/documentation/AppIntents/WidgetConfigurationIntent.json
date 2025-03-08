@@ -1,0 +1,1027 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for configuring a WidgetKit widget.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10AppIntents25WidgetConfigurationIntentP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WidgetConfigurationIntent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WidgetConfigurationIntent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "WidgetConfigurationIntent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WidgetConfigurationIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10AppIntents0A6IntentP",
+              "text": "AppIntent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parameters of the intent define the configuration options for your widget.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses the intent’s title and description for the display name and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "description of the widget if those values aren’t set explicitly on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/AppIntentConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import AppIntents",
+            "",
+            "struct FavoriteBook: WidgetConfigurationIntent {",
+            "    static var title: LocalizedStringResource = \"Favorite Book\"",
+            "    static var description = IntentDescription(\"Shows a picture of your favorite book!\")",
+            "",
+            "    @Parameter(title: \"Title\", default: \"The Swift Programming Language\")",
+            "    var title: String",
+            "",
+            "    @Parameter(title: \"Author\", default: \"Apple Inc.\")",
+            "    var author: String",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary-4vgic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure the order of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameters in the configuration UI, as well as dynamic presentation such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the value of one parameter to determine whether to show or hide another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum RefreshInterval: String, AppEnum {",
+            "    case hourly, daily, weekly",
+            "",
+            "    static var typeDisplayRepresentation: TypeDisplayRepresentation = \"Refresh Interval\"",
+            "    static var caseDisplayRepresentations: [RefreshInterval : DisplayRepresentation] = [",
+            "        .hourly: \"Every Hour\",",
+            "        .daily: \"Every Day\",",
+            "        .weekly: \"Every Week\",",
+            "    ]",
+            "}",
+            "",
+            "struct FavoriteSoup: WidgetConfigurationIntent {",
+            "    static var title: LocalizedStringResource = \"Favorite Soup\"",
+            "    static var description = IntentDescription(\"Shows a picture of your favorite soup!\")",
+            "",
+            "    @Parameter(title: \"Soup\")",
+            "    var name: String?",
+            "",
+            "    @Parameter(title: \"Shuffle\", default: true)",
+            "    var shuffle: Bool",
+            "",
+            "    @Parameter(title: \"Refresh\", default: .daily)",
+            "    var interval: RefreshInterval",
+            "",
+            "    static var parameterSummary: some ParameterSummary {",
+            "        When(\\.$shuffle, .equalTo, true) {",
+            "            Summary {",
+            "                \\.$name",
+            "                \\.$shuffle",
+            "                \\.$interval",
+            "            }",
+            "        } otherwise: {",
+            "            Summary {",
+            "                \\.$name",
+            "                \\.$shuffle",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using this protocol, you don’t need to provide an implementation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can, however, still implement ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the same implementation for both widget configuration and as an actionable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intent. For more information, refer to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample code project’s ",
+              "type": "text"
+            },
+            {
+              "code": "EmojiRangerSelection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/AppIntentTimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary-4vgic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameterSummary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16ParameterSummaryP",
+          "text": "ParameterSummary"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/parameterSummary-4vgic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parameterSummary",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/parametersummary-4vgic"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/perform()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ControlConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a Control Center module.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlConfigurationIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ControlConfigurationIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlConfigurationIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/controlconfigurationintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentWidgetFamily": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentWidgetFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentWidgetFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentWidgetFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentWidgetFamily",
+      "type": "topic",
+      "url": "/documentation/appintents/intentwidgetfamily"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityIntent": {
+      "abstract": [
+        {
+          "text": "An intent that starts, pauses, or otherwise modifies a Live Activity when it runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveActivityIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveActivityIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveActivityIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/liveactivityintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityStartingIntent": {
+      "abstract": [
+        {
+          "text": "An intent that starts, pauses, or otherwise modifies a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveActivityStartingIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityStartingIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LiveActivityStartingIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "LiveActivityStartingIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/liveactivitystartingintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable": {
+      "abstract": [
+        {
+          "text": "Defines a string that uniquely identifies a type. This is useful for maintaining the identity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a type, even when its type name is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentlyIdentifiable",
+      "type": "topic",
+      "url": "/documentation/appintents/persistentlyidentifiable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a WidgetKit widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/widgetconfigurationintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent/NeverResult": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NeverResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent/NeverResult",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "NeverResult",
+      "type": "topic",
+      "url": "/documentation/appintents/widgetconfigurationintent/neverresult"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/AppIntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents25WidgetConfigurationIntentP",
+          "text": "WidgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/AppIntentConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppIntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/AppIntentConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/AppIntentTimelineProvider"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controls-widgets-and-Live-Activities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/ControlConfigurationIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityStartingIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/LiveActivityIntent"
+      ],
+      "title": "Controls, widgets, and Live Activities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Widget-families",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/IntentWidgetFamily"
+      ],
+      "title": "Widget families"
+    },
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/WidgetConfigurationIntent/NeverResult"
+      ],
+      "title": "Associated Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/widgetconfigurationintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

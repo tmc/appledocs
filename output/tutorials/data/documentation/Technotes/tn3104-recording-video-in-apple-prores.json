@@ -1,0 +1,4010 @@
+{
+  "abstract": [
+    {
+      "text": "Configure pieces of an AVCaptureSession to capture video in Apple ProRes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3104-recording-video-in-apple-prores"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3104: Recording video in Apple ProRes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPhone 13 Pro supports Apple ProRes video recording up to 4k at 30 fps and 1080p at 60 fps (except the 128GB model, which supports Apple ProRes video recording up to 1080p at 30 fps).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This Technote details how to configure an AVCapture pipeline to capture and record a video encoded in Apple ProRes 422.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a general overview of Apple ProRes codecs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT202410",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choosing-a-preset",
+          "level": 2,
+          "text": "Choosing a preset",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capturing video in Apple ProRes requires manual configuration of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureDevice",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+              "isActive": true,
+              "overridingTitle": "activeFormat",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "activeFormat",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There is no ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/Preset",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession.Preset",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureSession.Preset",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " available that supports capture in Apple ProRes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For this reason, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/sessionPreset",
+              "isActive": true,
+              "overridingTitle": "sessionPreset",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "sessionPreset",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureSession",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority",
+              "isActive": true,
+              "overridingTitle": "inputPriority",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "inputPriority",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which specifies that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureSession",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " should not automatically configure its inputs and outputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Selecting-a-capture-format",
+          "level": 2,
+          "text": "Selecting a capture format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT202410",
+              "isActive": true,
+              "overridingTitle": "About Apple ProRes",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "About Apple ProRes",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", Apple ProRes 422 codecs require 10-bits-per-channel video sources, and Apple ProRes 4444 codecs support up to 12-bits-per-channel and up to 16 bits for the alpha channel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you iterated through all of the supported capture ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/formats",
+              "isActive": true,
+              "overridingTitle": "formats",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "formats",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureDevice",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on iPhone 13 Pro, you would see capture formats with one of the following pixel formats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pixel Format Constant",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FourCharCode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bits Per Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘420v’",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kCVPixelFormatType_420YpCbCr8BiPlanarFullRange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘420f’",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘x420’",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘x422’",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notice that there are no supported capture formats that capture at higher than 10-bits-per-channel, also notice that none of the supported capture formats use a 4:4:4 pixel format. Therefore, none of the capture formats output video data that is suitable as a video source for Apple ProRes 4444 codecs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find a capture format that is suitable as a video source for an Apple ProRes 422 codec, you should iterate through the capture ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/formats",
+              "isActive": true,
+              "overridingTitle": "formats",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "formats",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureDevice",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and return a capture format whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMFormatDescription/mediaSubType-swift.property",
+              "isActive": true,
+              "overridingTitle": "mediaSubType",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "mediaSubType",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange",
+              "isActive": true,
+              "overridingTitle": "kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension AVCaptureDevice {",
+            "    func findFormat() -> AVCaptureDevice.Format? {",
+            "        // Iterate over the supported capture formats.",
+            "        for captureFormat in formats {",
+            "            // Check if the captureFormat's pixel format is equivalent to the target pixel format.",
+            "            if captureFormat.formatDescription.mediaSubType.rawValue == kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange {",
+            "                // Check if other criteria is met.  For example, you may want to target a particular resolution or max frame rate.",
+            "                if otherCriteriaIsMet {",
+            "                    // Once all criteria is met, return the current format.",
+            "                    return format",
+            "                }",
+            "            }",
+            "        }",
+            "        // If there is no supported capture format that meets the selection criteria, return nil. Your app may wish to fallback to some other capture format in this case.",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have identified a capture format suitable for Apple ProRes 422, set it as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+              "isActive": true,
+              "overridingTitle": "activeFormat",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "activeFormat",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of your capture device, and ensure that the capture device has a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDeviceInput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureDeviceInput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " which you have successfully added as an input to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureSession",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+              "isActive": true,
+              "overridingTitle": "Setting Up a Capture Session",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Setting Up a Capture Session",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for more information about adding inputs to a capture session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choosing-an-output-type",
+          "level": 2,
+          "text": "Choosing an output type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For many apps, using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureMovieFileOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureMovieFileOutput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to write an Apple ProRes movie file is sufficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you require a greater amount of control when writing the movie file, or you need access to video samples before they are written to a movie file, then you can use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureVideoDataOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureVideoDataOutput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to get access to the video samples. Next, you can process or inspect the video samples, and then submit the video samples to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter",
+              "isActive": true,
+              "overridingTitle": "AVAssetWriter",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVAssetWriter",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-the-output",
+          "level": 2,
+          "text": "Configuring the output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureMovieFileOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureMovieFileOutput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " supports writing movie files encoded with Apple ProRes 422 codecs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To check the available video codecs at runtime, you can iterate through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/availableVideoCodecTypes",
+              "isActive": true,
+              "overridingTitle": "availableVideoCodecTypes",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "availableVideoCodecTypes",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/availableVideoCodecTypes",
+              "isActive": true,
+              "overridingTitle": "availableVideoCodecTypes",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "availableVideoCodecTypes",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " array is dynamic, and depends on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+              "isActive": true,
+              "overridingTitle": "activeFormat",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "activeFormat",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDeviceInput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureDeviceInput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that is connected to the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureSession",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureMovieFileOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureMovieFileOutput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For this reason, you should check for support of Apple ProRes 422 codecs only after you have configured the capture device to capture in an ‘x422’ format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have verified that the movie file output supports your desired Apple ProRes 422 codec, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/outputSettings(for:)",
+              "isActive": true,
+              "overridingTitle": "outputSettings(for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "outputSettings(for:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method to set specify the codec that the output should use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Ensure that the availableVideoCodecTypes contains the target codec.",
+            "guard movieFileOutput.availableVideoCodecTypes.contains(where: {",
+            "    $0 == .proRes422",
+            "}) else { fatalError(\"Target codec is not supported in the current configuration.\") }",
+            "",
+            "guard let videoConnection = movieFileOutput.connection(with: .video) else {",
+            "    fatalError(\"The movie file output is not connected to a video input.\")",
+            "}",
+            "",
+            "// Set the output settings of the movieFileOutput.",
+            "movieFileOutput.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.proRes422.rawValue], for: videoConnection)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureVideoDataOutput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureVideoDataOutput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " does not require any special configuration to be compatible with an ‘x422’ input, simply set its sample buffer delegate with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)",
+              "isActive": true,
+              "overridingTitle": "setSampleBufferDelegate(_:queue:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "setSampleBufferDelegate(_:queue:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method, and add the output to the capture session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recording-and-saving-with-AVCaptureMovieFileOutput",
+          "level": 2,
+          "text": "Recording and saving with AVCaptureMovieFileOutput",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureFileOutput/startRecording(to:recordingDelegate:)",
+              "isActive": true,
+              "overridingTitle": "startRecording(to:recordingDelegate:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "startRecording(to:recordingDelegate:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method to set a recording delegate and start recording to a file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When recording is stopped, you will receive the output file in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate/fileOutput(_:didFinishRecordingTo:from:error:)",
+              "isActive": true,
+              "overridingTitle": "fileOutput(_:didFinishRecordingTo:from:error:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "fileOutput(_:didFinishRecordingTo:from:error:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can save this movie file directly to the Photo Library using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)",
+              "isActive": true,
+              "overridingTitle": "creationRequestForAssetFromVideo(atFileURL:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "creationRequestForAssetFromVideo(atFileURL:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once saved, you can view the video in the Photos app, where you will notice that the asset has a “ProRes” badge in the upper-left corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recording-and-saving-with-AVCaptureVideoDataOuput-and-AVAssetWriter",
+          "level": 2,
+          "text": "Recording and saving with AVCaptureVideoDataOuput and AVAssetWriter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have decided to start recording, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter",
+              "isActive": true,
+              "overridingTitle": "AVAssetWriter",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVAssetWriter",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriterInput",
+              "isActive": true,
+              "overridingTitle": "AVAssetWriterInput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVAssetWriterInput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". When you create the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriterInput",
+              "isActive": true,
+              "overridingTitle": "AVAssetWriterInput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVAssetWriterInput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", specify outputSettings that use your preferred Apple ProRes 422 video codec. You can request recommended settings from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureVideoDataOuptut",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVCaptureVideoDataOuptut",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let fileType = AVFileType.mov",
+            "",
+            "// Request the recommended video settings for your target codec.",
+            "let outputSettings = videoDataOutput.recommendedVideoSettings(forVideoCodecType: .proRes422, assetWriterOutputFileType: fileType)",
+            "",
+            "// Use the video settings to initialize your video input for writing.",
+            "writerVideoInput = AVAssetWriterInput(mediaType: .video, outputSettings: outputSettings)",
+            "",
+            "// Specify that you have a real-time video sample source.",
+            "writerVideoInput.expectsMediaDataInRealTime = true",
+            "",
+            "// Create the AVAssetWriter using your outputURL.",
+            "do {",
+            "    assetWriter = try AVAssetWriter(outputURL: outputURL, fileType: fileType)",
+            "} catch {",
+            "    // Handle errors here.",
+            "}",
+            "",
+            "// Add the video input to the asset writer.",
+            "assetWriter.add(writerVideoInput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take the video samples that you receive in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)",
+              "isActive": true,
+              "overridingTitle": "captureOutput(_:didOutput:from:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "captureOutput(_:didOutput:from:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " delegate method and append them to your movie file ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriterInput",
+              "isActive": true,
+              "overridingTitle": "AVAssetWriterInput",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "AVAssetWriterInput",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Start the asset writer if it hasn't been started already, and use the first sampleBuffer's presentationTimeStamp as the source time.",
+            "if assetWriter.status != .writing {",
+            "    assetWriter.startWriting()",
+            "    assetWriter.startSession(atSourceTime: sampleBuffer.presentationTimeStamp)",
+            "}",
+            "",
+            "// Append the sample buffer if the video input is ready.",
+            "if writerVideoInput.isReadyForMoreMediaData {",
+            "    writerVideoInput.append(sampleBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you decide to stop recording, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "finishWriting(completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "finishWriting(completionHandler:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". In the completion handler, you can save the movie file directly to the Photo Library using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)",
+              "isActive": true,
+              "overridingTitle": "creationRequestForAssetFromVideo(atFileURL:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "creationRequestForAssetFromVideo(atFileURL:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter/outputURL",
+              "isActive": true,
+              "overridingTitle": "outputURL",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "outputURL",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of the asset writer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once saved, you can view the video in the Photos app, where you will notice that the asset has a “ProRes” badge in the upper-left corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-24",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-02-08",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter": {
+      "abstract": [
+        {
+          "text": "An object that writes media data to a container file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAssetWriter",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAssetWriter"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Marks all unfinished inputs as finished and completes the writing of the output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishWriting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finishWriting(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAssetWriter/finishWriting(completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter/outputURL": {
+      "abstract": [
+        {
+          "text": "The location of the container file that the writer outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriter/outputURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputURL",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAssetWriter/outputURL"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriterInput": {
+      "abstract": [
+        {
+          "text": "An object that appends media samples to a track in an asset writer’s output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetWriterInput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAssetWriterInput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAssetWriterInput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/activeFormat": {
+      "abstract": [
+        {
+          "text": "The capture format in use by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/activeFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activeFormat",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/activeFormat"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/formats": {
+      "abstract": [
+        {
+          "text": "The capture formats a device supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formats"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/formats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formats",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/formats"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput": {
+      "abstract": [
+        {
+          "text": "An object that provides media input from a capture device to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDeviceInput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDeviceInput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureFileOutput/startRecording(to:recordingDelegate:)": {
+      "abstract": [
+        {
+          "text": "Starts recording media to the specified output URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startRecording"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "outputFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordingDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCaptureFileOutputRecordingDelegate",
+          "text": "AVCaptureFileOutputRecordingDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureFileOutput/startRecording(to:recordingDelegate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startRecording(to:recordingDelegate:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureFileOutput/startRecording(to:recordingDelegate:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate/fileOutput(_:didFinishRecordingTo:from:error:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate when all pending data has been written to an output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureFileOutput",
+          "text": "AVCaptureFileOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishRecordingTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "outputFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate/fileOutput(_:didFinishRecordingTo:from:error:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileOutput(_:didFinishRecordingTo:from:error:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureFileOutputRecordingDelegate/fileOutput(_:didFinishRecordingTo:from:error:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and audio to a QuickTime movie file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureMovieFileOutput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureMovieFileOutput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/availableVideoCodecTypes": {
+      "abstract": [
+        {
+          "text": "The video codecs types the output supports for recording movie files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableVideoCodecTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVVideoCodecType",
+          "text": "AVVideoCodecType"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/availableVideoCodecTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableVideoCodecTypes",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureMovieFileOutput/availableVideoCodecTypes"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/outputSettings(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the settings the output uses to encode media from the specified connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureMovieFileOutput/outputSettings(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputSettings(for:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureMovieFileOutput/outputSettings(for:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/Preset": {
+      "abstract": [
+        {
+          "text": "Presets that define standard configurations for a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/Preset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession.Preset",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/Preset"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority": {
+      "abstract": [
+        {
+          "text": "A preset that doesn’t specify audio and video output settings for a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputPriority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSession",
+          "text": "AVCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureSessionPreset",
+          "text": "Preset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputPriority",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/Preset/inputPriority"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/sessionPreset": {
+      "abstract": [
+        {
+          "text": "A preset value that indicates the quality level or bit rate of the output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionPreset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSession",
+          "text": "AVCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureSessionPreset",
+          "text": "Preset"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession/sessionPreset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionPreset",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession/sessionPreset"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and provides access to video frames for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)": {
+      "abstract": [
+        {
+          "text": "Sets the sample buffer delegate and the queue for invoking callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSampleBufferDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sampleBufferDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCaptureVideoDataOutputSampleBufferDelegate",
+          "text": "AVCaptureVideoDataOutputSampleBufferDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sampleBufferCallbackQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleBufferDelegate(_:queue:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutput/setSampleBufferDelegate(_:queue:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate that a new video frame was written.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "captureOutput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+          "text": "AVCaptureOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didOutput"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "captureOutput(_:didOutput:from:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureVideoDataOutputSampleBufferDelegate/captureOutput(_:didOutput:from:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session": {
+      "abstract": [
+        {
+          "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/setting-up-a-capture-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Capture Session",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/setting-up-a-capture-session"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMFormatDescription/mediaSubType-swift.property": {
+      "abstract": [
+        {
+          "text": "The media subtype.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaSubType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+          "text": "CMFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So22CMFormatDescriptionRefa9CoreMediaE0E7SubTypeV",
+          "text": "MediaSubType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMFormatDescription/mediaSubType-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mediaSubType",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMFormatDescription/mediaSubType-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)": {
+      "abstract": [
+        {
+          "text": "Creates a request for adding a new video asset to the Photos library, using the video file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAssetFromVideo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atFileURL"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "creationRequestForAssetFromVideo(atFileURL:)",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://support.apple.com/en-us/HT202410": {
+      "identifier": "https://support.apple.com/en-us/HT202410",
+      "title": "About Apple ProRes",
+      "titleInlineContent": [
+        {
+          "text": "About Apple ProRes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT202410"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetWriterInput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1Preset~1inputPriority/title",
+          "value": "AVCaptureSessionPresetInputPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1Preset~1inputPriority/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVCaptureSessionPreset",
+              "text": "AVCaptureSessionPreset"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionPresetInputPriority"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1sessionPreset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVCaptureSessionPreset",
+              "text": "AVCaptureSessionPreset"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionPreset"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureFileOutputRecordingDelegate~1fileOutput(_:didFinishRecordingTo:from:error:)/title",
+          "value": "captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureFileOutputRecordingDelegate~1fileOutput(_:didFinishRecordingTo:from:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureFileOutput",
+              "text": "AVCaptureFileOutput"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "output"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishRecordingToOutputFileAtURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outputFileURL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "fromConnections:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<AVCaptureConnection *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connections"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1Preset/title",
+          "value": "AVCaptureSessionPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession~1Preset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSessionPreset"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetWriter/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetWriter~1finishWriting(completionHandler:)/title",
+          "value": "finishWritingWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetWriter~1finishWriting(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishWritingWithCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutputSampleBufferDelegate~1captureOutput(_:didOutput:from:)/title",
+          "value": "captureOutput:didOutputSampleBuffer:fromConnection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutputSampleBufferDelegate~1captureOutput(_:didOutput:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureOutput:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureOutput",
+              "text": "AVCaptureOutput"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "output"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didOutputSampleBuffer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMSampleBufferRef",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "fromConnection:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+              "text": "AVCaptureConnection"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connection"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput~1availableVideoCodecTypes/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableVideoCodecTypes"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetWriter~1outputURL/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "outputURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1formats/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<AVCaptureDeviceFormat *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "formats"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureFileOutput~1startRecording(to:recordingDelegate:)/title",
+          "value": "startRecordingToOutputFileURL:recordingDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureFileOutput~1startRecording(to:recordingDelegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startRecordingToOutputFileURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outputFileURL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "recordingDelegate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)AVCaptureFileOutputRecordingDelegate",
+              "text": "id<AVCaptureFileOutputRecordingDelegate>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "delegate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureFileOutput",
+              "text": "AVCaptureFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1activeFormat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "retain"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureDeviceFormat",
+              "text": "AVCaptureDeviceFormat"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "activeFormat"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput~1outputSettings(for:)/title",
+          "value": "outputSettingsForConnection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput~1outputSettings(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "outputSettingsForConnection:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+              "text": "AVCaptureConnection"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connection"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAssetFromVideo(atFileURL:)/title",
+          "value": "creationRequestForAssetFromVideoAtFileURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAssetFromVideo(atFileURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "creationRequestForAssetFromVideoAtFileURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fileURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput~1setSampleBufferDelegate(_:queue:)/title",
+          "value": "setSampleBufferDelegate:queue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput~1setSampleBufferDelegate(_:queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSampleBufferDelegate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)AVCaptureVideoDataOutputSampleBufferDelegate",
+              "text": "id<AVCaptureVideoDataOutputSampleBufferDelegate>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sampleBufferDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "queue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sampleBufferCallbackQueue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

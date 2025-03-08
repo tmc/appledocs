@@ -1,0 +1,2785 @@
+{
+  "abstract": [
+    {
+      "text": "Create, save, and open documents in a multiplatform app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-with-SwiftUI"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Building-a-document-based-app-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a document-based app with SwiftUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Writing App sample builds a document-based app for iOS, iPadOS, and macOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the app definition, it has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scene, and its document type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. People can create a writing app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "document, modify the title and contents of the document, and read the story in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "focus mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "writing-app-ipad.png",
+              "metadata": {
+                "deviceFrame": "iPadPro12-9"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 2,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build and run this sample on your device, select your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "development team for the project’s target using these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with the latest version of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the top-level project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the project’s target, choose your team from the Team pop-up menu in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Signing & Capabilities pane to let Xcode automatically manage your provisioning",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Define-the-apps-scene",
+          "level": 2,
+          "text": "Define the app’s scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A document-based SwiftUI app returns a ",
+              "type": "text"
+            },
+            {
+              "code": "DocumentGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scene from its ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. The ",
+              "type": "text"
+            },
+            {
+              "code": "newDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter that an app supplies to the document",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "group’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup/init(newDocument:editor:)-4toe2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer conforms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this sample, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "document type conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "FileDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The trailing closure of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer returns a view that renders the document’s contents:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct WritingApp: App {",
+            "    var body: some Scene {",
+            "        DocumentGroup(newDocument: WritingAppDocument()) { file in",
+            "            StoryView(document: file.$document)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-the-iOS-and-iPadOS-launch-experience",
+          "level": 2,
+          "text": "Customize the iOS and iPadOS launch experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can update the default launch experience on iOS and iPadOS with a custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "title, action buttons, and screen background. To add an action button with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom label, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to replace the default label. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "customize the background in many ways such as adding a view or a ",
+              "type": "text"
+            },
+            {
+              "code": "backgroundStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an initializer, for example ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:backgroundStyle:_:backgroundAccessoryView:overlayAccessoryView:)-2d13c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample customizes the background of the title view, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:)-2iefz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DocumentGroupLaunchScene(\"Writing App\") {",
+            "    NewDocumentButton(\"Start Writing\")",
+            "} background: {",
+            "    Image(.pinkJungle)",
+            "    .resizable()",
+            "    .scaledToFill()",
+            "    .ignoresSafeArea()",
+            "} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also add accessories to the scene using initializers such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:backgroundAccessoryView:)-1valf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:overlayAccessoryView:)-1143c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depending on the positioning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "overlayAccessoryView: { _ in",
+            "    AccessoryView()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample contains two accessories in the overlay position that it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines in ",
+              "type": "text"
+            },
+            {
+              "code": "AccessoryView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It customizes the accessories by applying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifiers, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ZStack {",
+            "    Image(.robot)",
+            "        .resizable()",
+            "        .offset(x: size.width / 2 - 450, y: size.height / 2 - 300)",
+            "        .scaledToFit()",
+            "        .frame(width: 200)",
+            "        .opacity(horizontal == .compact ? 0 : 1)",
+            "    Image(.plant)",
+            "        .resizable()",
+            "        .offset(x: size.width / 2 + 250, y: size.height / 2 - 225)",
+            "        .scaledToFit()",
+            "        .frame(width: 200)",
+            "        .opacity(horizontal == .compact ? 0 : 1)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add both background and overlay accessories, use an initializer, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:backgroundAccessoryView:overlayAccessoryView:)-1re6d",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t provide any accessories, the system displays two faded sheets below",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the title view by default. In macOS, this sample displays the default system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "document browser on launch. You may wish to add an additional experience on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-data-model",
+          "level": 2,
+          "text": "Create the data model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample has a data model that defines a story as a ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it initializes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "story",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with an empty string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var story: String",
+            "",
+            "init(text: String = \"\") {",
+            "    self.story = text",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adopt-the-file-document-protocol",
+          "level": 2,
+          "text": "Adopt the file document protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "WritingAppDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure adopts the ",
+              "type": "text"
+            },
+            {
+              "code": "FileDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol to serialize documents to and from files. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/readableContentTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property defines the types that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the sample can read and write, specifically, the ",
+              "type": "text"
+            },
+            {
+              "code": ".writingAppDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var readableContentTypes: [UTType] { [.writingAppDocument] }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/init(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer loads documents from a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file. After reading the file’s data using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentReadConfiguration/file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of the ",
+              "type": "text"
+            },
+            {
+              "code": "configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input, it deserializes the data and stores it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the document’s data model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(configuration: ReadConfiguration) throws {",
+            "    guard let data = configuration.file.regularFileContents,",
+            "          let string = String(data: data, encoding: .utf8)",
+            "    else {",
+            "        throw CocoaError(.fileReadCorruptFile)",
+            "    }",
+            "    story = string",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person writes a document, SwiftUI calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/fileWrapper(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function to serialize the data model into a ",
+              "type": "text"
+            },
+            {
+              "code": "FileWrapper",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents the data in the file system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {",
+            "    let data = Data(story.utf8)",
+            "    return .init(regularFileWithContents: data)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the document type conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "FileDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", this sample handles undo",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actions automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-a-custom-document-type",
+          "level": 2,
+          "text": "Export a custom document type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app defines and exports a custom content type for the documents it creates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It declares this custom type in the project’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file under the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.writingAppDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the identifier in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>CFBundleDocumentTypes</key>",
+            "<array>",
+            "    <dict>",
+            "        <key>CFBundleTypeRole</key>",
+            "        <string>Editor</string>",
+            "        <key>LSHandlerRank</key>",
+            "        <string>Default</string>",
+            "        <key>LSItemContentTypes</key>",
+            "        <array>",
+            "            <string>com.example.writingAppDocument</string>",
+            "        </array>",
+            "        <key>NSUbiquitousDocumentUserActivityType</key>",
+            "        <string>$(PRODUCT_BUNDLE_IDENTIFIER).exampledocument</string>",
+            "    </dict>",
+            "</array>",
+            "<key>UTExportedTypeDeclarations</key>",
+            "<array>",
+            "    <dict>",
+            "        <key>UTTypeConformsTo</key>",
+            "        <array>",
+            "            <string>public.utf8-plain-text</string>",
+            "        </array>",
+            "        <key>UTTypeDescription</key>",
+            "        <string>Writing App Document</string>",
+            "        <key>UTTypeIconFiles</key>",
+            "        <array/>",
+            "        <key>UTTypeIdentifier</key>",
+            "        <string>com.example.writingAppDocument</string>",
+            "        <key>UTTypeTagSpecification</key>",
+            "        <dict>",
+            "            <key>public.filename-extension</key>",
+            "            <array>",
+            "                <string>story</string>",
+            "            </array>",
+            "        </dict>",
+            "    </dict>",
+            "</array>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For convenience, you can also define the content type in code. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension UTType {",
+            "    static var writingapp: UTType {",
+            "        UTType(exportedAs: \"com.example.writingAppDocument\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure that the operating system knows that your application can open",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files with the format described in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it defines the file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "extension ",
+              "type": "text"
+            },
+            {
+              "code": "story",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the content type. For more information about custom file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and data types, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+            "doc://com.apple.documentation/documentation/UIKit/customizing-a-document-based-app-s-launch-experience"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2024/10132"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "47F9E32A-22B9-499C-84FE-DB660523326A": {
+      "alt": null,
+      "identifier": "47F9E32A-22B9-499C-84FE-DB660523326A",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/47F9E32A-22B9-499C-84FE-DB660523326A/9260_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/47F9E32A-22B9-499C-84FE-DB660523326A/9260_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/47F9E32A-22B9-499C-84FE-DB660523326A/9260_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Building-a-document-based-app-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Building-a-document-based-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e143ff39a1e48efe1ed0000f6e902a5b/Building-a-document-based-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d0365b065cbf4963413da8042cfecf9/Building-a-document-based-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData": {
+      "abstract": [
+        {
+          "text": "Code along with the WWDC presenter to transform an app with SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document-based app using SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-a-document-based-app-using-swiftdata"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup": {
+      "abstract": [
+        {
+          "text": "A scene that enables support for opening, creating, and saving documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup/init(newDocument:editor:)-4toe2": {
+      "abstract": [
+        {
+          "text": "Creates a document group for creating and editing file documents.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Document",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "FileDocument",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "newDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Document"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "editor"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25FileDocumentConfigurationV",
+          "text": "FileDocumentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Document"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup/init(newDocument:editor:)-4toe2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(newDocument:editor:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgroup/init(newdocument:editor:)-4toe2"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:)-2iefz": {
+      "abstract": [
+        {
+          "text": "Creates a launch scene for document-based applications with a title, a set of actions, and a background.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Actions",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sy",
+          "text": "StringProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Actions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:)-2iefz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:background:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene/init(_:_:background:)-2iefz"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:backgroundAccessoryView:)-1valf": {
+      "abstract": [
+        {
+          "text": "Creates a launch scene for document-based applications with a title, a set of actions, a background, and a background accessory view.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Actions",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Actions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DocumentLaunchGeometryProxyV",
+          "text": "DocumentLaunchGeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:backgroundAccessoryView:)-1valf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:background:backgroundAccessoryView:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene/init(_:_:background:backgroundaccessoryview:)-1valf"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:backgroundAccessoryView:overlayAccessoryView:)-1re6d": {
+      "abstract": [
+        {
+          "text": "Creates a launch scene for document-based applications with a title, a set of actions, and a background.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Actions",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Actions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DocumentLaunchGeometryProxyV",
+          "text": "DocumentLaunchGeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "overlayAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DocumentLaunchGeometryProxyV",
+          "text": "DocumentLaunchGeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:backgroundAccessoryView:overlayAccessoryView:)-1re6d",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:background:backgroundAccessoryView:overlayAccessoryView:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene/init(_:_:background:backgroundaccessoryview:overlayaccessoryview:)-1re6d"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:overlayAccessoryView:)-1143c": {
+      "abstract": [
+        {
+          "text": "Creates a launch scene for document-based applications with a title, a set of actions, a background, and an overlay accessory view.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Actions",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sy",
+          "text": "StringProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Actions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "overlayAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DocumentLaunchGeometryProxyV",
+          "text": "DocumentLaunchGeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:_:background:overlayAccessoryView:)-1143c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:background:overlayAccessoryView:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene/init(_:_:background:overlayaccessoryview:)-1143c"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:backgroundStyle:_:backgroundAccessoryView:overlayAccessoryView:)-2d13c": {
+      "abstract": [
+        {
+          "text": "Creates a launch scene for document-based applications with a title, a background style, a set of actions, and background and overlay accessory views.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Actions",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "B"
+        },
+        {
+          "kind": "text",
+          "text": ", () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Actions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DocumentLaunchGeometryProxyV",
+          "text": "DocumentLaunchGeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "overlayAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27DocumentLaunchGeometryProxyV",
+          "text": "DocumentLaunchGeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene/init(_:backgroundStyle:_:backgroundAccessoryView:overlayAccessoryView:)-2d13c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:backgroundStyle:_:backgroundAccessoryView:overlayAccessoryView:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene/init(_:backgroundstyle:_:backgroundaccessoryview:overlayaccessoryview:)-2d13c"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents": {
+      "abstract": [
+        {
+          "text": "Enable people to open and manage documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents",
+      "type": "topic",
+      "url": "/documentation/swiftui/documents"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument": {
+      "abstract": [
+        {
+          "text": "A type that you use to serialize documents to and from file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/fileWrapper(configuration:)": {
+      "abstract": [
+        {
+          "text": "Serializes a document snapshot to a file wrapper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileWrapper"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12FileDocumentP18WriteConfigurationa",
+          "text": "WriteConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileWrapper",
+          "text": "FileWrapper"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/fileWrapper(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "fileWrapper(configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocument/filewrapper(configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a document and initializes it with the contents of a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12FileDocumentP17ReadConfigurationa",
+          "text": "ReadConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/init(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocument/init(configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/readableContentTypes": {
+      "abstract": [
+        {
+          "text": "The file and data types that the document reads from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readableContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument/readableContentTypes",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "readableContentTypes",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocument/readablecontenttypes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentReadConfiguration/file": {
+      "abstract": [
+        {
+          "text": "The file wrapper containing the document content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileWrapper",
+          "text": "FileWrapper"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentReadConfiguration/file",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "file",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocumentreadconfiguration/file"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentButton": {
+      "abstract": [
+        {
+          "text": "A button that creates and opens new documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewDocumentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewDocumentButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewDocumentButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/newdocumentbutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument": {
+      "abstract": [
+        {
+          "text": "A type that you use to serialize reference type documents to and from file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(width:height:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(width:height:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)": {
+      "abstract": [
+        {
+          "text": "Offset this view by the specified horizontal and vertical distances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/offset(x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset(x:y:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/offset(x:y:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations": {
+      "abstract": [
+        {
+          "text": "The uniform type identifiers owned and exported by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTExportedTypeDeclarations",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/customizing-a-document-based-app-s-launch-experience": {
+      "abstract": [
+        {
+          "text": "Add unique elements to your app’s document launch scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing a document-based app’s launch experience",
+      "type": "topic",
+      "url": "/documentation/UIKit/customizing-a-document-based-app-s-launch-experience"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app": {
+      "abstract": [
+        {
+          "text": "Declare uniform type identifiers to support your app’s proprietary data formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining file and data types for your app",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10132": {
+      "abstract": [
+        {
+          "text": "Make your document-based app stand out, and bring its unique identity into focus with the new document launch experience. Learn how to leverage the new API to customize the first screen people see when they launch your app. Utilize the new system-provided design, and amend it with custom actions, delightful decorative views, and impressive animations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10132",
+      "images": [
+        {
+          "identifier": "47F9E32A-22B9-499C-84FE-DB660523326A",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Evolve your document launch experience",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10132"
+    },
+    "ef10bd7eff0d/BuildingADocumentBasedAppWithSwiftUI.zip": {
+      "checksum": "ef10bd7eff0dab5b0b07cf037094cb1ed5e831c6a14280ff5dde583afd084a1994fb51f2c431fde62032ca9297e0f84a57c17519445025aee3a58f63622649b2",
+      "identifier": "ef10bd7eff0d/BuildingADocumentBasedAppWithSwiftUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ef10bd7eff0d/BuildingADocumentBasedAppWithSwiftUI.zip"
+    },
+    "writing-app-ipad.png": {
+      "alt": "A screenshot displaying the document launch experience on iPad with a robot and plant accessory to the left and right of the title view, respectively.",
+      "identifier": "writing-app-ipad.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/899cca2b456665f78cdf421d91212654/writing-app-ipad@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bfea196fef83786fce2cc3014d9c5767/writing-app-ipad~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ef10bd7eff0d/BuildingADocumentBasedAppWithSwiftUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/building-a-document-based-app-with-swiftui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

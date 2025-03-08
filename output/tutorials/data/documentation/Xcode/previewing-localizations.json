@@ -1,0 +1,820 @@
+{
+  "abstract": [
+    {
+      "text": "Test localizations in the SwiftUI preview or the Interface Builder preview.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/previewing-localizations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Previewing localizations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can preview localizations early in development while you lay out your app’s interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for both SwiftUI and Interface Builder apps. For SwiftUI apps, you need to add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "language or import the localization before you preview it, described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For Interface Builder apps, you can first preview",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the interface in pseudolanguages and then later in the localizations you add.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-localizations-to-a-SwiftUI-preview",
+          "level": 3,
+          "text": "Add localizations to a SwiftUI preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For SwiftUI apps, you can preview a localization by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/locale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variable in your code. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/environment(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function to set the locale for all views in the view hierarchy of a SwiftUI preview.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if you add German to your project, you can set the locale to German",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "code": "de",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView_Previews: PreviewProvider {",
+            "    static var previews: some View {",
+            "        ContentView()",
+            "                .environment(\\.locale, .init(identifier: \"de\"))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preview right-to-left languages, also set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/layoutDirection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/LayoutDirection/rightToLeft",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preview multiple localizations, add additional previews to your code and set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/locale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value for each. The localizations appear in the SwiftUI preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "previewing-localizations-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preview-localizations-in-Interface-Builder",
+          "level": 3,
+          "text": "Preview localizations in Interface Builder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Interface Builder, you can preview localizations any time during development",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by choosing localizations including pseudolanguages in the preview. You don’t need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to build and run your app to see the preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Interface Builder, select the desired view controller. Click the Adjust Editor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Options button in the upper-right corner, then choose Preview. A preview of the layout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appears to the right of the canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the preview area, select a preview or click in the background to deselect all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "previews. If you don’t select a preview, you’ll change the language of all previews.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the language button—for example, English—in the lower-right corner. In the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pop-up menu that appears, choose a localization or pseudolanguage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "previewing-localizations-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions": {
+      "abstract": [
+        {
+          "text": "Select the resources that you want to localize for each language and region you support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding support for languages and regions",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-support-for-languages-and-regions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app": {
+      "abstract": [
+        {
+          "text": "Run your app in each language and region you support to thoroughly test your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing localizations when running your app",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-localizations-when-running-your-app"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues": {
+      "abstract": [
+        {
+          "text": "A collection of environment values propagated through a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentValues",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/layoutDirection": {
+      "abstract": [
+        {
+          "text": "The layout direction associated with the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15LayoutDirectionO",
+          "text": "LayoutDirection"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/layoutDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layoutDirection",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/layoutDirection"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/locale": {
+      "abstract": [
+        {
+          "text": "The current locale that views should use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/locale"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/LayoutDirection/rightToLeft": {
+      "abstract": [
+        {
+          "text": "A right-to-left layout direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightToLeft"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/LayoutDirection/rightToLeft",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LayoutDirection.rightToLeft",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/LayoutDirection/rightToLeft"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/environment(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the environment value of the specified key path to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "keyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/environment(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/environment(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "previewing-localizations-1": {
+      "alt": "Screenshot of the project editor with the ContentView.swift file selected in the navigator and the line of code that sets the locale highlighted, and its preview on the right.",
+      "identifier": "previewing-localizations-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/caed099e42d282474b9c755cf3df1f9e/previewing-localizations-1@2x.png"
+        }
+      ]
+    },
+    "previewing-localizations-2": {
+      "alt": "Screenshot of Interface Builder showing previews of a view controller scene and the location of the language pop-up menu in the lower-right corner.",
+      "identifier": "previewing-localizations-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1674e7c2bbc8d7d5f93484a58d70768/previewing-localizations-2@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-support-for-languages-and-regions",
+        "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+        "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app"
+      ],
+      "title": "Testing"
+    }
+  ]
+}

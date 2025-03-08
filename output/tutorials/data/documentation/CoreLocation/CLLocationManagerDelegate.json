@@ -1,0 +1,2652 @@
+{
+  "abstract": [
+    {
+      "text": "The methods you use to receive events from an associated location-manager object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CLLocationManagerDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CLLocationManagerDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CLLocationManagerDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CLLocationManagerDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The location manager calls its delegate’s methods to report location-related events to your app. Implement this protocol in an app-specific object and use the methods to update your app. For example, you might use the current location to update the user’s position on a map or you might return search results relevant only to the user’s current location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Always implement the methods for handling any potential failures in addition to the methods for receiving location-related data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assign your delegate object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object before starting any services. Core Location may report a cached value to your delegate immediately after you start the service, followed by a more current value later. Check the time stamp of any data objects you receive before using them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Location calls the methods of your delegate object on the runloop from the thread on which you initialized ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". That thread must itself have an active run loop, like the one found in your app’s main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object to receive update events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CLLocationManagerDelegate",
+          "text": "CLLocationManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/delegate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate": {
+      "abstract": [
+        {
+          "text": "The methods you use to receive events from an associated location-manager object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate its authorization status when the app creates the location manager and when the authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLAuthorizationStatus",
+          "text": "CLAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didChangeAuthorizationStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didChangeAuthorization:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didchangeauthorization:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didDetermineState:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the state of the specified region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDetermineState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLRegionState",
+          "text": "CLRegionState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLRegion",
+          "text": "CLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didDetermineState:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didDetermineState:forRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didDetermineState:for:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:diddeterminestate:for:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didEnterRegion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user entered the specified region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didEnterRegion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLRegion",
+          "text": "CLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didEnterRegion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didEnterRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didEnterRegion:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didenterregion:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didExitRegion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user left the specified region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didExitRegion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLRegion",
+          "text": "CLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didExitRegion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didExitRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didExitRegion:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didexitregion:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailRangingFor:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the location manager couldn’t detect any beacons that satisfy the provided constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFailRangingFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLBeaconIdentityConstraint",
+          "text": "CLBeaconIdentityConstraint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailRangingFor:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didFailRangingBeaconsForConstraint:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didFailRangingFor:error:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didfailrangingfor:error:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the location manager was unable to retrieve a location value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFailWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didFailWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didFailWithError:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didfailwitherror:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFinishDeferredUpdatesWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that updates will no longer be deferred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishDeferredUpdatesWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFinishDeferredUpdatesWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didFinishDeferredUpdatesWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didFinishDeferredUpdatesWithError:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didfinishdeferredupdateswitherror:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRange:satisfying:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the location manager detected at least one beacon that satisfies the provided constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRange"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLBeacon",
+          "text": "CLBeacon"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "satisfying"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLBeaconIdentityConstraint",
+          "text": "CLBeaconIdentityConstraint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRange:satisfying:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didRangeBeacons:satisfyingConstraint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didRange:satisfying:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didrange:satisfying:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRangeBeacons:in:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more beacons are in range.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRangeBeacons"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLBeacon",
+          "text": "CLBeacon"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLBeaconRegion",
+          "text": "CLBeaconRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRangeBeacons:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didRangeBeacons:inRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didRangeBeacons:in:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didrangebeacons:in:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didStartMonitoringFor:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a new region is being monitored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didStartMonitoringFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLRegion",
+          "text": "CLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didStartMonitoringFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didStartMonitoringForRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didStartMonitoringFor:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didstartmonitoringfor:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateHeading:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the location manager received updated heading information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateHeading"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLHeading",
+          "text": "CLHeading"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateHeading:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didUpdateHeading:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didUpdateHeading:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didupdateheading:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateLocations:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that new location data is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateLocations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateLocations:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didUpdateLocations:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didUpdateLocations:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didupdatelocations:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateTo:from:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a new location value is available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateTo:from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didUpdateToLocation:fromLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didUpdateTo:from:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didupdateto:from:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didVisit:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a new visit-related event was received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didVisit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLVisit",
+          "text": "CLVisit"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didVisit:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didVisit:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didVisit:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didvisit:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:monitoringDidFailFor:withError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a region monitoring error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "monitoringDidFailFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLRegion",
+          "text": "CLRegion"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:monitoringDidFailFor:withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:monitoringDidFailForRegion:withError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:monitoringDidFailFor:withError:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:monitoringdidfailfor:witherror:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:rangingBeaconsDidFailFor:withError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an error occurred while gathering ranging information for a set of beacons.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rangingBeaconsDidFailFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLBeaconRegion",
+          "text": "CLBeaconRegion"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:rangingBeaconsDidFailFor:withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:rangingBeaconsDidFailForRegion:withError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:rangingBeaconsDidFailFor:withError:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:rangingbeaconsdidfailfor:witherror:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app creates the location manager and when the authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidChangeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidChangeAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManagerDidChangeAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidchangeauthorization(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that location updates were paused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidPauseLocationUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidPauseLocationUpdates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManagerDidPauseLocationUpdates(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidpauselocationupdates(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidResumeLocationUpdates(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the delivery of location updates has resumed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidResumeLocationUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidResumeLocationUpdates(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidResumeLocationUpdates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManagerDidResumeLocationUpdates(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidresumelocationupdates(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerShouldDisplayHeadingCalibration(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether the heading calibration alert should be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManagerShouldDisplayHeadingCalibration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerShouldDisplayHeadingCalibration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManagerShouldDisplayHeadingCalibration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManagerShouldDisplayHeadingCalibration(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanagershoulddisplayheadingcalibration(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLRegionState": {
+      "abstract": [
+        {
+          "text": "Constants that reflect the relationship of the current location to the region boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLRegionState"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLRegionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLRegionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLRegionState",
+      "type": "topic",
+      "url": "/documentation/corelocation/clregionstate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Receiving-data-from-location-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/delegate"
+      ],
+      "title": "Receiving data from location services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-authorization-changes",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)"
+      ],
+      "title": "Responding to authorization changes"
+    },
+    {
+      "anchor": "Handling-errors",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailWithError:)"
+      ],
+      "title": "Handling errors"
+    },
+    {
+      "anchor": "Receiving-location-updates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateLocations:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateTo:from:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFinishDeferredUpdatesWithError:)"
+      ],
+      "title": "Receiving location updates"
+    },
+    {
+      "anchor": "Pausing-location-updates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidResumeLocationUpdates(_:)"
+      ],
+      "title": "Pausing location updates"
+    },
+    {
+      "anchor": "Receiving-visit-updates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didVisit:)"
+      ],
+      "title": "Receiving visit updates"
+    },
+    {
+      "anchor": "Receiving-heading-updates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateHeading:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerShouldDisplayHeadingCalibration(_:)"
+      ],
+      "title": "Receiving heading updates"
+    },
+    {
+      "anchor": "Receiving-region-related-updates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didEnterRegion:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didExitRegion:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didDetermineState:for:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:monitoringDidFailFor:withError:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didStartMonitoringFor:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLRegionState"
+      ],
+      "title": "Receiving region-related updates"
+    },
+    {
+      "anchor": "Receiving-beacon-related-updates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRange:satisfying:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailRangingFor:error:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRangeBeacons:in:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:rangingBeaconsDidFailFor:withError:)"
+      ],
+      "title": "Receiving beacon-related updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.6",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CLLocationManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corelocation/documentation/CoreLocation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-authorization-changes",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)"
+              ],
+              "title": "Responding to authorization changes"
+            },
+            {
+              "anchor": "Handling-errors",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailWithError:)"
+              ],
+              "title": "Handling errors"
+            },
+            {
+              "anchor": "Receiving-location-updates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateLocations:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateTo:from:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFinishDeferredUpdatesWithError:)"
+              ],
+              "title": "Receiving location updates"
+            },
+            {
+              "anchor": "Pausing-location-updates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidResumeLocationUpdates(_:)"
+              ],
+              "title": "Pausing location updates"
+            },
+            {
+              "anchor": "Receiving-visit-updates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didVisit:)"
+              ],
+              "title": "Receiving visit updates"
+            },
+            {
+              "anchor": "Receiving-heading-updates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didUpdateHeading:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerShouldDisplayHeadingCalibration(_:)"
+              ],
+              "title": "Receiving heading updates"
+            },
+            {
+              "anchor": "Receiving-region-related-updates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didEnterRegion:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didExitRegion:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didDetermineState:for:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:monitoringDidFailFor:withError:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didStartMonitoringFor:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLRegionState"
+              ],
+              "title": "Receiving region-related updates"
+            },
+            {
+              "anchor": "Receiving-beacon-related-updates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRange:satisfying:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didFailRangingFor:error:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didRangeBeacons:in:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:rangingBeaconsDidFailFor:withError:)"
+              ],
+              "title": "Receiving beacon-related updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Receiving-data-from-location-services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/delegate"
+              ],
+              "title": "Receiving data from location services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CLLocationManagerDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didFailRangingFor:error:)/title",
+          "value": "locationManager:didFailRangingBeaconsForConstraint:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didFailRangingFor:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didFailRangingBeaconsForConstraint:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didFinishDeferredUpdatesWithError:)/title",
+          "value": "locationManager:didFinishDeferredUpdatesWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didFinishDeferredUpdatesWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didFinishDeferredUpdatesWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didUpdateTo:from:)/title",
+          "value": "locationManager:didUpdateToLocation:fromLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didUpdateTo:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didUpdateToLocation:fromLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate/title",
+          "value": "CLLocationManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didRange:satisfying:)/title",
+          "value": "locationManager:didRangeBeacons:satisfyingConstraint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didRange:satisfying:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didRangeBeacons:satisfyingConstraint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didStartMonitoringFor:)/title",
+          "value": "locationManager:didStartMonitoringForRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didStartMonitoringFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didStartMonitoringForRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLRegionState/title",
+          "value": "CLRegionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLRegionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLRegionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLRegionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLRegionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidResumeLocationUpdates(_:)/title",
+          "value": "locationManagerDidResumeLocationUpdates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidResumeLocationUpdates(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidResumeLocationUpdates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didExitRegion:)/title",
+          "value": "locationManager:didExitRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didExitRegion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didExitRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didDetermineState:for:)/title",
+          "value": "locationManager:didDetermineState:forRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didDetermineState:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didDetermineState:forRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerShouldDisplayHeadingCalibration(_:)/title",
+          "value": "locationManagerShouldDisplayHeadingCalibration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerShouldDisplayHeadingCalibration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerShouldDisplayHeadingCalibration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didUpdateHeading:)/title",
+          "value": "locationManager:didUpdateHeading:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didUpdateHeading:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didUpdateHeading:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didRangeBeacons:in:)/title",
+          "value": "locationManager:didRangeBeacons:inRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didRangeBeacons:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didRangeBeacons:inRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidPauseLocationUpdates(_:)/title",
+          "value": "locationManagerDidPauseLocationUpdates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidPauseLocationUpdates(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidPauseLocationUpdates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didEnterRegion:)/title",
+          "value": "locationManager:didEnterRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didEnterRegion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didEnterRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didVisit:)/title",
+          "value": "locationManager:didVisit:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didVisit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didVisit:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:rangingBeaconsDidFailFor:withError:)/title",
+          "value": "locationManager:rangingBeaconsDidFailForRegion:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:rangingBeaconsDidFailFor:withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:rangingBeaconsDidFailForRegion:withError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidChangeAuthorization(_:)/title",
+          "value": "locationManagerDidChangeAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidChangeAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidChangeAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didFailWithError:)/title",
+          "value": "locationManager:didFailWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didFailWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didFailWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didUpdateLocations:)/title",
+          "value": "locationManager:didUpdateLocations:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didUpdateLocations:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didUpdateLocations:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didChangeAuthorization:)/title",
+          "value": "locationManager:didChangeAuthorizationStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didChangeAuthorization:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didChangeAuthorizationStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:monitoringDidFailFor:withError:)/title",
+          "value": "locationManager:monitoringDidFailForRegion:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:monitoringDidFailFor:withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:monitoringDidFailForRegion:withError:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/cllocationmanagerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/cllocationmanagerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

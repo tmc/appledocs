@@ -1,0 +1,438 @@
+{
+  "abstract": [
+    {
+      "text": "The reason a subscription expires.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.0",
+        "1.7"
+      ]
+    },
+    "minor": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.6",
+        "1.7"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appstorereceipts",
+        "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3193572,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_receipts:expiration_intent",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "expiration_intent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Receipts"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "1.7",
+        "deprecated": true,
+        "deprecatedAt": "1.7",
+        "introducedAt": "1.0",
+        "name": "App Store Receipts"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "tdef",
+    "title": "expiration_intent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "App Store Receipts"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string expiration_intent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "possibleValues",
+      "values": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The customer canceled their subscription.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "1"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Billing error; for example, the customer’s payment information is no longer valid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "2"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The customer didn’t consent to an auto-renewable subscription price increase that requires customer consent, allowing the subscription to expire.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "3"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The product wasn’t available for purchase at the time of renewal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "4"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The subscription expired for some other reason.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "5"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This field is returned in the JSON response, in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this value to do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"1\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", decide whether to survey the subscribers who have opted in to an account on your system or show alternative subscription products within the same group. Decide whether to present a subscription offer to win back the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"2\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", decide whether to show the same or alternative subscription products because the user didn't actively make the choice to unsubscribe. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3230735",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from WWDC 2018 and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store receipt data types",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/app_store_receipt_data_types"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/cancellation_date_ms": {
+      "abstract": [
+        {
+          "text": "The time and date that the App Store refunds a transaction or revokes it from Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancellation_date_ms"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/cancellation_date_ms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancellation_date_ms",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/cancellation_date_ms"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent": {
+      "abstract": [
+        {
+          "text": "The reason a subscription expires.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "expiration_intent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expiration_intent",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/expiration_intent"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms": {
+      "abstract": [
+        {
+          "text": "The time, in milliseconds, a subscription expires or renews.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "expires_date_ms"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expires_date_ms",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/expires_date_ms"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Pending_renewal_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/pending_renewal_info"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app"
+    },
+    "link-3230735": {
+      "identifier": "link-3230735",
+      "kind": "article",
+      "role": "link",
+      "title": "Engineering Subscriptions",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/705/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts/cancellation_date_ms",
+        "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms"
+      ],
+      "title": "Dates and intent"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appstorereceipts/expiration_intent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

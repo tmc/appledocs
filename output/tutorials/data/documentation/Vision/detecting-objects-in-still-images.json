@@ -1,0 +1,1782 @@
+{
+  "abstract": [
+    {
+      "text": "Locate and demarcate rectangles, faces, barcodes, and text in images using the Vision framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting Objects in Still Images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework can detect rectangles, faces, text, and barcodes at any orientation.  This sample code shows how to create requests to detect these types of objects, and how to interpret the results of those requests.  To help you visualize where an observation occurs, and how it looks, this code uses Core Animation layers to draw paths around detected features in images.  For example, the following mock gift card has a QR code and rectangles that surface through the detector.  The sample highlights not only text blocks (shown in red) but also individual characters within text (shown in purple):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "DevGiftCard.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project runs on iOS 11. However, you can also use Vision in your own apps on macOS 10.13, iOS 11, or tvOS 11.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see this sample in action, build and run the project, then use the toggle switches to choose which kinds of objects (any combination of rectangles, faces, barcodes, and text) to detect.  Tapping anywhere else prompts the sample to request a picture, which you either capture by camera or select from your photo library. The sample then applies computer vision algorithms to find the desired features in the provided image. Finally, the sample draws colored paths around observed features on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/quartzcore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-an-Input-Image-for-Vision",
+          "level": 3,
+          "text": "Prepare an Input Image for Vision",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision handles still image-based requests using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and assumes that images are oriented upright, so pass your image with orientation in mind. ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/coregraphics/cgimageref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects don’t carry orientation, so provide it as part of the initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can initialize a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+              "isActive": true,
+              "overridingTitle": "VNImageRequestHandler",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "VNImageRequestHandler",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " from image data in the following formats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/coregraphics/cgimageref",
+                      "isActive": true,
+                      "overridingTitle": "CGImage",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "CGImage",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/coregraphics",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " image format, obtainable from any ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/uikit/uiimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " through its helper method ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/uikit/uiimage/1624147-cgimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Specify orientation through the initializer using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/imageio/cgimagepropertyorientation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/coreimage/ciimage",
+                      "isActive": true,
+                      "overridingTitle": "CIImage",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "CIImage",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/coreimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " format, best used if you already have Core Image in your image processing pipeline. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CIImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects don’t contain orientation, so supply it in the initializer ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869641-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer",
+                      "isActive": true,
+                      "overridingTitle": "CVPixelBuffer",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "CVPixelBuffer",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/corevideo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " image format for data from a live feed and movies.  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CVPixelBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects don’t contain orientation, so supply it in the initializer ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880303-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/foundation/nsdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": Image data compressed or held in memory, as you might receive over a network connection. For example, photos downloaded from a website or the cloud fall into this category. Check that any images downloaded from the web have upright orientation; if they don’t, inform Vision about the orientation through the initializer  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869635-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/foundation/nsurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": A URL path to the image on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision may not detect sideways or upside-down features properly if it assumes the wrong orientation.  Photos selected in the sample’s image picker contain orientation information.  Access this data through the ",
+              "type": "text"
+            },
+            {
+              "code": "UIImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/uikit/uiimage/1624141-imageorientation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you acquire your photos through other means, such as from the web or other apps, be sure to check for orientation and provide it separately if it doesn’t come baked into the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Vision-Requests",
+          "level": 3,
+          "text": "Create Vision Requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+              "isActive": true,
+              "overridingTitle": "VNImageRequestHandler",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "VNImageRequestHandler",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object with the image to be processed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a request handler.",
+            "let imageRequestHandler = VNImageRequestHandler(cgImage: image,",
+            "                                                orientation: orientation,",
+            "                                                options: [:])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re making multiple requests from the same image (for example, detecting facial features as well as faces), create and bundle all requests to pass into the image request handler. Vision runs each request and executes its completion handler on its own thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pair each request with a completion handler to run request-specific code after Vision finishes all requests. The sample draws boxes differently based on the type of request, so this code differs from request to request. Specify your completion handler when initializing each request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lazy var rectangleDetectionRequest: VNDetectRectanglesRequest = {",
+            "    let rectDetectRequest = VNDetectRectanglesRequest(completionHandler: self.handleDetectedRectangles)",
+            "    // Customize & configure the request to detect only certain rectangles.",
+            "    rectDetectRequest.maximumObservations = 8 // Vision currently supports up to 16.",
+            "    rectDetectRequest.minimumConfidence = 0.6 // Be confident.",
+            "    rectDetectRequest.minimumAspectRatio = 0.3 // height / width",
+            "    return rectDetectRequest",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve created all your requests, pass them as an array to the request handler’s synchronous ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Vision computations may consume resources and take time, so use a background queue to avoid blocking the main queue as it executes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Send the requests to the request handler.",
+            "DispatchQueue.global(qos: .userInitiated).async {",
+            "    do {",
+            "        try imageRequestHandler.perform(requests)",
+            "    } catch let error as NSError {",
+            "        print(\"Failed to perform image request: \\(error)\")",
+            "        self.presentAlert(\"Image Request Failed\", error: error)",
+            "        return",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Interpret-Detection-Results",
+          "level": 3,
+          "text": "Interpret Detection Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+              "isActive": true,
+              "overridingTitle": "perform(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "perform(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " returns a Boolean representing whether the requests succeeded or resulted in an error. If it succeeded, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains observation or tracking data, such as a detected object’s location and bounding box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access results in two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results",
+                      "isActive": true,
+                      "overridingTitle": "results",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "results",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property after calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+                      "isActive": true,
+                      "overridingTitle": "perform(_:)",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "perform(_:)",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/vision/vnimagebasedrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object’s completion handler, use the callback’s observation parameter to retrieve detection information.  The callback results may contain multiple observations, so loop through the observations array to process each one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the sample uses facial observations and their landmarks’ bounding boxes to locate the features and draw a rectangle around them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Perform drawing on the main thread.",
+            "DispatchQueue.main.async {",
+            "    guard let drawLayer = self.pathLayer,",
+            "        let results = request?.results as? [VNFaceObservation] else {",
+            "            return",
+            "    }",
+            "    self.draw(faces: results, onImageWithBounds: drawLayer.bounds)",
+            "    drawLayer.setNeedsDisplay()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even when Vision calls its completion handlers on a background thread, always dispatch UI calls like the path-drawing code to the main thread. Access to UIKit, AppKit & resources must be serialized, so changes that affect the app’s immediate appearance belong on the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CATransaction.begin()",
+            "for observation in faces {",
+            "    let faceBox = boundingBox(forRegionOfInterest: observation.boundingBox, withinImageBounds: bounds)",
+            "    let faceLayer = shapeLayer(color: .yellow, frame: faceBox)",
+            "    ",
+            "    // Add to pathLayer on top of image.",
+            "    pathLayer?.addSublayer(faceLayer)",
+            "}",
+            "CATransaction.commit()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For face landmark requests, the detector provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnfaceobservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " results with greater detail, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For text observations, you can locate individual characters by checking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntextobservation/2867213-characterboxes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For barcode observations, some supported ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/2875397-symbologies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contain payload information in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnbarcodeobservation/2923485-payloadstringvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, allowing you to parse the content of detected barcodes. Like a supermarket scanner, barcode detection is optimized for finding one barcode per image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s up to your app to use or store data from the observations before exiting the completion handler.  Instead of drawing paths like the sample does, write custom code to extract what your app needs from each observation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Follow-Best-Practices",
+          "level": 3,
+          "text": "Follow Best Practices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce unnecessary computation, don’t create multiple request handlers and submit them multiple times on the same image.  Instead, create all your requests before querying Vision, bundle them inside a requests array, and submit that array in a single call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform detection across multiple, unrelated images, create a separate image handler for each image and make requests to each handler on separate threads, so they run in parallel. Each image request handler costs additional processing time and memory, so try not to run them on the main thread. Dispatch these handlers on additional background threads, calling back to the main thread only for UI updates such as displaying images or paths.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The image-based handler that this sample introduces works for detection across any number of images, but it doesn’t track objects.  To perform object tracking, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.  For more information about object tracking, see Tracking the User’s Face in Real Time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "DevGiftCard.png": {
+      "alt": "The left side shows a sample input image that the end user feeds into the app.  The right side shows the output image with the detected text and QR code.",
+      "identifier": "DevGiftCard.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c84d5b21bfb5dbea951e4a37dc161ff7/DevGiftCard.png"
+        }
+      ]
+    },
+    "b2d10dc7f8ea/DetectingObjectsInStillImages.zip": {
+      "checksum": "b2d10dc7f8ea0a3a4d3accd0906e6d5cb9421bd375d1339a10aad36ce1d64c2b98b94be8925f00334bdc87033ff60f6d84c869f15bd5e5faeeaf217ebb3ae719",
+      "identifier": "b2d10dc7f8ea/DetectingObjectsInStillImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b2d10dc7f8ea/DetectingObjectsInStillImages.zip"
+    },
+    "classifying-images-for-categorization-and-search-PageImage-card.png": {
+      "alt": "[An illustration depicting the selection of one image out of multiple images.]",
+      "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4eabbb99abb5c902d499f93f57a9cf22/classifying-images-for-categorization-and-search-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/477f01072bf9eb417cbb5cf846e38226/classifying-images-for-categorization-and-search-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request to classify an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNClassifyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNClassifyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNClassifyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnclassifyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation": {
+      "abstract": [
+        {
+          "text": "An observation that provides the recognized feature print.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNFeaturePrintObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNFeaturePrintObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNFeaturePrintObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnfeatureprintobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest": {
+      "abstract": [
+        {
+          "text": "An image-based request to generate feature prints from an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGenerateImageFeaturePrintRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGenerateImageFeaturePrintRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGenerateImageFeaturePrintRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngenerateimagefeatureprintrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for image-analysis requests that focus on a specific part of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageBasedRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageBasedRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageBasedRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagebasedrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes one or more image-analysis request pertaining to a single image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNObservation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for analysis results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/analyzing-image-similarity-with-feature-print": {
+      "abstract": [
+        {
+          "text": "Generate a feature print to compute distance between images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/analyzing-image-similarity-with-feature-print",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Analyzing Image Similarity with Feature Print",
+      "type": "topic",
+      "url": "/documentation/vision/analyzing-image-similarity-with-feature-print"
+    },
+    "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search": {
+      "abstract": [
+        {
+          "text": "Analyze and label images using a Vision classification request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+      "images": [
+        {
+          "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying images for categorization and search",
+      "type": "topic",
+      "url": "/documentation/vision/classifying-images-for-categorization-and-search"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/documentation/coregraphics": {
+      "identifier": "https://developer.apple.com/documentation/coregraphics",
+      "title": "Core Graphics",
+      "titleInlineContent": [
+        {
+          "text": "Core Graphics",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coregraphics"
+    },
+    "https://developer.apple.com/documentation/coregraphics/cgimageref": {
+      "identifier": "https://developer.apple.com/documentation/coregraphics/cgimageref",
+      "title": "CGImage",
+      "titleInlineContent": [
+        {
+          "code": "CGImage",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coregraphics/cgimageref"
+    },
+    "https://developer.apple.com/documentation/coreimage": {
+      "identifier": "https://developer.apple.com/documentation/coreimage",
+      "title": "Core Image",
+      "titleInlineContent": [
+        {
+          "text": "Core Image",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coreimage"
+    },
+    "https://developer.apple.com/documentation/coreimage/ciimage": {
+      "identifier": "https://developer.apple.com/documentation/coreimage/ciimage",
+      "title": "CIImage",
+      "titleInlineContent": [
+        {
+          "code": "CIImage",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coreimage/ciimage"
+    },
+    "https://developer.apple.com/documentation/corevideo": {
+      "identifier": "https://developer.apple.com/documentation/corevideo",
+      "title": "Core Video",
+      "titleInlineContent": [
+        {
+          "text": "Core Video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/corevideo"
+    },
+    "https://developer.apple.com/documentation/corevideo/cvpixelbuffer": {
+      "identifier": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer",
+      "title": "CVPixelBuffer",
+      "titleInlineContent": [
+        {
+          "code": "CVPixelBuffer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer"
+    },
+    "https://developer.apple.com/documentation/foundation/nsdata": {
+      "identifier": "https://developer.apple.com/documentation/foundation/nsdata",
+      "title": "Data",
+      "titleInlineContent": [
+        {
+          "code": "Data",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/nsdata"
+    },
+    "https://developer.apple.com/documentation/foundation/nsurl": {
+      "identifier": "https://developer.apple.com/documentation/foundation/nsurl",
+      "title": "URL",
+      "titleInlineContent": [
+        {
+          "code": "URL",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/nsurl"
+    },
+    "https://developer.apple.com/documentation/imageio/cgimagepropertyorientation": {
+      "identifier": "https://developer.apple.com/documentation/imageio/cgimagepropertyorientation",
+      "title": "CGImagePropertyOrientation",
+      "titleInlineContent": [
+        {
+          "code": "CGImagePropertyOrientation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/imageio/cgimagepropertyorientation"
+    },
+    "https://developer.apple.com/documentation/quartzcore": {
+      "identifier": "https://developer.apple.com/documentation/quartzcore",
+      "title": "Core Animation",
+      "titleInlineContent": [
+        {
+          "text": "Core Animation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/quartzcore"
+    },
+    "https://developer.apple.com/documentation/uikit/uiimage": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uiimage",
+      "title": "UIImage",
+      "titleInlineContent": [
+        {
+          "code": "UIImage",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uiimage"
+    },
+    "https://developer.apple.com/documentation/uikit/uiimage/1624141-imageorientation": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uiimage/1624141-imageorientation",
+      "title": "imageOrientation",
+      "titleInlineContent": [
+        {
+          "code": "imageOrientation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uiimage/1624141-imageorientation"
+    },
+    "https://developer.apple.com/documentation/uikit/uiimage/1624147-cgimage": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uiimage/1624147-cgimage",
+      "title": "CGImage",
+      "titleInlineContent": [
+        {
+          "code": "CGImage",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uiimage/1624147-cgimage"
+    },
+    "https://developer.apple.com/documentation/vision": {
+      "identifier": "https://developer.apple.com/documentation/vision",
+      "title": "Vision",
+      "titleInlineContent": [
+        {
+          "text": "Vision",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision"
+    },
+    "https://developer.apple.com/documentation/vision/vnbarcodeobservation/2923485-payloadstringvalue": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnbarcodeobservation/2923485-payloadstringvalue",
+      "title": "payloadStringValue",
+      "titleInlineContent": [
+        {
+          "code": "payloadStringValue",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnbarcodeobservation/2923485-payloadstringvalue"
+    },
+    "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/2875397-symbologies": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/2875397-symbologies",
+      "title": "symbologies",
+      "titleInlineContent": [
+        {
+          "code": "symbologies",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/2875397-symbologies"
+    },
+    "https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d",
+      "title": "facial-feature landmark regions",
+      "titleInlineContent": [
+        {
+          "text": "facial-feature landmark regions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d"
+    },
+    "https://developer.apple.com/documentation/vision/vnfaceobservation": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnfaceobservation",
+      "title": "VNFaceObservation",
+      "titleInlineContent": [
+        {
+          "code": "VNFaceObservation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnfaceobservation"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagebasedrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagebasedrequest",
+      "title": "VNImageBasedRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNImageBasedRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagebasedrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+      "title": "VNImageRequestHandler",
+      "titleInlineContent": [
+        {
+          "code": "VNImageRequestHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869635-init": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869635-init",
+      "title": "init(data:orientation:options:)",
+      "titleInlineContent": [
+        {
+          "code": "init(data:orientation:options:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869635-init"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869641-init": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869641-init",
+      "title": "init(ciImage:orientation:options:)",
+      "titleInlineContent": [
+        {
+          "code": "init(ciImage:orientation:options:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2869641-init"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+      "title": "perform(_:)",
+      "titleInlineContent": [
+        {
+          "code": "perform(_:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880303-init": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880303-init",
+      "title": "init(cvPixelBuffer:orientation:options:)",
+      "titleInlineContent": [
+        {
+          "code": "init(cvPixelBuffer:orientation:options:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880303-init"
+    },
+    "https://developer.apple.com/documentation/vision/vnrequest/2867238-results": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results",
+      "title": "results",
+      "titleInlineContent": [
+        {
+          "code": "results",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results"
+    },
+    "https://developer.apple.com/documentation/vision/vnsequencerequesthandler": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler",
+      "title": "VNSequenceRequestHandler",
+      "titleInlineContent": [
+        {
+          "code": "VNSequenceRequestHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler"
+    },
+    "https://developer.apple.com/documentation/vision/vntextobservation/2867213-characterboxes": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntextobservation/2867213-characterboxes",
+      "title": "characterBoxes",
+      "titleInlineContent": [
+        {
+          "code": "characterBoxes",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntextobservation/2867213-characterboxes"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b2d10dc7f8ea/DetectingObjectsInStillImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Still-image-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+        "doc://com.apple.vision/documentation/Vision/analyzing-image-similarity-with-feature-print",
+        "doc://com.apple.vision/documentation/Vision/VNRequest",
+        "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest",
+        "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest",
+        "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation",
+        "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+        "doc://com.apple.vision/documentation/Vision/VNObservation"
+      ],
+      "title": "Still-image analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Still-image-analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/VNRequest",
+                "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest",
+                "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+                "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest",
+                "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation",
+                "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+                "doc://com.apple.vision/documentation/Vision/VNObservation"
+              ],
+              "title": "Still-image analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/title",
+          "value": "VNImageRequestHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNFeaturePrintObservation/title",
+          "value": "VNFeaturePrintObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNFeaturePrintObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNFeaturePrintObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNFeaturePrintObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNFeaturePrintObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassifyImageRequest/title",
+          "value": "VNClassifyImageRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassifyImageRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNClassifyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassifyImageRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNClassifyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest/title",
+          "value": "VNRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/title",
+          "value": "VNObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateImageFeaturePrintRequest/title",
+          "value": "VNGenerateImageFeaturePrintRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateImageFeaturePrintRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateImageFeaturePrintRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateImageFeaturePrintRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateImageFeaturePrintRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageBasedRequest/title",
+          "value": "VNImageBasedRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageBasedRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageBasedRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageBasedRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageBasedRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/detecting-objects-in-still-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/detecting-objects-in-still-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

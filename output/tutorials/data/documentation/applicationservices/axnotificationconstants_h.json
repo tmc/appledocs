@@ -1,0 +1,206 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/axnotificationconstants_h"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1668505,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "AXNotificationConstants.h"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assistive applications can register to be notified about certain events in a target application. For example, creation of a window or the destruction of a UIElement. To receive notifications you must first create an observer and specify a callback function; second, add the observer's run loop source to the run loop on which you want the callback executed; and third, register the observer for one or more notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create the observer, you specify the application being observed. An observer can receive notifications only from UIElements in that application. To handle multiple applications, you have to create at least one observer per application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you register an observer for a notification, you specify the UIElement you are interested in observing. When you want to receive a notification from any element in an application, use the application UIElement; you then receive the notification regardless of which element in the application sends the notification. This is useful if the UIElement does not exist yet, such as when a new window is created, or if you care about state changes, such as the keyboard focus moving, without having to observe every element separately. When the callback function is executed it is passed the UIElement that was affected by the notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Observers are represented by the AXObserverRef type, which is a CFType. Like all CFTypes they are reference counted (CFRetain/CFRelease).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axnotificationconstants_h/miscellaneous_defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axnotificationconstants_h/miscellaneous_defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axnotificationconstants_h/miscellaneous_defines"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfindex": {
+      "abstract": [
+        {
+          "text": "Priority values used for kAXPriorityKey",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFIndex",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfindex"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1678835",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "See the Overview section above for header-level documentation.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfindex"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1678844",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "See the Overview section above for header-level documentation.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/axnotificationconstants_h/miscellaneous_defines"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/axnotificationconstants_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/axnotificationconstants_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,813 @@
+{
+  "abstract": [
+    {
+      "text": "Protect the user’s data in iOS by encrypting it on disk.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/encrypting-your-app-s-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Encrypting Your App’s Files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data protection is an iOS feature that you use to secure your app’s files and prevent unauthorized access to them. Data protection is enabled automatically when the user sets an active passcode for the device. You read and write your files normally, but the system encrypts and decrypts your content behind the scenes. The encryption and decryption processes are automatic and hardware accelerated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify the level of data protection that you want to apply to each of your files. There are four levels available, each of which determines when you may access the file. If you do not specify a protection level when creating a file, iOS applies the default protection level automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "No protection.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The file is always accessible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Complete until first user authentication.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " (Default) The file is inaccessible until the first time the user unlocks the device. After the first unlocking of the device, the file remains accessible until the device shuts down or reboots.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Complete unless open.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " You can open existing files only when the device is unlocked. If you have a file already open, you may continue to access that file even after the user locks the device. You can also create new files and access them while the device is locked or unlocked.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Complete.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The file is accessible only when the device is unlocked.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create and encrypt a new file in one step, construct a data object with the file’s contents and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data/1779858-write",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. When calling the method, specify the data protection option that you want applied to the file. The following code shows an example of how to write out the contents of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to a file and encrypt it using the complete protection level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "   try data.write(to: fileURL, options: .completeFileProtection)",
+            "}",
+            "catch {",
+            "   // Handle errors.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the data protection level of an existing file, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413819-setresourcevalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When calling this method, assign the new data protection option to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey/1616246-fileprotectionkey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource key. The following code shows an example that adds this key to an existing file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "   try (fileURL as NSURL).setResourceValue( ",
+            "                  URLFileProtection.complete,",
+            "                  forKey: .fileProtectionKey)",
+            "}",
+            "catch {",
+            "   // Handle errors.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Manage-Your-Access-to-Encrypted-Files",
+          "level": 3,
+          "text": "Manage Your Access to Encrypted Files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on a file’s protection level, attempts to read or write its contents could fail when the user subsequently locks the device. To ensure that your app is able to access files, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the right data protection level for your needs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the app delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataWillBecomeUnavailable(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataDidBecomeAvailable(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods to close and reopen files with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/writingoptions/1617198-completefileprotection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " level.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assign the complete protection level to files that your app accesses only when it is in the foreground. If your app supports background capabilities, such as handling location updates, assign a different protection level for files that you might access while in the background. For example, a fitness app might use the complete unless open protection level on a file that it uses to log location events in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Files containing personal information about the user, or files created directly by the user, always warrant the strongest level of protection. Assign the complete protection level to user data files and manage access to those files using the app delegate methods. The app delegate methods give you time to close the files before they become inaccessible to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/1779858-write": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the data buffer to a location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": Data.WritingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/1779858-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/data/1779858-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata/writingoptions/1617198-completefileprotection": {
+      "abstract": [
+        {
+          "text": "An option to make the file accessible only while the device is unlocked. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeFileProtection"
+        },
+        {
+          "kind": "text",
+          "text": ": NSData.WritingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata/writingoptions/1617198-completefileprotection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeFileProtection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata/writingoptions/1617198-completefileprotection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1413819-setresourcevalue": {
+      "abstract": [
+        {
+          "text": "Sets the URL’s resource property for a given key to a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setResourceValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413819-setresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setResourceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1413819-setresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresourcekey/1616246-fileprotectionkey": {
+      "abstract": [
+        {
+          "text": "The key for the protection level of the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileProtectionKey"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResourceKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresourcekey/1616246-fileprotectionkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileProtectionKey",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresourcekey/1616246-fileprotectionkey"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataDidBecomeAvailable(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that protected files are available now.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataDidBecomeAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataDidBecomeAvailable(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataDidBecomeAvailable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationProtectedDataDidBecomeAvailable(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationprotecteddatadidbecomeavailable(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataWillBecomeUnavailable(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the protected files are about to become unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataWillBecomeUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataWillBecomeUnavailable(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataWillBecomeUnavailable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationProtectedDataWillBecomeUnavailable(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationprotecteddatawillbecomeunavailable(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy": {
+      "abstract": [
+        {
+          "text": "Secure personal data, and respect user preferences for how data is used.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protecting the User’s Privacy",
+      "type": "topic",
+      "url": "/documentation/uikit/protecting-the-user-s-privacy"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/uikit/requesting-access-to-protected-resources"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-Privacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/requesting-access-to-protected-resources"
+      ],
+      "title": "Supporting Privacy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Supporting-Privacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/requesting-access-to-protected-resources"
+              ],
+              "title": "Supporting Privacy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataWillBecomeUnavailable(_:)/title",
+          "value": "applicationProtectedDataWillBecomeUnavailable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataWillBecomeUnavailable(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationProtectedDataWillBecomeUnavailable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlresourcekey~11616246-fileprotectionkey/title",
+          "value": "NSURLFileProtectionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataDidBecomeAvailable(_:)/title",
+          "value": "applicationProtectedDataDidBecomeAvailable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataDidBecomeAvailable(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationProtectedDataDidBecomeAvailable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl~11413819-setresourcevalue/title",
+          "value": "setResourceValue:forKey:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata~1writingoptions~11617198-completefileprotection/title",
+          "value": "NSDataWritingFileProtectionComplete"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/encrypting-your-app-s-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/encrypting-your-app-s-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

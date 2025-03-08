@@ -1,0 +1,1386 @@
+{
+  "abstract": [
+    {
+      "text": "A function that manipulates the location of a model’s vertices, run once per vertex.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-(RealityKit)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_realitykit_geometrymodifier_2_0_vertexshader",
+    "images": [
+      {
+        "identifier": "purple.scribble.variable.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Geometry Modifier (RealityKit)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "header": "row",
+                  "rows": [
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Type",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Model Position Offset",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector3f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Color",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Color4",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Normal",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector3f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Bitangent",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector3f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv0",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv1",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector2f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv2",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector4f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv3",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector4f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv4",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector4f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv5",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector4f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv6",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector4f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Uv7",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector4f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ]
+                  ],
+                  "type": "table"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "header": "row",
+                  "rows": [
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Output",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Type",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Out",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Token",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ]
+                  ],
+                  "type": "table"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The offset to each vertices model position.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Model Position Offset",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The color of each vertex.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Color",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The normal vector for each vertex.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Normal",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The bitangent vector for each vertex.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Bitangent",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A set of texture coordinates for each vertex.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Uv0",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A set of texture coordinates for each vertex.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Uv1",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute to apply to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute the node attaches to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute Half4 0",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute the node attaches to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute Half4 1",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute the node attaches to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute Half4 2",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute the node attaches to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute Half4 3",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute the node attaches to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute Half2 0",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A user-defined attribute the node attaches to each vertex of the object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "User Attribute Half2 1",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Geometry Modifier node can be used to cause a material to affect the geometry of any object to which it’s applied, in addition to the objects texture. Connect the output of the Geometry modifier node to the ",
+              "type": "text"
+            },
+            {
+              "code": "Custom Geometry Modifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " output of your material.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below is an example of a simple node graph that uses the Geometry Modifier node to alter the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " model positions of vertices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "GeometryModifierGraph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Noise 2D node to procedurally generate an amount to offset the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " position of each vertex. You can also use the noise to add shadows to the texture in order to show the change in model position more clearly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below, the resulting material applies to a plane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "GeometryModifierMaterial1",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Object before modifier",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "GeometryModifierMaterial2",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Object after modifier",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "GeometryModifierGraph": {
+      "alt": null,
+      "identifier": "GeometryModifierGraph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00136a30e1f473e17c13809511e24380/GeometryModifierGraph.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51f1eb55a24f26fb5ae10ecb59457260/GeometryModifierGraph~dark.png"
+        }
+      ]
+    },
+    "GeometryModifierMaterial1": {
+      "alt": null,
+      "identifier": "GeometryModifierMaterial1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4a79a93ee45909df54677e2f4490b485/GeometryModifierMaterial1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/432fe3e0fb18aeedaf3c64dd7bca23b4/GeometryModifierMaterial1~dark.png"
+        }
+      ]
+    },
+    "GeometryModifierMaterial2": {
+      "alt": null,
+      "identifier": "GeometryModifierMaterial2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6372214cee3c7c81eb2f6c578db4c62c/GeometryModifierMaterial2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61581683fe7c173b1215323058716485/GeometryModifierMaterial2~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit": {
+      "abstract": [
+        {
+          "text": "Add RealityKit surfaces or textures to your material and access and manipulate scene geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Camera-Position-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The position of the camera in the scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Camera-Position-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.camera.viewfinder.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Camera Position (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/camera-position-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "A function that manipulates the location of a model’s vertices, run once per vertex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Model-To-View-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The model-to-view transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Model-To-View-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier Model To View (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-model-to-view-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Model-To-World-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The model-to-world transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Model-To-World-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier Model To World (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-model-to-world-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Normal-To-World-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The normal-to-world transformation Matrix3x3 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Normal-To-World-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier Normal To World (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-normal-to-world-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Projection-To-View-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The projection-to-view transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Projection-To-View-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier Projection To View (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-projection-to-view-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Vertex-ID-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The integer index of the vertex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Vertex-ID-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier Vertex ID (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-vertex-id-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-View-To-Projection-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The view-to-projection transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-View-To-Projection-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier View To Projection (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-view-to-projection-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-World-To-Model-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The world-to-model transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-World-To-Model-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Geometry Modifier World To Model (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/geometry-modifier-world-to-model-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Occlusion-Surface-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "A surface shader that defines properties for a RealityKit Occlusion material that does not receive dynamic lighting.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Occlusion-Surface-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Occlusion Surface (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/occlusion-surface-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/PBR-Surface-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "A surface shader that defines properties for a RealityKit Physically Based Rendering material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/PBR-Surface-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBR Surface (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/pbr-surface-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Shadow-Receiving-Occlusion-Surface-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "A surface shader that defines properties for a RealityKit Occlusion material that receives dynamic lighting.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Shadow-Receiving-Occlusion-Surface-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Shadow Receiving Occlusion Surface (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/shadow-receiving-occlusion-surface-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Surface-Model-To-View-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The model-to-view transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Surface-Model-To-View-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Surface Model To View (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/surface-model-to-view-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Surface-Model-To-World-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "The model-to-world transformation Matrix4x4 (Float).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Surface-Model-To-World-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Surface Model To World (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/surface-model-to-world-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Unlit-Surface-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "A surface shader that defines properties for a RealityKit Unlit material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Unlit-Surface-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Unlit Surface (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/unlit-surface-(realitykit)"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/View-Direction-(RealityKit)": {
+      "abstract": [
+        {
+          "text": "A vector from a position in the scene to the view reference point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/View-Direction-(RealityKit)",
+      "images": [
+        {
+          "identifier": "purple.camera.viewfinder.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View Direction (RealityKit)",
+      "type": "topic",
+      "url": "/documentation/shadergraph/realitykit/view-direction-(realitykit)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.camera.viewfinder.png": {
+      "alt": "nil",
+      "identifier": "purple.camera.viewfinder.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/412e1224c8f14b484919ce68de0f24d4/purple.camera.viewfinder.png"
+        }
+      ]
+    },
+    "purple.scribble.variable.png": {
+      "alt": "nil",
+      "identifier": "purple.scribble.variable.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c8425513fe53762d457b1ee08fa4dca/purple.scribble.variable.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Unlit-Surface-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/PBR-Surface-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Occlusion-Surface-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Shadow-Receiving-Occlusion-Surface-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/View-Direction-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Camera-Position-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Model-To-World-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-World-To-Model-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Normal-To-World-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Model-To-View-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-View-To-Projection-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Projection-To-View-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Geometry-Modifier-Vertex-ID-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Surface-Model-To-World-(RealityKit)",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/realitykit/Surface-Model-To-View-(RealityKit)"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/realitykit/geometry-modifier-(realitykit)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,719 @@
+{
+  "abstract": [
+    {
+      "text": "A type that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.symbols/documentation/Symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSymbolVariableColorEffect",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "NSSymbolVariableColorEffect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Symbols"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSSymbolVariableColorEffect"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSSymbolVariableColorEffect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSymbolVariableColorEffect"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSSymbolEffect",
+              "text": "NSSymbolEffect"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A variable color animation draws attention to a symbol by changing the opacity of the symbol’s layers. You can choose to apply the effect to layers either cumulatively or iteratively. For cumulative animations, each layer’s opacity remains changed until the end of the animation cycle. For iterative animations, each layer’s opacity changes briefly before returning to its original state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Variable color animations affect only symbols containing variable color layers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "// Add an effect in AppKit and UIKit.",
+            "// Iteratively activates layers.",
+            "NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithRepeatCount:1];",
+            "[self.imageView1 addSymbolEffect:[NSSymbolVariableColorEffect.effect effectWithIterative] options: options];",
+            "",
+            "// Cumulatively activates layers reversing and repeating three times.",
+            "NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithRepeatCount:3];",
+            "NSSymbolVariableColorEffect *effect =",
+            "    [[NSSymbolVariableColorEffect.effect effectWithHideInactiveLayers] effectWithReversing];",
+            "[self.imageView2 addSymbolEffect:effect options:options];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.symbols/documentation/Symbols": {
+      "abstract": [
+        {
+          "text": "Apply universal animations to symbol-based images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Symbols",
+      "type": "topic",
+      "url": "/documentation/symbols"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolAppearEffect": {
+      "abstract": [
+        {
+          "text": "A type that makes the layers of a symbol-based image appear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolAppearEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolAppearEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolAppearEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolappeareffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolBounceEffect": {
+      "abstract": [
+        {
+          "text": "A type that applies a transitory scaling effect, or bounce, to the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolBounceEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolBounceEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolBounceEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolbounceeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolBreatheEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolBreatheEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolBreatheEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolBreatheEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolbreatheeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolDisappearEffect": {
+      "abstract": [
+        {
+          "text": "A type that makes the layers of a symbol-based image disappear separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolDisappearEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolDisappearEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolDisappearEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymboldisappeareffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect": {
+      "abstract": [
+        {
+          "text": "An abstract base class for effects that you can apply to a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymboleffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolPulseEffect": {
+      "abstract": [
+        {
+          "text": "A type that fades the opacity of some or all layers in a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolPulseEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolPulseEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolPulseEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolpulseeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolRotateEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolRotateEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolRotateEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolRotateEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolrotateeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolScaleEffect": {
+      "abstract": [
+        {
+          "text": "A type that scales the layers in a symbol-based image separately or as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolScaleEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolScaleEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolScaleEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolscaleeffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect": {
+      "abstract": [
+        {
+          "text": "A type that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolVariableColorEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolVariableColorEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effect": {
+      "abstract": [
+        {
+          "text": "An animation that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "effect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effect"
+        }
+      ],
+      "role": "symbol",
+      "title": "effect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effect"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithCumulative": {
+      "abstract": [
+        {
+          "text": "An effect that enables each layer of a symbol-based image in sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectWithCumulative"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithCumulative",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectWithCumulative"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectWithCumulative",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effectwithcumulative"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithDimInactiveLayers": {
+      "abstract": [
+        {
+          "text": "An effect that dims inactive layers in a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectWithDimInactiveLayers"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithDimInactiveLayers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectWithDimInactiveLayers"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectWithDimInactiveLayers",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effectwithdiminactivelayers"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithHideInactiveLayers": {
+      "abstract": [
+        {
+          "text": "An effect that hides inactive layers in a symbol-based image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectWithHideInactiveLayers"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithHideInactiveLayers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectWithHideInactiveLayers"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectWithHideInactiveLayers",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effectwithhideinactivelayers"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithIterative": {
+      "abstract": [
+        {
+          "text": "An effect that momentarily enables each layer of a symbol-based image in sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectWithIterative"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithIterative",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectWithIterative"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectWithIterative",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effectwithiterative"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithNonReversing": {
+      "abstract": [
+        {
+          "text": "An effect that doesn’t reverse each time it repeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectWithNonReversing"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithNonReversing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectWithNonReversing"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectWithNonReversing",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effectwithnonreversing"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithReversing": {
+      "abstract": [
+        {
+          "text": "An effect that reverses each time it repeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectWithReversing"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithReversing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectWithReversing"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectWithReversing",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolvariablecoloreffect/effectwithreversing"
+    },
+    "doc://com.apple.symbols/documentation/Symbols/NSSymbolWiggleEffect": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSSymbolWiggleEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.symbols/documentation/Symbols/NSSymbolWiggleEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSymbolWiggleEffect",
+      "type": "topic",
+      "url": "/documentation/symbols/nssymbolwiggleeffect"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolEffect"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Symbol-effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolAppearEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolBounceEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolDisappearEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolPulseEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolScaleEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolBreatheEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolRotateEffect",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolWiggleEffect"
+      ],
+      "title": "Symbol effects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-symbol-effects",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effect"
+      ],
+      "title": "Accessing symbol effects"
+    },
+    {
+      "anchor": "Controlling-fill-style",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithCumulative",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithIterative"
+      ],
+      "title": "Controlling fill style"
+    },
+    {
+      "anchor": "Changing-playback-style",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithNonReversing",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithReversing"
+      ],
+      "title": "Changing playback style"
+    },
+    {
+      "anchor": "Affecting-inactive-layers",
+      "identifiers": [
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithDimInactiveLayers",
+        "doc://com.apple.symbols/documentation/Symbols/NSSymbolVariableColorEffect/effectWithHideInactiveLayers"
+      ],
+      "title": "Affecting inactive layers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/symbols/variablecolorsymboleffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/symbols/nssymbolvariablecoloreffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

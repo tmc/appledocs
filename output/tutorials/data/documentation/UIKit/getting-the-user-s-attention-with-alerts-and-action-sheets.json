@@ -1,0 +1,758 @@
+{
+  "abstract": [
+    {
+      "text": "Present important information to the user or prompt the user about an important choice.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/getting-the-user-s-attention-with-alerts-and-action-sheets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting the user’s attention with alerts and action sheets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display an alert or action sheet when your app requires additional information or acknowledgment from the user. Alerts and action sheets interrupt your app’s normal flow to display a message to the user. In the following image, the left image shows an alert and the right image shows an action sheet. The user dismisses an alert or action sheet by selecting one of the listed options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2938395",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Because alerts and action sheets are an interruption, use them sparingly and only when absolutely needed. For detailed guidance on when to use them, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/all-components",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display an alert or action sheet, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, configure it, and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, as shown in the following code. Configuring the alert controller includes specifying the title and message that you want the user to see and the actions the user can select. You must add at least one action — represented by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object — to an alert controller before presenting it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func agreeToTerms() {",
+            "   // Create the action buttons for the alert.",
+            "   let defaultAction = UIAlertAction(title: \"Agree\", ",
+            "                        style: .default) { (action) in",
+            "\t// Respond to user selection of the action.",
+            "   }",
+            "   let cancelAction = UIAlertAction(title: \"Disagree\", ",
+            "                        style: .cancel) { (action) in",
+            "\t// Respond to user selection of the action.",
+            "   }",
+            "   ",
+            "   // Create and configure the alert controller.     ",
+            "   let alert = UIAlertController(title: \"Terms and Conditions\",",
+            "         message: \"Click Agree to accept the terms and conditions.\",",
+            "         preferredStyle: .alert)",
+            "   alert.addAction(defaultAction)",
+            "   alert.addAction(cancelAction)",
+            "        ",
+            "   self.present(alert, animated: true) {",
+            "      // The alert was presented",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-an-action-sheet-on-iPad",
+          "level": 3,
+          "text": "Present an action sheet on iPad",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPad, UIKit requires that you display an action sheet inside a popover. The following image shows an action sheet anchored to a bar button item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2940105",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display your action sheet in a popover, specify your popover’s anchor point using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your alert controller. It’s safe to configure this property regardless of the underlying device. In other words, The following code displays the action sheet in a popover on iPad and as a slide-up presentation on iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func deleteItem() {",
+            "   let destroyAction = UIAlertAction(title: \"Delete\", ",
+            "             style: .destructive) { (action) in",
+            "\t// Respond to user selection of the action",
+            "   }",
+            "   let cancelAction = UIAlertAction(title: \"Cancel\", ",
+            "             style: .cancel) { (action) in",
+            "\t// Respond to user selection of the action",
+            "   }",
+            "        ",
+            "   let alert = UIAlertController(title: \"Delete the image?\", ",
+            "               message: \"\", ",
+            "               preferredStyle: .actionSheet)",
+            "   alert.addAction(destroyAction)",
+            "   alert.addAction(cancelAction)",
+            "        ",
+            "   // On iPad, action sheets must be presented from a popover.",
+            "   alert.popoverPresentationController?.barButtonItem = ",
+            "               self.trashButton",
+            "        ",
+            "   self.present(alert, animated: true) {",
+            "      // The alert was presented",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your set of actions includes a button configured with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertAction/Style-swift.enum/cancel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " style, UIKit removes that button when displaying your action sheet in a popover. Tapping anywhere outside of the popover has the same effect as tapping the Cancel button, including calling your action handler.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertAction": {
+      "abstract": [
+        {
+          "text": "An action that can be taken when the user taps a button in an alert.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertAction/Style-swift.enum/cancel": {
+      "abstract": [
+        {
+          "text": "Apply a style that indicates the action cancels the operation and leaves things unchanged.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertAction/Style-swift.enum/cancel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertActionStyleCancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertAction.Style.cancel",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertaction/style-swift.enum/cancel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertController": {
+      "abstract": [
+        {
+          "text": "An object that displays an alert message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertController",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController": {
+      "abstract": [
+        {
+          "text": "The nearest popover presentation controller that is managing the current view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popoverPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPopoverPresentationController",
+          "text": "UIPopoverPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popoverPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "popoverPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/popoverpresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewController:animated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/present(_:animated:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/all-components": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/all-components",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/all-components"
+    },
+    "media-2938395": {
+      "alt": "An alert shows location services are off. An action sheet from Safari asks what to do with tabs.",
+      "identifier": "media-2938395",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9d8686737bb1cb4a4a13ec0a93a8453/media-2938395@2x.png"
+        }
+      ]
+    },
+    "media-2940105": {
+      "alt": "On iPad, an action sheet is anchored to a bar button item in a toolbar.",
+      "identifier": "media-2940105",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e159e6db3f6e8028c8f828861797ab16/media-2940105@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Alerts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+        "doc://com.apple.uikit/documentation/UIKit/UIAlertAction"
+      ],
+      "title": "Alerts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Alerts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+                "doc://com.apple.uikit/documentation/UIKit/UIAlertAction"
+              ],
+              "title": "Alerts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1popoverPresentationController/title",
+          "value": "popoverPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1popoverPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "popoverPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/title",
+          "value": "UIAlertController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertAction~1Style-swift.enum~1cancel/title",
+          "value": "UIAlertActionStyleCancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertAction~1Style-swift.enum~1cancel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertActionStyleCancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/title",
+          "value": "presentViewController:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:animated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertAction/title",
+          "value": "UIAlertAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertAction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/getting-the-user-s-attention-with-alerts-and-action-sheets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/getting-the-user-s-attention-with-alerts-and-action-sheets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1189 @@
+{
+  "abstract": [
+    {
+      "text": "Adjust your app’s UI to make sure it works well for people who use Assistive Access.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/assistive-technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility/assistive-access"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/cognitive",
+        "doc://com.apple.Accessibility/documentation/Accessibility/assistive-access"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/optimizing-your-app-for-assistive-access"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Optimizing your app for Assistive Access"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, make sure your standard app UI works well for Assistive Access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you can make small adjustments to your UI to make sure it looks and works as you expect in Assistive Access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can optimize your UI when Assistive Access is running in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Opt in to full-screen mode to get more screen space for your UI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove workflows or UI elements that aren’t appropriate in the context of Assistive Access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Opt-in-to-full-screen-mode",
+          "level": 3,
+          "text": "Opt in to full-screen mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows your app’s UI to expand into all the available space above the Back button in Assistive Access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also lists your app as Optimized for Assistive Access in Settings, so that a trusted supporter configuring Assistive Access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on someone’s behalf knows that your app’s UI is optimized for this feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add this key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ensure your UI is adaptive so that it works with flexible screen dimensions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Don’t rely on fixed screen sizes in your app design or logic.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use safe areas and layout guides to avoid overlapping your app’s UI with system UI or hardware elements. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/safeAreaInsets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/safeAreaLayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t add this key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a trusted supporter can still choose to make your app available in Assistive Access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By default, the system draws apps in a reduced frame to fit them onscreen with the prominent Back button in Assistive Access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This frame matches the dimensions of a smaller iPhone or iPad screen,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so you don’t need to make changes to your existing UI for your app to work in Assistive Access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-unnecessary-UI-elements",
+          "level": 3,
+          "text": "Remove unnecessary UI elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It may not be possible for a person who’s using your app while Assistive Access is running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to complete certain tasks or workflows, due to the differences described in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/assistive-access-iphone/understand-differences-assistive-access-dev473e94873/ios",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In situations like this, you can make note of these differences when you test your app in Assistive Access,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and remove workflows or UI elements that aren’t appropriate in the context of Assistive Access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make small adjustments to your UI in Assistive Access,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you check whether Assistive Access is running on the device using SwiftUI or the Accessibility framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "import SwiftUI",
+                    "",
+                    "@Environment(\\.accessibilityAssistiveAccessEnabled) private var isAssistiveAccessEnabled",
+                    "",
+                    "if isAssistiveAccessEnabled {",
+                    "  // Assistive Access is on. Make small adjustments specific to Assistive Access.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "import Accessibility",
+                    "",
+                    "if AccessibilitySettings.isAssistiveAccessEnabled {",
+                    "  // Assistive Access is on. Make small adjustments specific to Assistive Access.",
+                    "} "
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Accessibility framework"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-reference",
+          "level": 4,
+          "text": "Related reference",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled",
+            "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityAssistiveAccessEnabled",
+            "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.Accessibility/documentation/Accessibility/performing-accessibility-testing-for-your-app"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-design-guidance",
+          "level": 4,
+          "text": "Related design guidance",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2023/10032"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "3BF48B60-4462-4461-BAB8-7E4A6224A2F5": {
+      "alt": null,
+      "identifier": "3BF48B60-4462-4461-BAB8-7E4A6224A2F5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/3BF48B60-4462-4461-BAB8-7E4A6224A2F5/8060_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/3BF48B60-4462-4461-BAB8-7E4A6224A2F5/8060_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/3BF48B60-4462-4461-BAB8-7E4A6224A2F5/8060_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Performing-Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Performing-Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e051f9ccd83bfe36b3b3f6d9f40cbdb7/Performing-Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aa888b2429f4c432b6746549abb24c55/Performing-Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-card-cognitive.png": {
+      "alt": "An illustration that shows a person standing and looking at an Apple Watch on their left wrist.",
+      "identifier": "accessibility-card-cognitive.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e160ce0d82939c6b6866af282cc4bc9c/accessibility-card-cognitive@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d882a73b0819d3d605fb78bda492908/accessibility-card-cognitive~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility.svg": {
+      "alt": null,
+      "identifier": "accessibility.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "accessibility",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83c941607786e0ba1f582082f4e94361/accessibility.svg"
+        }
+      ]
+    },
+    "assistive-access-card.png": {
+      "alt": "",
+      "identifier": "assistive-access-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a2ce2f33aac08a5727273235f9f0bb6/assistive-access-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Assistive Access is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAssistiveAccessEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXAssistiveAccessEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAssistiveAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibilitysettings/isassistiveaccessenabled"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/assistive-access": {
+      "abstract": [
+        {
+          "text": "A mode that tailors the iOS and iPadOS experience for people with cognitive disabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/assistive-access",
+      "images": [
+        {
+          "identifier": "assistive-access-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Assistive Access",
+      "type": "topic",
+      "url": "/documentation/accessibility/assistive-access"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/assistive-technologies": {
+      "abstract": [
+        {
+          "text": "Make sure your app provides a great experience for people who use assistive technologies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/assistive-technologies",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Assistive technologies",
+      "type": "topic",
+      "url": "/documentation/accessibility/assistive-technologies"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/cognitive": {
+      "abstract": [
+        {
+          "text": "A person may have difficulty remembering a sequence of steps, or they",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "may find an overly complex user interface difficult to process and manage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/cognitive",
+      "images": [
+        {
+          "identifier": "accessibility-card-cognitive.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cognitive",
+      "type": "topic",
+      "url": "/documentation/accessibility/cognitive"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/performing-accessibility-testing-for-your-app": {
+      "abstract": [
+        {
+          "text": "Test your app with accessibility settings and assistive technologies to discover and address accessibility issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/performing-accessibility-testing-for-your-app",
+      "images": [
+        {
+          "identifier": "Performing-Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Performing accessibility testing for your app",
+      "type": "topic",
+      "url": "/documentation/accessibility/performing-accessibility-testing-for-your-app"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility": {
+      "abstract": [
+        {
+          "text": "Accessible user interfaces empower everyone to have a great experience with your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+      "images": [
+        {
+          "identifier": "accessibility.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-accessibility-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/accessibility"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if an iOS or iPadOS app appears as full screen in Assistive Access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISupportsFullScreenInAssistiveAccess",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityAssistiveAccessEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Assistive Access is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityAssistiveAccessEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityAssistiveAccessEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityAssistiveAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityAssistiveAccessEnabled"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/safeAreaInsets": {
+      "abstract": [
+        {
+          "text": "The insets that you use to determine the safe area for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/safeAreaInsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeAreaInsets",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/safeAreaInsets"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/safeAreaLayoutGuide": {
+      "abstract": [
+        {
+          "text": "The layout guide representing the portion of your view that is unobscured by bars and other content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeAreaLayoutGuide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILayoutGuide",
+          "text": "UILayoutGuide"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/safeAreaLayoutGuide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeAreaLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/safeAreaLayoutGuide"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10032": {
+      "abstract": [
+        {
+          "text": "Learn how Assistive Access can help people with cognitive disabilities more easily use iPhone and iPad. Discover the design principles that guide Assistive Access and find out how the system experience adapts to lighten cognitive load. We’ll show you how Assistive Access works and what you can do to support this experience in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10032",
+      "images": [
+        {
+          "identifier": "3BF48B60-4462-4461-BAB8-7E4A6224A2F5",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Meet Assistive Access",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10032"
+    },
+    "foundations-accessibility-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-accessibility-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b7b11d06dd958f4e9449f0a5acdadbd/foundations-accessibility-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fea544b1ff706c10ba3a1d06f528da46/foundations-accessibility-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "https://support.apple.com/guide/assistive-access-iphone/understand-differences-assistive-access-dev473e94873/ios": {
+      "identifier": "https://support.apple.com/guide/assistive-access-iphone/understand-differences-assistive-access-dev473e94873/ios",
+      "title": "Understand certain differences in Assistive Access on iPhone",
+      "titleInlineContent": [
+        {
+          "text": "Understand certain differences in Assistive Access on iPhone",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/assistive-access-iphone/understand-differences-assistive-access-dev473e94873/ios"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1safeAreaLayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UILayoutGuide",
+              "text": "UILayoutGuide"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "safeAreaLayoutGuide"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AccessibilitySettings~1isAssistiveAccessEnabled/title",
+          "value": "AXAssistiveAccessEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AccessibilitySettings~1isAssistiveAccessEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXAssistiveAccessEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1safeAreaInsets/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@UIEdgeInsets",
+              "text": "UIEdgeInsets"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "safeAreaInsets"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/optimizing-your-app-for-assistive-access"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/optimizing-your-app-for-assistive-access"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

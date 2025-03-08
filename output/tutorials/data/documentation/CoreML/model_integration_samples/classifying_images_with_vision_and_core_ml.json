@@ -1,0 +1,1429 @@
+{
+  "abstract": [
+    {
+      "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/vision",
+        "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreml",
+        "doc://com.apple.documentation/documentation/coreml/model-integration-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+  },
+  "kind": "article",
+  "legacy_identifier": 2890740,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Classifying Images with Vision and Core ML"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app in this sample identifies the most prominent object in an image by using MobileNet, an open source image classifier model that recognizes around 1,000 different categories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4042620",
+              "metadata": {
+                "anchor": "4042620",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time a user selects a photo from the library or takes a photo with a camera, the app passes it to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " image classification request. Vision resizes and crops the photo to meet the MobileNet model’s constraints for its image input, and then passes the photo to the model using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework behind the scenes. Once the model generates a prediction, Vision relays it back to the app, which presents the results to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses MobileNet as an example of how to use a third-party Core ML model. You can download open source models — including a newer version of MobileNet — on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3884866",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you integrate a third-party model to solve a problem — which may increase the size of your app — consider using an API in the SDK. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class offers the same functionality as MobileNet, but with potentially better performance and without increasing the size of your app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can make a custom image classifier that identifies your choice of object types with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn how to create a custom image classifier that can replace the MobileNet model in this sample.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4042638",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample targets iOS 14 or later, but the MobileNet model in the project works with:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 11 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 10.13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To take photos within the app, run the sample on a device with a camera. Otherwise, you can select photos from the library in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add your own photos to the photo library in Simulator by dragging photos onto its window.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4042639",
+          "level": 3,
+          "text": "Create an Image Classifier Instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch, the ",
+              "type": "text"
+            },
+            {
+              "code": "ImagePredictor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class creates an image classifier singleton by calling its ",
+              "type": "text"
+            },
+            {
+              "code": "createImageClassifier()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// - Tag: name",
+            "static func createImageClassifier() -> VNCoreMLModel {",
+            "    // Use a default model configuration.",
+            "    let defaultConfig = MLModelConfiguration()",
+            "",
+            "    // Create an instance of the image classifier's wrapper class.",
+            "    let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)",
+            "",
+            "    guard let imageClassifier = imageClassifierWrapper else {",
+            "        fatalError(\"App failed to create an image classifier model instance.\")",
+            "    }",
+            "",
+            "    // Get the underlying model instance.",
+            "    let imageClassifierModel = imageClassifier.model",
+            "",
+            "    // Create a Vision instance using the image classifier's model instance.",
+            "    guard let imageClassifierVisionModel = try? VNCoreMLModel(for: imageClassifierModel) else {",
+            "        fatalError(\"App failed to create a `VNCoreMLModel` instance.\")",
+            "    }",
+            "",
+            "    return imageClassifierVisionModel",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4042623",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method creates a Core ML model instance for Vision by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating an instance of the model’s wrapper class that Xcode auto-generates at compile time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieving the wrapper class instance’s underlying ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Passing the model instance to a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Image Predictor class minimizes runtime by only creating a single instance it shares across the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Share a single ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance for each Core ML model in your project.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4042640",
+          "level": 3,
+          "text": "Create an Image Classification Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Image Predictor class creates an image classification request — a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance — by passing the shared image classifier model instance and a request handler to its initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an image classification request with an image classifier model.",
+            "",
+            "let imageClassificationRequest = VNCoreMLRequest(model: ImagePredictor.imageClassifier,",
+            "                                                 completionHandler: visionRequestHandler)",
+            "",
+            "imageClassificationRequest.imageCropAndScaleOption = .centerCrop"
+          ],
+          "metadata": {
+            "anchor": "4042625",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method tells Vision how to adjust images that don’t meet the model’s image input constraints by setting the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageCropAndScaleOption/centerCrop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4042641",
+          "level": 3,
+          "text": "Create a Request Handler",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Image Predictor’s ",
+              "type": "text"
+            },
+            {
+              "code": "makePredictions(for photo, ...)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each image by passing the image and its orientation to the initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let handler = VNImageRequestHandler(cgImage: photoImage, orientation: orientation)"
+          ],
+          "metadata": {
+            "anchor": "4042627",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision rotates the image based on ",
+              "type": "text"
+            },
+            {
+              "code": "orientation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.imageio/documentation/ImageIO/CGImagePropertyOrientation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance — before sending the image to the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the image you want to classify has a URL, create a Vision image request handler with one of these initializers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/init(url:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/init(url:orientation:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4042642",
+          "level": 3,
+          "text": "Start the Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "makePredictions(for photo, ...)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method starts the request by adding it into a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array and passes it to the handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let requests: [VNRequest] = [imageClassificationRequest]",
+            "",
+            "// Start the image classification request.",
+            "try handler.perform(requests)"
+          ],
+          "metadata": {
+            "anchor": "4042629",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can perform multiple Vision requests on the same image by adding each request to the array you pass to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "requests",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4042643",
+          "level": 3,
+          "text": "Retrieve the Request’s Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the image classification request is finished, Vision notifies the Image Predictor by calling the request’s completion handler, ",
+              "type": "text"
+            },
+            {
+              "code": "visionRequestHandler(_:error:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The method retrieves the request’s ",
+              "type": "text"
+            },
+            {
+              "code": "results",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Checking the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "error",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Casting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "results",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.vision/documentation/Vision/VNClassificationObservation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Cast the request's results as an `VNClassificationObservation` array.",
+            "guard let observations = request.results as? [VNClassificationObservation] else {",
+            "    // Image classifiers, like MobileNet, only produce classification observations.",
+            "    // However, other Core ML model types can produce other observations.",
+            "    // For example, a style transfer model produces `VNPixelBufferObservation` instances.",
+            "    print(\"VNRequest produced the wrong result type: \\(type(of: request.results)).\")",
+            "    return",
+            "}",
+            "",
+            "// Create a prediction array from the observations.",
+            "predictions = observations.map { observation in",
+            "    // Convert each observation into an `ImagePredictor.Prediction` instance.",
+            "    Prediction(classification: observation.identifier,",
+            "               confidencePercentage: observation.confidencePercentageString)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4042631",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Image Predictor converts each result to ",
+              "type": "text"
+            },
+            {
+              "code": "Prediction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, a simple structure with two string properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method sends the ",
+              "type": "text"
+            },
+            {
+              "code": "predictions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array to the Image Predictor’s client — the main view controller — by calling the client’s completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Send the predictions back to the client.",
+            "predictionHandler(predictions)"
+          ],
+          "metadata": {
+            "anchor": "4042632",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4042644",
+          "level": 3,
+          "text": "Format and Present the Predictions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "imagePredictionHandler(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method formats the individual predictions into a single string and updates a label in the app’s UI using helper methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func imagePredictionHandler(_ predictions: [ImagePredictor.Prediction]?) {",
+            "    guard let predictions = predictions else {",
+            "        updatePredictionLabel(\"No predictions. (Check console log.)\")",
+            "        return",
+            "    }",
+            "",
+            "    let formattedPredictions = formatPredictions(predictions)",
+            "",
+            "    let predictionString = formattedPredictions.joined(separator: \"\\n\")",
+            "    updatePredictionLabel(predictionString)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4042634",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "updatePredictionLabel(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " helper method safely updates the UI by updating the label’s text on the main dispatch queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updatePredictionLabel(_ message: String) {",
+            "    DispatchQueue.main.async {",
+            "        self.predictionLabel.text = message",
+            "    }"
+          ],
+          "metadata": {
+            "anchor": "4042635",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Keep your app’s UI responsive by making predictions with Core ML models off of the main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "article",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Image Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-image-classifier-model"
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "article",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModel",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel"
+    },
+    "doc://com.apple.documentation/documentation/coreml": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model-integration-samples": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml": {
+      "abstract": [
+        {
+          "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Images with Vision and Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042623": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042623",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042623"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042625": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042625",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042625"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042627": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042627",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042627"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042629": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042629",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042629"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042631": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042631",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042631"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042632": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042632",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042632"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042634": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042634",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042634"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042635": {
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042635",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042635"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/vision": {
+      "identifier": "doc://com.apple.documentation/documentation/vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api": {
+      "identifier": "doc://com.apple.documentation/documentation/vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "doc://com.apple.documentation/documentation/vision/vnclassificationobservation": {
+      "abstract": [
+        {
+          "text": "An object that represents classification information that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNClassificationObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/vision/vnclassificationobservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNClassificationObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnclassificationobservation"
+    },
+    "doc://com.apple.documentation/documentation/vision/vncoremlfeaturevalueobservation": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of key-value information that a Core ML image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLFeatureValueObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/vision/vncoremlfeaturevalueobservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLFeatureValueObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlfeaturevalueobservation"
+    },
+    "doc://com.apple.documentation/documentation/vision/vncoremlrequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that uses a Core ML model to process images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNCoreMLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/vision/vncoremlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlrequest"
+    },
+    "doc://com.apple.documentation/documentation/vision/vnpixelbufferobservation": {
+      "abstract": [
+        {
+          "text": "An object that represents an image that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNPixelBufferObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/vision/vnpixelbufferobservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNPixelBufferObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnpixelbufferobservation"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO/CGImagePropertyOrientation": {
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO/CGImagePropertyOrientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImagePropertyOrientation",
+      "type": "topic",
+      "url": "/documentation/imageio/cgimagepropertyorientation"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "article",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNClassificationObservation": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNClassificationObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNClassificationObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnclassificationobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNClassifyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnclassifyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLModel": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLModel",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlmodel"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNCoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageCropAndScaleOption",
+      "type": "topic",
+      "url": "/documentation/vision/vncoremlrequest/imagecropandscaleoption"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageCropAndScaleOption/centerCrop": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageCropAndScaleOption/centerCrop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNImageCropAndScaleOption.centerCrop",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagecropandscaleoption/centercrop"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/init(url:options:)": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/init(url:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:options:)",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler/init(url:options:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/init(url:orientation:options:)": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/init(url:orientation:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:orientation:options:)",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler/init(url:orientation:options:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler/perform(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler/perform(_:)"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequest": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying images for categorization and search",
+      "type": "topic",
+      "url": "/documentation/vision/classifying-images-for-categorization-and-search"
+    },
+    "doc://com.apple.vision/documentation/Vision/training-a-create-ml-model-to-classify-flowers": {
+      "abstract": [
+        {
+          "text": "Train a flower classifier using Create ML in Swift Playgrounds, and apply the resulting model to real-time image classification using Vision.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/training-a-create-ml-model-to-classify-flowers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Training a Create ML Model to Classify Flowers",
+      "type": "topic",
+      "url": "/documentation/vision/training-a-create-ml-model-to-classify-flowers"
+    },
+    "https://docs-assets.developer.apple.com/published/f039f0a262/ClassifyingImagesWithVisionAndCoreML.zip": {
+      "checksum": "73a7836f8bf93c20133c134bd0aac49a43435004e6a89f6f4cb2e8544dc5b9ea73f736904f7325c378e9dc8ecfd68ba7da31bfa985fe5df73ddd464887ddc925",
+      "identifier": "https://docs-assets.developer.apple.com/published/f039f0a262/ClassifyingImagesWithVisionAndCoreML.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f039f0a262/ClassifyingImagesWithVisionAndCoreML.zip"
+    },
+    "link-3884866": {
+      "identifier": "link-3884866",
+      "kind": "article",
+      "role": "link",
+      "title": "Core ML model gallery",
+      "type": "topic",
+      "url": "https://developer.apple.com/machine-learning/models"
+    },
+    "link-media-4042620": {
+      "identifier": "link-media-4042620",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml#4042620"
+    },
+    "media-4042620": {
+      "alt": "Screenshots of the app identifying a monarch butterfly, broccoli, and a daisy in a field.",
+      "identifier": "media-4042620",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a15de432ec/rendered2x-1630546953.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f3219cfe8/renderedDark2x-1630546959.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/f039f0a262/ClassifyingImagesWithVisionAndCoreML.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/training-a-create-ml-model-to-classify-flowers",
+        "doc://com.apple.documentation/documentation/vision/vncoremlrequest",
+        "doc://com.apple.documentation/documentation/vision/vnclassificationobservation",
+        "doc://com.apple.documentation/documentation/vision/vnpixelbufferobservation",
+        "doc://com.apple.documentation/documentation/vision/vncoremlfeaturevalueobservation"
+      ],
+      "title": "Machine learning image analysis"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+        "documentation/vision/original_objective-c_and_swift_api/classifying_images_with_vision_and_core_ml"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+        "documentation/vision/original_objective-c_and_swift_api/classifying_images_with_vision_and_core_ml"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

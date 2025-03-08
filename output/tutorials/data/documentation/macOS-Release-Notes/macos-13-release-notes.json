@@ -1,0 +1,2662 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Ventura 13 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 13 SDK provides support to develop apps for Mac computers running macOS Ventura 13. The SDK comes bundled with Xcode 14.1 RC, available from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information on the compatibility requirements for Xcode 14.1, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_1-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Update to macOS Ventura 13 beta 6 or later before installing firmware updates for Apple Studio Display. (97624990)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "AppKit",
+          "level": 3,
+          "text": "AppKit",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-13",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Accessory-Security",
+          "level": 3,
+          "text": "Accessory Security",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On portable Mac computers with Apple silicon, new USB and Thunderbolt accessories require user approval before the accessory can communicate with macOS for connections wired directly to the USB-C port. This doesn’t apply to power adapters, standalone displays, or connections to an approved hub. Devices can still charge if you choose Don’t Allow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can change the security configuration in System Settings > Security and Privacy > Security. The initial configuration is Ask for new accessories. Configuring an accessibility Switch Control sets the policy to always allow accessory use. Approved devices can connect to a locked Mac for up to three days.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accessories attached during software update from prior versions of macOS are allowed automatically. New accessories attached prior to rebooting the Mac might enumerate and function, but won’t be remembered until connected to an unlocked Mac and explicitly approved. (43338666)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Endpoint-Security",
+          "level": 3,
+          "text": "Endpoint Security",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Third-party security products using the Endpoint Security API might lose Full Disk Access authorization and stop functioning, even though the product remains visible in System Settings. This issue doesn’t affect authorization granted via MDM. (100857507)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Go to System Settings > Privacy & Security > Full Disk Access, select the security product, use the minus (-) button to remove, and then use the plus (+) button to re-add the affected security product. A system restart might be required to restore expected functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "File-System",
+          "level": 3,
+          "text": "File System",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There’s a change to the implementation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "msdos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "exfat",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file systems. Apps that check for those specific file system formats might not detect them. Please file feedback if this impacts your app. (90768681)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "asr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " utility won’t perform a volume replication of the booted macOS volume group without having the invoking app augmented with Full Disk Access privileges (or if SIP is disabled). The new requirement is to turn on Full Disk Access for the app in System Settings > Privacy & Security. (91764517)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "CoreGraphics",
+          "level": 3,
+          "text": "CoreGraphics",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To improve security, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CGImageCreate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " enforces parameter correctness on macOS Ventura 13, iOS 16, iPadOS 16, watchOS 9, and tvOS 16. Passing an incorrect ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CGImageByteOrderInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is no longer supported, and will result in images failing to load. (94855401)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "DeviceDiscoveryUI",
+          "level": 3,
+          "text": "DeviceDiscoveryUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Devices running beta 4 or later aren’t backwards compatible with devices running earlier beta versions. (95233878)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Game-Controller",
+          "level": 3,
+          "text": "Game Controller",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Many additional Bluetooth and USB game controllers are supported by the Game Controller framework on macOS 13, iOS 16, and tvOS 16 and later. (82409809)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Mail",
+          "level": 3,
+          "text": "Mail",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Moving a Remind Me message to another mailbox doesn’t remove the Remind Me banner. (93685824)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Memory-Allocation",
+          "level": 3,
+          "text": "Memory Allocation",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In apps built with the macOS 13 SDK or later, the system memory allocator ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "free",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " operation zeroes out most deallocated blocks in macOS 13 beta or later. Invalid accesses to free memory might result in new crashes or corruption, including:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Read-after-free bugs that previously observed the old contents of a block may now observe zeroes instead",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Write-after-free bugs may now cause subsequent calls to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "calloc",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " to return non-zero memory",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To debug these issues, use Address Sanitizer and Guard Malloc (see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libgmalloc(3)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). (97449075)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Metal",
+          "level": 3,
+          "text": "Metal",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MTLResource.gpuHandle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is deprecated. (92862429)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLAccelerationStructure/gpuResourceID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead, which functions as a replacement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Metal-Offline-Compiler",
+          "level": 3,
+          "text": "Metal Offline Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "MetalFX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " effect outputs aren’t designed to be consumed by the CPU. Outputting to a texture that is read only by the CPU might result in synchronization issues. (91515075)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " If a CPU reading of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MetalFX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " output is desired, instead of encoding the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MetalFX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " effect as the last item in a command buffer, encode a dummy blit that consumes the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MetalFX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " output texture (a 1-pixel region blit is fine) in the command buffer. After the command buffer with the dummy blit is finished, reading of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MetalFX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " effect output texture with CPU synchronizes correctly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSURLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " support for client-certificate based authentication. (24523955)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " support for Private Access Tokens. (82937526)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FTP is deprecated for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and related APIs. Please adopt modern secure networking protocols such as HTTPS. (92623659)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs are now annotated for sendability and main actor isolation. (84157048)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Product",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has new properties for localizing prices and subscription periods. For iOS 15, iPadOS 15, macOS 12, tvOS 15, and watchOS 8 or later use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "priceFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to format numbers derived from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "price",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subscriptionPeriodFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to format durations of time relating to a subscription period. On iOS 16, iPadOS 16, macOS 13, tvOS 16, and watchOS 9 or later use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subscriptionPeriodUnitFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to format single units of a subscription period. (93780442)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A property environment is included in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". It represents the server environment in which the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RenewalInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Transaction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " occurred, respectively. (85988753)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/AppTransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " allows developers to cryptographically verify that the app was purchased on the App Store. (86739279)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "recentSubscriptionStartDate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property is included in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". It represents the date that marks the start of the most recent period of continuous subscription. A period is considered a continuous subscription if there’s no more than a 60-day gap between any two subscribed periods. (86599570)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Present the offer code redemption sheet with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " view modifier in your SwiftUI apps. (85321941)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The StoreKit Messages API allows you to control when App Store messages are displayed in your app. (85321880)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/requestReview",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " environment value to get an instance of a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/RequestReviewAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Then, call this instance to request to display a review prompt from your SwiftUI apps. (86739003)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deprecated the SKDownload API and removed the option to upload nonconsumable in-app purchase assets for Apple to host. In addition, support for managing these assets in App Store Connect is no longer available as of April 2022. (89764253)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Network.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resolved an issue that could cause ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWBrowser",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWConnection",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWConnectionGroup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWEthernetChannel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWListener",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NWPathMonitor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to trigger a retain cycle when various Handler blocks are set. Starting with macOS 13, iOS 16, watchOS 9, and tvOS 16, if software using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Network.framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " targets these releases as the minimum OS, the object releases any blocks they captured once cancelled, breaking the retain cycle. (89677097)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " For software targeting older versions, the retain cycle can be broken by setting the handler blocks to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " after canceling the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom types conforming to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ToolbarContent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now support dynamic properties like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Environment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (94117842)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now place a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Alert",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifiers that accept a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (64819930)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "control",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Section",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or other views that have a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " content now automatically arranges and styles multiple views as hierarchical elements, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subtitle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "label",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " views are intended to be arranged horizontally rather than hierarchically, wrap the views within an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (85184563)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TextField",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " supports multiline text. Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Axis/vertical",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " axis on a text field to allow rendering of multiple lines in contexts like forms, where text is expected to be short to medium length. For long-form text editing, continue to use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextEditor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (51463718)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "list",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " supports Section footers. (78462739)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When presenting a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "window",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", SwiftUI now uses focus state bindings to determine where focus should be placed by default. Clients can specify a custom binding assignment using the new  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "View.defaultFocus(_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier. (81837128)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applying ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "View.focusable(false)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to a container now also disables focus for the container’s contents. (89362190)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An alert presented using an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Error",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " displays as a critical alert, which shows a caution symbol with the app icon overlaid. (82014147)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lists and tables automatically support type-to-select, using the first ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Text",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " content in each cell. (85956291)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Windows created using SwiftUI no longer have a maximum size by default. The user can resize them to fill the screen. To enforce a maximum size, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".windowResizability(.contentSize)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier. (92634133)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Providing actions to a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "navigationTitle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier has been deprecated. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "toolbarTitleActions()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ToolbarTitleActions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type in a toolbar modifier instead. (93658035)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Texts-and-Fonts",
+          "level": 3,
+          "text": "Texts and Fonts",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ATS and ATSUI APIs are fully deprecated. Code using these APIs will fail to compile and link when the deployment target is set to 13. Code targeting earlier versions of macOS will continue to compile, link, and run. macOS 13 is the last release where code depending on ATS or ATSUI will run. All runtime functionality will be removed in next major release of macOS. (83581159)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Wallet",
+          "level": 3,
+          "text": "Wallet",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "American Express cards might need to be removed and re-added to Wallet after updating to macOS 13 beta 6 or later. (97990752)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Metal/MTLAccelerationStructure/gpuResourceID": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gpuResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MTLResourceID",
+          "text": "MTLResourceID"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLAccelerationStructure/gpuResourceID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gpuResourceID",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLAccelerationStructure/gpuResourceID"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/AppTransaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of the app, cryptographically signed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/AppTransaction"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/RequestReviewAction": {
+      "abstract": [
+        {
+          "text": "An instance that tells StoreKit to request an App Store rating or review, if appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RequestReviewAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/RequestReviewAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RequestReviewAction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/RequestReviewAction"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Alert": {
+      "abstract": [
+        {
+          "text": "A representation of an alert presentation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Alert"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Alert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Alert",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Alert"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Axis/vertical": {
+      "abstract": [
+        {
+          "text": "The vertical dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Axis/vertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Axis.vertical",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Axis/vertical"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/requestReview": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestReview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI19RequestReviewActionV",
+          "text": "RequestReviewAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/requestReview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestReview",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/requestReview"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/HStack"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Label"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Section": {
+      "abstract": [
+        {
+          "text": "A container view that you can use to add hierarchy within certain views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Parent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Footer"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Section",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Section"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextEditor": {
+      "abstract": [
+        {
+          "text": "A view that can display and edit long-form text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextEditor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextEditor",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextEditor"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextField": {
+      "abstract": [
+        {
+          "text": "A control that displays an editable text interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextField"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextField",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextField"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet that enables users to redeem subscription offer codes that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offerCodeRedemption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offerCodeRedemption(isPresented:onCompletion:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/offerCodeRedemption(isPresented:onCompletion:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs views from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@resultBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewBuilder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewBuilder",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewBuilder"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 14.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-14_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-13": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-13",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit Release Notes for macOS Ventura 13",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/appkit-release-notes-for-macos-13"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/download/": {
+      "identifier": "https://developer.apple.com/download/",
+      "title": "Beta Software Downloads",
+      "titleInlineContent": [
+        {
+          "text": "Beta Software Downloads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-13",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes"
+      ],
+      "title": "macOS 13"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLAccelerationStructure~1gpuResourceID/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@MTLResourceID",
+              "text": "MTLResourceID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "gpuResourceID"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

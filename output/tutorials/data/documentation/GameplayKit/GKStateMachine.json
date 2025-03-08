@@ -1,0 +1,1829 @@
+{
+  "abstract": [
+    {
+      "text": "A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKStateMachine",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKStateMachine"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKStateMachine"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKStateMachine"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKStateMachine"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In GameplayKit, you subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to define each state and the rules for allowed transitions between states, and use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to manage a machine that combines several states. This system provides a way to organize code in your game by organizing state-dependent actions into methods that run when entering a state, when exiting a state, and periodically while in a state (for example, on every animation frame your game renders).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use state machines to govern various aspects of a game. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An enemy character might use a state machine with Chase, Flee, Dead, and Respawn states, each of which drives the enemy’s behavior, with state transitions determined by player actions and elapsed time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An automated turret might use a state machine with Ready, Firing, and Cooldown states, controlling when it seeks out nearby targets and how often it fires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A game user interface might use Menu, Playing, Paused, and GameOver states, each of which determines what UI elements are shown and what other game elements are running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build a state machine, first define a distinct subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each possible state of the machine. In each state class, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/isValidNextState(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method determines which other state classes the machine may transition into from that state. Then, create a state machine object by constructing instances of the state classes and passing them to one of the methods listed in Creating a State Machine below. Finally, set the machine in motion by choosing an initial state for it to enter with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/enter(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To define state-dependent behavior, override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/didEnter(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/update(deltaTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/willExit(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods in each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The state machine notifies the current state whenever a state change happens. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/didEnter(from:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/willExit(to:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods to perform actions in response to a state change. For example, an enemy character entering the Flee state might change its appearance to indicate that is has become vulnerable to attack by the player.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you call a state machine’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/update(deltaTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, the state machine calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/update(deltaTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of its current state. Use this method to organize per-frame update code by state. For example, an enemy character in the Chase state can update its position to pursue the player, and an enemy in the Flee state can update its position to evade the player.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about state machines, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "abstract": [
+        {
+          "text": "Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for defining state-specific logic as part of a state machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKState"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKState"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKState",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstate"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/didEnter(from:)": {
+      "abstract": [
+        {
+          "text": "Performs custom actions when a state machine transitions into this state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didEnter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKState",
+          "text": "GKState"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/didEnter(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didEnterWithPreviousState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didEnter(from:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstate/didenter(from:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/isValidNextState(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether a state machine currently in this state is allowed to transition into the specified state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isValidNextState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/isValidNextState(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isValidNextState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isValidNextState(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstate/isvalidnextstate(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/update(deltaTime:)": {
+      "abstract": [
+        {
+          "text": "Performs custom actions when a state machine updates while in this state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "deltaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/update(deltaTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateWithDeltaTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(deltaTime:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstate/update(deltatime:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/willExit(to:)": {
+      "abstract": [
+        {
+          "text": "Performs custom actions when a state machine transitions out of this state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willExit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKState",
+          "text": "GKState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState/willExit(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willExitWithNextState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willExit(to:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstate/willexit(to:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine": {
+      "abstract": [
+        {
+          "text": "A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKStateMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKStateMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKStateMachine",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/canEnterState(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether it is valid for the state machine to transition from its current state to a state of the specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canEnterState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/canEnterState(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canEnterState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canEnterState(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/canenterstate(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/currentState": {
+      "abstract": [
+        {
+          "text": "The state machine’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKState",
+          "text": "GKState"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/currentState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentState"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentState",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/currentstate"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/enter(_:)": {
+      "abstract": [
+        {
+          "text": "Attempts to transition the state machine from its current state to a state of the specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/enter(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enterState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enter(_:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/enter(_:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/init(states:)": {
+      "abstract": [
+        {
+          "text": "Initializes a state machine with the specified states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "states"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKState",
+          "text": "GKState"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/init(states:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithStates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(states:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/init(states:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/state(forClass:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "StateType"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "StateType"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "StateType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/state(forClass:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state(forClass:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/state(forclass:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/stateForClass:": {
+      "abstract": [
+        {
+          "text": "Returns the state object in the state machine corresponding to the specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateForClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/stateForClass:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stateForClass:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stateForClass:",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/stateforclass:"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:": {
+      "abstract": [
+        {
+          "text": "Creates a state machine with the specified states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateMachineWithStates:"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stateMachineWithStates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stateMachineWithStates:",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/statemachinewithstates:"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/update(deltaTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the current state object to perform per-frame updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "deltaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/update(deltaTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateWithDeltaTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(deltaTime:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkstatemachine/update(deltatime:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7",
+      "title": "State Machines",
+      "titleInlineContent": [
+        {
+          "text": "State Machines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172",
+      "title": "GameplayKit Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "GameplayKit Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "State-Machines",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState"
+      ],
+      "title": "State Machines"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-State-Machine",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/init(states:)"
+      ],
+      "title": "Creating a State Machine"
+    },
+    {
+      "anchor": "Working-with-States",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/currentState",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/canEnterState(_:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/enter(_:)",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/update(deltaTime:)"
+      ],
+      "title": "Working with States"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/state(forClass:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKStateMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKStateMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKStateMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-State-Machine",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/init(states:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:"
+              ],
+              "title": "Creating a State Machine"
+            },
+            {
+              "anchor": "Working-with-States",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/currentState",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/canEnterState(_:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/enter(_:)",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/stateForClass:",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKStateMachine/update(deltaTime:)"
+              ],
+              "title": "Working with States"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "State-Machines",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKState"
+              ],
+              "title": "State Machines"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKStateMachine"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1update(deltaTime:)/title",
+          "value": "updateWithDeltaTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1update(deltaTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateWithDeltaTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1canEnterState(_:)/title",
+          "value": "canEnterState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1canEnterState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canEnterState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1didEnter(from:)/title",
+          "value": "didEnterWithPreviousState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1didEnter(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didEnterWithPreviousState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1init(states:)/title",
+          "value": "initWithStates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1init(states:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithStates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine/title",
+          "value": "GKStateMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKStateMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKStateMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1currentState/title",
+          "value": "currentState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1currentState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1update(deltaTime:)/title",
+          "value": "updateWithDeltaTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1update(deltaTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateWithDeltaTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1enter(_:)/title",
+          "value": "enterState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKStateMachine~1enter(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enterState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1willExit(to:)/title",
+          "value": "willExitWithNextState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1willExit(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willExitWithNextState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState/title",
+          "value": "GKState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1isValidNextState(_:)/title",
+          "value": "isValidNextState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKState~1isValidNextState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isValidNextState:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkstatemachine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkstatemachine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

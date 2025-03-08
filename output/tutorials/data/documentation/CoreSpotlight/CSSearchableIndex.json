@@ -1,0 +1,2828 @@
+{
+  "abstract": [
+    {
+      "text": "An on-device index for your app’s searchable content.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CSSearchableIndex",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CSSearchableIndex"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CSSearchableIndex"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CSSearchableIndex"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object manages an on-device index for your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "searchable content. To make your app’s content searchable, package it in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and add them to the index. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create as many searchable indexes as you need to manage your content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you can apply different levels of encryption to protect the content in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each index. When you execute a query, Core Spotlight searches your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indexes for the requested information and returns the results to your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app creates ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "objects, set the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "property of those objects to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ensure they appear in search results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Put your content into a custom ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you create.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Custom indexes support batch operations and additional levels of data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protection. Place sensitive personal information in protected indexes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to encrypt that content, and prevent its disclosure without proper",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "authorization from the owner of the device. Although you can put content into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the default index, you can’t encrypt the content in that index or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perform batch operations to add content to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When adding large amounts of data to the index, consider adding it in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "batches to minimize risk. Batch-based updates make it easier to handle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "errors that might occur during the indexing process. For each batch,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you provide client-state information to identify the current batch. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app or extension crashes while a batch operation is in progress,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can use that state information to determine where to start indexing again later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modify custom ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects only on one thread or task at a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time. It’s a programming error to access a custom index from multiple threads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simultaneously. When performing batch updates on an index, start each new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "batch operation only after calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of the previous batch operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex": {
+      "abstract": [
+        {
+          "text": "An on-device index for your app’s searchable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableIndex",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/beginBatch()": {
+      "abstract": [
+        {
+          "text": "Begins a batch of updates to an index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginBatch"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/beginBatch()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginIndexBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginBatch()",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/beginbatch()"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()": {
+      "abstract": [
+        {
+          "text": "Returns the default on-device index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultSearchableIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "default()",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/default()"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAllSearchableItems(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Deletes all searchable items from the index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAllSearchableItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAllSearchableItems(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteAllSearchableItemsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteAllSearchableItems(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/deleteallsearchableitems(completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAppEntities(identifiedBy:ofType:)": {
+      "abstract": [
+        {
+          "text": "Deletes specific app entities from the system’s index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAppEntities"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifiedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAppEntities(identifiedBy:ofType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteAppEntities(identifiedBy:ofType:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/deleteappentities(identifiedby:oftype:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAppEntities(ofType:)": {
+      "abstract": [
+        {
+          "text": "Deletes all app entities of the given type from the system indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAppEntities"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAppEntities(ofType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteAppEntities(ofType:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/deleteappentities(oftype:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withDomainIdentifiers:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes from the index all searchable items associated with the specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteSearchableItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDomainIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withDomainIdentifiers:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteSearchableItemsWithDomainIdentifiers:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteSearchableItems(withDomainIdentifiers:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/deletesearchableitems(withdomainidentifiers:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withIdentifiers:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes from the index all items with the specified identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteSearchableItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withIdentifiers:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteSearchableItemsWithIdentifiers:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteSearchableItems(withIdentifiers:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/deletesearchableitems(withidentifiers:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Ends a batch of index updates and stores the specified state information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withClientState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endIndexBatchWithClientState:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "endBatch(withClientState:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/endbatch(withclientstate:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Ends a batch of index updates and stores the specified state information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endIndexBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "expectedClientState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "newClientState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endIndexBatchWithExpectedClientState:newClientState:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "endIndexBatch(expectedClientState:newClientState:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/endindexbatch(expectedclientstate:newclientstate:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches data from an external provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/fetchdata(forbundleidentifier:itemidentifier:contenttype:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches the app’s most recent client state information asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchLastClientState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchLastClientStateWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchLastClientState(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/fetchlastclientstate(completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexAppEntities(_:priority:)": {
+      "abstract": [
+        {
+          "text": "Indexes the provided entities into the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexAppEntities"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents13IndexedEntityP",
+          "text": "IndexedEntity"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexAppEntities(_:priority:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexAppEntities(_:priority:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/indexappentities(_:priority:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate object that can handle index-management tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CSSearchableIndexDelegate",
+          "text": "CSSearchableIndexDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexDelegate",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/indexdelegate"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds or updates items in the index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexSearchableItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItem",
+          "text": "CSSearchableItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexSearchableItems:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexSearchableItems(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/indexsearchableitems(_:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:)": {
+      "abstract": [
+        {
+          "text": "Returns an on-device index with the specified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/init(name:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)": {
+      "abstract": [
+        {
+          "text": "Returns an on-device index with the specified name and data protection class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "protectionClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProtectionType",
+          "text": "FileProtectionType"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:protectionClass:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:protectionClass:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/init(name:protectionclass:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/isIndexingAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether indexing is available",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIndexingAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/isIndexingAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isIndexingAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isIndexingAvailable()",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/isindexingavailable()"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods a delegate object or app extension uses to handle communication from the on-device index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndexDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndexDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableIndexDelegate",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindexdelegate"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem": {
+      "abstract": [
+        {
+          "text": "The details of your app-specific content that someone might search",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for on their devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItem",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes": {
+      "abstract": [
+        {
+          "text": "Create a description for your app’s content and add it to a Spotlight",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "index to make it searchable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding your app’s content to Spotlight indexes",
+      "type": "topic",
+      "url": "/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the activity should be added to the on-device index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEligibleForSearch"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEligibleForSearch",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Indexes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate"
+      ],
+      "title": "Indexes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-index",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)"
+      ],
+      "title": "Creating an index"
+    },
+    {
+      "anchor": "Determining-if-indexing-is-available",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/isIndexingAvailable()"
+      ],
+      "title": "Determining if indexing is available"
+    },
+    {
+      "anchor": "Responding-to-index-related-changes",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate"
+      ],
+      "title": "Responding to index-related changes"
+    },
+    {
+      "anchor": "Managing-items-in-an-index",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAllSearchableItems(completionHandler:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withDomainIdentifiers:completionHandler:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withIdentifiers:completionHandler:)"
+      ],
+      "title": "Managing items in an index"
+    },
+    {
+      "anchor": "Batching-index-updates",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/beginBatch()",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)"
+      ],
+      "title": "Batching index updates"
+    },
+    {
+      "anchor": "Handling-drag-and-drop-content",
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)"
+      ],
+      "title": "Handling drag and drop content"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAppEntities(identifiedBy:ofType:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAppEntities(ofType:)",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexAppEntities(_:priority:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CSSearchableIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-index",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:)",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)"
+              ],
+              "title": "Creating an index"
+            },
+            {
+              "anchor": "Determining-if-indexing-is-available",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/isIndexingAvailable()"
+              ],
+              "title": "Determining if indexing is available"
+            },
+            {
+              "anchor": "Responding-to-index-related-changes",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexDelegate"
+              ],
+              "title": "Responding to index-related changes"
+            },
+            {
+              "anchor": "Managing-items-in-an-index",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteAllSearchableItems(completionHandler:)",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withDomainIdentifiers:completionHandler:)",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/deleteSearchableItems(withIdentifiers:completionHandler:)"
+              ],
+              "title": "Managing items in an index"
+            },
+            {
+              "anchor": "Batching-index-updates",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/beginBatch()",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)"
+              ],
+              "title": "Batching index updates"
+            },
+            {
+              "anchor": "Handling-drag-and-drop-content",
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)"
+              ],
+              "title": "Handling drag and drop content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Indexes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate"
+              ],
+              "title": "Indexes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CSSearchableIndex"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1endBatch(withClientState:completionHandler:)/title",
+          "value": "endIndexBatchWithClientState:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1endBatch(withClientState:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endIndexBatchWithClientState:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/title",
+          "value": "CSSearchableItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1indexSearchableItems(_:completionHandler:)/title",
+          "value": "indexSearchableItems:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1indexSearchableItems(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indexSearchableItems:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1deleteSearchableItems(withIdentifiers:completionHandler:)/title",
+          "value": "deleteSearchableItemsWithIdentifiers:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1deleteSearchableItems(withIdentifiers:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteSearchableItemsWithIdentifiers:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1init(name:protectionClass:)/title",
+          "value": "initWithName:protectionClass:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1init(name:protectionClass:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:protectionClass:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1endIndexBatch(expectedClientState:newClientState:completionHandler:)/title",
+          "value": "endIndexBatchWithExpectedClientState:newClientState:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1endIndexBatch(expectedClientState:newClientState:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endIndexBatchWithExpectedClientState:newClientState:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1deleteSearchableItems(withDomainIdentifiers:completionHandler:)/title",
+          "value": "deleteSearchableItemsWithDomainIdentifiers:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1deleteSearchableItems(withDomainIdentifiers:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteSearchableItemsWithDomainIdentifiers:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1default()/title",
+          "value": "defaultSearchableIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1default()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1fetchLastClientState(completionHandler:)/title",
+          "value": "fetchLastClientStateWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1fetchLastClientState(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchLastClientStateWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1isIndexingAvailable()/title",
+          "value": "isIndexingAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1isIndexingAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isIndexingAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate/title",
+          "value": "CSSearchableIndexDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndexDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndexDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)/title",
+          "value": "fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1beginBatch()/title",
+          "value": "beginIndexBatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1beginBatch()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginIndexBatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1indexDelegate/title",
+          "value": "indexDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1indexDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indexDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/title",
+          "value": "CSSearchableIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1deleteAllSearchableItems(completionHandler:)/title",
+          "value": "deleteAllSearchableItemsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1deleteAllSearchableItems(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteAllSearchableItemsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1init(name:)/title",
+          "value": "initWithName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1init(name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsuseractivity~11417761-iseligibleforsearch/title",
+          "value": "eligibleForSearch"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/cssearchableindex"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corespotlight/cssearchableindex"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

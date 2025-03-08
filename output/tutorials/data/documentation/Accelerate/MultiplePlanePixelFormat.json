@@ -1,0 +1,865 @@
+{
+  "abstract": [
+    {
+      "text": "A pixel format that contains multiple homogeneous planes represented by multiple underlying vImage buffers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Accelerate24MultiplePlanePixelFormatP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MultiplePlanePixelFormat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MultiplePlanePixelFormat"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MultiplePlanePixelFormat"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MultiplePlanePixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/PixelFormat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate11PixelFormatP",
+              "text": "PixelFormat"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use multiple-plane pixel buffers to store image data as discrete planar buffers that represent individual channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code deinterleaves an interleaved buffer and applies different gamma adjustments to different color channels. The code calls ",
+              "type": "text"
+            },
+            {
+              "code": "PixelBuffer.convert(to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to reinterleave the image data and generates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance of the final output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let srcImage =  imageLiteral(resourceName: \"...\").cgImage(",
+            "    forProposedRect: nil,",
+            "    context: nil,",
+            "    hints: nil)!",
+            "",
+            "var cgImageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8 * 3,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue))!",
+            "",
+            "let interleaved = try vImage.PixelBuffer(",
+            "    cgImage: srcImage,",
+            "    cgImageFormat: &cgImageFormat,",
+            "    pixelFormat: vImage.Interleaved8x3.self)",
+            "",
+            "let multiplane = vImage.PixelBuffer<vImage.Planar8x3>(interleavedBuffer: interleaved)",
+            "",
+            "multiplane.withUnsafePixelBuffers { pixelBuffers in",
+            "",
+            "    // Apply gamma to red channel.",
+            "    pixelBuffers[0].applyGamma(.nineOverElevenHalfPrecision,",
+            "                               destination: pixelBuffers[0])",
+            "",
+            "    // Apply gamma to green channel.",
+            "    pixelBuffers[1].applyGamma(.fiveOverElevenHalfPrecision,",
+            "                               destination: pixelBuffers[1])",
+            "}",
+            "",
+            "multiplane.convert(to: interleaved)",
+            "let outputImage = interleaved"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/InitializableFromCGImage": {
+      "abstract": [
+        {
+          "text": "A pixel format that supports initialization from a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InitializableFromCGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/InitializableFromCGImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InitializableFromCGImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "InitializableFromCGImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/initializablefromcgimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat": {
+      "abstract": [
+        {
+          "text": "A pixel format that contains multiple homogeneous planes represented by multiple underlying vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MultiplePlanePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MultiplePlanePixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MultiplePlanePixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/multipleplanepixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/PlanarPixelFormat": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate17StaticPixelFormatP",
+          "text": "StaticPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/PlanarPixelFormat",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "PlanarPixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/multipleplanepixelformat/planarpixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/bitCountPerPlanarPixel": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitCountPerPlanarPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/bitCountPerPlanarPixel",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "bitCountPerPlanarPixel",
+      "type": "topic",
+      "url": "/documentation/accelerate/multipleplanepixelformat/bitcountperplanarpixel"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/planeCount": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/planeCount",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "planeCount",
+      "type": "topic",
+      "url": "/documentation/accelerate/multipleplanepixelformat/planecount"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/PixelFormat": {
+      "abstract": [
+        {
+          "text": "A pixel buffer pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/PixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "PixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/pixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SinglePlanePixelFormat": {
+      "abstract": [
+        {
+          "text": "A pixel format that contains a single underlying vImage buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SinglePlanePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SinglePlanePixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SinglePlanePixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "SinglePlanePixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/singleplanepixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/StaticPixelFormat": {
+      "abstract": [
+        {
+          "text": "A pixel format that’s known at compile time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/StaticPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticPixelFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/staticpixelformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x2": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains two homogeneous 8-bit planes, for example, CbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Planar8x2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Planar8x2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Planar8x2",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planar8x2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x3": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains three homogeneous 8-bit planes, for example, RGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Planar8x3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Planar8x3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Planar8x3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planar8x3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x4": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains four homogeneous 8-bit planes, for example, RGBA or CMYK.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Planar8x4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Planar8x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Planar8x4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planar8x4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx2": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains two homogeneous 32-bit, floating-point planes, for example, CbCr.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarFx2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlanarFx2"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PlanarFx2",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planarfx2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx3": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains three homogeneous 32-bit, floating-point planes, for example, RGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarFx3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlanarFx3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PlanarFx3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planarfx3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx4": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains four homogeneous 32-bit, floating-point planes, for example, RGBA or CMYK.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarFx4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlanarFx4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PlanarFx4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planarfx4"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/PixelFormat"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x2",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x3",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Planar8x4",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx2",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx3",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx4"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/PixelFormat",
+        "doc://com.apple.accelerate/documentation/Accelerate/StaticPixelFormat",
+        "doc://com.apple.accelerate/documentation/Accelerate/InitializableFromCGImage",
+        "doc://com.apple.accelerate/documentation/Accelerate/SinglePlanePixelFormat"
+      ],
+      "title": "Protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/PlanarPixelFormat"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Type-Properties",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/bitCountPerPlanarPixel",
+        "doc://com.apple.accelerate/documentation/Accelerate/MultiplePlanePixelFormat/planeCount"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/multipleplanepixelformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

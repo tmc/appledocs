@@ -1,0 +1,314 @@
+{
+  "abstract": [
+    {
+      "text": "The sorting function used by an OSOrderedSet to order objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osorderedset"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osorderedset"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osorderedset/osorderfunction"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1808199,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "OSOrderedSet"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "tdef",
+    "title": "OSOrderFunction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "typedef SInt32 ( *OSOrderFunction)("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   const OSMetaClassBase *obj1,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   const OSMetaClassBase *obj2,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   void *context);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An object from the ordered set. May be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "obj1"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object being ordered within the ordered set. May be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "obj2"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a user-provided context. May be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A comparison result of the object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "a negative value if obj2 should precede obj1,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "a positive value if obj1 should precede obj2,",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "and 0 if obj1 and obj2 have an equivalent ordering.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osorderedset": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSOrderedSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osorderedset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osorderedset/osorderfunction": {
+      "abstract": [
+        {
+          "text": "The sorting function used by an OSOrderedSet to order objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osorderedset/osorderfunction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "OSOrderFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/osorderedset/osorderfunction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osorderedset/osorderfunction",
+        "documentation/driverkit/osorderedset/osorderfunction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2770 @@
+{
+  "abstract": [
+    {
+      "text": "Sign Mac code for distribution using either Xcode or command-line tools.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-distribution-signed-code-for-the-mac"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating distribution-signed code for macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before shipping a software product for the Mac, you need to first create distribution-signed code, which is code that you package up and submit to either the Mac App Store or the notary service.  The way you do this depends on the type of your product and how you build it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your product is a Mac app bundle, possibly containing nested code such as an app extension, that you build using Xcode, use Xcode to export a distribution-signed app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your product isn’t an app, but you build it using Xcode, create an Xcode archive, and then manually export distribution-signed code from that archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you build your product using an external build system, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "make",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", add a manual signing step to your build system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have distribution-signed code, package it for distribution. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/packaging-mac-software-for-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use a third-party developer tool to build your app, consult its documentation for advice specific to that tool.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Export-an-app-from-Xcode",
+          "level": 2,
+          "text": "Export an app from Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your product is a standalone app that you build with Xcode, follow these steps to export a distribution-signed app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build an Xcode archive from your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Export a distribution-signed app from that Xcode archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can complete each step from the Xcode app or automate the steps using ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a distribution-signed app using the Xcode app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app’s scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Archives organizer, select the archive created in step 2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Distribute App.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the appropriate distribution method. For example, to create a notarized app that you send directly to your customers, choose Direct Distribution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Distribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the button says Distribute Content rather than Distribute App, your archive has multiple items in its ",
+                  "type": "text"
+                },
+                {
+                  "code": "Products",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory.  To avoid copying a target’s product into the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Products",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory, set the Skip Install (",
+                  "type": "text"
+                },
+                {
+                  "code": "SKIP_INSTALL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") build setting for that target. Do this for every target that has output embedded in your app. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3110-resolving-generic-xcode-archive-issue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Xcode archives and the Archives organizer, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export a distribution-signed app from the command line:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "archive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " action to build and archive your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "exportArchive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " action to export the distribution-signed app from the archive created in step 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see its manual page.  For instructions on how to read a manual page, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  For information about the keys supported by the export options property list, run ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "-help",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-a-non-app-product-built-with-Xcode",
+          "level": 2,
+          "text": "Export a non-app product built with Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To archive a non-app product in Xcode, follow the steps in “Export an app from Xcode” above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export a distribution-signed product from the Xcode archive:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the relevant components from the archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign those components manually.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The commands that you use depend on your project structure. For example, imagine your product is a daemon, but it also has an associated configuration app.  The configuration app has a share extension and an embedded framework to share code between the app and the extension. An archive of this product in Xcode has the following structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DaemonWithApp.xcarchive/",
+            "  Info.plist",
+            "  Products/",
+            "    usr/",
+            "      local/",
+            "        bin/",
+            "          Daemon",
+            "    Applications/",
+            "      ConfigApp.app/",
+            "        Contents/",
+            "          embedded.provisionprofile",
+            "          Frameworks/",
+            "            Core.framework/",
+            "              …",
+            "          PlugIns/",
+            "            Share.appex/",
+            "              Contents/",
+            "                embedded.provisionprofile",
+            "                …",
+            "          …",
+            "  …"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Products",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory contains two items: the daemon itself (",
+              "type": "text"
+            },
+            {
+              "code": "Daemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and the configuration app (",
+              "type": "text"
+            },
+            {
+              "code": "ConfigApp.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). To sign this product, first copy these items out of the archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% mkdir \"to-be-signed\"",
+            "% ditto \"DaemonWithApp.xcarchive/Products/usr/local/bin/Daemon\" \"to-be-signed/Daemon\"",
+            "% ditto \"DaemonWithApp.xcarchive/Products/Applications/ConfigApp.app\" \"to-be-signed/ConfigApp.app\" "
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you copy code, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "ditto",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "code": "cp",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " because ",
+                  "type": "text"
+                },
+                {
+                  "code": "ditto",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " preserves symlinks, which are critical to the structure of Mac frameworks. For more information on this structure, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Symlinks are also useful when dealing with nonstandard code structures.  For more details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/embedding-nonstandard-code-structures-in-a-bundle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Identify-the-code-to-sign",
+          "level": 2,
+          "text": "Identify the code to sign",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign your product, first identify each code item that you need to sign. For example, in the ",
+              "type": "text"
+            },
+            {
+              "code": "DaemonWithApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " product, there are four code items: ",
+              "type": "text"
+            },
+            {
+              "code": "ConfigApp.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Core.framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Share.appex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Daemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each code item, determine the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is it bundled code?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is it a main executable?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bundled code is the main code within a bundle. If, for example, you have an app with a nested helper tool, there are two code items: the app and the helper tool. The app is considered bundled code, but the helper tool isn’t.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the code items in the ",
+              "type": "text"
+            },
+            {
+              "code": "DaemonWithApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " product and whether they’re bundled code or a main executable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code item",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bundled code?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Main executable?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ConfigApp.app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core.framework",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share.appex",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Daemon",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "no",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, it might not be obvious whether the code item is a main executable. To confirm, run the ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. A main executable says ",
+              "type": "text"
+            },
+            {
+              "code": "Mach-O … executable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% file \"to-be-signed/ConfigApp.app/Contents/Frameworks/Core.framework/Versions/A/Core\"",
+            "…",
+            "… Mach-O 64-bit dynamically linked shared library x86_64",
+            "…",
+            "% file \"to-be-signed/ConfigApp.app/Contents/PlugIns/Share.appex/Contents/MacOS/Share\"",
+            "…",
+            "… Mach-O 64-bit executable x86_64",
+            "…"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Core.framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t a main executable, but ",
+              "type": "text"
+            },
+            {
+              "code": "Share.appex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-signing-order",
+          "level": 2,
+          "text": "Determine the signing order",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign code from the inside out.  That is, if component ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depends on component ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", sign ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before you sign ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  For the ",
+              "type": "text"
+            },
+            {
+              "code": "DaemonWithApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example, sign the components in the following order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Core.framework",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Share.appex ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ConfigApp.app",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app and daemon are independent, so you can sign them in either order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-entitlements",
+          "level": 2,
+          "text": "Configure your entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A code signature can include ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "entitlements",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — key-value pairs that grant an executable permission to use a service or technology. When macOS runs a process, it grants that process the entitlements that its executable’s code signature claims. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t apply entitlements to library code.  It doesn’t do anything useful and can prevent your code from running.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You apply entitlements to a main executable. If your main executable needs entitlements, create an ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property list file, and add the key-value pairs for the entitlements that the executable claims.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build your product with Xcode, you might be able to use the ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that Xcode manages in your source code.  If not, create the ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The entitlements file needs to be a property list in the standard XML format with LF line endings, no comments, and no byte-order mark (BOM).  If you’re not sure if your file conforms to these requirements, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "plutil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to convert it to the standard format.  For specific instructions, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues#3561456",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a development-signed version of your program, you can print its entitlements using the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool, and use that information as the basis for your entitlements property list file as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -d --entitlements - --xml \"to-be-signed/ConfigApp.app\" | plutil -convert xml1 -o - -",
+            "…",
+            "<dict>",
+            "  <key>com.apple.application-identifier</key>",
+            "  <string>[Your Team ID].com.example.apple-samplecode.DaemonWithApp.App</string>",
+            "  <key>com.apple.developer.team-identifier</key>",
+            "  <string>[Your Team ID]</string>",
+            "  <key>com.apple.security.app-sandbox</key>",
+            "  <true/>",
+            "  <key>keychain-access-groups</key>",
+            "  <array>",
+            "    <string>[Your Team ID].com.example.apple-samplecode.DaemonWithApp.SharedKeychain</string>",
+            "  </array>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use the entitlements from a development-signed version of your program to create the entitlements property list file for your distribution-signed code, consider the following changes to the entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "development",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "production",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.security.get-task-allow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement allows the debugger to attach to your program, so you rarely apply it to a distribution-signed program. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues#3087731",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For any other entitlement, see the documentation for that specific entitlement in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-designated-requirements",
+          "level": 2,
+          "text": "Configure your designated requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A code signature includes a designated requirement (DR) that macOS uses to identify the code.  For example, macOS uses the DR to track access to privacy-protected resources like the microphone.  For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3127-inside-code-signing-requirements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you sign code with the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, it applies a default DR.  The default DR works well for most products, with one notable exception: The default DR for a Mac App Store app and a Developer ID-signed app are not mutually compatible.  If you distribute two variants of your app, one on the Mac App Store and one that you distribute directly using Developer ID signing, then, by default, those variants don’t share access to privacy-protected resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To share access to privacy-protected resources across variants, sign the variants with mutually compatible DRs.  For advice on how to craft these DRs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3127-inside-code-signing-requirements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you decide to use a custom DR, save it to a requirements file.  Mutually compatible DRs include a code-signing identifier.  If your product has multiple code items, copy this requirements file for each code item and update the code-signing identifier to match that of the code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Embed-distribution-provisioning-profiles",
+          "level": 2,
+          "text": "Embed distribution provisioning profiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For security reasons, a provisioning profile needs to authorize most entitlement claims. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "keychain-access-groups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement requires authorization by a provisioning profile. This stops other developers from distributing apps that impersonate your app to access its confidential keychain items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS allows programs to claim certain entitlements without such authorization.  These unrestricted entitlements include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.security.get-task-allow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.security.application-groups",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Entitlements that enable and configure the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/app-sandbox",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Entitlements that configure the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your program claims a restricted entitlement, include a distribution provisioning profile to authorize that claim as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the profile on the developer website. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/developer-account/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Make sure to choose a profile type that matches your distribution channel (Mac App Store or Developer ID).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy that profile into your program’s bundle. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your product includes a nonbundled executable that uses a restricted entitlement, package that executable in an app-like structure.  For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "DaemonWithApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example, the configuration app and its share extension use a keychain access group to share secrets. The system grants the programs access to that group based on their ",
+              "type": "text"
+            },
+            {
+              "code": "keychain-access-groups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement claim, and a provisioning profile needs to authorize such claims. The app and the share extension each have their own profile. To distribute the app, update the app and share extension bundles with the corresponding distribution provisioning profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% cp \"ConfigApp-Dist.provisionprofile\" \"to-be-signed/ConfigApp.app/Contents/embedded.provisionprofile\"",
+            "% cp \"Share-Dist.provisionprofile\" \"to-be-signed/ConfigApp.app/Contents/PlugIns/Share.appex/Contents/embedded.provisionprofile\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modifying the app in this way breaks the seal on its code signature.  You re-sign the app before you distribute it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you build your product with Xcode, you might find that Xcode embeds a provisioning profile within your bundle.  This is a development provisioning profile.  Replace it with a distribution provisioning profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Confirm-your-code-signing-identity",
+          "level": 2,
+          "text": "Confirm your code-signing identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code you copy from the Xcode archive is typically signed using a development code-signing identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -d -vv to-be-signed/Daemon",
+            "…",
+            "Authority=Apple Development: …",
+            "…"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ship a product that you signed for development, you need to re-sign it for distribution using an appropriate code-signing identity.  Choose one of the following identities for your distribution channel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To distribute an app on the Mac App Store, use an Apple Distribution code-signing identity.  This is named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Apple Distribution: <Team Name> (<Team ID>)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Team Name>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Team ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " identifies your team.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To distribute a product independently, use a Developer ID Application code-signing identity.  This is named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Developer ID Application: <Team ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Team ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " identifies your team.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to set up these code-signing identities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/",
+              "isActive": true,
+              "overridingTitle": "Developer Account Help",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Developer Account Help",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To confirm that your code-signing identity is present and correct, run the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% security find-identity -p codesigning -v",
+            "  1) A06E7F3F8237330EE15CB91BE1A511C00B853358 \"Apple Distribution: …\"",
+            "  2) ADC03B244F4C1018384DCAFFC920F26136F6B59B \"Developer ID Application: …\"",
+            "     2 valid identities found"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-p codesigning",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument filters for code-signing identities. The ",
+              "type": "text"
+            },
+            {
+              "code": "-v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument filters for valid identities only.  If the code-signing identity that you need isn’t listed, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/",
+              "isActive": true,
+              "overridingTitle": "Developer Account Help",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Developer Account Help",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each output line includes a SHA-1 hash that uniquely identifies the identity. If you have multiple identities with the same name, sign your code using this hash rather than the identity name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sign-each-code-item",
+          "level": 2,
+          "text": "Sign each code item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For all code types, the basic ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command looks like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -s <CodeSigningIdentity> <PathToExecutable>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "<CodeSigningIdentity>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the name of the code-signing identity to use, and replace ",
+              "type": "text"
+            },
+            {
+              "code": "<PathToExecutable>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the path to the code to sign.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The specific identity you use for ",
+              "type": "text"
+            },
+            {
+              "code": "<CodeSigningIdentity>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depends on your distribution channel, as discussed in “Confirm your code-signing identity” above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you have multiple identities with the same name, supply the identity’s SHA-1 hash to specify it unambiguously.  For information on how to get this hash, see “Confirm your code-signing identity” above.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re re-signing code — that is, the code you’re signing is already signed — add the ",
+              "type": "text"
+            },
+            {
+              "code": "-f",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re signing a main executable that needs entitlements, add the ",
+              "type": "text"
+            },
+            {
+              "code": "--entitlements <entitlementsPath>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, where ",
+              "type": "text"
+            },
+            {
+              "code": "<entitlementsPath>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the path to the entitlements file that you created for that executable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re signing for Developer ID distribution, add the ",
+              "type": "text"
+            },
+            {
+              "code": "--timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to include a secure timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re signing a main executable for Developer ID distribution, add the ",
+              "type": "text"
+            },
+            {
+              "code": "-o runtime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to enable the Hardened Runtime.  For more information about the Hardened Runtime, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re signing nonbundled code, add the ",
+              "type": "text"
+            },
+            {
+              "code": "-i <BundleID>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to set the code-signing identifier, where ",
+              "type": "text"
+            },
+            {
+              "code": "<BundleID>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the bundle ID the code would have if it had a bundle ID.  For example, for an app with a  bundle ID of ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.flying-animals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that has a nested command-line tool called ",
+              "type": "text"
+            },
+            {
+              "code": "pig-jato",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can use ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.flying-animals.pig-jato",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the bundle ID for the command-line tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For bundled code, you don’t need to supply a code-signing identifier because ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " defaults to using the bundle ID.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using a custom DR, add the ",
+              "type": "text"
+            },
+            {
+              "code": "-r <ReqPath>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, where ",
+              "type": "text"
+            },
+            {
+              "code": "<ReqPath>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the path to the requirements file containing the DR for this code item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Repeat this signing step for every code item in your product, in the order you established in “Determine the signing order” above. If you have a complex product with many code items to sign, create a script to automate this process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The folloiwng code shows the complete sequence of commands to sign the ",
+              "type": "text"
+            },
+            {
+              "code": "DaemonWithApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example for Developer ID distribution:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -s \"Developer ID Application\" -f --timestamp \"to-be-signed/ConfigApp.app/Contents/Frameworks/Core.framework\"",
+            "to-be-signed/ConfigApp.app/Contents/Frameworks/Core.framework: replacing existing signature",
+            "% codesign -s \"Developer ID Application\" -f --timestamp -o runtime --entitlements \"Share.entitlements\" \"to-be-signed/ConfigApp.app/Contents/PlugIns/Share.appex\"",
+            "to-be-signed/ConfigApp.app/Contents/PlugIns/Share.appex: replacing existing signature",
+            "% codesign -s \"Developer ID Application\" -f --timestamp -o runtime --entitlements \"ConfigApp.entitlements\" \"to-be-signed/ConfigApp.app\"",
+            "to-be-signed/ConfigApp.app: replacing existing signature",
+            "% codesign -s \"Developer ID Application\" -f --timestamp -o runtime -i \"com.example.apple-samplecode.DaemonWithApp.Daemon\" \"to-be-signed/Daemon\"",
+            "to-be-signed/Daemon: replacing existing signature"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t run ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " using ",
+                  "type": "text"
+                },
+                {
+                  "code": "sudo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " because ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " relies on information in your user account when it signs code.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Using tools like ",
+                  "type": "text"
+                },
+                {
+                  "code": "sudo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to change user accounts causes problems when ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tries to access this information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Avoid-deep-code-signing",
+          "level": 2,
+          "text": "Avoid deep code signing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t pass the ",
+              "type": "text"
+            },
+            {
+              "code": "--deep",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you sign code.  This option is helpful in some specific circumstances (for example, in verifying a code signature), but it causes the following problems when signing a complex product:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--deep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option applies the same code-signing options to every code item that it signs. For example, if you have an app with an embedded command-line tool, where the app and the tool need different entitlements, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign --deep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " applies the same entitlements to both.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " only signs nested code when you use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--deep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option if that code is in particular locations in the top-level bundle. If you put code in a place where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " expects to find data, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign --deep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t sign it. For information on the correct organization of nested code within a bundle, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases": {
+      "abstract": [
+        {
+          "text": "Release your app to beta testers and users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app for beta testing and releases",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-your-app-for-beta-testing-and-releases"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distribution": {
+      "abstract": [
+        {
+          "text": "Prepare your app and share it with your team, beta testers, and customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/embedding-nonstandard-code-structures-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Use code that’s structured in a nonstandard way while avoiding code signing and distribution problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/embedding-nonstandard-code-structures-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Embedding nonstandard code structures in a bundle",
+      "type": "topic",
+      "url": "/documentation/xcode/embedding-nonstandard-code-structures-in-a-bundle"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/packaging-mac-software-for-distribution": {
+      "abstract": [
+        {
+          "text": "Build a zip archive, disk image, or installer package for distributing your Mac software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/packaging-mac-software-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Packaging Mac software for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/packaging-mac-software-for-distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/sharing-your-teams-signing-certificates": {
+      "abstract": [
+        {
+          "text": "Ensure you and other team members can sign your organization’s code and installer packages in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/sharing-your-teams-signing-certificates",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing code signing identities with your developer account",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-your-teams-signing-certificates"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement": {
+      "abstract": [
+        {
+          "text": "Wrap a daemon in an app-like structure to use an entitlement thatʼs authorized by a provisioning profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing a daemon with a restricted entitlement",
+      "type": "topic",
+      "url": "/documentation/xcode/signing-a-daemon-with-a-restricted-entitlement"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/using-the-latest-code-signature-format": {
+      "abstract": [
+        {
+          "text": "Update legacy app code signatures so your app runs on current OS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/using-the-latest-code-signature-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the latest code signature format",
+      "type": "topic",
+      "url": "/documentation/xcode/using-the-latest-code-signature-format"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entitlements",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment": {
+      "abstract": [
+        {
+          "text": "The environment for push notifications in macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "APS Environment (macOS) Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Place bundle content in the correct location based on its type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing content in a bundle",
+      "type": "topic",
+      "url": "/documentation/BundleResources/placing-content-in-a-bundle"
+    },
+    "doc://com.apple.documentation/documentation/Security/app-sandbox": {
+      "abstract": [
+        {
+          "text": "Restrict access to system resources and user data in macOS apps to contain damage if an app becomes compromised.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sandbox",
+      "type": "topic",
+      "url": "/documentation/Security/app-sandbox"
+    },
+    "doc://com.apple.documentation/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/Security/hardened-runtime"
+    },
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues#3087731": {
+      "abstract": [
+        {
+          "text": "Handle common problems reported in the notarization log file, or that arise during ticket stapling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues#3087731",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving common notarization issues",
+      "type": "topic",
+      "url": "/documentation/Security/resolving-common-notarization-issues"
+    },
+    "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues#3561456": {
+      "abstract": [
+        {
+          "text": "Handle common problems reported in the notarization log file, or that arise during ticket stapling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/resolving-common-notarization-issues#3561456",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving common notarization issues",
+      "type": "topic",
+      "url": "/documentation/Security/resolving-common-notarization-issues"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3110-resolving-generic-xcode-archive-issue": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause a generic Xcode archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3110-resolving-generic-xcode-archive-issue",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3110: Resolving generic Xcode archive issue",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3110-resolving-generic-xcode-archive-issue"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles": {
+      "abstract": [
+        {
+          "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3125: Inside Code Signing: Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3127-inside-code-signing-requirements": {
+      "abstract": [
+        {
+          "text": "Explore how macOS uses code signing requirements to reason about code identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3127-inside-code-signing-requirements",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3127: Inside Code Signing: Requirements",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3127-inside-code-signing-requirements"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement": {
+      "abstract": [
+        {
+          "text": "Wrap a daemon in an app-like structure to use an entitlement thatʼs authorized by a provisioning profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing a daemon with a restricted entitlement",
+      "type": "topic",
+      "url": "/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/developer-account/": {
+      "identifier": "https://help.apple.com/developer-account/",
+      "title": "Developer Account Help",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Code-signing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/using-the-latest-code-signature-format",
+        "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+        "doc://com.apple.Xcode/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+        "doc://com.apple.Xcode/documentation/Xcode/sharing-your-teams-signing-certificates",
+        "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+      ],
+      "title": "Code signing"
+    }
+  ]
+}

@@ -1,0 +1,1145 @@
+{
+  "abstract": [
+    {
+      "text": "Calculate statistical data for graphs and charts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/executing-statistics-collection-queries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Executing Statistics Collection Queries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Produce data for graphs and charts using statistics collection queries. For example, you might create a statistics collection query that calculates the total number of steps for each day or the average heart rate for each hour.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "HealthKit provides two types of queries for calculating statistics over sets of samples. ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " calculates a single value over all matching samples, while ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " partitions the samples into time intervals and calculates a value for each time interval.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Statistics collection queries use an anchor point and a time interval to partition the set of matching samples into collections. The anchor point defines an arbitrary starting point. The position of this point often doesn’t matter. It could be in the future or in the past. Time intervals extend away from this anchor point in both directions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3740870",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you use a 1-day time interval, the anchor point defines the time when each collection begins. The exact date for the anchor point doesn’t matter. It could be 3:34 a.m., January 1, 1970 or 3:34 a.m., March 15, 2065. In both cases, the statistics collection query partitions the matching samples into days, starting each day at 3:34 a.m.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The statistics collection query then calculates common statistics over each time interval. You can use statistics queries to calculate the minimum, maximum, or average value of a set of discrete quantities, or to calculate the sum for cumulative quantities. Also, like observer queries, statistics collection queries can act as long-running queries, receiving updates when the HealthKit store’s content changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Query",
+          "level": 3,
+          "text": "Create the Query",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating your anchor date and time interval. The following sample starts by creating a 1-week time interval. Next, it sets the anchor date to Monday morning at 3:00 a.m. Because the interval is 1 week long, the anchor’s exact date doesn’t matter. Each set of statistics represents exactly 1 week, starting on Monday at 3:00 a.m.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let calendar = Calendar.current",
+            "",
+            "// Create a 1-week interval.",
+            "let interval = DateComponents(day: 7)",
+            "",
+            "// Set the anchor for 3 a.m. on Monday.",
+            "var components = DateComponents(calendar: calendar,",
+            "                                timeZone: calendar.timeZone,",
+            "                                hour: 3,",
+            "                                minute: 0,",
+            "                                second: 0,",
+            "                                weekday: 2)",
+            "",
+            "guard let anchorDate = calendar.nextDate(after: Date(),",
+            "                                         matching: components,",
+            "                                         matchingPolicy: .nextTime,",
+            "                                         repeatedTimePolicy: .first,",
+            "                                         direction: .backward) else {",
+            "    fatalError(\"*** unable to find the previous Monday. ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create the quantity type and the statistics collection query. The following code creates the quantity type for step counts and then creates the query itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let quantityType = HKObjectType.quantityType(forIdentifier: .stepCount) else {",
+            "    fatalError(\"*** Unable to create a step count type ***\")",
+            "}",
+            "",
+            "// Create the query.",
+            "let query = HKStatisticsCollectionQuery(quantityType: quantityType,",
+            "                                        quantitySamplePredicate: nil,",
+            "                                        options: .cumulativeSum,",
+            "                                        anchorDate: anchorDate,",
+            "                                        intervalComponents: interval)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Callback-Handlers",
+          "level": 3,
+          "text": "Add Callback Handlers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike most other queries, you don’t set the callback block when you instantiate a statistics collection query. Instead, you can either set the initial result handler or the statistics update handler (or both) as needed for your app. In this case, the sample code just sets the initial results handler, letting it calculate statistics over the samples currently stored in HealthKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your results handler, first check for and handle errors. Many ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values indicate that you haven’t properly set up HealthKit. Always check HealthKit’s availability and request permission to read the specified data type before creating a query. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, your app may need to explicitly check for some errors, depending on its needs. For example, if your app can run a query in the background, you need to check for and handle the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorDatabaseInaccessible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the results handler.",
+            "query.initialResultsHandler = {",
+            "    query, results, error in",
+            "    ",
+            "    // Handle errors here.",
+            "    if let error = error as? HKError {",
+            "        switch (error.code) {",
+            "        case .errorDatabaseInaccessible:",
+            "            // HealthKit couldn't access the database because the device is locked.",
+            "            return",
+            "        default:",
+            "            // Handle other HealthKit errors here.",
+            "            return",
+            "        }",
+            "    }",
+            "    ",
+            "    guard let statsCollection = results else {",
+            "        // You should only hit this case if you have an unhandled error. Check for bugs ",
+            "        // in your code that creates the query, or explicitly handle the error.",
+            "        assertionFailure(\"\")",
+            "        return",
+            "    }",
+            "",
+            "..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you handle any errors, process the incoming statistics data, and then update your app. Be sure to dispatch code that updates the user interface to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code calculates the start and end times for a 3-month window and then iterates over all the time intervals in that window. The statistics collection passes the enumeration block a statistics object for each time interval between the start and end dates. However, if the time interval doesn’t contain any samples, the provided statistics’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Therefore, the sample must check to see whether it has a valid quantity. If it does, it adds the data; otherwise, it skips the time interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "...",
+            "    ",
+            "    let endDate = Date()",
+            "    let threeMonthsAgo = DateComponents(month: -3)",
+            "    ",
+            "    guard let startDate = calendar.date(byAdding: threeMonthsAgo, to: endDate) else {",
+            "        fatalError(\"*** Unable to calculate the start date ***\")",
+            "    }",
+            "    ",
+            "    // Plot the weekly step counts over the past 3 months.",
+            "    var weeklyData = MyWeeklyData()",
+            "    ",
+            "    // Enumerate over all the statistics objects between the start and end dates.",
+            "    statsCollection.enumerateStatistics(from: startDate, to: endDate)",
+            "    { (statistics, stop) in",
+            "        if let quantity = statistics.sumQuantity() {",
+            "            let date = statistics.startDate",
+            "            let value = quantity.doubleValue(for: .count())",
+            "            ",
+            "            // Extract each week's data.",
+            "            weeklyData.addWeek(date: date, stepCount: Int(value))",
+            "        }",
+            "    }",
+            "    ",
+            "    // Dispatch to the main queue to update the UI.",
+            "    DispatchQueue.main.async {",
+            "        myUpdateGraph(weeklyData: weeklyData)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, execute the query using the HealthKit store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "healthStore.execute(query)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the sample doesn’t provide an update results handler, when the initial results block finishes processing the data, the query stops automatically. If the sample had provided an update manager, the statistics collection query would continue to monitor the HealthKit store after it had generated the initial results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/main": {
+      "abstract": [
+        {
+          "text": "The dispatch queue associated with the main thread of the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DispatchQueue/main"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes returned by HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorDatabaseInaccessible": {
+      "abstract": [
+        {
+          "text": "The HealthKit data is unavailable because it’s protected and the device is locked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorDatabaseInaccessible"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorDatabaseInaccessible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorDatabaseInaccessible"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorDatabaseInaccessible",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/errordatabaseinaccessible"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics": {
+      "abstract": [
+        {
+          "text": "An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatistics"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatistics"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatistics",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()": {
+      "abstract": [
+        {
+          "text": "Returns the sum of all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "sumQuantity()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/sumquantity()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection": {
+      "abstract": [
+        {
+          "text": "An object that manages a collection of statistics, representing the results calculated over separate time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollection",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollection"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery": {
+      "abstract": [
+        {
+          "text": "A query that performs multiple statistics queries over a series of fixed-length time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollectionQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollectionquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query descriptor that gathers a collection of statistics calculated over a series of fixed-length time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollectionQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollectionquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions": {
+      "abstract": [
+        {
+          "text": "Options for specifying the statistic to calculate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsOptions",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsoptions"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery": {
+      "abstract": [
+        {
+          "text": "A query that performs statistical calculations over a set of matching quantity samples, and returns the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query descriptor that calculates the minimum, maximum, average, or sum over a set of samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data": {
+      "abstract": [
+        {
+          "text": "Request permission to read and share data in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing access to health data",
+      "type": "topic",
+      "url": "/documentation/healthkit/authorizing-access-to-health-data"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/executing-statistical-queries": {
+      "abstract": [
+        {
+          "text": "Create and run statistical queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/executing-statistical-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Executing Statistical Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/executing-statistical-queries"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/queries": {
+      "abstract": [
+        {
+          "text": "Query health and fitness data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/queries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/queries"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit": {
+      "abstract": [
+        {
+          "text": "Set up and configure your HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/setting-up-healthkit"
+    },
+    "media-3740870": {
+      "alt": "An illustration showing a value for each time interval around the specified anchor.",
+      "identifier": "media-3740870",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42de5e4a5895738f2d09048853669681/media-3740870@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Statistics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/executing-statistical-queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions"
+      ],
+      "title": "Statistics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollectionQuery/title",
+          "value": "HKStatisticsCollectionQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollectionQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollectionQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollectionQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollectionQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorDatabaseInaccessible/title",
+          "value": "HKErrorDatabaseInaccessible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorDatabaseInaccessible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorDatabaseInaccessible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code/title",
+          "value": "HKErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsQuery/title",
+          "value": "HKStatisticsQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollection/title",
+          "value": "HKStatisticsCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics/title",
+          "value": "HKStatistics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions/title",
+          "value": "HKStatisticsOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sumQuantity()/title",
+          "value": "sumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sumQuantity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sumQuantity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

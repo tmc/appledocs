@@ -1,0 +1,989 @@
+{
+  "abstract": [
+    {
+      "text": "Specify key values that validate and associate an app installation with an ad campaign.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Ad network install-validation keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ad networks use these keys when calling the product view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. These keys describe an ad impression in an advertising campaign. The information they contain associates an app installation with an ad campaign. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key identifies the advertised app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include all the required validation keys in the parameter dictionary for the SKAdNetwork version you’re using.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also use the values of these keys to generate a signature for the ad impression. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkAttributionSignature": {
+      "abstract": [
+        {
+          "text": "The key that represents the advertising network’s cryptographic signature to use for install validation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkAttributionSignature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkAttributionSignature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkAttributionSignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkAttributionSignature",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworkattributionsignature"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkCampaignIdentifier": {
+      "abstract": [
+        {
+          "text": "The key that represents the advertising network’s campaign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkCampaignIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkCampaignIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkCampaignIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkCampaignIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworkcampaignidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkIdentifier": {
+      "abstract": [
+        {
+          "text": "The key that represents the advertising network’s unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworkidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce": {
+      "abstract": [
+        {
+          "text": "The key that represents a random value to use for added security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkNonce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkNonce"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkNonce",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworknonce"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier": {
+      "abstract": [
+        {
+          "text": "The key that represents the App Store ID of the app that displays the ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworksourceappstoreidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceIdentifier": {
+      "abstract": [
+        {
+          "text": "A four-digit integer that ad networks define to represent the ad campaign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkSourceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkSourceIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkSourceIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworksourceidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkTimestamp": {
+      "abstract": [
+        {
+          "text": "The key that represents the UNIX time, in milliseconds, of the ad impression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkTimestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkTimestamp",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworktimestamp"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkVersion": {
+      "abstract": [
+        {
+          "text": "The key that represents the version of the ad network API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkVersion",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworkversion"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier": {
+      "abstract": [
+        {
+          "text": "The key representing the iTunes identifier for the item you want the store to display when the view controller is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterITunesItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterITunesItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterITunesItemIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteritunesitemidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)": {
+      "abstract": [
+        {
+          "text": "Loads a new product screen to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadProduct"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadProductWithParameters:completionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadProduct(withParameters:completionBlock:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductviewcontroller/loadproduct(withparameters:completionblock:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution": {
+      "abstract": [
+        {
+          "text": "Validate advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network attribution",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-attribution"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads": {
+      "abstract": [
+        {
+          "text": "Initiate install validation by displaying a StoreKit-rendered ad with signed parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating the signature to validate StoreKit-rendered ads",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-the-signature-to-validate-storekit-rendered-ads"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signing-StoreKit-rendered-ads",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads"
+      ],
+      "title": "Signing StoreKit-rendered ads"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Required-keys-for-SKAdNetwork-4-and-later",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceIdentifier"
+      ],
+      "title": "Required keys for SKAdNetwork 4 and later"
+    },
+    {
+      "anchor": "Required-keys-for-SKAdNetwork-2-and-later",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkVersion",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+      ],
+      "title": "Required keys for SKAdNetwork 2 and later"
+    },
+    {
+      "anchor": "Required-keys",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkIdentifier",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkCampaignIdentifier",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkTimestamp",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkAttributionSignature"
+      ],
+      "title": "Required keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Required-keys-for-SKAdNetwork-4-and-later",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceIdentifier"
+              ],
+              "title": "Required keys for SKAdNetwork 4 and later"
+            },
+            {
+              "anchor": "Required-keys-for-SKAdNetwork-2-and-later",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkVersion",
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+              ],
+              "title": "Required keys for SKAdNetwork 2 and later"
+            },
+            {
+              "anchor": "Required-keys",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkIdentifier",
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkCampaignIdentifier",
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkTimestamp",
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce",
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkAttributionSignature"
+              ],
+              "title": "Required keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Signing-StoreKit-rendered-ads",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads"
+              ],
+              "title": "Signing StoreKit-rendered ads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkTimestamp/title",
+          "value": "SKStoreProductParameterAdNetworkTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkTimestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkIdentifier/title",
+          "value": "SKStoreProductParameterAdNetworkIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkAttributionSignature/title",
+          "value": "SKStoreProductParameterAdNetworkAttributionSignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkAttributionSignature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkAttributionSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterITunesItemIdentifier/title",
+          "value": "SKStoreProductParameterITunesItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterITunesItemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterITunesItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController~1loadProduct(withParameters:completionBlock:)/title",
+          "value": "loadProductWithParameters:completionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController~1loadProduct(withParameters:completionBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadProductWithParameters:completionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkSourceAppStoreIdentifier/title",
+          "value": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkSourceAppStoreIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkSourceAppStoreIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkCampaignIdentifier/title",
+          "value": "SKStoreProductParameterAdNetworkCampaignIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkCampaignIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkCampaignIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkNonce/title",
+          "value": "SKStoreProductParameterAdNetworkNonce"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkNonce/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkNonce"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkVersion/title",
+          "value": "SKStoreProductParameterAdNetworkVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkSourceIdentifier/title",
+          "value": "SKStoreProductParameterAdNetworkSourceIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkSourceIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkSourceIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/ad-network-install-validation-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/ad-network-install-validation-keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

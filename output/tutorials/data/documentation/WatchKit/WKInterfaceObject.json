@@ -1,0 +1,4114 @@
+{
+  "abstract": [
+    {
+      "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKInterfaceObject",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceObject"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceObject"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WKInterfaceObject"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your WatchKit extension uses interface objects to manipulate the visual elements displayed on Apple Watch. Specifically, you use the methods of this class to change the size, alignment, and visibility of those elements. You can also configure the accessibility information displayed through assistive technologies like VoiceOver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass or create instances of this class, or any of its subclasses, yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a button in your interface, define a property with the following syntax in your interface controller class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBOutlet weak var button: WKInterfaceButton!"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@property (weak, nonatomic) IBOutlet WKInterfaceButton* myButton;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, WatchKit creates the appropriate interface objects and assigns them to the outlets in your interface controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WatchKit provides one-way communication between the interface objects in your extension and the corresponding interface elements in your watchOS app. You can set the values of an interface object, but you cannot get the current values. If you want to know the current value of an attribute, you must save the value yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interface-Builder-Configuration-Options",
+          "level": 3,
+          "text": "Interface Builder Configuration Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode lets you configure information about your group interface object in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alpha",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The opacity of the object. A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " represents fully opaque and a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " represents fully transparent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hidden",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A checkbox indicating whether the item is hidden initially. You can change the visibility of the item programmatically by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHidden(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Installed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A checkbox indicating whether the item is installed for the current device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Horizontal",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The horizontal alignment of the item. Use this attribute to configure the horizontal position of the item relative to its immediate parent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Vertical",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The vertical alignment of the item. Use this attribute to configure the vertical position of the item relative to its immediate parent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Width",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The width of the object. Specify a fixed width or set the value of the object to be a percentage of its container’s width.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Height",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The height of the object. Specify a fixed height or set the value of the object to be a percentage of its container’s height.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion": {
+      "abstract": [
+        {
+          "text": "An object that defines a portion of an image that you want to call out separately to an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityImageRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityImageRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAccessibilityImageRegion",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaccessibilityimageregion"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether reduced motion is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsReduceMotionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsReduceMotionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAccessibilityIsReduceMotionEnabled()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaccessibilityisreducemotionenabled()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether VoiceOver is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsVoiceOverRunning"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAccessibilityIsVoiceOverRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAccessibilityIsVoiceOverRunning()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaccessibilityisvoiceoverrunning()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates information about a button displayed in an alert or action sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAlertAction"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAlertAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAlertAction",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkalertaction"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing": {
+      "abstract": [
+        {
+          "text": "A view that displays data from a HealthKit activity summary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceActivityRing"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceActivityRing"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceActivityRing",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceactivityring"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger a Sign in with Apple request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceAuthorizationAppleIDButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceAuthorizationAppleIDButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceAuthorizationAppleIDButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceauthorizationappleidbutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton": {
+      "abstract": [
+        {
+          "text": "A button in the user interface of your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacebutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController": {
+      "abstract": [
+        {
+          "text": "A class that provides the infrastructure for managing the interface in a watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceController",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacecontroller"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate": {
+      "abstract": [
+        {
+          "text": "A label that displays the current date or time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceDate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceGroup": {
+      "abstract": [
+        {
+          "text": "A container for one or more interface objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceGroup",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacegroup"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera": {
+      "abstract": [
+        {
+          "text": "An interface element that displays either a video stream or a single snapshot from an IP camera connected to HomeKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceHMCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceHMCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceHMCamera",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacehmcamera"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage": {
+      "abstract": [
+        {
+          "text": "An image that can be displayed in the interface of your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceImage"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceImage",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceimage"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie": {
+      "abstract": [
+        {
+          "text": "An interface element that displays a video’s poster image and supports inline playing of the video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceInlineMovie"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceInlineMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceInlineMovie",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceinlinemovie"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel": {
+      "abstract": [
+        {
+          "text": "An interface element that displays static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceLabel",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacelabel"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap": {
+      "abstract": [
+        {
+          "text": "An interface element that displays a noninteractive map for the location you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMap"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceMap",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacemap"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie": {
+      "abstract": [
+        {
+          "text": "An interface element that lets you play video and audio content in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMovie"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceMovie",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacemovie"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/interfaceProperty": {
+      "abstract": [
+        {
+          "text": "The name of the outlet in your interface controller to which the object is bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interfaceProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/interfaceProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interfaceProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "interfaceProperty",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/interfaceproperty"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityHint(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the description of what happens when performing an action on the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityHint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityHint(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityHint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessibilityHint(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setaccessibilityhint(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityIdentifier(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the unique identifier string for the interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityIdentifier(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessibilityIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setaccessibilityidentifier(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityImageRegions(_:)": {
+      "abstract": [
+        {
+          "text": "Marks portions of an image as separate accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityImageRegions"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKAccessibilityImageRegion",
+          "text": "WKAccessibilityImageRegion"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityImageRegions(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityImageRegions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessibilityImageRegions(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setaccessibilityimageregions(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a succinct label on the object that identifies the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityLabel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityLabel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessibilityLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setaccessibilitylabel(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityTraits(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the combination of accessibility traits that best characterize the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityTraits(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityTraits:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessibilityTraits(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setaccessibilitytraits(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityValue(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityValue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessibilityValue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessibilityValue(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setaccessibilityvalue(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAlpha(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the opacity of the interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAlpha"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAlpha(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAlpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAlpha(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setalpha(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHeight(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the absolute height (in points) of the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setHeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHeight(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setHeight:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setHeight(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setheight(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHidden(_:)": {
+      "abstract": [
+        {
+          "text": "Hides or shows the interface object in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHidden(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setHidden:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setHidden(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/sethidden(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHorizontalAlignment(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the horizontal alignment of an object relative to its container’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setHorizontalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKInterfaceObjectHorizontalAlignment",
+          "text": "WKInterfaceObjectHorizontalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHorizontalAlignment(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setHorizontalAlignment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setHorizontalAlignment(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/sethorizontalalignment(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setIsAccessibilityElement(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether the object is an accessibility element that an assistive app can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIsAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setIsAccessibilityElement(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIsAccessibilityElement:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setIsAccessibilityElement(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setisaccessibilityelement(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeHeight(_:withAdjustment:)": {
+      "abstract": [
+        {
+          "text": "Sets the height of the object relative to its container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRelativeHeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAdjustment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeHeight(_:withAdjustment:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRelativeHeight:withAdjustment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setRelativeHeight(_:withAdjustment:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setrelativeheight(_:withadjustment:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeWidth(_:withAdjustment:)": {
+      "abstract": [
+        {
+          "text": "Sets the width of the object relative to its container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRelativeWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAdjustment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeWidth(_:withAdjustment:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRelativeWidth:withAdjustment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setRelativeWidth(_:withAdjustment:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setrelativewidth(_:withadjustment:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setSemanticContentAttribute(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the semantic description of the object’s contents, used to determine whether its content should be flipped when switching between left-to-right and right-to-left layouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSemanticContentAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKInterfaceSemanticContentAttribute",
+          "text": "WKInterfaceSemanticContentAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setSemanticContentAttribute(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSemanticContentAttribute:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSemanticContentAttribute(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setsemanticcontentattribute(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setVerticalAlignment(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the vertical alignment of an object relative to its container’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVerticalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKInterfaceObjectVerticalAlignment",
+          "text": "WKInterfaceObjectVerticalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setVerticalAlignment(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVerticalAlignment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVerticalAlignment(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setverticalalignment(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setWidth(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the absolute width (in points) of the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setWidth(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWidth:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/setwidth(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitHeight()": {
+      "abstract": [
+        {
+          "text": "Sets the height of the object so that it fills the available vertical space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeToFitHeight"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitHeight()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeToFitHeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "sizeToFitHeight()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/sizetofitheight()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitWidth()": {
+      "abstract": [
+        {
+          "text": "Sets the width of the object to fit its current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeToFitWidth"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitWidth()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeToFitWidth"
+        }
+      ],
+      "role": "symbol",
+      "title": "sizeToFitWidth()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject/sizetofitwidth()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectHorizontalAlignment": {
+      "abstract": [
+        {
+          "text": "Constants for horizontally aligning objects in their container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectHorizontalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectHorizontalAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectHorizontalAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObjectHorizontalAlignment",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobjecthorizontalalignment"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectVerticalAlignment": {
+      "abstract": [
+        {
+          "text": "Constants for vertically aligning objects in their container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectVerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectVerticalAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectVerticalAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObjectVerticalAlignment",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobjectverticalalignment"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger payments through Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePaymentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePaymentButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfacePaymentButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacepaymentbutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePicker": {
+      "abstract": [
+        {
+          "text": "An interface element that presents a scrolling list of items for the user to choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfacePicker",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacepicker"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSCNScene": {
+      "abstract": [
+        {
+          "text": "An object that lets you manage SceneKit content for display in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSCNScene"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSCNScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSCNScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSCNScene",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacescnscene"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSKScene": {
+      "abstract": [
+        {
+          "text": "A visual WatchKit element that displays a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSKScene",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceskscene"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSeparator": {
+      "abstract": [
+        {
+          "text": "An interface object that displays a visual separator within a group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSeparator"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSeparator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSeparator"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSeparator",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceseparator"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider": {
+      "abstract": [
+        {
+          "text": "An interface element that lets users select a single floating-point value from a range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSlider"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSlider"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSlider",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceslider"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch": {
+      "abstract": [
+        {
+          "text": "An interface element that toggles between an On and Off state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSwitch",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceswitch"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable": {
+      "abstract": [
+        {
+          "text": "An object that creates and manages the contents of a single-column table interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTable"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceTable",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetable"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField": {
+      "abstract": [
+        {
+          "text": "An interface element that displays an editable text area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceTextField",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetextfield"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer": {
+      "abstract": [
+        {
+          "text": "A label that displays a countdown or count-up timer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTimer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceTimer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetimer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl": {
+      "abstract": [
+        {
+          "text": "An interface element that provides control of the audio volume from the watch or a paired iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceVolumeControl",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard": {
+      "abstract": [
+        {
+          "text": "Create the user interface for your watchOS app by nesting stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Building watchOS app Interfaces Using the Storyboard",
+      "type": "topic",
+      "url": "/documentation/watchkit/building-watchos-app-interfaces-using-the-storyboard"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code": {
+      "abstract": [
+        {
+          "text": "Connect the interface objects in your storyboard to outlets and action methods in your WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/connecting-your-user-interface-to-your-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting Your User Interface to Your Code",
+      "type": "topic",
+      "url": "/documentation/watchkit/connecting-your-user-interface-to-your-code"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceGroup",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePicker",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSCNScene",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSKScene",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSeparator",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface-basics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()"
+      ],
+      "title": "User interface basics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Hiding-and-Showing-an-Object",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHidden(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAlpha(_:)"
+      ],
+      "title": "Hiding and Showing an Object"
+    },
+    {
+      "anchor": "Getting-the-Property-Name",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/interfaceProperty"
+      ],
+      "title": "Getting the Property Name"
+    },
+    {
+      "anchor": "Changing-an-Objects-Size",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setWidth(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHeight(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeWidth(_:withAdjustment:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeHeight(_:withAdjustment:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitWidth()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitHeight()"
+      ],
+      "title": "Changing an Object’s Size"
+    },
+    {
+      "anchor": "Setting-an-Objects-Alignment",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHorizontalAlignment(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setVerticalAlignment(_:)"
+      ],
+      "title": "Setting an Object’s Alignment"
+    },
+    {
+      "anchor": "Configuring-the-Accessibility-Attributes",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityIdentifier(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityLabel(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityHint(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityValue(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setIsAccessibilityElement(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityTraits(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityImageRegions(_:)"
+      ],
+      "title": "Configuring the Accessibility Attributes"
+    },
+    {
+      "anchor": "Setting-the-Layout-Direction",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setSemanticContentAttribute(_:)"
+      ],
+      "title": "Setting the Layout Direction"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectHorizontalAlignment",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectVerticalAlignment"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Hiding-and-Showing-an-Object",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHidden(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAlpha(_:)"
+              ],
+              "title": "Hiding and Showing an Object"
+            },
+            {
+              "anchor": "Getting-the-Property-Name",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/interfaceProperty"
+              ],
+              "title": "Getting the Property Name"
+            },
+            {
+              "anchor": "Changing-an-Objects-Size",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setWidth(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHeight(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeWidth(_:withAdjustment:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setRelativeHeight(_:withAdjustment:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitWidth()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/sizeToFitHeight()"
+              ],
+              "title": "Changing an Object’s Size"
+            },
+            {
+              "anchor": "Setting-an-Objects-Alignment",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHorizontalAlignment(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setVerticalAlignment(_:)"
+              ],
+              "title": "Setting an Object’s Alignment"
+            },
+            {
+              "anchor": "Configuring-the-Accessibility-Attributes",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityIdentifier(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityLabel(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityHint(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityValue(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setIsAccessibilityElement(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityTraits(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setAccessibilityImageRegions(_:)"
+              ],
+              "title": "Configuring the Accessibility Attributes"
+            },
+            {
+              "anchor": "Setting-the-Layout-Direction",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setSemanticContentAttribute(_:)"
+              ],
+              "title": "Setting the Layout Direction"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectHorizontalAlignment",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObjectVerticalAlignment"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceGroup",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceHMCamera",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceImage",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceInlineMovie",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePicker",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSCNScene",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSKScene",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSeparator",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface-basics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/building-watchos-app-interfaces-using-the-storyboard",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAlertAction",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityImageRegion",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsVoiceOverRunning()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAccessibilityIsReduceMotionEnabled()"
+              ],
+              "title": "User interface basics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKInterfaceObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMap/title",
+          "value": "WKInterfaceMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTextField/title",
+          "value": "WKInterfaceTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/title",
+          "value": "WKInterfaceAuthorizationAppleIDButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceAuthorizationAppleIDButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceAuthorizationAppleIDButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setIsAccessibilityElement(_:)/title",
+          "value": "setIsAccessibilityElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setIsAccessibilityElement(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setIsAccessibilityElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1sizeToFitWidth()/title",
+          "value": "sizeToFitWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1sizeToFitWidth()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sizeToFitWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setRelativeHeight(_:withAdjustment:)/title",
+          "value": "setRelativeHeight:withAdjustment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setRelativeHeight(_:withAdjustment:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRelativeHeight:withAdjustment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSeparator/title",
+          "value": "WKInterfaceSeparator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSeparator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSeparator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSeparator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSeparator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAlertAction/title",
+          "value": "WKAlertAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAlertAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAlertAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAlertAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAlertAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setSemanticContentAttribute(_:)/title",
+          "value": "setSemanticContentAttribute:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setSemanticContentAttribute(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSemanticContentAttribute:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDate/title",
+          "value": "WKInterfaceDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setHeight(_:)/title",
+          "value": "setHeight:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setHeight(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setHeight:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsReduceMotionEnabled()/title",
+          "value": "WKAccessibilityIsReduceMotionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsReduceMotionEnabled()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityIsReduceMotionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSlider/title",
+          "value": "WKInterfaceSlider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSlider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSlider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceGroup/title",
+          "value": "WKInterfaceGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSCNScene/title",
+          "value": "WKInterfaceSCNScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSCNScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSCNScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSCNScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSCNScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setWidth(_:)/title",
+          "value": "setWidth:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setWidth(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWidth:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setHidden(_:)/title",
+          "value": "setHidden:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setHidden(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setHidden:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/title",
+          "value": "WKInterfaceLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/title",
+          "value": "WKInterfaceButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsVoiceOverRunning()/title",
+          "value": "WKAccessibilityIsVoiceOverRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityIsVoiceOverRunning()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityIsVoiceOverRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePaymentButton/title",
+          "value": "WKInterfacePaymentButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePaymentButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePaymentButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityImageRegions(_:)/title",
+          "value": "setAccessibilityImageRegions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityImageRegions(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessibilityImageRegions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityImageRegion/title",
+          "value": "WKAccessibilityImageRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityImageRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityImageRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAccessibilityImageRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAccessibilityImageRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSKScene/title",
+          "value": "WKInterfaceSKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMovie/title",
+          "value": "WKInterfaceMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMovie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMovie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/title",
+          "value": "WKInterfaceVolumeControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSwitch/title",
+          "value": "WKInterfaceSwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage/title",
+          "value": "WKInterfaceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAlpha(_:)/title",
+          "value": "setAlpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAlpha(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAlpha:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityTraits(_:)/title",
+          "value": "setAccessibilityTraits:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityTraits(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessibilityTraits:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1sizeToFitHeight()/title",
+          "value": "sizeToFitHeight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1sizeToFitHeight()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sizeToFitHeight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceHMCamera/title",
+          "value": "WKInterfaceHMCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceHMCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceHMCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceHMCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceHMCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceActivityRing/title",
+          "value": "WKInterfaceActivityRing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceActivityRing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceActivityRing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceActivityRing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceActivityRing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityIdentifier(_:)/title",
+          "value": "setAccessibilityIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityIdentifier(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessibilityIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController/title",
+          "value": "WKInterfaceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityValue(_:)/title",
+          "value": "setAccessibilityValue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityValue(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessibilityValue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTable/title",
+          "value": "WKInterfaceTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceInlineMovie/title",
+          "value": "WKInterfaceInlineMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceInlineMovie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceInlineMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceInlineMovie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceInlineMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePicker/title",
+          "value": "WKInterfacePicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObjectHorizontalAlignment/title",
+          "value": "WKInterfaceObjectHorizontalAlignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObjectHorizontalAlignment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObjectHorizontalAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObjectHorizontalAlignment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObjectHorizontalAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setVerticalAlignment(_:)/title",
+          "value": "setVerticalAlignment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setVerticalAlignment(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVerticalAlignment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObjectVerticalAlignment/title",
+          "value": "WKInterfaceObjectVerticalAlignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObjectVerticalAlignment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObjectVerticalAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObjectVerticalAlignment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObjectVerticalAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setRelativeWidth(_:withAdjustment:)/title",
+          "value": "setRelativeWidth:withAdjustment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setRelativeWidth(_:withAdjustment:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRelativeWidth:withAdjustment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1interfaceProperty/title",
+          "value": "interfaceProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1interfaceProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interfaceProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setHorizontalAlignment(_:)/title",
+          "value": "setHorizontalAlignment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setHorizontalAlignment(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setHorizontalAlignment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityLabel(_:)/title",
+          "value": "setAccessibilityLabel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityLabel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessibilityLabel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityHint(_:)/title",
+          "value": "setAccessibilityHint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject~1setAccessibilityHint(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccessibilityHint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer/title",
+          "value": "WKInterfaceTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfaceobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfaceobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,522 @@
+{
+  "abstract": [
+    {
+      "text": "The ",
+      "type": "text"
+    },
+    {
+      "code": "TouchEvent",
+      "type": "codeVoice"
+    },
+    {
+      "text": " class encapsulates information about a touch event.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/webkitjs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/webkitjs/touchevent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1629781,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/TouchEvent",
+    "modules": [
+      {
+        "name": "WebKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "10.1",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "2.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "TouchEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TouchEvent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system continually sends ",
+              "type": "text"
+            },
+            {
+              "code": "TouchEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects to an application as fingers touch and move across a surface. A touch event provides a snapshot of all touches during a multi-touch sequence, most importantly the touches that are new or have changed for a particular target. A multi-touch sequence begins when a finger first touches the surface. Other fingers may subsequently touch the surface, and all fingers may move across the surface. The sequence ends when the last of these fingers is lifted from the surface. An application receives touch event objects during each phase of any touch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The different types of ",
+              "type": "text"
+            },
+            {
+              "code": "TouchEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects that can occur are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sent when a finger for a given event touches the surface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "touchstart",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sent when a given event moves on the surface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "touchmove",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sent when a given event lifts from the surface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "touchend",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sent when the system cancels tracking for the touch.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "touchcancel",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "TouchEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are combined together to form high-level ",
+              "type": "text"
+            },
+            {
+              "code": "GestureEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects that are also sent during a multi-touch sequence. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/webkitjs/gestureevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details on ",
+              "type": "text"
+            },
+            {
+              "code": "GestureEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects and an example of the events sent for a two finger multi-touch gesture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit JS",
+      "type": "topic",
+      "url": "/documentation/webkitjs"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/gestureevent": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/gestureevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GestureEvent",
+      "type": "topic",
+      "url": "/documentation/webkitjs/gestureevent"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touch": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Touch",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touch"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1629120-ctrlkey": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the control key is pressed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1629120-ctrlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ctrlKey",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1629120-ctrlkey"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1629351-changedtouches": {
+      "abstract": [
+        {
+          "text": "A collection of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/webkitjs/touch",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects representing all touches that changed in this event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1629351-changedtouches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changedTouches",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1629351-changedtouches"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1631943-inittouchevent": {
+      "abstract": [
+        {
+          "text": "Initializes a newly created ",
+          "type": "text"
+        },
+        {
+          "code": "TouchEvent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1631943-inittouchevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initTouchEvent",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1631943-inittouchevent"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632169-scale": {
+      "abstract": [
+        {
+          "text": "The distance between two fingers since the start of an event as a multiplier of the initial distance. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632169-scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1632169-scale"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632644-touches": {
+      "abstract": [
+        {
+          "text": "A collection of Touch objects representing all touches associated with this event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632644-touches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touches",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1632644-touches"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632803-targettouches": {
+      "abstract": [
+        {
+          "text": "A collection of Touch objects representing all touches associated with this target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632803-targettouches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetTouches",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1632803-targettouches"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632828-metakey": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the meta key is pressed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632828-metakey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metaKey",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1632828-metakey"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1633489-altkey": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the alt key is pressed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1633489-altkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "altKey",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1633489-altkey"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1634033-shiftkey": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the shift key is pressed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1634033-shiftkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shiftKey",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1634033-shiftkey"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/touchevent/1634480-rotation": {
+      "abstract": [
+        {
+          "text": "The delta rotation since the start of an event in degrees where clockwise is positive and counter-clockwise is negative.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/touchevent/1634480-rotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotation",
+      "type": "topic",
+      "url": "/documentation/webkitjs/touchevent/1634480-rotation"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/uievent": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/uievent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIEvent",
+      "type": "topic",
+      "url": "/documentation/webkitjs/uievent"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/uievent"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1657300",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1633489-altkey",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1629120-ctrlkey",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632828-metakey",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1634033-shiftkey",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1629351-changedtouches",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632803-targettouches",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632644-touches",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1634480-rotation",
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1632169-scale"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Properties"
+    },
+    {
+      "anchor": "1657381",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/touchevent/1631943-inittouchevent"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/webkitjs/touchevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

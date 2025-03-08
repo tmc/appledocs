@@ -1,0 +1,1242 @@
+{
+  "abstract": [
+    {
+      "text": "Support for decorating items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileprovider/documentation/FileProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSFileProviderItemDecorating",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSFileProviderItemDecorating"
+      }
+    ],
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSFileProviderItemDecorating"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSFileProviderItemDecorating"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorating"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSFileProviderItem",
+              "text": "NSFileProviderItemProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adopt this protocol, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating/decorations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for your extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and return valid identifiers for the desired decorations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You define decorations in the File Provider extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "NSFileProviderDecorations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " <key>NSFileProviderDecorations</key>",
+            " <array>",
+            "   <dict>",
+            "      <key>Identifier</key>",
+            "      <string>$(PRODUCT_BUNDLE_IDENTIFIER).hasComments</string>",
+            "      <key>BadgeImageType</key>",
+            "      <string>com.someone.item.decoration.unreadCommentIcon</string>",
+            "      <key>Category</key>",
+            "      <string>Badge</string>",
+            "      <key>LocalizedTitle</key>",
+            "      <dict>",
+            "         <key>NSStringFormat</key>",
+            "         <string>%@ unread comments</string>",
+            "         <key>NSStringFormatValues</key>",
+            "         <array>",
+            "            <string>item.userInfo.unreadCommentCount</string>",
+            "         </array>",
+            "      </dict>",
+            "   </dict>",
+            " </array>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following keys to define the decorations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The decoration’s identifier.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Identifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A UTI for the item’s badge. To define the badge, create a new UTI that conforms to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.apple.icon-decoration.badge",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and set its icon.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "BadgeImageType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A localizable title for the item. For example, the system displays a title in detail views and VoiceOver.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Label",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string that defines the location of the badge image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Category",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value must be one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system displays the badge image on top of the item’s icon. It only displays the first ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Badge",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Badge",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system displays the badge image below the icon. It only displays the first ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Sharing",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Sharing",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Only available on folder items. The system embosses the image over the folder icon. It only displays the first ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "FolderBadge",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "FolderBadge",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An item the File Provider extension manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItem"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItem",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritem-swift.typealias"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating": {
+      "abstract": [
+        {
+          "text": "Support for decorating items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemDecorating"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemDecorating"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemDecorating",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemdecorating"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating/decorations": {
+      "abstract": [
+        {
+          "text": "Asks the item for an array of decorations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decorations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemDecorationIdentifier",
+          "text": "NSFileProviderItemDecorationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating/decorations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decorations"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "decorations",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemdecorating/decorations"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorationIdentifier": {
+      "abstract": [
+        {
+          "text": "A decoration identifier defined in the File Provider extension’s information property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemDecorationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemDecorationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemDecorationIdentifier",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemdecorationidentifier"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields": {
+      "abstract": [
+        {
+          "text": "Fields that specify which of the item’s properties have changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemFields"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemFields",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemfields"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the properties of an item managed by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemProtocol",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion": {
+      "abstract": [
+        {
+          "text": "The version of the item’s content and its metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemVersion",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemversion"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderRequest": {
+      "abstract": [
+        {
+          "text": "An object that provides information about the application requesting data from the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderRequest",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderrequest"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Items-and-metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderRequest",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorationIdentifier"
+      ],
+      "title": "Items and metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Providing-Decorations",
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating/decorations"
+      ],
+      "title": "Providing Decorations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSFileProviderItemDecorating"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.fileprovider/documentation/FileProvider"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Providing-Decorations",
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorating/decorations"
+              ],
+              "title": "Providing Decorations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Items-and-metadata",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderRequest",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemDecorationIdentifier"
+              ],
+              "title": "Items and metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSFileProviderItemDecorating"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSFileProviderItem",
+                    "text": "NSFileProviderItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields/title",
+          "value": "NSFileProviderItemFields"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemFields"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemFields"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorating~1decorations/title",
+          "value": "decorations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorating~1decorations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "decorations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorating/title",
+          "value": "NSFileProviderItemDecorating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorationIdentifier/title",
+          "value": "NSFileProviderItemDecorationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemDecorationIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemDecorationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderRequest/title",
+          "value": "NSFileProviderRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemVersion/title",
+          "value": "NSFileProviderItemVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider/nsfileprovideritemdecorating"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider/nsfileprovideritemdecorating"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

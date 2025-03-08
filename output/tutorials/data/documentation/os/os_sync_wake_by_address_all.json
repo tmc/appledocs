@@ -1,0 +1,867 @@
+{
+  "abstract": [
+    {
+      "text": "An atomic operation that wakes all threads blocked on a futex wait, used to implement higher-level synchronization primitives.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_all"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@os_sync_wake_by_address_all",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "os_sync_wake_by_address_all"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "os_sync_wake_by_address_all"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "os_sync_wake_by_address_all"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:I",
+              "text": "int"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "os_sync_wake_by_address_all"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "addr"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "size"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@os_sync_wake_by_address_flags_t",
+              "text": "os_sync_wake_by_address_flags_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user-space address waited on to wake. This address must be aligned to ",
+                  "type": "text"
+                },
+                {
+                  "code": "size",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "addr"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The size of the wait value, in bytes. Values can be 4 or 8 bytes, where 4-byte values use the lower bytes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "value",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "size"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Flags for the operation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns 0 on success, and -1 on error with ",
+              "type": "text"
+            },
+            {
+              "code": "errno",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function wakes all threads waiting on ",
+              "type": "text"
+            },
+            {
+              "code": "addr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". There’s no guarantee on the order threads wake.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass consistent values across wait and wake APIs for ",
+              "type": "text"
+            },
+            {
+              "code": "addr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use this function only for implementing synchronization primitives that don’t have a sense of ownership,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "such as condition variables or semaphores. In particular, this function doesn’t provide priority inversion avoidance.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For locking APIs, use existing OS primitives, such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " threads or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.os/documentation/os/synchronization#Unfair-Locking",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " APIs. For synchronization and threading managed by the OS, use a higher-level API, such",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Error-Codes",
+          "level": 3,
+          "text": "Error Codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this function returns ",
+              "type": "text"
+            },
+            {
+              "code": "-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the global variable ",
+              "type": "text"
+            },
+            {
+              "code": "errno",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains one of these values, indicating the corresponding error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EINVAL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invalid flags or size.",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "addr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " passed is NULL.",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": "The operation associated with the existing kernel state at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "addr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is inconsistent with other function arguments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ENOENT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There are no compare-and-wait operations on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "addr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EDOM",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "addr",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is in use for non-compare-and-wait synchronization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address": {
+      "abstract": [
+        {
+          "text": "An atomic compare-and-wait operation, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address_flags_t": {
+      "abstract": [
+        {
+          "text": "Flags to control futex wait behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address_flags_t",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address_flags_t"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_deadline": {
+      "abstract": [
+        {
+          "text": "An atomic compare-and-wait operation with a deadline, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address_with_deadline"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_deadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address_with_deadline",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address_with_deadline"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_timeout": {
+      "abstract": [
+        {
+          "text": "An atomic compare-and-wait operation with a timeout, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wait_on_address_with_timeout"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_timeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wait_on_address_with_timeout",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wait_on_address_with_timeout"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wake_by_address_all": {
+      "abstract": [
+        {
+          "text": "An atomic operation that wakes all threads blocked on a futex wait, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wake_by_address_all"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wake_by_address_all",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wake_by_address_all"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wake_by_address_any": {
+      "abstract": [
+        {
+          "text": "An atomic operation that wakes one thread blocked on a futex wait, used to implement higher-level synchronization primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wake_by_address_any"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_any",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wake_by_address_any",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wake_by_address_any"
+    },
+    "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t": {
+      "abstract": [
+        {
+          "text": "Flags to control futex wake behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_sync_wake_by_address_flags_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_sync_wake_by_address_flags_t",
+      "type": "topic",
+      "url": "/documentation/os/os_sync_wake_by_address_flags_t"
+    },
+    "doc://com.apple.os/documentation/os/synchronization#Unfair-Locking": {
+      "abstract": [],
+      "identifier": "doc://com.apple.os/documentation/os/synchronization#Unfair-Locking",
+      "kind": "section",
+      "title": "Unfair Locking",
+      "type": "topic",
+      "url": "/documentation/os/synchronization#Unfair-Locking"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@size_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Futex-Conditional-Wait-Primitives",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/os_sync_wait_on_address",
+        "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_deadline",
+        "doc://com.apple.os/documentation/os/os_sync_wait_on_address_with_timeout",
+        "doc://com.apple.os/documentation/os/os_sync_wait_on_address_flags_t",
+        "doc://com.apple.os/documentation/os/os_sync_wake_by_address_any",
+        "doc://com.apple.os/documentation/os/os_sync_wake_by_address_flags_t"
+      ],
+      "title": "Futex Conditional Wait Primitives"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/os_sync_wake_by_address_all"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

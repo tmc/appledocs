@@ -1,0 +1,1351 @@
+{
+  "abstract": [
+    {
+      "text": "A repeatable user-defined action.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TipKit/documentation/TipKit",
+        "doc://com.apple.TipKit/documentation/TipKit/Tips"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "TipKit",
+    "externalID": "s:6TipKit4TipsO5EventV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Event"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TipKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Event"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Tips.Event"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Event"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "DonationInfo"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "DonationInfo"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Se",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Se",
+              "text": "Decodable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "DonationInfo"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SE",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SE",
+              "text": "Encodable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "DonationInfo"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an event when you want to track an action that can occur one or more times in your app (such as a user logging in).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to donate to the event when the action occurs, increasing the event count by one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In order to remain performant, by default events only query their most recent 1000 donations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Creating-an-event-with-no-associated-donation-value",
+          "level": 3,
+          "text": "Creating an event with no associated donation value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates a ",
+              "type": "text"
+            },
+            {
+              "code": "landmarksAppDidOpen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event with no associated donation value and donates it anytime ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " appears:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LandmarkTips: App {",
+            "    static let landmarksAppDidOpen = Tips.Event(id: \"landmarksAppDidOpen\")",
+            "",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "                .onAppear { Self.landmarksAppDidOpen.sendDonation() }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates a display rule for ",
+              "type": "text"
+            },
+            {
+              "code": "LandmarkFeatureTip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " based on the ",
+              "type": "text"
+            },
+            {
+              "code": "landmarksAppDidOpen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LandmarkFeatureTip: Tip {",
+            "    var rules: [Rule] {",
+            "        // Tip will only display when the landmarksAppDidOpen event has been donated 3 or more times in the last week.",
+            "        #Rule(LandmarkTips.landmarksAppDidOpen) {",
+            "            $0.donations.donatedWithin(.week).count >= 3",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Creating-an-event-with-an-associated-donation-value",
+          "level": 3,
+          "text": "Creating an event with an associated donation value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates a ",
+              "type": "text"
+            },
+            {
+              "code": "didViewLandmarkDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event with an associated donation value and donates it anytime the ",
+              "type": "text"
+            },
+            {
+              "code": "LandmarkDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " appears:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LandmarkDetail: View {",
+            "    static let didViewLandmarkDetail = Tips.Event<DidViewLandmark>(id: \"didViewLandmarkDetail\")",
+            "",
+            "    struct DidViewLandmark: Codable, Sendable {",
+            "        let landmarkID: Int",
+            "        let landmarkName: String",
+            "    }",
+            "",
+            "    var landmark: Landmark",
+            "",
+            "    var body: some View {",
+            "        ScrollView {",
+            "            MapView(coordinate: landmark.locationCoordinate)",
+            "        }",
+            "        .onAppear {",
+            "            Self.didViewLandmarkDetail.sendDonation(.init(landmarkID: landmark.id, landmarkName: landmark.name))",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates a display rule for ",
+              "type": "text"
+            },
+            {
+              "code": "LandmarkDetailTip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " based on the ",
+              "type": "text"
+            },
+            {
+              "code": "didViewLandmarkDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LandmarkDetailTip: Tip {",
+            "    var rules: [Rule] {",
+            "        // Tip will only display when the didViewLandmarkDetail has been donated 3 or more times for landmarks not named \"Wilbere Bowl\".",
+            "        #Rule(LandmarkDetail.didViewLandmarkDetail) {",
+            "            $0.donations.filter({ $0.landmarkName != \"Wilbere Bowl\" }).count > 3",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TipKit/documentation/TipKit": {
+      "abstract": [
+        {
+          "text": "Display tips that help people discover features in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TipKit",
+      "type": "topic",
+      "url": "/documentation/tipkit"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips": {
+      "abstract": [
+        {
+          "text": "TipKit namespace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tips"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tips"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event": {
+      "abstract": [
+        {
+          "text": "A repeatable user-defined action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips.Event",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/Donation": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "DonationInfo",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Donation"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/Donation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Donation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips.Event.Donation",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/donation"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate()": {
+      "abstract": [
+        {
+          "text": "Donates an event with no associated ",
+          "type": "text"
+        },
+        {
+          "code": "Donation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "DonationInfo",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate()",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/donate()"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate(_:)": {
+      "abstract": [
+        {
+          "text": "Donates an event along with its associated ",
+          "type": "text"
+        },
+        {
+          "code": "Donation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "DonationInfo",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DonationInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate(_:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/donate(_:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donations": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO",
+          "text": "Tips"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO5EventV",
+          "text": "Event"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DonationInfo"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit4TipsO5EventV8DonationV",
+          "text": "Donation"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donations",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/donations"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/init(id:)": {
+      "abstract": [
+        {
+          "text": "Creates an event with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/init(id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(id:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/init(id:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/sendDonation(_:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously donates an event with no associated ",
+          "type": "text"
+        },
+        {
+          "code": "Donation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "DonationInfo",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendDonation"
+        },
+        {
+          "kind": "text",
+          "text": "((() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/sendDonation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendDonation(_:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/senddonation(_:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/sendDonation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously donates an event along with its associated ",
+          "type": "text"
+        },
+        {
+          "code": "Donation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "DonationInfo",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendDonation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DonationInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/sendDonation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendDonation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/event/senddonation(_:_:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/Tips/Rule": {
+      "abstract": [
+        {
+          "text": "A condition to meet before displaying a tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Rule"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/Tips/Rule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Rule"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tips.Rule",
+      "type": "topic",
+      "url": "/documentation/tipkit/tips/rule"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializer",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/init(id:)"
+      ],
+      "title": "Initializer"
+    },
+    {
+      "anchor": "Properties",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donations"
+      ],
+      "title": "Properties"
+    },
+    {
+      "anchor": "Add-Donations",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate()",
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/donate(_:)",
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/sendDonation(_:)",
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/sendDonation(_:_:)"
+      ],
+      "title": "Add Donations"
+    },
+    {
+      "anchor": "Creating-rules",
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Rule"
+      ],
+      "title": "Creating rules"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/Tips/Event/Donation"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tipkit/tips/event"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

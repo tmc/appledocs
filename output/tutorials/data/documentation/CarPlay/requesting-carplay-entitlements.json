@@ -1,0 +1,1180 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your CarPlay-enabled app with the entitlements it requires.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting CarPlay Entitlements"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate with CarPlay, you must request the appropriate entitlement for your app’s category at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/carplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and agree to the CarPlay Entitlement Addendum. Apple reviews each application using predefined criteria. If your request meets the criteria, Apple adds the entitlement to your developer account using managed capabilities. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/developer-account/#/dev38c81d4cd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you receive the entitlement, you need to configure your Xcode project to use it, which involves several steps. You create or update an App ID, generate a provisioning profile, and add an ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to your target. Your project’s code signing settings also require minor changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "CarPlay-enabled apps are subject to an additional set of App Store Review guidelines. For more information, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/carplay/documentation/CarPlay-App-Programming-Guide.pdf",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-CarPlay-Capabilities-to-Your-App-ID",
+          "level": 3,
+          "text": "Add CarPlay Capabilities to Your App ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update the App ID of your CarPlay-enabled app to include the necessary CarPlay capabilities by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complete the actions in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/developer-account/#/dev1b35d6f83",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to create an App ID if you don’t already have one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " account and select Certificates, Identifiers & Profiles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Identifiers in the menu on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app’s App ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the Additional Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the CarPlay capabilities that your app requires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Save button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new provisioning profile for the updated App ID. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/developer-account/#/devf2eb157f8",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3703055",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-the-CarPlay-Provisioning-Profile",
+          "level": 3,
+          "text": "Import the CarPlay Provisioning Profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure your Xcode project to use the new provisioning profile when it code signs your CarPlay-enabled app by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your project in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, choose Signing & Capabilities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click All in the scope bar, and then deselect “Automatically manage signing”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Provisioning Profile pop-up menu and choose Download Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your CarPlay provisioning profile from the left column and click Select Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-an-Entitlements-File",
+          "level": 3,
+          "text": "Add an Entitlements File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to specify the entitlements that your CarPlay-enabled app requires. They must match the capabilities you add to your App ID. CarPlay uses this file to determine the framework functionality to allow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the entitlements file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your project in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File, select Property List from the Resource section, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the filename and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, choose Build Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click All and Combined in the scope bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the search box to find the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Code Signing Entitlements",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the full path of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Entitlements.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file as the setting’s value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the file in Xcode and add the applicable entitlement from the table below as a Boolean.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Category",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.carplay-audio",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.carplay-communication",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Communication",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.carplay-charging",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "EV Charging``",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.carplay-maps",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.carplay-parking",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parking``",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.carplay-quick-ordering",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Quick Food Ordering",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the contents of a CarPlay-enabled app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Entitlements.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with the audio entitlement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>com.apple.developer.carplay-audio</key>",
+            "<true/>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Test-Your-Configuration",
+          "level": 3,
+          "text": "Test Your Configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, use a simulator to build and run your project. After Simulator launches, choose I/O > External Displays > CarPlay. Your app appears on the CarPlay Home screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that provides vehicle properties and configuration for the CarPlay environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsessionconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene": {
+      "abstract": [
+        {
+          "text": "A CarPlay scene that controls your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationScene",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for responding to the life cycle events of your app’s scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscenedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay": {
+      "abstract": [
+        {
+          "text": "Use scenes to present your app’s content on the vehicle’s built-in screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Content in CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay/displaying-content-in-carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios": {
+      "abstract": [
+        {
+          "text": "Make your CarPlay-enabled apps compatible with older system versions, such as iOS 13 and earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Previous Versions of iOS",
+      "type": "topic",
+      "url": "/documentation/carplay/supporting-previous-versions-of-ios"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator": {
+      "abstract": [
+        {
+          "text": "Configure Simulator to run and debug your CarPlay-enabled app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the CarPlay Simulator",
+      "type": "topic",
+      "url": "/documentation/carplay/using-the-carplay-simulator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/": {
+      "identifier": "https://developer.apple.com/account/",
+      "title": "Apple Developer",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/"
+    },
+    "https://developer.apple.com/carplay/documentation/CarPlay-App-Programming-Guide.pdf": {
+      "identifier": "https://developer.apple.com/carplay/documentation/CarPlay-App-Programming-Guide.pdf",
+      "title": "CarPlay App Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "CarPlay App Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/carplay/documentation/CarPlay-App-Programming-Guide.pdf"
+    },
+    "https://developer.apple.com/contact/carplay": {
+      "identifier": "https://developer.apple.com/contact/carplay",
+      "title": "CarPlay Contact Us",
+      "titleInlineContent": [
+        {
+          "text": "CarPlay Contact Us",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/carplay"
+    },
+    "https://help.apple.com/developer-account/#/dev1b35d6f83": {
+      "identifier": "https://help.apple.com/developer-account/#/dev1b35d6f83",
+      "title": "Register an App ID",
+      "titleInlineContent": [
+        {
+          "text": "Register an App ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/#/dev1b35d6f83"
+    },
+    "https://help.apple.com/developer-account/#/dev38c81d4cd": {
+      "identifier": "https://help.apple.com/developer-account/#/dev38c81d4cd",
+      "title": "Provisioning with managed capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Provisioning with managed capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/#/dev38c81d4cd"
+    },
+    "https://help.apple.com/developer-account/#/devf2eb157f8": {
+      "identifier": "https://help.apple.com/developer-account/#/devf2eb157f8",
+      "title": "Create a development provisioning profile",
+      "titleInlineContent": [
+        {
+          "text": "Create a development provisioning profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/developer-account/#/devf2eb157f8"
+    },
+    "media-3703055": {
+      "alt": "A screenshot showing the Edit your App ID Configuration page in the developer portal. The Additional Capabilities tab is in a selected state and lists the available CarPlay capabilities. The CarPlay Audio App (CarPlay framework) capability is in an enabled state.",
+      "identifier": "media-3703055",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f69f20ddd7365e388da3ab9d6c088973/media-3703055@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a57af23c17021a654de53dd65c9b9a9b/media-3703055~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "CarPlay-Integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+        "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+        "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+      ],
+      "title": "CarPlay Integration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "CarPlay-Integration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+                "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+                "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+              ],
+              "title": "CarPlay Integration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/title",
+          "value": "CPTemplateApplicationScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/title",
+          "value": "CPTemplateApplicationSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/title",
+          "value": "CPSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/requesting-carplay-entitlements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/requesting-carplay-entitlements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

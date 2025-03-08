@@ -1,0 +1,1310 @@
+{
+  "abstract": [
+    {
+      "text": "The base protocol for extensible file format support in Model I/O.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.modelio/documentation/ModelIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MDLComponent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MDLComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Model I/O"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MDLComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MDLComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By extending this protocol in your own custom protocols, you can define new functionality to add to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances in the object graph corresponding to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Model I/O adopts this pattern to support container objects (with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol) and objects with associated transformations (with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol). To work with these aspects of a Model I/O object, call the object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/componentConforming(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with the appropriate protocol. (The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class also provides convenience methods and properties for accessing features of these components without directly accessing the component instances.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add your own object features, first define a protocol that extends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, implement a class that adopts that protocol, and then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/setComponent(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to add your component to each object that needs it. The example below shows how you might implement a file format that associates scripting event triggers with parts of a game scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@protocol MyScriptTriggerComponent <MDLComponent>",
+            "// key: trigger identifier, value: scripting-language code",
+            "@property NSDictionary<NSString *, NSString *> *scriptTriggers;",
+            "@end",
+            " ",
+            "@interface MyScriptTriggerStorage <MyScriptTriggerComponent>",
+            "@property NSDictionary<NSString *, NSString *> *scriptTriggers;",
+            "@end",
+            " ",
+            "@implementation MDLObject (MyScriptTriggers)",
+            "- (void)setScriptTriggers:(NSDictionary<NSString *, NSString *>)triggers {",
+            "    MyScriptTriggerStorage *storage = [self componentConformingToProtocol:@protocol(MyScriptTriggerComponent)];",
+            "    if (storage == nil) {",
+            "        storage = // ... allocate / manage storage ...",
+            "        [self setComponent:storage forProtocol:@protocol(MyScriptTriggerComponent)];",
+            "    }",
+            "    storage.scriptTriggers = triggers;",
+            "}",
+            "@end"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO": {
+      "abstract": [
+        {
+          "text": "Import, export, and manipulate 3D models using a common infrastructure that integrates MetalKit, GLKit, and SceneKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Model I/O",
+      "type": "topic",
+      "url": "/documentation/modelio"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAnimationBindComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAnimationBindComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAnimationBindComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlanimationbindcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLAsset": {
+      "abstract": [
+        {
+          "text": "An indexed container for 3D objects and associated information, such as transform hierarchies, meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLAsset",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlasset"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLComponent": {
+      "abstract": [
+        {
+          "text": "The base protocol for extensible file format support in Model I/O.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject": {
+      "abstract": [
+        {
+          "text": "The base class for objects that are part of a 3D asset, including meshes, cameras, and lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObject",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject/componentConforming(to:)": {
+      "abstract": [
+        {
+          "text": "Returns the object’s component for the specified protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "componentConforming"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)Protocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLComponent",
+          "text": "MDLComponent"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/componentConforming(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "componentConformingToProtocol:"
+        }
+      ],
+      "role": "symbol",
+      "title": "componentConforming(to:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject/componentconforming(to:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObject/setComponent(_:for:)": {
+      "abstract": [
+        {
+          "text": "Associates a component with the object for the specified protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MDLComponent",
+          "text": "MDLComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)Protocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObject/setComponent(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setComponent:forProtocol:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setComponent(_:for:)",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobject/setcomponent(_:for:)"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer": {
+      "abstract": [
+        {
+          "text": "A default implementation for handling object hierarchy relationships in a 3D asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObjectContainer",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobjectcontainer"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent": {
+      "abstract": [
+        {
+          "text": "The general interface for classes that can act as containers in an object hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLObjectContainerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLObjectContainerComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdlobjectcontainercomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransform": {
+      "abstract": [
+        {
+          "text": "A description of the local coordinate space transformations for a 3D object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransform",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransform"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent": {
+      "abstract": [
+        {
+          "text": "The general interface for classes that manage local coordinate space transforms for 3D objects",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformComponent",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformcomponent"
+    },
+    "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MDLTransformStack"
+        }
+      ],
+      "identifier": "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MDLTransformStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "MDLTransformStack",
+      "type": "topic",
+      "url": "/documentation/modelio/mdltransformstack"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransform",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformStack"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extensible-Asset-Format-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+        "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+      ],
+      "title": "Extensible Asset Format Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MDLComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.modelio/documentation/ModelIO"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLAnimationBindComponent"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extensible-Asset-Format-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainer",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLObjectContainerComponent",
+                "doc://com.apple.modelio/documentation/ModelIO/MDLTransformComponent"
+              ],
+              "title": "Extensible Asset Format Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MDLComponent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimationBindComponent/title",
+          "value": "MDLAnimationBindComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimationBindComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimationBindComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAnimationBindComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAnimationBindComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/title",
+          "value": "MDLTransformStack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformStack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformStack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformStack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/title",
+          "value": "MDLObjectContainerComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainerComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainerComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1setComponent(_:for:)/title",
+          "value": "setComponent:forProtocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1setComponent(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setComponent:forProtocol:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/title",
+          "value": "MDLComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1componentConforming(to:)/title",
+          "value": "componentConformingToProtocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject~1componentConforming(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "componentConformingToProtocol:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/title",
+          "value": "MDLTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/title",
+          "value": "MDLObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/title",
+          "value": "MDLObjectContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLObjectContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLObjectContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/title",
+          "value": "MDLTransformComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLTransformComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLTransformComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/title",
+          "value": "MDLAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.modelio~1documentation~1ModelIO~1MDLAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MDLAsset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/modelio/mdlcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/modelio/mdlcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

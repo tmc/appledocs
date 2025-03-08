@@ -1,0 +1,299 @@
+{
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+        "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapBundledParallelTaskCommandAndResponseBuffers"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserSCSIParallelInterfaceController@F@UserMapBundledParallelTaskCommandAndResponseBuffers#*$@S@IOBufferMemoryDescriptor#S0_#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UserMapBundledParallelTaskCommandAndResponseBuffers"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SCSIControllerDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UserMapBundledParallelTaskCommandAndResponseBuffers"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "UserMapBundledParallelTaskCommandAndResponseBuffers"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UserMapBundledParallelTaskCommandAndResponseBuffers"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOBufferMemoryDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOBufferMemoryDescriptor",
+              "text": "IOBufferMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parallelCommandIOMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOBufferMemoryDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOBufferMemoryDescriptor",
+              "text": "IOBufferMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parallelResponseIOMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "\t@function UserMapBundledParallelTaskCommandAndResponseBuffers",
+            "\t@abstract Called by the framework to map the shared command and response",
+            "\tbuffers in the dext address space.",
+            "\t@discussion To optimize the interaction with dext class, framework allocates",
+            "\tcontiguous command and response buffers to hold maximum number of tasks",
+            "\treported by UserReportMaximumTaskCount. The framework will call this method before",
+            "\tUserStartController, so that dext class can map these buffers in the dext address space.",
+            "    The framework uses the shared buffers to pass command and response payloads.",
+            "\tThere is one to one mapping between command and response buffers and dext should",
+            "\tuse same slot number for related command and response payloads; example if framework",
+            "    assigns buffer slot number 12 to a command, then dext should use slot number 12 in",
+            "    the mapped response buffers during I/O completion.",
+            "",
+            "\tThe shared buffer slots for both command and response are owned by the framework",
+            "\ttill it passes the ownership to the dext via UserProcessBundledParallelTasks.",
+            "\tAnd dext has the ownership of both command and response buffers slots",
+            "\ttill it hands over the ownership back to the framework via BundledParallelTaskCompletion.",
+            "    Dext shouldn't access a command and response buffer slot unless framework has passed",
+            "    the ownership to the dext.",
+            "",
+            "    If a dext doesn't want to use the shared buffers, it could choose to return",
+            "    kIOReturnFailure and continue to use UserProcessParallelTask and UserCompleteParallelTask",
+            "    to process the I/Os.",
+            "    If dext returns kIOReturnSuccess, framework expects the dext to use UserProcessBundledParallelTasks",
+            "    and UserCompleteBundledParallelTask.",
+            "",
+            "\t@param parallelCommandIOMemoryDescriptor The memory descriptor corresponding",
+            "\tto the command buffers.",
+            "\t@param parallelResponseIOMemoryDescriptor The memory descriptor corresponding",
+            "\tto the response buffers.",
+            "\t@result kIOReturnSuccess on success and kIOReturnFailure on failure."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for SCSI protocol-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SCSIControllerDriverKit",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with SCSI-based devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserSCSIParallelInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserSCSIParallelInterfaceController",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller"
+    },
+    "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapBundledParallelTaskCommandAndResponseBuffers": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UserMapBundledParallelTaskCommandAndResponseBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.scsicontrollerdriverkit/documentation/SCSIControllerDriverKit/IOUserSCSIParallelInterfaceController/UserMapBundledParallelTaskCommandAndResponseBuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserMapBundledParallelTaskCommandAndResponseBuffers",
+      "type": "topic",
+      "url": "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usermapbundledparalleltaskcommandandresponsebuffers"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOBufferMemoryDescriptor": {
+      "abstract": [
+        {
+          "text": "A simple memory descriptor that allocates its own buffer memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOBufferMemoryDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scsicontrollerdriverkit/iouserscsiparallelinterfacecontroller/usermapbundledparalleltaskcommandandresponsebuffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3727 @@
+{
+  "abstract": [
+    {
+      "text": "The latitude, longitude, and course information reported by the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CLLocation",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CLLocation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CLLocation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CLLocation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/getting-heading-and-course-information",
+        "doc://com.apple.corelocation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains the geographical location and altitude of a device, along with values indicating the accuracy of those measurements and when they were collected. In iOS, a location object also contains course information — that is, the speed and heading in which the device was moving.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you don’t create location objects yourself. After you request location updates from your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, the system uses onboard sensors to gather location data and report that data to your app. Some services also return previously collected location data, which you can use as context to improve your services. You can always retrieve the most recently collected location from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/location",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. You may create location objects yourself when you want to cache custom location data or calculate the distance between two geographical coordinates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects as-is, and don’t subclass them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySessionDiagnostic"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLBackgroundActivitySessionDiagnostic",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbackgroundactivitysessiondiagnostic"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor": {
+      "abstract": [
+        {
+          "text": "The floor of a building on which the user’s device is located.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLFloor"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLFloor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLFloor",
+      "type": "topic",
+      "url": "/documentation/corelocation/clfloor"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation": {
+      "abstract": [
+        {
+          "text": "The latitude, longitude, and course information reported by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocation",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/altitude": {
+      "abstract": [
+        {
+          "text": "The altitude above mean sea level associated with a location, measured in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/altitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "altitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "altitude",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/altitude"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/coordinate": {
+      "abstract": [
+        {
+          "text": "The geographical coordinate information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/coordinate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        }
+      ],
+      "role": "symbol",
+      "title": "coordinate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/coordinate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/course": {
+      "abstract": [
+        {
+          "text": "The direction in which the device is traveling, measured in degrees and relative to due north.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "course"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirection",
+          "text": "CLLocationDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/course",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "course"
+        }
+      ],
+      "role": "symbol",
+      "title": "course",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/course"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/courseAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of the course value, measured in degrees.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "courseAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirectionAccuracy",
+          "text": "CLLocationDirectionAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/courseAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "courseAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "courseAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/courseaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/distance(from:)": {
+      "abstract": [
+        {
+          "text": "Returns the distance (measured in meters) from the current object’s location to the specified location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distance"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/distance(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "distanceFromLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "distance(from:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/distance(from:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/ellipsoidalAltitude": {
+      "abstract": [
+        {
+          "text": "The altitude as a height above the World Geodetic System 1984 (WGS84) ellipsoid, measured in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ellipsoidalAltitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/ellipsoidalAltitude",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ellipsoidalAltitude"
+        }
+      ],
+      "role": "symbol",
+      "title": "ellipsoidalAltitude",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/ellipsoidalaltitude"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/floor": {
+      "abstract": [
+        {
+          "text": "The logical floor of the building in which the user is located.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "floor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLFloor",
+          "text": "CLFloor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/floor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "floor"
+        }
+      ],
+      "role": "symbol",
+      "title": "floor",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/floor"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/getDistanceFrom(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the distance (measured in meters) from the current object’s location to the specified location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDistanceFrom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/getDistanceFrom(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getDistanceFrom:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getDistanceFrom(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/getdistancefrom(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/horizontalAccuracy": {
+      "abstract": [
+        {
+          "text": "The radius of uncertainty for the location, measured in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/horizontalAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "horizontalAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "horizontalAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/horizontalaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)": {
+      "abstract": [
+        {
+          "text": "Creates a location object with the specified coordinate, altitude, course, and accuracy information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "course"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirection",
+          "text": "CLLocationDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "courseAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirectionAccuracy",
+          "text": "CLLocationDirectionAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeed",
+          "text": "CLLocationSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speedAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeedAccuracy",
+          "text": "CLLocationSpeedAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/init(coordinate:altitude:horizontalaccuracy:verticalaccuracy:course:courseaccuracy:speed:speedaccuracy:timestamp:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "course"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirection",
+          "text": "CLLocationDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "courseAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirectionAccuracy",
+          "text": "CLLocationDirectionAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeed",
+          "text": "CLLocationSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speedAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeedAccuracy",
+          "text": "CLLocationSpeedAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationSourceInformation",
+          "text": "CLLocationSourceInformation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/init(coordinate:altitude:horizontalaccuracy:verticalaccuracy:course:courseaccuracy:speed:speedaccuracy:timestamp:sourceinfo:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)": {
+      "abstract": [
+        {
+          "text": "Creates a location object with the specified coordinate, altitude, and course information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "course"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDirection",
+          "text": "CLLocationDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeed",
+          "text": "CLLocationSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/init(coordinate:altitude:horizontalaccuracy:verticalaccuracy:course:speed:timestamp:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)": {
+      "abstract": [
+        {
+          "text": "Creates a location object with the specified coordinate and altitude information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "verticalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/init(coordinate:altitude:horizontalaccuracy:verticalaccuracy:timestamp:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(latitude:longitude:)": {
+      "abstract": [
+        {
+          "text": "Creates a location object with the specified latitude and longitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "latitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDegrees",
+          "text": "CLLocationDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "longitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDegrees",
+          "text": "CLLocationDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(latitude:longitude:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithLatitude:longitude:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(latitude:longitude:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/init(latitude:longitude:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/sourceInformation": {
+      "abstract": [
+        {
+          "text": "Information about the source that provides the location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationSourceInformation",
+          "text": "CLLocationSourceInformation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/sourceInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceInformation",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/sourceinformation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speed": {
+      "abstract": [
+        {
+          "text": "The instantaneous speed of the device, measured in meters per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeed",
+          "text": "CLLocationSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speed"
+        }
+      ],
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/speed"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speedAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of the speed value, measured in meters per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speedAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationSpeedAccuracy",
+          "text": "CLLocationSpeedAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speedAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speedAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "speedAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/speedaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/timestamp": {
+      "abstract": [
+        {
+          "text": "The time at which this location was determined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/timestamp"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/verticalAccuracy": {
+      "abstract": [
+        {
+          "text": "The validity of the altitude values, and their estimated uncertainty, measured in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/verticalAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "verticalAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "verticalAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation/verticalaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of a geographical coordinate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D": {
+      "abstract": [
+        {
+          "text": "The latitude and longitude associated with a location, specified using the WGS 84 reference frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationCoordinate2D",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationcoordinate2d"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirection": {
+      "abstract": [
+        {
+          "text": "An azimuth that is measured in degrees relative to true north.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationDirection",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationdirection"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirectionAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of a compass heading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationDirectionAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirectionAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationDirectionAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationDirectionAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationdirectionaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDistance": {
+      "abstract": [
+        {
+          "text": "A distance in meters from an existing location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationDistance"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDistance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationDistance"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationDistance",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationdistance"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation": {
+      "abstract": [
+        {
+          "text": "Information about the source that provides a location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationSourceInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationSourceInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationSourceInformation",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationsourceinformation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeed": {
+      "abstract": [
+        {
+          "text": "The velocity (measured in meters per second) at which the device is moving.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationSpeed"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationSpeed",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationspeed"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeedAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of a speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationSpeedAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeedAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationSpeedAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationSpeedAccuracy",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationspeedaccuracy"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdater": {
+      "abstract": [
+        {
+          "text": "An object that provides device location updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdater"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdater",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocationUpdater",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationupdater"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-2ddhd": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-2ddhd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLServiceSession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-2ddhd"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLServiceSession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-pt7n"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSessionDiagnostic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSessionDiagnostic"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSessionDiagnostic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLServiceSessionDiagnostic",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesessiondiagnostic"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit": {
+      "abstract": [
+        {
+          "text": "Information about the user’s location during a specific period of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLVisit"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLVisit"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLVisit",
+      "type": "topic",
+      "url": "/documentation/corelocation/clvisit"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names": {
+      "abstract": [
+        {
+          "text": "Convert between a latitude and longitude pair and a more user-friendly description of that location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting between coordinates and user-friendly place names",
+      "type": "topic",
+      "url": "/documentation/corelocation/converting-between-coordinates-and-user-friendly-place-names"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an extension to enable your location-sharing app to access a user’s location in response to a request from another user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a location push service extension",
+      "type": "topic",
+      "url": "/documentation/corelocation/creating-a-location-push-service-extension"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/getting-heading-and-course-information": {
+      "abstract": [
+        {
+          "text": "Use a device’s orientation and course information for navigation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-heading-and-course-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting heading and course information",
+      "type": "topic",
+      "url": "/documentation/corelocation/getting-heading-and-course-information"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device": {
+      "abstract": [
+        {
+          "text": "Start location services and provide information the system needs to optimize power usage for those services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the current location of a device",
+      "type": "topic",
+      "url": "/documentation/corelocation/getting-the-current-location-of-a-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/handling-location-updates-in-the-background": {
+      "abstract": [
+        {
+          "text": "Configure your app to receive location updates when it isn’t running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/handling-location-updates-in-the-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling location updates in the background",
+      "type": "topic",
+      "url": "/documentation/corelocation/handling-location-updates-in-the-background"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location": {
+      "abstract": [
+        {
+          "text": "Define boundaries and act on user location updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Monitoring location changes with Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation/monitoring-location-changes-with-core-location"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/location": {
+      "abstract": [
+        {
+          "text": "The most recently retrieved user location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/location",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "location",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/location"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)CKRecordValue": {
+      "abstract": [
+        {
+          "text": "The protocol that provides strong type-checking for objects that the CloudKit framework stores on the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "@protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordValue"
+        },
+        {
+          "kind": "text",
+          "text": " <"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)CKRecordValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordValue",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKRecordValue-c.protocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:8CloudKit21CKRecordValueProtocolP": {
+      "abstract": [
+        {
+          "text": "A description of a CloudKit record value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordValueProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:8CloudKit21CKRecordValueProtocolP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordValueProtocol",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKRecordValueProtocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)CKRecordValue",
+        "doc://com.externally.resolved.symbol/s:8CloudKit21CKRecordValueProtocolP",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Location-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+        "doc://com.apple.corelocation/documentation/CoreLocation/handling-location-updates-in-the-background",
+        "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n"
+      ],
+      "title": "Location updates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-location-object",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(latitude:longitude:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)"
+      ],
+      "title": "Creating a location object"
+    },
+    {
+      "anchor": "Getting-the-location-attributes",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/coordinate",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/altitude",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/ellipsoidalAltitude",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDistance",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/floor",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/timestamp",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/sourceInformation"
+      ],
+      "title": "Getting the location attributes"
+    },
+    {
+      "anchor": "Getting-the-location-accuracy",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/horizontalAccuracy",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/verticalAccuracy",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationAccuracy"
+      ],
+      "title": "Getting the location accuracy"
+    },
+    {
+      "anchor": "Measuring-the-distance-between-coordinates",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/distance(from:)",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/getDistanceFrom(_:)"
+      ],
+      "title": "Measuring the distance between coordinates"
+    },
+    {
+      "anchor": "Getting-speed-and-course-information",
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speed",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speedAccuracy",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/course",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/courseAccuracy",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeed",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirection",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeedAccuracy",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirectionAccuracy"
+      ],
+      "title": "Getting speed and course information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.6",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CLLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corelocation/documentation/CoreLocation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-location-object",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(latitude:longitude:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)"
+              ],
+              "title": "Creating a location object"
+            },
+            {
+              "anchor": "Getting-the-location-attributes",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/coordinate",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/altitude",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/ellipsoidalAltitude",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDistance",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/floor",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/timestamp",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/sourceInformation"
+              ],
+              "title": "Getting the location attributes"
+            },
+            {
+              "anchor": "Getting-the-location-accuracy",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/horizontalAccuracy",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/verticalAccuracy",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationAccuracy"
+              ],
+              "title": "Getting the location accuracy"
+            },
+            {
+              "anchor": "Measuring-the-distance-between-coordinates",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/distance(from:)",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/getDistanceFrom(_:)"
+              ],
+              "title": "Measuring the distance between coordinates"
+            },
+            {
+              "anchor": "Getting-speed-and-course-information",
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speed",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/speedAccuracy",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/course",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation/courseAccuracy",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeed",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirection",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSpeedAccuracy",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationDirectionAccuracy"
+              ],
+              "title": "Getting speed and course information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)CKRecordValue",
+                "doc://com.externally.resolved.symbol/s:8CloudKit21CKRecordValueProtocolP",
+                "doc://com.externally.resolved.symbol/s:s8CopyableP",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Location-updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+                "doc://com.apple.corelocation/documentation/CoreLocation/handling-location-updates-in-the-background",
+                "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-2ddhd",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSessionDiagnostic",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdater"
+              ],
+              "title": "Location updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CLLocation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1location/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLLocation",
+              "text": "CLLocation"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "location"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationCoordinate2D/title",
+          "value": "CLLocationCoordinate2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationCoordinate2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationCoordinate2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1timestamp/title",
+          "value": "timestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)/title",
+          "value": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)/title",
+          "value": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1speedAccuracy/title",
+          "value": "speedAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1speedAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speedAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1distance(from:)/title",
+          "value": "distanceFromLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1distance(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "distanceFromLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1altitude/title",
+          "value": "altitude"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1altitude/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "altitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSpeed/title",
+          "value": "CLLocationSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSpeed/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationAccuracy/title",
+          "value": "CLLocationAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationAccuracy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLFloor/title",
+          "value": "CLFloor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLFloor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLFloor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLFloor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLFloor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1sourceInformation/title",
+          "value": "sourceInformation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1sourceInformation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1coordinate/title",
+          "value": "coordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1coordinate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "coordinate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDistance/title",
+          "value": "CLLocationDistance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDistance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDistance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDirection/title",
+          "value": "CLLocationDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1courseAccuracy/title",
+          "value": "courseAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1courseAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "courseAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1horizontalAccuracy/title",
+          "value": "horizontalAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1horizontalAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "horizontalAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)/title",
+          "value": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)/title",
+          "value": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(coordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1getDistanceFrom(_:)/title",
+          "value": "getDistanceFrom:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1getDistanceFrom(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getDistanceFrom:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLVisit/title",
+          "value": "CLVisit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLVisit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLVisit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLVisit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLVisit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1verticalAccuracy/title",
+          "value": "verticalAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1verticalAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "verticalAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(latitude:longitude:)/title",
+          "value": "initWithLatitude:longitude:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1init(latitude:longitude:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithLatitude:longitude:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation/title",
+          "value": "CLLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1speed/title",
+          "value": "speed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1speed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1ellipsoidalAltitude/title",
+          "value": "ellipsoidalAltitude"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1ellipsoidalAltitude/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ellipsoidalAltitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSourceInformation/title",
+          "value": "CLLocationSourceInformation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSourceInformation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSourceInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSourceInformation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSourceInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDirectionAccuracy/title",
+          "value": "CLLocationDirectionAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDirectionAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationDirectionAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationDirectionAccuracy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationDirectionAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1course/title",
+          "value": "course"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1course/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "course"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1floor/title",
+          "value": "floor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation~1floor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "floor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSpeedAccuracy/title",
+          "value": "CLLocationSpeedAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSpeedAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSpeedAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSpeedAccuracy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSpeedAccuracy"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/cllocation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/cllocation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

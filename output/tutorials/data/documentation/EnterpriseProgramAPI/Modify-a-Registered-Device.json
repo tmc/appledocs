@@ -1,0 +1,461 @@
+{
+  "abstract": [
+    {
+      "text": "Update the name or status of a specific device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/Modify-a-Registered-Device"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:patch:v1-devices-{}",
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Modify a Registered Device"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Modify a Registered Device"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PATCH"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.enterprise.developer.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/devices/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/DeviceUpdateRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:app_store_connect_api:DeviceUpdateRequest",
+          "text": "DeviceUpdateRequest"
+        }
+      ],
+      "content": [],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/DeviceResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:DeviceResponse",
+              "text": "DeviceResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided resource data is not valid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Conflict",
+          "status": 409,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "status": 422,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HTTPBody",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/DeviceResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Devices resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/DeviceResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/deviceresponse"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/DeviceUpdateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to update a Device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceUpdateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/DeviceUpdateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceUpdateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceUpdateRequest",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/deviceupdaterequest"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/errorresponse"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/Modify-a-Registered-Device": {
+      "abstract": [
+        {
+          "text": "Update the name or status of a specific device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/Modify-a-Registered-Device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Modify a Registered Device"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a Registered Device",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/modify-a-registered-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/modify-a-registered-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

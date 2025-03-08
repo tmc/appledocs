@@ -1,0 +1,789 @@
+{
+  "abstract": [
+    {
+      "text": "Assigns the system identity to be associated with a specified domain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecIdentitySetSystemIdentity",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SecIdentitySetSystemIdentity"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CFStringRef",
+        "text": "CFString"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@SecIdentityRef",
+        "text": "SecIdentity"
+      },
+      {
+        "kind": "text",
+        "text": "?) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@OSStatus",
+        "text": "OSStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecIdentitySetSystemIdentity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecIdentitySetSystemIdentity(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySetSystemIdentity"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "domain"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFString"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "idRef"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecIdentity",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecIdentityRef",
+              "text": "SecIdentity"
+            },
+            {
+              "kind": "text",
+              "text": "?) -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The domain to which the specified identity will be assigned, typically in reverse DNS notation, such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".  You may also pass the values defined in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/system-identity-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "domain"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identity to be assigned to the specified domain. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to delete any currently-assigned identity for the specified domain; in this case, it is not an error if no identity exists for the specified domain.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "idRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The caller must be running as root.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentity": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentity",
+      "type": "topic",
+      "url": "/documentation/security/secidentity"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Assigns the system identity to be associated with a specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetSystemIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetSystemIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentitySetSystemIdentity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysetsystemidentity(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/system-identity-domains": {
+      "abstract": [
+        {
+          "text": "Set or obtain a system identity for domains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/system-identity-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Identity Domains",
+      "type": "topic",
+      "url": "/documentation/security/system-identity-domains"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFStringRef": {
+      "abstract": [
+        {
+          "text": "A reference to a CFString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SecIdentitySetSystemIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySetSystemIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@OSStatus",
+                    "text": "OSStatus"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SecIdentitySetSystemIdentity"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CFStringRef",
+                    "text": "CFStringRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "domain"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "identifier": "doc://com.apple.security/documentation/Security/SecIdentity",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@SecIdentityRef",
+                    "text": "SecIdentityRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "idRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The domain to which the specified identity will be assigned, typically in reverse DNS notation, such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.apple.security",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".  You may also pass the values defined in ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.security/documentation/Security/system-identity-domains",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "domain"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The identity to be assigned to the specified domain. Pass ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NULL",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to delete any currently-assigned identity for the specified domain; in this case, it is not an error if no identity exists for the specified domain.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "idRef"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A result code. See ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/title",
+          "value": "SecIdentityRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySetSystemIdentity(_:_:)/title",
+          "value": "SecIdentitySetSystemIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySetSystemIdentity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySetSystemIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFStringRef/title",
+          "value": "CFStringRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secidentitysetsystemidentity(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/secidentitysetsystemidentity(_:_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

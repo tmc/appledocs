@@ -1,0 +1,1117 @@
+{
+  "abstract": [
+    {
+      "text": "Represents a selection of text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI13TextSelectionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TextSelection"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TextSelection"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "TextSelection"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TextSelection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A selection is either an insertion point (e.g. a cursor in the text), a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selection over a range of text or on macOS, multiple selections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is frequently used to represent selection of text in a ",
+              "type": "text"
+            },
+            {
+              "code": "TextField",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "TextEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following example shows a text editor that leverages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text selection to offer live suggestions based on the current selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SuggestionTextEditor: View {",
+            "    @State var text: String = \"\"",
+            "    @State var selection: TextSelection? = nil",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            TextEditor(text: $text, selection: $selection)",
+            "            // A helper view that offers live suggestions based on selection.",
+            "            SuggestionsView(",
+            "                substrings: getSubstrings(text: text, indices: selection?.indices))",
+            "        }",
+            "    }",
+            "",
+            "    private func getSubstrings(",
+            "        text: String, indices: TextSelection.Indices?",
+            "    ) -> [Substring] {",
+            "        // Resolve substrings representing the current selection...",
+            "    }",
+            "}",
+            "",
+            "struct SuggestionsView: View { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelectionAffinity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a selection affinity on the given hierarchy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SuggestionTextEditor: View {",
+            "    @State var text: String = \"\"",
+            "    @State var selection: TextSelection? = nil",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            TextEditor(text: $text, selection: $selection)",
+            "            // A helper view that offers live suggestions based on selection.",
+            "            SuggestionsView(",
+            "                substrings: getSubstrings(text: text, indices: selection?.indices))",
+            "        }",
+            "        .textSelectionAffinity(.upstream)",
+            "    }",
+            "",
+            "    private func getSubstrings(",
+            "        text: String, indices: TextSelection.Indices?",
+            "    ) -> [Substring] {",
+            "        // Resolve substrings representing the current selection...",
+            "    }",
+            "}",
+            "",
+            "struct SuggestionsView: View { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/textSelectionAffinity": {
+      "abstract": [
+        {
+          "text": "A representation of the direction or association of a selection or cursor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "relative to a text character. This concept becomes much more prominent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when dealing with bidirectional text (text that contains both LTR and RTL",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scripts, like English and Arabic combined).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textSelectionAffinity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21TextSelectionAffinityO",
+          "text": "TextSelectionAffinity"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/textSelectionAffinity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textSelectionAffinity",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/textselectionaffinity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelectability": {
+      "abstract": [
+        {
+          "text": "A type that describes the ability to select text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextSelectability"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelectability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextSelectability"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextSelectability",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselectability"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection": {
+      "abstract": [
+        {
+          "text": "Represents a selection of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextSelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextSelection",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/Indices-swift.enum": {
+      "abstract": [
+        {
+          "text": "The indicies of the current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Indices"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/Indices-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Indices"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextSelection.Indices",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/indices-swift.enum"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/affinity": {
+      "abstract": [
+        {
+          "text": "Return the selection affinity of the selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "affinity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21TextSelectionAffinityO",
+          "text": "TextSelectionAffinity"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/affinity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "affinity",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/affinity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/indices-swift.property": {
+      "abstract": [
+        {
+          "text": "Return the current text selection indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13TextSelectionV",
+          "text": "TextSelection"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13TextSelectionV7IndicesO",
+          "text": "Indices"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/indices-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indices",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/indices-swift.property"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(insertionPoint:)": {
+      "abstract": [
+        {
+          "text": "Create a selection at a given insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "insertionPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(insertionPoint:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(insertionPoint:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/init(insertionpoint:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(range:)": {
+      "abstract": [
+        {
+          "text": "Create a single selection with a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(range:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/init(range:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(ranges:)": {
+      "abstract": [
+        {
+          "text": "Create multiple selections with a given range-set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ranges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8RangeSetV",
+          "text": "RangeSet"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(ranges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ranges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/init(ranges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/isInsertion": {
+      "abstract": [
+        {
+          "text": "Return ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the selection is an insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInsertion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/isInsertion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isInsertion",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselection/isinsertion"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelectionAffinity": {
+      "abstract": [
+        {
+          "text": "A representation of the direction or association of a selection or cursor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "relative to a text character. This concept becomes much more prominent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when dealing with bidirectional text (text that contains both LTR and RTL",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scripts, like English and Arabic combined).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextSelectionAffinity"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelectionAffinity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextSelectionAffinity"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextSelectionAffinity",
+      "type": "topic",
+      "url": "/documentation/swiftui/textselectionaffinity"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelection(_:)": {
+      "abstract": [
+        {
+          "text": "Controls whether people can select text within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textSelection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelection(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textSelection(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/textselection(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelectionAffinity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the direction of a selection or cursor relative to a text character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textSelectionAffinity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21TextSelectionAffinityO",
+          "text": "TextSelectionAffinity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelectionAffinity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textSelectionAffinity(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/textselectionaffinity(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Selecting-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelection(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelectability",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textSelectionAffinity(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/textSelectionAffinity",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelectionAffinity"
+      ],
+      "title": "Selecting text"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(insertionPoint:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(range:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/init(ranges:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/affinity",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/indices-swift.property",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/isInsertion"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextSelection/Indices-swift.enum"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/textselection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

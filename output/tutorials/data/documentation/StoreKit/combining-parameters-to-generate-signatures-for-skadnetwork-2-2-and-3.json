@@ -1,0 +1,437 @@
+{
+  "abstract": [
+    {
+      "text": "Generate signatures to sign your ad with versions 2.2 and 3.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-signatures-for-skadnetwork-2-2-and-3"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Combining parameters to generate signatures for SKAdNetwork 2.2 and 3"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate the signature, combine the required values of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for version 2, and include a ",
+              "type": "text"
+            },
+            {
+              "code": "fidelity-type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for StoreKit-rendered ads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Lowercase the string representation of the nonce: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Failing to do so results in an invalid signature. Only ads with valid signatures can get ad attributions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For versions 2.2 and 3, combine the values into a UTF-8 string with an invisible separator (",
+              "type": "text"
+            },
+            {
+              "code": "‘\\u2063’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") between them, in the exact order the code below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//Parameter values combined, in order, for version 2.2 and 3.",
+            "version + '\\u2063' + ad-network-id + '\\u2063' + campaign-id + '\\u2063' + itunes-item-id + '\\u2063' + nonce + '\\u2063' + source-app-id + '\\u2063' + fidelity-type + '\\u2063' + timestamp",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce": {
+      "abstract": [
+        {
+          "text": "The key that represents a random value to use for added security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkNonce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterAdNetworkNonce",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterAdNetworkNonce"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterAdNetworkNonce",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteradnetworknonce"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution": {
+      "abstract": [
+        {
+          "text": "Validate advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network attribution",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-attribution"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys": {
+      "abstract": [
+        {
+          "text": "Specify key values that validate and associate an app installation with an ad campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-install-validation-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network install-validation keys",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-install-validation-keys"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-1": {
+      "abstract": [
+        {
+          "text": "Generate signatures for apps compiled with earlier SDKs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-1",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining parameters to generate a signature for SKAdNetwork 1",
+      "type": "topic",
+      "url": "/documentation/storekit/combining-parameters-to-generate-a-signature-for-skadnetwork-1"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-2": {
+      "abstract": [
+        {
+          "text": "Generate signatures to sign your ad with version 2.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-2",
+      "kind": "article",
+      "role": "article",
+      "title": "Combining parameters to generate a signature for SKAdNetwork 2",
+      "type": "topic",
+      "url": "/documentation/storekit/combining-parameters-to-generate-a-signature-for-skadnetwork-2"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads": {
+      "abstract": [
+        {
+          "text": "Initiate install validation by displaying a StoreKit-rendered ad with signed parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-the-signature-to-validate-storekit-rendered-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating the signature to validate StoreKit-rendered ads",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-the-signature-to-validate-storekit-rendered-ads"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signatures-for-SKAdNetwork-1-2-and-22-3",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-2",
+        "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-1"
+      ],
+      "title": "Signatures for SKAdNetwork 1, 2, and 2.2–3"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Signatures-for-SKAdNetwork-1-2-and-22-3",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-2",
+                "doc://com.apple.storekit/documentation/StoreKit/combining-parameters-to-generate-a-signature-for-skadnetwork-1"
+              ],
+              "title": "Signatures for SKAdNetwork 1, 2, and 2.2–3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkNonce/title",
+          "value": "SKStoreProductParameterAdNetworkNonce"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterAdNetworkNonce/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterAdNetworkNonce"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/combining-parameters-to-generate-signatures-for-skadnetwork-2-2-and-3"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/combining-parameters-to-generate-signatures-for-skadnetwork-2-2-and-3"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

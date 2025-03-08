@@ -1,0 +1,1296 @@
+{
+  "abstract": [
+    {
+      "text": "An object that requests the delivery and handles the receipt of PushKit notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pushkit/documentation/PushKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKPushRegistry",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKPushRegistry"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PushKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKPushRegistry"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PKPushRegistry"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+        "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "PKPushRegistry",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object manages only certain types of notifications, such as high-priority notifications needed by a VoIP app. PushKit wakes up your app as needed to deliver incoming notifications and delivers the notifications directly to the push registry object that requested them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every time your app launches, whether in the foreground or in the background, create a push registry object and configure it. Typically, you keep the push registry object running for the duration of your app. Each push registry object delivers incoming notifications to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which also handles the responses for registration requests. Listing 1 shows how to create a push registry object and request VoIP notifications. Always assign an appropriate delegate object before modifying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/desiredPushTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Creating and configuring a push registry object",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func registerForVoIPPushes() {",
+                    "    self.voipRegistry = PKPushRegistry(queue: nil)",
+                    "    self.voipRegistry.delegate = self",
+                    "    self.voipRegistry.desiredPushTypes = [PKPushTypeVoIP]",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void) registerForVoIPPushes {",
+                    "   self.voipRegistry = [[PKPushRegistry alloc] initWithQueue:nil];",
+                    "   self.voipRegistry.delegate = self;",
+                    " ",
+                    "   // Initiate registration.",
+                    "   self.voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assigning a new value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/desiredPushTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property registers the push registry object with the PushKit servers. The server reports the success or failure of your registration attempts asynchronously to the push registry, which then reports those results to its delegate object. The push registry also delivers all received notifications to the delegate object. For more information about the delegate methods, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/pushkit"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the device token you use to deliver push notifications to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushCredentials"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushCredentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushCredentials",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushcredentials"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry": {
+      "abstract": [
+        {
+          "text": "An object that requests the delivery and handles the receipt of PushKit notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistry"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushRegistry",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistry"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object that receives notifications coming from the push registry object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKPushRegistryDelegate",
+          "text": "PKPushRegistryDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistry/delegate"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/desiredPushTypes": {
+      "abstract": [
+        {
+          "text": "Registers the push types for this push registry object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredPushTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPushType",
+          "text": "PKPushType"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/desiredPushTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "desiredPushTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "desiredPushTypes",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistry/desiredpushtypes"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/init(queue:)": {
+      "abstract": [
+        {
+          "text": "Creates a push registry with the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/init(queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithQueue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(queue:)",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistry/init(queue:)"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/pushToken(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the locally cached push token for the specified push type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPushType",
+          "text": "PKPushType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/pushToken(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushTokenForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pushToken(for:)",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistry/pushtoken(for:)"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate": {
+      "abstract": [
+        {
+          "text": "The methods that you use to handle incoming PushKit notifications and registration events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushRegistryDelegate",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistrydelegate"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit": {
+      "abstract": [
+        {
+          "text": "Receive incoming Voice-over-IP (VoIP) push notifications and use them to display the system call interface to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to VoIP Notifications from PushKit",
+      "type": "topic",
+      "url": "/documentation/pushkit/responding-to-voip-notifications-from-pushkit"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app": {
+      "abstract": [
+        {
+          "text": "Declare the types of PushKit notifications your app supports and configure objects to respond to them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting PushKit Notifications in Your App",
+      "type": "topic",
+      "url": "/documentation/pushkit/supporting-pushkit-notifications-in-your-app"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Registration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials"
+      ],
+      "title": "Registration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Push-Registry",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/init(queue:)"
+      ],
+      "title": "Initializing a Push Registry"
+    },
+    {
+      "anchor": "Receiving-the-Notification-Data",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/delegate",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate"
+      ],
+      "title": "Receiving the Notification Data"
+    },
+    {
+      "anchor": "Managing-the-Push-Registry",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/desiredPushTypes",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/pushToken(for:)"
+      ],
+      "title": "Managing the Push Registry"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKPushRegistry"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.pushkit/documentation/PushKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Push-Registry",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/init(queue:)"
+              ],
+              "title": "Initializing a Push Registry"
+            },
+            {
+              "anchor": "Receiving-the-Notification-Data",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/delegate",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate"
+              ],
+              "title": "Receiving the Notification Data"
+            },
+            {
+              "anchor": "Managing-the-Push-Registry",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/desiredPushTypes",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry/pushToken(for:)"
+              ],
+              "title": "Managing the Push Registry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Registration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials"
+              ],
+              "title": "Registration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKPushRegistry"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushCredentials/title",
+          "value": "PKPushCredentials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushCredentials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushCredentials/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistryDelegate/title",
+          "value": "PKPushRegistryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1pushToken(for:)/title",
+          "value": "pushTokenForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1pushToken(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushTokenForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1init(queue:)/title",
+          "value": "initWithQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1init(queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithQueue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry/title",
+          "value": "PKPushRegistry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1desiredPushTypes/title",
+          "value": "desiredPushTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry~1desiredPushTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "desiredPushTypes"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pushkit/pkpushregistry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pushkit/pkpushregistry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

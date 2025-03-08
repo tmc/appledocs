@@ -1,0 +1,1287 @@
+{
+  "abstract": [
+    {
+      "text": "Decrypt and verify an in-app presentment request on your server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/wallet"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Verifying Wallet identity requests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server needs to decrypt and validate a mobile driver’s license (mDL) document that an app requests. The response contains the user information that you request, plus several security elements your server needs to validate the information to ensure it’s authentic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-response-structure",
+          "level": 3,
+          "text": "Understand the response structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PassKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework uses the encryption certificate you create in the developer portal, so only your server can decrypt the response. The framework encrypts the data by using hybrid public key encryption (HPKE) that RFC 9180 defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework encodes the HPKE envelope and underlying plaintext with concise binary object representation (CBOR) — a binary JSON-like format that RFC 8949 defines. Because the framework encrypts the response data by using HPKE, it doesn’t use session encryption as ISO 18013-5 section 9.1.1 defines. The encryption envelope contains two parts, the encryption metadata and the encrypted data. When you decrypt the data, you get a CBOR-encoded data structure that contains an ",
+              "type": "text"
+            },
+            {
+              "code": "mdoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response object that ISO 18013-5 defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In HPKE, the ",
+              "type": "text"
+            },
+            {
+              "code": "info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter — a session transcript — isn’t part of the package that you send. The sender and recipient need to build the ",
+              "type": "text"
+            },
+            {
+              "code": "info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter independently, and need to generate the same value to successfully decrypt it. The following shows the HPKE envelope format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HPKEEnvelope = {",
+            "    “algorithm”: tstr,    ; A value that's always “APPLE-HPKE-v1”.",
+            "    “params”: HPKEParams,",
+            "    “data”: bstr          ; The encrypted data.",
+            "}",
+            "",
+            "HPKEParams = {",
+            "    “mode”: uint,         ; A value that's always 0.",
+            "    “pkEm”: bstr,         ; An ephemeral sender public key.",
+            "    “pkRHash”: bstr,      ; The SHA256 hash of the recipient public key.",
+            "    “infoHash”: bstr      ; The SHA256 hash of the HPKE info param.",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "infoHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the HPKE structure is the SHA256 hash of the session transcript during encryption to allow the recipient to verify they’re using the correct ",
+              "type": "text"
+            },
+            {
+              "code": "info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-session-transcript",
+          "level": 3,
+          "text": "Build a session transcript",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session transcript is a CBOR structure you use during decryption and during validation of the device signature. The session transcript allows you to validate that the response payload belongs to a specific request that your app makes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Neither the session transcript nor the fields in it are part of the response payload. You need to create the structure on your server. Before you create the session transcript structure, verify that the hash of your public key matches the ",
+              "type": "text"
+            },
+            {
+              "code": "pkRHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the HPKE envelope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session transcript structure includes the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and merchant identifier you use in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a team identifier, and the SHA256 hash of the public key of the server’s decryption certificate. The session transcript values need to match your app and developer account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API uses a modified version of the ",
+              "type": "text"
+            },
+            {
+              "code": "SessionTranscript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that ISO 18013-5 section 9.1.5.1 defines. The API doesn’t use ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceEngagementBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "AReaderKeyBytes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so those elements are ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The handover element contains the ",
+              "type": "text"
+            },
+            {
+              "code": "AppleHandover",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, as the following code example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SessionTranscript = [",
+            "    nil,           ; DeviceEngagementBytes isn't available.",
+            "    nil,           ; EReaderKeyBytes isn't available.        ",
+            "    AppleHandover  ; A custom handover structure. ",
+            "]",
+            "",
+            "AppleHandover = [",
+            "    “AppleIdentityPresentment_1.0”  ; The version number.",
+            "    nonce,                          ; The app-provided nonce you use.  ",
+            "    merchantId,                     ; The merchant ID of the requesting client.  ",
+            "    teamID,                         ; The team ID of the requesting client.",
+            "    pkRHash                         ; A SHA256 hash of the recipient public key, the same as in HPKEParams.",
+            "]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compute the SHA256 hash of the session transcript to produce a value that matches the ",
+              "type": "text"
+            },
+            {
+              "code": "infoHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the HPKE envelope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decrypt-the-HPKE-envelope",
+          "level": 3,
+          "text": "Decrypt the HPKE envelope",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Decryption requires the encrypted data parameter from the HPKE envelope, the session transcript you create, and your server’s private key. The private key needs to correspond to the encryption certificate you create in the developer portal. The info parameter is the session transcript. The ",
+              "type": "text"
+            },
+            {
+              "code": "enc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is the ",
+              "type": "text"
+            },
+            {
+              "code": "pkEm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the HPKE envelope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the inputs, along with the following HPKE options, to decrypt the encrypted data as the HPKE specification describes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Option",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Value",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "KEM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DHKEM(P-256, HKDF-SHA256)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "KDF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HKDF-SHA256",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AEAD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AES-128-GCM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output is a CBOR topics structure that wraps an ISO 18013-5 ",
+              "type": "text"
+            },
+            {
+              "code": "mdoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Topics = {",
+            "    “identity”: DeviceResponse      ; A DeviceResponse structure.",
+            "}",
+            "",
+            "DeviceResponse = {",
+            "    \"version\": tstr,                ; A value that's always 1.0.",
+            "    \"documents\": [+Document],       ; A list of documents with a length of 1.",
+            "    \"status\": uint,                 ; A value that's always 0.",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identity value contains the ",
+              "type": "text"
+            },
+            {
+              "code": "DeviceResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that ISO 18013-5 section 8.2.2.1.2.2 defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "mdoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response contains three sections you use to verify that the response is valid. The issuer-signed items contain the elements your app requests. The issuer authentication structure contains the issuing authority’s signature and the metadata you use to verify the response authenticity. The device authentication structure contains a signature from the iPhone that’s requesting the information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Document = {",
+            "    “docType”: DocType,                 ; The document type.",
+            "    “issuerSigned”: IssuerSigned,       ; The data elements the issuer signs.",
+            "    “deviceSigned”: DeviceSigned,       ; The data elements the mdoc signs.",
+            "    ? “errors”: Errors                 ",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using the elements, you need to verify they come from the issuer and device you expect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-issuer-signature",
+          "level": 3,
+          "text": "Verify the issuer signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use issuer data authentication to verify that the ",
+              "type": "text"
+            },
+            {
+              "code": "mdoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " comes from an issuing authority you trust, and to verify it hasn’t been tampered with since issuance. Refer to ISO 18013-5 section 9.1.2 for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The signed issuer structure includes the data elements you request, and an issuer authentication property that contains the mobile security object (MSO) you use for verification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, you need to verify that the user information in the response matches the data from the issuing authority. The issuer’s signature includes an array of digests, or hashes, covering every element in the mDL. There can be more digests than you see in the issuer-signed items structure because you only receive signed items for each element your app requests. Compute the digest for each signed item to make sure its digest is present in the issuer authentication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you use the issuer certificate to verify the issuer signature, and make sure the certificate matches an issuer root certificate your server trusts. The root certificates generally correspond to the issuing authorities of the state IDs you accept. For each state ID you accept, you need to download the root certificate from the corresponding state DMV website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-device-signature",
+          "level": 3,
+          "text": "Verify the device signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device authentication structure contains the signature of the device that’s requesting the information. Refer to ISO 18013-5 section 9.1.3 for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two mechanisms exist for ",
+              "type": "text"
+            },
+            {
+              "code": "mdoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " authentication, ECDSA and MAC. The ",
+              "type": "text"
+            },
+            {
+              "code": "PassKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework only uses ECDSA authentication. The session transcript you use to construct the device authentication structure is the same session transcript you use for decryption. Get the device signing key — represented as a ",
+              "type": "text"
+            },
+            {
+              "code": "COSE_Key",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — from the MSO.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-the-implementation",
+          "level": 3,
+          "text": "Test the implementation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you verify the issuer signature and device signature, you can use the signed items as necessary. To download a sample that contains the files necessary to test your implementation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wallet/resources/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to allow a request for identity information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityauthorizationcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton": {
+      "abstract": [
+        {
+          "text": "An object that displays a button to trigger the identity verification flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityButton",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitybutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument": {
+      "abstract": [
+        {
+          "text": "An object that represents the response to a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityDocument",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitydocument"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement": {
+      "abstract": [
+        {
+          "text": "An object that represents the elements an app requests from identity documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityElement",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityelement"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for identity information from a Wallet pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce": {
+      "abstract": [
+        {
+          "text": "An arbitrary number that the signed response playload includes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nonce"
+        }
+      ],
+      "role": "symbol",
+      "title": "nonce",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityrequest/nonce"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton": {
+      "abstract": [
+        {
+          "text": "A view that displays a button for identity verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButton",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel": {
+      "abstract": [
+        {
+          "text": "A type that represents the label you use with a verify identity button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButtonLabel",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbuttonlabel"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle": {
+      "abstract": [
+        {
+          "text": "A type that represents the style you use with a verify identity button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButtonStyle",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbuttonstyle"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass": {
+      "abstract": [
+        {
+          "text": "Initiate a request for identity information by prompting a user for permission and decrypting a response payload.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting identity data from a Wallet pass",
+      "type": "topic",
+      "url": "/documentation/passkit/requesting-identity-data-from-a-wallet-pass"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/wallet": {
+      "abstract": [
+        {
+          "text": "Manage tickets, boarding passes, payment cards and other passes in the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/wallet",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Wallet",
+      "type": "topic",
+      "url": "/documentation/passkit/wallet"
+    },
+    "https://developer.apple.com/wallet/resources/": {
+      "identifier": "https://developer.apple.com/wallet/resources/",
+      "title": "Apple Wallet Developer Resources",
+      "titleInlineContent": [
+        {
+          "text": "Apple Wallet Developer Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wallet/resources/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Identity-sheet-interactions-and-authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle"
+      ],
+      "title": "Identity sheet interactions and authorization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Identity-sheet-interactions-and-authorization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton"
+              ],
+              "title": "Identity sheet interactions and authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/title",
+          "value": "PKIdentityRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest~1nonce/title",
+          "value": "nonce"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest~1nonce/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nonce"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/title",
+          "value": "PKIdentityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/title",
+          "value": "PKIdentityButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/title",
+          "value": "PKIdentityAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/title",
+          "value": "PKIdentityDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocument"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/verifying-wallet-identity-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/verifying-wallet-identity-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

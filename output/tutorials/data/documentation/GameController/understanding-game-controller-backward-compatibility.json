@@ -1,0 +1,634 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how macOS brings support for the latest game controllers to software that predates the introduction of the Game Controller framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/understanding-game-controller-backward-compatibility"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding game controller backward compatibility"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many existing games and third-party input libraries use the IOKit framework to interface with hardware game controllers. Because the IOKit APIs facilitate communication with hardware only at a low level, you need to write device-specific code for each game controller your app supports. This is often just for one or two popular models, so someone with a different controller model may become frustrated to discover that your app doesn’t recognize their game controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS 14 introduces a human-interface device (HID) emulation layer for apps that use the IOKit HID APIs to discover and receive input from game controllers. It emulates basic inputs from the full roster of controllers that the Game Controller framework supports. This HID emulation is mostly transparent to your app, and it works with all apps that interface with game controllers using the APIs in ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/iokit/iohidmanager_h",
+              "type": "text"
+            },
+            {
+              "text": ". However, your app may need to determine whether an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iohiddeviceref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " refers to a HID device that the emulation layer synthesizes, or your app may need to prevent matching on all such devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-operation-of-game-controller-synthetic-HID-devices",
+          "level": 3,
+          "text": "Understand the operation of game controller synthetic HID devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you connect a game controller that the Game Controller framework supports to a Mac running macOS 14 or later, the system creates a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "synthetic HID device",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in the I/O registry. There can only be one synthetic HID device per connected game controller. If the game controller is HID-compatible, the system creates the corresponding synthetic HID device in the I/O registry alongside the HID device for the game controller. The characteristics of each synthetic HID device match those of a well-supported game controller, the Xbox 360 wired controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app calls ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/iokit/1588670-iohiddeviceopen",
+              "type": "text"
+            },
+            {
+              "text": " on an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iohiddeviceref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that refers to a synthetic HID device in the kernel, the Game Controller framework checks if the emulation layer is enabled. If the emulation layer is enabled, the Game Controller framework begins translating input events from the real game controller into the equivalent input events that an Xbox 360 wired controller produces. If the emulation layer is not enabled, calling ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/iokit/1438391-iohidmanagercopydevices",
+              "type": "text"
+            },
+            {
+              "text": " doesn’t return any game controller synthetic HID devices, and attempting to directly instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iohiddeviceref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/io_service_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that refers to a game controller synthetic HID device fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The emulation layer is disabled by default. People can enable it for your game in the system game controller settings by adding a game-specific input customization, and enabling the “Increase controller compatibility” switch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Discover-and-identify-game-controller-synthetic-HID-devices",
+          "level": 3,
+          "text": "Discover and identify game controller synthetic HID devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app uses the APIs in ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDManager.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitLib.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to query the HID devices in the I/O registry, game controller synthetic HID devices that match your specified criteria also return. Each game controller synthetic HID device contains a ",
+              "type": "text"
+            },
+            {
+              "code": "GCSyntheticDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in its I/O registry entry property table. Your app can check for the presence of this key to determine whether an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iohiddeviceref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or an ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/io_service_t",
+              "type": "text"
+            },
+            {
+              "text": " refers to a game controller synthetic HID device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Checking for the presence of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "GCSyntheticDevice",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property is the only supported way to determine whether a HID device is a game controller synthetic HID device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Game Controller framework defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constant. If you can’t import the Game Controller framework into your code, you can specify the ",
+              "type": "text"
+            },
+            {
+              "code": "“GCSyntheticDevice”",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if ( IOHIDDeviceGetProperty(device, CFSTR(kIOHIDGCSyntheticDeviceKey)) == kCFBooleanTrue ) {",
+            "    // This is a synthetic HID device.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent matching on game controller synthetic HID devices, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the matching criteria your code passes to ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/iokit/1438371-iohidmanagersetdevicematching",
+              "type": "text"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/1514494-ioservicegetmatchingservices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or similar APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "IOHIDManagerRef manager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDManagerOptionNone);",
+            "IOHIDManagerSetDeviceMatching(manager, (__bridge CFDictionaryRef)@{",
+            "    @kIOProviderClassKey: @kIOHIDDeviceKey,",
+            "    @kIOHIDGCSyntheticDeviceKey: @(NO)",
+            "});"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse": {
+      "abstract": [
+        {
+          "text": "Boolean false value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFBooleanFalse"
+        },
+        {
+          "kind": "text",
+          "text": ": CFBoolean!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFBooleanFalse",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfbooleanfalse"
+    },
+    "doc://com.apple.documentation/documentation/iokit/1514494-ioservicegetmatchingservices": {
+      "abstract": [
+        {
+          "text": "Look up registered IOService objects that match a matching dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOServiceGetMatchingServices"
+        },
+        {
+          "kind": "text",
+          "text": "(mach_port_t, CFDictionary!, UnsafeMutablePointer<io_iterator_t>!) -> kern_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/1514494-ioservicegetmatchingservices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOServiceGetMatchingServices(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/iokit/1514494-ioservicegetmatchingservices"
+    },
+    "doc://com.apple.documentation/documentation/iokit/io_service_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "io_service_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/io_service_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "io_service_t",
+      "type": "topic",
+      "url": "/documentation/iokit/io_service_t"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iohiddeviceref": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iohiddeviceref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDeviceRef",
+      "type": "topic",
+      "url": "/documentation/iokit/iohiddeviceref"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey": {
+      "abstract": [
+        {
+          "text": "A key that specifies whether the device is a game controller synthetic HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kIOHIDGCSyntheticDeviceKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kIOHIDGCSyntheticDeviceKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kIOHIDGCSyntheticDeviceKey",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/kiohidgcsyntheticdevicekey"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Game-Controller-framework-migration-from-IOKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey"
+      ],
+      "title": "Game Controller framework migration from IOKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Game-Controller-framework-migration-from-IOKit",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/kIOHIDGCSyntheticDeviceKey"
+              ],
+              "title": "Game Controller framework migration from IOKit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1iokit~11514494-ioservicegetmatchingservices/title",
+          "value": "IOServiceGetMatchingServices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1kIOHIDGCSyntheticDeviceKey/title",
+          "value": "kIOHIDGCSyntheticDeviceKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1kIOHIDGCSyntheticDeviceKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kIOHIDGCSyntheticDeviceKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/understanding-game-controller-backward-compatibility"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/understanding-game-controller-backward-compatibility"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

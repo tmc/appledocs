@@ -1,0 +1,495 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that determines whether the engine syncs automatically.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/automaticallySync"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKSyncEngineConfiguration(py)automaticallySync",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "automaticallySync"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "automaticallySync"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "automaticallySync"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "automaticallySync"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the sync engine uses the system scheduler to automatically schedule both send and fetch operations. If an operation fails due to a recoverable error, such as a network failure or when the server is enforcing request limits, the engine reschedules those operations as necessary. Unless you have a specific need, prefer to use the default behavior in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set this property’s value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to invoke immediate sync operations, allowing for more control over when your app syncs its records. For example, you may want to sync at a specific time of day or deterministically simulate certain conditions in your unit tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Fetches pending remote changes from the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchChangesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchChangesWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Sends pending local changes to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendChangesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendChangesWithCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration": {
+      "abstract": [
+        {
+          "text": "A type that configures the attributes and behavior of a sync engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineConfiguration",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/automaticallySync": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the engine syncs automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "automaticallySync"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/automaticallySync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automaticallySync",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration/automaticallysync"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/database": {
+      "abstract": [
+        {
+          "text": "The associated database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "database"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/database",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration/database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/stateSerialization": {
+      "abstract": [
+        {
+          "text": "The sync engine’s serialized state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "stateSerialization"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/stateSerialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateSerialization",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration/stateserialization"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/subscriptionID": {
+      "abstract": [
+        {
+          "text": "The subscription identifier for the associated database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscriptionID"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/subscriptionID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration/subscriptionid"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-attributes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/subscriptionID",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/stateSerialization"
+      ],
+      "title": "Managing attributes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/cksyncengineconfiguration/automaticallysync"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

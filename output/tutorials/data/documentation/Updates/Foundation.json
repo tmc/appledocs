@@ -1,0 +1,926 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about important changes to Foundation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Updates/documentation/Updates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Updates/documentation/Updates/Foundation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Updates"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Foundation updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browse notable changes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "June-2024",
+          "level": 2,
+          "text": "June 2024",
+          "type": "heading"
+        },
+        {
+          "anchor": "Predicates",
+          "level": 3,
+          "text": "Predicates",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Regex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " regular expressions in predicates to perform pattern matching. You can use either the Swift regex domain specific language or traditional regex literals.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#Expression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " macro when you want behavior similar to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#Predicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " but you need to return a type other than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Bool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create compound predicates by writing a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Predicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that evaluates another ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Predicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Calendars",
+          "level": 3,
+          "text": "Calendars",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Calendar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " searches by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dates(byMatching:startingAt:in:matchingPolicy:repeatedTimePolicy:direction:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DateComponent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values specifying what to search for, and receiving a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sequence",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of matching dates. You can also repeatedly add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DateComponent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values to a date with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dates(byAdding:startingAt:in:wrappingComponents:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and receive a sequence. To add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Calendar.Component",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values instead, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dates(byAdding:value:startingAt:in:wrappingComponents:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Format-styles",
+          "level": 3,
+          "text": "Format styles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "DiscreteFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocol to format values that constantly change, but don’t necessarily change the formatted output on every update, such as time displays that truncate the seconds field. The following format style types conform to the new protocol: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Duration.UnitsFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Duration.TimeFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date.FormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date.FormatStyle.Attributed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date.VerbatimFormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date.VerbatimFormatStyle.Attributed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Date.ISO8601FormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Duration.UnitsFormatStyle.Attributed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Duration.TimeFormatStyle.Attributed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set new configuration options on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FormatStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to omit specific symbols from the output and suppress grouping of large time values (for example, in order to produce ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10000:00",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " rather than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10,000:00",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "notation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier on currency format styles to specify a notation such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "compactName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", similar to how ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "notation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " already works on numeric format styles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Undo-manager",
+          "level": 3,
+          "text": "Undo manager",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide custom information for undo actions by setting user info on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UndoManager",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The info can include things like a timestamp of the action’s creation or an icon that complements the action name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reveal the size of an undo manager’s current undo or redo stack with the properties ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "undoCount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "redoCount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Key-Value-observing",
+          "level": 3,
+          "text": "Key-Value observing",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a collection of shared observers to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Observable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects that you can then add to multiple instance of the observable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observables now use ARC-style weak references to their observers, preventing crashes when observers deallocate without properly removing themselves.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Collections",
+          "level": 3,
+          "text": "Collections",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can initialize an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IndexSet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from a Swift ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RangeSet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and vice versa.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Apple-Intelligence-updates-page-PageImage-card.png": {
+      "alt": "A stylistic image of the Apple Intelligence logo.",
+      "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/582fe08f6f69a366c2f1b35cd91e3c52/Apple-Intelligence-updates-page-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4b11a932a5a2c7880eccd8043a1c524/Apple-Intelligence-updates-page-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Updates/documentation/Updates": {
+      "abstract": [
+        {
+          "text": "View major documentation updates and highlights from WWDC, browse ongoing updates from a set of framework releases over time, and jump to the latest release notes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates",
+      "images": [
+        {
+          "identifier": "featured.svg",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Updates",
+      "type": "topic",
+      "url": "/documentation/updates"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ARKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ARKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/arkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFAudio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFAudio updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfaudio"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFoundation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFoundation updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfoundation"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accelerate": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accelerate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accelerate",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerate updates",
+      "type": "topic",
+      "url": "/documentation/updates/accelerate"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accessibility": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accessibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility updates",
+      "type": "topic",
+      "url": "/documentation/updates/accessibility"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in ActivityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ActivityKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/activitykit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AdAttributionKit Updates",
+      "type": "topic",
+      "url": "/documentation/updates/adattributionkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppIntents": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in App Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppIntents",
+      "kind": "article",
+      "role": "article",
+      "title": "App Intents updates",
+      "type": "topic",
+      "url": "/documentation/updates/appintents"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/appkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+      "images": [
+        {
+          "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Intelligence updates",
+      "type": "topic",
+      "url": "/documentation/updates/apple-intelligence"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil updates",
+      "type": "topic",
+      "url": "/documentation/updates/applepencil"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Audio Toolbox.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Toolbox updates",
+      "type": "topic",
+      "url": "/documentation/updates/audiotoolbox"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AuthenticationServices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+      "kind": "article",
+      "role": "article",
+      "title": "AuthenticationServices updates",
+      "type": "topic",
+      "url": "/documentation/updates/authenticationservices"
+    },
+    "doc://com.apple.Updates/documentation/Updates/BundleResources": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Bundle Resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/BundleResources",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundle Resources updates",
+      "type": "topic",
+      "url": "/documentation/updates/bundleresources"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ContactsUI": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ContactsUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ContactsUI",
+      "kind": "article",
+      "role": "article",
+      "title": "ContactsUI updates",
+      "type": "topic",
+      "url": "/documentation/updates/contactsui"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "abstract": [
+        {
+          "text": "Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "featured.svg": {
+      "alt": "An icon, with a star and a speech bubble around it, representing updates.",
+      "identifier": "featured.svg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70c10a18eb39cac81bd40849ad68cbff/featured.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Technology-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Updates/documentation/Updates/Accelerate",
+        "doc://com.apple.Updates/documentation/Updates/Accessibility",
+        "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+        "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+        "doc://com.apple.Updates/documentation/Updates/AppIntents",
+        "doc://com.apple.Updates/documentation/Updates/AppKit",
+        "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+        "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+        "doc://com.apple.Updates/documentation/Updates/ARKit",
+        "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+        "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+        "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+        "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+        "doc://com.apple.Updates/documentation/Updates/BundleResources",
+        "doc://com.apple.Updates/documentation/Updates/ContactsUI"
+      ],
+      "title": "Technology updates"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/updates/foundation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

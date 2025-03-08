@@ -1,0 +1,889 @@
+{
+  "abstract": [
+    {
+      "text": "Accesses underlying Unix domain socket for an initialized DNSServiceRef.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dnssd/documentation/dnssd"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefSockFD(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@DNSServiceRefSockFD",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DNSServiceRefSockFD"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@DNSServiceRef",
+        "text": "DNSServiceRef"
+      },
+      {
+        "kind": "text",
+        "text": "!) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@dnssd_sock_t",
+        "text": "dnssd_sock_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "dnssd"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DNSServiceRefSockFD"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "DNSServiceRefSockFD(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DNSServiceRefSockFD"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sdRef"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DNSServiceRef",
+              "text": "DNSServiceRef"
+            },
+            {
+              "kind": "text",
+              "text": "!) -> "
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/dnssd_sock_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dnssd_sock_t",
+              "text": "dnssd_sock_t"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A DNSServiceRef initialized by any of the DNSService calls.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "sdRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DNSServiceRef’s underlying socket descriptor, or -1 on error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DNS Service Discovery implementation uses this socket to communicate between the client and the mDNSResponder daemon. The application MUST NOT directly read from or write to this socket. Access to the socket is provided so that it can be used as a kqueue event source, a CFRunLoop event source, in a select() loop, etc. When the underlying event management subsystem (kqueue/ select/CFRunLoop etc.) indicates to the client that data is available for reading on the socket, the client should call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceProcessResult(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which will extract the daemon’s reply from the socket, and pass it to the appropriate application callback. By using a run loop or select(), results from the daemon can be processed asynchronously. Alternatively, a client can choose to fork a thread and have it loop calling “DNSServiceProcessResult(ref);” If ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceProcessResult(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is called when no data is available for reading on the socket, it will block until data does become available, and then process the data and return to the caller. When data arrives on the socket, the client is responsible for calling DNSServiceProcessResult(ref) in a timely fashion – if the client allows a large backlog of data to build up the daemon may terminate the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dnssd/documentation/dnssd": {
+      "abstract": [
+        {
+          "text": "Discover, publish, and resolve network services on a local area or wide area network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "dnssd",
+      "type": "topic",
+      "url": "/documentation/dnssd"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceProcessResult(_:)": {
+      "abstract": [
+        {
+          "text": "Reads a reply from the daemon, calling the appropriate application callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceProcessResult"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceProcessResult(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceProcessResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceProcessResult(_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsserviceprocessresult(_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceRef"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceRef",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsserviceref"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefDeallocate(_:)": {
+      "abstract": [
+        {
+          "text": "Terminates a connection with the daemon and frees memory associated with the DNSServiceRef.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceRefDeallocate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefDeallocate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceRefDeallocate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceRefDeallocate(_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicerefdeallocate(_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefSockFD(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses underlying Unix domain socket for an initialized DNSServiceRef.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceRefSockFD"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dnssd_sock_t",
+          "text": "dnssd_sock_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefSockFD(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceRefSockFD"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceRefSockFD(_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicerefsockfd(_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/dnssd_sock_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dnssd_sock_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/dnssd_sock_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dnssd_sock_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dnssd_sock_t",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnssd_sock_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Unix-Domain-Socket-access-DNSServiceRef-deallocation-and-data-processing-functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dnssd/documentation/dnssd/DNSServiceProcessResult(_:)",
+        "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefDeallocate(_:)"
+      ],
+      "title": "Unix Domain Socket access, DNSServiceRef deallocation, and data processing functions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "DNSServiceRefSockFD"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceRefSockFD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.dnssd/documentation/dnssd"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Unix-Domain-Socket-access-DNSServiceRef-deallocation-and-data-processing-functions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dnssd/documentation/dnssd/DNSServiceProcessResult(_:)",
+                "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRefDeallocate(_:)"
+              ],
+              "title": "Unix Domain Socket access, DNSServiceRef deallocation, and data processing functions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "identifier": "doc://com.apple.dnssd/documentation/dnssd/dnssd_sock_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@dnssd_sock_t",
+                    "text": "dnssd_sock_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "DNSServiceRefSockFD"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@DNSServiceRef",
+                    "text": "DNSServiceRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "sdRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A DNSServiceRef initialized by any of the DNSService calls.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "sdRef"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "The DNSServiceRef’s underlying socket descriptor, or -1 on error.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1dnssd_sock_t/title",
+          "value": "dnssd_sock_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1dnssd_sock_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dnssd_sock_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1dnssd_sock_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dnssd_sock_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRefDeallocate(_:)/title",
+          "value": "DNSServiceRefDeallocate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRefDeallocate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceRefDeallocate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceProcessResult(_:)/title",
+          "value": "DNSServiceProcessResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceProcessResult(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceProcessResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRefSockFD(_:)/title",
+          "value": "DNSServiceRefSockFD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRefSockFD(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceRefSockFD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRef/title",
+          "value": "DNSServiceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dnssd/dnsservicerefsockfd(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dnssd/dnsservicerefsockfd(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

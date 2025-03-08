@@ -1,0 +1,1234 @@
+{
+  "abstract": [
+    {
+      "text": "Add models with custom neural-network layers to your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-customization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/creating-and-integrating-a-model-with-custom-layers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating and Integrating a Model with Custom Layers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "New network layers and architectures solve problems that might be difficult or impractical with code. You can support each new layer type before Core ML directly supports it by implementing a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom layer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A custom layer is a class that adopts ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and implements the methods to run a neural network layer in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Core ML supports models with custom layers beginning with these software releases: iOS 11.2, macOS 10.13.2, tvOS 11.2 and watchOS 4.2.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-Model-You-Acquire-or-Create",
+          "level": 3,
+          "text": "Add a Model You Acquire or Create",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a Core ML model with custom layers, add the model to your Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, convert a third-party model and designate the new layers as custom with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://coremltools.readme.io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Follow the steps on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://coremltools.readme.io/docs/custom-operators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page to define the new layers as custom. Give each custom layer a unique name by assigning a unique string to the operator’s class name binding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bindings = {",
+            "    'class_name'  : 'AAPLCustomAdd',",
+            "    'description' : \"Custom implementation of addition.\"",
+            "    ...",
+            "}"
+          ],
+          "syntax": "python",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Save the Core ML model you converted and add it to your Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Integrate-or-Create-a-Class-for-Each-Custom-Layer",
+          "level": 3,
+          "text": "Integrate or Create a Class for Each Custom Layer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the author of the model you plan to add to your Xcode project implemented the custom layers in source-code files, add the source files into your Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, implement each custom layer by creating a Swift or Objective-C class for each layer. Inspect the names of the model’s custom layers by opening the model in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744502",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a class for each custom layer that the model has in its list of dependencies and name each class to match the custom layer it implements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Swift classes must subclass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "@objc",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute so that Core ML can access your custom layer’s implementation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol by implementing the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An initializer that configures the layer’s parameters that the model defines in its Core ML model file. Core ML initializes each layer once at load time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/init(parameters:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A method that configures the layer’s weights that the model defines in its Core ML model file. Core ML invokes this method once at load time, after initialization.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/setWeightData(_:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A method that defines the layer’s output shapes based on the input shapes at runtime. Core ML invokes this method at load time, after initialization, and again each time the layer’s input shapes change.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/outputShapes(forInputShapes:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A method that defines the computational behavior for your custom layer. Core ML invokes this method each time your model makes a prediction on the CPU.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/evaluate(inputs:outputs:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An optional method that defines your layer’s computational behavior with GPU commands.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/encode(commandBuffer:inputs:outputs:)",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core ML invokes the appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods for each custom layer at runtime when your app calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/prediction(from:)-9y2aa",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t change the values that Core ML provides to these methods — such as weights, inputs, or outputs — because it may cause your app to behave in unexpected ways, and possibly crash.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Test-the-Custom-Layers",
+          "level": 3,
+          "text": "Test the Custom Layers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If applicable, test the custom layers by using the model to make predictions with input values from one or more test cases. Confirm the model layers function correctly by comparing the model’s prediction values to the output values for each test case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer": {
+      "abstract": [
+        {
+          "text": "An interface that defines the behavior of a custom layer in your neural network model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCustomLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCustomLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCustomLayer",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcustomlayer"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/encode(commandBuffer:inputs:outputs:)": {
+      "abstract": [
+        {
+          "text": "Encodes GPU commands to evaluate the custom layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputs"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputs"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/encode(commandBuffer:inputs:outputs:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeToCommandBuffer:inputs:outputs:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "encode(commandBuffer:inputs:outputs:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcustomlayer/encode(commandbuffer:inputs:outputs:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/evaluate(inputs:outputs:)": {
+      "abstract": [
+        {
+          "text": "Evaluates the custom layer with the given inputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLMultiArray",
+          "text": "MLMultiArray"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLMultiArray",
+          "text": "MLMultiArray"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/evaluate(inputs:outputs:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "evaluateOnCPUWithInputs:outputs:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "evaluate(inputs:outputs:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcustomlayer/evaluate(inputs:outputs:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/init(parameters:)": {
+      "abstract": [
+        {
+          "text": "Initializes the custom layer implementation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/init(parameters:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithParameterDictionary:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "init(parameters:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcustomlayer/init(parameters:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/outputShapes(forInputShapes:)": {
+      "abstract": [
+        {
+          "text": "Calculates the shapes of the output of this layer for the given input shapes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputShapes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forInputShapes"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]]"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/outputShapes(forInputShapes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputShapesForInputShapes:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "outputShapes(forInputShapes:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcustomlayer/outputshapes(forinputshapes:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/setWeightData(_:)": {
+      "abstract": [
+        {
+          "text": "Assigns the weights for the connections within the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWeightData"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer/setWeightData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWeightData:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setWeightData(_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcustomlayer/setweightdata(_:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel/prediction(from:)-9y2aa": {
+      "abstract": [
+        {
+          "text": "Generates a prediction from the feature values within the input feature provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prediction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel/prediction(from:)-9y2aa",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictionFromFeatures:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prediction(from:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel/prediction(from:)-9y2aa"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-customization": {
+      "abstract": [
+        {
+          "text": "Expand and modify your model with new layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Customization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-customization"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://coremltools.readme.io": {
+      "identifier": "https://coremltools.readme.io",
+      "title": "Core ML Tools",
+      "titleInlineContent": [
+        {
+          "text": "Core ML Tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://coremltools.readme.io"
+    },
+    "https://coremltools.readme.io/docs/custom-operators": {
+      "identifier": "https://coremltools.readme.io/docs/custom-operators",
+      "title": "Custom Operators",
+      "titleInlineContent": [
+        {
+          "text": "Custom Operators",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://coremltools.readme.io/docs/custom-operators"
+    },
+    "media-3744502": {
+      "alt": "Screenshot of a model view in Xcode that shows three custom layers in the Dependencies section: AAPLCustomAdd, AAPLCustomInnerProduct, and AAPLCustomConvolution.",
+      "identifier": "media-3744502",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/07fa13d1f488c3a10fd68a42d3148e2b/media-3744502@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-Model-Layers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer"
+      ],
+      "title": "Custom Model Layers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-Model-Layers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLCustomLayer"
+              ],
+              "title": "Custom Model Layers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1setWeightData(_:)/title",
+          "value": "setWeightData:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1setWeightData(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWeightData:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer/title",
+          "value": "MLCustomLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCustomLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCustomLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1encode(commandBuffer:inputs:outputs:)/title",
+          "value": "encodeToCommandBuffer:inputs:outputs:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1encode(commandBuffer:inputs:outputs:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeToCommandBuffer:inputs:outputs:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1init(parameters:)/title",
+          "value": "initWithParameterDictionary:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1init(parameters:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithParameterDictionary:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel~1prediction(from:)-9y2aa/title",
+          "value": "predictionFromFeatures:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel~1prediction(from:)-9y2aa/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictionFromFeatures:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1outputShapes(forInputShapes:)/title",
+          "value": "outputShapesForInputShapes:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1outputShapes(forInputShapes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outputShapesForInputShapes:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1evaluate(inputs:outputs:)/title",
+          "value": "evaluateOnCPUWithInputs:outputs:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCustomLayer~1evaluate(inputs:outputs:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluateOnCPUWithInputs:outputs:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/creating-and-integrating-a-model-with-custom-layers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/creating-and-integrating-a-model-with-custom-layers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

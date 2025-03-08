@@ -1,0 +1,1429 @@
+{
+  "abstract": [
+    {
+      "text": "The object that manages communication with the vehicles",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "you manufacture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CarKey/documentation/CarKey"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6CarKey0aB20RemoteControlSessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CarKeyRemoteControlSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarKey"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CarKeyRemoteControlSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.3",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CarKeyRemoteControlSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CarKeyRemoteControlSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CarKeyRemoteControlSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object coordinates interactions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between your app and your company’s make of vehicles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This object works with the system to transmit data securely to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and from a vehicle, and to report results back to your app. Use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this object to send commands or data directly to a vehicle, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to get information about the available vehicles and their current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t create this object directly. Instead, call the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl/start(delegate:subscriptionRange:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to create a new session object. When you finish interacting with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the vehicle, call the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/end()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to close out the session and prevent further access. You can have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only one active session at a time. If you try to start a second",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl/start(delegate:subscriptionRange:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t return until the currently active session becomes invalid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure a new session, provide a delegate object to receive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data from vehicle-initiated transfers. The system also uses your delegate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notify you when the configuration of a vehicle changes. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it lets you know when connectivity to the vehicle changes. The delegate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app has an active session, the system automatically",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ends that session when your app enters the background. Upon reentering",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the foreground, you must create a new session to communicate with your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "vehicle again.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CarKey/documentation/CarKey": {
+      "abstract": [
+        {
+          "text": "Access the remote keyless features of configured vehicles in the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarKey",
+      "type": "topic",
+      "url": "/documentation/carkey"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl": {
+      "abstract": [
+        {
+          "text": "The object you use to start a new vehicle-related session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControl"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControl",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrol"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl/start(delegate:subscriptionRange:with:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new session object to access the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "provisioned vehicles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey0aB28RemoteControlSessionDelegateP",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subscriptionRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey0aB20RemoteControlSessionC",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl/start(delegate:subscriptionRange:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start(delegate:subscriptionRange:with:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrol/start(delegate:subscriptionrange:with:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession": {
+      "abstract": [
+        {
+          "text": "The object that manages communication with the vehicles",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you manufacture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSession",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/Attestation": {
+      "abstract": [
+        {
+          "text": "Object representing an attestation and related data",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attestation"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/Attestation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attestation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSession.Attestation",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/attestation"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/ContinuationStrategy": {
+      "abstract": [
+        {
+          "text": "Strategy to use on reception of a continuation request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContinuationStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/ContinuationStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContinuationStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSession.ContinuationStrategy",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/continuationstrategy"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/end()": {
+      "abstract": [
+        {
+          "text": "Ends the session and stops the delivery of notifications",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for all vehicles in the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/end()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/end()"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/isPassiveEntryAvailable(forVehicle:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether passive entry is",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "currently available for the specified vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPassiveEntryAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forVehicle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/isPassiveEntryAvailable(forVehicle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPassiveEntryAvailable(forVehicle:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/ispassiveentryavailable(forvehicle:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:)-7mpsy": {
+      "abstract": [
+        {
+          "text": "Sends a request to the vehicle to start an action that has a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "separate stopping point.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey32RemoteKeylessEntryEnduringActionV",
+          "text": "RemoteKeylessEntryEnduringAction"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey32RemoteKeylessEntryEnduringActionV",
+          "text": "RemoteKeylessEntryEnduringAction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey32RemoteKeylessEntryEnduringActionV0F16ExecutionRequestC",
+          "text": "EnduringExecutionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:)-7mpsy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/perform(_:)-7mpsy"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:)-8ac0c": {
+      "abstract": [
+        {
+          "text": "Sends a request to the vehicle to perform a one-time action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey24RemoteKeylessEntryActionV",
+          "text": "RemoteKeylessEntryAction"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey24RemoteKeylessEntryActionV",
+          "text": "RemoteKeylessEntryAction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey24RemoteKeylessEntryActionV16ExecutionRequestC",
+          "text": "ExecutionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:)-8ac0c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/perform(_:)-8ac0c"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:continuationStrategy:)": {
+      "abstract": [
+        {
+          "text": "Sends a request to the vehicle to start an action that has a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "separate stopping point, and optionally allows your app to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "have control over incoming continuation requests and to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "exchange data during the execution of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV",
+          "text": "RemoteKeylessEntryConfigurableEnduringAction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continuationStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey0aB20RemoteControlSessionC",
+          "text": "CarKeyRemoteControlSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey0aB20RemoteControlSessionC20ContinuationStrategyO",
+          "text": "ContinuationStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV",
+          "text": "RemoteKeylessEntryConfigurableEnduringAction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV0G16ExecutionRequestC",
+          "text": "EnduringExecutionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:continuationStrategy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:continuationStrategy:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/perform(_:continuationstrategy:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/sendPassthroughData(_:toVehicle:)": {
+      "abstract": [
+        {
+          "text": "Sends the specified custom data to the vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendPassthroughData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toVehicle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/sendPassthroughData(_:toVehicle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendPassthroughData(_:toVehicle:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/sendpassthroughdata(_:tovehicle:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/sign(data:forVehicle:)": {
+      "abstract": [
+        {
+          "text": "Sign data with the endpoint.SK identified by vehicleIdentifier",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as described in the section “OEM App Data Attestation” of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the Car Connectivity Consortium Digital Key Release 3.0 specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sign"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forVehicle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey0aB20RemoteControlSessionC",
+          "text": "CarKeyRemoteControlSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey0aB20RemoteControlSessionC11AttestationV",
+          "text": "Attestation"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/sign(data:forVehicle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sign(data:forVehicle:)",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/sign(data:forvehicle:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/vehicleReports": {
+      "abstract": [
+        {
+          "text": "The configuration details of the provisioned vehicles that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "match your company’s make.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vehicleReports"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey13VehicleReportV",
+          "text": "VehicleReport"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/vehicleReports",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vehicleReports",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession/vehiclereports"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate": {
+      "abstract": [
+        {
+          "text": "An interface you use to receive session- and vehicle-related",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "information from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsessiondelegate"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport": {
+      "abstract": [
+        {
+          "text": "A type that contains information about a vehicle configured for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "remote keyless entry in the user’s Apple Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VehicleReport"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VehicleReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "VehicleReport",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate",
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Performing-Vehicle-Related-Actions",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:)-8ac0c",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:)-7mpsy"
+      ],
+      "title": "Performing Vehicle-Related Actions"
+    },
+    {
+      "anchor": "Sending-Data-to-the-Vehicle",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/sendPassthroughData(_:toVehicle:)"
+      ],
+      "title": "Sending Data to the Vehicle"
+    },
+    {
+      "anchor": "Closing-the-Session",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/end()"
+      ],
+      "title": "Closing the Session"
+    },
+    {
+      "anchor": "Getting-Vehicle-Information",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/vehicleReports",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/isPassiveEntryAvailable(forVehicle:)"
+      ],
+      "title": "Getting Vehicle Information"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/Attestation"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/perform(_:continuationStrategy:)",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/sign(data:forVehicle:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession/ContinuationStrategy"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carkey/carkeyremotecontrolsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

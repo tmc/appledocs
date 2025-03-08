@@ -1,0 +1,942 @@
+{
+  "abstract": [
+    {
+      "text": "Prevent data loss and app crashes by interacting with the file system in a coordinated, asynchronous manner and by avoiding unnecessary disk I/O.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+  },
+  "kind": "article",
+  "legacy_identifier": 4150300,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving performance and stability when accessing the file system"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A device’s file system is a shared resource available to all running processes. If multiple processes (or multiple threads in the same process) attempt to act on the same file simultaneously, data corruption or loss may occur, and your app may even crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To establish safe and efficient file access, avoid performing immediate file I/O on the app’s main thread. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to choreograph file access, opt for the I/O-free variants of file-related APIs, and implement the prefetching mechanisms of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to efficiently prepare file-related data for display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4164018",
+          "level": 3,
+          "text": "Coordinate file access to reduce hangs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "blocking call",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a task that may temporarily suspend the calling thread’s execution, such as checking whether a file or directory exists. When a blocking call originates from the app’s main thread, the suspended execution manifests as user interface hangs and high scroll hitch rates, negatively impacting the user experience. The duration of this specific blocking call is often indeterminate if the related files are external to the device, such as those in iCloud Drive or other file providers, or on a mounted USB drive or SMB server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to coordinate safe file access across different threads and processes. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "file coordinator",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " notifies interested file presenters whenever a file they care about is due to change. Each presenter then has an opportunity to perform any work necessary to safeguard their integrity. The file coordinator waits on all file presenters to respond before it executes the requested actions on the file. By specifying a background operation queue, the coordinator works asynchronously and is therefore safe to call from the main thread. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1411533-coordinate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4164662",
+          "level": 3,
+          "text": "Prefetch displayable file data to maintain a low scroll hitch rate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app displays list- or collection-based layouts of any size, adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — and the corresponding data source and prefetching protocols — to provide a smooth scrolling experience. An object that implements the data source protocol provides the view with items to display, whereas an object that implements the prefetching protocol is responsible for preparing and caching the data for those items. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides a few milliseconds to prepare content for a cell, and exceeding that may cause elevated scroll hitch rates or dropped frames. Dropped frames in particular indicate that the system is performing file I/O in data source protocol methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource/collectionView(_:cellForItemAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which the system invokes on the main thread. To avoid such issues, delegate all file I/O to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and invoke the necessary reads (and writes) in one or more of the methods that the view’s prefetching protocol defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the sample code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/prefetching-collection-view-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4164663",
+          "level": 3,
+          "text": "Request access to multiple files in parallel to boost efficiency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When taking some action on a list of files, an app may iterate over that list and process each file sequentially, such as in a ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "while",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop. However, accessing files that are external to the device, such as those in iCloud Drive, may result in expensive, blocking network requests as the system must download the files before it can make them available for your app to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To minimize the impact, don’t perform any file I/O in the loop. Instead, use each iteration of the loop to create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and specify a background queue for the system to use when it invokes that coordinator’s ",
+              "type": "text"
+            },
+            {
+              "code": "accessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure. By adopting this approach, you enable the system to download any remote files in a concurrent, nonblocking way, as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a background queue for the system to use",
+            "// when invoking each file coordinator's accessor ",
+            "// closure.",
+            "let queue = OperationQueue()",
+            "queue.underlyingQueue = .global(qos: .utility)",
+            "",
+            "// Iterate over the file URLs.",
+            "for url in fileURLs {",
+            "    // Create a file coordinator and specify the appropriate",
+            "    // file access intent and queue.",
+            "    let intent = NSFileAccessIntent.readingIntent(with: url)",
+            "    let coordinator = NSFileCoordinator()",
+            "    coordinator.coordinate(with: [intent],",
+            "                           queue: queue) { error in",
+            "        if let error {",
+            "            // If there's an error, handle it here.",
+            "        } else {",
+            "            // Otherwise, process the file.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4170613",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4164017",
+          "level": 3,
+          "text": "Provide directory hints for file URLs to avoid wasteful I/O",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many convenience methods make it possible to create URLs that represent files and directories in the file system, local or otherwise. If you know that the destination of such a URL is a directory, use the method variants that require the ",
+              "type": "text"
+            },
+            {
+              "code": "isDirectory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as the value. If you use a more succinct method that omits the parameter, the system performs a potentially blocking call to the file system to determine if the URL’s destination is a file or a directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app targets iOS 16 and later (or macOS 13 and later), use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988464-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create file URLs — and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988449-appending",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to modify existing URLs — and specify a value other than ",
+              "type": "text"
+            },
+            {
+              "code": "inferFromPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "directoryHint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. For earlier versions, opt for the nonblocking variants of the methods in the following table:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "4164016",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Blocking",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Nonblocking",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410828-fileurl",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1414650-fileurl",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410301-init",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417505-init",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413201-fileurl",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413020-fileurl",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1415077-init",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417932-init",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410614-appendingpathcomponent",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413953-appendingpathcomponent",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, APIs that traverse directory hierarchies may also block, and the duration of the block depends entirely on the depth of the traversed hierarchy. For that reason, only call these APIs from a background thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system": {
+      "abstract": [
+        {
+          "text": "Use high-level APIs to get the most out of Apple File System.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "About Apple File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/about_apple_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system": {
+      "abstract": [
+        {
+          "text": "Prevent data loss and app crashes by interacting with the file system in a coordinated, asynchronous manner and by avoiding unnecessary disk I/O.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving performance and stability when accessing the file system",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system#4164016": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system#4164016",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system#4164016"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system#4170613": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system#4170613",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system#4170613"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate": {
+      "abstract": [
+        {
+          "text": "The interface a file manager's delegate uses to intervene during operations or if an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileCoordinator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1411533-coordinate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1411533-coordinate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinate(with:queue:byAccessor:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1411533-coordinate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFilePresenter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1410301-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410301-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1410301-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1410614-appendingpathcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410614-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1410614-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1410828-fileurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1410828-fileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileURL(withPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1410828-fileurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1413020-fileurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413020-fileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileURL(withPath:isDirectory:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1413020-fileurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1413201-fileurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413201-fileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileURL(withPath:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1413201-fileurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1413953-appendingpathcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1413953-appendingpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendingPathComponent(_:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1413953-appendingpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1414650-fileurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1414650-fileurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileURL(withPath:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1414650-fileurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1415077-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1415077-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1415077-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417505-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417505-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417505-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417932-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417932-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileURLWithPath:isDirectory:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417932-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988449-appending": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988449-appending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(path:directoryHint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988449-appending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3988464-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3988464-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(filePath:directoryHint:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3988464-init"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource/collectionView(_:cellForItemAt:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource/collectionView(_:cellForItemAt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collectionView(_:cellForItemAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasource/collectionview(_:cellforitemat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSourcePrefetching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/prefetching-collection-view-data": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/prefetching-collection-view-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Prefetching collection view data",
+      "type": "topic",
+      "url": "/documentation/uikit/prefetching-collection-view-data"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+        "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system"
+      ],
+      "title": "File system operations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

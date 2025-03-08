@@ -1,0 +1,2082 @@
+{
+  "abstract": [
+    {
+      "text": "Manage your customers’ App Store transactions from your server.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.12",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AppStoreServerAPI",
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Web Service",
+    "symbolKind": "module",
+    "title": "App Store Server API"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/simplifying-your-implementation-by-using-the-app-store-server-library"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Server API is a REST API that you call from your server to request and provide information about your customers’ in-app purchases. The App Store signs the transaction and subscription renewal information that this API returns using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc7515",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specification. Most endpoints return data for a single customer of your app, indicated by a transaction identifier that you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Server API is independent of the app’s installation status on the customers’ devices. The App Store server returns information based on a customer’s in-app purchase history regardless of whether the customer installs, removes, or reinstalls the app on their devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API provides the following functionality:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Transactions and auto-renewable subscription status.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Get information for single transactions by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-transactions-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or a customer’s entire transaction history using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for up-to-date subscription status. Use this information to keep your customers’ purchase information current on your server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Refund information.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get a customer’s refund history. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint to send information to the App Store when customers request a refund for a consumable in-app purchase, after you receive the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CONSUMPTION_REQUEST",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Your data helps inform refund decisions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "App Store Server Notifications history and testing.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-history",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to request the notifications your server may have missed in the past 180 days. Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to test if your server is successfully receiving notifications at its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Subscription renewal date extensions.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and related endpoints to compensate your customers for temporary service outages, canceled events, or interruptions to live-streamed events by extending the renewal date of their paid, active subscription. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Order information lookup.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-lookup-_orderId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get in-app purchase information based on a customer’s order ID, found on the App Store receipt that customers receive in email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server must support the Transport Layer Security (TLS) protocol 1.2 or later to use the App Store Server API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn about the latest changes to this API. Look for videos about the App Store Server API on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/all-videos/?q=%22App%20Store%20Server%20API%22",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authorize-your-API-calls",
+          "level": 3,
+          "text": "Authorize your API calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calls to the API require JSON Web Tokens (JWTs) for authorization; you obtain keys to create the tokens from your organization’s App Store Connect account. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create your keys. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate tokens using your keys, and send API requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have a complete and signed token, provide the token in the request’s authorization header as a bearer token. Generate a new token for each new API request, or reuse tokens until they expire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-JWTs-verify-transactions-and-more-using-the-App-Store-Server-Library",
+          "level": 3,
+          "text": "Create JWTs, verify transactions, and more using the App Store Server Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Server Library is an open source library from Apple, available in four languages. It provides a client that make it easier to adopt the App Store Server APIs, including creating the JWTs to authorize calls. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/simplifying-your-implementation-by-using-the-app-store-server-library",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the WWDC23 session ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10143/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-using-the-sandbox-environment",
+          "level": 3,
+          "text": "Test using the sandbox environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All App Store Server API endpoints are available for testing in the sandbox environment, except ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-lookup-_orderId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Access the sandbox environment by sending requests to the endpoints using the following base URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://api.storekit-sandbox.itunes.apple.com/"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the sandbox environment, send a request using the sandbox URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://api.storekit-sandbox.itunes.apple.com/inApps/v2/history/{transactionId}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that ",
+              "type": "text"
+            },
+            {
+              "code": "/inApps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the path is case-sensitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For endpoints that take a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a parameter, be sure to call the endpoint using the same environment that creates the transaction identifier. Environment information is present in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t have environment information, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the endpoint using the production URL. If the call succeeds, the transaction identifier belongs to the production environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you receive an error code ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "4040010",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", call the endpoint using the sandbox environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the call succeeds, the transaction identifier belongs to the sandbox environment. If the call fails with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "4040010",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " error code, the transaction identifier isn’t present in either environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/CheckTestNotificationResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the contents of the App Store server’s test notification and the result from your server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CheckTestNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/CheckTestNotificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CheckTestNotificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CheckTestNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/checktestnotificationresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest": {
+      "abstract": [
+        {
+          "text": "The request body containing consumption information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConsumptionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConsumptionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConsumptionRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/consumptionrequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateRequest": {
+      "abstract": [
+        {
+          "text": "The request body that contains subscription-renewal-extension data for an individual subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtendRenewalDateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extendrenewaldaterequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates whether an individual renewal-date extension succeeded, and related details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtendRenewalDateResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extendrenewaldateresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchase transaction history for your app, except finished consumable in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/history/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Transaction History V1",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-history-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-lookup-_orderId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchases from a receipt using the order ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-lookup-_orderId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/lookup/{orderId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Look Up Order ID",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-lookup-_orderid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_": {
+      "abstract": [
+        {
+          "text": "Check the status of the test App Store server notification sent to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/notifications/test/{testNotificationToken}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Test Notification Status",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-notifications-test-_testnotificationtoken_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-refund-lookup-_originalTransactionId_": {
+      "abstract": [
+        {
+          "text": "Get a list of up to 50 of a customer’s refunded in-app purchases for your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-refund-lookup-_originalTransactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/refund/lookup/{originalTransactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Refund History V1",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-refund-lookup-_originaltransactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get the statuses for all of a customer’s auto-renewable subscriptions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/subscriptions/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Subscription Statuses",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-subscriptions-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_": {
+      "abstract": [
+        {
+          "text": "Checks whether a renewal date extension request completed, and provides the final count of successful or failed extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/subscriptions/extend/mass/{productId}/{requestIdentifier}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Status of Subscription Renewal Date Extensions",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-subscriptions-extend-mass-_productid_-_requestidentifier_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-transactions-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get information about a single transaction for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-transactions-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/transactions/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Transaction Info",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-transactions-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchase transaction history for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/history/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Transaction History",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v2-history-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a paginated list of all of a customer’s refunded in-app purchases for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/refund/lookup/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Refund History",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v2-refund-lookup-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the customer’s transaction history for an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/historyresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSDecodedHeader": {
+      "abstract": [
+        {
+          "text": "A decoded JSON Web Signature (JWS) header containing transaction or renewal information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSDecodedHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSDecodedHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSDecodedHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSDecodedHeader",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwsdecodedheader"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSRenewalInfo": {
+      "abstract": [
+        {
+          "text": "Subscription renewal information, signed by the App Store, in JSON Web Signature (JWS) format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSRenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSRenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSRenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSRenewalInfo",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwsrenewalinfo"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSRenewalInfoDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload containing subscription renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSRenewalInfoDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSRenewalInfoDecodedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSRenewalInfoDecodedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSRenewalInfoDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwsrenewalinfodecodedpayload"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction": {
+      "abstract": [
+        {
+          "text": "Transaction information signed by the App Store, in JSON Web Signature (JWS) Compact Serialization format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSTransaction",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwstransaction"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSTransactionDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwstransactiondecodedpayload"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest": {
+      "abstract": [
+        {
+          "text": "The request body that contains subscription-renewal-extension data to apply for all eligible active subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MassExtendRenewalDateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/massextendrenewaldaterequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates the server successfully received the subscription-renewal-date extension request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MassExtendRenewalDateResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/massextendrenewaldateresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateStatusResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates the current status of a request to extend the subscription renewal date to all eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateStatusResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateStatusResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateStatusResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MassExtendRenewalDateStatusResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/massextendrenewaldatestatusresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/NotificationHistoryRequest": {
+      "abstract": [
+        {
+          "text": "The request body for notification history.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationHistoryRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/NotificationHistoryRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NotificationHistoryRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "NotificationHistoryRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/notificationhistoryrequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/NotificationHistoryResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the App Store Server Notifications history for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationHistoryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/NotificationHistoryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NotificationHistoryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "NotificationHistoryResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/notificationhistoryresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/OrderLookupResponse": {
+      "abstract": [
+        {
+          "text": "A response that includes the order lookup status and an array of signed transactions for the in-app purchases in the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderLookupResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/OrderLookupResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderLookupResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrderLookupResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/orderlookupresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-history": {
+      "abstract": [
+        {
+          "text": "Get a list of notifications that the App Store server attempted to send to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-history",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/notifications/history"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Notification History",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/post-v1-notifications-history"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test": {
+      "abstract": [
+        {
+          "text": "Ask App Store Server Notifications to send a test notification to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/notifications/test"
+        }
+      ],
+      "role": "symbol",
+      "title": "Request a Test Notification",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/post-v1-notifications-test"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-": {
+      "abstract": [
+        {
+          "text": "Uses a subscription’s product identifier to extend the renewal date for all of its eligible active subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/subscriptions/extend/mass/"
+        }
+      ],
+      "role": "symbol",
+      "title": "Extend Subscription Renewal Dates for All Active Subscribers",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/post-v1-subscriptions-extend-mass-"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_": {
+      "abstract": [
+        {
+          "text": "Extends the renewal date of a customer’s active subscription using the original transaction identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PUT /v1/subscriptions/extend/{originalTransactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Extend a Subscription Renewal Date",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/put-v1-subscriptions-extend-_originaltransactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Send consumption information about a consumable in-app purchase or auto-renewable subscription to the App Store after your server receives a consumption request notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PUT /v1/transactions/consumption/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send Consumption Information",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/put-v1-transactions-consumption-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundHistoryResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains an array of signed JSON Web Signature (JWS) refunded transactions, and paging information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefundHistoryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundHistoryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefundHistoryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefundHistoryResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/refundhistoryresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains an array of signed JSON Web Signature (JWS) transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefundLookupResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefundLookupResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefundLookupResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/refundlookupresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/SendTestNotificationResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the test notification token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendTestNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/SendTestNotificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SendTestNotificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SendTestNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/sendtestnotificationresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains status information for all of a customer’s auto-renewable subscriptions in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/statusresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a transaction identifier wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionIdNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionIdNotFoundError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactionidnotfounderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionInfoResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains signed transaction information for a single transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionInfoResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionInfoResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionInfoResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionInfoResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactioninforesponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests": {
+      "abstract": [
+        {
+          "text": "Create API keys you use to sign JSON Web Tokens and authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating API keys to authorize API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/creating-api-keys-to-authorize-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/data-types": {
+      "abstract": [
+        {
+          "text": "Refer to these data types for decoded transaction and renewal information payloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data types",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/data-types"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment": {
+      "abstract": [
+        {
+          "text": "The server environment, either sandbox or production.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "environment",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/environment"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/error-codes": {
+      "abstract": [
+        {
+          "text": "Understand the error codes that App Store Server API responses return.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error codes",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/error-codes"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions": {
+      "abstract": [
+        {
+          "text": "Compensate eligible active subscribers for service interruptions by extending a subscription’s renewal date.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending the renewal date for auto-renewable subscriptions",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extending-the-renewal-date-for-auto-renewable-subscriptions"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens signed with your private key to authorize requests for App Store Server API and External Purchase Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JSON Web Tokens for API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generating-json-web-tokens-for-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that apply to App Store Server API endpoints and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying rate limits",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/identifying-rate-limits"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/notificationHistoryResponseItem": {
+      "abstract": [
+        {
+          "text": "The App Store server notification history record, including the signed notification payload and the result of the server’s first send attempt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationHistoryResponseItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/notificationHistoryResponseItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notificationHistoryResponseItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "notificationHistoryResponseItem",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/notificationhistoryresponseitem"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/orderId": {
+      "abstract": [
+        {
+          "text": "The customer’s order ID from an App Store receipt for in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/orderId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orderId"
+        }
+      ],
+      "role": "symbol",
+      "title": "orderId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/orderid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/simplifying-your-implementation-by-using-the-app-store-server-library": {
+      "abstract": [
+        {
+          "text": "Use Apple’s open source library to create JSON Web Tokens (JWT) to authorize your calls, verify transactions, extract transaction identifiers from receipts, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/simplifying-your-implementation-by-using-the-app-store-server-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying your implementation by using the App Store Server Library",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/simplifying-your-implementation-by-using-the-app-store-server-library"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId": {
+      "abstract": [
+        {
+          "text": "The unique identifier for a transaction, such as an In-App Purchase, restored In-App Purchase, or subscription renewal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "transactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/transactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "transactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/transactionid"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7515": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7515",
+      "title": "JSON Web Signature (JWS)",
+      "titleInlineContent": [
+        {
+          "text": "JSON Web Signature (JWS)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7515"
+    },
+    "https://developer.apple.com/videos/all-videos/?q=%22App%20Store%20Server%20API%22": {
+      "identifier": "https://developer.apple.com/videos/all-videos/?q=%22App%20Store%20Server%20API%22",
+      "title": "Apple Developer website",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/all-videos/?q=%22App%20Store%20Server%20API%22"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10143/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10143/",
+      "title": "Meet the App Store Server Library",
+      "titleInlineContent": [
+        {
+          "text": "Meet the App Store Server Library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10143/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/simplifying-your-implementation-by-using-the-app-store-server-library",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "In-app-purchase-history",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_"
+      ],
+      "title": "In-app purchase history"
+    },
+    {
+      "anchor": "Transaction-information",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-transactions-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/TransactionInfoResponse"
+      ],
+      "title": "Transaction information"
+    },
+    {
+      "anchor": "Subscription-status",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/StatusResponse"
+      ],
+      "title": "Subscription status"
+    },
+    {
+      "anchor": "Consumption-information",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-transactions-consumption-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ConsumptionRequest"
+      ],
+      "title": "Consumption information"
+    },
+    {
+      "anchor": "Order-ID-lookup",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-lookup-_orderId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/orderId",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/OrderLookupResponse"
+      ],
+      "title": "Order ID lookup"
+    },
+    {
+      "anchor": "Refund-lookup",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundHistoryResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-refund-lookup-_originalTransactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse"
+      ],
+      "title": "Refund lookup"
+    },
+    {
+      "anchor": "Subscription-renewal-date-extension",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateRequest",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateStatusResponse"
+      ],
+      "title": "Subscription-renewal-date extension"
+    },
+    {
+      "anchor": "App-Store-Server-Notifications-history",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-history",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/NotificationHistoryRequest",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/NotificationHistoryResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/notificationHistoryResponseItem"
+      ],
+      "title": "App Store Server Notifications history"
+    },
+    {
+      "anchor": "App-Store-Server-Notifications-testing",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/SendTestNotificationResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/CheckTestNotificationResponse"
+      ],
+      "title": "App Store Server Notifications testing"
+    },
+    {
+      "anchor": "JWS-headers-and-payloads",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSRenewalInfo",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSDecodedHeader",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSRenewalInfoDecodedPayload",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/data-types"
+      ],
+      "title": "JWS headers and payloads"
+    },
+    {
+      "anchor": "Error-information",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/error-codes"
+      ],
+      "title": "Error information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

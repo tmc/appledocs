@@ -1,0 +1,2617 @@
+{
+  "abstract": [
+    {
+      "text": "The central object for managing notification-related activities for your app or app extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UNUserNotificationCenter",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UNUserNotificationCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UNUserNotificationCenter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UNUserNotificationCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage all notification-related behaviors in your app or app extension. Specifically, use this object to do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request authorization to interact with the user through alerts, sounds, and icon badges. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare the notification types that your app supports and the custom actions the user may perform when the system delivers those notifications. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedule the delivery of notifications from your app. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Process the payloads from remote notifications the system delivers by Apple Push Notification service (APNs). See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manage the already delivered notifications the system displays in Notification Center. See Managing Delivered Notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle user-selected actions associated with your custom notification types. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the notification-related settings for your app. See Managing Settings and Authorization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle incoming notifications and notification-related actions, create an object that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Always assign an object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property before performing any tasks that might interact with that delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may use the shared user notification center object simultaneously from any of your app’s threads. The object processes requests serially in the order that the system initiates them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationOptions": {
+      "abstract": [
+        {
+          "text": "Options that determine the authorized features of local and remote notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNAuthorizationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNAuthorizationOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNAuthorizationOptions",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unauthorizationoptions"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNError": {
+      "abstract": [
+        {
+          "text": "An object that represents a notification error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNError"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNError"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNError",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unerror"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNError/Code": {
+      "abstract": [
+        {
+          "text": "Constants that identify notification errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNError.Code",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unerror/code"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNErrorDomain",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unerrordomain"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings": {
+      "abstract": [
+        {
+          "text": "The object for managing notification-related settings and the authorization status of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSettings",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter": {
+      "abstract": [
+        {
+          "text": "The central object for managing notification-related activities for your app or app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/add(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Schedules the delivery of a local notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+          "text": "UNNotificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/add(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addNotificationRequest:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/add(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/current()": {
+      "abstract": [
+        {
+          "text": "Returns your app’s notification center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNUserNotificationCenter",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/current()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentNotificationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "current()",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/current()"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/delegate": {
+      "abstract": [
+        {
+          "text": "The notification center’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UNUserNotificationCenterDelegate",
+          "text": "UNUserNotificationCenterDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/delegate"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getDeliveredNotifications(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches all of your app’s delivered notifications that are still present in Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDeliveredNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotification",
+          "text": "UNNotification"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getDeliveredNotifications(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getDeliveredNotificationsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getDeliveredNotifications(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/getdeliverednotifications(completionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationCategories(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches your app’s registered notification categories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationCategories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationCategory",
+          "text": "UNNotificationCategory"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationCategories(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getNotificationCategoriesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getNotificationCategories(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/getnotificationcategories(completionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization and feature-related settings for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationSettings",
+          "text": "UNNotificationSettings"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getNotificationSettingsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getNotificationSettings(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/getnotificationsettings(completionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getPendingNotificationRequests(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches all of your app’s local notifications that are pending delivery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPendingNotificationRequests"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+          "text": "UNNotificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getPendingNotificationRequests(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getPendingNotificationRequestsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getPendingNotificationRequests(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/getpendingnotificationrequests(completionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllDeliveredNotifications()": {
+      "abstract": [
+        {
+          "text": "Removes all of your app’s delivered notifications from Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllDeliveredNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllDeliveredNotifications()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllDeliveredNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllDeliveredNotifications()",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/removealldeliverednotifications()"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllPendingNotificationRequests()": {
+      "abstract": [
+        {
+          "text": "Removes all of your app’s pending local notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllPendingNotificationRequests"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllPendingNotificationRequests()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllPendingNotificationRequests"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllPendingNotificationRequests()",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/removeallpendingnotificationrequests()"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeDeliveredNotifications(withIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Removes your app’s notifications from Notification Center that match the specified identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeDeliveredNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeDeliveredNotifications(withIdentifiers:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeDeliveredNotificationsWithIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeDeliveredNotifications(withIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/removedeliverednotifications(withidentifiers:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removePendingNotificationRequests(withIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Removes your app’s local notifications that are pending and match the specified identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePendingNotificationRequests"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removePendingNotificationRequests(withIdentifiers:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removePendingNotificationRequestsWithIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removePendingNotificationRequests(withIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/removependingnotificationrequests(withidentifiers:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/requestAuthorization(options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests a person’s authorization to allow local and remote notifications for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNAuthorizationOptions",
+          "text": "UNAuthorizationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/requestAuthorization(options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/requestauthorization(options:completionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setBadgeCount(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates the badge count for your app’s icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBadgeCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setBadgeCount(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBadgeCount:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBadgeCount(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/setbadgecount(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setNotificationCategories(_:)": {
+      "abstract": [
+        {
+          "text": "Registers the notification categories that your app supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNotificationCategories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationCategory",
+          "text": "UNNotificationCategory"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setNotificationCategories(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setNotificationCategories:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setNotificationCategories(_:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/setnotificationcategories(_:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports notification content extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsContentExtensions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsContentExtensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsContentExtensions",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/supportscontentextensions"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for processing incoming notifications and responding to notification actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenterDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenterDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenterDelegate",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenterdelegate"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications": {
+      "abstract": [
+        {
+          "text": "Request permission to display alerts, play sounds, or badge the app’s icon in response to a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Asking permission to use notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/asking-permission-to-use-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types": {
+      "abstract": [
+        {
+          "text": "Differentiate your notifications and add action buttons to the notification interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring your actionable notification types",
+      "type": "topic",
+      "url": "/documentation/usernotifications/declaring-your-actionable-notification-types"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions": {
+      "abstract": [
+        {
+          "text": "Respond to user interactions with the system’s notification interfaces, including handling your app’s custom actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling notifications and notification-related actions",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-notifications-and-notification-related-actions"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app": {
+      "abstract": [
+        {
+          "text": "Create and schedule notifications from your app when you want to get the user’s attention.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scheduling a notification locally from your app",
+      "type": "topic",
+      "url": "/documentation/usernotifications/scheduling-a-notification-locally-from-your-app"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings"
+      ],
+      "title": "Notification management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-the-notification-center",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/current()",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setBadgeCount(_:withCompletionHandler:)"
+      ],
+      "title": "Managing the notification center"
+    },
+    {
+      "anchor": "Requesting-authorization",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/requestAuthorization(options:completionHandler:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationOptions"
+      ],
+      "title": "Requesting authorization"
+    },
+    {
+      "anchor": "Processing-received-notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/delegate",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions"
+      ],
+      "title": "Processing received notifications"
+    },
+    {
+      "anchor": "Scheduling-notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/add(_:withCompletionHandler:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getPendingNotificationRequests(completionHandler:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removePendingNotificationRequests(withIdentifiers:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllPendingNotificationRequests()"
+      ],
+      "title": "Scheduling notifications"
+    },
+    {
+      "anchor": "Removing-delivered-notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getDeliveredNotifications(completionHandler:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeDeliveredNotifications(withIdentifiers:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllDeliveredNotifications()"
+      ],
+      "title": "Removing delivered notifications"
+    },
+    {
+      "anchor": "Managing-notification-categories",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setNotificationCategories(_:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationCategories(completionHandler:)"
+      ],
+      "title": "Managing notification categories"
+    },
+    {
+      "anchor": "Handling-errors",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNError",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNError/Code",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNErrorDomain"
+      ],
+      "title": "Handling errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UNUserNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.usernotifications/documentation/UserNotifications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-the-notification-center",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/current()",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setBadgeCount(_:withCompletionHandler:)"
+              ],
+              "title": "Managing the notification center"
+            },
+            {
+              "anchor": "Requesting-authorization",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/requestAuthorization(options:completionHandler:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationOptions"
+              ],
+              "title": "Requesting authorization"
+            },
+            {
+              "anchor": "Processing-received-notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/delegate",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/supportsContentExtensions"
+              ],
+              "title": "Processing received notifications"
+            },
+            {
+              "anchor": "Scheduling-notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/add(_:withCompletionHandler:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getPendingNotificationRequests(completionHandler:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removePendingNotificationRequests(withIdentifiers:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllPendingNotificationRequests()"
+              ],
+              "title": "Scheduling notifications"
+            },
+            {
+              "anchor": "Removing-delivered-notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getDeliveredNotifications(completionHandler:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeDeliveredNotifications(withIdentifiers:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/removeAllDeliveredNotifications()"
+              ],
+              "title": "Removing delivered notifications"
+            },
+            {
+              "anchor": "Managing-notification-categories",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/setNotificationCategories(_:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationCategories(completionHandler:)"
+              ],
+              "title": "Managing notification categories"
+            },
+            {
+              "anchor": "Handling-errors",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNError/Code",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNErrorDomain"
+              ],
+              "title": "Handling errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings"
+              ],
+              "title": "Notification management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UNUserNotificationCenter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getDeliveredNotifications(completionHandler:)/title",
+          "value": "getDeliveredNotificationsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getDeliveredNotifications(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getDeliveredNotificationsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1setNotificationCategories(_:)/title",
+          "value": "setNotificationCategories:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1setNotificationCategories(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNotificationCategories:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1add(_:withCompletionHandler:)/title",
+          "value": "addNotificationRequest:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1add(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addNotificationRequest:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getNotificationSettings(completionHandler:)/title",
+          "value": "getNotificationSettingsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getNotificationSettings(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getNotificationSettingsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removeAllPendingNotificationRequests()/title",
+          "value": "removeAllPendingNotificationRequests"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removeAllPendingNotificationRequests()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllPendingNotificationRequests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNError~1Code/title",
+          "value": "UNErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1setBadgeCount(_:withCompletionHandler:)/title",
+          "value": "setBadgeCount:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1setBadgeCount(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBadgeCount:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getNotificationCategories(completionHandler:)/title",
+          "value": "getNotificationCategoriesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getNotificationCategories(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getNotificationCategoriesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getPendingNotificationRequests(completionHandler:)/title",
+          "value": "getPendingNotificationRequestsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getPendingNotificationRequests(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getPendingNotificationRequestsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/title",
+          "value": "UNUserNotificationCenterDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1requestAuthorization(options:completionHandler:)/title",
+          "value": "requestAuthorizationWithOptions:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1requestAuthorization(options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationWithOptions:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removeAllDeliveredNotifications()/title",
+          "value": "removeAllDeliveredNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removeAllDeliveredNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllDeliveredNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removeDeliveredNotifications(withIdentifiers:)/title",
+          "value": "removeDeliveredNotificationsWithIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removeDeliveredNotifications(withIdentifiers:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeDeliveredNotificationsWithIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAuthorizationOptions/title",
+          "value": "UNAuthorizationOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAuthorizationOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNAuthorizationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAuthorizationOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNAuthorizationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/title",
+          "value": "UNNotificationSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1supportsContentExtensions/title",
+          "value": "supportsContentExtensions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1supportsContentExtensions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsContentExtensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNErrorDomain/title",
+          "value": "UNErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removePendingNotificationRequests(withIdentifiers:)/title",
+          "value": "removePendingNotificationRequestsWithIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1removePendingNotificationRequests(withIdentifiers:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removePendingNotificationRequestsWithIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/title",
+          "value": "UNUserNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1current()/title",
+          "value": "currentNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1current()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "currentNotificationCenter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/unusernotificationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/unusernotificationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

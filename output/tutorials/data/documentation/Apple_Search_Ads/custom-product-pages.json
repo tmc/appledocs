@@ -1,0 +1,1073 @@
+{
+  "abstract": [
+    {
+      "text": "View Custom Product Page details.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Search Ads",
+      "versions": [
+        "5.0",
+        "5.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Custom Product Pages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15 and later, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/product-page/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you build in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create ad variations in the Apple Search Ads Campaign Management API to promote your apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom product page ad, use the following workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3921834",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to fetch your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "productPageId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Page-Locales",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to fetch locale metadata and supported languages. Verify that your custom product page locale and asset data match the language and device types in your campaign ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Creative",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "productPageId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to obtain a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "creativeId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "creativeId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to assign a custom product page to an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Each ad group can have one custom product page. For information about how to update a custom product page ad group assignment, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Level-Reports",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to track the performance of ads in your campaigns. These details help you optimize your Apple Search Ads campaigns to deliver a contextualized customer experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you’ve been using Creative Sets with the API, see section 4.1 in  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for Creative Sets deprecation details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-rejection-reasons": {
+      "abstract": [
+        {
+          "text": "Review reasons for an ad rejection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-rejection-reasons",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad Rejection Reasons",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/ad-rejection-reasons"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ads": {
+      "abstract": [
+        {
+          "text": "Assign an ad creative to an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/ads"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Apple Search Ads Campaign Management API 4.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/apple-search-ads-campaign-management-api-4",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Search Ads Campaign Management API 4",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apple-search-ads-campaign-management-api-4"
+    },
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/creatives": {
+      "abstract": [
+        {
+          "text": "Create and manage ad creatives within your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/creatives",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creatives",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/creatives"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup": {
+      "abstract": [
+        {
+          "text": "The response to ad group requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/AdGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdGroup",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/adgroup"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CountriesOrRegionsListResponse": {
+      "abstract": [
+        {
+          "text": "A container for product page responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CountriesOrRegionsListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CountriesOrRegionsListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CountriesOrRegionsListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CountriesOrRegionsListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/countriesorregionslistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion": {
+      "abstract": [
+        {
+          "text": "The supported locales of a product page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CountryOrRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CountryOrRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CountryOrRegion",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/countryorregion"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Creative": {
+      "abstract": [
+        {
+          "text": "Creates a creative object within an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Creative",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a Creative"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Creative",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-a-creative"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad": {
+      "abstract": [
+        {
+          "text": "Creates an ad in an ad group with a creative.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-an-Ad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create an Ad"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Ad",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-an-ad"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Level-Reports": {
+      "abstract": [
+        {
+          "text": "Fetches ad performance data within a campaign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Ad-Level-Reports",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Ad-Level Reports"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Ad-Level Reports",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-ad-level-reports"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-App-Preview-Device-Sizes": {
+      "abstract": [
+        {
+          "text": "Fetches supported app preview device-size mappings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-App-Preview-Device-Sizes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get App Preview Device Sizes"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Preview Device Sizes",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-app-preview-device-sizes"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Page-Locales": {
+      "abstract": [
+        {
+          "text": "Fetches product page locales by identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Page-Locales",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Product Page Locales"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Product Page Locales",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-product-page-locales"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages": {
+      "abstract": [
+        {
+          "text": "Fetches metadata of all your custom product pages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Product Pages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Product Pages",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-product-pages"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages-by-Identifier": {
+      "abstract": [
+        {
+          "text": "Fetches metadata for a specific product page.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages-by-Identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Product Pages by Identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Product Pages by Identifier",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-product-pages-by-identifier"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Supported-Countries-or-Regions": {
+      "abstract": [
+        {
+          "text": "Fetches supported languages and language codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Supported-Countries-or-Regions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Supported Countries or Regions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Supported Countries or Regions",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-supported-countries-or-regions"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/LocaleInfo": {
+      "abstract": [
+        {
+          "text": "The supported languages and language codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocaleInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/LocaleInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocaleInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocaleInfo",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/localeinfo"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/MediaAppVideoAsset": {
+      "abstract": [
+        {
+          "text": "The app preview or screenshot asset detail.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaAppVideoAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/MediaAppVideoAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaAppVideoAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaAppVideoAsset",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/mediaappvideoasset"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetail": {
+      "abstract": [
+        {
+          "text": "The product page metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetail"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetail"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageDetail",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagedetail"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailListResponse": {
+      "abstract": [
+        {
+          "text": "A container for product page responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageDetailListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagedetaillistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailResponse": {
+      "abstract": [
+        {
+          "text": "A container for product page responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageDetailResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagedetailresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailWithAssetInfoResponse": {
+      "abstract": [
+        {
+          "text": "A container for product page responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailWithAssetInfoResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailWithAssetInfoResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailWithAssetInfoResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageDetailWithAssetInfoResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagedetailwithassetinforesponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailWithAssets": {
+      "abstract": [
+        {
+          "text": "The product page asset metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailWithAssets"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailWithAssets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageDetailWithAssets"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageDetailWithAssets",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagedetailwithassets"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageLocaleDetail": {
+      "abstract": [
+        {
+          "text": "The product page locale metadata on App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageLocaleDetail"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageLocaleDetail",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageLocaleDetail"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageLocaleDetail",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagelocaledetail"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageLocaleDetailListResponse": {
+      "abstract": [
+        {
+          "text": "A container for product page responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageLocaleDetailListResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageLocaleDetailListResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageLocaleDetailListResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageLocaleDetailListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagelocaledetaillistresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageReasonCreate": {
+      "abstract": [
+        {
+          "text": "The ad creative rejection reason based on a product page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductPageReasonCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageReasonCreate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductPageReasonCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductPageReasonCreate",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/productpagereasoncreate"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad": {
+      "abstract": [
+        {
+          "text": "Updates an ad in an ad group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-an-Ad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update an Ad"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Ad",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-an-ad"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://developer.apple.com/app-store/product-page/": {
+      "identifier": "https://developer.apple.com/app-store/product-page/",
+      "title": "custom product pages",
+      "titleInlineContent": [
+        {
+          "text": "custom product pages",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/product-page/"
+    },
+    "media-3921834": {
+      "alt": "A diagram showing the five-step workflow for creating a custom product page ad.",
+      "identifier": "media-3921834",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56d06d39dc5e190bae2f397206d352ea/media-3921834@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c88ecccef7fcc3b64023d80b40cb95a1/media-3921834~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-Product-Page-Ads",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ads",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/ad-rejection-reasons",
+        "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/creatives"
+      ],
+      "title": "Custom Product Page Ads"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Product-Page-Endpoints",
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Pages-by-Identifier",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Product-Page-Locales",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-Supported-Countries-or-Regions",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-App-Preview-Device-Sizes"
+      ],
+      "title": "Product Page Endpoints"
+    },
+    {
+      "anchor": "Product-Page-Request-and-Response-Objects",
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/LocaleInfo",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/CountryOrRegion",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/CountriesOrRegionsListResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/MediaAppVideoAsset",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageLocaleDetail",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetail",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailWithAssets",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageLocaleDetailListResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailWithAssetInfoResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageDetailListResponse",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/ProductPageReasonCreate"
+      ],
+      "title": "Product Page Request and Response Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/custom-product-pages"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

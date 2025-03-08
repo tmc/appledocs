@@ -1,0 +1,929 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a batch provider based on feature names and their associated arrays of data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MLArrayBatchProvider(im)initWithDictionary:error:",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "init"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "dictionary"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": " : ["
+      },
+      {
+        "kind": "keyword",
+        "text": "Any"
+      },
+      {
+        "kind": "text",
+        "text": "]]) "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "initWithDictionary:error:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Initializer",
+    "symbolKind": "init",
+    "title": "init(dictionary:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "init"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "dictionary"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " : ["
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": "]]) "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary which maps feature names to an array of values. The error case occurs when all the arrays do not have the same length or the values in an aray are not expressible as an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dictionary"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This initializer is convenient when the data are available as individual arrays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let batch = try  MLArrayBatchProvider(dictionary: [\"age\": [30, 35, 29],",
+            "                                                   \"weightLbs\": [120.0, 170.4, 213.6]])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider": {
+      "abstract": [
+        {
+          "text": "A convenience wrapper for batches of feature providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLArrayBatchProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLArrayBatchProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLArrayBatchProvider",
+      "type": "topic",
+      "url": "/documentation/coreml/mlarraybatchprovider"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(array:)": {
+      "abstract": [
+        {
+          "text": "Creates the batch provider based on the array of feature providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLFeatureProvider",
+          "text": "MLFeatureProvider"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(array:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFeatureProviderArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(array:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlarraybatchprovider/init(array:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)": {
+      "abstract": [
+        {
+          "text": "Creates a batch provider based on feature names and their associated arrays of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDictionary:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/coreml/mlarraybatchprovider/init(dictionary:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue": {
+      "abstract": [
+        {
+          "text": "A generic wrapper around an underlying value and the value’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLFeatureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLFeatureValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLFeatureValue",
+      "type": "topic",
+      "url": "/documentation/coreml/mlfeaturevalue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(array:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "initWithDictionary:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDictionary:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coreml/documentation/CoreML",
+                "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Initializers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider/init(array:)"
+              ],
+              "title": "Initializers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "instancetype"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "initWithDictionary:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+                    "text": "NSDictionary<NSString *,NSArray *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "dictionary"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "error:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary which maps feature names to an array of values. The error case occurs when all the arrays do not have the same length or the values in an aray are not expressible as an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "dictionary"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On output, a pointer to an error object that describes why the method failed, or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if no error occurred. If you are not interested in the error information, pass ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for this parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider~1init(dictionary:)/title",
+          "value": "initWithDictionary:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider~1init(dictionary:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDictionary:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureValue/title",
+          "value": "MLFeatureValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider/title",
+          "value": "MLArrayBatchProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLArrayBatchProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLArrayBatchProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider~1init(array:)/title",
+          "value": "initWithFeatureProviderArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider~1init(array:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFeatureProviderArray:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/mlarraybatchprovider/init(dictionary:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/mlarraybatchprovider/init(dictionary:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

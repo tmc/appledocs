@@ -1,0 +1,678 @@
+{
+  "abstract": [
+    {
+      "text": "Create reports for external purchase tokens that didn’t result in completed transactions, or tokens that you learn of from an App Store server notification.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportwithouttransactions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "External Purchase Server API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reporting unrecognized tokens and tokens without transactions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a customer doesn’t successfully complete an external purchase, you must still report the token, even if it has no transaction.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "App Store Server Notifications V2 notifies you of external purchase tokens you haven’t yet reported, 10 days after the system created the token. You need to report the token, including when your system doesn’t have a record of the token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send a request to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to report all external purchase tokens. Add the following information in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request body:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supply a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", to uniquely identify the report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/externalPurchaseId",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the token you’re reporting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, specify the type of report in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO_LINE_ITEM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " when the external purchase token doesn’t have any associated transactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UNRECOGNIZED_TOKEN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " when you receive an App Store server notification with a external purchase token your system doesn’t recognize.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t provide a ",
+              "type": "text"
+            },
+            {
+              "code": "lineItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the request body when using either of these status values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Report-a-token-without-a-completed-transaction",
+          "level": 3,
+          "text": "Report a token without a completed transaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "NO_LINE_ITEM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status to report an external purchase token that didn’t result in any completed transactions. The following example shows the ",
+              "type": "text"
+            },
+            {
+              "code": "ExternalPurchaseReport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request body for a token without any associated transactions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"requestIdentifier\": \"87e7d6d1-b98d-4a8f-b6a4-41ba992a6cad\",",
+            "    \"externalPurchaseId\": \"168f34da-19a5-465d-9b1a-fdb0b781b9b9\",",
+            "    \"status\": \"NO_LINE_ITEM\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Report-an-unrecognized-token",
+          "level": 3,
+          "text": "Report an unrecognized token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple sends notifications to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint for external purchase tokens that remain unreported after 10 days. The notification has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "EXTERNAL_PURCHASE_TOKEN",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "UNREPORTED",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It provides the token’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/externalPurchaseId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/externalPurchaseToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field of notification’s payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compare the ",
+              "type": "text"
+            },
+            {
+              "code": "externalPurchaseId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the tokens in your system. If your system doesn’t have a record of a matching token, use the  ",
+              "type": "text"
+            },
+            {
+              "code": "UNRECOGNIZED_TOKEN",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to send a report to Apple. The following example shows the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request body for an unrecognized token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"requestIdentifier\": \"94d0d7fb-c393-4813-92eb-9614e7540f6d\",",
+            "    \"externalPurchaseId\": \"<externalPurchaseId from notification>\",",
+            "    \"status\": \"UNRECOGNIZED_TOKEN\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/externalPurchaseToken": {
+      "abstract": [
+        {
+          "text": "The payload data that contains an external purchase token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalPurchaseToken"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/externalPurchaseToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "externalPurchaseToken",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/externalPurchaseToken"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype": {
+      "abstract": [
+        {
+          "text": "A string that provides details about select notification types in version 2.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtype"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtype",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/subtype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport": {
+      "abstract": [
+        {
+          "text": "The contents of an external purchase report for a single token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/ExternalPurchaseReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchaseReport",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/externalpurchasereport"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report": {
+      "abstract": [
+        {
+          "text": "Report required information about external purchase tokens and associated transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send External Purchase Report"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send External Purchase Report",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/send-external-purchase-report"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/externalPurchaseId": {
+      "abstract": [
+        {
+          "text": "The unique identifier of an external purchase token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalPurchaseId"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/externalPurchaseId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "externalPurchaseId"
+        }
+      ],
+      "role": "symbol",
+      "title": "externalPurchaseId",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/externalpurchaseid"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier": {
+      "abstract": [
+        {
+          "text": "A UUID that uniquely identifies an external purchase report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/requestIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestIdentifier",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/requestidentifier"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/status": {
+      "abstract": [
+        {
+          "text": "A string value that represents the status of the token and the contents of the external purchase report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/status"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalpurchaseserverapi/reportwithouttransactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,879 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your navigation app to work with CarPlay by displaying your custom map and directions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/integrating-carplay-with-your-navigation-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating CarPlay with Your Navigation App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coastal Roads is a sample navigation app that demonstrates how to display a custom map and navigation instructions in a CarPlay–enabled vehicle. Coastal Roads integrates with the CarPlay framework by implementing the map and additional ",
+              "type": "text"
+            },
+            {
+              "code": "CPTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPGridTemplate",
+              "isActive": true,
+              "overridingTitle": "CPGridTemplate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CPGridTemplate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPListTemplate",
+              "isActive": true,
+              "overridingTitle": "CPListTemplate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CPListTemplate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". This sample’s iOS app component provides a logging interface to help you understand the life cycle of a CarPlay app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-Communication-with-CarPlay",
+          "level": 3,
+          "text": "Handle Communication with CarPlay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app connects to CarPlay, it immediately sets a root template to display content onscreen. The sample sets the root template on the ",
+              "type": "text"
+            },
+            {
+              "code": "CPInterfaceController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the app connects to CarPlay. In all navigation apps, the root template must be an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CPMapTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and contain no additional graphics or UI elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example implementation of setting a root template:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// MARK: CPTemplateApplicationSceneDelegate",
+            "",
+            "func interfaceController(_ interfaceController: CPInterfaceController, didConnectWith window: CPWindow, style: UIUserInterfaceStyle) {",
+            "    MemoryLogger.shared.appendEvent(\"Connected to CarPlay window.\")",
+            "",
+            "    carplayInterfaceController = interfaceController",
+            "    carplayInterfaceController!.delegate = self",
+            "    ",
+            "    window.rootViewController = mainMapViewController",
+            "    carWindow = window",
+            "    ",
+            "    let mapTemplate = CPMapTemplate.coastalRoadsMapTemplate(compatibleWith: mainMapViewController.traitCollection, zoomInAction: {",
+            "        MemoryLogger.shared.appendEvent(\"Map zoom in.\")",
+            "        self.mainMapViewController.zoomIn()",
+            "    }, zoomOutAction: {",
+            "        MemoryLogger.shared.appendEvent(\"Map zoom out.\")",
+            "        self.mainMapViewController.zoomOut()",
+            "    })",
+            "",
+            "    mapTemplate.mapDelegate = self",
+            "",
+            "    baseMapTemplate = mapTemplate",
+            "",
+            "    installBarButtons()",
+            "",
+            "    interfaceController.setRootTemplate(mapTemplate, animated: true) { (success, _) in",
+            "        if success {",
+            "            MemoryLogger.shared.appendEvent(\"Root MapTemplate set successfully\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-a-Map-as-the-Base-Template",
+          "level": 3,
+          "text": "Render a Map as the Base Template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coastal Roads demonstrates various templates in CarPlay. The sample includes an image to serve as the map. All overlays must be a type of template that CarPlay provides. The map must cover the entire screen, which the sample accomplishes using constraints. The ",
+              "type": "text"
+            },
+            {
+              "code": "CPMapTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also provides native support for zooming and panning. Additional functionality, such as customizing default button behavior, is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example implementation of customizing the default behavior of the panning, preview, and trip start actions on ",
+              "type": "text"
+            },
+            {
+              "code": "CPMapTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension TemplateManager: CPMapTemplateDelegate {",
+            "",
+            "    func mapTemplate(_ mapTemplate: CPMapTemplate, panWith direction: CPMapTemplate.PanDirection) {",
+            "        mainMapViewController.panInDirection(direction)",
+            "    }",
+            "",
+            "    func mapTemplate(_ mapTemplate: CPMapTemplate, selectedPreviewFor trip: CPTrip, using routeChoice: CPRouteChoice) {",
+            "        mainMapViewController.setPolylineVisible(true)",
+            "    }",
+            "",
+            "    func mapTemplate(_ mapTemplate: CPMapTemplate, startedTrip trip: CPTrip, using routeChoice: CPRouteChoice) {",
+            "",
+            "        MemoryLogger.shared.appendEvent(\"Beginning navigation guidance.\")",
+            "",
+            "        let navSession = mapTemplate.simulateCoastalRoadsNavigation(",
+            "            trip: trip,",
+            "            routeChoice: routeChoice,",
+            "            traitCollection: mainMapViewController.traitCollection)",
+            "        navigationSession = navSession",
+            "",
+            "        simulateNavigation(for: navSession, maneuvers: mapTemplate.coastalRoadsManeuvers(compatibleWith: mainMapViewController.traitCollection))",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPMapTemplateDelegate",
+              "isActive": true,
+              "overridingTitle": "CPMapTemplateDelegate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CPMapTemplateDelegate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "49e398fe2cd4/IntegratingCarPlayWithYourNavigationApp.zip": {
+      "checksum": "49e398fe2cd4edc6ee61dc11893185fb3aa13121ebd9126818a5bff41834614767ab2019cbd66b1df4c1a2013130e7775ad40180b075cef1866d531c062df5a0",
+      "identifier": "49e398fe2cd4/IntegratingCarPlayWithYourNavigationApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/49e398fe2cd4/IntegratingCarPlayWithYourNavigationApp.zip"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays a navigation overlay that your app draws on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPMapTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPMapTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPMapTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpmaptemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate": {
+      "abstract": [
+        {
+          "text": "A template that provides the ability to search for a destination and see a list of search results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSearchTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSearchTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSearchTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsearchtemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene": {
+      "abstract": [
+        {
+          "text": "A CarPlay scene that controls your app’s dashboard navigation window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardScene"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationDashboardScene",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationdashboardscene"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for responding to the life-cycle events of your navigation app’s dashboard scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationDashboardSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationdashboardscenedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays a voice control indicator during audio input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPVoiceControlTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPVoiceControlTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPVoiceControlTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpvoicecontroltemplate"
+    },
+    "doc://com.apple.documentation/documentation/CarPlay/CPGridTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays and manages a grid of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPGridTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPGridTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CPGridTemplate",
+      "type": "topic",
+      "url": "/documentation/CarPlay/CPGridTemplate"
+    },
+    "doc://com.apple.documentation/documentation/CarPlay/CPListTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays and manages a list of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPListTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CPListTemplate",
+      "type": "topic",
+      "url": "/documentation/CarPlay/CPListTemplate"
+    },
+    "doc://com.apple.documentation/documentation/CarPlay/CPMapTemplateDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol an object implements to handle events from a map template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPMapTemplateDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPMapTemplateDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CPMapTemplateDelegate",
+      "type": "topic",
+      "url": "/documentation/CarPlay/CPMapTemplateDelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "49e398fe2cd4/IntegratingCarPlayWithYourNavigationApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Navigation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate"
+      ],
+      "title": "Navigation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Navigation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate"
+              ],
+              "title": "Navigation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPMapTemplateDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPMapTemplateDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardScene/title",
+          "value": "CPTemplateApplicationDashboardScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSearchTemplate/title",
+          "value": "CPSearchTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSearchTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSearchTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSearchTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSearchTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate/title",
+          "value": "CPTemplateApplicationDashboardSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMapTemplate/title",
+          "value": "CPMapTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMapTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPMapTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMapTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPMapTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPVoiceControlTemplate/title",
+          "value": "CPVoiceControlTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPVoiceControlTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPVoiceControlTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPVoiceControlTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPVoiceControlTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPListTemplate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CPTemplate",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPGridTemplate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPGridTemplate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CPTemplate",
+              "text": "CPTemplate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/integrating-carplay-with-your-navigation-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/integrating-carplay-with-your-navigation-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

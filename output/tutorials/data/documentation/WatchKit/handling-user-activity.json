@@ -1,0 +1,683 @@
+{
+  "abstract": [
+    {
+      "text": "Detect and respond to user activity information from Handoff or a complication.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/life-cycles"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/handling-user-activity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling User Activity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to handle incoming ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. This replaces the WatchKit extension delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you create a complication descriptor using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to pass in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, when the user taps the corresponding complication, the system activates your app and passes the activity object to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifiers. You can use the activity object to navigate to the corresponding content in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a list of the user's favorite cities.",
+            "List(favoriteCities) { city in",
+            "    ",
+            "    // Create a navigation link for each city.",
+            "    // Activate the link if it is for the selected city.",
+            "    NavigationLink(city.name,",
+            "                   destination: CityDetailView(city: city),",
+            "                   isActive: checkActive(city: city))",
+            "        ",
+            "        .onContinueUserActivity(viewCityFromComplication) { activity in",
+            "            ",
+            "            // App received a user activity object.",
+            "            // Check to see whether it has a city index in the userInfo dictionary.",
+            "            if let id = activity.userInfo?[cityIDKey] as? String {",
+            "                ",
+            "                // Navigate to the specified city.",
+            "                selectedCity = allCities[id]",
+            "            }",
+            "            else {",
+            "                ",
+            "                // Display the favorite city list.",
+            "                selectedCity = nil",
+            "            }",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that in this example, ",
+              "type": "text"
+            },
+            {
+              "code": "selectedCity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a state variable that holds a ",
+              "type": "text"
+            },
+            {
+              "code": "City",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. The ",
+              "type": "text"
+            },
+            {
+              "code": "checkActive(city:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates a binding that indicates whether the given city is the currently selected city.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State var selectedCity: City? = nil",
+            "",
+            "// Returns a binding that determines whether a given",
+            "// city is the currently selected city.",
+            "func checkActive(city: City) -> Binding<Bool> {",
+            "    Binding {",
+            "        selectedCity == city",
+            "    }",
+            "    set: {",
+            "        // If the binding is set to true, set the selected city",
+            "        // to the provided city.",
+            "        if $0 {",
+            "            selectedCity = city",
+            "        }",
+            "        // if the binding is set to false,",
+            "        // and the selected city is set to the provided city,",
+            "        // clear the selected city.",
+            "        else if selectedCity == city {",
+            "            selectedCity = nil",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)": {
+      "abstract": [
+        {
+          "text": "Returns a new complication descriptor with an associated user activity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "supportedFamilies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationFamily",
+          "text": "CLKComplicationFamily"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(identifier:displayName:supportedFamilies:userActivity:)",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationDescriptor/init(identifier:displayName:supportedFamilies:userActivity:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)": {
+      "abstract": [
+        {
+          "text": "Registers a handler to invoke in response to a user activity that your app receives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onContinueUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onContinueUserActivity(_:perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1": {
+      "abstract": [
+        {
+          "text": "Responds to Handoff–related activity from Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActivity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:)-5pyj1"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions": {
+      "abstract": [
+        {
+          "text": "Detect and respond to common state transitions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Common State Transitions",
+      "type": "topic",
+      "url": "/documentation/watchkit/handling-common-state-transitions"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/life-cycles": {
+      "abstract": [
+        {
+          "text": "Receive and respond to life-cycle notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Life cycles",
+      "type": "topic",
+      "url": "/documentation/watchkit/life-cycles"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state": {
+      "abstract": [
+        {
+          "text": "Understand the frontmost app state, and the features it provides to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Frontmost App State",
+      "type": "topic",
+      "url": "/documentation/watchkit/taking-advantage-of-frontmost-app-state"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle": {
+      "abstract": [
+        {
+          "text": "Learn how the watchOS app life cycle operates and responds to life cycle notification methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with the watchOS app life cycle",
+      "type": "topic",
+      "url": "/documentation/watchkit/working-with-the-watchos-app-life-cycle"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-life-cycle-events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+        "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+        "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state"
+      ],
+      "title": "Responding to life cycle events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Responding-to-life-cycle-events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/handling-common-state-transitions",
+                "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+                "doc://com.apple.watchkit/documentation/WatchKit/taking-advantage-of-frontmost-app-state"
+              ],
+              "title": "Responding to life cycle events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-5pyj1/title",
+          "value": "handleActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-5pyj1/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActivity:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/handling-user-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/handling-user-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

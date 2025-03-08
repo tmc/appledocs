@@ -1,0 +1,1260 @@
+{
+  "abstract": [
+    {
+      "text": "Create an IOKit driver to support Thunderbolt devices that implement features not supported in PCIDriverKit, such as wireless networking or audio. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/pci"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device"
+  },
+  "kind": "article",
+  "legacy_identifier": 3686765,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing a PCIe Kext for a Thunderbolt Device"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you manufacture Thunderbolt devices, create a custom driver only when your device contains unique features that require additional support. Apple supplies drivers for many standard protocols and device types, alleviating the need for you to create custom drivers in some cases. However, if your Thunderbolt device contains PCIe endpoints that require additional support, create a custom PCIe driver to support those endpoints. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the PCIe driver for your Thunderbolt device using PCIDriverKit whenever possible. DriverKit extensions run in user space and require less effort to develop, debug, and deploy. However, PCIDriverKit may not be an option in all cases. If your device supports wireless networking or audio, or if it requires specific kernel resources, you must create your driver as an IOKit kernel extension.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Kernel extensions run in the kernel process space of the target Mac computer using the native architecture. To support both Apple silicon and Intel-based Mac computers, build your driver as a universal binary. For the most part, your driver code is identical on both Apple silicon and Intel-based Macs. However, if you’re updating a driver you previously built only for Intel-based Macs, you may need to update your code to correctly handle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pointer authentication",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory architecture differences between Apple silicon and Intel-based Macs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kernel integrity protection (KIP) restrictions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For basic information about building kernel extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3686770",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about how to develop drivers using PCIDriverKit, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3686769",
+          "level": 3,
+          "text": "Implement Your Driver Life Cycle Normally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The life cycle of a kernel extension in macOS 11 remains unchanged from previous versions of macOS. In particular, the system loads your custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, and calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method to allocate your driver’s data structures. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method to configure your hardware, install event handlers, and prepare your driver to handle requests. When your driver is no longer needed, the system calls the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to release any driver-related resources. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to implement your driver life cycle, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3686771",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3686768",
+          "level": 3,
+          "text": "Access Memory Using DMA Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Thunderbolt devices access system memory through a system-provided I/O memory management unit (IOMMU). On Intel-based Mac computers, the system provides a single IOMMU and gives all devices a shared view of system memory. On Macs with Apple silicon, the system gives each device its own IOMMU. Always implement your driver as if it has its own IOMMU, and never assume you have a shared view of system memory. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To transfer memory correctly on all types of Macs, use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object configured with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions/kmapped",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option. Typically, you create one or more of these objects at startup and reuse them multiple times. To create one, fetch the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iomapper",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object associated with your driver’s provider object and pass it to the appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " creation function. For example, the following code creates a command object for 64-bit transfers with several standard transfer options.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "IOMapper *mapper = IOMapper::copyMapperForDevice(provider);",
+            "IODMACommand *dmaCommand = ",
+            "     IODMACommand::withSpecification(kIODMACommandOutputHost64, ",
+            "              64,      // 64-bit transfers",
+            "              0,       // Unlimited segment sizes",
+            "              (IODMACommand::MappingOptions)(IODMACommand::kMapped),",
+            "              0,       // No maximum transfer size",
+            "              1,       // 1-byte alignment",
+            "              mapper, ",
+            "              NULL);"
+          ],
+          "metadata": {
+            "anchor": "3686766",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you are ready to transfer data to or from your device, create a new memory descriptor to handle the transferred data. Configure the descriptor with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1643339-anonymous/kiodirectionin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " direction to read data from the device into memory, or configure it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1643339-anonymous/kiodirectionout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " direction to send data from memory out to the device. Assign the memory descriptor to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547727-setmemorydescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the default options for which begin the transfer operation immediately. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Calls to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " fail on Apple silicon. When updating older kernel extensions to support Apple silicon, replace all calls to that method with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3686966",
+          "level": 3,
+          "text": "Add Thunderbolt Support to Your Driver’s Personality Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it detects new hardware, the system must find an appropriate set of drivers to manage that hardware. It does so by comparing the hardware details to information found in the ",
+              "type": "text"
+            },
+            {
+              "code": "kIOKitPersonalitiesKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of each driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and identifying the drivers that best match the hardware. For example, a driver might match only against devices from a specific manufacturer, or devices that support only a specific communication protocol. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that your PCIe driver supports Thunderbolt, include the ",
+              "type": "text"
+            },
+            {
+              "code": "IOPCITunnelCompatible",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your driver’s personality dictionaries. Include this key only if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass in the ",
+              "type": "text"
+            },
+            {
+              "code": "IOClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of that dictionary is able to communicate with your Thunderbolt device. The following example shows the presence of this key in a custom PCI driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>MyDriverKitDriver</key>",
+            "<dict>",
+            "    <key>CFBundleIdentifier</key>",
+            "    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>",
+            "    <key>CFBundleIdentifierKernel</key>",
+            "    <string>com.apple.kpi.iokit</string>",
+            "    <key>IOClass</key>",
+            "    <string>IOUserService</string>",
+            "    <key>IOPCIPauseCompatible</key>",
+            "    <true/>",
+            "    <key>IOPCIPrimaryMatch</key>",
+            "    <string>0x0000ABCD&amp;0x0000FFFF</string>",
+            "    <key>IOPCITunnelCompatible</key>",
+            "    <true/>",
+            "    <key>IOProviderClass</key>",
+            "    <string>IOPCIDevice</string>",
+            "    <key>IOResourceMatch</key>",
+            "    <string>IOKit</string>",
+            "    <key>IOUserClass</key>",
+            "    <string>MyPCIDriverKitDriverClassName</string>",
+            "    <key>IOUserServerName</key>",
+            "    <string>com.apple.MyDriverKitDriver</string>",
+            "</dict>"
+          ],
+          "metadata": {
+            "anchor": "3686969",
+            "title": "Listing 2"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a device supports Thunderbolt, the system adds the ",
+              "type": "text"
+            },
+            {
+              "code": "IOPCITunnelled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to one of the drivers in the chain and sets the value of that property to true. If you need to know whether the device is a Thunderbolt device, search for this property in your driver code. For example, you might do so before enabling specific features in your code that require Thunderbolt. The following example searches all parent drivers in the global service plane for the property. If the property is present, the code checks its value to determine whether the device is a Thunderbolt device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bool isThunderboltEnabled = false;",
+            "OSContainer* container = NULL;",
+            "if (SearchProperty(\"IOPCITunnelled\", \"IOService\", kIOServiceSearchPropertyParents, &container) == kIOReturnSuccess)",
+            "{",
+            "   OSBoolean* boolVar = OSDynamicCast(OSBoolean, container);",
+            "   if (boolVar != NULL && boolVar == kOSBooleanTrue)",
+            "   {",
+            "      // The device supports Thunderbolt.",
+            "      isThunderboltEnabled = true;",
+            "   }",
+            "   OSSafeReleaseNULL(container);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3686965",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3686967",
+          "level": 3,
+          "text": "Notify the System of External Storage Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can disconnect most Thunderbolt devices at any time, but macOS doesn’t allow them to disconnect external storage devices without properly ejecting them. If your PCI driver presents the device as storage to the system, notify the system early in your driver’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532606-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "Physical Interconnect Location",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "External",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the Physical Interconnect Location property to the driver.",
+            "OSDictionary* dict = OSDictionary::withCapacity(1);",
+            "OSString* externalStr = OSString::withCString(\"External\");",
+            "dict->setObject(\"Physical Interconnect Location\", externalStr);",
+            "SetProperties(dict);",
+            "OSSafeReleaseNULL(externalStr);",
+            "OSSafeReleaseNULL(dict);"
+          ],
+          "metadata": {
+            "anchor": "3686968",
+            "title": "Listing 4"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Physical Interconnect Location",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property early in your driver’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532606-start",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. Don’t set it after you access the device. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3690960",
+          "level": 3,
+          "text": "Avoid Audio Glitches Caused by Power Transitions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The processors in recent Macs have low-power states that reduce the processor speed and voltage when the computer is idle. These low-power states decrease overall power consumption and heat generation on the system, and improve battery life. However, when a power-state transition occurs, the system temporarily stops all PCI bus traffic while it changes the power state of the processor cores. Halting PCI bus traffic can cause audio glitches and other side effects on devices that are sensitive to the added latency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To mitigate the problems of any added latency, implement the PCIe latency tolerance reporting (LTR) extended capability in your devices according to the PCIe specifications. If your driver supports legacy devices, schedule your driver’s time-critical DMA operations so that occasional delays don’t affect your device. If you’re unable to adjust the schedule of your DMA operations, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532887-requiremaxbusstall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " subclass at the beginning and end of any time-critical transfers. Before a transfer, call this method with the constant that represents the maximum latency your driver can tolerate. For example, specify ",
+              "type": "text"
+            },
+            {
+              "code": "kIOMaxBusStall20usec",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to delay bus stalls for 20 microseconds. The system avoids entering low-power states for the specified amount of time. After a transfer, restore the default bus stall time by passing ",
+              "type": "text"
+            },
+            {
+              "code": "kIOMaxBusStallNone",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the method. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532887-requiremaxbusstall",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " method only if there is no other way to make your device and driver more tolerant of increased memory latency. The method prevents the system from transitioning to lower-power states, which can significantly impact battery life on portable systems. It may also increase system heat, and require device fans to run longer. Overuse of this API may also lead to kernel panics. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because audio transfers occur only when your audio engine is running, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532887-requiremaxbusstall",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561628-performaudioenginestart",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561589-performaudioenginestop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The following example shows an implementation of these methods that prevents PCI bus stalls for 10 microseconds when a transfer begins, and restores the default bus stall time at the end of the transfer. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/* Header file */",
+            "class MyAudioEngine : public IOAudioEngine",
+            "{",
+            "    /* virtual overrides, custom function, variables, etc... */",
+            "public:",
+            "    virtual IOReturn performAudioEngineStart();",
+            "    virtual IOReturn performAudioEngineStop();",
+            "}",
+            "",
+            "",
+            "/* Implementation file */",
+            "IOReturn MyAudioEngine::performAudioEngineStart()",
+            "{",
+            "    requireMaxBusStall(kIOMaxBusStall10usec);",
+            "    return IOAudioEngine::performAudioEngineStart();",
+            "}",
+            "",
+            "IOReturn MyAudioEngine::performAudioEngineStop()",
+            "{",
+            "    // Zero means restore default bus stall time.",
+            "    // It's now safe to go into lowest-power states.",
+            "    requireMaxBusStall(kIOMaxBusStallNone);",
+            "    return IOAudioEngine::performAudioEngineStop();",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3690961",
+            "title": "Listing 5"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3686767",
+          "level": 3,
+          "text": "Build Your Kernel Extension as a Universal Binary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build your kernel extension as a universal binary on macOS 11 and later. A universal binary supports both Apple silicon and Intel-based Mac computers. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Macs with Apple silicon, the kernel is built for the ARM64e architecture, so you must similarly build your kernel extensions for that architecture. The ARM64e architecture enables pointer authentication, a security feature that prevents the unexpected modification of pointers at runtime. For more information about how to support pointer authentication, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1643339-anonymous/kiodirectionin": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1643339-anonymous/kiodirectionin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODirectionIn",
+      "type": "topic",
+      "url": "/documentation/kernel/1643339-anonymous/kiodirectionin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1643339-anonymous/kiodirectionout": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1643339-anonymous/kiodirectionout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIODirectionOut",
+      "type": "topic",
+      "url": "/documentation/kernel/1643339-anonymous/kiodirectionout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PCI",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device": {
+      "abstract": [
+        {
+          "text": "Create an IOKit driver to support Thunderbolt devices that implement features not supported in PCIDriverKit, such as wireless networking or audio. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing a PCIe Kext for a Thunderbolt Device",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686766": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686766",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686766"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686965": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686965",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686965"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686968": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686968",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686968"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686969": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686969",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3686969"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3690961": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3690961",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device#3690961"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioagpdevice": {
+      "abstract": [
+        {
+          "text": "An IOService class representing an AGP primary device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioagpdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAGPDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioagpdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561589-performaudioenginestop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAudioEngineStop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561589-performaudioenginestop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAudioEngineStop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561589-performaudioenginestop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561628-performaudioenginestart": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAudioEngineStart"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561628-performaudioenginestart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAudioEngineStart",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561628-performaudioenginestart"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODMACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547727-setmemorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/1547727-setmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/1547727-setmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions/kmapped": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodmacommand/mappingoptions/kmapped",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "kMapped",
+      "type": "topic",
+      "url": "/documentation/kernel/iodmacommand/mappingoptions/kmapped"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomapper": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMapper",
+      "type": "topic",
+      "url": "/documentation/kernel/iomapper"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPhysicalSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopcidevice": {
+      "abstract": [
+        {
+          "text": "An IOService class representing a PCI device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopcidevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPCIDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/iopcidevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1532606-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532606-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1532606-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/1532887-requiremaxbusstall": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requireMaxBusStall"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/1532887-requiremaxbusstall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requireMaxBusStall",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/1532887-requiremaxbusstall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180713-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180716-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180716-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180717-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180717-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices": {
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Custom PCIe Drivers for Thunderbolt Devices",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/creating-custom-pcie-drivers-for-thunderbolt-devices"
+    },
+    "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication": {
+      "identifier": "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to work with pointer authentication",
+      "type": "topic",
+      "url": "/documentation/security/preparing-your-app-to-work-with-pointer-authentication"
+    },
+    "link-3686770": {
+      "identifier": "link-3686770",
+      "kind": "article",
+      "role": "link",
+      "title": "Kernel Extension Programming Topics",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KEXTConcept/KEXTConceptIntro/introduction.html#//apple_ref/doc/uid/TP40001063"
+    },
+    "link-3686771": {
+      "identifier": "link-3686771",
+      "kind": "article",
+      "role": "link",
+      "title": "IOKit Fundamentals",
+      "type": "section",
+      "url": "https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/Introduction/Introduction.html#//apple_ref/doc/uid/TP0000011"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopcidevice",
+        "doc://com.apple.documentation/documentation/kernel/ioagpdevice"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

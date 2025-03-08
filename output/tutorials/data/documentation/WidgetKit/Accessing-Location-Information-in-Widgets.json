@@ -1,0 +1,906 @@
+{
+  "abstract": [
+    {
+      "text": "Incorporate location information into your widget presentation to make it",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "more relevant and contextual.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing location information in widgets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets can present relevant and useful information by taking a user’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location into account. Because your widget’s extension doesn’t run continually,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using Location Services in your widget requires you to take a few additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Location-Services-in-your-widget",
+          "level": 3,
+          "text": "Enable Location Services in your widget",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Location Services in your widget:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "key to your widget extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the relevant purpose strings to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the app that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "contains the widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Before your widget can receive location information, your app must",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "request authorization from the user. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreLocation/requesting-authorization-to-use-location-services",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As described in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whenever possible, request When In Use authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-location-information-from-your-widget",
+          "level": 3,
+          "text": "Access location information from your widget",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user adds a widget that uses location, the system asks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether they want to extend the app’s location authorization to the widget. Use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/isAuthorizedForWidgetUpdates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine whether the widget is eligible to receive location updates. Users can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change their approval choice at any time in Settings > Privacy > Location",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Services.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user approves the widget’s use of location information, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "considers it “in use” for a short period of time after the widget is visible.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the system refreshes the widget’s view during this in-use period, the widget",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has access to location information. For example, immediately after a user adds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a widget to their Home Screen and approves extending the app’s location",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "authorization, the user’s location is available to the widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the widget hasn’t been visible for a period of time, the system no longer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "considers it in use and stops delivering location updates. When WidgetKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reloads the widget’s view, if ",
+              "type": "text"
+            },
+            {
+              "code": "authorizedForWidgetUpdates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the widget doesn’t get location updates, it’s a good practice to indicate that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user’s location is not currently available. Note, this is different from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when ",
+              "type": "text"
+            },
+            {
+              "code": "authorizedForWidgetUpdates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which indicates that the user has",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "not approved the widget to receive location updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-widget-in-real-world-scenarios",
+          "level": 3,
+          "text": "Test your widget in real-world scenarios",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Due to the timeline-based updates of widgets, and the variability of a widget’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in-use status, it’s important to test widgets that use location in real-world",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenarios. For example, create test scenarios that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Extend the app’s location authorization when adding the widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t extend the app’s location authorization when adding the widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the app’s authorization in Settings > Privacy > Location Services",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "after the widget is added.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the widget’s approval of location authorization in Settings > Privacy >",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Location Services after the widget is added.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the widget to Home Screen pages that are both frequently and infrequently",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "viewed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because widgets receive a limited number of refreshes every day, test your widget over multiple days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Isolate-location-usage-with-multiple-widget-extensions",
+          "level": 3,
+          "text": "Isolate location usage with multiple widget extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app provides multiple widgets and only some of the widgets use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location, separate your widgets into multiple extensions. Add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NSWidgetWantsLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the extension that contains widgets that use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location. This allows the system to only prompt the user for the widgets that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use location information, and makes it more contextually relevant for users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the Declare Multiple Widgets in Your App Extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-a-widget-extension"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates a widget uses the user’s location information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWidgetWantsLocation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/choosing-the-location-services-authorization-to-request": {
+      "abstract": [
+        {
+          "text": "Determine the authorization your app needs to access location data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/choosing-the-location-services-authorization-to-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing the  Location Services Authorization to Request",
+      "type": "topic",
+      "url": "/documentation/BundleResources/choosing-the-location-services-authorization-to-request"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/isAuthorizedForWidgetUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a widget is eligible to receive location updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAuthorizedForWidgetUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/isAuthorizedForWidgetUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAuthorizedForWidgetUpdates",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/isAuthorizedForWidgetUpdates"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/requesting-authorization-to-use-location-services": {
+      "abstract": [
+        {
+          "text": "Obtain authorization to use location services and manage changes to your app’s authorization status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/requesting-authorization-to-use-location-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to use location services",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/requesting-authorization-to-use-location-services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1isAuthorizedForWidgetUpdates/title",
+          "value": "authorizedForWidgetUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1isAuthorizedForWidgetUpdates/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isAuthorizedForWidgetUpdates"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizedForWidgetUpdates"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/accessing-location-information-in-widgets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/accessing-location-information-in-widgets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

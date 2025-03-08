@@ -1,0 +1,2649 @@
+{
+  "abstract": [
+    {
+      "text": "Create relationships for static and dynamic data stored in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/Defining-data-relationships-with-enumerations-and-model-classes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Defining data relationships with enumerations and model classes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways to define data relationships in your app: using enumerations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro in a model class. Which one to use depends on the unique circumstances of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app. This article explains how to apply both approaches to the sample",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app that persist data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using SwiftData.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Relate-a-model-class-to-static-data",
+          "level": 3,
+          "text": "Relate a model class to static data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enumerations are a convenient way to form relationships between a model class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and static data — data that the app defines and doesn’t change. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define the static data, create an enumeration and ensure it conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. SwiftData",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requires this conformance to persist any data that is of the enumeration type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code, for example, declares a ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforming enumeration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that specify the animal type based on their diets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Animal {",
+            "    enum Diet: String, CaseIterable, Codable {",
+            "        case herbivorous = \"Herbivore\"",
+            "        case carnivorous = \"Carnivore\"",
+            "        case omnivorous = \"Omnivore\"",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model class declares the property ",
+              "type": "text"
+            },
+            {
+              "code": "diet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a type of ",
+              "type": "text"
+            },
+            {
+              "code": "Diet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this property is non-optional, its value must be set to one of the ",
+              "type": "text"
+            },
+            {
+              "code": "Diet",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cases: ",
+              "type": "text"
+            },
+            {
+              "code": "herbivore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "carnivore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "ominvore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Model",
+            "final class Animal {",
+            "    var name: String",
+            "    var diet: Diet",
+            "    var category: AnimalCategory?",
+            "    ",
+            "    init(name: String, diet: Diet) {",
+            "        self.name = name",
+            "        self.diet = diet",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person using the sample app can set the diet of an animal by choosing one of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the available ",
+              "type": "text"
+            },
+            {
+              "code": "Diet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " cases from a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Picker(\"Diet\", selection: $selectedDiet) {",
+            "    ForEach(Animal.Diet.allCases, id: \\.self) { diet in",
+            "        Text(diet.rawValue).tag(diet)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about how the sample app saves data changes, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Relate-a-model-class-to-dynamic-data",
+          "level": 3,
+          "text": "Relate a model class to dynamic data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the related data is dynamic and unknown to the app — data that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comes from an external source such as someone using the app or a remote server",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— then form a relationship between two model classes instead of a class and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration. For instance, the dynamic data in the sample app includes animals",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and animal categories. An animal can belong to no more than one animal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "category, and a category can contain zero, one, or more animals.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Defining-data-relationships-01",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "iOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Defining-data-relationships-02",
+                      "metadata": {
+                        "deviceFrame": "iPadPro12-9"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "iPadOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Defining-data-relationships-04",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "macOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Defining-data-relationships-03",
+                      "metadata": {
+                        "deviceFrame": "tv"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "tvOS"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To declare this relationship, the ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines the property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "animals",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which represents the animals contained in the category. The class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also applies the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro to the ",
+              "type": "text"
+            },
+            {
+              "code": "animals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. This macro defines the relationship between the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Model",
+            "final class AnimalCategory {",
+            "    @Attribute(.unique) var name: String",
+            "    // `.cascade` tells SwiftData to delete all animals contained in the ",
+            "    // category when deleting it.",
+            "    @Relationship(deleteRule: .cascade, inverse: \\Animal.category)",
+            "    var animals = [Animal]()",
+            "    ",
+            "    init(name: String) {",
+            "        self.name = name",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the parameter values of this macro to configure the relationship. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, the ",
+              "type": "text"
+            },
+            {
+              "code": "deleteRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter specifies how SwiftData handles related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data during delete operations. The ",
+              "type": "text"
+            },
+            {
+              "code": "inverse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is a key path to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "store property, ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", declared in the related model class, ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inverse parameter forms the relationship between the two classes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property declared in ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides a reference to an animal category.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-a-relationships-delete-rule",
+          "level": 3,
+          "text": "Set a relationship’s delete rule",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "deleteRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter specifies how SwiftData handles delete operations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with regards to the related data. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/cascade",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delete rule tells",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftData to delete all related data when deleting the primary object. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, deleting an ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the sample app causes SwiftData to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also delete all animals contained in that category.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Relationship(deleteRule: .cascade, inverse: \\Animal.category)",
+            "var animals = [Animal]()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t want to delete the animals within a category, you can use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/nullify",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delete rule. This rule",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tells SwiftData to set the animal’s ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animal contained in the animal category when deleting the category. Because the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default value for the ",
+              "type": "text"
+            },
+            {
+              "code": "deleteRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "nullify",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can create the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relationship without explicitly specifying the delete rule, like so:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Relationship(inverse: \\Animal.category)",
+            "var animals = [Animal]()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of delete rules, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-model-container",
+          "level": 3,
+          "text": "Create a model container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether your data model includes relationships, you must always create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model container for your app when using SwiftData. The sample app creates a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model container using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier, passing in the model type ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory.self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct SwiftDataAnimalsApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup() {",
+            "            ContentView()",
+            "        }",
+            "        .modelContainer(for: AnimalCategory.self)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData uses the model type to construct the schema that determines the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure of the persistent storage area. The schema also includes all related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types that form the object graph of the provided model type. For instance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a root model type of an object graph. ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains a relationship to the model type ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which means that the schema",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " along with ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " had a relationship",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to another model type, the schema would also include that type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app defines multiple root model types, use the",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-8oc48",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier, passing in an array that contains each root model type used in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Adding-and-editing-persistent-data-PageImage-card.png": {
+      "alt": "A black Swift logo above a background of brightly colored binary ones and zeros.",
+      "identifier": "Adding-and-editing-persistent-data-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55f9d5ea6318d04e82430d30e7408e20/Adding-and-editing-persistent-data-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2cc079c877d85ebed68522b2ec1bd0ff/Adding-and-editing-persistent-data-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Defining-data-relationships-01": {
+      "alt": "A screenshot of the sample app running in iOS, showing the list of animals that are in the mammal category.",
+      "identifier": "Defining-data-relationships-01",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00721de23536f75a264827367d964300/Defining-data-relationships-01@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7b49da748848ed4bd1a1292e9dbe1a9/Defining-data-relationships-01~dark@2x.png"
+        }
+      ]
+    },
+    "Defining-data-relationships-02": {
+      "alt": "A screenshot of the sample app running in iPadOS, showing a three-column user interface. The first column shows a list of categories with Mammal highlighted as the selected category. The second column shows the list of animals that are in the Mammal category. The third column shows an animal paw print icon. Under the icon is the text, Select an animal.",
+      "identifier": "Defining-data-relationships-02",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00ea836e9c12096a956d233e6e286955/Defining-data-relationships-02@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ba9e228b74f1619e83b1aaeedc140e8/Defining-data-relationships-02~dark@2x.png"
+        }
+      ]
+    },
+    "Defining-data-relationships-03": {
+      "alt": "A screenshot of the sample app running in tvOS, showing the list of animals that are in the Mammal category. The first animal, cat, is highlighted.",
+      "identifier": "Defining-data-relationships-03",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cde61e1833a6f4e3d189c2e597d8ddd1/Defining-data-relationships-03@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c17d39e71c8a61b529583402867bc65/Defining-data-relationships-03~dark@2x.png"
+        }
+      ]
+    },
+    "Defining-data-relationships-04": {
+      "alt": "A screenshot of the sample app running in macOS, showing a three-column user interface. The first column shows a list of categories with Mammal highlighted as the selected category. The second column shows the list of animals that are in the Mammal category. The third column shows an animal paw print icon. Under the icon is the text, Select an animal.",
+      "identifier": "Defining-data-relationships-04",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c30a1cc8c9622037d0630e2ca7cdbdd/Defining-data-relationships-04@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c51a9a65d0628b1c25fd2b9c9e51e77/Defining-data-relationships-04~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app": {
+      "abstract": [
+        {
+          "text": "Create a data entry form for collecting and changing data managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app",
+      "images": [
+        {
+          "identifier": "Adding-and-editing-persistent-data-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding and editing persistent data in your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/adding-and-editing-persistent-data-in-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the custom behavior that SwiftData applies to the annotated property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when managing the owning class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Attribute(_:originalName:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/attribute(_:originalname:hashmodifier:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-74ia2": {
+      "abstract": [
+        {
+          "text": "Specifies the key-paths that SwiftData uses to create one or more binary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indices for the associated model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-74ia2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Index(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/index(_:)-74ia2"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-7d4z0": {
+      "abstract": [
+        {
+          "text": "Specifies the key-paths that SwiftData uses to create one or more indicies for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the associated model, where each index is either binary or R-tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC5IndexC",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC5IndexC5TypesO",
+          "text": "Types"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-7d4z0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Index(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/index(_:)-7d4z0"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Model()": {
+      "abstract": [
+        {
+          "text": "Converts a Swift class into a stored model that’s managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Model()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/model()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the options that SwiftData needs to manage the annotated property as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a relationship between two models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Relationship"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC",
+          "text": "Relationship"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deleteRule"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC",
+          "text": "Relationship"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC10DeleteRuleO",
+          "text": "DeleteRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumModelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumModelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inverse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10AnyKeyPathC",
+          "text": "AnyKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/relationship(_:deleterule:minimummodelcount:maximummodelcount:originalname:inverse:hashmodifier:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum": {
+      "abstract": [
+        {
+          "text": "Describes the rule to apply when deleting a model containing references to other models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeleteRule"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeleteRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "Schema.Relationship.DeleteRule",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/relationship/deleterule-swift.enum"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/cascade": {
+      "abstract": [
+        {
+          "text": "A rule that deletes any related models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cascade"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/cascade",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Schema.Relationship.DeleteRule.cascade",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/relationship/deleterule-swift.enum/cascade"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/nullify": {
+      "abstract": [
+        {
+          "text": "A rule that nullifies the related model’s reference to the deleted model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nullify"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/nullify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Schema.Relationship.DeleteRule.nullify",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/relationship/deleterule-swift.enum/nullify"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Transient()": {
+      "abstract": [
+        {
+          "text": "Tells SwiftData not to persist the annotated property when managing the owning",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transient"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Transient()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transient()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/transient()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Unique(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the key-paths that SwiftData uses to enforce the uniqueness of model",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Unique"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Unique(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Unique(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/unique(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Picker"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy": {
+      "abstract": [
+        {
+          "text": "Sets the model container in this view for storing the provided model type, creating a new container if necessary, and also sets a model context for that container in this view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "modelType"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inMemory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAutosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isUndoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onSetup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-8oc48": {
+      "abstract": [
+        {
+          "text": "Sets the model container in this view for storing the provided model types, creating a new container if necessary, and also sets a model context for that container in this view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "modelTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ".Type], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inMemory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAutosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isUndoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onSetup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-8oc48",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-8oc48"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "f84bac78ac34/SwiftDataAnimals.zip": {
+      "checksum": "f84bac78ac34101864c1da49ccd531f9b0769fe6b9447e44392d450dd43367cdce7c614a177b34e183106bfd560a1d48cdd416f581a865c301dffe9c1fa789a9",
+      "identifier": "f84bac78ac34/SwiftDataAnimals.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f84bac78ac34/SwiftDataAnimals.zip"
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f84bac78ac34/SwiftDataAnimals.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-definition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Unique(_:)",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-74ia2",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-7d4z0",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Transient()"
+      ],
+      "title": "Model definition"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/defining-data-relationships-with-enumerations-and-model-classes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

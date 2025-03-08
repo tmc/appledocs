@@ -1,0 +1,1289 @@
+{
+  "abstract": [
+    {
+      "text": "Customize contextual menu items for your Safari app extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-contextual-menu-items"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adjusting settings for contextual menu items"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add items to the contextual menu that Safari shows when the user Control-clicks a webpage. These actions trigger the following sequence of events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari sends an event to the web document, informing it that a contextual menu is about to appear.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari displays the contextual menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user chooses one of the items associated with your app extension, Safari calls your app extension’s handler to perform the command.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn how to add a contextual menu item, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localize-the-contextual-menu-item",
+          "level": 3,
+          "text": "Localize the contextual menu item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To localize a contextual menu, provide an ",
+              "type": "text"
+            },
+            {
+              "code": "InfoPlist.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and include localized text for a custom key based on your command string. For example, to provide a Polish translation for a menu item with a command string of ",
+              "type": "text"
+            },
+            {
+              "code": "Add",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you add the following entry to your strings file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Context Menu Item Label for Command: Add\" = \"Dodaj\";",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list#Localize-the-Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Validate-and-change-text-in-a-contextual-menu-item",
+          "level": 3,
+          "text": "Validate and change text in a contextual menu item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/validateContextMenuItem(withCommand:in:userInfo:validationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to validate a contextual menu item. The command parameter is the ",
+              "type": "text"
+            },
+            {
+              "code": "Command",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string you provide in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry for the menu item. The ",
+              "type": "text"
+            },
+            {
+              "code": "validationHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is a code block where you specify whether to hide the menu item, and what text to use for it. Using this option, you can dynamically change the text of a context menu item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the menu text, use the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "validationHandler(false, \"Updated text\")"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "validationHandler(NO, @\"Updated text\");"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the default text, use the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "validationHandler(false, nil)",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "validationHandler(NO, nil)"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hide the menu item, use the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "validationHandler(true, nil)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "validationHandler(YES, nil);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Send-custom-information-to-your-app-extension",
+          "level": 3,
+          "text": "Send custom information to your app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To pass information from the current webpage to your app extension when the user chooses your menu item, you need to inject a JavaScript file; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the user Control-clicks a webpage, Safari sends out a ",
+              "type": "text"
+            },
+            {
+              "code": "contextmenu",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event. Your script can add a listener for this event, and react to it by inserting information into the user info dictionary. If the user later selects one of your contextual menu items, Safari sends this dictionary when it calls your app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to capture the currently selected text in a webpage, use the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "document.addEventListener(\"contextmenu\", handleContextMenu, false);",
+            "function handleContextMenu(event) {",
+            "    var selectedText =  window.getSelection().toString();",
+            "    safari.extension.setContextMenuEventUserInfo(event,",
+            "        { \"selectedText\": selectedText });",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-contextual-menu-item-commands-in-your-app-extension",
+          "level": 3,
+          "text": "Handle contextual menu item commands in your app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user selects one of your contextual menu items, Safari sends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/contextMenuItemSelected(withCommand:in:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass. The ",
+              "type": "text"
+            },
+            {
+              "code": "c",
+              "type": "codeVoice"
+            },
+            {
+              "text": "ommand parameter is the ",
+              "type": "text"
+            },
+            {
+              "code": "Command",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string you provide in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry for the menu item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you add the ",
+              "type": "text"
+            },
+            {
+              "code": "Command",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entries for a contextual menu item, you might implement your context menu method to perform different actions for different commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "class MySafariExtensionHandler: SFSafariExtensionHandler {",
+                    "    override func contextMenuItemSelected(withCommand command: String,",
+                    "                                          in page: SFSafariPage, userInfo: [String : AnyObject]? = [:]) {",
+                    "        switch command {",
+                    "        case \"Search\":",
+                    "            print(\"The user asked to search for selected text.\")",
+                    "            ",
+                    "        case \"AddEntry\":",
+                    "            print(\"The user asked to add new entry for selected text.\")",
+                    "        }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@implementation MySafariExtensionHandler",
+                    "",
+                    "- (void)contextMenuItemSelectedWithCommand:(NSString *)command",
+                    "                                    inPage:(SFSafariPage *)page userInfo:(NSDictionary<NSString *, id> *)userInfo {",
+                    "    if ([command isEqualToString:@\"Search\"]) {",
+                    "        NSLog(@\"The user asked to search for selected text.\");",
+                    "    } else if ([command isEqualToString:@\"AddEntry\"]) {",
+                    "        NSLog(@\"The user asked to add new entry for selected text.\");",
+                    "    }",
+                    "}",
+                    "",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "page",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to access information about the current webpage, including the URL and page title, and to send messages back to your injected JavaScript file using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list#Localize-the-Information-Property-List": {
+      "abstract": [
+        {
+          "text": "Create and customize an information property list file for your app using Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list#Localize-the-Information-Property-List",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Your App’s Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/managing-your-app-s-information-property-list"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler": {
+      "abstract": [
+        {
+          "text": "A base class that you subclass to handle events in your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionHandler",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandler"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/contextMenuItemSelected(withCommand:in:userInfo:)": {
+      "abstract": [
+        {
+          "text": "A method the system calls when a user selects one of the app extension’s context menu items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenuItemSelected"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCommand"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariPage",
+          "text": "SFSafariPage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/contextMenuItemSelected(withCommand:in:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contextMenuItemSelectedWithCommand:inPage:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "contextMenuItemSelected(withCommand:in:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/contextmenuitemselected(withcommand:in:userinfo:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/validateContextMenuItem(withCommand:in:userInfo:validationHandler:)": {
+      "abstract": [
+        {
+          "text": "Validates whether a particular contextual menu item should be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateContextMenuItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCommand"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariPage",
+          "text": "SFSafariPage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/validateContextMenuItem(withCommand:in:userInfo:validationHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateContextMenuItemWithCommand:inPage:userInfo:validationHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateContextMenuItem(withCommand:in:userInfo:validationHandler:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/validatecontextmenuitem(withcommand:in:userinfo:validationhandler:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController": {
+      "abstract": [
+        {
+          "text": "The view controller for a popover associated with your app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionViewController",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionviewcontroller"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Dispatches a message from the app extension to the content script injected in this page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchMessageToScript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchMessageToScriptWithName:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatchMessageToScript(withName:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaripage/dispatchmessagetoscript(withname:userinfo:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem": {
+      "abstract": [
+        {
+          "text": "A proxy for a Safari app extension toolbar item in a Safari window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariToolbarItem",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaritoolbaritem"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item": {
+      "abstract": [
+        {
+          "text": "Customize a toolbar item for your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting settings for a toolbar item",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-settings-for-a-toolbar-item"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage": {
+      "abstract": [
+        {
+          "text": "Inject a script that you write for a Safari app extension into a webpage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+      "kind": "article",
+      "role": "article",
+      "title": "Injecting a script into a webpage",
+      "type": "topic",
+      "url": "/documentation/safariservices/injecting-a-script-into-a-webpage"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys": {
+      "abstract": [
+        {
+          "text": "Learn about adding contextual menu items and toolbar items to a Safari app extension with information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Using contextual menu and toolbar item keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-contextual-menu-and-toolbar-item-keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Contextual-menu-and-toolbar-items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+        "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController"
+      ],
+      "title": "Contextual menu and toolbar items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Contextual-menu-and-toolbar-items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/using-contextual-menu-and-toolbar-item-keys",
+                "doc://com.apple.safariservices/documentation/SafariServices/adjusting-settings-for-a-toolbar-item",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariToolbarItem",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionViewController"
+              ],
+              "title": "Contextual menu and toolbar items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/title",
+          "value": "SFSafariToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/title",
+          "value": "SFSafariExtensionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/title",
+          "value": "SFSafariExtensionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPage~1dispatchMessageToScript(withName:userInfo:)/title",
+          "value": "dispatchMessageToScriptWithName:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPage~1dispatchMessageToScript(withName:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchMessageToScriptWithName:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1validateContextMenuItem(withCommand:in:userInfo:validationHandler:)/title",
+          "value": "validateContextMenuItemWithCommand:inPage:userInfo:validationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1validateContextMenuItem(withCommand:in:userInfo:validationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateContextMenuItemWithCommand:inPage:userInfo:validationHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1contextMenuItemSelected(withCommand:in:userInfo:)/title",
+          "value": "contextMenuItemSelectedWithCommand:inPage:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1contextMenuItemSelected(withCommand:in:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contextMenuItemSelectedWithCommand:inPage:userInfo:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/adjusting-settings-for-contextual-menu-items"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/adjusting-settings-for-contextual-menu-items"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

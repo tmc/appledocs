@@ -1,0 +1,3000 @@
+{
+  "abstract": [
+    {
+      "text": "Give people the option to customize their widgets by adding a custom app intent",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "to your project.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making a configurable widget"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the most relevant information easily accessible to people, widgets can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide customizable properties. For example, a person can select a specific stock",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a stock quote widget, or enter a tracking number for a package delivery",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget. Widgets define customizable properties by using app intents, the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mechanism that Siri Suggestions and Siri Shortcuts use for customizing those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add configurable properties to your widget:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add custom app intent types that conform to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to define the configurable properties to your Xcode project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as your widget’s timeline provider",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to incorporate the person’s choices into your timeline entries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add code to your custom app intent types to provide the data if their properties rely on dynamic data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app already supports Siri Suggestions or Siri Shortcuts and you have a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom app intent, you’ve probably done most of the work already. Otherwise,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consider leveraging the work you do for your widget to add support for Siri",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Suggestions or Siri Shortcuts. For more information on how to get the most from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app intents, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Prior to iOS 17, iPadOS 17, and macOS 14, configurable widgets used SiriKit Intents. For information on migrating your configurable widgets from the SiriKit Intents to the App Intents framework, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-custom-app-intent-to-your-project",
+          "level": 3,
+          "text": "Add a custom app intent to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show the character’s information, the person needs a way to select the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "character. The following code shows how to define a custom app intent to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent the choice the person makes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SelectCharacterIntent: WidgetConfigurationIntent {",
+            "    static var title: LocalizedStringResource = \"Select Character\"",
+            "    static var description = IntentDescription(\"Selects the character to display information for.\")",
+            "",
+            "    @Parameter(title: \"Character\")",
+            "    var character: CharacterDetail",
+            "",
+            "    init(character: CharacterDetail) {",
+            "        self.character = character",
+            "    }",
+            "",
+            "    init() {",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The static ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property describes the action the intent enables the person",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to take. Use a title case string that combines a verb with a noun. Set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "static ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a human-readable string that describes the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add parameters to the intent, add one or more ",
+              "type": "text"
+            },
+            {
+              "code": "@Parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property wrappers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "WidgetKit uses the parameter type information to automatically create the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface for editing the widget. For example, if the type is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "person enters a string value. If the type is an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", they use a number pad.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a parameter that is a predefined, static, list of values, define a custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type that conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The order of the parameters in the intent determines the order in which",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "they appear when a person edits your widget.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example above, the parameter uses a custom ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines to represent a character in the game. To use a custom type as an app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intent parameter, it must conform to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter type, the game-status widget uses a structure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that exists in the game’s project. This structure defines a list of available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "characters and their details, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetail: AppEntity {",
+            "    let id: String",
+            "    let avatar: String",
+            "    let healthLevel: Double",
+            "    let heroType: String",
+            "    let isAvailable = true",
+            "    ",
+            "    static var typeDisplayRepresentation: TypeDisplayRepresentation = \"Character\"",
+            "    static var defaultQuery = CharacterQuery()",
+            "            ",
+            "    var displayRepresentation: DisplayRepresentation {",
+            "        DisplayRepresentation(title: \"\\(avatar) \\(id)\")",
+            "    }",
+            "",
+            "    static let allCharacters: [CharacterDetail] = [",
+            "        CharacterDetail(id: \"Power Panda\", avatar: \"🐼\", healthLevel: 0.14, heroType: \"Forest Dweller\"),",
+            "        CharacterDetail(id: \"Unipony\", avatar: \"🦄\", healthLevel: 0.67, heroType: \"Free Rangers\"),",
+            "        CharacterDetail(id: \"Spouty\", avatar: \"🐳\", healthLevel: 0.83, heroType: \"Deep Sea Goer\")",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because characters might vary from game to game, the intent generates the list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dynamically at runtime. WidgetKit uses the app entity’s ",
+              "type": "text"
+            },
+            {
+              "code": "defaultQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to access the dynamic values, as described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your widget includes nonoptional parameters, you must supply a default",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value. For types such as ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or enumerations that use ",
+              "type": "text"
+            },
+            {
+              "code": "AppEnum",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option is to supply a default value as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Parameter(title: \"Title\", default: \"A Default Title\")",
+            "var title: String"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A second option is to use a query type that implements ",
+              "type": "text"
+            },
+            {
+              "code": "defaultResult()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shown in the next section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For custom intents with parameters that conform to ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer methods to provide default values for the nonoptional parameters,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as the ",
+              "type": "text"
+            },
+            {
+              "code": "init(character:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in the code for ",
+              "type": "text"
+            },
+            {
+              "code": "SelectCharacterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shown above. In your timeline provider’s ",
+              "type": "text"
+            },
+            {
+              "code": "placeholder(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, use one of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these initializer methods to initialize the app intent that you pass to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timeline entry. These methods enable you to customize the placeholder with values that might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be different from the default, if needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-a-query-to-provide-dynamic-values",
+          "level": 3,
+          "text": "Implement a query to provide dynamic values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some of the tasks that an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " performs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mapping ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppEntity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " identifiers to the corresponding entity instances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Providing a list of suggested values when a person edits a widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifying a default value for a parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person edits a widget with a custom intent that provides dynamic values,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system invokes the query object’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityQuery/suggestedEntities()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to get the list of possible choices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the entity query, the result is an array of all the ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterQuery: EntityQuery {",
+            "    func entities(for identifiers: [CharacterDetail.ID]) async throws -> [CharacterDetail] {",
+            "        CharacterDetail.allCharacters.filter { identifiers.contains($0.id) }",
+            "    }",
+            "    ",
+            "    func suggestedEntities() async throws -> [CharacterDetail] {",
+            "        CharacterDetail.allCharacters.filter { $0.isAvailable }",
+            "    }",
+            "    ",
+            "    func defaultResult() async -> CharacterDetail? {",
+            "        try? await suggestedEntities().first",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the configuration of the custom app intent done, a person can edit the widget",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to select a specific character to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the person edits the widget and selects a character, the next step is to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incorporate that choice into the widget’s display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-customized-values-in-your-widget",
+          "level": 3,
+          "text": "Handle customized values in your widget",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support configurable properties, a widget uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " configuration. For example, the character-details",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget defines its configuration as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetailWidget: Widget {",
+            "    var body: some WidgetConfiguration {",
+            "        AppIntentConfiguration(",
+            "            kind: kind,",
+            "            intent: SelectCharacterIntent.self,",
+            "            provider: CharacterDetailProvider()) { entry in",
+            "            CharacterDetailView(entry: entry)",
+            "        }",
+            "        .configurationDisplayName(\"Character Details\")",
+            "        .description(\"Displays a character's health and other details\")",
+            "        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SelectCharacterIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter determines the customizable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties for the widget. The configuration uses ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterDetailProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manage the timeline events for the widget. For more information about timeline",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "providers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a person edits the widget, WidgetKit passes the customized values to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the provider when requesting timeline entries. You typically include relevant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "details from the intent in the timeline entries the provider",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generates. In the following example, the provider uses the ",
+              "type": "text"
+            },
+            {
+              "code": "defaultQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "look up the ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterDetail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the character’s ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the intent, and then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates a timeline with an entry containing the character’s detail:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetailProvider: AppIntentTimelineProvider {",
+            "    func timeline(for configuration: SelectCharacterIntent, in context: Context) async -> Timeline<CharacterDetailEntry> {",
+            "        // Create the timeline and return it. The .never reload policy indicates",
+            "        // that the containing app will use WidgetCenter methods to reload the",
+            "        // widget's timeline when the details change.",
+            "        let entry = CharacterDetailEntry(date: Date(), detail: configuration.character)",
+            "        let timeline = Timeline(entries: [entry], policy: .never)",
+            "        return timeline",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you include the customized values in the timeline entry, your widget’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view can display the appropriate content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-customized-values-in-your-app",
+          "level": 3,
+          "text": "Access customized values in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person taps on a widget to open your app, WidgetKit passes the customized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intent to your app in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s code that handles the user activity, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a SwiftUI app or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a UIKit app, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to access the widget’s intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the intent of any widget that the user has installed, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/getCurrentConfigurations(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to fetch the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects. Iterate over the ",
+              "type": "text"
+            },
+            {
+              "code": "WidgetInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects and call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo/widgetConfigurationIntent(of:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Offer-preconfigured-complications-on-Apple-Watch",
+          "level": 3,
+          "text": "Offer preconfigured complications on Apple Watch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in watchOS 9, iOS 16, and iPadOS 17, you can use WidgetKit to implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessory-family widgets that appear as complications on Apple Watch. Like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widgets in iOS and macOS, watch complications use custom intents to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user-configurable data, and implementing configurable widgets in watchOS works",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same as in iOS or macOS. However, watchOS doesn’t offer a dedicated user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface for configuring complications. To display data that’s most relevant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the user in your watch complication, you can create preconfigured",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complications and recommend them to your users in the list of available complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider/recommendations()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects you create using your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app receives new data that’s relevant to your recommended widget",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configurations, invalidate the now outdated recommendations by calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/invalidateConfigurationRecommendations()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tells WidgetKit to get new recommendations for your preconfigured complications. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you invalidate the recommendations for preconfigured complications, make sure you return updated ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentRecommendation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in the ",
+              "type": "text"
+            },
+            {
+              "code": "recommendations()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider/recommendations()": {
+      "abstract": [
+        {
+          "text": "Returns a set of intent recommendations you use to offer pre-configured",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widgets on platforms that don’t offer a dedicated user interface for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "customizing widget intents.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recommendations"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit23AppIntentRecommendationV",
+          "text": "AppIntentRecommendation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit25AppIntentTimelineProviderP0D0Qa",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider/recommendations()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "recommendations()",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider/recommendations()"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "definition to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/keeping-a-widget-up-to-date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents": {
+      "abstract": [
+        {
+          "text": "Configure your widgets for backward compatibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating widgets from SiriKit Intents to App Intents",
+      "type": "topic",
+      "url": "/documentation/widgetkit/migrating-from-sirikit-intents-to-app-intents"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/getCurrentConfigurations(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves information about user-configured widgets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentConfigurations"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A4InfoV",
+          "text": "WidgetInfo"
+        },
+        {
+          "kind": "text",
+          "text": "], any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/getCurrentConfigurations(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCurrentConfigurations(_:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter/getcurrentconfigurations(_:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/invalidateConfigurationRecommendations()": {
+      "abstract": [
+        {
+          "text": "Invalidates and refreshes the preconfigured intent configurations for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widgets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateConfigurationRecommendations"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/invalidateConfigurationRecommendations()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidateConfigurationRecommendations()",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter/invalidateconfigurationrecommendations()"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about user-configured widgets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetInfo",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetinfo"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo/widgetConfigurationIntent(of:)": {
+      "abstract": [
+        {
+          "text": "Gets the associated App Intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo/widgetConfigurationIntent(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetConfigurationIntent(of:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetinfo/widgetconfigurationintent(of:)"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A5ValueP",
+          "text": "AppValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents20DisplayRepresentableP",
+          "text": "DisplayRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12_IntentValueP0D4TypeQa",
+          "text": "ValueType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents27EntityIdentifierConvertibleP",
+          "text": "EntityIdentifierConvertible"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppEntity"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A5ValueP",
+          "text": "AppValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents26StaticDisplayRepresentableP",
+          "text": "StaticDisplayRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25LosslessStringConvertibleP",
+          "text": "LosslessStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppEnum"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP",
+          "text": "DynamicOptionsProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+          "text": "PersistentlyIdentifiable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityQuery"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityQuery/suggestedEntities()": {
+      "abstract": [
+        {
+          "text": "Returns the initial results shown when a list of options backed by this query is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedEntities"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityQuery/suggestedEntities()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suggestedEntities()",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityQuery/suggestedEntities()"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a WidgetKit widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/WidgetConfigurationIntent"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)": {
+      "abstract": [
+        {
+          "text": "Registers a handler to invoke in response to a user activity that your app receives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onContinueUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onContinueUserActivity(_:perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to handle the specified Handoff-related activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:continue:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:continue:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<Intent>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Intent.Type) -> Intent?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetConfigurationIntent(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configurable-widgets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation"
+      ],
+      "title": "Configurable widgets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configurable-widgets",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents"
+              ],
+              "title": "Configurable widgets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/title",
+          "value": "scene:continueUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/making-a-configurable-widget"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/making-a-configurable-widget"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

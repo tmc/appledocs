@@ -1,0 +1,1672 @@
+{
+  "abstract": [
+    {
+      "text": "Global accessibility functions for custom views and controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/accessibility-functions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Accessibility Functions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions to enhance the accessibility experience of your custom view or control. Standard AppKit elements handle this behavior for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Notifications",
+          "level": 3,
+          "text": "Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your custom view or control may need to let the assistive app know when changes occur. For example, if your control’s value changes, you need to send a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification/valueChanged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines a number of notifications that you can send using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You typically need to send your own notifications only when you’re creating a custom control or when you’re using a standard control in a nonstandard way. Make sure you’re posting any relevant notifications as your control’s state changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct": {
+      "abstract": [
+        {
+          "text": "A namespace for accessibility symbols for AppKit apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibility"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action/description": {
+      "abstract": [
+        {
+          "text": "Returns a standard description for an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action/description",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityActionDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/action/description"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification": {
+      "abstract": [
+        {
+          "text": "The name of the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Notification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.Notification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/notification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification/valueChanged": {
+      "abstract": [
+        {
+          "text": "This notification is posted after an accessibility element’s value changes. Post this notification using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function instead of an ",
+          "type": "text"
+        },
+        {
+          "code": "NSNotificationCenter",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilityNotificationName",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification/valueChanged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityValueChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "valueChanged",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/notification/valuechanged"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/NotificationUserInfoKey": {
+      "abstract": [
+        {
+          "text": "The key in the user info dictionary for a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationUserInfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/NotificationUserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NotificationUserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.NotificationUserInfoKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(for:)": {
+      "abstract": [
+        {
+          "text": "Returns a standard role description for a user interface element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRoleDescriptionForUIElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "description(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/role/description(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(with:)": {
+      "abstract": [
+        {
+          "text": "Returns a standard description for a role and subrole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilitySubrole",
+          "text": "Subrole"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRoleDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "description(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/role/description(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)": {
+      "abstract": [
+        {
+          "text": "Sends a notification to any observing assistive apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "post"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilityNotificationName",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityPostNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "post(element:notification:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Sends a notification and an optional user info dictionary to any observing assistive apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "post"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilityNotificationName",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSAccessibility",
+          "text": "NSAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSAccessibilityNotificationUserInfoKey",
+          "text": "NotificationUserInfoKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityPostNotificationWithUserInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "post(element:notification:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:userinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)": {
+      "abstract": [
+        {
+          "text": "Returns the point in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screenPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityPointInView"
+        }
+      ],
+      "role": "symbol",
+      "title": "screenPoint(fromView:point:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/screenpoint(fromview:point:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)": {
+      "abstract": [
+        {
+          "text": "Returns the frame in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screenRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityFrameInView"
+        }
+      ],
+      "role": "symbol",
+      "title": "screenRect(fromView:rect:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/screenrect(fromview:rect:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/setMayContainProtectedContent(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether the app may have protected content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMayContainProtectedContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/setMayContainProtectedContent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySetMayContainProtectedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "setMayContainProtectedContent(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/setmaycontainprotectedcontent(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredAncestor(of:)": {
+      "abstract": [
+        {
+          "text": "Returns an unignored accessibility object, ascending the hierarchy, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unignoredAncestor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredAncestor(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityUnignoredAncestor"
+        }
+      ],
+      "role": "symbol",
+      "title": "unignoredAncestor(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/unignoredancestor(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildren(from:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unignoredChildren"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildren(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityUnignoredChildren"
+        }
+      ],
+      "role": "symbol",
+      "title": "unignoredChildren(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/unignoredchildren(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildrenForOnlyChild(from:)": {
+      "abstract": [
+        {
+          "text": "Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unignoredChildrenForOnlyChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildrenForOnlyChild(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityUnignoredChildrenForOnlyChild"
+        }
+      ],
+      "role": "symbol",
+      "title": "unignoredChildrenForOnlyChild(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/unignoredchildrenforonlychild(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredDescendant(of:)": {
+      "abstract": [
+        {
+          "text": "Returns an unignored accessibility object, descending the hierarchy, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unignoredDescendant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredDescendant(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityUnignoredDescendant"
+        }
+      ],
+      "role": "symbol",
+      "title": "unignoredDescendant(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/unignoreddescendant(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit": {
+      "abstract": [
+        {
+          "text": "Make your AppKit apps accessible to everyone who uses macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit/accessibility-for-appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/custom-controls": {
+      "abstract": [
+        {
+          "text": "Support accessibility for custom user interface elements by adopting a role-specific protocol and implementing its methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/custom-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/custom-controls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-View-Subclasses",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/custom-controls"
+      ],
+      "title": "Custom View Subclasses"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:userInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/NotificationUserInfoKey"
+      ],
+      "title": "Notifications"
+    },
+    {
+      "anchor": "Screen-Coordinates",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)"
+      ],
+      "title": "Screen Coordinates"
+    },
+    {
+      "anchor": "Accessibility-Objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildren(from:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildrenForOnlyChild(from:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredDescendant(of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredAncestor(of:)"
+      ],
+      "title": "Accessibility Objects"
+    },
+    {
+      "anchor": "Protected-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/setMayContainProtectedContent(_:)"
+      ],
+      "title": "Protected Content"
+    },
+    {
+      "anchor": "Descriptions",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action/description",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(for:)"
+      ],
+      "title": "Descriptions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:userInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Notification",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/NotificationUserInfoKey"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Screen-Coordinates",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)"
+              ],
+              "title": "Screen Coordinates"
+            },
+            {
+              "anchor": "Accessibility-Objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildren(from:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildrenForOnlyChild(from:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredDescendant(of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/unignoredAncestor(of:)"
+              ],
+              "title": "Accessibility Objects"
+            },
+            {
+              "anchor": "Protected-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/setMayContainProtectedContent(_:)"
+              ],
+              "title": "Protected Content"
+            },
+            {
+              "anchor": "Descriptions",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action/description",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role/description(for:)"
+              ],
+              "title": "Descriptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-View-Subclasses",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/custom-controls"
+              ],
+              "title": "Custom View Subclasses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role~1description(for:)/title",
+          "value": "NSAccessibilityRoleDescriptionForUIElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role~1description(for:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRoleDescriptionForUIElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role~1description(with:)/title",
+          "value": "NSAccessibilityRoleDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role~1description(with:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRoleDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1post(element:notification:)/title",
+          "value": "NSAccessibilityPostNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1post(element:notification:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityPostNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Notification~1valueChanged/title",
+          "value": "NSAccessibilityValueChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Notification~1valueChanged/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityValueChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredAncestor(of:)/title",
+          "value": "NSAccessibilityUnignoredAncestor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredAncestor(of:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityUnignoredAncestor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1post(element:notification:userInfo:)/title",
+          "value": "NSAccessibilityPostNotificationWithUserInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1post(element:notification:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityPostNotificationWithUserInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1setMayContainProtectedContent(_:)/title",
+          "value": "NSAccessibilitySetMayContainProtectedContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1setMayContainProtectedContent(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySetMayContainProtectedContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredChildrenForOnlyChild(from:)/title",
+          "value": "NSAccessibilityUnignoredChildrenForOnlyChild"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredChildrenForOnlyChild(from:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityUnignoredChildrenForOnlyChild"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredDescendant(of:)/title",
+          "value": "NSAccessibilityUnignoredDescendant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredDescendant(of:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityUnignoredDescendant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenRect(fromView:rect:)/title",
+          "value": "NSAccessibilityFrameInView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenRect(fromView:rect:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityFrameInView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredChildren(from:)/title",
+          "value": "NSAccessibilityUnignoredChildren"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1unignoredChildren(from:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityUnignoredChildren"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Notification/title",
+          "value": "NSAccessibilityNotificationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Notification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNotificationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Notification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNotificationName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1NotificationUserInfoKey/title",
+          "value": "NSAccessibilityNotificationUserInfoKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1NotificationUserInfoKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNotificationUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1NotificationUserInfoKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityNotificationUserInfoKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Action~1description/title",
+          "value": "NSAccessibilityActionDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Action~1description/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityActionDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenPoint(fromView:point:)/title",
+          "value": "NSAccessibilityPointInView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenPoint(fromView:point:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityPointInView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/accessibility-functions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/accessibility-functions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

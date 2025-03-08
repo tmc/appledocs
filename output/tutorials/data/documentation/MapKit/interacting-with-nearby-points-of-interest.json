@@ -1,0 +1,2343 @@
+{
+  "abstract": [
+    {
+      "text": "Provide automatic search completions for a partial search query, search the map for relevant locations nearby, and retrieve details for selected points of interest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/interacting-with-nearby-points-of-interest"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.2",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Interacting with nearby points of interest"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to programmatically search for map-based addresses and points of interest using a natural language string, and how to get more information about points of interest that a person selects on the map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The search results center around the locations visible in the map view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-search-completions",
+          "level": 3,
+          "text": "Request search completions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " retrieves autocomplete suggestions for a partial search query within a map region. A person can type “cof”, and a search completion suggests “coffee” as the query string. As the person types a query into a search bar, the sample app updates the query. In SwiftUI, the sample creates the search field using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .always), prompt: searchPrompt)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As someone types a query into a search bar, the sample app updates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/queryFragment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the search completion through the ",
+              "type": "text"
+            },
+            {
+              "code": "searchQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Ask for completion suggestions based on the query text.",
+            "func provideCompletionSuggestions(for query: String) {",
+            "    /**",
+            "     Configure the search to return completion results based only on the options in the app. For example,",
+            "     someone can configure the app to exclude specific point-of-interest categories, or to only return results for addresses.",
+            "     */",
+            "    searchCompleter?.resultTypes = mapConfiguration.resultType.completionResultType",
+            "    searchCompleter?.regionPriority = mapConfiguration.regionPriority.localSearchRegionPriority",
+            "    if mapConfiguration.resultType == .pointsOfInterest {",
+            "        searchCompleter?.pointOfInterestFilter = mapConfiguration.pointOfInterestOptions.filter",
+            "    } else if mapConfiguration.resultType == .addresses {",
+            "        searchCompleter?.addressFilter = mapConfiguration.addressOptions.filter",
+            "    }",
+            "    ",
+            "    searchCompleter?.region = mapConfiguration.region",
+            "    searchCompleter?.queryFragment = query",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-completion-results",
+          "level": 3,
+          "text": "Receive completion results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Completion results represent fully formed query strings based on the query fragment someone types.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app uses completion results to populate UI elements to quickly fill in a search query.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app receives the latest completion results as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleterDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nonisolated func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {",
+            "    Task { @MainActor in",
+            "        /**",
+            "         As a person types, new completion suggestions continuously return to this method. Update the property storing the current",
+            "         results, so that the app UI can observe the change and display the updated suggestions.",
+            "         */",
+            "        let suggestedCompletions = completer.results",
+            "        resultStreamContinuation?.yield(suggestedCompletions)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncStream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to deliver the completion results to the UI, which the ",
+              "type": "text"
+            },
+            {
+              "code": "SidebarView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  stores in its ",
+              "type": "text"
+            },
+            {
+              "code": "searchCompletions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app displays the search suggestions with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/searchSuggestions(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier, which takes a binding to the ",
+              "type": "text"
+            },
+            {
+              "code": "searchCompletions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".searchSuggestions {",
+            "    // Treat each `MKMapItem` object as unique, using `\\.self` for the identity. The `identifier` property of `MKMapItem`",
+            "    // is an optional value, and the meaning of the identifier for `MKMapItem` doesn't have the same semantics as",
+            "    // the `Identifable` protocol that `ForEach` requires.",
+            "    ForEach($searchCompletions, id: \\.self) { completion in",
+            "        SearchCompletionItemView(completion: completion.wrappedValue)",
+            "        .onTapGesture {",
+            "            convertSearchCompletionToSearchResults(completion.wrappedValue)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Highlight-the-relationship-of-a-query-fragment-to-the-suggestion",
+          "level": 3,
+          "text": "Highlight the relationship of a query fragment to the suggestion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within the UI elements that represent each query result, the sample code uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion/titleHighlightRanges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on an ",
+              "type": "text"
+            },
+            {
+              "code": "MKLocalSearchCompletion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to show how the query someone enters relates to the suggested result.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following code applies a highlight with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func createHighlightedString(text: String, rangeValues: [NSValue]) -> NSAttributedString {",
+            "    let attributes = [NSAttributedString.Key.backgroundColor: UIColor(named: \"suggestionHighlight\")!]",
+            "    let highlightedString = NSMutableAttributedString(string: text)",
+            "",
+            "    // Each `NSValue` wraps an `NSRange` that functions as a style attribute's range with `NSAttributedString`.",
+            "    let ranges = rangeValues.map { $0.rangeValue }",
+            "    for range in ranges {",
+            "        highlightedString.addAttributes(attributes, range: range)",
+            "    }",
+            "",
+            "    return highlightedString",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Search-for-map-items",
+          "level": 3,
+          "text": "Search for map items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "MKLocalSearch.Request",
+              "type": "codeVoice"
+            },
+            {
+              "text": " takes either an ",
+              "type": "text"
+            },
+            {
+              "code": "MKLocalSearchCompletion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a natural language query string, and returns an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents a geographic location, like a specific address, that matches the search query.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample code asynchronously retrieves the array of ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let search = MKLocalSearch(request: request)",
+            "currentSearch = search",
+            "defer {",
+            "    // After the search completes, the reference is no longer needed.",
+            "    currentSearch = nil",
+            "}",
+            "",
+            "var results: [MKMapItem]",
+            "",
+            "do {",
+            "    let response = try await search.start()",
+            "    results = response.mapItems",
+            "} catch let error {",
+            "    searchLogging.error(\"Search error: \\(error.localizedDescription)\")",
+            "    results = []",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Allow-someone-to-select-points-of-interest-on-the-map",
+          "level": 3,
+          "text": "Allow someone to select points of interest on the map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person is exploring the map, they can get information for a point of interest by tapping it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To provide these interactions, the sample code enables selectable map features as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use the standard map style, with an option to display specific point-of-interest categories.",
+            ".mapStyle(.standard(pointsOfInterest: mapModel.searchConfiguration.pointOfInterestOptions.categories))",
+            "",
+            "// Only allow selection for points of interest, and disable selection of other labels, like city names.",
+            ".mapFeatureSelectionDisabled { feature in",
+            "    feature.kind != MapFeature.FeatureKind.pointOfInterest",
+            "}",
+            "",
+            "/*",
+            " The selection accessory allows people to tap on map features and get more detailed information, which displays",
+            " as either a sheet or a callout according to the `style` parameter. Along with the `selection` binding, this determines",
+            " which feature to display additional information for.",
+            " ",
+            " This modifier differs from the `mapItemDetailSelectionAccessory(:_) modifier, which enables the same selection",
+            " behaviors on annotations that the app adds to `Map` for search results.",
+            " */",
+            ".mapFeatureSelectionAccessory(.automatic)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone taps a point of interest, the system presents the map item’s details,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including information like a phone number, business hours, and buttons to start navigation to the location using Apple Maps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system presents the information using the style that the ",
+              "type": "text"
+            },
+            {
+              "code": "mapFeatureSelectionAccessory(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier configures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MapItemDetailSelectionAccessoryStyle/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style, but the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MapItemDetailSelectionAccessoryStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure offers several other options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Persist-and-retrieve-map-items",
+          "level": 3,
+          "text": "Persist and retrieve map items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If someone is exploring the map, they may want the app to store places they looked at so that they can come back to them later, including across app launches.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/identifier-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, which the app stores in its ",
+              "type": "text"
+            },
+            {
+              "code": "VisitedPlace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model using ",
+              "type": "text"
+            },
+            {
+              "code": "SwiftData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let identifier = mapItem.identifier else { return }",
+            "let visit = VisitedPlace(id: identifier.rawValue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app launches, it retrieves the history of visited locations from SwiftData.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To get the ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the previously stored identifier, the app creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the stored identifier and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest/getMapItem(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor",
+            "func convertToMapItem() async -> MKMapItem? {",
+            "    guard let identifier = MKMapItem.Identifier(rawValue: id) else { return nil }",
+            "    let request = MKMapItemRequest(mapItemIdentifier: identifier)",
+            "    var mapItem: MKMapItem? = nil",
+            "    do {",
+            "        mapItem = try await request.mapItem",
+            "    } catch let error {",
+            "        let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: \"Map Item Requests\")",
+            "        logger.error(\"Getting map item from identifier failed. Error: \\(error.localizedDescription)\")",
+            "    }",
+            "    return mapItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "97c441e2ff4d/InteractingWithNearbyPointsOfInterest.zip": {
+      "checksum": "97c441e2ff4d77954953f0019cd879fa36c83abbcfd32470c6018e5a09ad75b4d615f686752e14d29ef6be63268d6eae14b3aa37b193e87ab0a79e016ab1c7c3",
+      "identifier": "97c441e2ff4d/InteractingWithNearbyPointsOfInterest.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/97c441e2ff4d/InteractingWithNearbyPointsOfInterest.zip"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AsyncStream": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence generated from a closure that calls a continuation to produce new elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncStream"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncStream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncStream",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncStream"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/searchSuggestions(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the search suggestions for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "suggestions"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/searchSuggestions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchSuggestions(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/searchSuggestions(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/searchable(text:placement:prompt:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20SearchFieldPlacementV",
+          "text": "SearchFieldPlacement"
+        },
+        {
+          "kind": "text",
+          "text": " = .automatic, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:placement:prompt:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/searchable(text:placement:prompt:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter": {
+      "abstract": [
+        {
+          "text": "An object that filters which address options to include or exclude in search results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKAddressFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKAddressFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKAddressFilter",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkaddressfilter"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter/Options": {
+      "abstract": [
+        {
+          "text": "A structure that contains options for filtering results in a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter/Options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKAddressFilter.Options",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkaddressfilter/options"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalPointsOfInterestRequest": {
+      "abstract": [
+        {
+          "text": "A structured request to use when searching for points of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKLocalPointsOfInterestRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalPointsOfInterestRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKLocalPointsOfInterestRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalPointsOfInterestRequest",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalpointsofinterestrequest"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch": {
+      "abstract": [
+        {
+          "text": "A utility object for initiating map-based searches and processing the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearch"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearch",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearch"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/ResultType": {
+      "abstract": [
+        {
+          "text": "Options that indicate types of search results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/ResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearch.ResultType",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearch/resulttype"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/start(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts the search and delivers the results to the specified completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKLocalSearch",
+          "text": "MKLocalSearch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKLocalSearchResponse",
+          "text": "Response"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/start(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearch/start(completionhandler:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter": {
+      "abstract": [
+        {
+          "text": "A utility object for generating a list of completion strings based on a partial search string that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchCompleter"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchCompleter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearchCompleter",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchcompleter"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/ResultType": {
+      "abstract": [
+        {
+          "text": "Options that indicate types of search completions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/ResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearchCompleter.ResultType",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchcompleter/resulttype"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/queryFragment": {
+      "abstract": [
+        {
+          "text": "The search string that you want completions for.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryFragment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/queryFragment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queryFragment"
+        }
+      ],
+      "role": "symbol",
+      "title": "queryFragment",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchcompleter/queryfragment"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleterDelegate": {
+      "abstract": [
+        {
+          "text": "Methods the delegate calls with search completion data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchCompleterDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleterDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchCompleterDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearchCompleterDelegate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchcompleterdelegate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion": {
+      "abstract": [
+        {
+          "text": "A fully formed string that completes a partial string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchCompletion"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchCompletion"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearchCompletion",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchcompletion"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion/titleHighlightRanges": {
+      "abstract": [
+        {
+          "text": "The ranges of characters to highlight in the title string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleHighlightRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSValue",
+          "text": "NSValue"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion/titleHighlightRanges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleHighlightRanges"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleHighlightRanges",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchcompletion/titlehighlightranges"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchRegionPriority": {
+      "abstract": [
+        {
+          "text": "A value that indicates the importance of the configured region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchRegionPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchRegionPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKLocalSearchRegionPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKLocalSearchRegionPriority",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklocalsearchregionpriority"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItem": {
+      "abstract": [
+        {
+          "text": "A point of interest on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapItem"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapItem",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/identifier-swift.property": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItem",
+          "text": "MKMapItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/identifier-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem/identifier-swift.property"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest": {
+      "abstract": [
+        {
+          "text": "A utility class you use to request additional information about a map feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapItemRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapItemRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapItemRequest",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitemrequest"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest/getMapItem(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests a map item and calls the provided completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMapItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItem",
+          "text": "MKMapItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest/getMapItem(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getMapItemWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getMapItem(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitemrequest/getmapitem(completionhandler:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MapItemDetailSelectionAccessoryStyle": {
+      "abstract": [
+        {
+          "text": "The map item detail selection accessory style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapItemDetailSelectionAccessoryStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MapItemDetailSelectionAccessoryStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MapItemDetailSelectionAccessoryStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MapItemDetailSelectionAccessoryStyle",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapitemdetailselectionaccessorystyle"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MapItemDetailSelectionAccessoryStyle/automatic": {
+      "abstract": [
+        {
+          "text": "A value that allows the framework to choose an appropriate callout style automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15_MapKit_SwiftUI0A33ItemDetailSelectionAccessoryStyleV",
+          "text": "MapItemDetailSelectionAccessoryStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MapItemDetailSelectionAccessoryStyle/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapitemdetailselectionaccessorystyle/automatic"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "97c441e2ff4d/InteractingWithNearbyPointsOfInterest.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Local-search",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchRegionPriority",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/ResultType",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch",
+        "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter/Options",
+        "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/ResultType",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLocalPointsOfInterestRequest"
+      ],
+      "title": "Local search"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Local-search",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchRegionPriority",
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch/ResultType",
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearch",
+                "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter/Options",
+                "doc://com.apple.mapkit/documentation/MapKit/MKAddressFilter",
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter/ResultType",
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompleter",
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalSearchCompletion",
+                "doc://com.apple.mapkit/documentation/MapKit/MKLocalPointsOfInterestRequest"
+              ],
+              "title": "Local search"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch/title",
+          "value": "MKLocalSearch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompletion~1titleHighlightRanges/title",
+          "value": "titleHighlightRanges"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompletion~1titleHighlightRanges/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleHighlightRanges"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleterDelegate/title",
+          "value": "MKLocalSearchCompleterDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleterDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompleterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleterDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompleterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch~1start(completionHandler:)/title",
+          "value": "startWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch~1start(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter~1ResultType/title",
+          "value": "MKLocalSearchCompleterResultType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter~1ResultType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompleterResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter~1ResultType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompleterResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter/title",
+          "value": "MKLocalSearchCompleter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompleter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompleter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest/title",
+          "value": "MKMapItemRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItemRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItemRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalPointsOfInterestRequest/title",
+          "value": "MKLocalPointsOfInterestRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalPointsOfInterestRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalPointsOfInterestRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalPointsOfInterestRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalPointsOfInterestRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompletion/title",
+          "value": "MKLocalSearchCompletion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompletion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompletion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompletion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchCompletion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest~1getMapItem(completionHandler:)/title",
+          "value": "getMapItemWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest~1getMapItem(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getMapItemWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAddressFilter/title",
+          "value": "MKAddressFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAddressFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAddressFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAddressFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAddressFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter~1queryFragment/title",
+          "value": "queryFragment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchCompleter~1queryFragment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "queryFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch~1ResultType/title",
+          "value": "MKLocalSearchResultType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch~1ResultType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearch~1ResultType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAddressFilter~1Options/title",
+          "value": "MKAddressFilterOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAddressFilter~1Options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAddressFilterOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAddressFilter~1Options/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAddressFilterOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem/title",
+          "value": "MKMapItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchRegionPriority/title",
+          "value": "MKLocalSearchRegionPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchRegionPriority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchRegionPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKLocalSearchRegionPriority/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKLocalSearchRegionPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem~1identifier-swift.property/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem~1identifier-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/interacting-with-nearby-points-of-interest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/interacting-with-nearby-points-of-interest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

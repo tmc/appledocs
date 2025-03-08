@@ -1,0 +1,1574 @@
+{
+  "abstract": [
+    {
+      "text": "An object that parses URLs into and constructs URLs from their constituent parts that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcomponents",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior. ",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/urlcomponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407235,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLComponents",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSURLComponents"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLComponents"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLComponents"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is a class that is designed to parse URLs based on ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-1670314",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and to construct URLs from their constituent parts. Its behavior differs subtly from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which conforms to older RFCs. However, you can easily obtain an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object based on the contents of a URL components object or vice versa.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a URL components object in one of three ways: from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains a URL, from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, or from scratch by using the default initializer. From there, you can modify the URL’s individual components and subcomponents by modifying various properties, either in unencoded form or in URL-encoded form. If you set the unencoded property, you can then obtain the encoded equivalent by reading the encoded property value and vice versa.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlcomponents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents": {
+      "abstract": [
+        {
+          "text": "An object that parses URLs into and constructs URLs from their constituent parts that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlcomponents",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLComponents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1407517-scheme": {
+      "abstract": [
+        {
+          "text": "The scheme URL component, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1407517-scheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheme",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1407517-scheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1407752-queryitems": {
+      "abstract": [
+        {
+          "text": "The query URL component as an array of name/value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLQueryItem]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1407752-queryitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queryItems",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1407752-queryitems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408161-percentencodedpath": {
+      "abstract": [
+        {
+          "text": "The path URL component expressed as a URL-encoded string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408161-percentencodedpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1408161-percentencodedpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408378-url": {
+      "abstract": [
+        {
+          "text": "Returns a URL object derived from the components object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408378-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1408378-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408894-rangeofhost": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the host in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfHost"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408894-rangeofhost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfHost",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1408894-rangeofhost"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1409456-rangeofquery": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the query in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfQuery"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1409456-rangeofquery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfQuery",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1409456-rangeofquery"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1409650-path": {
+      "abstract": [
+        {
+          "text": "The path URL component, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1409650-path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1409650-path"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410099-rangeofscheme": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the scheme in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410099-rangeofscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfScheme",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1410099-rangeofscheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410319-percentencodedpassword": {
+      "abstract": [
+        {
+          "text": "The password URL subcomponent expressed as a URL-encoded string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedPassword"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410319-percentencodedpassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedPassword",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1410319-percentencodedpassword"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410395-percentencodedquery": {
+      "abstract": [
+        {
+          "text": "The query URL component expressed as a URL-encoded string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedQuery"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410395-percentencodedquery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedQuery",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1410395-percentencodedquery"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410784-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL components object by parsing a URL in string form.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410784-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1410784-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1411178-host": {
+      "abstract": [
+        {
+          "text": "The host URL subcomponent, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "host"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1411178-host",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "host",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1411178-host"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1411790-rangeofport": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the port in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfPort"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1411790-rangeofport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1411790-rangeofport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413451-port": {
+      "abstract": [
+        {
+          "text": "The port number URL component, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNumber?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413451-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1413451-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413469-url": {
+      "abstract": [
+        {
+          "text": "A URL object derived from the components object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413469-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1413469-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1414141-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL components object with all components left undefined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1414141-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1414141-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1414961-rangeofuser": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the user in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfUser"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1414961-rangeofuser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfUser",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1414961-rangeofuser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415024-rangeofpassword": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the password in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfPassword"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415024-rangeofpassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfPassword",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1415024-rangeofpassword"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415026-user": {
+      "abstract": [
+        {
+          "text": "The username URL subcomponent, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415026-user",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "user",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1415026-user"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415180-rangeoffragment": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the fragment in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfFragment"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415180-rangeoffragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfFragment",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1415180-rangeoffragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415452-query": {
+      "abstract": [
+        {
+          "text": "The query URL component as a string, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415452-query",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "query",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1415452-query"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415604-password": {
+      "abstract": [
+        {
+          "text": "The password URL subcomponent, or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "password"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415604-password",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "password",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1415604-password"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1416476-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL components object by parsing the URL from an ",
+          "type": "text"
+        },
+        {
+          "code": "NSURL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvingAgainstBaseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1416476-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:resolvingAgainstBaseURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1416476-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417638-fragment": {
+      "abstract": [
+        {
+          "text": "The fragment URL component (the part after a ",
+          "type": "text"
+        },
+        {
+          "code": "#",
+          "type": "codeVoice"
+        },
+        {
+          "text": " symbol), or nil if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417638-fragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fragment",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1417638-fragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417767-percentencodeduser": {
+      "abstract": [
+        {
+          "text": "The username URL subcomponent expressed as a URL-encoded string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedUser"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417767-percentencodeduser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedUser",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1417767-percentencodeduser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417970-string": {
+      "abstract": [
+        {
+          "text": "A URL derived from the components object, in string form.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417970-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1417970-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418231-percentencodedhost": {
+      "abstract": [
+        {
+          "text": "The host URL subcomponent expressed as a URL-encoded string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not present.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedHost"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418231-percentencodedhost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedHost",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1418231-percentencodedhost"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418392-percentencodedfragment": {
+      "abstract": [
+        {
+          "text": "The fragment URL component (the part after a ",
+          "type": "text"
+        },
+        {
+          "code": "#",
+          "type": "codeVoice"
+        },
+        {
+          "text": " symbol) expressed as a URL-encoded string, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedFragment"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418392-percentencodedfragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedFragment",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1418392-percentencodedfragment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418459-rangeofpath": {
+      "abstract": [
+        {
+          "text": "Returns the character range of the path in the string returned by the string property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeOfPath"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418459-rangeofpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeOfPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/1418459-rangeofpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/2865531-percentencodedqueryitems": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "percentEncodedQueryItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLQueryItem]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/2865531-percentencodedqueryitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentEncodedQueryItems",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/2865531-percentencodedqueryitems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/4013369-encodedhost": {
+      "abstract": [
+        {
+          "text": "The host subcomponent, percent-encoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodedHost"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/4013369-encodedhost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodedHost",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/4013369-encodedhost"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/4190872-init": {
+      "abstract": [
+        {
+          "text": "Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodingInvalidCharacters"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/4190872-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:encodingInvalidCharacters:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcomponents/4190872-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLComponents",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcomponents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcomponents/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLComponents.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcomponents/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLComponents.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcomponents/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-1670314": {
+      "identifier": "link-1670314",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 3986",
+      "type": "topic",
+      "url": "http://www.ietf.org/rfc/rfc3986.txt"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlcomponents/referencetype"
+      ],
+      "title": "Using reference types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1660473",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1414141-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410784-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/4190872-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1416476-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating URL components"
+    },
+    {
+      "anchor": "1660558",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417970-string",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413469-url",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408378-url"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the URL"
+    },
+    {
+      "anchor": "1660630",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417638-fragment",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1411178-host",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/4013369-encodedhost",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415604-password",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1409650-path",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1413451-port",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415452-query",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1407752-queryitems",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1407517-scheme",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415026-user"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing components in native format"
+    },
+    {
+      "anchor": "1660816",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418392-percentencodedfragment",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418231-percentencodedhost",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410319-percentencodedpassword",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408161-percentencodedpath",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410395-percentencodedquery",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1417767-percentencodeduser"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing components in URL-encoded format"
+    },
+    {
+      "anchor": "2855638",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/2865531-percentencodedqueryitems",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415180-rangeoffragment",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1408894-rangeofhost",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1415024-rangeofpassword",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1418459-rangeofpath",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1411790-rangeofport",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1409456-rangeofquery",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1410099-rangeofscheme",
+        "doc://com.apple.documentation/documentation/foundation/nsurlcomponents/1414961-rangeofuser"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating components in the URL string representation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlcomponents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurlcomponents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

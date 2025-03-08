@@ -1,0 +1,1038 @@
+{
+  "abstract": [
+    {
+      "text": "Packs a variable amount of parameters into a buffer according to a printf-style format string.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothPackData"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@IOBluetoothPackData",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOBluetoothPackData"
+      }
+    ],
+    "modules": [
+      {
+        "name": "IOBluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOBluetoothPackData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "IOBluetoothPackData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:L",
+              "text": "long"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothPackData"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ioBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "inFormat"
+            },
+            {
+              "kind": "text",
+              "text": ", ...);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Ptr to buffer to receive packed data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ioBuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Printf-Style format string controlling how the data is packed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inFormat"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Number of bytes packed or -1 if an error occurred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the parameters to send data as the remaining arguments after the format string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supported format characters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            "   \t'b' 1 byte of data ('b'yte)",
+            "   \t'h' 2 bytes of data ('h'alf-word)",
+            "   \t'H' 2 bytes of data ('h'alf-word) to byte reverse.",
+            "   \t't' 3 bytes of data ('t'riple byte, least significant 24-bits).",
+            "   \t'T' 3 bytes of data ('t'riple byte, least significant 24-bits) to byte reverse.",
+            "   \t'w' 4 bytes of data ('w'ord).",
+            "   \t'W' 4 bytes of data ('w'ord) to byte reverse.",
+            "   \t'1'\tPtr to 1 byte of data.",
+            "   \t'2' Ptr to 2 bytes of data.",
+            "   \t'@'\t(shift-2) Ptr to 2 bytes of data to byte reverse.",
+            "   \t'3' Ptr to 3 bytes of data.",
+            "   \t'#'\t(shift-3) Ptr to 3 bytes of data to byte reverse.",
+            "   \t'4' Ptr to 4 bytes of data.",
+            "   \t'$'\t(shift-4) Ptr to 4 bytes of data to byte reverse.",
+            "   \t'5' Ptr to 5 bytes of data.",
+            "   \t'%'\t(shift-5) Ptr to 5 bytes of data to byte reverse.",
+            "   \t'6' Ptr to 6 bytes of data.",
+            "   \t'^'\t(shift-6) Ptr to 6 bytes of data to byte reverse.",
+            "   \t'7' Ptr to 6 bytes of data.",
+            "   \t'&'\t(shift-7) Ptr to 7 bytes of data to byte reverse.",
+            "   \t'8' Ptr to 6 bytes of data.",
+            "   \t'*'\t(shift-8) Ptr to 8 bytes of data to byte reverse.",
+            "   \t'9' Ptr to 6 bytes of data.",
+            "   \t'('\t(shift-9) Ptr to 9 bytes of data to byte reverse.",
+            "   \t'n' Ptr to n bytes of data (first param is size, second is ptr).",
+            "   \t'N' Ptr to n bytes of data to byte reverse (first param is size, second is ptr).",
+            "   \t's' Ptr to C-string (includes null terminator)",
+            "   \t'p' Ptr to Pascal-string (includes length byte).",
+            " "
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Example usage:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            "   \tbytesPacked = PackData( buffer, \"bts\", 'U', 'XYZ', \"This is a C-style string\" );",
+            " "
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Warning:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Raw values packed with ‘b’, ‘h’, ‘t’, and ‘w’ have their bytes packed into the buffer from left to right even on little-endian systems. For example, the value 0x12345678 would be sent out as 0x12 0x34 0x56 0x78. This needs to be taken into consideration if the value is expected to be in little-endian format in the buffer. This case requires you byte swap the value on all systems before sending it to this routine.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth": {
+      "abstract": [
+        {
+          "text": "Gain user-space access to Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOBluetooth",
+      "type": "topic",
+      "url": "/documentation/iobluetooth"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothFindNumberOfRegistryEntriesOfClassName(_:)": {
+      "abstract": [
+        {
+          "text": "The number of registry entries with a device classname.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothFindNumberOfRegistryEntriesOfClassName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothFindNumberOfRegistryEntriesOfClassName(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothFindNumberOfRegistryEntriesOfClassName"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothFindNumberOfRegistryEntriesOfClassName(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothfindnumberofregistryentriesofclassname(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothGetUniqueFileNameAndPath(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothGetUniqueFileNameAndPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothGetUniqueFileNameAndPath(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothGetUniqueFileNameAndPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothGetUniqueFileNameAndPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothgetuniquefilenameandpath(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothIsFileAppleDesignatedPIMData(_:)": {
+      "abstract": [
+        {
+          "text": "Apple designated PIM data is classified as: .vcard, .vcal, .vcf, .vnote, .vmsg, .vcs",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothIsFileAppleDesignatedPIMData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothIsFileAppleDesignatedPIMData(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothIsFileAppleDesignatedPIMData"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothIsFileAppleDesignatedPIMData(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothisfileappledesignatedpimdata(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNSStringFromDeviceAddress(_:)": {
+      "abstract": [
+        {
+          "text": "Convenience routine to take a device address structure and create an NSString.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNSStringFromDeviceAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@BluetoothDeviceAddress",
+          "text": "BluetoothDeviceAddress"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNSStringFromDeviceAddress(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNSStringFromDeviceAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothNSStringFromDeviceAddress(_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothnsstringfromdeviceaddress(_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNSStringToDeviceAddress(_:_:)": {
+      "abstract": [
+        {
+          "text": "Convenience routine to take an NSString and turn it into a BluetoothDeviceAddress structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNSStringToDeviceAddress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@BluetoothDeviceAddress",
+          "text": "BluetoothDeviceAddress"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOReturn",
+          "text": "IOReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNSStringToDeviceAddress(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNSStringToDeviceAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothNSStringToDeviceAddress(_:_:)",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothnsstringtodeviceaddress(_:_:)"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfAvailableHIDDevices()": {
+      "abstract": [
+        {
+          "text": "Returns total number of HID devices on the system (Bluetooth + USB)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfAvailableHIDDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfAvailableHIDDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfAvailableHIDDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothNumberOfAvailableHIDDevices()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothnumberofavailablehiddevices()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfKeyboardHIDDevices()": {
+      "abstract": [
+        {
+          "text": "Returns number of keyboard HID devices on the system (Bluetooth + USB)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfKeyboardHIDDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfKeyboardHIDDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfKeyboardHIDDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothNumberOfKeyboardHIDDevices()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothnumberofkeyboardhiddevices()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfPointingHIDDevices()": {
+      "abstract": [
+        {
+          "text": "Returns number of “pointing” HID devices on the system (Bluetooth + USB)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfPointingHIDDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfPointingHIDDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfPointingHIDDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothNumberOfPointingHIDDevices()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothnumberofpointinghiddevices()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfTabletHIDDevices()": {
+      "abstract": [
+        {
+          "text": "Returns number of “Tablet” HID devices on the system (Bluetooth + USB)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfTabletHIDDevices"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfTabletHIDDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothNumberOfTabletHIDDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOBluetoothNumberOfTabletHIDDevices()",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothnumberoftablethiddevices()"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothPackData": {
+      "abstract": [
+        {
+          "text": "Packs a variable amount of parameters into a buffer according to a printf-style format string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothPackData"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothPackData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothPackData",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothpackdata"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothUnpackData": {
+      "abstract": [
+        {
+          "text": "Unpacks a variable amount of data from a buffer into a variable number of parameters according to a printf-style format string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOBluetoothUnpackData"
+        }
+      ],
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothUnpackData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothUnpackData",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothunpackdata"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Miscellaneous",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothFindNumberOfRegistryEntriesOfClassName(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothGetUniqueFileNameAndPath(_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothIsFileAppleDesignatedPIMData(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNSStringFromDeviceAddress(_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNSStringToDeviceAddress(_:_:)",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfAvailableHIDDevices()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfKeyboardHIDDevices()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfPointingHIDDevices()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothNumberOfTabletHIDDevices()",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothUnpackData"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothGetUniqueFileNameAndPath(_:_:)/title",
+          "value": "IOBluetoothGetUniqueFileNameAndPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothGetUniqueFileNameAndPath(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothGetUniqueFileNameAndPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNSStringToDeviceAddress(_:_:)/title",
+          "value": "IOBluetoothNSStringToDeviceAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNSStringToDeviceAddress(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothNSStringToDeviceAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNSStringFromDeviceAddress(_:)/title",
+          "value": "IOBluetoothNSStringFromDeviceAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNSStringFromDeviceAddress(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothNSStringFromDeviceAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfAvailableHIDDevices()/title",
+          "value": "IOBluetoothNumberOfAvailableHIDDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfAvailableHIDDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothNumberOfAvailableHIDDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfPointingHIDDevices()/title",
+          "value": "IOBluetoothNumberOfPointingHIDDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfPointingHIDDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothNumberOfPointingHIDDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothFindNumberOfRegistryEntriesOfClassName(_:)/title",
+          "value": "IOBluetoothFindNumberOfRegistryEntriesOfClassName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothFindNumberOfRegistryEntriesOfClassName(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothFindNumberOfRegistryEntriesOfClassName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfKeyboardHIDDevices()/title",
+          "value": "IOBluetoothNumberOfKeyboardHIDDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfKeyboardHIDDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothNumberOfKeyboardHIDDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothIsFileAppleDesignatedPIMData(_:)/title",
+          "value": "IOBluetoothIsFileAppleDesignatedPIMData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothIsFileAppleDesignatedPIMData(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothIsFileAppleDesignatedPIMData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfTabletHIDDevices()/title",
+          "value": "IOBluetoothNumberOfTabletHIDDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iobluetooth~1documentation~1IOBluetooth~1IOBluetoothNumberOfTabletHIDDevices()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOBluetoothNumberOfTabletHIDDevices"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iobluetooth/iobluetoothpackdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

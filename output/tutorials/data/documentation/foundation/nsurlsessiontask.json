@@ -1,0 +1,1230 @@
+{
+  "abstract": [
+    {
+      "text": "A task, like downloading a specific resource, performed in a URL session.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410455,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionTask",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLSessionTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLSessionTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is the base class for tasks in a URL session. Tasks are always part of a session; you create a task by calling one of the task creation methods on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. The method you call determines the type of task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411554-datataskwithurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and related methods to create ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondatatask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances. Data tasks request a resource, returning the server’s response as one or more ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects in memory. They are supported in default, ephemeral, and shared sessions, but are not supported in background sessions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409763-uploadtaskwithrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and related methods to create ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionuploadtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances. Upload tasks are like data tasks, except that they make it easier to provide a request body so you can upload data before retrieving the server’s response. Additionally, upload tasks are supported in background sessions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and related methods to create ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances. Download tasks download a resource directly to a file on disk. Download tasks are supported in any type of session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411587-streamtaskwithhostname",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411545-streamtaskwithnetservice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to create ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionstreamtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances. Stream tasks establish a TCP/IP connection from a host name and port or a net service object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create a task, you start it by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The session then maintains a strong reference to the task until the request finishes or fails; you don’t need to maintain a reference to the task unless it’s useful for your app’s internal bookkeeping.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All task properties support key-value observing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprogressreporting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprogressreporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProgressReporting",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprogressreporting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409763-uploadtaskwithrequest": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "uploadTaskWithRequest:fromData:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409763-uploadtaskwithrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTaskWithRequest:fromData:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1409763-uploadtaskwithrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadTaskWithURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadTaskWithURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411482-downloadtaskwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411545-streamtaskwithnetservice": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "streamTaskWithNetService:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411545-streamtaskwithnetservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "streamTaskWithNetService:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411545-streamtaskwithnetservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411554-datataskwithurl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataTaskWithURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411554-datataskwithurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataTaskWithURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411554-datataskwithurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411587-streamtaskwithhostname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "streamTaskWithHostName:port:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411587-streamtaskwithhostname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "streamTaskWithHostName:port:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411587-streamtaskwithhostname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondatatask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondatatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDataTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondatatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondownloadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDownloadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondownloadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionstreamtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionstreamtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionStreamTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionstreamtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask": {
+      "abstract": [
+        {
+          "text": "A task, like downloading a specific resource, performed in a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1408145-error": {
+      "abstract": [
+        {
+          "text": "An error object that indicates why the task failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1408145-error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1408145-error"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1409798-taskdescription": {
+      "abstract": [
+        {
+          "text": "An app-provided string value for the current task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1409798-taskdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taskDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1409798-taskdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1409888-state": {
+      "abstract": [
+        {
+          "text": "The current state of the task—active, suspended, in the process of being canceled, or completed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1409888-state",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1409888-state"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410444-countofbytessent": {
+      "abstract": [
+        {
+          "text": "The number of bytes that the task has sent to the server in the request body.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410444-countofbytessent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesSent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1410444-countofbytessent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410569-priority": {
+      "abstract": [
+        {
+          "text": "The relative priority at which you’d like a host to handle the task, specified as a floating point value between ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (lowest priority) and ",
+          "type": "text"
+        },
+        {
+          "code": "1.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (highest priority).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410569-priority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "priority",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1410569-priority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410586-response": {
+      "abstract": [
+        {
+          "text": "The server’s response to the currently active request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410586-response",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "response",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1410586-response"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410663-countofbytesexpectedtoreceive": {
+      "abstract": [
+        {
+          "text": "The number of bytes that the task expects to receive in the response body.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410663-countofbytesexpectedtoreceive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesExpectedToReceive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1410663-countofbytesexpectedtoreceive"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411121-resume": {
+      "abstract": [
+        {
+          "text": "Resumes the task, if it is suspended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411231-taskidentifier": {
+      "abstract": [
+        {
+          "text": "An identifier uniquely identifying the task within a given session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411231-taskidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taskIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411231-taskidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411534-countofbytesexpectedtosend": {
+      "abstract": [
+        {
+          "text": "The number of bytes that the task expects to send in the request body.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411534-countofbytesexpectedtosend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesExpectedToSend",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411534-countofbytesexpectedtosend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411565-suspend": {
+      "abstract": [
+        {
+          "text": "Temporarily suspends a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspend"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411565-suspend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspend",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411565-suspend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411572-originalrequest": {
+      "abstract": [
+        {
+          "text": "The original request object passed when the task was created.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411572-originalrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originalRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411572-originalrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411581-countofbytesreceived": {
+      "abstract": [
+        {
+          "text": "The number of bytes that the task has received from the server in the response body.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411581-countofbytesreceived",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesReceived",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411581-countofbytesreceived"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411591-cancel": {
+      "abstract": [
+        {
+          "text": "Cancels the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411591-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411591-cancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411649-currentrequest": {
+      "abstract": [
+        {
+          "text": "The URL request object currently being handled by the task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411649-currentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/1411649-currentrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873401-countofbytesclientexpectstosend": {
+      "abstract": [
+        {
+          "text": "A best-guess upper bound on the number of bytes the client expects to send.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873401-countofbytesclientexpectstosend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesClientExpectsToSend",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/2873401-countofbytesclientexpectstosend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate": {
+      "abstract": [
+        {
+          "text": "The earliest date at which the network load should begin.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "earliestBeginDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873414-countofbytesclientexpectstorecei": {
+      "abstract": [
+        {
+          "text": "A best-guess upper bound on the number of bytes the client expects to receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873414-countofbytesclientexpectstorecei",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "countOfBytesClientExpectsToReceive",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/2873414-countofbytesclientexpectstorecei"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2908821-progress": {
+      "abstract": [
+        {
+          "text": "A representation of the overall task progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2908821-progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/2908821-progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3240624-init": {
+      "abstract": [
+        {
+          "text": "Initializes an empty URL sesson task.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3240624-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/3240624-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3240625-new": {
+      "abstract": [
+        {
+          "text": "Creates a new URL session task.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3240625-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/3240625-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3735881-prefersincrementaldelivery": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether to deliver a partial response body in increments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3735881-prefersincrementaldelivery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefersIncrementalDelivery",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/3735881-prefersincrementaldelivery"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3746977-delegate": {
+      "abstract": [
+        {
+          "text": "A delegate specific to the task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3746977-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/3746977-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/url_session_task_priority": {
+      "abstract": [
+        {
+          "text": "Constants for providing task priority hints to a host, used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410569-priority",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/url_session_task_priority",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL session task priority",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/url_session_task_priority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle task-level events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskstate": {
+      "abstract": [
+        {
+          "text": "Constants for determining the current state of a task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTaskState",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontaskstate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontransfersizeunknown": {
+      "abstract": [
+        {
+          "text": "The total size of the transfer cannot be determined.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontransfersizeunknown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTransferSizeUnknown",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontransfersizeunknown"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionuploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionuploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionUploadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionuploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory": {
+      "abstract": [
+        {
+          "text": "Receive data directly into memory by creating a data task from a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching website data into memory",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsprogressreporting"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1660369",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411591-cancel",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411121-resume",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411565-suspend",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1409888-state",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskstate",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410569-priority",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/url_session_task_priority"
+      ],
+      "kind": "taskGroup",
+      "title": "Controlling the task state"
+    },
+    {
+      "anchor": "1660482",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2908821-progress",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410663-countofbytesexpectedtoreceive",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411581-countofbytesreceived",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411534-countofbytesexpectedtosend",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410444-countofbytessent",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontransfersizeunknown"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining task progress"
+    },
+    {
+      "anchor": "1660538",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411649-currentrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411572-originalrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1410586-response",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1409798-taskdescription",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1411231-taskidentifier",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/1408145-error"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining general task information"
+    },
+    {
+      "anchor": "3848927",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3735881-prefersincrementaldelivery"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining task behavior"
+    },
+    {
+      "anchor": "3848926",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3746977-delegate",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Using a task-specific delegate"
+    },
+    {
+      "anchor": "2919275",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873414-countofbytesclientexpectstorecei",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873401-countofbytesclientexpectstosend",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontransfersizeunknown",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate"
+      ],
+      "kind": "taskGroup",
+      "title": "Scheduling tasks"
+    },
+    {
+      "anchor": "3848925",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3240624-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/3240625-new"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessiontask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessiontask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

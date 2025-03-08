@@ -1,0 +1,5680 @@
+{
+  "abstract": [
+    {
+      "text": "An object that stores color data and sometimes opacity (alpha value).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSColor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSColor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSColor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSColor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSColor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSColor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many methods in AppKit require you to specify color data using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object; when drawing you use them to set the current fill and stroke colors. Color objects are immutable and thread-safe. You can create color objects in many ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Load colors from an asset catalog. Colors created from assets can adapt automatically to system appearance changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the semantic colors for custom UI elements, so that they match the appearance of other AppKit views; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/ui-element-colors",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the adaptable system colors, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/systemBlue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", when you want a specific tint that looks correct in both light and dark environments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a color object from another object, such as a Core Graphics representation of a color, or a Core Image color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a color from an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, and paint a repeating pattern instead of using a solid color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a color by applying a transform to another ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object. For example, you might perform a blend operation between two colors, or you might create a color that represents the same color, but in a different color space.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create custom colors using raw component values, and a variety of color spaces, when you need to represent user-specified colors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For user-specified colors, you can also display a color panel and let the user specify the color. For information about color panels, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorPanel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Color-and-Color-Spaces",
+          "level": 3,
+          "text": "Color and Color Spaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A color object is typically represented internally as a Core Graphics color (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") in a Core Graphics color space (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Colors can also be created in extended color spaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpace/extendedSRGB",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need to worry about color spaces, use extended color spaces as working color spaces. When you need to worry about representing that color as closely as possible in a specific color space, convert the color from the extended color space into the target color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working in an extended color space, color values are not clamped to fit inside the color gamut, meaning that component values may be less than ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When displayed on an sRGB display, such colors are outside the gamut and won’t render accurately. However, extended color spaces are useful as working color spaces when you want a pixel format and representation that other color spaces can be easily converted into. For example, a color in the Display P3 color space can convert to an extended sRGB format, even if it isn’t within the sRGB color gamut. While some of the converted color’s values are outside of the 0-1.0 range, the color renders correctly when viewed on a device with a P3 display gamut.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is a programmer error to access color components of a color space that the ",
+              "type": "text"
+            },
+            {
+              "code": "NSColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object does not support. For example, you cannot access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/redComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on a color that uses the CMYK color space. Further, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getComponents(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/numberOfComponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property work only in color spaces that have individual components. As such, they return the components of color objects as individual floating-point values regardless of whether they’re based on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects or named color spaces. However, older component-fetching methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are effective only on color objects based on named color spaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a color object in an unknown color space and you want to extract its components, convert the color object to a known color space and then use the component accessor methods of that color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitycolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAppKitVersionNumberWithPatternColorLeakFix": {
+      "abstract": [
+        {
+          "text": "The specific version of the AppKit framework from OS X 10.1 that correctly autoreleases color objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSAppKitVersionNumberWithPatternColorLeakFix"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAppKitVersionNumberWithPatternColorLeakFix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppKitVersionNumberWithPatternColorLeakFix",
+      "type": "topic",
+      "url": "/documentation/appkit/nsappkitversionnumberwithpatterncolorleakfix"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBlack": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the black shade in the 2-bit deep grayscale color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSBlack"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBlack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBlack",
+      "type": "topic",
+      "url": "/documentation/appkit/nsblack"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor": {
+      "abstract": [
+        {
+          "text": "An object that stores color data and sometimes opacity (alpha value).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/ColorType": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the color’s type, and which methods may be called on the color object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColorType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/ColorType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColorType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColor.ColorType",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/colortype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/SystemEffect": {
+      "abstract": [
+        {
+          "text": "Constants for user interactions that change the appearance of a view or control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/SystemEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColor.SystemEffect",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/systemeffect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/alphaComponent": {
+      "abstract": [
+        {
+          "text": "The alpha (opacity) component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alphaComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/alphaComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alphaComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "alphaComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/alphacomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/blackComponent": {
+      "abstract": [
+        {
+          "text": "The black component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blackComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/blackComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blackComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "blackComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/blackcomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/blended(withFraction:of:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object whose component values are a weighted sum of the current color object and the specified color object’s.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blended"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withFraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/blended(withFraction:of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blendedColorWithFraction:ofColor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "blended(withFraction:of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/blended(withfraction:of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/blueComponent": {
+      "abstract": [
+        {
+          "text": "The blue component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blueComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/blueComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blueComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "blueComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/bluecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/brightnessComponent": {
+      "abstract": [
+        {
+          "text": "The brightness component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "brightnessComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/brightnessComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "brightnessComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "brightnessComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/brightnesscomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/catalogNameComponent": {
+      "abstract": [
+        {
+          "text": "The catalog containing the color’s name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "catalogNameComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColorList",
+          "text": "NSColorList"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorListName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/catalogNameComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "catalogNameComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "catalogNameComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/catalognamecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/cgColor": {
+      "abstract": [
+        {
+          "text": "The Core Graphics color object corresponding to the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/cgColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CGColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "cgColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/cgcolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/colorNameComponent": {
+      "abstract": [
+        {
+          "text": "The name of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorNameComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/colorNameComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorNameComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorNameComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/colornamecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpace": {
+      "abstract": [
+        {
+          "text": "The color space associated with the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColorSpace",
+          "text": "NSColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorSpace",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/colorspace"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpaceName": {
+      "abstract": [
+        {
+          "text": "The name of the color space associated with the color.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorSpaceName",
+          "text": "NSColorSpaceName"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpaceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorSpaceName"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorSpaceName",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/colorspacename"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/currentControlTintDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Sent after the user changes control tint preference.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentControlTintDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/currentControlTintDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSControlTintDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentControlTintDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/currentcontroltintdidchangenotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/cyanComponent": {
+      "abstract": [
+        {
+          "text": "The cyan component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cyanComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/cyanComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cyanComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "cyanComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/cyancomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/drawSwatch(in:)": {
+      "abstract": [
+        {
+          "text": "Draws the current color in the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawSwatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/drawSwatch(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawSwatchInRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawSwatch(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/drawswatch(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/getComponents(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the components of the color as an array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getComponents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getComponents(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getComponents:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getComponents(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/getcomponents(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the color object’s CMYK and opacity values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCyan"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "magenta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "yellow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "black"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCyan:magenta:yellow:black:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getCyan(_:magenta:yellow:black:alpha:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/getcyan(_:magenta:yellow:black:alpha:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the color object’s HSB component and opacity values in the respective arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getHue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "saturation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "brightness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getHue:saturation:brightness:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getHue(_:saturation:brightness:alpha:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/gethue(_:saturation:brightness:alpha:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the color object’s RGB component and opacity values in the respective arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getRed:green:blue:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getRed(_:green:blue:alpha:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/getred(_:green:blue:alpha:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/getWhite(_:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the grayscale and alpha values of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWhite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/getWhite(_:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getWhite:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getWhite(_:alpha:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/getwhite(_:alpha:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/greenComponent": {
+      "abstract": [
+        {
+          "text": "The green component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "greenComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/greenComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "greenComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "greenComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/greencomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/highlight(withLevel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object that represents a blend between the current color and the highlight color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highlight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/highlight(withLevel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "highlightWithLevel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "highlight(withLevel:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/highlight(withlevel:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/hueComponent": {
+      "abstract": [
+        {
+          "text": "The hue component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hueComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/hueComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hueComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "hueComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/huecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/ignoresAlpha": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app supports alpha.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/ignoresAlpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ignoresAlpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "ignoresAlpha",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/ignoresalpha"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/init(from:)": {
+      "abstract": [
+        {
+          "text": "Creates a color object from color data currently on the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/init(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorFromPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/init(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedCatalogNameComponent": {
+      "abstract": [
+        {
+          "text": "The localized version of the catalog name containing the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedCatalogNameComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedCatalogNameComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedCatalogNameComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedCatalogNameComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/localizedcatalognamecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedColorNameComponent": {
+      "abstract": [
+        {
+          "text": "The localized version of the color name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedColorNameComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedColorNameComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedColorNameComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedColorNameComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/localizedcolornamecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/magentaComponent": {
+      "abstract": [
+        {
+          "text": "The magenta component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "magentaComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/magentaComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "magentaComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "magentaComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/magentacomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/numberOfComponents": {
+      "abstract": [
+        {
+          "text": "The number of components in the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/numberOfComponents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfComponents"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfComponents",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/numberofcomponents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/redComponent": {
+      "abstract": [
+        {
+          "text": "The red component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "redComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/redComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "redComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "redComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/redcomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/saturationComponent": {
+      "abstract": [
+        {
+          "text": "The saturation component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saturationComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/saturationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saturationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "saturationComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/saturationcomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/set()": {
+      "abstract": [
+        {
+          "text": "Sets the color of subsequent drawing to the color that the color object represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/set()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "set"
+        }
+      ],
+      "role": "symbol",
+      "title": "set()",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/set()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/setFill()": {
+      "abstract": [
+        {
+          "text": "Sets the fill color of subsequent drawing to the color object’s color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFill"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/setFill()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFill()",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/setfill()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/setStroke()": {
+      "abstract": [
+        {
+          "text": "Sets the stroke color of subsequent drawing to the color object’s color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStroke"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/setStroke()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setStroke"
+        }
+      ],
+      "role": "symbol",
+      "title": "setStroke()",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/setstroke()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/shadow(withLevel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object that represents a blend between the current color and the shadow color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shadow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/shadow(withLevel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shadowWithLevel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shadow(withLevel:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/shadow(withlevel:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/systemBlue": {
+      "abstract": [
+        {
+          "text": "Returns a color object for blue that automatically adapts to vibrancy and accessibility settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemBlue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/systemBlue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemBlueColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemBlue",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/systemblue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/systemColorsDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Sent when the system colors have changed, such as through a system control panel interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemColorsDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/systemColorsDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSystemColorsDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemColorsDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/systemcolorsdidchangenotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/type": {
+      "abstract": [
+        {
+          "text": "The type of the color object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSColorType",
+          "text": "ColorType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/type"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpace(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object representing the color of the current color object in the specified color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColorSpace",
+          "text": "NSColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpace(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorUsingColorSpace:"
+        }
+      ],
+      "role": "symbol",
+      "title": "usingColorSpace(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/usingcolorspace(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object whose color is the same as the receiver’s, except that the new color object is in the specified color space.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingColorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorSpaceName",
+          "text": "NSColorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorUsingColorSpaceName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "usingColorSpaceName(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/usingcolorspacename(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:device:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object for the same color, but in the specified color space and specific to the provided device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingColorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSColorSpaceName",
+          "text": "NSColorSpaceName"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSDeviceDescriptionKey",
+          "text": "NSDeviceDescriptionKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:device:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorUsingColorSpaceName:device:"
+        }
+      ],
+      "role": "symbol",
+      "title": "usingColorSpaceName(_:device:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/usingcolorspacename(_:device:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/usingType(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a version of the color object that is compatible with the specified color type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSColorType",
+          "text": "ColorType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/usingType(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorUsingType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "usingType(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/usingtype(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/whiteComponent": {
+      "abstract": [
+        {
+          "text": "The white component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "whiteComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/whiteComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "whiteComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "whiteComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/whitecomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/withAlphaComponent(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new color object that has the same color space and component values as the current color object, but the specified alpha component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAlphaComponent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/withAlphaComponent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorWithAlphaComponent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withAlphaComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/withalphacomponent(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/withSystemEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new color object that represents the current color modified to include the specified visual effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSystemEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSColorSystemEffect",
+          "text": "SystemEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/withSystemEffect(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorWithSystemEffect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withSystemEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/withsystemeffect(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/write(to:)": {
+      "abstract": [
+        {
+          "text": "Writes the color object’s data to the specified pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/write(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeToPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "write(to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/write(to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColor/yellowComponent": {
+      "abstract": [
+        {
+          "text": "The yellow component value of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yellowComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColor/yellowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yellowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "yellowComponent",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolor/yellowcomponent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorList": {
+      "abstract": [
+        {
+          "text": "An ordered list of color objects, identified by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorList"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorList"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorList",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorlist"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorPanel": {
+      "abstract": [
+        {
+          "text": "A standard user interface for selecting color in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorSpace": {
+      "abstract": [
+        {
+          "text": "An object that represents a custom color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorSpace",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorspace"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray": {
+      "abstract": [
+        {
+          "text": "A color space object that represents an extended gray color space with a gamma value of 2.2.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedGenericGamma22Gray"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColorSpace",
+          "text": "NSColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpace/extendedGenericGamma22Gray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedGenericGamma22GrayColorSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendedGenericGamma22Gray",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorspace/extendedgenericgamma22gray"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorSpace/extendedSRGB": {
+      "abstract": [
+        {
+          "text": "A color space object that represents an extended sRGB color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedSRGB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColorSpace",
+          "text": "NSColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpace/extendedSRGB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedSRGBColorSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendedSRGB",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorspace/extendedsrgb"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName": {
+      "abstract": [
+        {
+          "text": "Constants that specify color space names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorSpaceName"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorSpaceName"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorSpaceName",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorspacename"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDarkGray": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the dark gray shade in the 2-bit deep grayscale color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDarkGray"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDarkGray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDarkGray",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdarkgray"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLightGray": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the light gray shade in the 2-bit deep grayscale color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSLightGray"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLightGray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLightGray",
+      "type": "topic",
+      "url": "/documentation/appkit/nslightgray"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for initializing an object from a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardReading",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardreading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for retrieving a representation of an object that can be written to a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardWriting",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardwriting"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWhite": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the white shade in the 2-bit deep grayscale color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSWhite"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWhite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWhite",
+      "type": "topic",
+      "url": "/documentation/appkit/nswhite"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/color-creation": {
+      "abstract": [
+        {
+          "text": "Load colors from asset catalogs, and create colors from raw component values, such as those used by grayscale, RGB, HSB, and CMYK colors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/color-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Creation",
+      "type": "topic",
+      "url": "/documentation/appkit/color-creation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/standard-colors": {
+      "abstract": [
+        {
+          "text": "Retrieve the standard color objects for common colors like red, blue, green, black, white, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/standard-colors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Standard Colors",
+      "type": "topic",
+      "url": "/documentation/appkit/standard-colors"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/ui-element-colors": {
+      "abstract": [
+        {
+          "text": "Retrieve standard color objects for use with windows, controls, labels, text, selections and other content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/ui-element-colors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UI Element Colors",
+      "type": "topic",
+      "url": "/documentation/appkit/ui-element-colors"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolor": {
+      "abstract": [
+        {
+          "text": "A set of components that define a color, with a color space specifying how to interpret them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColor",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolor"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace": {
+      "abstract": [
+        {
+          "text": "A profile that specifies how to interpret a color value for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColorSpace",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Colors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColorList",
+        "doc://com.apple.appkit/documentation/AppKit/NSColorSpace"
+      ],
+      "title": "Colors"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Get one of the AppKit-defined colors, load colors from asset catalogs, or create custom colors for your app.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Getting-and-Creating-Colors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/ui-element-colors",
+        "doc://com.apple.appkit/documentation/AppKit/standard-colors",
+        "doc://com.apple.appkit/documentation/AppKit/color-creation"
+      ],
+      "title": "Getting and Creating Colors"
+    },
+    {
+      "anchor": "Applying-Specific-Appearances-to-Colors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/withSystemEffect(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/SystemEffect"
+      ],
+      "title": "Applying Specific Appearances to Colors"
+    },
+    {
+      "anchor": "Transforming-Existing-Color-Objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpace(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/blended(withFraction:of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/withAlphaComponent(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/highlight(withLevel:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/shadow(withLevel:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:device:)"
+      ],
+      "title": "Transforming Existing Color Objects"
+    },
+    {
+      "anchor": "Determining-the-Alpha-Support-of-Colors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/ignoresAlpha"
+      ],
+      "title": "Determining the Alpha Support of Colors"
+    },
+    {
+      "anchor": "Copying-and-Pasting-Color-Information",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/init(from:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/write(to:)"
+      ],
+      "title": "Copying and Pasting Color Information"
+    },
+    {
+      "anchor": "Retrieving-Component-Values-from-Color-Objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/getWhite(_:alpha:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/numberOfComponents",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/getComponents(_:)"
+      ],
+      "title": "Retrieving Component Values from Color Objects"
+    },
+    {
+      "anchor": "Retrieving-Individual-Components",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/alphaComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/whiteComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/redComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/greenComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/blueComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/cyanComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/magentaComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/yellowComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/blackComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/hueComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/saturationComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/brightnessComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/catalogNameComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedCatalogNameComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/colorNameComponent",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedColorNameComponent"
+      ],
+      "title": "Retrieving Individual Components"
+    },
+    {
+      "anchor": "Working-with-the-Color-Space",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/type",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/usingType(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/ColorType",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpace",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpaceName",
+        "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName"
+      ],
+      "title": "Working with the Color Space"
+    },
+    {
+      "anchor": "Retrieving-Core-Graphics-Color-Information",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/cgColor"
+      ],
+      "title": "Retrieving Core Graphics Color Information"
+    },
+    {
+      "anchor": "Drawing-with-Colors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/drawSwatch(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/set()",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/setFill()",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/setStroke()"
+      ],
+      "title": "Drawing with Colors"
+    },
+    {
+      "anchor": "Determining-When-Colors-Change",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/systemColorsDidChangeNotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSColor/currentControlTintDidChangeNotification"
+      ],
+      "title": "Determining When Colors Change"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSColor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Get one of the AppKit-defined colors, load colors from asset catalogs, or create custom colors for your app.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Getting-and-Creating-Colors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/ui-element-colors",
+                "doc://com.apple.appkit/documentation/AppKit/standard-colors",
+                "doc://com.apple.appkit/documentation/AppKit/color-creation"
+              ],
+              "title": "Getting and Creating Colors"
+            },
+            {
+              "anchor": "Applying-Specific-Appearances-to-Colors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/withSystemEffect(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/SystemEffect"
+              ],
+              "title": "Applying Specific Appearances to Colors"
+            },
+            {
+              "anchor": "Transforming-Existing-Color-Objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpace(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/blended(withFraction:of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/withAlphaComponent(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/highlight(withLevel:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/shadow(withLevel:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/usingColorSpaceName(_:device:)"
+              ],
+              "title": "Transforming Existing Color Objects"
+            },
+            {
+              "anchor": "Determining-the-Alpha-Support-of-Colors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/ignoresAlpha"
+              ],
+              "title": "Determining the Alpha Support of Colors"
+            },
+            {
+              "anchor": "Copying-and-Pasting-Color-Information",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/init(from:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/write(to:)"
+              ],
+              "title": "Copying and Pasting Color Information"
+            },
+            {
+              "anchor": "Retrieving-Component-Values-from-Color-Objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/getWhite(_:alpha:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/numberOfComponents",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/getComponents(_:)"
+              ],
+              "title": "Retrieving Component Values from Color Objects"
+            },
+            {
+              "anchor": "Retrieving-Individual-Components",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/alphaComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/whiteComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/redComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/greenComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/blueComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/cyanComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/magentaComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/yellowComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/blackComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/hueComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/saturationComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/brightnessComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/catalogNameComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedCatalogNameComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/colorNameComponent",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/localizedColorNameComponent"
+              ],
+              "title": "Retrieving Individual Components"
+            },
+            {
+              "anchor": "Working-with-the-Color-Space",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/type",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/usingType(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/ColorType",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpace",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/colorSpaceName",
+                "doc://com.apple.appkit/documentation/AppKit/NSColorSpaceName"
+              ],
+              "title": "Working with the Color Space"
+            },
+            {
+              "anchor": "Retrieving-Core-Graphics-Color-Information",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/cgColor"
+              ],
+              "title": "Retrieving Core Graphics Color Information"
+            },
+            {
+              "anchor": "Drawing-with-Colors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/drawSwatch(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/set()",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/setFill()",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/setStroke()"
+              ],
+              "title": "Drawing with Colors"
+            },
+            {
+              "anchor": "Determining-When-Colors-Change",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/systemColorsDidChangeNotification",
+                "doc://com.apple.appkit/documentation/AppKit/NSColor/currentControlTintDidChangeNotification"
+              ],
+              "title": "Determining When Colors Change"
+            },
+            {
+              "anchor": "Getting-the-Standard-Grayscale-Colors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWhite",
+                "doc://com.apple.appkit/documentation/AppKit/NSLightGray",
+                "doc://com.apple.appkit/documentation/AppKit/NSDarkGray",
+                "doc://com.apple.appkit/documentation/AppKit/NSBlack"
+              ],
+              "title": "Getting the Standard Grayscale Colors"
+            },
+            {
+              "anchor": "Supporting-Old-Versions-of-AppKit",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAppKitVersionNumberWithPatternColorLeakFix"
+              ],
+              "title": "Supporting Old Versions of AppKit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityColor",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Colors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSColorList",
+                "doc://com.apple.appkit/documentation/AppKit/NSColorSpace"
+              ],
+              "title": "Colors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSColor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1ColorType/title",
+          "value": "NSColorType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1ColorType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1ColorType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1alphaComponent/title",
+          "value": "alphaComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1alphaComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alphaComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1write(to:)/title",
+          "value": "writeToPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1write(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeToPasteboard:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1drawSwatch(in:)/title",
+          "value": "drawSwatchInRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1drawSwatch(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawSwatchInRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1brightnessComponent/title",
+          "value": "brightnessComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1brightnessComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "brightnessComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1SystemEffect/title",
+          "value": "NSColorSystemEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1SystemEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSystemEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1SystemEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSystemEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityColor/title",
+          "value": "NSAccessibilityColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace/title",
+          "value": "NSColorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1numberOfComponents/title",
+          "value": "numberOfComponents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1numberOfComponents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfComponents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace~1extendedGenericGamma22Gray/title",
+          "value": "extendedGenericGamma22GrayColorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace~1extendedGenericGamma22Gray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedGenericGamma22GrayColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/title",
+          "value": "NSPasteboardWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1currentControlTintDidChangeNotification/title",
+          "value": "NSControlTintDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1currentControlTintDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSControlTintDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1blackComponent/title",
+          "value": "blackComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1blackComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blackComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingType(_:)/title",
+          "value": "colorUsingType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingType(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorUsingType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1localizedCatalogNameComponent/title",
+          "value": "localizedCatalogNameComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1localizedCatalogNameComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedCatalogNameComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1highlight(withLevel:)/title",
+          "value": "highlightWithLevel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1highlight(withLevel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "highlightWithLevel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingColorSpaceName(_:device:)/title",
+          "value": "colorUsingColorSpaceName:device:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingColorSpaceName(_:device:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorUsingColorSpaceName:device:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1localizedColorNameComponent/title",
+          "value": "localizedColorNameComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1localizedColorNameComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedColorNameComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1redComponent/title",
+          "value": "redComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1redComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "redComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingColorSpaceName(_:)/title",
+          "value": "colorUsingColorSpaceName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingColorSpaceName(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorUsingColorSpaceName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1greenComponent/title",
+          "value": "greenComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1greenComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "greenComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1systemColorsDidChangeNotification/title",
+          "value": "NSSystemColorsDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1systemColorsDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSystemColorsDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1init(from:)/title",
+          "value": "colorFromPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1init(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorFromPasteboard:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1colorNameComponent/title",
+          "value": "colorNameComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1colorNameComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorNameComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1blended(withFraction:of:)/title",
+          "value": "blendedColorWithFraction:ofColor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1blended(withFraction:of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "blendedColorWithFraction:ofColor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1colorSpaceName/title",
+          "value": "colorSpaceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1colorSpaceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorSpaceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/title",
+          "value": "NSPasteboardReading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1systemBlue/title",
+          "value": "systemBlueColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1systemBlue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemBlueColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1magentaComponent/title",
+          "value": "magentaComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1magentaComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "magentaComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1shadow(withLevel:)/title",
+          "value": "shadowWithLevel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1shadow(withLevel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shadowWithLevel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolorspace/title",
+          "value": "CGColorSpaceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getComponents(_:)/title",
+          "value": "getComponents:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getComponents(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getComponents:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getCyan(_:magenta:yellow:black:alpha:)/title",
+          "value": "getCyan:magenta:yellow:black:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getCyan(_:magenta:yellow:black:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCyan:magenta:yellow:black:alpha:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getWhite(_:alpha:)/title",
+          "value": "getWhite:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getWhite(_:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getWhite:alpha:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1catalogNameComponent/title",
+          "value": "catalogNameComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1catalogNameComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "catalogNameComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace~1extendedSRGB/title",
+          "value": "extendedSRGBColorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpace~1extendedSRGB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedSRGBColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1hueComponent/title",
+          "value": "hueComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1hueComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hueComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1setStroke()/title",
+          "value": "setStroke"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1setStroke()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setStroke"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1ignoresAlpha/title",
+          "value": "ignoresAlpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1ignoresAlpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ignoresAlpha"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorList/title",
+          "value": "NSColorList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1saturationComponent/title",
+          "value": "saturationComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1saturationComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "saturationComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolor/title",
+          "value": "CGColorRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingColorSpace(_:)/title",
+          "value": "colorUsingColorSpace:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1usingColorSpace(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorUsingColorSpace:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1cyanComponent/title",
+          "value": "cyanComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1cyanComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cyanComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1yellowComponent/title",
+          "value": "yellowComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1yellowComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "yellowComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName/title",
+          "value": "NSColorSpaceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSpaceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorSpaceName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorSpaceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1blueComponent/title",
+          "value": "blueComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1blueComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blueComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1colorSpace/title",
+          "value": "colorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1colorSpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1whiteComponent/title",
+          "value": "whiteComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1whiteComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "whiteComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor/title",
+          "value": "NSColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorPanel/title",
+          "value": "NSColorPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1set()/title",
+          "value": "set"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1set()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1withAlphaComponent(_:)/title",
+          "value": "colorWithAlphaComponent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1withAlphaComponent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorWithAlphaComponent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1setFill()/title",
+          "value": "setFill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1setFill()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1withSystemEffect(_:)/title",
+          "value": "colorWithSystemEffect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1withSystemEffect(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorWithSystemEffect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1cgColor/title",
+          "value": "CGColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1cgColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CGColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getRed(_:green:blue:alpha:)/title",
+          "value": "getRed:green:blue:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getRed(_:green:blue:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRed:green:blue:alpha:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getHue(_:saturation:brightness:alpha:)/title",
+          "value": "getHue:saturation:brightness:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColor~1getHue(_:saturation:brightness:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getHue:saturation:brightness:alpha:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nscolor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nscolor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

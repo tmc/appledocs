@@ -1,0 +1,2189 @@
+{
+  "abstract": [
+    {
+      "text": "A table of intersection functions that Metal calls to perform ray-tracing intersection tests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLIntersectionFunctionTable",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLIntersectionFunctionTable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLIntersectionFunctionTable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLIntersectionFunctionTable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLResource",
+              "text": "MTLResource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t implement this protocol yourself. Instead create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and configure its properties. Then call the appropriate method on the pipeline state object that you want to use this table with:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/makeIntersectionFunctionTable(descriptor:)",
+                        "isActive": true,
+                        "type": "reference"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Compute pipeline",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState/makeIntersectionFunctionTable(descriptor:stage:)",
+                        "isActive": true,
+                        "type": "reference"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Render pipeline",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use the same ray-tracing functions with more than one pipeline, make a separate table for each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the methods on this object to set the table entries to point at the intersection functions, and to provide buffers as arguments for those functions. For more information about intersection functions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAllocation": {
+      "abstract": [
+        {
+          "text": "A memory allocation from a Metal GPU device, such as a memory heap, texture, or data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAllocation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlallocation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/makeIntersectionFunctionTable(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a new intersection function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLIntersectionFunctionTableDescriptor",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/makeIntersectionFunctionTable(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newIntersectionFunctionTableWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeIntersectionFunctionTable(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate/makeintersectionfunctiontable(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an intersection function that performs an intersection test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiondescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature": {
+      "abstract": [
+        {
+          "text": "Constants for specifying different types of custom intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionSignature"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionSignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionSignature",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctionsignature"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable": {
+      "abstract": [
+        {
+          "text": "A table of intersection functions that Metal calls to perform ray-tracing intersection tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/gpuResourceID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gpuResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MTLResourceID",
+          "text": "MTLResourceID"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/gpuResourceID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gpuResourceID"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "gpuResourceID",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/gpuresourceid"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffer(_:offset:index:)": {
+      "abstract": [
+        {
+          "text": "Sets a buffer for the intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffer(_:offset:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffer:offset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBuffer(_:offset:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setbuffer(_:offset:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffers(_:offsets:range:)": {
+      "abstract": [
+        {
+          "text": "Sets a range of buffers for the intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffers(_:offsets:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBuffers(_:offsets:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setbuffers(_:offsets:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffers:offsets:withRange:": {
+      "abstract": [
+        {
+          "text": "Sets a range of buffers for the intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffers:offsets:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBuffers:offsets:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setbuffers:offsets:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunction(_:index:)": {
+      "abstract": [
+        {
+          "text": "Sets an entry in the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFunction"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunctionHandle",
+          "text": "MTLFunctionHandle"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunction(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFunction:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setFunction(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setfunction(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunctions(_:range:)": {
+      "abstract": [
+        {
+          "text": "Sets a range of entries in the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFunctions"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFunctionHandle",
+          "text": "MTLFunctionHandle"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunctions(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFunctions(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setfunctions(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunctions:withRange:": {
+      "abstract": [
+        {
+          "text": "Sets a range of entries in the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFunctions:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunctions:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFunctions:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFunctions:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setfunctions:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:index:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOpaqueCurveIntersectionFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIntersectionFunctionSignature",
+          "text": "MTLIntersectionFunctionSignature"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setOpaqueCurveIntersectionFunction(signature:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setopaquecurveintersectionfunction(signature:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:range:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOpaqueCurveIntersectionFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIntersectionFunctionSignature",
+          "text": "MTLIntersectionFunctionSignature"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:range:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOpaqueCurveIntersectionFunctionWithSignature:withRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setOpaqueCurveIntersectionFunction(signature:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setopaquecurveintersectionfunction(signature:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:index:)": {
+      "abstract": [
+        {
+          "text": "Sets an entry in the intersection table to point to a system-defined opaque triangle intersection function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOpaqueTriangleIntersectionFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIntersectionFunctionSignature",
+          "text": "MTLIntersectionFunctionSignature"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setOpaqueTriangleIntersectionFunction(signature:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setopaquetriangleintersectionfunction(signature:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:range:)": {
+      "abstract": [
+        {
+          "text": "Sets a range of entries in the intersection table to point to a system-defined opaque triangle intersection function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOpaqueTriangleIntersectionFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLIntersectionFunctionSignature",
+          "text": "MTLIntersectionFunctionSignature"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:range:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setOpaqueTriangleIntersectionFunction(signature:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setopaquetriangleintersectionfunction(signature:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTable(_:bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Sets a visible function table for the intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTable(_:bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTable:atBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVisibleFunctionTable(_:bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setvisiblefunctiontable(_:bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTables(_:bufferRange:)": {
+      "abstract": [
+        {
+          "text": "Sets a range of visible function tables for the intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTables(_:bufferRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVisibleFunctionTables(_:bufferRange:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setvisiblefunctiontables(_:bufferrange:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTables:withBufferRange:": {
+      "abstract": [
+        {
+          "text": "Sets a range of visible function tables for the intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables:withBufferRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTables:withBufferRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables:withBufferRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVisibleFunctionTables:withBufferRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable/setvisiblefunctiontables:withbufferrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor": {
+      "abstract": [
+        {
+          "text": "A specification of how to create an intersection function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTableDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontabledescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState/makeIntersectionFunctionTable(descriptor:stage:)": {
+      "abstract": [
+        {
+          "text": "Creates a new intersection function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLIntersectionFunctionTableDescriptor",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState/makeIntersectionFunctionTable(descriptor:stage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newIntersectionFunctionTableWithDescriptor:stage:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeIntersectionFunctionTable(descriptor:stage:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinestate/makeintersectionfunctiontable(descriptor:stage:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language Specification",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+        "doc://com.apple.metal/documentation/Metal/MTLResource",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Intersection-Function-Tables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature"
+      ],
+      "title": "Intersection Function Tables"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-a-Table-Entry",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunction(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunctions(_:range:)"
+      ],
+      "title": "Setting a Table Entry"
+    },
+    {
+      "anchor": "Specifying-Arguments-for-Intersection-Functions",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffer(_:offset:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffers(_:offsets:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTable(_:bufferIndex:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTables(_:bufferRange:)"
+      ],
+      "title": "Specifying Arguments for Intersection Functions"
+    },
+    {
+      "anchor": "Specifying-Opaque-Triangle-Intersection-Testing",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:range:)"
+      ],
+      "title": "Specifying Opaque Triangle Intersection Testing"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/gpuResourceID"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:range:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLIntersectionFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-a-Table-Entry",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunction(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setFunctions:withRange:"
+              ],
+              "title": "Setting a Table Entry"
+            },
+            {
+              "anchor": "Specifying-Arguments-for-Intersection-Functions",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffer(_:offset:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setBuffers:offsets:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTable(_:bufferIndex:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setVisibleFunctionTables:withBufferRange:"
+              ],
+              "title": "Specifying Arguments for Intersection Functions"
+            },
+            {
+              "anchor": "Specifying-Opaque-Triangle-Intersection-Testing",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueTriangleIntersectionFunction(signature:range:)"
+              ],
+              "title": "Specifying Opaque Triangle Intersection Testing"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/gpuResourceID"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable/setOpaqueCurveIntersectionFunction(signature:range:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Intersection-Function-Tables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature"
+              ],
+              "title": "Intersection Function Tables"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLIntersectionFunctionTable"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLResource",
+                    "text": "MTLResource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setFunction(_:index:)/title",
+          "value": "setFunction:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setFunction(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFunction:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/title",
+          "value": "MTLAllocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueCurveIntersectionFunction(signature:index:)/title",
+          "value": "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueCurveIntersectionFunction(signature:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setVisibleFunctionTable(_:bufferIndex:)/title",
+          "value": "setVisibleFunctionTable:atBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setVisibleFunctionTable(_:bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVisibleFunctionTable:atBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setBuffer(_:offset:index:)/title",
+          "value": "setBuffer:offset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setBuffer(_:offset:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBuffer:offset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1gpuResourceID/title",
+          "value": "gpuResourceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1gpuResourceID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gpuResourceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/title",
+          "value": "MTLIntersectionFunctionDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState~1makeIntersectionFunctionTable(descriptor:stage:)/title",
+          "value": "newIntersectionFunctionTableWithDescriptor:stage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState~1makeIntersectionFunctionTable(descriptor:stage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newIntersectionFunctionTableWithDescriptor:stage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueTriangleIntersectionFunction(signature:range:)/title",
+          "value": "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueTriangleIntersectionFunction(signature:range:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/title",
+          "value": "MTLIntersectionFunctionTableDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/title",
+          "value": "MTLIntersectionFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueTriangleIntersectionFunction(signature:index:)/title",
+          "value": "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueTriangleIntersectionFunction(signature:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1makeIntersectionFunctionTable(descriptor:)/title",
+          "value": "newIntersectionFunctionTableWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1makeIntersectionFunctionTable(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newIntersectionFunctionTableWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueCurveIntersectionFunction(signature:range:)/title",
+          "value": "setOpaqueCurveIntersectionFunctionWithSignature:withRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable~1setOpaqueCurveIntersectionFunction(signature:range:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOpaqueCurveIntersectionFunctionWithSignature:withRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionSignature/title",
+          "value": "MTLIntersectionFunctionSignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionSignature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionSignature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionSignature"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlintersectionfunctiontable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlintersectionfunctiontable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

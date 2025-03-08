@@ -1,0 +1,1344 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666589,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CFSet"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFSet and its derived mutable type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", provide support for the mathematical concept of a set. A set, both in its mathematical sense and in the implementation of CFSet, is an unordered collection of distinct elements. CFSet creates static sets and CFMutableSet creates dynamic sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use bags or sets as an alternative to arrays when the order of elements isn't important and performance in testing whether a value is contained in the collection is a consideration—while arrays are ordered, testing for membership is slower than with bags or sets. Use bags over sets if you want to allow duplicate values in your collections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a static set object using either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520424-cfsetcreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520420-cfsetcreatecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. These functions return a set containing the values you pass in as arguments. (Note that sets can't contain ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pointers; in most cases, though, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constant instead.) Values are not copied but retained using the retain callback provided when the set was created. Similarly, when a value is removed from a set, it is released using the release callback. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFSet provides functions for querying the values of a set. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520419-cfsetgetcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns the number of values in a set, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520436-cfsetcontainsvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function checks if a value is in a set, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520437-cfsetgetvalues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns a C array containing all the values in a set. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFSet is “toll-free bridged” with its Cocoa Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an ",
+              "type": "text"
+            },
+            {
+              "code": "NSSet *",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in a ",
+              "type": "text"
+            },
+            {
+              "code": "CFSetRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and in a function where you see a ",
+              "type": "text"
+            },
+            {
+              "code": "CFSetRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in an NSSet instance. This also applies to concrete subclasses of NSSet. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1744898",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696114": {
+      "identifier": "devLink-1696114",
+      "title": "Collections Programming Topics for Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFCollections/CFCollections.html#//apple_ref/doc/uid/10000124i"
+    },
+    "devLink-1744898": {
+      "identifier": "devLink-1744898",
+      "title": "Toll-Free Bridged Types",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520405-cfsetgetcountofvalue": {
+      "abstract": [
+        {
+          "text": "Returns the number of values in a set that match a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetGetCountOfValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!, UnsafeRawPointer!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520405-cfsetgetcountofvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetGetCountOfValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520405-cfsetgetcountofvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520409-cfsetgetvalueifpresent": {
+      "abstract": [
+        {
+          "text": "Reports whether or not a value is in a set, and if it exists returns the value indirectly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetGetValueIfPresent"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!, UnsafeRawPointer!, UnsafeMutablePointer<UnsafeRawPointer?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520409-cfsetgetvalueifpresent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetGetValueIfPresent(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520409-cfsetgetvalueifpresent"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520419-cfsetgetcount": {
+      "abstract": [
+        {
+          "text": "Returns the number of values currently in a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetGetCount"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520419-cfsetgetcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetGetCount(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520419-cfsetgetcount"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520420-cfsetcreatecopy": {
+      "abstract": [
+        {
+          "text": "Creates an immutable set containing the values of an existing set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetCreateCopy"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFSet!) -> CFSet!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520420-cfsetcreatecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetCreateCopy(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520420-cfsetcreatecopy"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520424-cfsetcreate": {
+      "abstract": [
+        {
+          "text": "Creates an immutable CFSet object containing supplied values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, UnsafeMutablePointer<UnsafeRawPointer?>!, CFIndex, UnsafePointer<CFSetCallBacks>!) -> CFSet!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520424-cfsetcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetCreate(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520424-cfsetcreate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520426-cfsetgetvalue": {
+      "abstract": [
+        {
+          "text": "Obtains a specified value from a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetGetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!, UnsafeRawPointer!) -> UnsafeRawPointer!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520426-cfsetgetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetGetValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520426-cfsetgetvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520427-cfsetgettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the CFSet type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520427-cfsetgettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520427-cfsetgettypeid"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520436-cfsetcontainsvalue": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean that indicates whether a set contains a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetContainsValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!, UnsafeRawPointer!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520436-cfsetcontainsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetContainsValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520436-cfsetcontainsvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520437-cfsetgetvalues": {
+      "abstract": [
+        {
+          "text": "Obtains all values in a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetGetValues"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!, UnsafeMutablePointer<UnsafeRawPointer?>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520437-cfsetgetvalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetGetValues(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520437-cfsetgetvalues"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1520450-cfsetapplyfunction": {
+      "abstract": [
+        {
+          "text": "Calls a function once for each value in a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetApplyFunction"
+        },
+        {
+          "kind": "text",
+          "text": "(CFSet!, ((UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void)!, UnsafeMutableRawPointer!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1520450-cfsetapplyfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetApplyFunction(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1520450-cfsetapplyfunction"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAllocator",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocator-s29"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray-s28"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfattributedstring-s1s"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag-s1l"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBinaryHeap",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbinaryheap-s11"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbitvector-s0t"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBoolean",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfboolean-s0p"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle-s0a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCalendar",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar-s01"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcharacterset-rvm"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata-rv9"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdate-rv5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDateFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdateformatter-rv6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3": {
+      "abstract": [
+        {
+          "text": "The CFFileDescriptor provides an opaque type to monitor file descriptors for read and write activity via CFRunLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFFileDescriptor",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cffiledescriptor-ru3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFLocale",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cflocale-rsj"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMachPort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmachport-rsc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMessagePort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmessageport-rs2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray-rrk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableattributedstring-rqp"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebag-rqn"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebitvector-rqf"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablecharacterset-rq3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledata-rps"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledictionary-rpl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableset-rpe"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablestring-rn7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnotificationcenter-rkv"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnull-rkr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumber",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber-rjd"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumberformatter-rjs"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugIn",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugin-rip"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugInInstance",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugininstance-rja"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPropertyList",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfpropertylist-rif"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream-ri6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopObserver",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopobserver-ri3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopSource",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopsource-rhr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer-rhk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable set object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset-rgt"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset/predefined_callback_structures": {
+      "abstract": [
+        {
+          "text": "CFSet provides some predefined callbacks for your convenience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset/predefined_callback_structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Predefined Callback Structures",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset/predefined_callback_structures"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsetapplierfunction": {
+      "abstract": [
+        {
+          "text": "Prototype of a callback function that may be applied to every value in a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetApplierFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsetapplierfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetApplierFunction",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsetapplierfunction"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsetcallbacks": {
+      "abstract": [
+        {
+          "text": "This structure contains the callbacks used to retain, release, describe, and compare the values of a CFSet object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetCallBacks"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsetcallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetCallBacks",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsetcallbacks"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsetcopydescriptioncallback": {
+      "abstract": [
+        {
+          "text": "Prototype of a callback function used to get a description of a value in a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetCopyDescriptionCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsetcopydescriptioncallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetCopyDescriptionCallBack",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsetcopydescriptioncallback"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsetequalcallback": {
+      "abstract": [
+        {
+          "text": "Prototype of a callback function used to determine if two values in a set are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetEqualCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsetequalcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetEqualCallBack",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsetequalcallback"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsethashcallback": {
+      "abstract": [
+        {
+          "text": "Prototype of a callback function called to compute a hash code for a value. Hash codes are used when values are accessed, added, or removed from a collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetHashCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsethashcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetHashCallBack",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsethashcallback"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsetreleasecallback": {
+      "abstract": [
+        {
+          "text": "Prototype of a callback function used to release a value before it’s removed from a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetReleaseCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsetreleasecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetReleaseCallBack",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsetreleasecallback"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsetretaincallback": {
+      "abstract": [
+        {
+          "text": "Prototype of a callback function used to retain a value being added to a set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFSetRetainCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsetretaincallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSetRetainCallBack",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsetretaincallback"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSocket",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsocket-rg7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring-rfh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8": {
+      "abstract": [
+        {
+          "text": "CFStringTokenizer allows you to tokenize strings into words, sentences or paragraphs in a language-neutral way. It supports languages such as Japanese and Chinese that do not delimit words by spaces, as well as de-compounding German compounds. You can obtain Latin transcription for tokens. It also provides language identification API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringtokenizer-rf8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTimeZone",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftimezone-rec"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftree-rds": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftree-rds"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftype": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftype",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl-rd7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUserNotification",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfusernotification-rd5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUUID",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfuuid-rci"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream-rc8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLNode",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlnode-rbu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLParser",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlparser-rc1"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmltree-rbh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfnull": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfnull"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+        "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+        "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+        "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+        "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+        "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+        "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+        "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+        "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+        "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+        "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+        "doc://com.apple.documentation/documentation/corefoundation/cftype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+        "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh"
+      ],
+      "title": "Opaque Types"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1696114"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1666613",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1520424-cfsetcreate",
+        "doc://com.apple.documentation/documentation/corefoundation/1520420-cfsetcreatecopy"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Sets"
+    },
+    {
+      "anchor": "1666653",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1520436-cfsetcontainsvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1520419-cfsetgetcount",
+        "doc://com.apple.documentation/documentation/corefoundation/1520405-cfsetgetcountofvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1520426-cfsetgetvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1520409-cfsetgetvalueifpresent",
+        "doc://com.apple.documentation/documentation/corefoundation/1520437-cfsetgetvalues"
+      ],
+      "kind": "taskGroup",
+      "title": "Examining a Set"
+    },
+    {
+      "anchor": "1666735",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1520450-cfsetapplyfunction"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying a Function to Set Members"
+    },
+    {
+      "anchor": "1666768",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1520427-cfsetgettypeid"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the CFSet Type ID"
+    },
+    {
+      "anchor": "1666802",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfsetapplierfunction",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsetcopydescriptioncallback",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsetequalcallback",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsethashcallback",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsetreleasecallback",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsetretaincallback"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1666865",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfsetcallbacks",
+        "doc://com.apple.documentation/documentation/corefoundation/cfset"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1666937",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfset/predefined_callback_structures"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfset-rgt"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

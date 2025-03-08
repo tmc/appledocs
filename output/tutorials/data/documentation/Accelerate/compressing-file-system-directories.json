@@ -1,0 +1,989 @@
+{
+  "abstract": [
+    {
+      "text": "Compress the contents of an entire directory and store the result on the file system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/compressing-file-system-directories"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Compressing file system directories"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this article, you’ll learn how to use AppleArchive to compress the contents of an entire directory to a single archive file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below compresses the contents of a directory name ",
+              "type": "text"
+            },
+            {
+              "code": "src",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/Algorithm/lzfse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " algorithm, and stores the result in a file named ",
+              "type": "text"
+            },
+            {
+              "code": "directory.aar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-file-stream-to-write-the-compressed-file",
+          "level": 3,
+          "text": "Create the file stream to write the compressed file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveByteStream/fileStream(path:mode:options:permissions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create the file stream that writes the compressed file to the file system. In this case, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let archiveDestination = NSTemporaryDirectory() + \"directory.aar\"",
+            "let archiveFilePath = FilePath(archiveDestination)",
+            "",
+            "guard let writeFileStream = ArchiveByteStream.fileStream(",
+            "        path: archiveFilePath,",
+            "        mode: .writeOnly,",
+            "        options: [ .create ],",
+            "        permissions: FilePermissions(rawValue: 0o644)) else {",
+            "    return",
+            "}",
+            "defer {",
+            "    try? writeFileStream.close()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-compression-stream",
+          "level": 3,
+          "text": "Create the compression stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the compression stream, and specify the compression algorithm as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveCompression/lzfse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Specify the file-writing stream as the stream that receives the compressed data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let compressStream = ArchiveByteStream.compressionStream(",
+            "        using: .lzfse,",
+            "        writingTo: writeFileStream) else {",
+            "    return",
+            "}",
+            "defer {",
+            "    try? compressStream.close()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-encoding-stream",
+          "level": 3,
+          "text": "Create the encoding stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the encoding stream. The encoding stream encodes its data as a byte stream, and sends the encoded data to the compression stream:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let encodeStream = ArchiveStream.encodeStream(writingTo: compressStream) else {",
+            "    return",
+            "}",
+            "defer {",
+            "    try? encodeStream.close()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-header-keys",
+          "level": 3,
+          "text": "Define the header keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a field key set that defines the fields in the archive header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let keySet = ArchiveHeader.FieldKeySet(\"TYP,PAT,LNK,DEV,DAT,UID,GID,MOD,FLG,MTM,BTM,CTM\") else {",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about three-letter keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveHeader/FieldKeySet/init(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compress-the-directory-contents",
+          "level": 3,
+          "text": "Compress the directory contents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to write the directory contents to the encode stream. In turn, the encode stream writes to the compression stream and then, the compression stream writes to the file stream. Finally, the file stream writes the archive file to the file system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sourcePath = NSTemporaryDirectory() + \"src/\"",
+            "let source = FilePath(sourcePath)",
+            "",
+            "do {",
+            "    try encodeStream.writeDirectoryContents(",
+            "        archiveFrom: source,",
+            "        keySet: keySet)",
+            "} catch {",
+            "    fatalError(\"Write directory contents failed.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "directory.aar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " exists in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and contains the compressed contents of ",
+              "type": "text"
+            },
+            {
+              "code": "src/",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-saving-a-string-to-the-file-system": {
+      "abstract": [
+        {
+          "text": "Compress the contents of a Unicode string and store the result on the file system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-saving-a-string-to-the-file-system",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing and saving a string to the file system",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-and-saving-a-string-to-the-file-system"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-single-files": {
+      "abstract": [
+        {
+          "text": "Compress a single file and store the result on the file system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-single-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing single files",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-single-files"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/decompressing-and-extracting-an-archived-directory": {
+      "abstract": [
+        {
+          "text": "Recreate an entire file system directory from an archive file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/decompressing-and-extracting-an-archived-directory",
+      "kind": "article",
+      "role": "article",
+      "title": "Decompressing and extracting an archived directory",
+      "type": "topic",
+      "url": "/documentation/accelerate/decompressing-and-extracting-an-archived-directory"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/decompressing-and-parsing-an-archived-string": {
+      "abstract": [
+        {
+          "text": "Recreate a string from an archive file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/decompressing-and-parsing-an-archived-string",
+      "kind": "article",
+      "role": "article",
+      "title": "Decompressing and Parsing an Archived String",
+      "type": "topic",
+      "url": "/documentation/accelerate/decompressing-and-parsing-an-archived-string"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/decompressing-single-files": {
+      "abstract": [
+        {
+          "text": "Recreate a single file from a compressed file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/decompressing-single-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Decompressing single files",
+      "type": "topic",
+      "url": "/documentation/accelerate/decompressing-single-files"
+    },
+    "doc://com.apple.documentation/documentation/AppleArchive/ArchiveByteStream/fileStream(path:mode:options:permissions:)": {
+      "abstract": [
+        {
+          "text": "Opens a new file descriptor using the given path and parameters, and creates a stream from the file descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileStream"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV11OpenOptionsV",
+          "text": "OpenOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "permissions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System15FilePermissionsV",
+          "text": "FilePermissions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B10ByteStreamC",
+          "text": "ArchiveByteStream"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveByteStream/fileStream(path:mode:options:permissions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileStream(path:mode:options:permissions:)",
+      "type": "topic",
+      "url": "/documentation/AppleArchive/ArchiveByteStream/fileStream(path:mode:options:permissions:)"
+    },
+    "doc://com.apple.documentation/documentation/AppleArchive/ArchiveCompression/lzfse": {
+      "abstract": [
+        {
+          "text": "The LZFSE compression algorithm, that’s recommended for use on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lzfse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B11CompressionV",
+          "text": "ArchiveCompression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveCompression/lzfse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lzfse",
+      "type": "topic",
+      "url": "/documentation/AppleArchive/ArchiveCompression/lzfse"
+    },
+    "doc://com.apple.documentation/documentation/AppleArchive/ArchiveHeader/FieldKeySet/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new field key set from the specified comma-separated string of three-letter keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "s"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveHeader/FieldKeySet/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/AppleArchive/ArchiveHeader/FieldKeySet/init(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)": {
+      "abstract": [
+        {
+          "text": "Writes all entries from a directory to the archive stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeDirectoryContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "archiveFrom"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "directory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keySet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+          "text": "ArchiveHeader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC11FieldKeySetC",
+          "text": "FieldKeySet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selectUsing"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC",
+          "text": "ArchiveHeader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B6HeaderC11EntryFiltera",
+          "text": "EntryFilter"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AppleArchive0B5FlagsV",
+          "text": "ArchiveFlags"
+        },
+        {
+          "kind": "text",
+          "text": " = [], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "threadCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " = 0) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)",
+      "type": "topic",
+      "url": "/documentation/AppleArchive/ArchiveStream/writeDirectoryContents(archiveFrom:path:keySet:selectUsing:flags:threadCount:)"
+    },
+    "doc://com.apple.documentation/documentation/Compression/Algorithm/lzfse": {
+      "abstract": [
+        {
+          "text": "The LZFSE compression algorithm, which is recommended for use on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lzfse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/Algorithm/lzfse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Algorithm.lzfse",
+      "type": "topic",
+      "url": "/documentation/Compression/Algorithm/lzfse"
+    },
+    "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly": {
+      "abstract": [
+        {
+          "text": "Opens the file for writing only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV",
+          "text": "FileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System14FileDescriptorV10AccessModeV",
+          "text": "AccessMode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/System/FileDescriptor/AccessMode/writeOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeOnly",
+      "type": "topic",
+      "url": "/documentation/System/FileDescriptor/AccessMode/writeOnly"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory": {
+      "abstract": [
+        {
+          "text": "Returns the path of the temporary directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTemporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTemporaryDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1409211-nstemporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Directories-Files-and-Data-Archives",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-single-files",
+        "doc://com.apple.accelerate/documentation/Accelerate/decompressing-single-files",
+        "doc://com.apple.accelerate/documentation/Accelerate/decompressing-and-extracting-an-archived-directory",
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-saving-a-string-to-the-file-system",
+        "doc://com.apple.accelerate/documentation/Accelerate/decompressing-and-parsing-an-archived-string"
+      ],
+      "title": "Directories, Files, and Data Archives"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~11409211-nstemporarydirectory/title",
+          "value": "NSTemporaryDirectory"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "abstract": [
+    {
+      "text": "The quantity of the product the customer purchased in a single transaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/quantity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:external_purchase_server_api:quantity",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "quantity"
+      }
+    ],
+    "modules": [
+      {
+        "name": "External Purchase Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "quantity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.0",
+        "name": "External Purchase Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "quantity"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: External Purchase Server API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "int64 "
+            },
+            {
+              "kind": "identifier",
+              "text": "quantity"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field applies only to purchases. Don’t include a ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for refunds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when a customer purchases a single product. Use a value greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when someone purchases a multiple of the same product in one transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Amount values always represent the total amount for the line item, not a per-item amount. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "quantity",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value is not used for calculations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiple items may be considered a single product if they are sold as a package. For example, a 10-pack of game gems may be a single product with a quantity of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "SUBSCRIPTION",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use a ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate a purchase of multiple subscriptions that renew as one, for example, a multi-seat subscription. If subscriptions can have different billing dates or renewal schedules, report them as separate line items with a ",
+              "type": "text"
+            },
+            {
+              "code": "quantity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productIdentifier": {
+      "abstract": [
+        {
+          "text": "A string that identifies the product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "productIdentifier",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/productidentifier"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productType": {
+      "abstract": [
+        {
+          "text": "The type of product in the transaction, whether it’s a one-time buy, or a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "productType"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productType"
+        }
+      ],
+      "role": "symbol",
+      "title": "productType",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/producttype"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/quantity": {
+      "abstract": [
+        {
+          "text": "The quantity of the product the customer purchased in a single transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "quantity"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/quantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "quantity",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/quantity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-product-info",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productIdentifier",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/productType"
+      ],
+      "title": "Providing product info"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalpurchaseserverapi/quantity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

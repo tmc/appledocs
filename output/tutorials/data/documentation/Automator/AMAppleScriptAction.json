@@ -1,0 +1,1085 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents Automator actions whose runtime behavior is driven by an AppleScript script.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the Cocoa-AppleScript template (an instance of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ") in Xcode to create AppleScript-based Automator actions.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automator/documentation/Automator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AMAppleScriptAction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AMAppleScriptAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Automator"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AMAppleScriptAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AMAppleScriptAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AMAppleScriptAction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object holds the compiled script as an instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "OSAScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. By default, the ",
+              "type": "text"
+            },
+            {
+              "code": "OSAScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is instantiated from the script in the Xcode project file ",
+              "type": "text"
+            },
+            {
+              "code": "main.applescript",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a Automator Applescript Action project in Xcode, the project template supplies an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance as File’s Owner of the action bundle. This ready-made instance provides a default implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that uses the logic defined in the script. You can substitute your own subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for File’s Owner if you need to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.automator/documentation/Automator": {
+      "abstract": [
+        {
+          "text": "Develop actions that the Automator app can load and run. View, edit, and run Automator workflows in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automator",
+      "type": "topic",
+      "url": "/documentation/automator"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface and general characteristics of Automator actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMAction"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMAction",
+      "type": "topic",
+      "url": "/documentation/automator/amaction"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)": {
+      "abstract": [
+        {
+          "text": "Requests the action to perform its task using the specified input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithInput:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(withInput:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/run(withinput:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction": {
+      "abstract": [
+        {
+          "text": "An object that represents Automator actions whose runtime behavior is driven by an AppleScript script.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMAppleScriptAction"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMAppleScriptAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMAppleScriptAction",
+      "type": "topic",
+      "url": "/documentation/automator/amapplescriptaction"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction/script": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "OSAScript",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing the receiver’s script containing the ",
+          "type": "text"
+        },
+        {
+          "code": "on run",
+          "type": "codeVoice"
+        },
+        {
+          "text": " command handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "script"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OSAScript",
+          "text": "OSAScript"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction/script",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "script"
+        }
+      ],
+      "role": "symbol",
+      "title": "script",
+      "type": "topic",
+      "url": "/documentation/automator/amapplescriptaction/script"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMBundleAction": {
+      "abstract": [
+        {
+          "text": "An object that represents an Automator action that’s a loadable bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMBundleAction"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMBundleAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMBundleAction",
+      "type": "topic",
+      "url": "/documentation/automator/ambundleaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMBundleAction"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Accessing-the-script",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction/script"
+      ],
+      "title": "Accessing the script"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AMAppleScriptAction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAppleScriptAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAppleScriptAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.automator/documentation/Automator"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-the-script",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAppleScriptAction/script"
+              ],
+              "title": "Accessing the script"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMBundleAction"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AMAppleScriptAction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AMBundleAction",
+                    "text": "AMBundleAction"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the Cocoa-AppleScript template (an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") in Xcode to create AppleScript-based Automator actions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMBundleAction/title",
+          "value": "AMBundleAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMBundleAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMBundleAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMBundleAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMBundleAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAppleScriptAction~1script/title",
+          "value": "script"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAppleScriptAction~1script/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "script"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAppleScriptAction/title",
+          "value": "AMAppleScriptAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAppleScriptAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAppleScriptAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAppleScriptAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAppleScriptAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction/title",
+          "value": "AMAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1run(withInput:)/title",
+          "value": "runWithInput:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1run(withInput:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithInput:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automator/amapplescriptaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automator/amapplescriptaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

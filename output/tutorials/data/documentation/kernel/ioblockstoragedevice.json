@@ -1,0 +1,1127 @@
+{
+  "abstract": [
+    {
+      "text": "A generic block storage device abstraction.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1568443,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOBlockStorageDevice",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOBlockStorageDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBlockStorageDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOBlockStorageDevice class exports the generic block storage protocol, independent of the physical connection protocol (e.g. SCSI, ATA, USB), forwarding all requests to its provider (the Transport Driver). Though the nub does no actual processing of requests, it is necessary in a C++ environment. The Transport Driver can be of any type, as long as it inherits from IOService. Because Transport Drivers needn't derive from a type known to IOBlockStorageDriver, it isn't possible for IOBlockStorageDriver to include the appropriate header file to allow direct communication with the Transport Driver. Thus we achieve polymorphism by having the Transport Driver instantiate a subclass of IOBlockStorageDevice. A typical implementation for a concrete subclass of IOBlockStorageDevice simply relays all methods to its provider (the Transport Driver), which implements the protocol- and device-specific behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All pure-virtual functions must be implemented by the Transport Driver, which is responsible for instantiating the Nub.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/mass_storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mass Storage",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/mass_storage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobdservices": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobdservices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBDServices",
+      "type": "topic",
+      "url": "/documentation/kernel/iobdservices"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice": {
+      "abstract": [
+        {
+          "text": "A generic block storage device abstraction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBlockStorageDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568442-requestidle": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIdle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568442-requestidle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestIdle",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568442-requestidle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568444-dosynchronizecache": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doSynchronizeCache"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568444-dosynchronizecache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doSynchronizeCache",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568444-dosynchronizecache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568445-reportlockability": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportLockability"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568445-reportlockability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportLockability",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568445-reportlockability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568447-getrevisionstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRevisionString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568447-getrevisionstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRevisionString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568447-getrevisionstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568449-dolockunlockmedia": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doLockUnlockMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568449-dolockunlockmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doLockUnlockMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568449-dolockunlockmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568451-getwritecachestate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWriteCacheState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568451-getwritecachestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWriteCacheState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568451-getwritecachestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568452-getadditionaldeviceinfostring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAdditionalDeviceInfoString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568452-getadditionaldeviceinfostring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAdditionalDeviceInfoString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568452-getadditionaldeviceinfostring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568454-reportejectability": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportEjectability"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568454-reportejectability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportEjectability",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568454-reportejectability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568457-reportpollrequirements": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportPollRequirements"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568457-reportpollrequirements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportPollRequirements",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568457-reportpollrequirements"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568458-dogetformatcapacities": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doGetFormatCapacities"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568458-dogetformatcapacities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doGetFormatCapacities",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568458-dogetformatcapacities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568459-dosetpriority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doSetPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568459-dosetpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doSetPriority",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568459-dosetpriority"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568460-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568460-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568460-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568461-dodiscard": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doDiscard"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568461-dodiscard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doDiscard",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568461-dodiscard"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568462-dosynchronize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doSynchronize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568462-dosynchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doSynchronize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568462-dosynchronize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568463-reportwriteprotection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportWriteProtection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568463-reportwriteprotection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportWriteProtection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568463-reportwriteprotection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568464-setproperties": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568464-setproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568464-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568465-reportmaxvalidblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportMaxValidBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568465-reportmaxvalidblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportMaxValidBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568465-reportmaxvalidblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568466-getproperty": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568466-getproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProperty",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568466-getproperty"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568467-getproductstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getProductString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568467-getproductstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getProductString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568467-getproductstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568468-setwritecachestate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWriteCacheState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568468-setwritecachestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setWriteCacheState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568468-setwritecachestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568469-doejectmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doEjectMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568469-doejectmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doEjectMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568469-doejectmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568471-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568471-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568471-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568473-doasyncreadwrite": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doAsyncReadWrite"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568473-doasyncreadwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doAsyncReadWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568473-doasyncreadwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568474-doformatmedia": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doFormatMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568474-doformatmedia",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doFormatMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568474-doformatmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568475-reportmediastate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportMediaState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568475-reportmediastate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportMediaState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568475-reportmediastate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568476-dounmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doUnmap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568476-dounmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doUnmap",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568476-dounmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568477-reportblocksize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportBlockSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568477-reportblocksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568477-reportblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568478-reportremovability": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportRemovability"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568478-reportremovability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportRemovability",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568478-reportremovability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568480-getvendorstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getVendorString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568480-getvendorstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getVendorString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1568480-getvendorstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1646351-dogetprovisionstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doGetProvisionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1646351-dogetprovisionstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doGetProvisionStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1646351-dogetprovisionstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811665-doasyncreadwrite": {
+      "abstract": [
+        {
+          "text": "Start an asynchronous read or write operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811665-doasyncreadwrite",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doAsyncReadWrite",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811665-doasyncreadwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811672-doejectmedia": {
+      "abstract": [
+        {
+          "text": "Eject the media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811672-doejectmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doEjectMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811672-doejectmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811680-doformatmedia": {
+      "abstract": [
+        {
+          "text": "Format the media to the specified byte capacity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811680-doformatmedia",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doFormatMedia",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811680-doformatmedia"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811684-dogetformatcapacities": {
+      "abstract": [
+        {
+          "text": "Return the allowable formatting byte capacities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811684-dogetformatcapacities",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doGetFormatCapacities",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811684-dogetformatcapacities"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811691-dosynchronizecache": {
+      "abstract": [
+        {
+          "text": "Force data blocks in the hardware's buffer to be flushed to the media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811691-dosynchronizecache",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doSynchronizeCache",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811691-dosynchronizecache"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811698-dounmap": {
+      "abstract": [
+        {
+          "text": "Delete unused data blocks from the media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811698-dounmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "doUnmap",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811698-dounmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811705-getadditionaldeviceinfostring": {
+      "abstract": [
+        {
+          "text": "Return additional informational string for the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811705-getadditionaldeviceinfostring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAdditionalDeviceInfoString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811705-getadditionaldeviceinfostring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811712-getproductstring": {
+      "abstract": [
+        {
+          "text": "Return Product Name string for the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811712-getproductstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getProductString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811712-getproductstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811717-getrevisionstring": {
+      "abstract": [
+        {
+          "text": "Return Product Revision string for the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811717-getrevisionstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRevisionString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811717-getrevisionstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811724-getvendorstring": {
+      "abstract": [
+        {
+          "text": "Return Vendor Name string for the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811724-getvendorstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getVendorString",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811724-getvendorstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811731-getwritecachestate": {
+      "abstract": [
+        {
+          "text": "Reports the current write cache state of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811731-getwritecachestate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getWriteCacheState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811731-getwritecachestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811746-init": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811746-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811746-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811753-reportblocksize": {
+      "abstract": [
+        {
+          "text": "Report the block size for the device, in bytes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811753-reportblocksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reportBlockSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811753-reportblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811761-reportejectability": {
+      "abstract": [
+        {
+          "text": "Report if the media is ejectable under software control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811761-reportejectability",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reportEjectability",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811761-reportejectability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811771-reportmaxvalidblock": {
+      "abstract": [
+        {
+          "text": "Report the highest valid block for the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811771-reportmaxvalidblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reportMaxValidBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811771-reportmaxvalidblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811780-reportmediastate": {
+      "abstract": [
+        {
+          "text": "Report the device's media state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811780-reportmediastate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reportMediaState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811780-reportmediastate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811787-reportremovability": {
+      "abstract": [
+        {
+          "text": "Report whether the media is removable or not.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811787-reportremovability",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reportRemovability",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811787-reportremovability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811796-reportwriteprotection": {
+      "abstract": [
+        {
+          "text": "Report whether the media is write-protected or not.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811796-reportwriteprotection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reportWriteProtection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811796-reportwriteprotection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811804-requestidle": {
+      "abstract": [
+        {
+          "text": "Request that the device enter an idle state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811804-requestidle",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "requestIdle",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811804-requestidle"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811812-setwritecachestate": {
+      "abstract": [
+        {
+          "text": "Sets the write cache state of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811812-setwritecachestate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setWriteCacheState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstoragedevice/1811812-setwritecachestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioblockstorageservices": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioblockstorageservices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBlockStorageServices",
+      "type": "topic",
+      "url": "/documentation/kernel/ioblockstorageservices"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocdblockstoragedevice": {
+      "abstract": [
+        {
+          "text": "The IOCDBlockStorageDevice class is a generic CD block storage device abstraction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocdblockstoragedevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCDBlockStorageDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/iocdblockstoragedevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstorageservices",
+        "doc://com.apple.documentation/documentation/kernel/iocdblockstoragedevice",
+        "doc://com.apple.documentation/documentation/kernel/iobdservices"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1675726",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811665-doasyncreadwrite",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811672-doejectmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811680-doformatmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811684-dogetformatcapacities",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811691-dosynchronizecache",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811698-dounmap",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811705-getadditionaldeviceinfostring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811712-getproductstring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811717-getrevisionstring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811724-getvendorstring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811731-getwritecachestate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811746-init",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811753-reportblocksize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811761-reportejectability",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811771-reportmaxvalidblock",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811780-reportmediastate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811787-reportremovability",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811796-reportwriteprotection",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811804-requestidle",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1811812-setwritecachestate"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2860249",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568473-doasyncreadwrite",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568461-dodiscard",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568469-doejectmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568474-doformatmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568458-dogetformatcapacities",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1646351-dogetprovisionstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568449-dolockunlockmedia",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568459-dosetpriority",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568462-dosynchronize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568444-dosynchronizecache",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568476-dounmap",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568452-getadditionaldeviceinfostring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568460-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568467-getproductstring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568466-getproperty",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568447-getrevisionstring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568480-getvendorstring",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568451-getwritecachestate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568471-init",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568477-reportblocksize",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568454-reportejectability",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568445-reportlockability",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568465-reportmaxvalidblock",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568475-reportmediastate",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568457-reportpollrequirements",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568478-reportremovability",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568463-reportwriteprotection",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568442-requestidle",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568464-setproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioblockstoragedevice/1568468-setwritecachestate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioblockstoragedevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

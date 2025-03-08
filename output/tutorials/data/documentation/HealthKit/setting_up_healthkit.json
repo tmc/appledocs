@@ -1,0 +1,930 @@
+{
+  "abstract": [
+    {
+      "text": "Set up and configure your HealthKit store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Setting up HealthKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using HealthKit, you must perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable HealthKit in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure HealthKit is available on the current device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create your app’s HealthKit store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request permission to read and share data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections describe the first three steps in detail. For more information on requesting authorization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For a practical example of how to set up and use HealthKit, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-HealthKit",
+          "level": 3,
+          "text": "Enable HealthKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can use HealthKit, you must enable the HealthKit capabilities for your app. In Xcode, select the project and add the HealthKit capability. Only select the Clinical Health Records checkbox if your app needs to access the user’s clinical records. App Review may reject apps that enable the Clinical Health Records capability if the app doesn’t actually use the health record data. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3874041",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a detailed discussion about enabling capabilities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-healthkit-access",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable the HealthKit capabilities on an iOS app, Xcode adds HealthKit to the list of required device capabilities, which prevents users from purchasing or installing the app on devices that don’t support HealthKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If HealthKit isn’t required for the correct operation of your app, delete the ",
+              "type": "text"
+            },
+            {
+              "code": "healthkit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry from the “Required device capabilities” array. Delete this entry from either the Target Properties list on the app’s Info tab or from the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "healthkit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entry isn’t used by watchOS apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on required device capabilities, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-HealthKits-availability",
+          "level": 3,
+          "text": "Ensure HealthKit’s availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to confirm that HealthKit is available on the user’s device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if HKHealthStore.isHealthDataAvailable() {",
+            "    // Add code to use HealthKit here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method before calling any other HealthKit methods. If HealthKit isn’t available on the device (for example, on iPadOS 16 or earlier, or macOS), other HealthKit methods fail with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/errorHealthDataUnavailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error. If HealthKit is restricted (for example, in an enterprise environment), the methods fail with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/errorHealthDataRestricted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-HealthKit-store",
+          "level": 3,
+          "text": "Create the HealthKit store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If HealthKit is both enabled and available, instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for your app as shown:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let healthStore = HKHealthStore()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need only a single HealthKit store per app. These are long-lived objects; you create the store once, and keep a reference for later use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.healthkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may request user authorization to access health and activity data that appears in the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.healthkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HealthKit Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.healthkit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.healthkit.access": {
+      "abstract": [
+        {
+          "text": "Health data types that require additional permission.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.healthkit.access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HealthKit Capabilities Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.healthkit.access"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read clinical records.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthClinicalHealthRecordsShareUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers": {
+      "abstract": [
+        {
+          "text": "The clinical record data types that your app must get permission to read.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthRequiredReadAuthorizationTypeIdentifiers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthShareUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to save samples to the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthUpdateUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities": {
+      "abstract": [
+        {
+          "text": "The device-related features that your app requires to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRequiredDeviceCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIRequiredDeviceCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/Updates/HealthKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/HealthKit",
+      "kind": "article",
+      "role": "article",
+      "title": "HealthKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/HealthKit"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-healthkit-access": {
+      "abstract": [
+        {
+          "text": "Read and write health and activity data in the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-healthkit-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring HealthKit access",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-healthkit-access"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/errorHealthDataRestricted": {
+      "abstract": [
+        {
+          "text": "A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorHealthDataRestricted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11HKErrorCodeLeV",
+          "text": "HKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/errorHealthDataRestricted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorHealthDataRestricted",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/errorhealthdatarestricted"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/errorHealthDataUnavailable": {
+      "abstract": [
+        {
+          "text": "The user accessed HealthKit on an unsupported device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorHealthDataUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11HKErrorCodeLeV",
+          "text": "HKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/errorHealthDataUnavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorHealthDataUnavailable",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/errorhealthdataunavailable"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore": {
+      "abstract": [
+        {
+          "text": "The access point for all data managed by HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHealthStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHealthStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether HealthKit is available on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHealthDataAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHealthStore/isHealthDataAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isHealthDataAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHealthDataAvailable()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore/ishealthdataavailable()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework": {
+      "abstract": [
+        {
+          "text": "Learn about the architecture and design of the HealthKit framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HealthKit framework",
+      "type": "topic",
+      "url": "/documentation/healthkit/about-the-healthkit-framework"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records": {
+      "abstract": [
+        {
+          "text": "Read clinical record data from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing Health Records",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-health-records"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data": {
+      "abstract": [
+        {
+          "text": "Request permission to read and share data in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing access to health data",
+      "type": "topic",
+      "url": "/documentation/healthkit/authorizing-access-to-health-data"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create your own workout app, quickly and easily, with HealthKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Build a workout app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/healthkit/build-a-workout-app-for-apple-watch"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy": {
+      "abstract": [
+        {
+          "text": "Respect and safeguard your user’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting user privacy",
+      "type": "topic",
+      "url": "/documentation/healthkit/protecting-user-privacy"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKitUI": {
+      "abstract": [
+        {
+          "text": "Display user interface that enables a person to view and interact with their health data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKitUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKitUI",
+      "type": "topic",
+      "url": "/documentation/healthkitui"
+    },
+    "media-3874041": {
+      "alt": "A screenshot of Xcode’s Signing & Capabilities tab showing the HealthKit capabilities. The Clinical Health Records and Background Delivery checkboxes aren’t selected.",
+      "identifier": "media-3874041",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ab4327eb865cf362390b74b0cf8692c/media-3874041@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/983c0c29c055004de5943c30d61891be/media-3874041~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+        "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+        "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy",
+        "doc://com.apple.documentation/documentation/Updates/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKitUI"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Entitlements",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.healthkit",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.healthkit.access"
+      ],
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "Information-property-list-keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthRequiredReadAuthorizationTypeIdentifiers",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthClinicalHealthRecordsShareUsageDescription"
+      ],
+      "title": "Information property list keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1isHealthDataAvailable()/title",
+          "value": "isHealthDataAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore~1isHealthDataAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isHealthDataAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/title",
+          "value": "HKHealthStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHealthStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHealthStore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

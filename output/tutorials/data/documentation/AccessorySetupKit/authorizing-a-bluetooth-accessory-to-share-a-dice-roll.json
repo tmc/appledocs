@@ -1,0 +1,478 @@
+{
+  "abstract": [
+    {
+      "text": "Discover, select, and set up a specific Bluetooth accessory without requesting permission to use Bluetooth.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "authorizing-a-bluetooth-accessory-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AccessorySetupKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Authorizing a Bluetooth accessory to share a dice roll"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project uses two app targets to demonstrate how to use AccessorySetupKit. ",
+              "type": "text"
+            },
+            {
+              "code": "ASKSampleAccessory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " simulates Bluetooth dice, while ",
+              "type": "text"
+            },
+            {
+              "code": "ASKSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " highlights how to use AccessorySetupKit to onboard the accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ASKSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target uses AccessorySetupKit to authorize the use of a Bluetooth dice accessory and receive roll results. When you tap the “Add Dice” button, the app searches for dice and presents the set up AccessorySetupKit UI. AccessorySetupKit then authorizes and grants the app access to that accessory. After authorization, you can connect to the accessory and receive roll results until you decide to disconnect or remove authorization altogether.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10203/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this sample app relies on using Bluetooth to connect with the accessory functionality, you can’t run this sample in Simulator — you’ll need to run it on a device. To run this sample, you’ll need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An Apple Developer profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Two devices running iOS 18 or iPadOS 18 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Using-the-applications",
+          "level": 3,
+          "text": "Using the applications",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the two targets on separate devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ASKSampleAccessory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", tap “Power On”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ASKSample",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", tap “Add Dice” and authorize the accessory using the AccessorySetupKit UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The accessory is now authorized for use in the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "2d81539c62a9/AuthorizingABluetoothAccessoryToShareADiceRoll.zip": {
+      "checksum": "2d81539c62a966b586b4a91b30c50efb1c92d85e6debe89673098e75b7af1d12e011a20af990bf308f5e5ccc1e6ec9b55b14a02cf14b30105373b3ef071c5feb",
+      "identifier": "2d81539c62a9/AuthorizingABluetoothAccessoryToShareADiceRoll.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2d81539c62a9/AuthorizingABluetoothAccessoryToShareADiceRoll.zip"
+    },
+    "authorizing-a-bluetooth-accessory-PageImage-card.png": {
+      "alt": null,
+      "identifier": "authorizing-a-bluetooth-accessory-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7888823e893746ded65d008246db50b5/authorizing-a-bluetooth-accessory-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac870df192b194e8124f2d548bfe0de9/authorizing-a-bluetooth-accessory-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "discovering-configuring-accessories-PageImage-card.png": {
+      "alt": "An illustration that shows Bluetooth and Wi-Fi devices communicating.",
+      "identifier": "discovering-configuring-accessories-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab9450c2b7948ffea221e483d1b210d3/discovering-configuring-accessories-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50cc817a2ebceed40a67b891238dd603/discovering-configuring-accessories-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit": {
+      "abstract": [
+        {
+          "text": "Enable privacy-preserving discovery and configuration of accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AccessorySetupKit",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession": {
+      "abstract": [
+        {
+          "text": "A class to coordinate accessory discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySession"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessorySession",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories": {
+      "abstract": [
+        {
+          "text": "Detect nearby accessories and facilitate their setup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories",
+      "images": [
+        {
+          "identifier": "discovering-configuring-accessories-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Discovering and configuring accessories",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/discovering-and-configuring-accessories"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc24/10203/": {
+      "identifier": "https://developer.apple.com/wwdc24/10203/",
+      "title": "10203: Meet AccessorySetupKit",
+      "titleInlineContent": [
+        {
+          "text": "10203: Meet AccessorySetupKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10203/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2d81539c62a9/AuthorizingABluetoothAccessoryToShareADiceRoll.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/title",
+          "value": "ASAccessorySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessorysetupkit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

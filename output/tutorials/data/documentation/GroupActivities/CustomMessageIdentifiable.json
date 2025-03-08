@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "A type that assigns a custom ID string to messages you send to other devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15GroupActivities25CustomMessageIdentifiableP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CustomMessageIdentifiable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CustomMessageIdentifiable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CustomMessageIdentifiable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CustomMessageIdentifiable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt this protocol in the custom types you use to send and receive messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "during a group activity. You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to send",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom messages between the same app on different devices. In addition to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "message data, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " encodes your custom type name so that it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can construct the correct type on those other devices. Use this protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to identify your custom message types using an app-specific string instead of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the type name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Providing an app-specific string makes it possible to use different types to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "support messages. When the message data contains a custom message ID,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " looks for a type that conforms to the protocol with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable/messageIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that contains the matching string. It then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates that type and decodes the message data into it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Custom types that adopt this protocol must also adopt the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable": {
+      "abstract": [
+        {
+          "text": "A type that assigns a custom ID string to messages you send to other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomMessageIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomMessageIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMessageIdentifiable",
+      "type": "topic",
+      "url": "/documentation/groupactivities/custommessageidentifiable"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable/messageIdentifier": {
+      "abstract": [
+        {
+          "text": "A custom identification string for the current type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messageIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable/messageIdentifier",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "messageIdentifier",
+      "type": "topic",
+      "url": "/documentation/groupactivities/custommessageidentifiable/messageidentifier"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger": {
+      "abstract": [
+        {
+          "text": "An object that transfers app-specific data between the devices joined in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant": {
+      "abstract": [
+        {
+          "text": "An active participant in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Participant",
+      "type": "topic",
+      "url": "/documentation/groupactivities/participant"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity": {
+      "abstract": [
+        {
+          "text": "Configure the session when a SharePlay activity starts, and handle events",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that occur during the lifetime of the activity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Joining and managing a shared activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/joining-and-managing-a-shared-activity"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session": {
+      "abstract": [
+        {
+          "text": "Invite your friends to draw on a shared canvas while on a FaceTime call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Drawing content in a group session",
+      "type": "topic",
+      "url": "/documentation/groupactivities/drawing_content_in_a_group_session"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Session-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity",
+        "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant"
+      ],
+      "title": "Session management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable/messageIdentifier"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/custommessageidentifiable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

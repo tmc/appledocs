@@ -1,0 +1,485 @@
+{
+  "abstract": [
+    {
+      "text": "Implement Apple’s Secure Download System in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/secure-download"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Secure Download"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Security.SecureDownload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API provides access to Apple’s Secure Download System. This API is only useful for certain specialized apps. Because of this, you must import this API explicitly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import <Security/SecureDownload.h>"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadCopyCreationDate": {
+      "abstract": [
+        {
+          "text": "Returns download ticket’s creation date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadCopyCreationDate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadCopyCreationDate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadCopyCreationDate",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadcopycreationdate"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadCopyName": {
+      "abstract": [
+        {
+          "text": "Returns the printable name of the download ticket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadCopyName"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadCopyName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadCopyName",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadcopyname"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadCopyTicketLocation": {
+      "abstract": [
+        {
+          "text": "Copies the ticket location from a secure download URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadCopyTicketLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadCopyTicketLocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadCopyTicketLocation",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadcopyticketlocation"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadCopyURLs": {
+      "abstract": [
+        {
+          "text": "Returns a list of URLs from which the data can be downloaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadCopyURLs"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadCopyURLs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadCopyURLs",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadcopyurls"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadCreateWithTicket": {
+      "abstract": [
+        {
+          "text": "Creates a secure download object for use during the download process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadCreateWithTicket"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadCreateWithTicket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadCreateWithTicket",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadcreatewithticket"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadFinished": {
+      "abstract": [
+        {
+          "text": "Concludes the secure download process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadFinished"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadFinished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadFinished",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadfinished"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadGetDownloadSize": {
+      "abstract": [
+        {
+          "text": "Returns the size of the expected download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadGetDownloadSize"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadGetDownloadSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadGetDownloadSize",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadgetdownloadsize"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadRef": {
+      "abstract": [
+        {
+          "text": "An opaque type representing a secure download object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadRef",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadref"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadRelease": {
+      "abstract": [
+        {
+          "text": "Releases the memory associated with a secure download object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadRelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadRelease",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadrelease"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadTrustCallbackResult": {
+      "abstract": [
+        {
+          "text": "A flag used to indicate whether or not a signer should be evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadTrustCallbackResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustCallbackResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadTrustCallbackResult",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadtrustcallbackresult"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadTrustEvaluateCallback": {
+      "abstract": [
+        {
+          "text": "Optionally queries the user how to handle a failed trust evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadTrustEvaluateCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustEvaluateCallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadTrustEvaluateCallback",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadtrustevaluatecallback"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadTrustSetupCallback": {
+      "abstract": [
+        {
+          "text": "Determines whether trust for a particular signer should be evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadTrustSetupCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadTrustSetupCallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadTrustSetupCallback",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadtrustsetupcallback"
+    },
+    "doc://com.apple.security/documentation/Security/SecureDownloadUpdateWithData": {
+      "abstract": [
+        {
+          "text": "Checks data received during download for validity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecureDownloadUpdateWithData"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecureDownloadUpdateWithData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecureDownloadUpdateWithData",
+      "type": "topic",
+      "url": "/documentation/security/securedownloadupdatewithdata"
+    },
+    "doc://com.apple.security/documentation/Security/secure-download-result-codes": {
+      "abstract": [
+        {
+          "text": "Result codes specific to the secure download API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-download-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Download Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/secure-download-result-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/secure-download-result-codes"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Download-Creation",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecureDownloadCreateWithTicket",
+                "doc://com.apple.security/documentation/Security/SecureDownloadTrustEvaluateCallback",
+                "doc://com.apple.security/documentation/Security/SecureDownloadTrustSetupCallback",
+                "doc://com.apple.security/documentation/Security/SecureDownloadTrustCallbackResult",
+                "doc://com.apple.security/documentation/Security/SecureDownloadRef"
+              ],
+              "title": "Download Creation"
+            },
+            {
+              "anchor": "Download-Settings",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecureDownloadGetDownloadSize",
+                "doc://com.apple.security/documentation/Security/SecureDownloadCopyCreationDate",
+                "doc://com.apple.security/documentation/Security/SecureDownloadCopyName",
+                "doc://com.apple.security/documentation/Security/SecureDownloadCopyTicketLocation",
+                "doc://com.apple.security/documentation/Security/SecureDownloadCopyURLs"
+              ],
+              "title": "Download Settings"
+            },
+            {
+              "anchor": "Receiving-Data",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecureDownloadUpdateWithData"
+              ],
+              "title": "Receiving Data"
+            },
+            {
+              "anchor": "Download-Completion",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecureDownloadFinished",
+                "doc://com.apple.security/documentation/Security/SecureDownloadRelease"
+              ],
+              "title": "Download Completion"
+            },
+            {
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/secure-download-result-codes"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secure-download"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/secure-download"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

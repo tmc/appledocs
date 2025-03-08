@@ -1,0 +1,3388 @@
+{
+  "abstract": [
+    {
+      "text": "A single extended grapheme cluster that approximates a user-perceived",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "character.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Character"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:SJ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Character"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Character"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Character"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Character"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Character",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type represents a character made up of one or more Unicode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scalar values, grouped by a Unicode boundary algorithm. Generally, a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Character",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance matches what the reader of a string will perceive as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single character. Strings are collections of ",
+              "type": "text"
+            },
+            {
+              "code": "Character",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the number of visible characters is generally the most natural way to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "count the length of a string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let greeting = \"Hello! 🐥\"",
+            "print(\"Length: \\(greeting.count)\")",
+            "// Prints \"Length: 8\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because each character in a string can be made up of one or more Unicode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scalar values, the number of characters in a string may not match the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "length of the Unicode scalar value representation or the length of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "string in a particular binary representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "print(\"Unicode scalar value count: \\(greeting.unicodeScalars.count)\")",
+            "// Prints \"Unicode scalar value count: 8\"",
+            "",
+            "print(\"UTF-8 representation count: \\(greeting.utf8.count)\")",
+            "// Prints \"UTF-8 representation count: 11\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every ",
+              "type": "text"
+            },
+            {
+              "code": "Character",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance is composed of one or more Unicode scalar values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are grouped together as an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "extended grapheme cluster",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The way these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scalar values are grouped is defined by a canonical, localized, or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "otherwise tailored Unicode segmentation algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a country’s Unicode flag character is made up of two regional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indicator scalar values that correspond to that country’s ISO 3166-1",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "alpha-2 code. The alpha-2 code for The United States is “US”, so its flag",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "character is made up of the Unicode scalar values ",
+              "type": "text"
+            },
+            {
+              "code": "\"\\u{1F1FA}\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (REGIONAL",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "INDICATOR SYMBOL LETTER U) and ",
+              "type": "text"
+            },
+            {
+              "code": "\"\\u{1F1F8}\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (REGIONAL INDICATOR SYMBOL",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "LETTER S). When placed next to each other in a string literal, these two",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scalar values are combined into a single grapheme cluster, represented by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "code": "Character",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance in Swift.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let usFlag: Character = \"\\u{1F1FA}\\u{1F1F8}\"",
+            "print(usFlag)",
+            "// Prints \"🇺🇸\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the Unicode terms used in this discussion, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://www.unicode.org/glossary/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In particular, this discussion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mentions ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://www.unicode.org/glossary/#extended_grapheme_cluster",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://www.unicode.org/glossary/#unicode_scalar_value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character": {
+      "abstract": [
+        {
+          "text": "A single extended grapheme cluster that approximates a user-perceived",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Character"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Character"
+        }
+      ],
+      "role": "symbol",
+      "title": "Character",
+      "type": "topic",
+      "url": "/documentation/swift/character"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/!=(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/...(_:)-4mm4x": {
+      "abstract": [
+        {
+          "text": "Returns a partial range up to, and including, its upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s19PartialRangeThroughV",
+          "text": "PartialRangeThrough"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/...(_:)-4mm4x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/'...(_:)-4mm4x"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/...(_:)-6ct59": {
+      "abstract": [
+        {
+          "text": "Returns a partial range extending upward from a lower bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s16PartialRangeFromV",
+          "text": "PartialRangeFrom"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/...(_:)-6ct59",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/'...(_:)-6ct59"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/...(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a closed range that contains both of its bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "..."
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/...(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "...(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/'...(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/==(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/Comparable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/Comparable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Comparable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/comparable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/CustomReflectable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/CustomReflectable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomReflectable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/customreflectable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/customstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/ExpressibleByExtendedGraphemeClusterLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/expressiblebyextendedgraphemeclusterliteral-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/ExpressibleByUnicodeScalarLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/ExpressibleByUnicodeScalarLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByUnicodeScalarLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/expressiblebyunicodescalarliteral-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/hashable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/LosslessStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/LosslessStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "LosslessStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/losslessstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/Output": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/Output",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "role": "symbol",
+      "title": "Character.Output",
+      "type": "topic",
+      "url": "/documentation/swift/character/output"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/RegexComponent-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/RegexComponent-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RegexComponent Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/regexcomponent-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/TextOutputStreamable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/TextOutputStreamable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextOutputStreamable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/character/textoutputstreamable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/UTF16View": {
+      "abstract": [
+        {
+          "text": "A view of a character’s contents as a collection of UTF-16 code units. See",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "String.UTF16View for more information",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTF16View"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/UTF16View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTF16View"
+        }
+      ],
+      "role": "symbol",
+      "title": "Character.UTF16View",
+      "type": "topic",
+      "url": "/documentation/swift/character/utf16view"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/UTF8View": {
+      "abstract": [
+        {
+          "text": "A view of a character’s contents as a collection of UTF-8 code units. See",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "String.UTF8View for more information",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTF8View"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/UTF8View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTF8View"
+        }
+      ],
+      "role": "symbol",
+      "title": "Character.UTF8View",
+      "type": "topic",
+      "url": "/documentation/swift/character/utf8view"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/UnicodeScalarView": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/UnicodeScalarView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "role": "symbol",
+      "title": "Character.UnicodeScalarView",
+      "type": "topic",
+      "url": "/documentation/swift/character/unicodescalarview"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/asciiValue": {
+      "abstract": [
+        {
+          "text": "The ASCII encoding value of this character, if it is an ASCII character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asciiValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/asciiValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "asciiValue",
+      "type": "topic",
+      "url": "/documentation/swift/character/asciivalue"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/customMirror": {
+      "abstract": [
+        {
+          "text": "A mirror that reflects the ",
+          "type": "text"
+        },
+        {
+          "code": "Character",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customMirror"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6MirrorV",
+          "text": "Mirror"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/customMirror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customMirror",
+      "type": "topic",
+      "url": "/documentation/swift/character/custommirror"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/customPlaygroundQuickLook": {
+      "abstract": [
+        {
+          "text": "A custom playground Quick Look for the ",
+          "type": "text"
+        },
+        {
+          "code": "Character",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customPlaygroundQuickLook"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_PlaygroundQuickLook"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/customPlaygroundQuickLook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customPlaygroundQuickLook",
+      "type": "topic",
+      "url": "/documentation/swift/character/customplaygroundquicklook"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/debugDescription": {
+      "abstract": [
+        {
+          "text": "A textual representation of the character, suitable for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/swift/character/debugdescription"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/swift/character/description"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/hash(into:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/hexDigitValue": {
+      "abstract": [
+        {
+          "text": "The numeric value this character represents, if it is a hexadecimal digit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hexDigitValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/hexDigitValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hexDigitValue",
+      "type": "topic",
+      "url": "/documentation/swift/character/hexdigitvalue"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/init(_:)-6o1aq": {
+      "abstract": [
+        {
+          "text": "Creates a character from a single-character string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/init(_:)-6o1aq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/init(_:)-6o1aq"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/init(_:)-8hq6x": {
+      "abstract": [
+        {
+          "text": "Creates a character containing the given Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7UnicodeO",
+          "text": "Unicode"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7UnicodeO6ScalarV",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/init(_:)-8hq6x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/init(_:)-8hq6x"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/init(extendedGraphemeClusterLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates a character with the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "extendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/init(extendedGraphemeClusterLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(extendedGraphemeClusterLiteral:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/init(extendedgraphemeclusterliteral:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/init(unicodeScalarLiteral:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ExtendedGraphemeClusterLiteralType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.UnicodeScalarLiteralType",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "unicodeScalarLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP0cdeF4TypeQa",
+          "text": "ExtendedGraphemeClusterLiteralType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/init(unicodeScalarLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(unicodeScalarLiteral:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/init(unicodescalarliteral:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isASCII": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this is an ASCII character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isASCII"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isASCII",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isASCII",
+      "type": "topic",
+      "url": "/documentation/swift/character/isascii"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isCased": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character changes under any form",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of case conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCased"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isCased",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCased",
+      "type": "topic",
+      "url": "/documentation/swift/character/iscased"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isCurrencySymbol": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a currency",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCurrencySymbol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isCurrencySymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCurrencySymbol",
+      "type": "topic",
+      "url": "/documentation/swift/character/iscurrencysymbol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isHexDigit": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hexadecimal digit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHexDigit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isHexDigit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isHexDigit",
+      "type": "topic",
+      "url": "/documentation/swift/character/ishexdigit"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isLetter": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character is a letter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLetter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isLetter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLetter",
+      "type": "topic",
+      "url": "/documentation/swift/character/isletter"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isLowercase": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character is considered lowercase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLowercase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isLowercase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLowercase",
+      "type": "topic",
+      "url": "/documentation/swift/character/islowercase"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isMathSymbol": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a symbol",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that naturally appears in mathematical contexts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMathSymbol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isMathSymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMathSymbol",
+      "type": "topic",
+      "url": "/documentation/swift/character/ismathsymbol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isNewline": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a newline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isNewline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isNewline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isNewline",
+      "type": "topic",
+      "url": "/documentation/swift/character/isnewline"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isNumber": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isNumber",
+      "type": "topic",
+      "url": "/documentation/swift/character/isnumber"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isPunctuation": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents punctuation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPunctuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isPunctuation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isPunctuation",
+      "type": "topic",
+      "url": "/documentation/swift/character/ispunctuation"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isSymbol": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSymbol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isSymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSymbol",
+      "type": "topic",
+      "url": "/documentation/swift/character/issymbol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isUppercase": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character is considered uppercase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUppercase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isUppercase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUppercase",
+      "type": "topic",
+      "url": "/documentation/swift/character/isuppercase"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isWhitespace": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents whitespace,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "including newlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWhitespace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isWhitespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWhitespace",
+      "type": "topic",
+      "url": "/documentation/swift/character/iswhitespace"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/isWholeNumber": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether this character represents a whole",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWholeNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/isWholeNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWholeNumber",
+      "type": "topic",
+      "url": "/documentation/swift/character/iswholenumber"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/lowercased()": {
+      "abstract": [
+        {
+          "text": "Returns a lowercased version of this character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowercased"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/lowercased()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowercased()",
+      "type": "topic",
+      "url": "/documentation/swift/character/lowercased()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/unicodeScalars": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unicodeScalars"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ17UnicodeScalarViewa",
+          "text": "UnicodeScalarView"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/unicodeScalars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unicodeScalars",
+      "type": "topic",
+      "url": "/documentation/swift/character/unicodescalars"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/uppercased()": {
+      "abstract": [
+        {
+          "text": "Returns an uppercased version of this character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uppercased"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/uppercased()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uppercased()",
+      "type": "topic",
+      "url": "/documentation/swift/character/uppercased()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/utf16": {
+      "abstract": [
+        {
+          "text": "A UTF-16 encoding of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "utf16"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ9UTF16Viewa",
+          "text": "UTF16View"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/utf16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "utf16",
+      "type": "topic",
+      "url": "/documentation/swift/character/utf16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/utf8": {
+      "abstract": [
+        {
+          "text": "A UTF-8 encoding of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "utf8"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ8UTF8Viewa",
+          "text": "UTF8View"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/utf8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "utf8",
+      "type": "topic",
+      "url": "/documentation/swift/character/utf8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/wholeNumberValue": {
+      "abstract": [
+        {
+          "text": "The numeric value this character represents, if it represents a whole",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wholeNumberValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/wholeNumberValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wholeNumberValue",
+      "type": "topic",
+      "url": "/documentation/swift/character/wholenumbervalue"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Character/write(to:)": {
+      "abstract": [
+        {
+          "text": "Writes the character into the given output stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Character/write(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:)",
+      "type": "topic",
+      "url": "/documentation/swift/character/write(to:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators ",
+          "type": "text"
+        },
+        {
+          "code": "<",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "<=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": ">=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": ">",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/swift/comparable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "abstract": [
+        {
+          "text": "A type that explicitly supplies its own mirror.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "extended grapheme cluster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyextendedgraphemeclusterliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByUnicodeScalarLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByUnicodeScalarLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByUnicodeScalarLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyunicodescalarliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/LosslessStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type that can be represented as a string in a lossless, unambiguous way.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LosslessStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/LosslessStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LosslessStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "LosslessStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/losslessstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RegexComponent": {
+      "abstract": [
+        {
+          "text": "A type that represents a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RegexComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/regexcomponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TextOutputStreamable": {
+      "abstract": [
+        {
+          "text": "A source of text-streaming operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextOutputStreamable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TextOutputStreamable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextOutputStreamable"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextOutputStreamable",
+      "type": "topic",
+      "url": "/documentation/swift/textoutputstreamable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://www.unicode.org/glossary/": {
+      "identifier": "http://www.unicode.org/glossary/",
+      "title": "Unicode.org glossary",
+      "titleInlineContent": [
+        {
+          "text": "Unicode.org glossary",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.unicode.org/glossary/"
+    },
+    "http://www.unicode.org/glossary/#extended_grapheme_cluster": {
+      "identifier": "http://www.unicode.org/glossary/#extended_grapheme_cluster",
+      "title": "extended grapheme clusters",
+      "titleInlineContent": [
+        {
+          "text": "extended grapheme clusters",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.unicode.org/glossary/#extended_grapheme_cluster"
+    },
+    "http://www.unicode.org/glossary/#unicode_scalar_value": {
+      "identifier": "http://www.unicode.org/glossary/#unicode_scalar_value",
+      "title": "Unicode scalar values",
+      "titleInlineContent": [
+        {
+          "text": "Unicode scalar",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "values",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.unicode.org/glossary/#unicode_scalar_value"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Comparable",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByUnicodeScalarLiteral",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/LosslessStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/RegexComponent",
+        "doc://com.apple.Swift/documentation/Swift/Sendable",
+        "doc://com.apple.Swift/documentation/Swift/TextOutputStreamable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Strings-and-Characters",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/String"
+      ],
+      "title": "Strings and Characters"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "In addition to creating a character from a single-character string literal, you can",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "also convert a unicode scalar value or single-character string.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Creating-a-Character",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/init(_:)-6o1aq"
+      ],
+      "title": "Creating a Character"
+    },
+    {
+      "anchor": "Writing-to-a-Text-Stream",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/write(to:)"
+      ],
+      "title": "Writing to a Text Stream"
+    },
+    {
+      "anchor": "Comparing-Characters",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/==(_:_:)",
+        "doc://com.apple.Swift/documentation/Swift/Character/!=(_:_:)"
+      ],
+      "title": "Comparing Characters"
+    },
+    {
+      "anchor": "Working-with-a-Characters-Unicode-Values",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/init(_:)-8hq6x",
+        "doc://com.apple.Swift/documentation/Swift/Character/unicodeScalars",
+        "doc://com.apple.Swift/documentation/Swift/Character/UnicodeScalarView",
+        "doc://com.apple.Swift/documentation/Swift/Character/isASCII",
+        "doc://com.apple.Swift/documentation/Swift/Character/asciiValue"
+      ],
+      "title": "Working with a Character’s Unicode Values"
+    },
+    {
+      "anchor": "Inspecting-a-Character",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/isLetter",
+        "doc://com.apple.Swift/documentation/Swift/Character/isPunctuation",
+        "doc://com.apple.Swift/documentation/Swift/Character/isNewline",
+        "doc://com.apple.Swift/documentation/Swift/Character/isWhitespace",
+        "doc://com.apple.Swift/documentation/Swift/Character/isSymbol",
+        "doc://com.apple.Swift/documentation/Swift/Character/isMathSymbol",
+        "doc://com.apple.Swift/documentation/Swift/Character/isCurrencySymbol"
+      ],
+      "title": "Inspecting a Character"
+    },
+    {
+      "anchor": "Checking-a-Characters-Case",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/isCased",
+        "doc://com.apple.Swift/documentation/Swift/Character/isUppercase",
+        "doc://com.apple.Swift/documentation/Swift/Character/uppercased()",
+        "doc://com.apple.Swift/documentation/Swift/Character/isLowercase",
+        "doc://com.apple.Swift/documentation/Swift/Character/lowercased()"
+      ],
+      "title": "Checking a Character’s Case"
+    },
+    {
+      "anchor": "Checking-a-Characters-Numeric-Properties",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/isNumber",
+        "doc://com.apple.Swift/documentation/Swift/Character/isWholeNumber",
+        "doc://com.apple.Swift/documentation/Swift/Character/wholeNumberValue",
+        "doc://com.apple.Swift/documentation/Swift/Character/isHexDigit",
+        "doc://com.apple.Swift/documentation/Swift/Character/hexDigitValue"
+      ],
+      "title": "Checking a Character’s Numeric Properties"
+    },
+    {
+      "anchor": "Creating-a-Range-Expression",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/...(_:_:)",
+        "doc://com.apple.Swift/documentation/Swift/Character/...(_:)-4mm4x",
+        "doc://com.apple.Swift/documentation/Swift/Character/...(_:)-6ct59"
+      ],
+      "title": "Creating a Range Expression"
+    },
+    {
+      "anchor": "Describing-a-Character",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/description",
+        "doc://com.apple.Swift/documentation/Swift/Character/debugDescription",
+        "doc://com.apple.Swift/documentation/Swift/Character/customMirror",
+        "doc://com.apple.Swift/documentation/Swift/Character/customPlaygroundQuickLook",
+        "doc://com.apple.Swift/documentation/Swift/Character/hash(into:)"
+      ],
+      "title": "Describing a Character"
+    },
+    {
+      "anchor": "Infrequently-Used-Functionality",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/init(extendedGraphemeClusterLiteral:)",
+        "doc://com.apple.Swift/documentation/Swift/Character/init(unicodeScalarLiteral:)"
+      ],
+      "title": "Infrequently Used Functionality"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/utf16",
+        "doc://com.apple.Swift/documentation/Swift/Character/utf8"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/Output",
+        "doc://com.apple.Swift/documentation/Swift/Character/UTF16View",
+        "doc://com.apple.Swift/documentation/Swift/Character/UTF8View"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Character/Comparable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/CustomReflectable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/CustomStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/Equatable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/ExpressibleByUnicodeScalarLiteral-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/Hashable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/LosslessStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/RegexComponent-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Character/TextOutputStreamable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/character"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

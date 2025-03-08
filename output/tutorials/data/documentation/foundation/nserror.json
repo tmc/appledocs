@@ -1,0 +1,1604 @@
+{
+  "abstract": [
+    {
+      "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nserror"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412305,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSError",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSError"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSError"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objective-C methods can signal an error condition by returning an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object by reference, which provides additional information about the kind of error and any underlying cause, if one can be determined. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object may also provide localized error descriptions suitable for display to the user in its user info dictionary. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1725884",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Methods in Foundation and other Cocoa frameworks most often produce errors in the Cocoa error domain (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscocoaerrordomain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "); error codes for the Cocoa Error Domain are documented in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/foundation_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". There are also predefined domains corresponding to Mach (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmacherrordomain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), POSIX (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsposixerrordomain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and Carbon (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsosstatuserrordomain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1776554",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applications may choose to create subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSError",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for example, to provide better localized error strings by overriding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1414418-localizeddescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1725884": {
+      "identifier": "devLink-1725884",
+      "title": "Error Handling Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806"
+    },
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Error": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/swift/error"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/cocoaerror": {
+      "abstract": [
+        {
+          "text": "Describes errors within the Cocoa error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CocoaError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/cocoaerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CocoaError",
+      "type": "topic",
+      "url": "/documentation/foundation/cocoaerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/customnserror": {
+      "abstract": [
+        {
+          "text": "A specialized error that provides a domain, error code, and user-info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomNSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/customnserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomNSError",
+      "type": "topic",
+      "url": "/documentation/foundation/customnserror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/errorpointer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/errorpointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ErrorPointer",
+      "type": "topic",
+      "url": "/documentation/foundation/errorpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Errors and Exceptions",
+      "type": "topic",
+      "url": "/documentation/foundation/errors_and_exceptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/foundation_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/foundation_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Foundation Constants",
+      "type": "topic",
+      "url": "/documentation/foundation/foundation_constants"
+    },
+    "doc://com.apple.documentation/documentation/foundation/localizederror": {
+      "abstract": [
+        {
+          "text": "A specialized error that provides localized messages describing the error and why it occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/localizederror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedError",
+      "type": "topic",
+      "url": "/documentation/foundation/localizederror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/macherror": {
+      "abstract": [
+        {
+          "text": "Describes an error in the Mach error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MachError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/macherror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MachError",
+      "type": "topic",
+      "url": "/documentation/foundation/macherror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscocoaerrordomain": {
+      "abstract": [
+        {
+          "text": "Cocoa errors",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCocoaErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscocoaerrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCocoaErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nscocoaerrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1407500-localizedrecoverysuggestion": {
+      "abstract": [
+        {
+          "text": "A string containing the localized recovery suggestion for the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedRecoverySuggestion"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1407500-localizedrecoverysuggestion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedRecoverySuggestion",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1407500-localizedrecoverysuggestion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1408064-setuserinfovalueprovider": {
+      "abstract": [
+        {
+          "text": "Specifies a block to call when the corresponding property is not present in the user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUserInfoValueProvider"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "provider"
+        },
+        {
+          "kind": "text",
+          "text": ": (any Error, String) -> Any?)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1408064-setuserinfovalueprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUserInfoValueProvider(forDomain:provider:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1408064-setuserinfovalueprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1408864-recoveryattempter": {
+      "abstract": [
+        {
+          "text": "The object in the user info dictionary corresponding to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsrecoveryattemptererrorkey",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "recoveryAttempter"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1408864-recoveryattempter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recoveryAttempter",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1408864-recoveryattempter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1409165-code": {
+      "abstract": [
+        {
+          "text": "The error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1409165-code",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "code",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1409165-code"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1411580-userinfo": {
+      "abstract": [
+        {
+          "text": "The user info dictionary. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1411580-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1411580-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1412752-localizedfailurereason": {
+      "abstract": [
+        {
+          "text": "A string containing the localized explanation of the reason for the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedFailureReason"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1412752-localizedfailurereason",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedFailureReason",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1412752-localizedfailurereason"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1413427-userinfovalueprovider": {
+      "abstract": [
+        {
+          "text": "Returns any user info provider specified for a given error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfoValueProvider"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> (any Error, String) -> Any?)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1413427-userinfovalueprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfoValueProvider(forDomain:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1413427-userinfovalueprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1413924-domain": {
+      "abstract": [
+        {
+          "text": "A string containing the error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1413924-domain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "domain",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1413924-domain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1414418-localizeddescription": {
+      "abstract": [
+        {
+          "text": "A string containing the localized description of the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1414418-localizeddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1414418-localizeddescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1414718-helpanchor": {
+      "abstract": [
+        {
+          "text": "A string to display in response to an alert panel help anchor button being pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "helpAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1414718-helpanchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "helpAnchor",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1414718-helpanchor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1415950-localizedrecoveryoptions": {
+      "abstract": [
+        {
+          "text": "An array containing the localized titles of buttons appropriate for displaying in an alert panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedRecoveryOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1415950-localizedrecoveryoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedRecoveryOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1415950-localizedrecoveryoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1417063-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized for a given domain and code with a given ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1417063-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(domain:code:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1417063-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/1448136-nserror_codes": {
+      "abstract": [
+        {
+          "text": "Error codes in the Cocoa error domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/1448136-nserror_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSError Codes",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/1448136-nserror_codes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/2882067-fileprovidererrorforcollision": {
+      "abstract": [
+        {
+          "text": "Returns a properly formatted error object with a ",
+          "type": "text"
+        },
+        {
+          "code": "NSFileProviderItemCollisionError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileProviderErrorForCollision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileProviderItem) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/2882067-fileprovidererrorforcollision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileProviderErrorForCollision(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/2882067-fileprovidererrorforcollision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/2915899-fileprovidererrorfornonexistenti": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileProviderErrorForNonExistentItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileProviderItemIdentifier) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/2915899-fileprovidererrorfornonexistenti",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileProviderErrorForNonExistentItem(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/2915899-fileprovidererrorfornonexistenti"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/3603574-fileprovidererrorforrejecteddele": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileProviderErrorForRejectedDeletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileProviderItem) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/3603574-fileprovidererrorforrejecteddele",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileProviderErrorForRejectedDeletion(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/3603574-fileprovidererrorforrejecteddele"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/3738169-underlyingerrors": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "underlyingErrors"
+        },
+        {
+          "kind": "text",
+          "text": ": [any Error]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/3738169-underlyingerrors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underlyingErrors",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/3738169-underlyingerrors"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror/nserrorrecoveryattempting": {
+      "abstract": [
+        {
+          "text": "A set of methods that provide options to recover from an error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror/nserrorrecoveryattempting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSErrorRecoveryAttempting",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror/nserrorrecoveryattempting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserrordomain": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSErrorDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nserrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserrorpointer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSErrorPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserrorpointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSErrorPointer",
+      "type": "topic",
+      "url": "/documentation/foundation/nserrorpointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmacherrordomain": {
+      "abstract": [
+        {
+          "text": "Mach errors",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMachErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmacherrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmacherrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsosstatuserrordomain": {
+      "abstract": [
+        {
+          "text": "Mac OS 9/Carbon errors",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOSStatusErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsosstatuserrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOSStatusErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsosstatuserrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsposixerrordomain": {
+      "abstract": [
+        {
+          "text": "POSIX/BSD errors",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPOSIXErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsposixerrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPOSIXErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsposixerrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrecoveryattemptererrorkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrecoveryattemptererrorkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRecoveryAttempterErrorKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrecoveryattemptererrorkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstreamsocketsslerrordomain": {
+      "abstract": [
+        {
+          "text": "The error domain used by ",
+          "type": "text"
+        },
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when reporting SSL errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStreamSocketSSLErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstreamsocketsslerrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStreamSocketSSLErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstreamsocketsslerrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstreamsockserrordomain": {
+      "abstract": [
+        {
+          "text": "The error domain used by ",
+          "type": "text"
+        },
+        {
+          "code": "NSError",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when reporting SOCKS errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStreamSOCKSErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstreamsockserrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStreamSOCKSErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstreamsockserrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlerrordomain": {
+      "abstract": [
+        {
+          "text": "URL loading system errors",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlerrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLErrorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlerrordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/posixerror": {
+      "abstract": [
+        {
+          "text": "Describes an error in the POSIX error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "POSIXError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/posixerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "POSIXError",
+      "type": "topic",
+      "url": "/documentation/foundation/posixerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/recoverableerror": {
+      "abstract": [
+        {
+          "text": "A specialized error that may be recoverable by presenting several potential recovery options to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecoverableError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/recoverableerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RecoverableError",
+      "type": "topic",
+      "url": "/documentation/foundation/recoverableerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userinfokey": {
+      "abstract": [
+        {
+          "text": "These keys may exist in the user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorUserInfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userinfokey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError.UserInfoKey",
+      "type": "topic",
+      "url": "/documentation/foundation/userinfokey"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Error",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swift/error",
+        "doc://com.apple.documentation/documentation/foundation/localizederror",
+        "doc://com.apple.documentation/documentation/foundation/recoverableerror",
+        "doc://com.apple.documentation/documentation/foundation/customnserror"
+      ],
+      "title": "User-Relevant Errors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651164",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/1417063-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Error Objects"
+    },
+    {
+      "anchor": "1651209",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/1409165-code",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1413924-domain",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1411580-userinfo"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Error Properties"
+    },
+    {
+      "anchor": "1651256",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/1414418-localizeddescription",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1415950-localizedrecoveryoptions",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1407500-localizedrecoverysuggestion",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1412752-localizedfailurereason"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a Localized Error Description"
+    },
+    {
+      "anchor": "2530697",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/1408064-setuserinfovalueprovider",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1413427-userinfovalueprovider",
+        "doc://com.apple.documentation/documentation/foundation/userinfokey"
+      ],
+      "kind": "taskGroup",
+      "title": "Providing Error User Info"
+    },
+    {
+      "anchor": "1651323",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/1408864-recoveryattempter",
+        "doc://com.apple.documentation/documentation/foundation/nserror/nserrorrecoveryattempting"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Error Recovery Attempter"
+    },
+    {
+      "anchor": "1651352",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/1414718-helpanchor"
+      ],
+      "kind": "taskGroup",
+      "title": "Displaying a Help Anchor"
+    },
+    {
+      "anchor": "1651382",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/errorpointer",
+        "doc://com.apple.documentation/documentation/foundation/nserrorpointer",
+        "doc://com.apple.documentation/documentation/foundation/nserrordomain"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    },
+    {
+      "anchor": "1679720",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscocoaerrordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsposixerrordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsosstatuserrordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsmacherrordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsurlerrordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsstreamsockserrordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsstreamsocketsslerrordomain"
+      ],
+      "kind": "taskGroup",
+      "title": "Error Domains"
+    },
+    {
+      "anchor": "1656394",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/cocoaerror",
+        "doc://com.apple.documentation/documentation/foundation/macherror",
+        "doc://com.apple.documentation/documentation/foundation/posixerror",
+        "doc://com.apple.documentation/documentation/foundation/nserror/1448136-nserror_codes"
+      ],
+      "kind": "taskGroup",
+      "title": "Error Codes"
+    },
+    {
+      "anchor": "3738487",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/3738169-underlyingerrors"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2868516",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nserror/2882067-fileprovidererrorforcollision",
+        "doc://com.apple.documentation/documentation/foundation/nserror/2915899-fileprovidererrorfornonexistenti",
+        "doc://com.apple.documentation/documentation/foundation/nserror/3603574-fileprovidererrorforrejecteddele"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nserror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nserror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

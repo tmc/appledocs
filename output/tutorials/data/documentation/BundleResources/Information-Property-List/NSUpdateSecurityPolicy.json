@@ -1,0 +1,1404 @@
+{
+  "abstract": [
+    {
+      "text": "A dictionary that identifies which apps or installer packages the operating system allows to write to the app’s bundle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSUpdateSecurityPolicy",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSUpdateSecurityPolicy"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "dictionary",
+    "title": "NSUpdateSecurityPolicy"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "NSUpdateSecurityPolicy",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "object"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property list key describes a security policy dictionary that defines the processes and packages that the system allows to modify an app’s bundle. You specify these by Team ID (any package signed by that team), or Team IDs and signing identifiers (to identify a specific executable) signed by a team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For signed apps, macOS allows apps from the same developer — those sharing the same Team ID — to modify the app’s bundle. Use this security policy to change the default behavior and customize which specific apps or installers can write to your app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this protection mechanism isn’t relevant to your app, you can opt out of this capability and disable the hardened runtime by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.cs.disable-executable-page-protection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For information about this entitlement — and important information about the security ramifications of disabling this protection — see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is a dictionary you add to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the source editor pane of your app’s Xcode target. Add the key following the instructions below, and add one or both of the dictionary’s subkeys, depending on the types of apps or installers you want to allow to perform updates to your app’s resources. The subkeys are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AllowPackages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": An array of Team IDs. The operating system allows any installer package signed by any Team ID in this list to write content into this app’s bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AllowProcesses",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A dictionary that maps Team IDs to an array of signing (bundle) IDs. The operating system allows an app (process) with the matching bundle ID that’s signed by the specified Team ID to write content into this app’s bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Add-the-policy-dictionary-to-your-apps-information-property-list",
+          "level": 3,
+          "text": "Add the policy dictionary to your app’s information property list",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your app’s target from the Target navigator, and then select the source editor pane in the detail section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the last item in the list, and choose Add Row from the drop-down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Edit the text for the new row, replacing the existing text with ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "NSUpdateSecurityPolicy",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", and press Return.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click  the Type field for the new row and choose Dictionary from the drop-down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle next to the new NSUpdateSecurityPolicy dictionary to open it (the arrow needs to point down). This ensures that in the next steps, the editor adds elements inside the dictionary, and not as separate items parallel to it in the property list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The newly created, empty ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary in your app’s property list resembles the image below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4098859",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, add one or both subcomponents to the security policy dictionary depending on your app’s update policy requirements. To allow any installer package signed by a specific Team ID, add an ",
+              "type": "text"
+            },
+            {
+              "code": "AllowPackages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. Using this key, the operating system allows any installer package signed by the specified Team IDs in this array to write content into the app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the NSUpdateSecurityPolicy row in the property list and choose Add Row.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Edit the row name, replacing the default text with ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AllowPackages",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " and press Return.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new AllowPackages row’s Type drop-down menu and choose Array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new AllowPackages row and choose Add Row. This adds a new element to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AllowPackages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value of the new array element to the Team ID of the team whose installers you’re authorizing to update this app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat steps 4 and 5 for each additional team whose installers you want to authorize.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow specific apps from specific teams to write to this app’s bundle, add an ",
+              "type": "text"
+            },
+            {
+              "code": "AllowProcesses",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. Using this key, and it’s subdictionaries, the operating system allows specific apps defined by both a Team ID and signing ID (also called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bundle ID",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") to write content into this app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the NSUpdateSecurityPolicy row in the property list and choose Add Row.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Edit the row name, replacing the default text with ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "AllowProcesses",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " and press Return.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new AllowProcesses row’s Type drop-down menu and choose Dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new AllowProcesses row and choose Add Row. This adds a new element to the AllowProcesses dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new row’s Type drop-down menu, and choose Dictionary. Set the new row’s name to be the Team ID of the app or apps you want to allow to update this app’s bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new Team ID row, and add a row to the newly created team dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the new row’s Type drop-down menu and choose Array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click the array row, and add a new row to the array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value of the new array element to the signing ID (bundle ID) of the app you’re authorizing to write to the app’s bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add additional authorized apps for this Team ID, repeat steps 8 and 9.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add additional teams and apps, repeat steps 5 through 9.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final new ",
+              "type": "text"
+            },
+            {
+              "code": "NSUpdateSecurityPolicy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary resembles the configuration in the image below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4098858",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sample code describes a complete update policy, in JSON format, that allows any installer package signed by Team ID ",
+              "type": "text"
+            },
+            {
+              "code": "Z9P22VQP42",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to write to the app bundle. The policy also allows a single app associated with the bundle ID ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.myapp.updater",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (also signed with the Team ID ",
+              "type": "text"
+            },
+            {
+              "code": "Z9P22VQP42",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that can modify the app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"NSUpdateSecurityPolicy\": {",
+            "    \"AllowPackages\": [",
+            "      0: \"Z9P22VQP42\"",
+            "    ]",
+            "    \"AllowProcesses\": {",
+            "      \"Z9P22VQP42\": [",
+            "        0: \"com.example.myapp.updater\"",
+            "      ]",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to disable all code signing protections while launching an app, and during its execution.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Disable Executable Memory Protection Entitlement",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.security.cs.disable-executable-page-protection",
+      "kind": "symbol",
+      "name": "com.apple.security.cs.disable-executable-page-protection",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.security.cs.disable-executable-page-protection"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disable Executable Memory Protection Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.cs.disable-executable-page-protection"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app uses encryption.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Uses Non-Exempt Encryption",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+      "kind": "symbol",
+      "name": "ITSAppUsesNonExemptEncryption",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ITSAppUsesNonExemptEncryption"
+        }
+      ],
+      "role": "symbol",
+      "title": "ITSAppUsesNonExemptEncryption",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/itsappusesnonexemptencryption"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode": {
+      "abstract": [
+        {
+          "text": "The export compliance code provided by App Store Connect for apps that require it.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Encryption Export Compliance Code",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode",
+      "kind": "symbol",
+      "name": "ITSEncryptionExportComplianceCode",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ITSEncryptionExportComplianceCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ITSEncryptionExportComplianceCode",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/itsencryptionexportcompliancecode"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs to access files in other apps’ sandbox containers.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Other Application Data Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+      "kind": "symbol",
+      "name": "NSAppDataUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppDataUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppDataUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsappdatausagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting the ability to send Apple events.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - AppleEvents Sending Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription",
+      "kind": "symbol",
+      "name": "NSAppleEventsUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventsUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppleEventsUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsappleeventsusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message in macOS that tells the user why the app is requesting to manipulate the system configuration.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - System Administration Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription",
+      "kind": "symbol",
+      "name": "NSSystemAdministrationUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSystemAdministrationUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSystemAdministrationUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nssystemadministrationusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy": {
+      "abstract": [
+        {
+          "text": "A dictionary that identifies which apps or installer packages the operating system allows to write to the app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy",
+      "kind": "symbol",
+      "name": "NSUpdateSecurityPolicy",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUpdateSecurityPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUpdateSecurityPolicy",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsupdatesecuritypolicy"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowPackages": {
+      "abstract": [
+        {
+          "text": "An array of Team IDs that the system uses to determine whether an installer package, signed by one of the specified Team IDs, can update an app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowPackages",
+      "kind": "symbol",
+      "name": "AllowPackages",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AllowPackages"
+        }
+      ],
+      "role": "symbol",
+      "title": "AllowPackages",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsupdatesecuritypolicy/allowpackages"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowProcesses": {
+      "abstract": [
+        {
+          "text": "A dictionary that maps Team IDs to an array of signing (bundle) IDs that the system uses to determine whether a process can update an app’s bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowProcesses",
+      "kind": "symbol",
+      "name": "AllowProcesses",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AllowProcesses"
+        }
+      ],
+      "role": "symbol",
+      "title": "AllowProcesses",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsupdatesecuritypolicy/allowprocesses"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that informs the user why an app is requesting permission to use data for tracking the user or the device.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Tracking Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+      "kind": "symbol",
+      "name": "NSUserTrackingUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserTrackingUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserTrackingUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsusertrackingusagedescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4098858": {
+      "alt": "A screenshot that shows the Xcode property list editor with the addition of the NSUpdateSecurityPolicy key and its allowsPackages and allowedProcesses components with sample values.",
+      "identifier": "media-4098858",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38d422bddfe218d398a9360a7e663b49/media-4098858@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c81ccdaf8dea28b4d720e85e6daee13/media-4098858~dark@2x.png"
+        }
+      ]
+    },
+    "media-4098859": {
+      "alt": "A screenshot that shows the Xcode property list editor with the addition of a new, empty dictionary supporting the NSUpdateSecurityPolicy key.",
+      "identifier": "media-4098859",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dec3a1965721f643417e1531c6d73e9e/media-4098859@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a2b9032eb3f64d82e9164396bbfa418/media-4098859~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Security",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+      ],
+      "title": "Security"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Security-policies",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowPackages",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowProcesses"
+      ],
+      "title": "Security policies"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSUpdateSecurityPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "dictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUpdateSecurityPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Security-policies",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowPackages",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUpdateSecurityPolicy/AllowProcesses"
+              ],
+              "title": "Security policies"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Security",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSUserTrackingUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAppleEventsUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSSystemAdministrationUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSAppUsesNonExemptEncryption",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ITSEncryptionExportComplianceCode"
+              ],
+              "title": "Security"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy/title",
+          "value": "NSUpdateSecurityPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUpdateSecurityPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleEventsUsageDescription/title",
+          "value": "NSAppleEventsUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppleEventsUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppleEventsUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppDataUsageDescription/title",
+          "value": "NSAppDataUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAppDataUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppDataUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.security.cs.disable-executable-page-protection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.security.cs.disable-executable-page-protection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUserTrackingUsageDescription/title",
+          "value": "NSUserTrackingUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUserTrackingUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserTrackingUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy~1AllowProcesses/title",
+          "value": "AllowProcesses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy~1AllowProcesses/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AllowProcesses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSAppUsesNonExemptEncryption/title",
+          "value": "ITSAppUsesNonExemptEncryption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSAppUsesNonExemptEncryption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ITSAppUsesNonExemptEncryption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSystemAdministrationUsageDescription/title",
+          "value": "NSSystemAdministrationUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSSystemAdministrationUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSystemAdministrationUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy~1AllowPackages/title",
+          "value": "AllowPackages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSUpdateSecurityPolicy~1AllowPackages/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AllowPackages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSEncryptionExportComplianceCode/title",
+          "value": "ITSEncryptionExportComplianceCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ITSEncryptionExportComplianceCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ITSEncryptionExportComplianceCode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsupdatesecuritypolicy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nsupdatesecuritypolicy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

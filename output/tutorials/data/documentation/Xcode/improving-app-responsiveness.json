@@ -1,0 +1,3578 @@
+{
+  "abstract": [
+    {
+      "text": "Create a user experience that feels responsive by removing hangs and hitches from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving app responsiveness"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app that responds instantly to users’ interactions gives an impression of supporting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their workflow. When the app responds to gestures and taps in real time, it creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an experience for users that they’re directly manipulating the objects on the screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps with a noticeable delay in user interaction (a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hang",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") or movement on screen that appears to jump (a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hitch",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "), shatter that illusion.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This leaves the user wondering whether the app is working correctly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To avoid hangs and hitches, keep the following rough thresholds in mind as you develop and test your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Synchronous main thread work in response to a discrete user interaction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "< 100 ms",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Main thread work and work to handle continuous user interaction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "< 1 display refresh interval (8 or 17ms)",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Work performed on the main thread influences both the delay between an incoming user event and the corresponding screen update as well as the maximum frequency of screen updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a delay in discrete user interaction becomes longer than 100 ms, it starts to become noticeable and causes a hang.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Other stages of the event handling and rendering pipeline contribute to the overall delay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Assume that less than half that time is available for your app’s main thread to do its work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A shorter delay is rarely noticeable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For fluid, uninterrupted motion, a new frame needs to be ready whenever the screen updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On Apple devices, this can be as often as 120 times per second, or every 8.3 ms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Another common display refresh rate for Apple devices is 60Hz, so one update every 16.7ms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on system conditions and other work that your app performs, you might not have the full display refresh interval to prepare your next screen update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the work that your app needs to perform on the main thread to update the screen is less than 5 ms, the update is usually ready in time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If it takes longer, you need to take a closer look at the specific devices you’re targeting and the display refresh rate your app needs to support.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Look at the section on hitches below for tools and guidelines to determine whether you are meeting the appropriate responsiveness thresholds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, avoid scheduling work that does not have to execute on the main thread on the main thread, not even asynchronously, e.g.  via ",
+              "type": "text"
+            },
+            {
+              "code": "dispatch_async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": "ing the result of a function call on the main actor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As you have no control over when exactly the main thread processes your work or what the user might be doing at the time, it might come in in the middle of a continuous user interaction and cause a hitch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The thresholds above are very rough guidelines to give you an understanding what execution times to aim for.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "There are more nuances about various interaction scenarios and sometimes you have more leeway.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To learn more about these cases, the difference between hitches and hangs, how the rendering loop works, and how Apple’s developer tools detect each type of unresponsiveness, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article describes several best practices to help you avoid introducing hangs and hitches in your app, as well as multiple tools to help you detect and analyze these types of responsiveness issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-hangs-by-keeping-the-main-thread-free-from-non-UI-work",
+          "level": 3,
+          "text": "Avoid hangs by keeping the main thread free from non-UI work",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure your app uses the main thread only to interact with the user interface (UIKit, AppKit, or SwiftUI).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Direct all other operations to a background thread, operation queue, or Grand Central Dispatch queue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about hangs and why it’s essential to keep the main thread free from non-UI work, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", make sure not to accidentally execute work on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The correct approach to get work off of the main actor depends on whether you can refactor the heavy work into a non-actor-isolated asynchronous function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you can wrap the long-running work in such a way to make it ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it’s easy to execute it off of the main actor with a ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If this isn’t possible, execute the synchronous function inside a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task/detached(priority:operation:)-d24l",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below there are three almost identical code examples.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The first one shows how to correctly get off of the main actor if you can wrap the long-running work in a ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The second example shows a common mistake where the code looks as if it avoids the hang, but doesn’t.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This example just causes a hang a little later due to a ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implicitly inheriting the actor-constraint from its surrounding context.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The last example shows how to break this implicit actor-constraint inheritance by using a detached ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The subtle differences in these examples cause completely different execution behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Be aware of these in your own Swift concurrency code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows how to successfully get your long-running work off of the main actor if the long-running function is ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or if you can wrap it in such a function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct ContentView: View {",
+            "    var body: some View {",
+            "        Button(\"I don't hang\") {",
+            "            Task { ",
+            "                await doLongRunningWork()",
+            "                updateUI()",
+            "            }",
+            "        }",
+            "    }",
+            "    @MainActor func updateUI() { /* ... */ }",
+            "}",
+            "private func doLongRunningWork() async { /* a lot of work */ } // Implicitly nonisolated due to being a free function"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the above example allows the button action to return immediately, before the new task finishes executing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specifically, the ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " itself inherits the actor from its enclosing context and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "does",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " execute on the main actor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Beginning with Swift 5.7, Swift executes nonisolated, asynchronous functions, like ",
+              "type": "text"
+            },
+            {
+              "code": "doLongRunningWork()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the example above, on the concurrency thread pool, off of any actors.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then execution of the ",
+              "type": "text"
+            },
+            {
+              "code": "updateUI()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns to the main actor because it’s part of a ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constrained to the main actor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is exactly what we want to happen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information about how actors and tasks interact, and the circumstances under which isolated/nonisolated, synchronous/asynchronous functions execute on and off of an actor, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/110351/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both the ",
+              "type": "text"
+            },
+            {
+              "code": "nonisolated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " aspect of the function and the ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " nature of it are essential for enabling this behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the long-running work only executes synchronously, it is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not enough",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to wrap it in a ",
+              "type": "text"
+            },
+            {
+              "code": "Task",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following code produces a hang:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// This code produces a hang. This is only for illustration purposes.",
+            "import SwiftUI",
+            "",
+            "struct ContentView: View {",
+            "    var body: some View {",
+            "        Button(\"Hang later!\") {",
+            "            // Don't do this. Use Task.detached {} instead or make `doLongRunningWork()` async.",
+            "            Task {",
+            "                doLongRunningWork()",
+            "                updateUI()",
+            "            }",
+            "        }",
+            "    }",
+            "}",
+            "private func doLongRunningWork() { /* a lot of work */ } // Nonisolated, but synchronous."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that this is almost the exact code as in the previous example, except that ",
+              "type": "text"
+            },
+            {
+              "code": "doLongRunningWork()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so there isn’t an ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword before the function call.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "does",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " create a separate Swift concurrency task and allows the button’s action to return quickly without blocking the UI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, the created task inherits the context from its enclosing context because the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property on the SwiftUI ",
+              "type": "text"
+            },
+            {
+              "code": "View",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is annotated with ",
+              "type": "text"
+            },
+            {
+              "code": "@MainActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", meaning it must execute on the main actor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, tasks inherit their context from their enclosing context during creation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Therefore, the newly created task in the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property’s context is also constrained to the main actor, which means it can only execute on the main actor and does still block the main actor for a long amount of time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This just ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "delays",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the hang until after the immediate button action finishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift concurrency enqueues the task on the main actor and executes it there shortly after, which keeps the main thread busy and prevents it from handling incoming events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If making the function ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t an option, wrap it in a ",
+              "type": "text"
+            },
+            {
+              "code": "detached",
+              "type": "codeVoice"
+            },
+            {
+              "text": " task to explicitly opt out from inheriting the surrounding execution context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct ContentView: View {",
+            "    var body: some View {",
+            "        Button(\"Hang in UI interaction\") {",
+            "            Task.detached {",
+            "                doLongRunningWork()",
+            "                await updateUI()",
+            "            }",
+            "        }",
+            "    }",
+            "}",
+            "private func doLongRunningWork() { /* a lot of work */ } // Nonisolated, but synchronous."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is also often appropriate for background work that can execute at a lower priority and doesn’t need to update the UI when it finishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choosing a detached task ensures that the task doesn’t inherit the actor context, so it can execute on any thread in the thread pool.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Another difference from the previous example is that the entire task executes outside of the main actor, instead of just the one ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also note that the code calls ",
+              "type": "text"
+            },
+            {
+              "code": "updateUI()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword because the detached task doesn’t execute on the main actor, so main-actor-constrained functions must execute asynchronously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be aware of the default priority propagation rules.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A detached task doesn’t inherit any priority from its creation context and executes only with ",
+              "type": "text"
+            },
+            {
+              "code": ".medium",
+              "type": "codeVoice"
+            },
+            {
+              "text": " priority, by default.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Consider choosing a more appropriate priority using ",
+              "type": "text"
+            },
+            {
+              "code": ".detached(priority: .background)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or a similar quality-of-service level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/110350/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn how to use Instruments to detect when your Swift concurrency tasks execute on the main actor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using dispatch queues or manual thread management, dispatch the work to a background queue or thread asynchronously, and have it asynchronously signal the main thread or queue to update the UI when its background work finishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Don’t synchronize the main thread with a background thread, or make the main thread join a background thread.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Both of these actions block the main thread until the work in the background completes, which denies your app the benefit of concurrent operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-which-parts-of-your-app-need-to-execute-on-the-main-thread-and-which-dont",
+          "level": 3,
+          "text": "Analyze which parts of your app need to execute on the main thread and which don’t",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally, separate your UI updates into preparing data for display, and updating view objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to display that data when the view redraws. Your app can do the preparation in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the background, and only needs to use the main thread to update its views. Indicate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the user that this preparation is underway, giving them the opportunity to cancel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or perform other tasks as appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a particular app uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIRefreshControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to allow the user to pull a table view down to refresh its content from the network.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "valueChanged",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event on the ",
+              "type": "text"
+            },
+            {
+              "code": "UIRefreshControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "triggers an action method on the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "UIViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass. When UIKit invokes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this action method, the app makes a request to the server using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "NSURLDataTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". On completion of the network task, the app checks whether the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "download succeeds. If it does, the app deserializes a JSON object from the downloaded",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, updates properties on its model objects based on the fields in the JSON object,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and reconfigures its view to reflect the updated model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Of all of these tasks, only the action method invocation from UIKit and the reconfiguration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the app’s views need to use the main thread. The app can dispatch all other tasks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronously to the background, as the image below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-app-responsiveness-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-high-level-concurrency-constructs-to-avoid-having-too-many-threads",
+          "level": 3,
+          "text": "Use high-level concurrency constructs to avoid having too many threads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the number of threads running on the device increases, the operating system schedules each thread less often on a CPU core.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Any individual thread, including your app’s main thread, runs on a core for less time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So, it’s important to avoid creating too many threads to keep the system performant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift concurrency, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all maintain an internal pool of worker threads that’s tuned to the device capacity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and load. Use these technologies, instead of creating your own background threads,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ensure balance between scheduling as much work as possible and allowing the operating system to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "run other threads, including the main thread and operating system tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-hitches-by-minimizing-view-update-time",
+          "level": 3,
+          "text": "Avoid hitches by minimizing view update time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide smooth animations that look like continual motion, Apple devices update the screen up to 120 times per second.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When your app is in the foreground, the drawing code on the main thread needs to complete before the next frame is needed to avoid dropping frames and appearing jerky.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Taking a long time to draw a frame can cause a hitch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use standard views wherever possible to ensure efficient view drawing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Where you need a custom view or control to provide functionality unavailable from standard components, ensure that its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/draw(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method draws only into the specified rectangle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rely on previously prepared data in ",
+              "type": "text"
+            },
+            {
+              "code": "draw(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", don’t perform I/O or complex calculations in this method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Draw only into the rectangle that passes as an argument to ",
+              "type": "text"
+            },
+            {
+              "code": "draw(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to avoid expensive computations on view components that don’t draw to the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit and AppKit only invoke a view’s ",
+              "type": "text"
+            },
+            {
+              "code": "draw(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to update the view for a frame if there’s a call to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/setNeedsDisplay()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method after the most recent call to ",
+              "type": "text"
+            },
+            {
+              "code": "draw(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Only call ",
+              "type": "text"
+            },
+            {
+              "code": "setNeedsDisplay()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the view’s representation needs updating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about different types of hitches and the stages of the render loop, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optimize-your-app-for-variable-refresh-rates",
+          "level": 3,
+          "text": "Optimize your app for variable refresh rates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app interacts with the graphics system directly, such as when you do your own rendering, be aware of variable refresh rate displays.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re only using high-level UI APIs like SwiftUI, UIKit, and AppKit, those frameworks take care of adapting animations, and similar rendering work, to the display’s refresh rate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you can’t ensure that the work necessary to prepare the next frame completes within ~5 ms, or your app can adapt its rendering performance and detail based on system conditions, consider adapting your app for variable refresh rates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, it’s better to aim for a slightly lower refresh rate that your app can consistently achieve than attempt to meet a higher refresh rate that sometimes misses the frame deadline, because each missed deadline results in a hitch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVDisplayLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ensure you maximize the time for rendering by starting work on the next frame right when a vsync occurs instead of potentially starting in the middle of a vsync interval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "See ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.documentation/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to learn more about working with variable refresh rates.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "See ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "https://developer.apple.com/videos/play/wwdc2021/10147/",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to learn about the difference between fixed-rate and adaptive-sync displays, and how to make the most of variable refresh rate displays.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Write-performance-tests-to-ensure-main-thread-bound-code-completes-fast",
+          "level": 3,
+          "text": "Write performance tests to ensure main-thread-bound code completes fast",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For code that must execute on the main thread, create an XCTest performance test to measure the time your app spends running the code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Execute the relevant code in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " block.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can either accept the average runtime of your code block as the baseline, or edit the baseline and set it to 100 ms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The performance test fails if the code requires significantly longer than the baseline time to execute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "100 ms is the maximum delay for discrete user interaction before a delay becomes noticeable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, be aware that some users are more sensitive to delays, so consider using a lower threshold.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also, remember that code the system runs during continuous user interaction, like table and collection view data source methods, must finish much more quickly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Consider using a limit of 5 ms for such code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10077/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn how to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTOSSignpostMetric",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to write performance tests measuring the hitch ratio, number of hitches, and similar metrics for a piece of code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Detect-hangs-and-hang-risks",
+          "level": 3,
+          "text": "Detect hangs and hang risks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are various tools you can use to detect hangs proactively during development, both when you implement a new feature or make a change to an existing part of your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These tools are also useful to track down a reported issue for a released version of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Turn on the Thread Performance Checker in your app’s scheme to receive notifications of priority inversions when you run your app from Xcode.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Learn more at ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable on-device hang detection by opening the Settings app and navigating to Developer > Hang Detection.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This notifies you of hangs that occur in apps on your device while you’re using it.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Your iOS device captures a hang report that you can then analyze on your Mac.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "On-device hang detection works for development-signed builds and TestFlight builds on your iOS device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the Time Profiler, CPU Profiler, or Hitches templates in Instruments to profile your app proactively.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "All these templates include the Hangs instruments, which displays any hangs it encounters during the recording and allows you to analyze them further.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Hang detection in Instruments was introduced in Instruments 14, and requires macOS 13, iOS 16, tvOS 16, or watchOS 9, or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Find-the-cause-of-a-hang",
+          "level": 3,
+          "text": "Find the cause of a hang",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps hang because the main thread isn’t available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when it’s time for the app to react to an event that requires a screen update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This can happen for two reasons: either the main thread is busy executing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code, or it’s blocked waiting for a resource to become available or for a system call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-app-responsiveness-busy-vs-blocked-main-thread",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you detect a specific hang with one of the tools above and can reproduce it, attach your device to your Mac and profile your app with Instruments while reproducing the issue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can then add additional instruments to your trace document to track down the issue and precisely analyze what causes your hang.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also import the tailspin files from on-device hang detection into Instruments",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and perform the same kind of analysis.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn how to use Instruments to track down and fix hangs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/tutorials/Instruments/getting-started-with-hang-analysis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or watch ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10248/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-and-analyze-hitches-using-Instruments",
+          "level": 3,
+          "text": "Detect and analyze hitches using Instruments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To proactively look for hitches, or to investigate a specific hitch you’re trying to fix, use the Animation Hitches template in Instruments.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Start Instruments, select your app and the Animation Hitches template, and click the Record button.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then use the feature in your app that you want to investigate, and Instruments highlights any hitches that occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-app-responsiveness-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get into a habit of profiling your code using the Animation Hitches template whenever you make a change that may affect scrolling or animation behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Just a few milliseconds of delay can cause a hitch, so small performance differences can have a big impact.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make sure you get realistic measurements, it’s best to run your app on a real device when looking for hitches with Instruments.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also, consider using older devices that your app supports to make it easier to find issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about how to analyze and fix different types of hitches using Instruments, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/10856",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/10857",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To better understand the individual aspects of the render loop the Hitches instrument exposes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app#Understand-the-display-refresh-interval-and-associated-deadlines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-reports-and-metrics-from-the-field",
+          "level": 3,
+          "text": "Get reports and metrics from the field",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prerelease testing doesn’t always capture all possible issues a user may encounter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In some cases, hangs and hitches in your app escape prerelease testing and make it into the released app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode Organizer bridges the gap between prerelease and postrelease by providing diagnostics for issues users are most frequently experiencing when using your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get a better understanding of how your released app performs, and how many hangs and hitches your users experience, view aggregated data in Xcode Organizer or collect reports using your own infrastructure and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating systems on Apple devices monitor for hangs and hitches for running apps, and employ population subsampling to periodically collect reports for these issues.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about analyzing the hangs and hitches your users are experiencing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app": {
+      "abstract": [
+        {
+          "text": "Identify responsiveness issues your users encounter, and use the hang and hitch data in Xcode Organizer to determine which issues are most important to fix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing responsiveness issues in your shipping app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-responsiveness-issues-in-your-shipping-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app": {
+      "abstract": [
+        {
+          "text": "View power and performance metrics for apps you distribute through the App",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your shipping app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-the-performance-of-your-shipping-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early": {
+      "abstract": [
+        {
+          "text": "Diagnose potential performance issues in your app during testing with the Thread Performance Checker tool in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing performance issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-performance-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app": {
+      "abstract": [
+        {
+          "text": "Minimize how frequently the system stops your app by addressing common termination reasons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing terminations in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/reduce-terminations-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time": {
+      "abstract": [
+        {
+          "text": "Create a more responsive experience with your app by minimizing time spent in startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing your app’s launch time",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-launch-time"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause for delays in user interactions by examining the main thread and the main run loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hangs in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hangs-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause of interruptions in motion by examining the render loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hitches in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app#Understand-the-display-refresh-interval-and-associated-deadlines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app#Understand-the-display-refresh-interval-and-associated-deadlines",
+      "kind": "section",
+      "title": "Understand the display refresh interval and associated deadlines",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app#Understand-the-display-refresh-interval-and-associated-deadlines"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness": {
+      "abstract": [
+        {
+          "text": "Make your app more responsive by examining the event-handling and rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding user interface responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-user-interface-responsiveness"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/CVDisplayLink": {
+      "abstract": [
+        {
+          "text": "A reference to a display link object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/CVDisplayLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVDisplayLink",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/CVDisplayLink"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/MetricKit"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink": {
+      "abstract": [
+        {
+          "text": "A timer object that allows your app to synchronize its drawing to the refresh rate of the display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CADisplayLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CADisplayLink",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CADisplayLink"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro": {
+      "abstract": [
+        {
+          "text": "Provide custom animated content for ProMotion displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing ProMotion refresh rates for iPhone 13 Pro and iPad Pro",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/optimizing-promotion-refresh-rates-for-iphone-13-pro-and-ipad-pro"
+    },
+    "doc://com.apple.documentation/documentation/Swift/MainActor": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task/detached(priority:operation:)-d24l": {
+      "abstract": [
+        {
+          "text": "Runs the given nonthrowing operation asynchronously as part of a new top-level task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@discardableResult"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detached"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScP",
+          "text": "TaskPriority"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "sending "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @isolated(any) () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScT",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task/detached(priority:operation:)-d24l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detached(priority:operation:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Task/detached(priority:operation:)-d24l"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIRefreshControl"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/draw(_:)": {
+      "abstract": [
+        {
+          "text": "Draws the view’s image within the passed-in rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/draw(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/draw(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/setNeedsDisplay()": {
+      "abstract": [
+        {
+          "text": "Marks the receiver’s entire bounds rectangle as needing to be redrawn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNeedsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/setNeedsDisplay()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNeedsDisplay()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/setNeedsDisplay()"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTOSSignpostMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the time that a performance test spends executing a signposted region of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTOSSignpostMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTOSSignpostMetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTOSSignpostMetric",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTOSSignpostMetric"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(_:)": {
+      "abstract": [
+        {
+          "text": "Measures the performance of a block of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "measure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measure(_:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase/measure(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue": {
+      "abstract": [
+        {
+          "text": "A queue that regulates the execution of operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "OperationQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/Instruments/getting-started-with-hang-analysis": {
+      "abstract": [
+        {
+          "text": "Learn how to analyze hangs with Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/Instruments/getting-started-with-hang-analysis",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting started with hang analysis",
+      "type": "topic",
+      "url": "/tutorials/Instruments/getting-started-with-hang-analysis"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/10855": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/10855",
+      "title": "Explore UI animation hitches and the render loop",
+      "titleInlineContent": [
+        {
+          "text": "Explore UI animation hitches and the render loop",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/10855"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/10856": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/10856",
+      "title": "Find and fix hitches in the commit phase",
+      "titleInlineContent": [
+        {
+          "text": "Find and fix hitches in the commit phase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/10856"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/10857": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/10857",
+      "title": "Demystify and eliminate hitches in the render phase",
+      "titleInlineContent": [
+        {
+          "text": "Demystify and eliminate hitches in the render phase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/10857"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10077/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10077/",
+      "title": "Eliminate animation hitches with XCTest",
+      "titleInlineContent": [
+        {
+          "text": "Eliminate animation hitches with XCTest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10077/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10147/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10147/",
+      "title": "Optimize for variable refresh rate displays",
+      "titleInlineContent": [
+        {
+          "text": "Optimize for variable refresh rate displays",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10147/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10082": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10082",
+      "title": "Track down hangs with Xcode and on-device detection",
+      "titleInlineContent": [
+        {
+          "text": "Track down hangs with Xcode and on-device detection",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10082"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/110350/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/110350/",
+      "title": "Visualize and optimize Swift concurrency",
+      "titleInlineContent": [
+        {
+          "text": "Visualize and optimize Swift concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/110350/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/110351/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/110351/",
+      "title": "Eliminate data races using Swift concurrency",
+      "titleInlineContent": [
+        {
+          "text": "Eliminate data races using Swift concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/110351/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10248/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10248/",
+      "title": "Analyze hangs with Instruments",
+      "titleInlineContent": [
+        {
+          "text": "Analyze hangs with Instruments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10248/"
+    },
+    "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html": {
+      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+      "title": "Swift concurrency",
+      "titleInlineContent": [
+        {
+          "text": "Swift concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html"
+    },
+    "improving-app-responsiveness-4": {
+      "alt": "An illustration that depicts how an app uses an asynchronous dispatch queue to increase the responsiveness of its main thread.",
+      "identifier": "improving-app-responsiveness-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d00c17c463bfa2e328a09d311800006/improving-app-responsiveness-4@2x.png"
+        }
+      ]
+    },
+    "improving-app-responsiveness-6": {
+      "alt": "A screenshot of Instruments showing a recorded trace from the Hitches template. Under the track for the Hitches instrument, there are tracks for User Events, Commits, Renders, GPU, and Frame Lifetimes. There is also an additional track showing how long individual frames are on the display and when the vsyncs happen. The tracks show the components of a single hitch in the current time interval, and there are six hitches overall in the list below the track area.",
+      "identifier": "improving-app-responsiveness-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a53a42367f5f292a69fc28870385ee57/improving-app-responsiveness-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9c72846402e2bda7c8f2f697fe6c48d/improving-app-responsiveness-6~dark@2x.png"
+        }
+      ]
+    },
+    "improving-app-responsiveness-busy-vs-blocked-main-thread": {
+      "alt": "An illustration with two histogram charts side by side as they also appear in Instruments in the Time Profiler instruments CPU Usage track. The overall illustration has the title, Unresponsive Main Threads. The left chart shows a graph where the bars reach to the top, or close to the top, for most of the width of the chart. It has the caption, busy main thread. In the chart on the right, the first portion looks similar, but there is a large gap where no bars appear for the majority of the width of the chart. Toward the end, the bars show up again. This chart has the caption, blocked main thread.",
+      "identifier": "improving-app-responsiveness-busy-vs-blocked-main-thread",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c6521e79cfe9994c329020bd0b9eec2/improving-app-responsiveness-busy-vs-blocked-main-thread@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8007b85e0790fd7bc08a4ddac16ea1bb/improving-app-responsiveness-busy-vs-blocked-main-thread~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-the-performance-of-your-shipping-app",
+        "doc://com.apple.documentation/tutorials/Instruments/getting-started-with-hang-analysis",
+        "https://developer.apple.com/videos/play/wwdc2023/10248/",
+        "https://developer.apple.com/videos/play/wwdc2022/10082",
+        "https://developer.apple.com/videos/play/tech-talks/10855",
+        "https://developer.apple.com/videos/play/tech-talks/10856",
+        "https://developer.apple.com/videos/play/tech-talks/10857",
+        "https://developer.apple.com/videos/play/wwdc2020/10077/"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Responsiveness",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+        "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes"
+      ],
+      "title": "Responsiveness"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1setNeedsDisplay()/title",
+          "value": "setNeedsDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1setNeedsDisplay()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNeedsDisplay"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CADisplayLink/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIControl",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1measure(_:)/title",
+          "value": "measureBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1measure(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "measureBlock:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTOSSignpostMetric/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTOSSignpostMetric"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1operationqueue/title",
+          "value": "NSOperationQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1draw(_:)/title",
+          "value": "drawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1draw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVDisplayLink/title",
+          "value": "CVDisplayLinkRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1CVDisplayLink/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__CVDisplayLink",
+              "text": "__CVDisplayLink"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

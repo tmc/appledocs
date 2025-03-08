@@ -1,0 +1,401 @@
+{
+  "abstract": [
+    {
+      "text": "Create a WS-Trust login request using the metadata exchange data (MEX) response.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Performing a WS-Trust login request"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving a WS-Trust MEX response, the next step that the system performs for federated authentication with WS-Trust, meaning between security domains, is to send a login request to a federated identity provider (IdP).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationRequestURN",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the URLs specified in the MEX response to create the WS-Trust login request, per Web Services Security Username Token Profile Version 1.1.1. The system doesn’t support ",
+              "type": "text"
+            },
+            {
+              "code": "PasswordDigest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system sends the WS-Trust login using Simple Object Access Protocol (SOAP) to the endpoint in the MEX response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about federated authentication with WS-Trust, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-the-WS-Trust-login-response",
+          "level": 3,
+          "text": "Receive the WS-Trust login response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system loads the SOAP response as XML and validates it, which includes checking that the nonce is correct and the created and expires dates are current. The system then parses the ",
+              "type": "text"
+            },
+            {
+              "code": "TokenType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and uses it to set the correct ",
+              "type": "text"
+            },
+            {
+              "code": "grant_type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the platform SSO login request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationRequestURN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "federationRequestURN"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationRequestURN",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "federationRequestURN"
+        }
+      ],
+      "role": "symbol",
+      "title": "federationRequestURN",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationrequesturn"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process": {
+      "abstract": [
+        {
+          "text": "Use a system-supported method to authenticate with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authentication process",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authentication-process"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request": {
+      "abstract": [
+        {
+          "text": "Refresh a non-expired token instead of sending a new login request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a refresh request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-a-refresh-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion": {
+      "abstract": [
+        {
+          "text": "Request an embedded assertion for login types that require a digital signature for authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an embedded assertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-an-embedded-assertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion": {
+      "abstract": [
+        {
+          "text": "Request an encrypted embedded assertion for login types that require password encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an encrypted embedded assertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-an-encrypted-embedded-assertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request": {
+      "abstract": [
+        {
+          "text": "Create a signed JOSE login request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and validating a login request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-and-validating-a-login-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests": {
+      "abstract": [
+        {
+          "text": "Support the platform SSO 2.0 protocol for encryption and decryption operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting key requests and key exchange requests",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-key-requests-and-key-exchange-requests"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Login-request",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests"
+      ],
+      "title": "Login request"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Login-request",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests"
+              ],
+              "title": "Login request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1federationRequestURN/title",
+          "value": "federationRequestURN"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1federationRequestURN/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "federationRequestURN"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/performing-a-ws-trust-login-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/performing-a-ws-trust-login-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

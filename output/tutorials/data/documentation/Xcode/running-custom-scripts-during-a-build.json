@@ -1,0 +1,1404 @@
+{
+  "abstract": [
+    {
+      "text": "Execute custom shell scripts during the build process, and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "run tools or other commands that your project requires.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Running custom scripts during a build"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides many tools for turning code and resources into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "finished products, but sometimes you need to run custom tools",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your products. For example, you might package some of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resources into an optimized format for faster runtime access. For these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks, you use custom shell scripts to execute the code and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tools you need during the build process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your script compiles or converts one or more input files to a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "different format, considering creating a build rule for your files",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "instead. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-run-script-build-phase-to-your-target",
+          "level": 3,
+          "text": "Add a run script build phase to your target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To execute a custom script at build time, add a Run Script build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "phase to your target. This build phase runs separately from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target’s other build phases, such as the compilation and link build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "phases. You may add multiple script-related build phases to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target to execute scripts at different stages of the build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a Run Script build phase to a target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project navigator, select your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the target you want to modify.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Build Phases tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+), then choose “New Run Script Phase” from the pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangle for the newly added Run Script phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Shell text field, enter your script code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-run-script-phase.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have an existing shell script file, drag it onto the Shell",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text field to copy the script there. You may use any of the available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shell environments to execute your script, and you can change the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "execution shell by changing the shell command above your script code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To rename a script phase, double-click the Run Script title",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to edit it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Specify-the-input-and-output-files-for-your-script",
+          "level": 3,
+          "text": "Specify the input and output files for your script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Run Script build phase provides a place to enter any input",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and output files for your script. Use input and output files to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "customize your script’s behavior and to help the build system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "understand when to execute your script. Input files contain data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want the script to process. For example, you might pass one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or more image files to the script. Output files contain any data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generated by the script.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify input and output files in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify individual files as path strings. Typically, you use",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "path strings only when you know the input or output files in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "advance and you’re sure they won’t change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify files in a file list, which is a text file with an",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".xcfilelist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " filename extension. File lists make it easier to edit",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the set of files, and are particularly useful if you change the list",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of files frequently or want to annotate the list with comments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add files or file lists to your script, click the Add button (+)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the appropriate section of your Run Script build phase. For each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entry, specify the path to the file or file list, which can include build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables. For example, the string ",
+              "type": "text"
+            },
+            {
+              "code": "$(PROJECT_DIR)/myFileList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a file list in the root directory of the current project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you periodically change the set of input or output files, specify them using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a file list. A file list contains a list of path strings separated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by newline characters. Each path string represents a single input",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or output file for the script. Path strings can include build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables such as ",
+              "type": "text"
+            },
+            {
+              "code": "$(PROJECT_DIR)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode requires the set of input and output files your script accesses so it can inform the build process. This ensures correctness by running scripts and other concurrently-executing build tasks in the right order, and optimizes build times by running your script only when necessary. If you don’t specify the files, Xcode runs your script every time you build the target and it might introduce incorrect build behaviors. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Access-script-related-files-from-environment-variables",
+          "level": 3,
+          "text": "Access script-related files from environment variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode configures the execution environment for your script and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gives your script access to the same build settings and environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables as the target. Xcode also creates the following environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables specifically for your script.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Variable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE_COUNT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The total number of files available as inputs to the script.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE_[#]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Environment variables that contain the paths to the script’s input files. Xcode creates an environment variable for each input file, starting with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRIPT_INPUT_FILE_0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and increasing the number value sequentially for each subsequent file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE_LIST_COUNT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The total number of file lists available as inputs to the script.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_INPUT_FILE_LIST_[#]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Environment variables that contain the paths to the script’s input file lists. Xcode creates an environment variable for each input file list, starting with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRIPT_INPUT_FILE_LIST_0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and increasing the number value sequentially for each subsequent file list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_COUNT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The total number of files described as script outputs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_[#]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Environment variables that contain the paths to the script’s output files. Xcode creates an environment variable for each output file, starting with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and increasing the number value sequentially for each subsequent file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_LIST_COUNT",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The total number of file lists described as script outputs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_LIST_[#]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Environment variables that contain the paths to the script’s output file lists. Xcode creates an environment variable for each output file list, starting with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCRIPT_OUTPUT_FILE_LIST_0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and increasing the number value sequentially for each subsequent file list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the build settings and script-specific environment variables",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to customize your script’s behavior. For example, you might write",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your script’s output files to the directory in the ",
+              "type": "text"
+            },
+            {
+              "code": "BUILT_PRODUCTS_DIR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build setting. For a complete list of build settings, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Log-errors-and-warnings-from-your-script",
+          "level": 3,
+          "text": "Log errors and warnings from your script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During your script’s execution, you can report errors, warnings,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and general notes to the Xcode build system. Use these messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to diagnose problems or track your script’s progress. To write",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messages, use the echo command and format your message as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[filename]:[linenumber]: error | warning | note : [message]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "error:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "warning:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "note:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string is present,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode adds your message to the build logs. If the issue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurs in a specific file, include the filename as an absolute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "path. If the issue occurs at a specific line in the file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "include the line number as well. The filename and line number",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some example errors and warnings include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "echo \"error: An expected input file was missing.\"",
+            "echo \"warning: Skipping a file of an unknown type.\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Trigger-a-build-failure",
+          "level": 3,
+          "text": "Trigger a build failure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your script fails and recovery isn’t possible,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return a nonzero exit code from your script. Xcode treats a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "nonzero exit value as a build failure, and adds appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information to the logs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example logs an error message to standard out",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and triggers a build failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "echo \"error: A fatal error occurred in the script.\"",
+            "exit 1"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "build-run-script-phase.png": {
+      "alt": "The editor pane that you use to specify the content of custom shell scripts.",
+      "identifier": "build-run-script-phase.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7702f841567fd1ffa65e3506dcd46fbd/build-run-script-phase@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7436ff5172a1801fab4576d2c07f9324/build-run-script-phase~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types": {
+      "abstract": [
+        {
+          "text": "Tell Xcode how to build your project’s custom file types, and provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dependency information to optimize the build process for each file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating build rules for custom file types",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-build-rules-for-custom-file-types"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "files to compile, the scripts to run, and the resources to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds": {
+      "abstract": [
+        {
+          "text": "Tell the Xcode build system about your project’s target-related dependencies, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reduce the compiler workload during each build cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-the-speed-of-incremental-builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the speed of incremental builds",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-the-speed-of-incremental-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version": {
+      "abstract": [
+        {
+          "text": "Add conditional compilation markers around code that requires a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "particular family of devices or minimum operating system version to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version",
+      "kind": "article",
+      "role": "article",
+      "title": "Running code on a specific platform or OS version",
+      "type": "topic",
+      "url": "/documentation/xcode/running-code-on-a-specific-version"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-customization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+        "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version"
+      ],
+      "title": "Build customization"
+    }
+  ]
+}

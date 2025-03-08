@@ -1,0 +1,421 @@
+{
+  "abstract": [
+    {
+      "text": "Use the Indoor Mapping Data Format (IMDF) to show an indoor map with custom overlays and points of interest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/displaying-an-indoor-map"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.6",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.6",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying an Indoor Map"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app demonstrates decoding, rendering, and styling of a small subset of the IMDF feature types and their properties. Use these examples to create your own indoor map with a style that’s consistent with your app’s design. You’ll need to handle feature categories that are specific to your venue, and configure the map style using your own colors, icons, and level picker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc19/241",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "bd14bb210dcb/DisplayingAnIndoorMap.zip": {
+      "checksum": "bd14bb210dcb3fb4945d14154718f9709de62292f7b175cac52ec4878aa9dbf26321846d01fbc11337711dda19ba1a8c1fde97d56f72e84cc8ecc19b26fcc0f2",
+      "identifier": "bd14bb210dcb/DisplayingAnIndoorMap.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/bd14bb210dcb/DisplayingAnIndoorMap.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONDecoder": {
+      "abstract": [
+        {
+          "text": "An object that decodes GeoJSON objects into MapKit types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKGeoJSONDecoder",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkgeojsondecoder"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONFeature": {
+      "abstract": [
+        {
+          "text": "The decoded representation of a GeoJSON feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKGeoJSONFeature",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkgeojsonfeature"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONObject": {
+      "abstract": [
+        {
+          "text": "Objects that the GeoJSON decoder can return.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONObject"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKGeoJSONObject",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkgeojsonobject"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    },
+    "https://developer.apple.com/wwdc19/241": {
+      "identifier": "https://developer.apple.com/wwdc19/241",
+      "title": "241: Adding Indoor Maps to your App and Website",
+      "titleInlineContent": [
+        {
+          "text": "241: Adding Indoor Maps to your App and Website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc19/241"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "bd14bb210dcb/DisplayingAnIndoorMap.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Geographical-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONDecoder",
+        "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONFeature",
+        "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONObject"
+      ],
+      "title": "Geographical features"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Geographical-features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONDecoder",
+                "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONFeature",
+                "doc://com.apple.mapkit/documentation/MapKit/MKGeoJSONObject"
+              ],
+              "title": "Geographical features"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONDecoder/title",
+          "value": "MKGeoJSONDecoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONDecoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONDecoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONObject/title",
+          "value": "MKGeoJSONObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONFeature/title",
+          "value": "MKGeoJSONFeature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONFeature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONFeature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeoJSONFeature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONFeature"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/displaying-an-indoor-map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/displaying-an-indoor-map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

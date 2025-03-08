@@ -1,0 +1,1223 @@
+{
+  "abstract": [
+    {
+      "text": "Choose an invocation URL for your App Clip Code that you can encode efficiently.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Encoding a URL in an App Clip Code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating an App Clip Code involves the following key tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choosing invocations to support",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choosing invocation URLs to use in your App Clip Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Setting up advanced App Clip experiences",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although App Clip Codes are a great way to launch your App Clip, an App Clip Code can only contain a limited amount of information in its visual code or NFC tag. At the same time, it’s important you choose invocation URLs with additional parameters or attributes that lead to the best possible launch experience for users. This additional information could make your invocation URL too long to encode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an App Clip Code, you need to find the best tradeoff between the limited capacity to store information in the App Clip Code and the need to encode more information. Therefore, choosing the right URLs to launch your App Clip from an App Clip Code is extremely important.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-App-Clip-experiences-and-invocation-URLs",
+          "level": 3,
+          "text": "Review App Clip experiences and invocation URLs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users launch your App Clip with an invocation; for example, by tapping a link in the Messages app, by scanning a QR code, or by scanning an App Clip Code. Configuring your App Clip’s launch experience requires you to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Associate your App Clip with your website to enable the system to verify your App Clip upon launch. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a default App Clip experience and additional advanced App Clip experiences that allow you to register an invocation URL that launches your App Clip. To support invocations from App Clip Codes, you need to create at least one advanced App Clip experience. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can create a default App Clip experience that uses ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its invocation URL, and one advanced App Clip experience. The advanced experience’s registered invocation URL might be ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and take advantage of prefix matching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the advanced App Clip experience to support invocations from QR codes, NFC tags, and App Clip Codes. Those invocations use ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as their URL prefix and encode additional information using URL path components or queries. For example, you can encode ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com/shop?p=123&p1=ab",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in an App Clip Code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-valid-invocation-URL",
+          "level": 3,
+          "text": "Choose a valid invocation URL",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, the invocation URL encoded in an App Clip Code follows the same pattern as other URLs: ",
+              "type": "text"
+            },
+            {
+              "code": "https://[host][/<path>][?<query>][#<fragment>]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, the URL encoded in an App Clip Code must meet additional requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The invocation URL must use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scheme in lowercase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "host",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " segment is the invocation URL’s ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "authority component",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " and can only contain the lowercase ASCII characters ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "a",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The invocation URL may have zero or more path and query components, followed by an optional fragment. They can use the following ASCII characters: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "a",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "A",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "9",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/#?=%-._,+;:&",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Follow-practices-that-allow-for-efficient-encoding",
+          "level": 3,
+          "text": "Follow practices that allow for efficient encoding",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Clip Code can only contain a limited amount of information, and as a result, the tools you use to create the code compress the encoded invocation URL. The underlying encoding algorithm can encode some words efficiently, while some characters may reduce the algorithm’s efficiency. As a result, the exact length of an invocation URL you can encode in an App Clip Code varies based on the ASCII characters and words you use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an App Clip Code, both ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-clips/resources/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " command-line tool inform you if your invocation URL is too long.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure you can encode your invocation URL in an App Clip Code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the minimum number of characters you need to uniquely identify a resource. Long unique identifiers (UUIDs) lower the effectiveness of the encoding.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a short host name with as few subdomains as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If possible, remove the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "www",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " subdomain from your host name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use decimal numbers as values for query components.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace long query string argument names and values with short strings. For example, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com/?p=0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com/?status=view",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Omit a trailing slash (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") character at the end of the URL. For example, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://example.com/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Use-a-separate-subdomain",
+          "level": 3,
+          "text": "Use a separate subdomain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, you can use the special subdomain ",
+              "type": "text"
+            },
+            {
+              "code": "appclip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to define URLs specific to App Clip Codes; for example, ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The algorithm that generates App Clip Codes encodes this subdomain more efficiently than others. Choosing ",
+              "type": "text"
+            },
+            {
+              "code": "appclip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a subdomain also allows URLs to have short path and query components by eliminating the possibility of conflicts with an unrelated functionality of your website. If you use this subdomain, it must appear as the first subdomain of the URL’s host.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-single-word-path-component",
+          "level": 3,
+          "text": "Choose a single-word path component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If possible, don’t use any path components at all. However, if you must use them, choose from the list below so the algorithm that creates the App Clip Code can encode the path components more efficiently. For example, you might use ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com/brand",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use the fewest possible path components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "about, access, account, add, app, archives, article, attraction, author",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "bag, biz, book, brand, brands, browse, buy",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "cancel, cart, cat, catalog, category, categories, channel, charts, checkin, checkout, collection, collections, company, compare, connect, contact, content, contents, cost, coupons, create",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "data, demo, destinations, detail, discover, download, entry, event, events, explore",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "faq, fetch, finance, find, food, fund",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "game, gift, goods, guide",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "health, help, home, hotel, hotels",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "id, index, info, item, item_id",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "join",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "lifestyle, list, listen, live, local, location, locations, locator, login",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "manage, menu, more, music, name, news",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "note, open, order, overview",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "park, part, pay, payment, payments, play, post, posts, preview, product, product_id, products, profile, promotion, purchase",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "rate, recipe, recipes, reservation, reservations, reserve, retail, review, rewards",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sale, scan, schedule, search, sell, send, service, share, shop, show, showtime, site, song, special, stations, status, store, store-locator, stores, stories, story",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tag, tags, terms, tickets, tips, title, today, top, topic, tours, track, transaction, travel, try",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "update, upload, use, user",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "vehicles, video, view, visit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "watch, wiki",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the words in the list above don’t lead to more efficient encoding if you use them as a subdomain or query parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-ordered-argument-names-for-query-components",
+          "level": 3,
+          "text": "Use ordered argument names for query components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use no path component, or a single-word path component from the above list of special words and query components, use the special ordered argument names ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "p1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "p2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "p3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on. Doing so increases the likelihood of the URL fitting in an App Clip Code. For example, instead of ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com/shop?a=123&b=456&c=789",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com/shop?p=123&p1=456&p2=789",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Hash-long-URLs",
+          "level": 3,
+          "text": "Hash long URLs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you may need to pass long query strings to the App Clip upon launch that result in a URL that’s too long to encode in an App Clip Code. In this case, you can use a hashing algorithm to shorten the long query string. Upon launch, your App and App Clip can then expand the hash back to the long query string and use it to update their UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reuse-existing-URLs",
+          "level": 3,
+          "text": "Reuse existing URLs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may want to reuse URLs you previously created for other purposes in your App Clip Codes; for example, if you created your own tool to create short URLs for use in QR codes. If you do so, you also need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register each domain that can launch your App Clip in the list of associated domains.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up the AASA file for each domain you use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure advanced App Clip experiences for both the short and long URLs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website": {
+      "abstract": [
+        {
+          "text": "Enable the system to verify your App Clip to support invocations in iOS 16.3 or earlier and from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating your App Clip with your website",
+      "type": "topic",
+      "url": "/documentation/appclip/associating-your-app-clip-with-your-website"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/": {
+      "identifier": "https://appstoreconnect.apple.com/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/"
+    },
+    "https://developer.apple.com/app-clips/resources/": {
+      "identifier": "https://developer.apple.com/app-clips/resources/",
+      "title": "App Clip Code Generator",
+      "titleInlineContent": [
+        {
+          "text": "App Clip Code Generator",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-clips/resources/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/encoding-a-url-in-an-app-clip-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/encoding-a-url-in-an-app-clip-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

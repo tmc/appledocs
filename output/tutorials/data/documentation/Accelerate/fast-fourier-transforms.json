@@ -1,0 +1,1612 @@
+{
+  "abstract": [
+    {
+      "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Fast Fourier transforms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Where possible, use discrete Fourier transforms  (DFTs) instead of fast Fourier transforms (FFTs). DFTs provide a convenient API that offers greater flexibility over the number of elements the routines transform. vDSP’s DFT routines switch to FFT wherever possible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about DFTs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/discrete-fourier-transforms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTDirection": {
+      "abstract": [
+        {
+          "text": "Constants that specify whether to perform a forward or inverse FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTDirection",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftdirection"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix": {
+      "abstract": [
+        {
+          "text": "The radix of the FFT decomposition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTRadix"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTRadix"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTRadix",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftradix"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for a single-precision FFT transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFTSetupD": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains setup information for a double-precision FFT transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFTSetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFTSetupD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFTSetupD"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFTSetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/fftsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFT_FORWARD": {
+      "abstract": [
+        {
+          "text": "Forward FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT_FORWARD"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFT_FORWARD",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT_FORWARD"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFT_FORWARD",
+      "type": "topic",
+      "url": "/documentation/accelerate/fft_forward"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFT_INVERSE": {
+      "abstract": [
+        {
+          "text": "Inverse FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT_INVERSE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFT_INVERSE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT_INVERSE"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFT_INVERSE",
+      "type": "topic",
+      "url": "/documentation/accelerate/fft_inverse"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX2": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT_RADIX2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT_RADIX2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFT_RADIX2",
+      "type": "topic",
+      "url": "/documentation/accelerate/fft_radix2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX3": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT_RADIX3"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT_RADIX3"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFT_RADIX3",
+      "type": "topic",
+      "url": "/documentation/accelerate/fft_radix3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX5": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT_RADIX5"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT_RADIX5"
+        }
+      ],
+      "role": "symbol",
+      "title": "FFT_RADIX5",
+      "type": "topic",
+      "url": "/documentation/accelerate/fft_radix5"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain real values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Cosine transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-cosine-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave": {
+      "abstract": [
+        {
+          "text": "Use 1D fast Fourier transform to compute the frequency components of a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding the component frequencies in a composite sine wave",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-component-frequencies-in-a-composite-sine-wave"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform": {
+      "abstract": [
+        {
+          "text": "Reduce or remove periodic artifacts from images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Halftone descreening with 2D fast Fourier transform",
+      "type": "topic",
+      "url": "/documentation/accelerate/halftone-descreening-with-2d-fast-fourier-transform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 1D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 1D Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-1d-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-multiple-signal-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on multiple-signal 1D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-multiple-signal-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 1D Multiple-Signal Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-1d-multiple-signal-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-multiple-signal-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on multiple-signal 1D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-multiple-signal-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 1D Multiple-Signal Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-1d-multiple-signal-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 1D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 1D Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-1d-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 2D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 2D Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-2d-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms in place on 2D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-Place Functions for 2D Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/in-place-functions-for-2d-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kFFTDirection_Forward": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFFTDirection_Forward"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kFFTDirection_Forward",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFFTDirection_Forward"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFFTDirection_Forward",
+      "type": "topic",
+      "url": "/documentation/accelerate/kfftdirection_forward"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kFFTDirection_Inverse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFFTDirection_Inverse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kFFTDirection_Inverse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFFTDirection_Inverse"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFFTDirection_Inverse",
+      "type": "topic",
+      "url": "/documentation/accelerate/kfftdirection_inverse"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix2": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFFTRadix2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFFTRadix2"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFFTRadix2",
+      "type": "topic",
+      "url": "/documentation/accelerate/kfftradix2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix3": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFFTRadix3"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFFTRadix3"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFFTRadix3",
+      "type": "topic",
+      "url": "/documentation/accelerate/kfftradix3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix5": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFFTRadix5"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFFTRadix5"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFFTRadix5",
+      "type": "topic",
+      "url": "/documentation/accelerate/kfftradix5"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms out of place on 1D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Out-of-Place Functions for 1D Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/out-of-place-functions-for-1d-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-multiple-signal-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms out of place on multiple-signal 1D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-multiple-signal-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Out-of-Place Functions for 1D Multiple-Signal Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/out-of-place-functions-for-1d-multiple-signal-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-multiple-signal-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms out of place on multiple-signal 1D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-multiple-signal-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Out-of-Place Functions for 1D Multiple-Signal Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/out-of-place-functions-for-1d-multiple-signal-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms out of place on 1D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Out-of-Place Functions for 1D Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/out-of-place-functions-for-1d-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-complex-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms out of place on 2D complex data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-complex-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Out-of-Place Functions for 2D Complex FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/out-of-place-functions-for-2d-complex-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-real-fft": {
+      "abstract": [
+        {
+          "text": "Perform fast Fourier transforms out of place on 2D real data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-real-fft",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Out-of-Place Functions for 2D Real FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/out-of-place-functions-for-2d-real-fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data": {
+      "abstract": [
+        {
+          "text": "Optimize discrete Fourier transform (DFT) performance with the vDSP interleaved DFT routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier transforms on interleaved-complex data",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-interleaved-complex-data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s multiple-signal fast Fourier transform (FFT) functions to transform multiple signals with a single function call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier Transforms on Multiple Signals",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-multiple-signals"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing": {
+      "abstract": [
+        {
+          "text": "Multiply signal data by window sequence values when performing transforms with noninteger period signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing spectral leakage with windowing",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-spectral-leakage-with-windowing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s discrete cosine transform to remove noise from a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Signal extraction from noise",
+      "type": "topic",
+      "url": "/documentation/accelerate/signal-extraction-from-noise"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Format source data for the vDSP Fourier functions, and interpret the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding data packing for Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/understanding-data-packing-for-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FFT": {
+      "abstract": [
+        {
+          "text": "A 1D single- and double-precision fast Fourier transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FFT",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.FFT",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/fft"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FFT2D": {
+      "abstract": [
+        {
+          "text": "A 2D single- and double-precision fast Fourier transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FFT2D"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FFT2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FFT2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.FFT2D",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/fft2d"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FourierTransformDirection": {
+      "abstract": [
+        {
+          "text": "Fast Fourier transform directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FourierTransformDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FourierTransformDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FourierTransformDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.FourierTransformDirection",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/fouriertransformdirection"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/Radix": {
+      "abstract": [
+        {
+          "text": "Fast Fourier transform radices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Radix"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/Radix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Radix"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP.Radix",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/radix"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_CreateSetup": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zop"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zop",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zop"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for single-precision FFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_create_fftsetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_create_fftsetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_create_fftsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetupD": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for double-precision FFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_create_fftsetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_create_fftsetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_create_fftsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetup": {
+      "abstract": [
+        {
+          "text": "Deallocates an existing single-precision FFT setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_destroy_fftsetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_destroy_fftsetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_destroy_fftsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetupD": {
+      "abstract": [
+        {
+          "text": "Deallocates an existing double-precision FFT setup structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_destroy_fftsetupD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetupD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_destroy_fftsetupD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_destroy_fftsetupd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/discrete-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/discrete-fourier-transforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Discrete Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/Accelerate/discrete-fourier-transforms"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fourier-and-Cosine-Transforms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+        "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+        "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms"
+      ],
+      "title": "Fourier and Cosine Transforms"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+        "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Objects-that-Simplify-FFTs",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FFT",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FFT2D",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/FourierTransformDirection",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/Radix"
+      ],
+      "title": "Objects that Simplify FFTs"
+    },
+    {
+      "anchor": "FFT-Setup",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_create_fftsetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_destroy_fftsetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_CreateSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTSetup",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTSetupD",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTRadix"
+      ],
+      "title": "FFT Setup"
+    },
+    {
+      "anchor": "Functions-for-1D-Real-FFT",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-real-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-real-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop"
+      ],
+      "title": "Functions for 1D Real FFT"
+    },
+    {
+      "anchor": "Functions-for-1D-Multiple-Signal-Real-FFT",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-multiple-signal-real-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-multiple-signal-real-fft"
+      ],
+      "title": "Functions for 1D Multiple-Signal Real FFT"
+    },
+    {
+      "anchor": "Functions-for-1D-Complex-FFT",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-complex-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-complex-fft"
+      ],
+      "title": "Functions for 1D Complex FFT"
+    },
+    {
+      "anchor": "Functions-for-1D-Multiple-Signal-Complex-FFT",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-1d-multiple-signal-complex-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-1d-multiple-signal-complex-fft"
+      ],
+      "title": "Functions for 1D Multiple-Signal Complex FFT"
+    },
+    {
+      "anchor": "Functions-for-2D-Real-FFT",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-real-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-real-fft"
+      ],
+      "title": "Functions for 2D Real FFT"
+    },
+    {
+      "anchor": "Functions-for-2D-Complex-FFT",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/in-place-functions-for-2d-complex-fft",
+        "doc://com.apple.accelerate/documentation/Accelerate/out-of-place-functions-for-2d-complex-fft"
+      ],
+      "title": "Functions for 2D Complex FFT"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/FFTDirection",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFT_FORWARD",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFT_INVERSE",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX2",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX3",
+        "doc://com.apple.accelerate/documentation/Accelerate/FFT_RADIX5",
+        "doc://com.apple.accelerate/documentation/Accelerate/kFFTDirection_Forward",
+        "doc://com.apple.accelerate/documentation/Accelerate/kFFTDirection_Inverse",
+        "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix2",
+        "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix3",
+        "doc://com.apple.accelerate/documentation/Accelerate/kFFTRadix5"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTRadix3/title",
+          "value": "kFFTRadix3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTRadix3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFFTRadix3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTRadix/title",
+          "value": "FFTRadix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTRadix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTRadix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTRadix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTRadix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTRadix5/title",
+          "value": "kFFTRadix5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTRadix5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFFTRadix5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_RADIX2/title",
+          "value": "FFT_RADIX2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_RADIX2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFT_RADIX2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTDirection_Forward/title",
+          "value": "kFFTDirection_Forward"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTDirection_Forward/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFFTDirection_Forward"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_RADIX3/title",
+          "value": "FFT_RADIX3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_RADIX3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFT_RADIX3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetup/title",
+          "value": "FFTSetup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTDirection/title",
+          "value": "FFTDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetupD/title",
+          "value": "FFTSetupD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetupD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFTSetupD/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFTSetupD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTRadix2/title",
+          "value": "kFFTRadix2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTRadix2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFFTRadix2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTDirection_Inverse/title",
+          "value": "kFFTDirection_Inverse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kFFTDirection_Inverse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFFTDirection_Inverse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_FORWARD/title",
+          "value": "FFT_FORWARD"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_FORWARD/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFT_FORWARD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_RADIX5/title",
+          "value": "FFT_RADIX5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_RADIX5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFT_RADIX5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_INVERSE/title",
+          "value": "FFT_INVERSE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1FFT_INVERSE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FFT_INVERSE"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

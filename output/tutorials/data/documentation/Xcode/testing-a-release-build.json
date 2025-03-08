@@ -1,0 +1,1794 @@
+{
+  "abstract": [
+    {
+      "text": "Run your app in simulated user environments to discover and identify deployment errors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/testing-a-release-build"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing a release build"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure your app works in deployment, test your release build in a variety of conditions before submitting the app or app update for review, or distributing to Enterprise users. To catch commonly occurring errors or edge-case situations that might not occur during development, consider the differences between development-environment debug builds and user-environment release builds, shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-a-release-build-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app may behave differently on a particular user’s device for a variety of reasons. Different devices and operating system versions offer varying software features, and app updates involve data migrations, keychain access, or defaults data that’s not present in a fresh app installation. Disabled features, frame throttling, or other delays may result with limited device power, system memory, or network availability. Xcode allows development and release build settings to diverge, and disables watchdog timeouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-Xcode-archive",
+          "level": 3,
+          "text": "Create an Xcode archive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test the exact conditions your app user’s experience, create a release build. In your Xcode project’s scheme editor, set the run destination to a device and adjust the archive task to the Release configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-a-release-build-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, choose the Archive option in Xcode’s Product menu. After the archive builds, the Organizer displays. For more on creating an app archive, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode saves app archives on disk so you can refer to a particular build later, for example, to submit the build to App Review after the app passes beta tests. The archives’ distribution workflow offers several ways to test the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "TestFlight automates app distribution and submission to reduce the chances of submitting the wrong build to App Review. To distribute an app archive through TestFlight, choose the archive pane’s App Store Connect option. For more on TestFlight, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "TestFlight",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "To distribute your app to testers manually, for example, by emailing them an .ipa file, choose the archive pane’s Ad Hoc option. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-to-registered-devices",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Ad Hoc",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enterprise distribution is similar to Ad Hoc distribution except that you choose the Enterprise option from the Archive pane. Xcode looks for a different code signing identity for Enterprise app distribution that contains a valid Enterprise distribution certificate.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Enterprise",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The development distribution method signs the release build with your development credentials. This option enables testing if you lack access to team distribution identities. The debugger can attach to a development-signed release build, but be aware that it can mask watchdog timeouts.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Development",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For all distribution methods except TestFlight, choose the following options to enhance your chances of discovering a bug that manifests only in the release build:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set App Thinning to “All compatible device variants”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access an app archive after distribution to debug a user-reported error. If the issue didn’t surface in beta tests, refer to crash logs and app logging to track down the cause; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To attempt to reproduce the issue, check the build version in the crash log (see the Version field in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and test a release build from an app archive with a matching version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compare-build-configuration-settings",
+          "level": 3,
+          "text": "Compare build configuration settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project’s Build Settings support different values based on the active build configuration. The default build configurations are Debug and Release, which the project scheme maps to the Run task and Archive task, respectively. Since the archive task creates the release build, the release build can behave differently than the build that developers run in the debugger as it relates to build settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, most build settings match across the two configurations. To check for differences, inspect the target’s build settings thoroughly. When a setting varies across configurations, Xcode displays ",
+              "type": "text"
+            },
+            {
+              "code": "<Multiple values>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To see each value, expand the setting’s disclosure triangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-a-release-build-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure the app’s behavior differs across build configurations as intended, take a moment to consider the full implications of each difference, per setting. In the figure above, the app defines a different ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the release build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disconnect-the-debugger",
+          "level": 3,
+          "text": "Disconnect the debugger",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode launches an app, it enables a debugger that creates some differences from what users experience:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Xcode debugger disables watchdog terminations, which can prevent testers from observing a hang issue while running the app in Xcode. The easiest way to check for watchdog terminations is to disconnect the device from the development machine and launch the app from the home screen. For more on watchdog terminations, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode’s debugger prevents apps from being suspended, so launch your app from the home screen to test background processes. For example, NSURLSession implements a background session, but when the app runs in the Xcode debugger, the background session never runs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Test-a-fresh-install-and-app-update",
+          "level": 3,
+          "text": "Test a fresh install and app update",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode optimizes app building and installation during development by updating apps incrementally. Subsequently, as your app’s code changes during development, obsolete stored data created by a prior build may linger unless you purge the prior installation completely. Even though the app may no longer create the obsolete data, access to it may cause the app to behave differently during testing than what users experience. To prevent this transient dependency, remove the app during development to ensure that Xcode installs a fresh build. When you remove the app, choose to also remove the app’s prior data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two exceptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system preserves App Group data on the device as long as the app in the group is installed. To remove potentially obsolete test data from an App Group container, remove all apps that share the group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system preserves an app’s keychain data on the device even after you delete the app. To clear the keychain, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/SecItemDelete(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you create a separate utility that removes keychain data, the utility and the app need to share the same application identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the release build updates a previous version of your app, some users may have the prior version on their device. When your app update aims to support data created by the prior version, test the app update to prevent any regressions. For example, if the updated app changes a file format, or migrates prior data (for example, with Core Data migration; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreData/migrating-your-data-model-automatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), test the app-update scenario to ensure that the new app properly handles prior app data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-app-on-various-devices-and-OS-versions",
+          "level": 3,
+          "text": "Run the app on various devices and OS versions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An error may surface only on a particular device, OS version, or a particular combination of the two. To ensure a consistent user experience, test on a wide array of devices and OS versions your app supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When diagnosing user-reported issues, pay attention to the user’s device and OS version. See ",
+              "type": "text"
+            },
+            {
+              "code": "Hardware Model",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "OS Version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To reproduce a user-reported issue, maintain a robust suite of test devices that vary in device model and OS version. Although it’s possible to run a release build in the Simulator, consider the Simulator a separate device that users don’t use. As such, always test release builds on an actual device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Raising your app’s deployment target reduces the number of combinations of device model and OS version to test. If testing all combinations is unmanageable, you can shrink the number of devices your app supports — and thus, the number of devices to test — by raising the deployment target.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Check-file-system-access",
+          "level": 3,
+          "text": "Check file system access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, users can have different levels of file system access depending on their user account privilege. One way to test the difference that a user’s account privilege makes in your app is to run the app as a guest user. The file system privileges of a guest user falls under the ",
+              "type": "text"
+            },
+            {
+              "code": "everyone",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category in Finder’s Get Info pane. By default, the file system access level for ",
+              "type": "text"
+            },
+            {
+              "code": "everyone",
+              "type": "codeVoice"
+            },
+            {
+              "text": " differs from the default admin access level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-a-release-build-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-network-compatibility",
+          "level": 3,
+          "text": "Ensure network compatibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Debug builds typically run in an isolated network during development, whereas release builds access varying networks that service your app’s users. Your app can exhibit a problem in one particular network and not another, for example, due to network congestion or network type, such as IPv6 versus IPv4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If developers and beta testers run the app in an IPv4 network, be sure to also test an IPv6 connection to catch any potential issues related to DNS64 or NAT64.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To simulate slow or unreliable internet connections on iOS, you can use the Network Link Conditioner. Enable this feature with the Settings app > Developer > Network Link Conditioner option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To debug high-level HTTP issues, run your release build with an HTTP debugging proxy; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Network/choosing-a-network-debugging-tool",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For low-level issues, like a TCP connection or DNS failure, examine network-level activity for causes; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Network/recording-a-packet-trace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To debug lost network connections, ensure that network connections reach their destination with no breakdowns along the way by reviewing your server-side logs. For private networks, consider potential blockages due to firewall configuration, network proxies, or load balancers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some network errors are unavoidable, for example, during server or network downtime. Ensure that your app provides clear user instructions on what to do when the network doesn’t function as expected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-battery-saving-modes",
+          "level": 3,
+          "text": "Enable battery-saving modes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices can behave differently based on battery level, the amount of time passed since fully charged, or whether the device battery is charging. For example, Core Location enables an app to request a desired accuracy (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/desiredAccuracy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") but it may perform less accurately than your app requests depending on the device battery level. Alternatively, if a concurrent app or system process requests a high accuracy, Core Location might provide a higher accuracy than requested, which may consume the device battery faster. To observe an app error that might result from a lower battery level, or lower Core Location accuracy than your app expects, test under either battery-saving modes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On macOS, run the app on a Macbook unplugged from the power source.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS or iPadOS, enable Low Power Mode in Settings > Battery.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure the device is in Low Power Mode, check that the battery indicator is yellow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Minimize-memory-use",
+          "level": 3,
+          "text": "Minimize memory use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user’s device may have less memory available at runtime than testers do either because of varying hardware specifications or the amount of apps the device runs concurrently. To simulate an array of user environments, testers need to vary the amount of memory available to your app. One way to limit available memory is to open other apps. On macOS, you can observe memory statistics using Activity Monitor. The difference between the Physical Memory and Memory Used values equals the system’s available memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-a-release-build-6",
+              "type": "image"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps that crash due to memory depletion generate a different kind of crash report, called a jetsam event report. To check for and analyze jetsam events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The volatile nature of memory availability makes it difficult to judge the likelihood of a jetsam event in your app. A good strategy to guard against runtime memory depletion is to proactively minimize your app’s memory requirements using Instruments or MetricKit. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-user-defined-input",
+          "level": 3,
+          "text": "Support user-defined input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the wide the range of variation in user-supplied data, apps that support opening users’ files need to anticipate uncommon scenarios, like corrupt or excessively large data. To ensure a good user experience, test bad and unsupported files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if your app loads user-defined images, test loading a very large image. Today’s common image formats compress pixel data, but most systems can only display uncompressed data. Loading an image from file can require orders more space in RAM than the file’s size on disk. You can calculate the number of bytes an image requires in RAM using the formula: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "W x H x 4",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " bytes/pixel. A JPG with 4K resolution (3840 x 2160 pixels) is around 1.5 megabytes on disk. To calculate the size in memory, multiply the image dimensions to obtain the number of pixels, and multiply by 4 bytes per pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "3840 x 2160 * 4 B = 33,177,600 B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Divide by 1024^2 to convert to megabytes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "33,177,600 B / 1024^2 B/MB = 31.64 MB",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To calculate the percentage larger the image is in memory, divide the in-memory size (31.64 MB) by the on-disk size (1.5 MB).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "31.64 MB / 1.5 MB = 21.1 times larger in memory",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To guard against files of unsupported file size, enforce a size limit by refusing to open files past a certain resolution you define.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As another example, if your app loads user Contacts, test extreme cases to maximize test coverage. For example, your app needs to test a large number of contacts, no contacts, and a contact that contains very little data (or no) data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-languages-and-regions",
+          "level": 3,
+          "text": "Test languages and regions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test your app in every language and region that your app supports. To view your app’s localizations, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/adding-support-for-languages-and-regions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app processes dates or times, ensure your app handles all of the possible date formats in every language and region that it supports. The Region user preference setting determines the format of the dates that the OS provides to your app. When a user changes their Region, the system changes the format of every ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " it supplies your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test with a 12-hour region, a 24-hour region, a 12-hour region that’s overridden to use 24-hour, and a 24-hour region that’s overridden to use 12 hours. Also, test with a Gregorian and non-Gregorian calendar (such as lunar or lunisolar), as well as regions that use Latin and non-Latin digits (such as Arabic). To set the region or calendar on a device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS, use Settings > General > Language & Region.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On macOS, use System Settings > Language & Region.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about testing languages and regions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/testing-localizations-when-running-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Isolate-persistent-issues",
+          "level": 3,
+          "text": "Isolate persistent issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For issues that continue to surface in only the release build, open an Apple Developer Technical Support (DTS) case by submitting a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/technical/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To facilitate review of the issue, provide DTS with:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Details about the problem and the steps you followed to reproduce or resolve the error",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For crashes, a log that contains human-readable function references; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build UUID of the app archive you’re testing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the archived app’s build UUID, run the Terminal command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% dwarfdump -u /Path/To/YourApp.xcarchive/Products/Applications/YourApp.app/YourApp"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs": {
+      "abstract": [
+        {
+          "text": "Gather crash reports and device logs from the App Store, TestFlight, and directly",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs",
+      "kind": "article",
+      "role": "article",
+      "title": "Acquiring crash reports and diagnostic logs",
+      "type": "topic",
+      "url": "/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations": {
+      "abstract": [
+        {
+          "text": "Identify the signature of an unresponsive app terminated by the watchdog, and address",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing watchdog terminations",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-watchdog-terminations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases": {
+      "abstract": [
+        {
+          "text": "Release your app to beta testers and users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app for beta testing and releases",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-your-app-for-beta-testing-and-releases"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-to-registered-devices": {
+      "abstract": [
+        {
+          "text": "Register devices in your developer account and deploy your app to them for testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-to-registered-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app to registered devices",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-your-app-to-registered-devices"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distribution": {
+      "abstract": [
+        {
+          "text": "Prepare your app and share it with your team, beta testers, and customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure of a crash report and the information each field contains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Examining the fields in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports": {
+      "abstract": [
+        {
+          "text": "Discover why the operating system terminated your app when available memory was low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying high-memory use with jetsam event reports",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to maximize memory efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-a-beta-os": {
+      "abstract": [
+        {
+          "text": "Manage unintended differences in your app by testing beta operating-system (OS) releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-a-beta-os",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a beta OS",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-a-beta-os"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/migrating-your-data-model-automatically": {
+      "abstract": [
+        {
+          "text": "Enable lightweight migrations to keep your data model and the underlying data in a consistent state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/migrating-your-data-model-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your data model automatically",
+      "type": "topic",
+      "url": "/documentation/CoreData/migrating-your-data-model-automatically"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/desiredAccuracy": {
+      "abstract": [
+        {
+          "text": "The accuracy of the location data that your app wants to receive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/desiredAccuracy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "desiredAccuracy",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/desiredAccuracy"
+    },
+    "doc://com.apple.documentation/documentation/Network/choosing-a-network-debugging-tool": {
+      "abstract": [
+        {
+          "text": "Decide which tool works best for your network debugging problem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/choosing-a-network-debugging-tool",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Network Debugging Tool",
+      "type": "topic",
+      "url": "/documentation/Network/choosing-a-network-debugging-tool"
+    },
+    "doc://com.apple.documentation/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/Network/recording-a-packet-trace"
+    },
+    "doc://com.apple.documentation/documentation/Security/SecItemDelete(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes items that match a search query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "query"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecItemDelete(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecItemDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/Security/SecItemDelete(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "abstract": [
+        {
+          "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/xcode/adding-support-for-languages-and-regions": {
+      "identifier": "https://developer.apple.com/documentation/xcode/adding-support-for-languages-and-regions",
+      "title": "Adding support for languages and regions",
+      "titleInlineContent": [
+        {
+          "text": "Adding support for languages and regions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/adding-support-for-languages-and-regions"
+    },
+    "https://developer.apple.com/documentation/xcode/testing-localizations-when-running-your-app": {
+      "identifier": "https://developer.apple.com/documentation/xcode/testing-localizations-when-running-your-app",
+      "title": "Testing localizations when running your app",
+      "titleInlineContent": [
+        {
+          "text": "Testing localizations when running your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/testing-localizations-when-running-your-app"
+    },
+    "https://developer.apple.com/support/technical/": {
+      "identifier": "https://developer.apple.com/support/technical/",
+      "title": "Technical Support Incident",
+      "titleInlineContent": [
+        {
+          "text": "Technical Support Incident",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/technical/"
+    },
+    "testing-a-release-build-1": {
+      "alt": "Diagram that compares the two environments apps run in: development versus user. At bottom, a box titled Development environment contains a node labeled Debug build. At top, a box titled User environment contains a flow chart that begins with a node titled Release build. Two nodes flow from the root node: the left node is titled Enterprise or Ad Hoc signed, and the right node is App Store signed. One node flows from the left node, titled Enterprise or Ad Hoc. Three nodes flow from the right node; the left node reads, TestFlight. The middle node reads, App Review. The right node reads, App Store.",
+      "identifier": "testing-a-release-build-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b599c4e9dab6ada95c47be8fdfc26d2/testing-a-release-build-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2903650b6ab53ef20bd05db211b8871c/testing-a-release-build-1~dark@2x.png"
+        }
+      ]
+    },
+    "testing-a-release-build-2": {
+      "alt": "Screenshot of the Xcode project’s scheme editor. At left, the navigation list reflects the Archive task selected. At right, the detail pane shows the run destination set to the generic “Any iOS Device” setting. The build configuration selection menu reflects the chosen Release option. ",
+      "identifier": "testing-a-release-build-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ded54c375ee52453d7e0090450c5956e/testing-a-release-build-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9966c645dac701dc6faadf7a27ca61b7/testing-a-release-build-2~dark@2x.png"
+        }
+      ]
+    },
+    "testing-a-release-build-4": {
+      "alt": "Screenshot of an Xcode project’s build settings. The Packaging section is expanded to show a selected setting titled Info.plist File. The Info.plist File build setting is expanded to show two child settings. The upper child setting is titled Debug, with a value of “MyApp/Info.plist”. The lower child setting is titled Release, with a value of “MyApp/Info-Release.plist”.",
+      "identifier": "testing-a-release-build-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6de41d1a11b5a9e8f3c4356aeb13dc1/testing-a-release-build-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9e2a1a99bcb643a030095f82f32c3a0/testing-a-release-build-4~dark@2x.png"
+        }
+      ]
+    },
+    "testing-a-release-build-5": {
+      "alt": "Screenshot of a file’s Get Info pane. The Sharing & Permission section is expanded to reveal a table with two columns: Name and Privilege. The table contains three rows of data. The top row reflects the name “johnas (Me)”, with a privilege of “Read & Write”. The middle row reflects the name “staff”, with a privilege of “Read only”. The bottom row reflects the name “everyone”, with a privilege of “Read only”.",
+      "identifier": "testing-a-release-build-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8e7c3fd5a1931e74c61ef09a4bd549d0/testing-a-release-build-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40e9b76acbb194cbd2cfa4bde47660f6/testing-a-release-build-5~dark@2x.png"
+        }
+      ]
+    },
+    "testing-a-release-build-6": {
+      "alt": "Screenshot of the Activity Monitor app. At center, a list displays the running processes and their memory usage. At bottom, a statistics pane aggregates metrics, such as Physical Memory and Memory Used, in gigabytes. ",
+      "identifier": "testing-a-release-build-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e029e917c5ea55c34954721b1b19ed15/testing-a-release-build-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/263f64dcddf62453e81b31993ce95693/testing-a-release-build-6~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/testing-a-beta-os"
+      ],
+      "title": "Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecItemDelete(_:)/title",
+          "value": "SecItemDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecItemDelete(_:)/fragments",
+          "value": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecItemDelete"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "query"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdate/abstract",
+          "value": [
+            {
+              "text": "A representation of a specific point in time, independent of any calendar or time zone.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1desiredAccuracy/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CLLocationAccuracy",
+              "text": "CLLocationAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "desiredAccuracy"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

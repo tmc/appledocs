@@ -1,0 +1,1088 @@
+{
+  "abstract": [
+    {
+      "text": "Metadata describing the tone mapping to apply to the extended dynamic range (EDR) values in the layer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CAMetalLayer(py)EDRMetadata",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "edrMetadata"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CAEDRMetadata",
+        "text": "CAEDRMetadata"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EDRMetadata"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "edrMetadata"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "edrMetadata"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CAEDRMetadata",
+              "text": "CAEDRMetadata"
+            },
+            {
+              "kind": "text",
+              "text": "? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must set this property before calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which means that the system doesn’t perform any tone mapping of data prior to passing it on to the display. Values above the maximum (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") may be clipped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system uses the metadata provided to tone map values to the display, based on the display’s current characteristics. You must also set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a pixel format that supports pixel values greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba16Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer/colorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a color space that supports a linear transfer function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tone mapping process requires significant amounts of memory and GPU processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue": {
+      "abstract": [
+        {
+          "text": "The current maximum color component value for the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumExtendedDynamicRangeColorComponentValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumExtendedDynamicRangeColorComponentValue",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba16Float": {
+      "abstract": [
+        {
+          "text": "Ordinary format with four 16-bit floating-point components in RGBA order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rgba16Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba16Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgba16Float",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLPixelFormat/rgba16Float"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata": {
+      "abstract": [
+        {
+          "text": "Metadata describing how extended dynamic range (EDR) values should be tone mapped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEDRMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEDRMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEDRMetadata",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caedrmetadata"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata": {
+      "abstract": [
+        {
+          "text": "Metadata describing the tone mapping to apply to the extended dynamic range (EDR) values in the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edrMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CAEDRMetadata",
+          "text": "CAEDRMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EDRMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "edrMetadata",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/edrmetadata"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()": {
+      "abstract": [
+        {
+          "text": "Waits until a Metal drawable is available, and then returns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDrawable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CAMetalDrawable",
+          "text": "CAMetalDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextDrawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "nextDrawable()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/nextdrawable()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat": {
+      "abstract": [
+        {
+          "text": "The pixel format of the layer’s textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/pixelformat"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent": {
+      "abstract": [
+        {
+          "text": "Enables extended dynamic range values onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsExtendedDynamicRangeContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsExtendedDynamicRangeContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsExtendedDynamicRangeContent",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/wantsextendeddynamicrangecontent"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer/colorspace": {
+      "abstract": [
+        {
+          "text": "The layer’s colorspace in Core Graphics.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorspace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer/colorspace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorspace"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorspace",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caopengllayer/colorspace"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Extended-Dynamic-Range-Behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent"
+      ],
+      "title": "Configuring Extended Dynamic Range Behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "EDRMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EDRMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Extended-Dynamic-Range-Behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent"
+              ],
+              "title": "Configuring Extended Dynamic Range Behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CAEDRMetadata",
+                    "text": "CAEDRMetadata"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "EDRMetadata"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/title",
+          "value": "CAMetalLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1pixelFormat/title",
+          "value": "pixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1pixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLPixelFormat~1rgba16Float/title",
+          "value": "MTLPixelFormatRGBA16Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLPixelFormat~1rgba16Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatRGBA16Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1wantsExtendedDynamicRangeContent/title",
+          "value": "wantsExtendedDynamicRangeContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1wantsExtendedDynamicRangeContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsExtendedDynamicRangeContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSScreen~1maximumExtendedDynamicRangeColorComponentValue/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumExtendedDynamicRangeColorComponentValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1nextDrawable()/title",
+          "value": "nextDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1nextDrawable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEDRMetadata/title",
+          "value": "CAEDRMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEDRMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEDRMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEDRMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEDRMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer~1colorspace/title",
+          "value": "colorspace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer~1colorspace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorspace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1edrMetadata/title",
+          "value": "EDRMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1edrMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EDRMetadata"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/cametallayer/edrmetadata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/cametallayer/edrmetadata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

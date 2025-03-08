@@ -1,0 +1,1974 @@
+{
+  "abstract": [
+    {
+      "text": "A high-priority thread that notifies your app when a given display will need each frame.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corevideo/documentation/CoreVideo"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corevideo/documentation/CoreVideo/cvdisplaylink-k0k"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Video"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CVDisplayLink"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Core Video display link provides a separate high-priority thread to notify your application when a given display will need each frame. You can use a display link to easily synchronize with the refresh rate of a display. The display link API uses the Core Foundation class system internally to provide reference counting behavior and other useful properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corevideo/documentation/CoreVideo": {
+      "abstract": [
+        {
+          "text": "Process digital video, including manipulation of individual frames, using a pipeline-based API and support for both Metal and OpenGL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Video",
+      "type": "topic",
+      "url": "/documentation/corevideo"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLink": {
+      "abstract": [
+        {
+          "text": "A reference to a display link object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLink",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylink"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithActiveCGDisplays(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a display link capable of being used with all active displays.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithActiveCGDisplays"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithActiveCGDisplays(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithActiveCGDisplays"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkCreateWithActiveCGDisplays(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkcreatewithactivecgdisplays(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplay(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a display link for a single display.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithCGDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGDirectDisplayID",
+          "text": "CGDirectDisplayID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplay(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithCGDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkCreateWithCGDisplay(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkcreatewithcgdisplay(_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplays(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a display link for an array of displays.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithCGDisplays"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGDirectDisplayID",
+          "text": "CGDirectDisplayID"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplays(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithCGDisplays"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkCreateWithCGDisplays(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkcreatewithcgdisplays(_:_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a display link from an OpenGL display mask.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithOpenGLDisplayMask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGOpenGLDisplayMask",
+          "text": "CGOpenGLDisplayMask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkCreateWithOpenGLDisplayMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkcreatewithopengldisplaymask(_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the actual output refresh period of a display as measured by the system time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetActualOutputVideoRefreshPeriod"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetActualOutputVideoRefreshPeriod"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkgetactualoutputvideorefreshperiod(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentCGDisplay(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the current display associated with a display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetCurrentCGDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGDirectDisplayID",
+          "text": "CGDirectDisplayID"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentCGDisplay(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetCurrentCGDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkGetCurrentCGDisplay(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkgetcurrentcgdisplay(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentTime(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the current (“now”) time of a given display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetCurrentTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CVTimeStamp",
+          "text": "CVTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentTime(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetCurrentTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkGetCurrentTime(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkgetcurrenttime(_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the nominal refresh period of a display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetNominalOutputVideoRefreshPeriod"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CVTime",
+          "text": "CVTime"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetNominalOutputVideoRefreshPeriod"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkgetnominaloutputvideorefreshperiod(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetOutputVideoLatency(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the nominal latency of a display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetOutputVideoLatency"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CVTime",
+          "text": "CVTime"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetOutputVideoLatency(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetOutputVideoLatency"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkGetOutputVideoLatency(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkgetoutputvideolatency(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Obtains the Core Foundation ID for the display link data type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkgettypeid()"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkIsRunning(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether a given display link is running.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkIsRunning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkIsRunning(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkIsRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkIsRunning(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkisrunning(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputCallback": {
+      "abstract": [
+        {
+          "text": "A type for a display link callback function that the system invokes when it’s time for the app to output a video frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkOutputCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkOutputCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkOutputCallback",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkoutputcallback"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputHandler": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkOutputHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkOutputHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkOutputHandler",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkoutputhandler"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkRelease": {
+      "abstract": [
+        {
+          "text": "Releases a display link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkRelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVDisplayLinkRelease",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkrelease"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkRetain": {
+      "abstract": [
+        {
+          "text": "Retains a display link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkRetain"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkRetain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVDisplayLinkRetain",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkretain"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplay(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the current display of a display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetCurrentCGDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGDirectDisplayID",
+          "text": "CGDirectDisplayID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplay(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetCurrentCGDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkSetCurrentCGDisplay(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinksetcurrentcgdisplay(_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Selects the display link most optimal for the current renderer of an OpenGL context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGLContextObj",
+          "text": "CGLContextObj"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGLPixelFormatObj",
+          "text": "CGLPixelFormatObj"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinksetcurrentcgdisplayfromopenglcontext(_:_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputCallback(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the renderer output callback function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetOutputCallback"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkOutputCallback",
+          "text": "CVDisplayLinkOutputCallback"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputCallback(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetOutputCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkSetOutputCallback(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinksetoutputcallback(_:_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputHandler(_:_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetOutputHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkOutputHandler",
+          "text": "CVDisplayLinkOutputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputHandler(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkSetOutputHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkSetOutputHandler(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinksetoutputhandler(_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStart(_:)": {
+      "abstract": [
+        {
+          "text": "Activates a display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkStart"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStart(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkStart"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkStart(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkstart(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStop(_:)": {
+      "abstract": [
+        {
+          "text": "Stops a display link.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkStop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStop(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkStop"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkStop(_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinkstop(_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkTranslateTime(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Translates the time in the display link’s time base from one representation to another.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkTranslateTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVDisplayLinkRef",
+          "text": "CVDisplayLink"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CVTimeStamp",
+          "text": "CVTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CVTimeStamp",
+          "text": "CVTimeStamp"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVReturn",
+          "text": "CVReturn"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkTranslateTime(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVDisplayLinkTranslateTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVDisplayLinkTranslateTime(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvdisplaylinktranslatetime(_:_:_:)"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/CVOptionFlags": {
+      "abstract": [
+        {
+          "text": "The flags to be used for the display link output callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVOptionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/CVOptionFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CVOptionFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CVOptionFlags",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvoptionflags"
+    },
+    "doc://com.apple.corevideo/documentation/CoreVideo/cvtime-q1e": {
+      "abstract": [
+        {
+          "text": "A structure used for storing Core Video time values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corevideo/documentation/CoreVideo/cvtime-q1e",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CVTime",
+      "type": "topic",
+      "url": "/documentation/corevideo/cvtime-q1e"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/cvtime-q1e"
+      ],
+      "title": "Time Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Display-Links",
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplay(_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplays(_:_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithActiveCGDisplays(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)"
+      ],
+      "title": "Creating Display Links"
+    },
+    {
+      "anchor": "Configuring-Display-Links",
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplay(_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputCallback(_:_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputHandler(_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputHandler"
+      ],
+      "title": "Configuring Display Links"
+    },
+    {
+      "anchor": "Inspecting-Display-Links",
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentCGDisplay(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentTime(_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkTranslateTime(_:_:_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetOutputVideoLatency(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkIsRunning(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetTypeID()"
+      ],
+      "title": "Inspecting Display Links"
+    },
+    {
+      "anchor": "Managing-Display-Links",
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStart(_:)",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStop(_:)"
+      ],
+      "title": "Managing Display Links"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLink",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVOptionFlags"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Callbacks",
+      "identifiers": [
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputCallback",
+        "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputHandler"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Display-Links",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplay(_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithCGDisplays(_:_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithActiveCGDisplays(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)"
+              ],
+              "title": "Creating Display Links"
+            },
+            {
+              "anchor": "Configuring-Display-Links",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplay(_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputCallback(_:_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkSetOutputHandler(_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputHandler"
+              ],
+              "title": "Configuring Display Links"
+            },
+            {
+              "anchor": "Inspecting-Display-Links",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentCGDisplay(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetCurrentTime(_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkTranslateTime(_:_:_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetOutputVideoLatency(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkIsRunning(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkGetTypeID()"
+              ],
+              "title": "Inspecting Display Links"
+            },
+            {
+              "anchor": "Retaining-and-Releasing-Display-Links",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkRelease",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkRetain"
+              ],
+              "title": "Retaining and Releasing Display Links"
+            },
+            {
+              "anchor": "Managing-Display-Links",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStart(_:)",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkStop(_:)"
+              ],
+              "title": "Managing Display Links"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLink",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVOptionFlags"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Callbacks",
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputCallback",
+                "doc://com.apple.corevideo/documentation/CoreVideo/CVDisplayLinkOutputHandler"
+              ],
+              "title": "Callbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Time-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corevideo/documentation/CoreVideo/cvtime-q1e"
+              ],
+              "title": "Time Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithCGDisplay(_:_:)/title",
+          "value": "CVDisplayLinkCreateWithCGDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithCGDisplay(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkCreateWithCGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkStop(_:)/title",
+          "value": "CVDisplayLinkStop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkStop(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkStop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkOutputHandler/title",
+          "value": "CVDisplayLinkOutputHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkOutputHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkOutputHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkOutputHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkOutputHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkStart(_:)/title",
+          "value": "CVDisplayLinkStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkStart(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetOutputVideoLatency(_:)/title",
+          "value": "CVDisplayLinkGetOutputVideoLatency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetOutputVideoLatency(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkGetOutputVideoLatency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkTranslateTime(_:_:_:)/title",
+          "value": "CVDisplayLinkTranslateTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkTranslateTime(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkTranslateTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkOutputCallback/title",
+          "value": "CVDisplayLinkOutputCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkOutputCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkOutputCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkOutputCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkOutputCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)/title",
+          "value": "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLink/title",
+          "value": "CVDisplayLinkRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVOptionFlags/title",
+          "value": "CVOptionFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVOptionFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVOptionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVOptionFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVOptionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetCurrentCGDisplay(_:_:)/title",
+          "value": "CVDisplayLinkSetCurrentCGDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetCurrentCGDisplay(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkSetCurrentCGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetOutputCallback(_:_:_:)/title",
+          "value": "CVDisplayLinkSetOutputCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetOutputCallback(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkSetOutputCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetOutputHandler(_:_:)/title",
+          "value": "CVDisplayLinkSetOutputHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkSetOutputHandler(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkSetOutputHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)/title",
+          "value": "CVDisplayLinkGetActualOutputVideoRefreshPeriod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetActualOutputVideoRefreshPeriod(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkGetActualOutputVideoRefreshPeriod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetCurrentTime(_:_:)/title",
+          "value": "CVDisplayLinkGetCurrentTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetCurrentTime(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkGetCurrentTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetCurrentCGDisplay(_:)/title",
+          "value": "CVDisplayLinkGetCurrentCGDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetCurrentCGDisplay(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkGetCurrentCGDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)/title",
+          "value": "CVDisplayLinkCreateWithOpenGLDisplayMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithOpenGLDisplayMask(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkCreateWithOpenGLDisplayMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithCGDisplays(_:_:_:)/title",
+          "value": "CVDisplayLinkCreateWithCGDisplays"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithCGDisplays(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkCreateWithCGDisplays"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetTypeID()/title",
+          "value": "CVDisplayLinkGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)/title",
+          "value": "CVDisplayLinkGetNominalOutputVideoRefreshPeriod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkGetNominalOutputVideoRefreshPeriod(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkGetNominalOutputVideoRefreshPeriod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithActiveCGDisplays(_:)/title",
+          "value": "CVDisplayLinkCreateWithActiveCGDisplays"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkCreateWithActiveCGDisplays(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkCreateWithActiveCGDisplays"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkIsRunning(_:)/title",
+          "value": "CVDisplayLinkIsRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corevideo~1documentation~1CoreVideo~1CVDisplayLinkIsRunning(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CVDisplayLinkIsRunning"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corevideo/cvdisplaylink-k0k"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corevideo/cvdisplaylink-k0k"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

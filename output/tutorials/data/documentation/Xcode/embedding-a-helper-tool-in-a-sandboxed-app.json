@@ -1,0 +1,1617 @@
+{
+  "abstract": [
+    {
+      "text": "Add a command-line tool to a sandboxed app’s Xcode project so the resulting app can run it as a helper tool.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Embedding a command-line tool in a sandboxed app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building an app for the Mac, you can embed a command-line tool in the app to act as a helper tool. Instances where this may be helpful include, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to run some code in a separate process. In many cases, an XPC service is a better choice for this, but sometimes it’s easier to embed a command-line tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to build a command-line tool with an external build system (for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "make",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") and then run it from your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Embedding a command-line tool in a sandbox app does present some unique challenges. The best approach depends on whether you’re building the tool with Xcode or using a tool built by an external build system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "These steps assume that you’re building an app for the App Store because that’s the most common destination for sandboxed apps. However, the same basic process works for apps distributed independently using Developer ID signing; you just need to choose a different distribution path in the Xcode organizer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-the-app-project",
+          "level": 3,
+          "text": "Create the app project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get started, create a new project from the macOS > App template. Name it ",
+              "type": "text"
+            },
+            {
+              "code": "AppWithTool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", resulting in a bundle ID like ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.apple-samplecode.AppWithTool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the project editor, set the deployment target to 10.15. Later on, you’ll configure the tool target to inherit this deployment target, which helps to keep everything in sync.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the General tab of the app target editor, set the App Category to Utilities. This avoids a warning when you build for distribution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Signing & Capabilities tab of the app target editor, make sure “Automatically manage signing” is checked, and then select the appropriate team. The Signing Certificate popup should switch to Development, which is exactly what you want for day-to-day development.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the Hardened Runtime capability, which isn’t necessary for App Store apps but is best practice for new code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose Product > Archive, which builds the app into an Xcode archive and reveals that archive in the Xcode organizer. The goal here is to check that everything is working so far.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the organizer, delete the new archive, just to reset to the original state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-helper-tool-target",
+          "level": 3,
+          "text": "Create the helper tool target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the app target in the project building correctly, it’s time to create a helper tool target so you can embed its product into the app. To start, create a new target from the macOS > Command Line Tool template. Name this ",
+              "type": "text"
+            },
+            {
+              "code": "ToolX",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "X",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " stands for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "built with Xcode",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the General tab of the tool target editor, clear the Deployment Target field. This configures the tool target to inherit its deployment target (macOS 10.15) from the project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Signing & Capabilities tab of the tool target editor, ensure that “Automatically manage signing” is checked, and then select the appropriate team. Again, the Signing Certificate popup switches to Development.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fill in the Bundle Identifier field. The app’s bundle ID is ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.apple-samplecode.AppWithTool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so set this to ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.apple-samplecode.AppWithTool.ToolX",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This value becomes the helper tool’s code signing identifier. See the discussion of the Other Code Signing Flags build setting, below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the App Sandbox and Hardened Runtime capabilities. Again, the hardened runtime isn’t required for App Store apps, but it’s best practice for new code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Build Settings tab, enable the Skip Install (",
+              "type": "text"
+            },
+            {
+              "code": "SKIP_INSTALL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") build setting. Without this setting, Xcode puts a standalone copy of the tool in your Xcode archive (in addition to the one embedded within your app). That copy of the tool causes problems when you try to distribute that archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, disable the Code Signing Inject Base Entitlements (",
+              "type": "text"
+            },
+            {
+              "code": "CODE_SIGN_INJECT_BASE_ENTITLEMENTS",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") build setting. If you leave this setting enabled, then Xcode includes the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.get-task-allow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement in development builds of your tool. This is problematic because that entitlement is incompatible with the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.inherit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The absence of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.get-task-allow",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entitlement means that you won’t be able to debug your tool. If you need to debug, create a new command-line tool target, one that’s not sandboxed, specifically for debugging. Be warned, however, that this target may behave differently from the normal tool target because it’s not running in a sandbox.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the Other Code Signing Flags (",
+              "type": "text"
+            },
+            {
+              "code": "OTHER_CODE_SIGN_FLAGS",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") build setting to ",
+              "type": "text"
+            },
+            {
+              "code": "$(inherited) -i $(PRODUCT_BUNDLE_IDENTIFIER)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which ensures that the tool’s code signing identifier matches its bundle ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select ",
+              "type": "text"
+            },
+            {
+              "code": "ToolX.entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Project navigator and add ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.inherit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to it, with a Boolean value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information about this entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW15",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the ToolX scheme and chose Product > Build, just to make sure that the tool builds correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now switch back to the app (",
+              "type": "text"
+            },
+            {
+              "code": "AppWithTool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Embed-the-helper-tool",
+          "level": 3,
+          "text": "Embed the helper tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Build Phases tab of the app target editor, add the ToolX target to the Dependencies build phase. This ensures that Xcode builds the tool target before building the app target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a new Copy Files build phase. Double-click the build phase name and change it to ",
+              "type": "text"
+            },
+            {
+              "code": "Embed Helper Tools",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (the exact name doesn’t matter, but it’s best to pick a descriptive one). Set the Destination popup to Executables.  This places the helper tool in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Contents/MacOS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, one of the locations recommended by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+              "isActive": true,
+              "overridingTitle": "Placing Content in a Bundle",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Placing Content in a Bundle",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "ToolX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executable to that build phase, making sure Code Sign On Copy is checked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about build phases, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/11.4/index.html#/dev50bab713d",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-and-validate",
+          "level": 3,
+          "text": "Build and validate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the project set up, it’s time to test that everything builds correctly. To start, choose Product > Archive, which builds the tool target and then the app target, embedding the result of the former within the latter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Xcode organizer, select the newly created archive and click Distribute App.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the button says Distribute Content rather than Distribute App, go back and check that you enabled the Skip Install build setting on the tool target.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select App Store Connect and click Next, then select Export and click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Go through the rest of the export workflow. The end result is a directory with a name like ",
+              "type": "text"
+            },
+            {
+              "code": "AppWithTool 2021-05-17 14-07-21",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Within that directory is an installer package (with the ",
+              "type": "text"
+            },
+            {
+              "code": ".pkg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension). Unpack that package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The easiest way to unpack an installer package is to install it. If you’d rather not install it, unpack it manually using ",
+                  "type": "text"
+                },
+                {
+                  "code": "xar",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "cpio",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For more information, read the manual pages for these tools (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+                  "isActive": true,
+                  "overridingTitle": "Reading UNIX Manual Pages",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Reading UNIX Manual Pages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the following commands to confirm that Xcode constructed everything correctly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -d -vvv --entitlements :- AppWithTool.app ",
+            "…",
+            "Identifier=com.example.apple-samplecode.AppWithTool",
+            "Format=app bundle with Mach-O universal (x86_64 arm64)",
+            "CodeDirectory v=20500 size=822 flags=0x10000(runtime) hashes=14+7 location=embedded",
+            "…",
+            "Authority=Apple Distribution: …",
+            "…",
+            "TeamIdentifier=SKMME9E2Y8",
+            "…",
+            "<dict>",
+            "    <key>com.apple.security.app-sandbox</key>",
+            "    <true/>",
+            "    <key>com.apple.security.files.user-selected.read-only</key>",
+            "    <true/>",
+            "</dict>",
+            "</plist>",
+            "% codesign -d -vvv --entitlements :- AppWithTool.app/Contents/MacOS/ToolX ",
+            "…",
+            "Identifier=com.example.apple-samplecode.AppWithTool.ToolX",
+            "Format=Mach-O universal (x86_64 arm64)",
+            "CodeDirectory v=20500 size=796 flags=0x10000(runtime) hashes=13+7 location=embedded",
+            "…",
+            "Authority=Apple Distribution: …",
+            "…",
+            "TeamIdentifier=SKMME9E2Y8",
+            "…",
+            "<dict>",
+            "    <key>com.apple.security.app-sandbox</key>",
+            "    <true/>",
+            "    <key>com.apple.security.inherit</key>",
+            "    <true/>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field is the code signing identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Format",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field shows that the executable is universal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "runtime",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag, in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CodeDirectory",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field, shows that the hardened runtime is enabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Authority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field shows that the code was signed by an Apple Distribution signing identity, which is what you’d expect for an App Store submission.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TeamIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field is your Team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s entitlements include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.security.app-sandbox",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and whatever other entitlements are appropriate for this app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tool’s entitlements include just ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.security.app-sandbox",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.security.inherit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Adding other entitlements to the tool can cause problems. If the tool immediately crashes with a code signing error when your app runs the tool, check that the tool is signed with just these two entitlements: ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.app-sandbox",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.inherit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Embed-an-externally-built-tool",
+          "level": 3,
+          "text": "Embed an externally built tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the app and Xcode-built helper tool working correctly, it’s time to repeat the process for a tool built using an external build system. The following example creates an example helper tool from the command line and then embeds the tool in the AppWithTool app. In a real project, you’d use the command-line tool’s external build system (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "make",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to build the tool that you want to embed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-the-tool",
+          "level": 3,
+          "text": "Build the tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new directory and change into it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% mkdir ToolC",
+            "% cd ToolC"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "C",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " stands for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "built with Clang",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a source file in the directory that looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% cat main.c ",
+            "#include <stdio.h>",
+            "",
+            "int main(int argc, char ** argv) {",
+            "    printf(\"Hello Cruel World!\\n\");",
+            "    return 0;",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build that source file with ",
+              "type": "text"
+            },
+            {
+              "code": "clang",
+              "type": "codeVoice"
+            },
+            {
+              "text": " twice, once for each architecture, and then ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " them together:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% clang -o ToolC-x86_64 -mmacosx-version-min=10.15 -arch x86_64 main.c",
+            "% clang -o ToolC-arm64 -mmacosx-version-min=11.0 -arch arm64 main.c",
+            "% lipo ToolC-x86_64 ToolC-arm64 -create -output ToolC "
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-mmacosx-version-min",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option sets the deployment target to match the AppWithTool app. For the Intel architecture, this is macOS 10.15, as discussed above. For the Apple silicon architecture, this is macOS 11.0, the first macOS release to support Apple silicon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an entitlements file for the tool:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% /usr/libexec/PlistBuddy -c \"Add :com.apple.security.app-sandbox bool true\" \"ToolC.entitlements\"",
+            "File Doesn't Exist, Will Create: ToolC.entitlements",
+            "% /usr/libexec/PlistBuddy -c \"Add :com.apple.security.inherit bool true\" ToolC.entitlements",
+            "% cat ToolC.entitlements ",
+            "…",
+            "<dict>",
+            "    <key>com.apple.security.app-sandbox</key>",
+            "    <true/>",
+            "    <key>com.apple.security.inherit</key>",
+            "    <true/>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign the tool as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -s - -i com.example.apple-samplecode.AppWithTool.ToolC -o runtime --entitlements ToolC.entitlements -f ToolC"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This breaks down as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-s -",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument applies an ad hoc signature (in Xcode parlance, this is Sign to Run Locally). Setting up the code signature here is critical. It sets up a pattern that Xcode uses when it re-signs the tool when embedding it into the final app. The signing identity is the only thing that doesn’t matter. Xcode overrides that identity with the product’s signing identity during the embedding process, which is why you can get away with an ad hoc signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-i com.example.apple-samplecode.AppWithTool.ToolC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option sets the code signing identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-o runtime",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option enables the hardened runtime. Again, this isn’t necessary for App Store distribution, but it’s best practice for new code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--entitlements ToolC.entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option supplies the signature’s entitlements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-f",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option overrides any existing signature. This isn’t strictly necessary but it avoids any confusion about the existing ad hoc signature applied by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " architecture. Apple silicon requires that all code be signed, and so ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " automatically applies an ad hoc signature when building for Apple silicon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "ToolC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executable to your Xcode project. When you do this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable “Copy items if needed”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select “Create groups” rather than “Create folder reference”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uncheck all the boxes in the “Add to targets” list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Build Phases tab of the app target editor, add ",
+              "type": "text"
+            },
+            {
+              "code": "ToolC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the Embed Helper Tools build phase, making sure that Code Sign On Copy is checked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-and-validate-again",
+          "level": 3,
+          "text": "Build and validate again",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To validate your work, follow the process described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app#Build-and-validate",
+              "isActive": true,
+              "overridingTitle": "Build and Validate",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Build and Validate",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", substituting ",
+              "type": "text"
+            },
+            {
+              "code": "ToolC",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "ToolX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " everywhere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-package-dependencies-to-your-app": {
+      "abstract": [
+        {
+          "text": "Integrate package dependencies to share code between projects, or leverage code from other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-package-dependencies-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding package dependencies to your app",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-package-dependencies-to-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app#Build-and-validate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app#Build-and-validate",
+      "kind": "section",
+      "title": "Build and validate",
+      "type": "topic",
+      "url": "/documentation/xcode/embedding-a-helper-tool-in-a-sandboxed-app#Build-and-validate"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces": {
+      "abstract": [
+        {
+          "text": "Manage the code and resources you use to build apps, libraries, and other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "software for Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Projects and workspaces",
+      "type": "topic",
+      "url": "/documentation/xcode/projects-and-workspaces"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list": {
+      "abstract": [
+        {
+          "text": "Create and customize an information property list file for your app using Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Your App’s Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/managing-your-app-s-information-property-list"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Place bundle content in the correct location based on its type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing content in a bundle",
+      "type": "topic",
+      "url": "/documentation/BundleResources/placing-content-in-a-bundle"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/creating-a-mac-version-of-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Bring your iPad app to macOS with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/creating-a-mac-version-of-your-ipad-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mac version of your iPad app",
+      "type": "topic",
+      "url": "/documentation/UIKit/creating-a-mac-version-of-your-ipad-app"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/WatchKit/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW15": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW15",
+      "title": "Enabling App Sandbox Inheritance",
+      "titleInlineContent": [
+        {
+          "text": "Enabling App Sandbox Inheritance",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW15"
+    },
+    "https://help.apple.com/xcode/mac/11.4/index.html#/dev50bab713d": {
+      "identifier": "https://help.apple.com/xcode/mac/11.4/index.html#/dev50bab713d",
+      "title": "What are build phases?",
+      "titleInlineContent": [
+        {
+          "text": "What are build phases?",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/11.4/index.html#/dev50bab713d"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Project-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list",
+        "doc://com.apple.Xcode/documentation/Xcode/adding-package-dependencies-to-your-app",
+        "doc://com.apple.documentation/documentation/UIKit/creating-a-mac-version-of-your-ipad-app",
+        "doc://com.apple.documentation/documentation/WatchKit/setting-up-a-watchos-project"
+      ],
+      "title": "Project configuration"
+    }
+  ]
+}

@@ -1,0 +1,1569 @@
+{
+  "abstract": [
+    {
+      "text": "An audio-layering object that outputs sound in a particular direction in 3D space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASEAmbientMixerDefinition",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASEAmbientMixerDefinition"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASEAmbientMixerDefinition"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASEAmbientMixerDefinition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASEAmbientMixerDefinition"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an audio-layering object, this class combines multiple audio signals to a single signal for the output device. Play audio with a 3D orientation using this class when you supply a quaternion for the ",
+              "type": "text"
+            },
+            {
+              "code": "orientation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. For information on orientation the sound, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/working-with-quaternions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also supply the intitializer with a channel layout in either mono, stereo, or surround formats. Surround audio files create the best listening experience due to their extra channel data. The framework renders each channel from the direction of its corresponding speaker in the channel layout. This class ignores low-frequency effect channels that may be present in the layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For one-time sounds that require no position or orientation, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEChannelMixerDefinition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead of this class. If your audio playback needs to react to distance or contain environmental effects, use a spatial mixer; for more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.phase/documentation/PHASE/spatial-mixing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Play-Sound-with-a-Specific-Orientation-Channel-Layout-and-Listener",
+          "level": 3,
+          "text": "Play Sound with a Specific Orientation, Channel Layout, and Listener",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play ambient sound, define an orientation for the mixer and a channel layout for the source audio data. For example, the following code creates a 5.0 surround-sound ambient source from a 5.1 surround-sound asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Orient the mixer.",
+                    "let orientation: PHASEQuaternion3D = simd_quaternion(1.0, 0.0, 0.0, 0.0)",
+                    "",
+                    "// Create a channel layout corresponding to the sound asset’s channel layout.",
+                    "let surroundLayout = AVAudioChannelLayout(",
+                    "    layoutTag: kAudioChannelLayoutTag_MPEG_5_1_A)",
+                    "",
+                    "// Create the ambient mixer.",
+                    "let ambientMixer = PHASEAmbientMixerDefinition(channelLayout: surroundLayout!,",
+                    "    orientation: orientation)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Orient the mixer.",
+                    "PHASEQuaternion3D orientation = simd_quaternion(1.f, 0.f, 0.f, 0.f);",
+                    "",
+                    "// Create a channel layout corresponding to the sound asset’s channel layout. ",
+                    "AVAudioChannelLayout* surroundLayout =",
+                    "    [[AVAudioChannelLayout alloc] initWithLayoutTag:kAudioChannelLayoutTag_MPEG_5_1_A];",
+                    "",
+                    "// Create the ambient mixer.",
+                    "PHASEAmbientMixerDefinition* ambientMixer =",
+                    "    [[PHASEAmbientMixerDefinition alloc] initWithChannelLayout:surroundLayout orientation:orientation];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ambient mixers require the app to specify a listener, for which you define an orientation by setting the listener’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Continuing on the example above, the following code completes a mixer by attaching a listener, and then plays a sound event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Attach the mixer to a listener.",
+                    "let mixerParams = PHASEMixerParameters()",
+                    "mixerParams.addAmbientMixerParameters(ambientMixer.uid, listener: listener)",
+                    "",
+                    "",
+                    "// Create a sound event object.    ",
+                    "var ambientSoundEvent: PHASESoundEvent!",
+                    "do { ambientSoundEvent = try PHASESoundEvent(engine: engine,",
+                    "        registeredSoundEventNodeAssetUID: ambientSoundEventAsset.uid,",
+                    "        mixerParameters: mixerParams)",
+                    "} catch { fatalError(\"Failed to create a sound event.\") }",
+                    "",
+                    "",
+                    "// Play the ambient sound.",
+                    "do { try ambientSoundEvent.start() } ",
+                    "catch { print(\"Failed to start a sound event.\") }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Attach the mixer to a listener.",
+                    "PHASEMixerParameters* mixerParams = [[PHASEMixerParameters alloc] init];",
+                    "[mixerParams addAmbientMixerParameters:ambientMixer.uid",
+                    "    listener:_listener];",
+                    "",
+                    "// Create a sound event object.    ",
+                    "PHASESoundEvent* ambientSoundEvent =",
+                    "    [[PHASESoundEvent alloc]initWithEngine:_engine",
+                    "        registeredSoundEventNodeAssetUID:ambientSoundEventAsset.uid",
+                    "        mixerParameters:mixerParams",
+                    "        outError:&err];",
+                    "",
+                    "// Play the ambient sound.",
+                    "[ambientSoundEvent startAndReturnError:&err];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PHASE changes the channel output of ambient-mixer sound dynamically, depending on the respective directions of the mixer and the listener. For example, you can use an ambient mixer in a game to play the environmental sound of birds all around and the sound of traffic on a road in just one audio channel. Depending on the direction the player is facing, the mixer can rotate the audio so that the road always sounds like it’s coming from the same direction, for example, the west.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Accelerate/working-with-quaternions": {
+      "abstract": [
+        {
+          "text": "Rotate points around the surface of a sphere, and interpolate between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/working-with-quaternions",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Quaternions",
+      "type": "topic",
+      "url": "/documentation/Accelerate/working-with-quaternions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition": {
+      "abstract": [
+        {
+          "text": "An audio-layering object that outputs sound in a particular direction in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEAmbientMixerDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEAmbientMixerDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEAmbientMixerDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phaseambientmixerdefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)": {
+      "abstract": [
+        {
+          "text": "Creates an ambient mixer with the given channel layout and orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioChannelLayout",
+          "text": "AVAudioChannelLayout"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_quatf",
+          "text": "simd_quatf"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithChannelLayout:orientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(channelLayout:orientation:)",
+      "type": "topic",
+      "url": "/documentation/phase/phaseambientmixerdefinition/init(channellayout:orientation:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a named ambient mixer with the given channel layout and orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "channelLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioChannelLayout",
+          "text": "AVAudioChannelLayout"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_quatf",
+          "text": "simd_quatf"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithChannelLayout:orientation:identifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(channelLayout:orientation:identifier:)",
+      "type": "topic",
+      "url": "/documentation/phase/phaseambientmixerdefinition/init(channellayout:orientation:identifier:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout": {
+      "abstract": [
+        {
+          "text": "The channel layout of input audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputChannelLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioChannelLayout",
+          "text": "AVAudioChannelLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputChannelLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputChannelLayout",
+      "type": "topic",
+      "url": "/documentation/phase/phaseambientmixerdefinition/inputchannellayout"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/orientation": {
+      "abstract": [
+        {
+          "text": "A quaternion that describes the orientation of the speaker layout relative to the scene origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_quatf",
+          "text": "simd_quatf"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/orientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "orientation",
+      "type": "topic",
+      "url": "/documentation/phase/phaseambientmixerdefinition/orientation"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEChannelMixerDefinition": {
+      "abstract": [
+        {
+          "text": "An audio-layering object that routes sound directly to the device’s output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEChannelMixerDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEChannelMixerDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEChannelMixerDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEChannelMixerDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasechannelmixerdefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDefinition": {
+      "abstract": [
+        {
+          "text": "A base class that adds a name to framework definitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasedefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMixer": {
+      "abstract": [
+        {
+          "text": "An object that combines multiple audio signals into a single signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMixer"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMixer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMixer"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMixer",
+      "type": "topic",
+      "url": "/documentation/phase/phasemixer"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition": {
+      "abstract": [
+        {
+          "text": "An object to initialize a mixer with a given configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMixerDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMixerDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMixerDefinition",
+      "type": "topic",
+      "url": "/documentation/phase/phasemixerdefinition"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform": {
+      "abstract": [
+        {
+          "text": "A matrix, in local coordinates, that determines the object’s pose in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEObject/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/phase/phaseobject/transform"
+    },
+    "doc://com.apple.phase/documentation/PHASE/spatial-mixing": {
+      "abstract": [
+        {
+          "text": "Define environmental characteristics that determine how sound plays in your app’s 3D soundscape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/spatial-mixing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Spatial Mixing",
+      "type": "topic",
+      "url": "/documentation/phase/spatial-mixing"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Layering-and-Effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEChannelMixerDefinition",
+        "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition",
+        "doc://com.apple.phase/documentation/PHASE/PHASEMixer",
+        "doc://com.apple.phase/documentation/PHASE/PHASEDefinition",
+        "doc://com.apple.phase/documentation/PHASE/spatial-mixing"
+      ],
+      "title": "Audio Layering and Effects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Ambient-Mixer",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)"
+      ],
+      "title": "Creating an Ambient Mixer"
+    },
+    {
+      "anchor": "Inspecting-the-Mixer",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout",
+        "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/orientation"
+      ],
+      "title": "Inspecting the Mixer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASEAmbientMixerDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAmbientMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAmbientMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Ambient-Mixer",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/init(channelLayout:orientation:identifier:)"
+              ],
+              "title": "Creating an Ambient Mixer"
+            },
+            {
+              "anchor": "Inspecting-the-Mixer",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/inputChannelLayout",
+                "doc://com.apple.phase/documentation/PHASE/PHASEAmbientMixerDefinition/orientation"
+              ],
+              "title": "Inspecting the Mixer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Layering-and-Effects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEChannelMixerDefinition",
+                "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition",
+                "doc://com.apple.phase/documentation/PHASE/PHASEMixer",
+                "doc://com.apple.phase/documentation/PHASE/PHASEDefinition",
+                "doc://com.apple.phase/documentation/PHASE/spatial-mixing"
+              ],
+              "title": "Audio Layering and Effects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASEAmbientMixerDefinition"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMixerDefinition",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)PHASEMixerDefinition",
+                    "text": "PHASEMixerDefinition"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEObject~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition/title",
+          "value": "PHASEAmbientMixerDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAmbientMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAmbientMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1init(channelLayout:orientation:)/title",
+          "value": "initWithChannelLayout:orientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1init(channelLayout:orientation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithChannelLayout:orientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1inputChannelLayout/title",
+          "value": "inputChannelLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1inputChannelLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputChannelLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixer/title",
+          "value": "PHASEMixer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMixer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMixer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEChannelMixerDefinition/title",
+          "value": "PHASEChannelMixerDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEChannelMixerDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEChannelMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEChannelMixerDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEChannelMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1orientation/title",
+          "value": "orientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1orientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "orientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1init(channelLayout:orientation:identifier:)/title",
+          "value": "initWithChannelLayout:orientation:identifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAmbientMixerDefinition~1init(channelLayout:orientation:identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithChannelLayout:orientation:identifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixerDefinition/title",
+          "value": "PHASEMixerDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixerDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMixerDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMixerDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDefinition/title",
+          "value": "PHASEDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDefinition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDefinition"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phaseambientmixerdefinition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phaseambientmixerdefinition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

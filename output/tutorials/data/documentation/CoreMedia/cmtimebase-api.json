@@ -1,0 +1,4478 @@
+{
+  "abstract": [
+    {
+      "text": "A model of a timeline under application control.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimebase-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMTimebase APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A timebase represents a timeline that clients can control by setting the rate and time. Each timebase has either a host clock or a host timebase, and its rate is expressed relative to its host:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When a timebase has rate 0.0, its time is fixed and doesn’t change as its host’s time changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When a timebase has rate 1.0, its time increases one second as its host’s time increases by one second.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When a timebase has rate 2.0, its time increases two seconds as its host’s time increases by one second.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When a timebase has rate -1.0, its time decreases one second as its host’s time increases by one second.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a timebase has a host timebase, the host timebase’s rate is a factor in determining the timebase’s effective rate. In fact, a timebase’s effective rate is defined as the product of its rate, its host timebase’s rate, its host timebase’s host timebase’s rate, and so on up to the ultimate host clock. This is the rate at which the timebase’s time changes relative to the ultimate host clock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSync": {
+      "abstract": [
+        {
+          "text": "A type that represents time syncing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSync"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSync",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSync"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSync",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsync"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMSyncProtocol": {
+      "abstract": [
+        {
+          "text": "A type that provides behavior for syncing time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSyncProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMSyncProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSyncProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSyncProtocol",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmsyncprotocol"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebase": {
+      "abstract": [
+        {
+          "text": "A model of a timeline under application control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebase"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebase",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebase"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimer(_:timer:runloop:)": {
+      "abstract": [
+        {
+          "text": "Adds the timer to the list of timers the timebase manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseAddTimer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopTimerRef",
+          "text": "CFRunLoopTimer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "runloop"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopRef",
+          "text": "CFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimer(_:timer:runloop:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseAddTimer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseAddTimer(_:timer:runloop:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebaseaddtimer(_:timer:runloop:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimerDispatchSource(_:timerSource:)": {
+      "abstract": [
+        {
+          "text": "Adds the timer dispatch source to the list of timers the timebase manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseAddTimerDispatchSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timerSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_source_t",
+          "text": "dispatch_source_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimerDispatchSource(_:timerSource:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseAddTimerDispatchSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseAddTimerDispatchSource(_:timerSource:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebaseaddtimerdispatchsource(_:timersource:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMaster(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate host timebase of a timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyMaster"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMaster(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyMaster"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopyMaster(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopymaster(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterClock(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate host clock of a timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyMasterClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterClock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyMasterClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopyMasterClock(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopymasterclock(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterTimebase(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate host timebase of a timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyMasterTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterTimebase(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyMasterTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopyMasterTimebase(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopymastertimebase(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySource(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate source — either a clock or timebase — of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopySource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySource(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopySource(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopysource(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceClock(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate source clock of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopySourceClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceClock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopySourceClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopySourceClock(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopysourceclock(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceTimebase(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate source timebase of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopySourceTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceTimebase(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopySourceTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopySourceTimebase(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopysourcetimebase(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateMasterClock(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the host clock that is the host of all of a timebase’s host timebases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyUltimateMasterClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateMasterClock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyUltimateMasterClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopyUltimateMasterClock(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopyultimatemasterclock(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateSourceClock(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the source clock that’s the source of all of a timebase’s source timebases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyUltimateSourceClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateSourceClock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCopyUltimateSourceClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCopyUltimateSourceClock(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecopyultimatesourceclock(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a timebase by using a primary clock.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithMasterClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "masterClock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timebaseOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithMasterClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecreatewithmasterclock(allocator:masterclock:timebaseout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a timebase by using a host timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithMasterTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "masterTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timebaseOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithMasterTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecreatewithmastertimebase(allocator:mastertimebase:timebaseout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a timebase by using a source clock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithSourceClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceClock"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timebaseOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithSourceClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecreatewithsourceclock(allocator:sourceclock:timebaseout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a timebase by using a source timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithSourceTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timebaseOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseCreateWithSourceTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasecreatewithsourcetimebase(allocator:sourcetimebase:timebaseout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetEffectiveRate(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the effective rate of a timebase, which combines its rate with the rates of all its host timebases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetEffectiveRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetEffectiveRate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetEffectiveRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetEffectiveRate(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegeteffectiverate(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMaster(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate host (either timebase or clock) of a timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetMaster"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockOrTimebaseRef",
+          "text": "CMClockOrTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMaster(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetMaster"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetMaster(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegetmaster(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterClock(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate host clock of a timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetMasterClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterClock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetMasterClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetMasterClock(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegetmasterclock(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterTimebase(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the immediate host timebase of a timebase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetMasterTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterTimebase(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetMasterTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetMasterTimebase(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegetmastertimebase(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetRate(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the current rate of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetRate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetRate(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegetrate(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTime(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the current time from a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTime(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetTime(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegettime(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)": {
+      "abstract": [
+        {
+          "text": "Returns the current time and rate of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTimeAndRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rateOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTimeAndRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegettimeandrate(_:timeout:rateout:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeWithTimeScale(_:timescale:method:)": {
+      "abstract": [
+        {
+          "text": "Returns the current time from a timebase in the specified timescale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTimeWithTimeScale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timescale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimeScale",
+          "text": "CMTimeScale"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "method"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMTimeRoundingMethod",
+          "text": "CMTimeRoundingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeWithTimeScale(_:timescale:method:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTimeWithTimeScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetTimeWithTimeScale(_:timescale:method:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegettimewithtimescale(_:timescale:method:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the Core Foundation type identifier that identifies a timebase object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegettypeid()"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetUltimateMasterClock(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the host clock that is the host of all of a timebase’s host timebases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetUltimateMasterClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetUltimateMasterClock(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseGetUltimateMasterClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseGetUltimateMasterClock(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasegetultimatemasterclock(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseNotificationBarrier(_:)": {
+      "abstract": [
+        {
+          "text": "Requests that the timebase wait until it isn’t posting notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseNotificationBarrier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseNotificationBarrier(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseNotificationBarrier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseNotificationBarrier(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasenotificationbarrier(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimer(_:timer:)": {
+      "abstract": [
+        {
+          "text": "Removes the timer from the list of timers the timebase manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseRemoveTimer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopTimerRef",
+          "text": "CFRunLoopTimer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimer(_:timer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseRemoveTimer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseRemoveTimer(_:timer:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebaseremovetimer(_:timer:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimerDispatchSource(_:timerSource:)": {
+      "abstract": [
+        {
+          "text": "Removes the timer dispatch source from the list of timers the timebase manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseRemoveTimerDispatchSource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timerSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_source_t",
+          "text": "dispatch_source_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimerDispatchSource(_:timerSource:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseRemoveTimerDispatchSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseRemoveTimerDispatchSource(_:timerSource:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebaseremovetimerdispatchsource(_:timersource:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateMasterTime:)": {
+      "abstract": [
+        {
+          "text": "Sets the time of a timebase at a particular source time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetAnchorTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timebaseTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "immediateMasterTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateMasterTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTimebaseSetAnchorTime(_:timebaseTime:immediateMasterTime:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetanchortime(_:timebasetime:immediatemastertime:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)": {
+      "abstract": [
+        {
+          "text": "Sets the time of a timebase at a particular host time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetAnchorTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timebaseTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "immediateSourceTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetAnchorTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetanchortime(_:timebasetime:immediatesourcetime:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterClock(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the time of a timebase at a particular source time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetMasterClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterClock(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetMasterClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetMasterClock(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetmasterclock(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterTimebase(_:_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetMasterTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterTimebase(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetMasterTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetMasterTimebase(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetmastertimebase(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRate(_:rate:)": {
+      "abstract": [
+        {
+          "text": "Sets the rate of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRate(_:rate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetRate(_:rate:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetrate(_:rate:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateMasterTime:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetRateAndAnchorTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchorTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "immediateMasterTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateMasterTime:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateMasterTime:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetrateandanchortime(_:rate:anchortime:immediatemastertime:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)": {
+      "abstract": [
+        {
+          "text": "Sets the time of a timebase at a particular host time, and changes the rate at exactly that time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetRateAndAnchorTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchorTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "immediateSourceTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetRateAndAnchorTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetrateandanchortime(_:rate:anchortime:immediatesourcetime:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceClock(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the source clock of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetSourceClock"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMClockRef",
+          "text": "CMClock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceClock(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetSourceClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetSourceClock(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetsourceclock(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceTimebase(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the source timebase of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetSourceTimebase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceTimebase(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetSourceTimebase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetSourceTimebase(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesetsourcetimebase(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTime(_:time:)": {
+      "abstract": [
+        {
+          "text": "Sets the current time of a timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTime(_:time:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetTime(_:time:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesettime(_:time:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)": {
+      "abstract": [
+        {
+          "text": "Sets the time on the timebase’s timeline at which the timer dispatch source should fire next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerDispatchSourceNextFireTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timerSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_source_t",
+          "text": "dispatch_source_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fireTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerDispatchSourceNextFireTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesettimerdispatchsourcenextfiretime(_:timersource:firetime:flags:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)": {
+      "abstract": [
+        {
+          "text": "Sets the timer dispatch source to fire immediately once, overriding any previous timer call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerDispatchSourceToFireImmediately"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timerSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_source_t",
+          "text": "dispatch_source_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerDispatchSourceToFireImmediately"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesettimerdispatchsourcetofireimmediately(_:timersource:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)": {
+      "abstract": [
+        {
+          "text": "Sets the time on the timebase’s timeline at which the timer should fire next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerNextFireTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopTimerRef",
+          "text": "CFRunLoopTimer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fireTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerNextFireTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesettimernextfiretime(_:timer:firetime:flags:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerToFireImmediately(_:timer:)": {
+      "abstract": [
+        {
+          "text": "Sets the timer to fire immediately once, overriding any previous timer calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerToFireImmediately"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMTimebaseRef",
+          "text": "CMTimebase"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopTimerRef",
+          "text": "CFRunLoopTimer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerToFireImmediately(_:timer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimebaseSetTimerToFireImmediately"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimebaseSetTimerToFireImmediately(_:timer:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimebasesettimertofireimmediately(_:timer:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmaudioclock-api": {
+      "abstract": [
+        {
+          "text": "A specialized reference clock that synchronizes with audio sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmaudioclock-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMAudioClock APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmaudioclock-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api": {
+      "abstract": [
+        {
+          "text": "A reference clock you use to synchronize applications and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMClock APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmclock-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_AllocationFailed": {
+      "abstract": [
+        {
+          "text": "A timebase error that indicates the memory allocation fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_AllocationFailed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_AllocationFailed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_AllocationFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMTimebaseError_AllocationFailed",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebaseerror_allocationfailed"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_InvalidParameter": {
+      "abstract": [
+        {
+          "text": "A timebase error that indicates a parameter isn’t valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_InvalidParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_InvalidParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_InvalidParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMTimebaseError_InvalidParameter",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebaseerror_invalidparameter"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_MissingRequiredParameter": {
+      "abstract": [
+        {
+          "text": "A timebase error that indicates a parameter is missing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_MissingRequiredParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_MissingRequiredParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_MissingRequiredParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMTimebaseError_MissingRequiredParameter",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebaseerror_missingrequiredparameter"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_ReadOnly": {
+      "abstract": [
+        {
+          "text": "A timebase error that indicates the system attempts to modify a read-only timebase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_ReadOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_ReadOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_ReadOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMTimebaseError_ReadOnly",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebaseerror_readonly"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_TimerIntervalTooShort": {
+      "abstract": [
+        {
+          "text": "A timebase error that indicates the time interval is too short.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_TimerIntervalTooShort"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_TimerIntervalTooShort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseError_TimerIntervalTooShort"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMTimebaseError_TimerIntervalTooShort",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebaseerror_timerintervaltooshort"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseFarFutureCFAbsoluteTime": {
+      "abstract": [
+        {
+          "text": "A constant that defines a point of time in the far, far future.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseFarFutureCFAbsoluteTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseFarFutureCFAbsoluteTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCMTimebaseFarFutureCFAbsoluteTime",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebasefarfuturecfabsolutetime"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseNotificationKey_EventTime": {
+      "abstract": [
+        {
+          "text": "A notification that a timebase posts after a discontinuous time jump.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseNotificationKey_EventTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseNotificationKey_EventTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseNotificationKey_EventTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCMTimebaseNotificationKey_EventTime",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebasenotificationkey_eventtime"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseVeryLongCFTimeInterval": {
+      "abstract": [
+        {
+          "text": "A constant that defines a very long elapsed time in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kCMTimebaseVeryLongCFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseVeryLongCFTimeInterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCMTimebaseVeryLongCFTimeInterval",
+      "type": "topic",
+      "url": "/documentation/coremedia/kcmtimebaseverylongcftimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Synchronization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmaudioclock-api"
+      ],
+      "title": "Media Synchronization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Timebases",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)"
+      ],
+      "title": "Creating Timebases"
+    },
+    {
+      "anchor": "Copying-Timebases",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySource(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceClock(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceTimebase(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateSourceClock(_:)"
+      ],
+      "title": "Copying Timebases"
+    },
+    {
+      "anchor": "Getting-and-Setting-Time",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTime(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeWithTimeScale(_:timescale:method:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTime(_:time:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceClock(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceTimebase(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)"
+      ],
+      "title": "Getting and Setting Time"
+    },
+    {
+      "anchor": "Getting-and-Setting-the-Time-Rate",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetRate(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetEffectiveRate(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRate(_:rate:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)"
+      ],
+      "title": "Getting and Setting the Time Rate"
+    },
+    {
+      "anchor": "Interacting-with-Timers",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimer(_:timer:runloop:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimerDispatchSource(_:timerSource:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimer(_:timer:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimerDispatchSource(_:timerSource:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerToFireImmediately(_:timer:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)"
+      ],
+      "title": "Interacting with Timers"
+    },
+    {
+      "anchor": "Pausing-Time-Notifications",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseNotificationBarrier(_:)"
+      ],
+      "title": "Pausing Time Notifications"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebase",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSync",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMSyncProtocol"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Timebase-Errors",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_MissingRequiredParameter",
+        "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_InvalidParameter",
+        "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_AllocationFailed",
+        "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_TimerIntervalTooShort",
+        "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_ReadOnly"
+      ],
+      "title": "Timebase Errors"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTypeID()"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseNotificationKey_EventTime"
+      ],
+      "title": "Notifications"
+    },
+    {
+      "anchor": "Deprecations",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateMasterTime:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterTimebase(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterClock(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMaster(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetUltimateMasterClock(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterClock(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterTimebase(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateMasterTime:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMaster(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterClock(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterTimebase(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateMasterClock(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)"
+      ],
+      "title": "Deprecations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Timebases",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)"
+              ],
+              "title": "Creating Timebases"
+            },
+            {
+              "anchor": "Copying-Timebases",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySource(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceClock(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopySourceTimebase(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateSourceClock(_:)"
+              ],
+              "title": "Copying Timebases"
+            },
+            {
+              "anchor": "Getting-and-Setting-Time",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTime(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeWithTimeScale(_:timescale:method:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTime(_:time:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceClock(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetSourceTimebase(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)"
+              ],
+              "title": "Getting and Setting Time"
+            },
+            {
+              "anchor": "Getting-and-Setting-the-Time-Rate",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetRate(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetEffectiveRate(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRate(_:rate:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)"
+              ],
+              "title": "Getting and Setting the Time Rate"
+            },
+            {
+              "anchor": "Interacting-with-Timers",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimer(_:timer:runloop:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseAddTimerDispatchSource(_:timerSource:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimer(_:timer:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseRemoveTimerDispatchSource(_:timerSource:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerToFireImmediately(_:timer:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)"
+              ],
+              "title": "Interacting with Timers"
+            },
+            {
+              "anchor": "Pausing-Time-Notifications",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseNotificationBarrier(_:)"
+              ],
+              "title": "Pausing Time Notifications"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebase"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Timebase-Errors",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_MissingRequiredParameter",
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_InvalidParameter",
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_AllocationFailed",
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_TimerIntervalTooShort",
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseError_ReadOnly"
+              ],
+              "title": "Timebase Errors"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseVeryLongCFTimeInterval",
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseFarFutureCFAbsoluteTime",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetTypeID()"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/kCMTimebaseNotificationKey_EventTime"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Deprecations",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterTimebase(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMasterClock(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetMaster(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseGetUltimateMasterClock(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterClock(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseSetMasterTimebase(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMaster(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterClock(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyMasterTimebase(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCopyUltimateMasterClock(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)"
+              ],
+              "title": "Deprecations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-Synchronization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmclock-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmaudioclock-api"
+              ],
+              "title": "Media Synchronization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetMasterClock(_:_:)/title",
+          "value": "CMTimebaseSetMasterClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetMasterClock(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetMasterClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_InvalidParameter/title",
+          "value": "kCMTimebaseError_InvalidParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_InvalidParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimebaseError_InvalidParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTypeID()/title",
+          "value": "CMTimebaseGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)/title",
+          "value": "CMTimebaseSetRateAndAnchorTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetRateAndAnchorTime(_:rate:anchorTime:immediateSourceTime:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetRateAndAnchorTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetMasterTimebase(_:)/title",
+          "value": "CMTimebaseGetMasterTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetMasterTimebase(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetMasterTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTime(_:time:)/title",
+          "value": "CMTimebaseSetTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTime(_:time:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseAddTimer(_:timer:runloop:)/title",
+          "value": "CMTimebaseAddTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseAddTimer(_:timer:runloop:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseAddTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTimeWithTimeScale(_:timescale:method:)/title",
+          "value": "CMTimebaseGetTimeWithTimeScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTimeWithTimeScale(_:timescale:method:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetTimeWithTimeScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebase/title",
+          "value": "CMTimebaseRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopySourceClock(_:)/title",
+          "value": "CMTimebaseCopySourceClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopySourceClock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopySourceClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)/title",
+          "value": "CMTimebaseCreateWithMasterTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithMasterTimebase(allocator:masterTimebase:timebaseOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCreateWithMasterTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyMasterClock(_:)/title",
+          "value": "CMTimebaseCopyMasterClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyMasterClock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopyMasterClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetMasterClock(_:)/title",
+          "value": "CMTimebaseGetMasterClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetMasterClock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetMasterClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyUltimateSourceClock(_:)/title",
+          "value": "CMTimebaseCopyUltimateSourceClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyUltimateSourceClock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopyUltimateSourceClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetRate(_:)/title",
+          "value": "CMTimebaseGetRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetRate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTime(_:)/title",
+          "value": "CMTimebaseGetTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTime(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyUltimateMasterClock(_:)/title",
+          "value": "CMTimebaseCopyUltimateMasterClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyUltimateMasterClock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopyUltimateMasterClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseNotificationBarrier(_:)/title",
+          "value": "CMTimebaseNotificationBarrier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseNotificationBarrier(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseNotificationBarrier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)/title",
+          "value": "CMTimebaseGetTimeAndRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetTimeAndRate(_:timeOut:rateOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetTimeAndRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetUltimateMasterClock(_:)/title",
+          "value": "CMTimebaseGetUltimateMasterClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetUltimateMasterClock(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetUltimateMasterClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_TimerIntervalTooShort/title",
+          "value": "kCMTimebaseError_TimerIntervalTooShort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_TimerIntervalTooShort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimebaseError_TimerIntervalTooShort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)/title",
+          "value": "CMTimebaseCreateWithSourceClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithSourceClock(allocator:sourceClock:timebaseOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCreateWithSourceClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetMasterTimebase(_:_:)/title",
+          "value": "CMTimebaseSetMasterTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetMasterTimebase(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetMasterTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseNotificationKey_EventTime/title",
+          "value": "kCMTimebaseNotificationKey_EventTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseNotificationKey_EventTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimebaseNotificationKey_EventTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_MissingRequiredParameter/title",
+          "value": "kCMTimebaseError_MissingRequiredParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_MissingRequiredParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimebaseError_MissingRequiredParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)/title",
+          "value": "CMTimebaseSetTimerDispatchSourceToFireImmediately"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerDispatchSourceToFireImmediately(_:timerSource:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetTimerDispatchSourceToFireImmediately"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseRemoveTimerDispatchSource(_:timerSource:)/title",
+          "value": "CMTimebaseRemoveTimerDispatchSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseRemoveTimerDispatchSource(_:timerSource:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseRemoveTimerDispatchSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetSourceClock(_:_:)/title",
+          "value": "CMTimebaseSetSourceClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetSourceClock(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetSourceClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)/title",
+          "value": "CMTimebaseCreateWithMasterClock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithMasterClock(allocator:masterClock:timebaseOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCreateWithMasterClock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)/title",
+          "value": "CMTimebaseSetAnchorTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetAnchorTime(_:timebaseTime:immediateSourceTime:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetAnchorTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetRate(_:rate:)/title",
+          "value": "CMTimebaseSetRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetRate(_:rate:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyMasterTimebase(_:)/title",
+          "value": "CMTimebaseCopyMasterTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyMasterTimebase(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopyMasterTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_AllocationFailed/title",
+          "value": "kCMTimebaseError_AllocationFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_AllocationFailed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimebaseError_AllocationFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)/title",
+          "value": "CMTimebaseSetTimerNextFireTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerNextFireTime(_:timer:fireTime:flags:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetTimerNextFireTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseRemoveTimer(_:timer:)/title",
+          "value": "CMTimebaseRemoveTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseRemoveTimer(_:timer:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseRemoveTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopySourceTimebase(_:)/title",
+          "value": "CMTimebaseCopySourceTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopySourceTimebase(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopySourceTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetEffectiveRate(_:)/title",
+          "value": "CMTimebaseGetEffectiveRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetEffectiveRate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetEffectiveRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_ReadOnly/title",
+          "value": "kCMTimebaseError_ReadOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1kCMTimebaseError_ReadOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCMTimebaseError_ReadOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopySource(_:)/title",
+          "value": "CMTimebaseCopySource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopySource(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerToFireImmediately(_:timer:)/title",
+          "value": "CMTimebaseSetTimerToFireImmediately"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerToFireImmediately(_:timer:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetTimerToFireImmediately"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetMaster(_:)/title",
+          "value": "CMTimebaseGetMaster"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseGetMaster(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseGetMaster"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseAddTimerDispatchSource(_:timerSource:)/title",
+          "value": "CMTimebaseAddTimerDispatchSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseAddTimerDispatchSource(_:timerSource:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseAddTimerDispatchSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)/title",
+          "value": "CMTimebaseSetTimerDispatchSourceNextFireTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetTimerDispatchSourceNextFireTime(_:timerSource:fireTime:flags:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetTimerDispatchSourceNextFireTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)/title",
+          "value": "CMTimebaseCreateWithSourceTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCreateWithSourceTimebase(allocator:sourceTimebase:timebaseOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCreateWithSourceTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetSourceTimebase(_:_:)/title",
+          "value": "CMTimebaseSetSourceTimebase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseSetSourceTimebase(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseSetSourceTimebase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyMaster(_:)/title",
+          "value": "CMTimebaseCopyMaster"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimebaseCopyMaster(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimebaseCopyMaster"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmtimebase-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmtimebase-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

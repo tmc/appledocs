@@ -1,0 +1,829 @@
+{
+  "abstract": [
+    {
+      "text": "Set up or add a Border Router on a Thread network.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/configuring-a-border-router"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ThreadNetwork"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring a Border Router"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Border Router acts as a bridge between the Thread and Wi-Fi or Ethernet networks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a home. Multiple Border Routers on the preferred network strengthen communication",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between devices and improve the network’s resiliency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-a-new-Border-Router-on-the-preferred-network",
+          "level": 3,
+          "text": "Set up a new Border Router on the preferred network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin setup, first check for a configured preferred",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "network using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If one is already configured, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to read the credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Retrieving preferred network credentials requires user consent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a preferred network isn’t available, you must create a new Thread network and configure the Thread Border Router with this information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you configure the Border Router, store the credentials to iCloud Keychain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re setting up a Thread-capable Wi-Fi router, read the preferred network only after the user configures the Wi-Fi SSID on that router.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Storing credentials marks the newly created Thread network as the preferred network",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in iCloud Keychain. This process makes the Thread network immediately available for devices to join.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Border-Router-to-the-preferred-network",
+          "level": 3,
+          "text": "Add a Border Router to the preferred network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re setting up another Thread Border Router on the preferred network, ensure that the previously cached preferred network credentials match using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If they don’t match, re-read the preferred network credentials from iCloud Keychain using",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and configure the Border Router with those credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve configured the Border Router, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to store the Border Router’s Thread network credentials to iCloud Keychain. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can set up any number of Border Routers this way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "before calling  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to avoid a scenario in which a user configures an initial device at one home, and",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a subsequent device at a different home.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork": {
+      "abstract": [
+        {
+          "text": "Share credentials and choose a designated network for each home.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ThreadNetwork",
+      "type": "topic",
+      "url": "/documentation/threadnetwork"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)": {
+      "abstract": [
+        {
+          "text": "Determines if the essential operating parameters match the preferred network’s parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkPreferredNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forActiveOperationalDataset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkPreferredNetworkForActiveOperationalDataset:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/checkpreferrednetwork(foractiveoperationaldataset:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether a preferred network is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPreferredNetworkAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPreferredNetworkAvailableWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPreferredNetworkAvailable(completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/ispreferrednetworkavailable(completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)": {
+      "abstract": [
+        {
+          "text": "Requests Thread credentials for the preferred network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retrievePreferredCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)THCredentials",
+          "text": "THCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retrievePreferredCredentials:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retrievePreferredCredentials(_:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/retrievepreferredcredentials(_:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)": {
+      "abstract": [
+        {
+          "text": "Stores Thread network credentials into the framework database that a Border Agent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBorderAgent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activeOperationalDataSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/storecredentials(forborderagent:activeoperationaldataset:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials": {
+      "abstract": [
+        {
+          "text": "Store, delete, retrieve, and update Thread network credentials on your Apple device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Thread network credentials",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/managing-thread-network-credentials"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-up-Border-Routers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials"
+      ],
+      "title": "Setting up Border Routers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setting-up-Border-Routers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/managing-thread-network-credentials"
+              ],
+              "title": "Setting up Border Routers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1checkPreferredNetwork(forActiveOperationalDataset:completion:)/title",
+          "value": "checkPreferredNetworkForActiveOperationalDataset:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1checkPreferredNetwork(forActiveOperationalDataset:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkPreferredNetworkForActiveOperationalDataset:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1isPreferredNetworkAvailable(completion:)/title",
+          "value": "isPreferredNetworkAvailableWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1isPreferredNetworkAvailable(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPreferredNetworkAvailableWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)/title",
+          "value": "storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrievePreferredCredentials(_:)/title",
+          "value": "retrievePreferredCredentials:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrievePreferredCredentials(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retrievePreferredCredentials:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/threadnetwork/configuring-a-border-router"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/threadnetwork/configuring-a-border-router"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

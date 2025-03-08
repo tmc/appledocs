@@ -1,0 +1,2116 @@
+{
+  "abstract": [
+    {
+      "text": "A control that provides additional quantitative information specific to a menu item, such as the number of available updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMenuItemBadge",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMenuItemBadge"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSMenuItemBadge"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSMenuItemBadge"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadge"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a badge using an initializer or a predefined factory method, and then you assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem/badge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4304515",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to display a badge with a count, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(count:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initalizer, passing in the value of ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let menu = NSMenu()",
+                    "",
+                    "// Create a menu item.",
+                    "let menuItem = NSMenuItem(title: \"Messages\", action: nil, keyEquivalent: \"\")",
+                    "",
+                    "// Set the badge to display \"6\".",
+                    "menuItem.badge = NSMenuItemBadge(count: 6)",
+                    "",
+                    "// Add the item to the menu.",
+                    "menu.addItem(menuItem)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSMenu *menu = [[NSMenu alloc] init];",
+                    "",
+                    "// Create a menu item.",
+                    "NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@\"Messages\" action:nil keyEquivalent:@\"\"];",
+                    "",
+                    "// Set the badge to display \"6\".",
+                    "menuItem.badge = [[NSMenuItemBadge alloc] initWithCount:6];",
+                    "",
+                    "// Add the item to the menu.",
+                    "[menu addItem:menuItem];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a badge with a custom string, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(string:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, passing in the string you want to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let updateCount = 3",
+                    "let menu = NSMenu()",
+                    "",
+                    "// Create a menu item.",
+                    "let menuItem = NSMenuItem(title: \"Changes\", action: nil, keyEquivalent: \"\")",
+                    "",
+                    "// Set the badge to display \"3 changes\".",
+                    "menuItem.badge = NSMenuItemBadge(string: \"\\(updateCount) changes\")",
+                    "",
+                    "// Add the item to the menu.",
+                    "menu.addItem(menuItem)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSInteger updateCount = 3;",
+                    "NSMenu *menu = [[NSMenu alloc] init];",
+                    "",
+                    "// Create a menu item.",
+                    "NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@\"Changes\" action:nil keyEquivalent:@\"\"];",
+                    "",
+                    "// Set the badge to display \"3 changes\".",
+                    "menuItem.badge = [[NSMenuItemBadge alloc] initWithString:[NSString stringWithFormat:@\"%ld changes\", (long)updateCount]];",
+                    "",
+                    "// Add the item to the menu.",
+                    "[menu addItem:menuItem];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a badge using a predefined ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/BadgeType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use a factory method such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/newItems(count:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in the ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the badge to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let menu = NSMenu()",
+                    "",
+                    "// Add a new items style badge.",
+                    "let newItemsItem = NSMenuItem(title: \"New Items\", action: nil, keyEquivalent: \"\")",
+                    "newItemsItem.badge = NSMenuItemBadge.newItems(count: 3)",
+                    "menu.addItem(newItemsItem)",
+                    "",
+                    "// Add an alerts style badge.",
+                    "let alertsItem = NSMenuItem(title: \"Alerts\", action: nil, keyEquivalent: \"\")",
+                    "alertsItem.badge = NSMenuItemBadge.alerts(count: 4)",
+                    "menu.addItem(alertsItem)",
+                    "",
+                    "// Add an update style badge.",
+                    "let updatesItem = NSMenuItem(title: \"Updates\", action: nil, keyEquivalent: \"\")",
+                    "updatesItem.badge = NSMenuItemBadge.updates(count: 5)",
+                    "menu.addItem(updatesItem)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSMenu *menu = [[NSMenu alloc] init];",
+                    "",
+                    "// Add a new items style badge.",
+                    "NSMenuItem *newItemsItem = [[NSMenuItem alloc] initWithTitle:@\"New Items\" action:nil keyEquivalent:@\"\"];",
+                    "newItemsItem.badge = [NSMenuItemBadge newItemsWithCount:3];",
+                    "[menu addItem:newItemsItem];",
+                    "",
+                    "// Add an alerts style badge.",
+                    "NSMenuItem *alertsItem = [[NSMenuItem alloc] initWithTitle:@\"New Items\" action:nil keyEquivalent:@\"\"];",
+                    "alertsItem.badge = [NSMenuItemBadge alertsWithCount:4];",
+                    "[menu addItem:alertsItem];",
+                    "",
+                    "// Add an update style badge.",
+                    "NSMenuItem *updatesItem = [[NSMenuItem alloc] initWithTitle:@\"Updates\" action:nil keyEquivalent:@\"\"];",
+                    "updatesItem.badge = [NSMenuItemBadge updatesWithCount:5];",
+                    "[menu addItem:updatesItem];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you use one of the predefined badge types, the system localizes and pluralizes the string for you. If you create your own custom badge string, you need to localize and pluralize that string yourself. For more information on how to localize and pluralize text, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default value of this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenu": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s menus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenu",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenu"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuDelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by delegates of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenu",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects to manage menu display and handle some events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenudelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItem": {
+      "abstract": [
+        {
+          "text": "A command item in an app menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItem/badge": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenuItemBadge",
+          "text": "NSMenuItemBadge"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem/badge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "badge"
+        }
+      ],
+      "role": "symbol",
+      "title": "badge",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitem/badge"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge": {
+      "abstract": [
+        {
+          "text": "A control that provides additional quantitative information specific to a menu item, such as the number of available updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuItemBadge"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuItemBadge"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuItemBadge",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/BadgeType": {
+      "abstract": [
+        {
+          "text": "Constants that define types of badges for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BadgeType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/BadgeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BadgeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuItemBadge.BadgeType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/badgetype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/alerts(count:)": {
+      "abstract": [
+        {
+          "text": "Creates an alert-style badge with an integer count and a predefined label that represents the number of alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alerts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/alerts(count:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alertsWithCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "alerts(count:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/alerts(count:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(count:)": {
+      "abstract": [
+        {
+          "text": "Creates a badge with a count and an empty string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(count:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(count:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/init(count:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(string:)": {
+      "abstract": [
+        {
+          "text": "Creates a badge with the provided custom string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(string:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/init(string:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/initWithCount:type:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCount:type:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/initWithCount:type:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCount:type:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithCount:type:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/initwithcount:type:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/itemCount": {
+      "abstract": [
+        {
+          "text": "The number of items the badge displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/itemCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "itemCount",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/itemcount"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/newItems(count:)": {
+      "abstract": [
+        {
+          "text": "Creates a new item-style badge with an integer count and a predefined label that represents the number of new items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/newItems(count:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newItemsWithCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "newItems(count:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/newitems(count:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-32sbt": {
+      "abstract": [
+        {
+          "text": "The string representation of the badge as it would appear when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the badge is displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-32sbt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/stringvalue-32sbt"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-fc9f": {
+      "abstract": [
+        {
+          "text": "The string representation of the badge when it displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-fc9f",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stringValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "stringValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/stringvalue-fc9f"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/type": {
+      "abstract": [
+        {
+          "text": "The type of items the badge displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenuItemBadge",
+          "text": "NSMenuItemBadge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSMenuItemBadgeType",
+          "text": "BadgeType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/type"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/updates(count:)": {
+      "abstract": [
+        {
+          "text": "Creates an update-style badge with an integer count and a predefined label that represents the number of available updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/updates(count:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatesWithCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updates(count:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitembadge/updates(count:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog": {
+      "abstract": [
+        {
+          "text": "Use a string catalog to translate text, handle plurals, and vary the text your app displays on specific devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing and varying text with a string catalog",
+      "type": "topic",
+      "url": "/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "media-4304515": {
+      "alt": "A menu containing five menu items with each menu item displaying a different style of badge. A NSMenuItem callout points to a menu item in the menu. A NSMenuItemBadge call out points to the badge that displays to the right of the menu item.",
+      "identifier": "media-4304515",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23a4abb17eb26672bddbe46fb5b592dd/media-4304515@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0ea05cdbb64a1b5f3ff299264ca887a0/media-4304515~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Menus",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSMenu",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuDelegate"
+      ],
+      "title": "Menus"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-menu-item-badges",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(count:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(string:)"
+      ],
+      "title": "Creating menu item badges"
+    },
+    {
+      "anchor": "Creating-badges-of-a-specific-type",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/alerts(count:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/newItems(count:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/updates(count:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/BadgeType"
+      ],
+      "title": "Creating badges of a specific type"
+    },
+    {
+      "anchor": "Accessing-menu-item-badge-attributes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/itemCount",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-fc9f",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/type"
+      ],
+      "title": "Accessing menu item badge attributes"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-32sbt"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSMenuItemBadge"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-menu-item-badges",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(count:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/initWithCount:type:",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/init(string:)"
+              ],
+              "title": "Creating menu item badges"
+            },
+            {
+              "anchor": "Creating-badges-of-a-specific-type",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/alerts(count:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/newItems(count:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/updates(count:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/BadgeType"
+              ],
+              "title": "Creating badges of a specific type"
+            },
+            {
+              "anchor": "Accessing-menu-item-badge-attributes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/itemCount",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/stringValue-fc9f",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemBadge/type"
+              ],
+              "title": "Accessing menu item badge attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Menus",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSMenu",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuDelegate"
+              ],
+              "title": "Menus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSMenuItemBadge"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge/title",
+          "value": "NSMenuItemBadge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1stringValue-fc9f/title",
+          "value": "stringValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1stringValue-fc9f/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stringValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1itemCount/title",
+          "value": "itemCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1itemCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "itemCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1BadgeType/title",
+          "value": "NSMenuItemBadgeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1BadgeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadgeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1BadgeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemBadgeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1newItems(count:)/title",
+          "value": "newItemsWithCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1newItems(count:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "newItemsWithCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem~1badge/title",
+          "value": "badge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem~1badge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "badge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuDelegate/title",
+          "value": "NSMenuDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1alerts(count:)/title",
+          "value": "alertsWithCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1alerts(count:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "alertsWithCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1init(string:)/title",
+          "value": "initWithString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1init(string:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem/title",
+          "value": "NSMenuItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenu/title",
+          "value": "NSMenu"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenu/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1updates(count:)/title",
+          "value": "updatesWithCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1updates(count:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatesWithCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1init(count:)/title",
+          "value": "initWithCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemBadge~1init(count:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCount:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsmenuitembadge"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsmenuitembadge"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

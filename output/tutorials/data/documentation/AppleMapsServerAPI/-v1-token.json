@@ -1,0 +1,473 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a JWT maps access token that you use to call the service API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:maps_web_api:get:v1-token",
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "/v1/token"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Generate a Maps token"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://maps-api.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/token"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response that indicates the authorization request is successful. The dictionary that accompanies the response contains a maps access token and an integer that indicates the time in seconds until the token expires.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/TokenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:TokenResponse",
+              "text": "TokenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error response that indicates the maps token is missing or invalid. The dictionary that accompanies the error may contain additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that indicates the call exceeds the daily service call quota for the authorization token presented. The app should try again later. If your app requires a larger daily quota, submit a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error that indicates the server can’t complete the request. The dictionary that accompanies the error may contain additional details about the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:maps_web_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl -si -H \"Authorization: Bearer <maps_auth_token>\" \"https://maps-api.apple.com/v1/token\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"accessToken\": \"<maps_access_token>\",",
+                    "  \"expiresInSeconds\": 1800",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token": {
+      "abstract": [
+        {
+          "text": "Returns a JWT maps access token that you use to call the service API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate a Maps token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-token"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "Information about an error that occurs while processing a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/errorresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/TokenResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains an access token and an expiration time in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TokenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/TokenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TokenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "TokenResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/tokenresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that API responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common objects",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/common-objects"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "abstract": [
+        {
+          "text": "Create a Maps identifier and a private key before generating tokens for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api": {
+      "abstract": [
+        {
+          "text": "Sign JSON Web Tokens to use Maps Server API and debug common signing errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and using tokens with Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-and-using-tokens-with-maps-server-api"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token": {
+      "abstract": [
+        {
+          "text": "Inspect the JavaScript console logs, the token, and events to determine why a token is invalid.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging an Invalid token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/debugging-an-invalid-token"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications": {
+      "abstract": [
+        {
+          "text": "Streamline your app’s API by moving georelated searches from inside your app to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating the Apple Maps Server API into Java server applications",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/integrating-the-apple-maps-server-api-into-java-server-applications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/mapkitjs/": {
+      "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+      "title": "quota increase request form",
+      "titleInlineContent": [
+        {
+          "text": "quota increase request form",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/mapkitjs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi/-v1-token"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

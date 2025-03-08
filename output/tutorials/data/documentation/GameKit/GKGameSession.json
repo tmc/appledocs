@@ -1,0 +1,4124 @@
+{
+  "abstract": [
+    {
+      "text": "A game session you can use to save game data, invite other players, and create turn-based and real-time game apps.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKGameSession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKGameSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKGameSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.0",
+        "message": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.0",
+        "message": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "message": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.12",
+        "message": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.0",
+        "message": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "message": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKGameSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKGameSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "GKGameSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to play turn-based and real-time games in iCloud. Every instance of a game session resides inside of an iCloud container. You can create multiple sessions for a single app, allowing players to play several games at once. All of the information for a game session is saved in the owner’s iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each session can contain a maximum of 100 players. Inside of a session, up to 16 of those players can be connected to each other in real-time. The 16 connected players can be selected from any of the 100 players in the session. You can change a connected player with another player in the session at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a game session is created, you can save game data in iCloud. Each game session can save a maximum of 512KB data. This prevents games from using a large about of space in a user’s iCloud account. This data can be loaded, edited, and saved by anyone in the game session, providing your app provides this behavior. You must ensure that you delete a game session from a user’s iCloud after a game is over, otherwise the session will stay in the user’s iCloud forever. Game sessions are not automatically removed after a set amount of time. They can only be actively removed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAchievementViewController": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "GKAchievementViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object provides a standard user interface to display achievement progress for the local player. If the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class is available, you should use it instead.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAchievementViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievementViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAchievementViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAchievementViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkachievementviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallengeEventHandler": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "GKChallengeEventHandler",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class is used to respond to events related to challenges sent or received by the local player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKChallengeEventHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallengeEventHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKChallengeEventHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKChallengeEventHandler",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallengeeventhandler"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallengesViewController": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKChallengesViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallengesViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKChallengesViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKChallengesViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallengesviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKCloudPlayer": {
+      "abstract": [
+        {
+          "text": "The object representing the currently signed-in iCloud user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKCloudPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKCloudPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKCloudPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKCloudPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkcloudplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKFriendRequestComposeViewController": {
+      "abstract": [
+        {
+          "text": "Your game uses the ",
+          "type": "text"
+        },
+        {
+          "code": "GKFriendRequestComposeViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class to present a screen that allows the local player to send friend requests to other players.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKFriendRequestComposeViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendRequestComposeViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKFriendRequestComposeViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKFriendRequestComposeViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkfriendrequestcomposeviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController": {
+      "abstract": [
+        {
+          "text": "The dashboard that allows players to access their Game Center data in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGameCenterViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamecenterviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession": {
+      "abstract": [
+        {
+          "text": "A game session you can use to save game data, invite other players, and create turn-based and real-time game apps.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGameSession"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGameSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGameSession",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/add(listener:)": {
+      "abstract": [
+        {
+          "text": "Adds a new event listener object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "listener"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GKGameSessionEventListener",
+          "text": "GKGameSessionEventListener"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/add(listener:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addEventListener:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(listener:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/add(listener:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/badgedPlayers": {
+      "abstract": [
+        {
+          "text": "An array containing all of the currently badged players.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badgedPlayers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/badgedPlayers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "badgedPlayers"
+        }
+      ],
+      "role": "symbol",
+      "title": "badgedPlayers",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/badgedplayers"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/clearBadge(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Clears the badge from the designated players.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearBadge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/clearBadge(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearBadgeForPlayers:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearBadge(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/clearbadge(for:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a new game session inside of an iCloud container.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxConnectedPlayers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKGameSession",
+          "text": "GKGameSession"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/createsession(incontainer:withtitle:maxconnectedplayers:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/getShareURL(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the URL used to share a game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getShareURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/getShareURL(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getShareURLWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getShareURL(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/getshareurl(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/identifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/identifier"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedDate": {
+      "abstract": [
+        {
+          "text": "The date that the game session was last modified.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastModifiedDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lastModifiedDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastModifiedDate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/lastmodifieddate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedPlayer": {
+      "abstract": [
+        {
+          "text": "The last player to modify the game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastModifiedPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lastModifiedPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastModifiedPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/lastmodifiedplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/load(withIdentifier:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads a specific game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKGameSession",
+          "text": "GKGameSession"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/load(withIdentifier:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadSessionWithIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "load(withIdentifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/load(withidentifier:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadData(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the game data from the current game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadData(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadDataWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadData(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/loaddata(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadSessions(inContainer:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves all of the game sessions associated with a container.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadSessions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKGameSession",
+          "text": "GKGameSession"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadSessions(inContainer:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadSessionsInContainer:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadSessions(inContainer:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/loadsessions(incontainer:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/maxNumberOfConnectedPlayers": {
+      "abstract": [
+        {
+          "text": "The maximum number of players allowed to connect to the game session at the same time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxNumberOfConnectedPlayers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/maxNumberOfConnectedPlayers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxNumberOfConnectedPlayers"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxNumberOfConnectedPlayers",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/maxnumberofconnectedplayers"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/owner": {
+      "abstract": [
+        {
+          "text": "A player object that represents the owner of the game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/owner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "owner"
+        }
+      ],
+      "role": "symbol",
+      "title": "owner",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/owner"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players": {
+      "abstract": [
+        {
+          "text": "An array of player objects associated with the game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "players"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "players"
+        }
+      ],
+      "role": "symbol",
+      "title": "players",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/players"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players(with:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a list of players with the specified connection state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "players"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKConnectionState",
+          "text": "GKConnectionState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playersWithConnectionState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "players(with:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/players(with:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(listener:)": {
+      "abstract": [
+        {
+          "text": "Stops listening to the event listener object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "listener"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GKGameSessionEventListener",
+          "text": "GKGameSessionEventListener"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(listener:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeEventListener:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(listener:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/remove(listener:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(withIdentifier:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(withIdentifier:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeSessionWithIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(withIdentifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/remove(withidentifier:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/save(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Saves the current game session data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/save(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveData:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "save(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/save(_:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/send(_:with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends the indicated data to all connected players.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKTransportType",
+          "text": "GKTransportType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/send(_:with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendData:withTransportType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "send(_:with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/send(_:with:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends a message to players in a game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withLocalizedFormatKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKCloudPlayer",
+          "text": "GKCloudPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "badgePlayers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/sendmessage(withlocalizedformatkey:arguments:data:to:badgeplayers:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/setConnectionState(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets the connection state for the player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConnectionState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKConnectionState",
+          "text": "GKConnectionState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/setConnectionState(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setConnectionState:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setConnectionState(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/setconnectionstate(_:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/title": {
+      "abstract": [
+        {
+          "text": "The title of the game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesession/title"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameSessionSharingViewController": {
+      "abstract": [
+        {
+          "text": "A user interface you can use to invite other users into a tvOS game session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGameSessionSharingViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameSessionSharingViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGameSessionSharingViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGameSessionSharingViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamesessionsharingviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardViewController": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "GKLeaderboardViewController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides a standard user interface that displays leaderboard scores to the player. If the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class is available, you should use it instead.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLeaderboardViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboardViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPeerPickerController": {
+      "abstract": [
+        {
+          "text": "Provides a standard user interface to allow one iOS device to discover and connect to another.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPeerPickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPeerPickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKPeerPickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKPeerPickerController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkpeerpickercontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKScore": {
+      "abstract": [
+        {
+          "text": "An object containing information for a score that was earned by the player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKScore"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKScore",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkscore"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKSession": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKSession",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object provides the ability to discover and connect to nearby iOS devices using Bluetooth or Wi-fi.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKSession"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKSession",
+      "type": "topic",
+      "url": "/documentation/gamekit/gksession"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTransportType": {
+      "abstract": [
+        {
+          "text": "The mechanism used to send messages to other players in a game session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTransportType"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTransportType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTransportType"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTransportType",
+      "type": "topic",
+      "url": "/documentation/gamekit/gktransporttype"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class is used to respond to important messages related to turn-based matches. To use it, call the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler/shared()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class method to get the singleton instance and assign an object that implements the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandlerDelegate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol to its ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler/delegate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property. All methods are called on the main thread.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedEventHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedEventHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedEventHandler",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedeventhandler"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the event handler.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GKTurnBasedEventHandlerDelegate",
+          "text": "GKTurnBasedEventHandlerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedeventhandler/delegate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler/shared()": {
+      "abstract": [
+        {
+          "text": "Returns the shared instance of the event handler.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedEventHandler",
+          "text": "GKTurnBasedEventHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler/shared()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedTurnBasedEventHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedeventhandler/shared()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandlerDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandlerDelegate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol is implemented by an object to receive notifications events for turn-based matches. All methods are called on the main thread.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedEventHandlerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandlerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedEventHandlerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedEventHandlerDelegate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedeventhandlerdelegate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat": {
+      "abstract": [
+        {
+          "text": "A voice channel that allows players to speak with each other in a multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChat"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChat"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKVoiceChat",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChatService": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChatService",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class allows your application to connect two iOS devices into a voice chat.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChatService"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChatService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChatService"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKVoiceChatService",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechatservice"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKAchievementViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallengeEventHandler",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallengesViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKCloudPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSessionSharingViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKFriendRequestComposeViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKPeerPickerController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+        "doc://com.apple.gamekit/documentation/GameKit/GKSession",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler",
+        "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+        "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChatService"
+      ],
+      "title": "Deprecated classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-Loading-Game-Sessions",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/load(withIdentifier:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadSessions(inContainer:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(withIdentifier:completionHandler:)"
+      ],
+      "title": "Creating and Loading Game Sessions"
+    },
+    {
+      "anchor": "Accessing-Information-About-a-Game-Session",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/identifier",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedDate",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/maxNumberOfConnectedPlayers",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/owner",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/title"
+      ],
+      "title": "Accessing Information About a Game Session"
+    },
+    {
+      "anchor": "Inviting-Players-to-a-Game-Session",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/getShareURL(completionHandler:)"
+      ],
+      "title": "Inviting Players to a Game Session"
+    },
+    {
+      "anchor": "Saving-and-Loading-Data",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadData(completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/save(_:completionHandler:)"
+      ],
+      "title": "Saving and Loading Data"
+    },
+    {
+      "anchor": "Listening-for-Events",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/add(listener:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(listener:)"
+      ],
+      "title": "Listening for Events"
+    },
+    {
+      "anchor": "Connecting-Players-for-Real-Time-Communication",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/setConnectionState(_:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players(with:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/send(_:with:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTransportType"
+      ],
+      "title": "Connecting Players for Real-Time Communication"
+    },
+    {
+      "anchor": "Communicating-Between-Players",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/badgedPlayers",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/clearBadge(for:completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)"
+      ],
+      "title": "Communicating Between Players"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.1",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "1.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKGameSession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamekit/documentation/GameKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-Loading-Game-Sessions",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/load(withIdentifier:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadSessions(inContainer:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(withIdentifier:completionHandler:)"
+              ],
+              "title": "Creating and Loading Game Sessions"
+            },
+            {
+              "anchor": "Accessing-Information-About-a-Game-Session",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/identifier",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedDate",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/lastModifiedPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/maxNumberOfConnectedPlayers",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/owner",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/title"
+              ],
+              "title": "Accessing Information About a Game Session"
+            },
+            {
+              "anchor": "Inviting-Players-to-a-Game-Session",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/getShareURL(completionHandler:)"
+              ],
+              "title": "Inviting Players to a Game Session"
+            },
+            {
+              "anchor": "Saving-and-Loading-Data",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/loadData(completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/save(_:completionHandler:)"
+              ],
+              "title": "Saving and Loading Data"
+            },
+            {
+              "anchor": "Listening-for-Events",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/add(listener:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/remove(listener:)"
+              ],
+              "title": "Listening for Events"
+            },
+            {
+              "anchor": "Connecting-Players-for-Real-Time-Communication",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/setConnectionState(_:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/players(with:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/send(_:with:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTransportType"
+              ],
+              "title": "Connecting Players for Real-Time Communication"
+            },
+            {
+              "anchor": "Communicating-Between-Players",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/badgedPlayers",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/clearBadge(for:completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSession/sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)"
+              ],
+              "title": "Communicating Between Players"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated-classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKAchievementViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallengeEventHandler",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallengesViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKCloudPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameSessionSharingViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKFriendRequestComposeViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPeerPickerController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+                "doc://com.apple.gamekit/documentation/GameKit/GKSession",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventHandler",
+                "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+                "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChatService"
+              ],
+              "title": "Deprecated classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKGameSession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1load(withIdentifier:completionHandler:)/title",
+          "value": "loadSessionWithIdentifier:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1load(withIdentifier:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadSessionWithIdentifier:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardViewController/title",
+          "value": "GKLeaderboardViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboardViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession/title",
+          "value": "GKGameSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)/title",
+          "value": "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1createSession(inContainer:withTitle:maxConnectedPlayers:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1loadSessions(inContainer:completionHandler:)/title",
+          "value": "loadSessionsInContainer:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1loadSessions(inContainer:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadSessionsInContainer:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChatService/title",
+          "value": "GKVoiceChatService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChatService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChatService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChatService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChatService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeEventHandler/title",
+          "value": "GKChallengeEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeEventHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeEventHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1clearBadge(for:completionHandler:)/title",
+          "value": "clearBadgeForPlayers:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1clearBadge(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "clearBadgeForPlayers:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1players(with:)/title",
+          "value": "playersWithConnectionState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1players(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playersWithConnectionState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/title",
+          "value": "GKGameCenterViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1remove(listener:)/title",
+          "value": "removeEventListener:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1remove(listener:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeEventListener:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTransportType/title",
+          "value": "GKTransportType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTransportType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTransportType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTransportType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTransportType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengesViewController/title",
+          "value": "GKChallengesViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengesViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengesViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengesViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengesViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1send(_:with:completionHandler:)/title",
+          "value": "sendData:withTransportType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1send(_:with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendData:withTransportType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKSession/title",
+          "value": "GKSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler~1shared()/title",
+          "value": "sharedTurnBasedEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler~1shared()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedTurnBasedEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPeerPickerController/title",
+          "value": "GKPeerPickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPeerPickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPeerPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPeerPickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPeerPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1loadData(completionHandler:)/title",
+          "value": "loadDataWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1loadData(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadDataWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1remove(withIdentifier:completionHandler:)/title",
+          "value": "removeSessionWithIdentifier:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1remove(withIdentifier:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeSessionWithIdentifier:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1owner/title",
+          "value": "owner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1owner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "owner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandlerDelegate/title",
+          "value": "GKTurnBasedEventHandlerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandlerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedEventHandlerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandlerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedEventHandlerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1add(listener:)/title",
+          "value": "addEventListener:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1add(listener:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "addEventListener:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1players/title",
+          "value": "players"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1players/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "players"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/title",
+          "value": "GKVoiceChat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1lastModifiedDate/title",
+          "value": "lastModifiedDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1lastModifiedDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lastModifiedDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler/title",
+          "value": "GKTurnBasedEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKCloudPlayer/title",
+          "value": "GKCloudPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKCloudPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKCloudPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKCloudPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKCloudPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievementViewController/title",
+          "value": "GKAchievementViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievementViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAchievementViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievementViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAchievementViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1lastModifiedPlayer/title",
+          "value": "lastModifiedPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1lastModifiedPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lastModifiedPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendRequestComposeViewController/title",
+          "value": "GKFriendRequestComposeViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendRequestComposeViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKFriendRequestComposeViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendRequestComposeViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKFriendRequestComposeViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1save(_:completionHandler:)/title",
+          "value": "saveData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1save(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveData:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSessionSharingViewController/title",
+          "value": "GKGameSessionSharingViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSessionSharingViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameSessionSharingViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSessionSharingViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameSessionSharingViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)/title",
+          "value": "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1sendMessage(withLocalizedFormatKey:arguments:data:to:badgePlayers:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1setConnectionState(_:completionHandler:)/title",
+          "value": "setConnectionState:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1setConnectionState(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setConnectionState:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1badgedPlayers/title",
+          "value": "badgedPlayers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1badgedPlayers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "badgedPlayers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1getShareURL(completionHandler:)/title",
+          "value": "getShareURLWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1getShareURL(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getShareURLWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1maxNumberOfConnectedPlayers/title",
+          "value": "maxNumberOfConnectedPlayers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameSession~1maxNumberOfConnectedPlayers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxNumberOfConnectedPlayers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore/title",
+          "value": "GKScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKScore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/gkgamesession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/gkgamesession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

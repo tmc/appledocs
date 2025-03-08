@@ -1,0 +1,872 @@
+{
+  "abstract": [
+    {
+      "text": "Create an app extension to maintain your app’s indexes and regenerate",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "them as needed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/regenerating-your-app-s-indexes-on-demand"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Regenerating your app’s indexes on demand"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keeping your app’s indexes up to date requires periodic maintenance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An app that crashes while updating its index might leave that index",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in an incorrect state. The system can also ask your app to regenerate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the index if it’s missing or needs updated data. If your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isn’t running when the system needs these updates, it uses your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reindexing app extension to generate them instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reindexing app extension is an important tool for keeping your indexes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "up to date at all times. Include this app extension in your app bundle,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and make sure it has access to all of your app’s indexable data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-reindexing-app-extension-to-your-app",
+          "level": 3,
+          "text": "Add a reindexing app extension to your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a template to make it easy to add a reindexing app extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your app. Add this template to your project using the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Xcode project with your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the platform for your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Application Extension section, select the CoreSpotlight Delegate template.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give your app extension a name and configure the other options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CoreSpotlight Delegate template contains empty implementations for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key functions of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the methods you use to update the index. Add your custom code to these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods, and make sure to call the acknowledgement handlers for your main",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indexing functions, as shown:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import CoreSpotlight",
+            "",
+            "class MyIndexingExtension: CSIndexExtensionRequestHandler {",
+            "",
+            "    override func searchableIndex(_ searchableIndex: CSSearchableIndex, ",
+            "                  reindexAllSearchableItemsWithAcknowledgementHandler acknowledgementHandler: @escaping () -> Void) {",
+            "        // Index everything.",
+            "        acknowledgementHandler()",
+            "    }",
+            "",
+            "    override func searchableIndex(_ searchableIndex: CSSearchableIndex, ",
+            "                  reindexSearchableItemsWithIdentifiers identifiers: [String], ",
+            "                  acknowledgementHandler: @escaping () -> Void) {",
+            "        // Index the specified items.",
+            "        acknowledgementHandler()",
+            "    }",
+            "",
+            "    // Other methods.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to add content to your app’s indexes, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-your-app-extension-code",
+          "level": 3,
+          "text": "Debug your app extension code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verify your app extension behaves as expected using the Xcode debugger.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Start by building your app extension and attaching the debugger to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app target",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Back in Xcode, select your app extension target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Debug > Attach to Process by PID or Name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the name of the process to the bundle ID of your app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Attach button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because you can’t predict when the system will run your app extension,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to force the system to run it immediately using the ",
+              "type": "text"
+            },
+            {
+              "code": "mdutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "command-line tool. Open Terminal and run that command with the ",
+              "type": "text"
+            },
+            {
+              "code": "-cr",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option, followed by the bundle identifier of your app extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here’s an example of this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "mdutil -cr com.example.MyApp.MyIndexingExtension",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "mdutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool starts the reindexing process for the app extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you specify. If you set any breakpoints in your app extension’s code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the attached debugger stops at them and gives you a chance to examine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the state of your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSImportExtension": {
+      "abstract": [
+        {
+          "text": "An object that provides searchable attributes for file types that the app supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSImportExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSImportExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSImportExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSImportExtension",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csimportextension"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSIndexExtensionRequestHandler": {
+      "abstract": [
+        {
+          "text": "An interface that implements an index-maintenance app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIndexExtensionRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSIndexExtensionRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSIndexExtensionRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSIndexExtensionRequestHandler",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csindexextensionrequesthandler"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods a delegate object or app extension uses to handle communication from the on-device index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndexDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndexDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndexDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableIndexDelegate",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindexdelegate"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes": {
+      "abstract": [
+        {
+          "text": "Create a description for your app’s content and add it to a Spotlight",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "index to make it searchable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding your app’s content to Spotlight indexes",
+      "type": "topic",
+      "url": "/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spotlight-app-extensions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSIndexExtensionRequestHandler",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSImportExtension"
+      ],
+      "title": "Spotlight app extensions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Spotlight-app-extensions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSIndexExtensionRequestHandler",
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSImportExtension"
+              ],
+              "title": "Spotlight app extensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSIndexExtensionRequestHandler/title",
+          "value": "CSIndexExtensionRequestHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSIndexExtensionRequestHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSIndexExtensionRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSIndexExtensionRequestHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSIndexExtensionRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate/title",
+          "value": "CSSearchableIndexDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndexDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndexDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSImportExtension/title",
+          "value": "CSImportExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSImportExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSImportExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSImportExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSImportExtension"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/regenerating-your-app-s-indexes-on-demand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corespotlight/regenerating-your-app-s-indexes-on-demand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

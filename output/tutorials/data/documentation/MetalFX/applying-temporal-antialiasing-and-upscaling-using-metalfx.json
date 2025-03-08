@@ -1,0 +1,405 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce render workloads while increasing image detail with MetalFX.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metalfx/documentation/MetalFX"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metalfx/documentation/MetalFX/applying-temporal-antialiasing-and-upscaling-using-metalfx"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MetalFX"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying temporal antialiasing and upscaling using MetalFX"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10103/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project requires the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 13 or later, and a Mac with the M1 chip or an Intel-based Mac",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 16 or later, and an iPad with the M1 chip",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 14 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "cd4b8936af25/ApplyingTemporalAntialiasingAndUpscalingUsingMetalFX.zip": {
+      "checksum": "cd4b8936af25e38cd085c015c91105bf1caad01a541192eb62bf3513012205d2e6cc34a9454affbbad5acce3ca43ec6b18b67e2c3c1c14f80dcc5dd68ba1f3bb",
+      "identifier": "cd4b8936af25/ApplyingTemporalAntialiasingAndUpscalingUsingMetalFX.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/cd4b8936af25/ApplyingTemporalAntialiasingAndUpscalingUsingMetalFX.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX": {
+      "abstract": [
+        {
+          "text": "Boost your Metal app’s performance by upscaling lower-resolution content to save GPU time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetalFX",
+      "type": "topic",
+      "url": "/documentation/metalfx"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler": {
+      "abstract": [
+        {
+          "text": "An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input textures over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScaler"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScaler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXTemporalScaler",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor": {
+      "abstract": [
+        {
+          "text": "A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScalerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScalerDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXTemporalScalerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscalerdescriptor"
+    },
+    "https://developer.apple.com/wwdc22/10103/": {
+      "identifier": "https://developer.apple.com/wwdc22/10103/",
+      "title": "10103: Boost performance with MetalFX upscaling",
+      "titleInlineContent": [
+        {
+          "text": "10103: Boost performance with MetalFX upscaling",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10103/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "cd4b8936af25/ApplyingTemporalAntialiasingAndUpscalingUsingMetalFX.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Temporal-scaling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor"
+      ],
+      "title": "Temporal scaling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Temporal-scaling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor"
+              ],
+              "title": "Temporal scaling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor/title",
+          "value": "MTLFXTemporalScalerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScalerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScalerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/title",
+          "value": "MTLFXTemporalScaler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScaler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metalfx/applying-temporal-antialiasing-and-upscaling-using-metalfx"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metalfx/applying-temporal-antialiasing-and-upscaling-using-metalfx"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

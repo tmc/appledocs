@@ -1,0 +1,2522 @@
+{
+  "abstract": [
+    {
+      "text": "Find, load, and configure audio components, such as Audio Units and audio codecs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-components"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Components"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Audio Components API to register and discover audio units, codecs, and other loadable code modules. This API replaces the Component Manager API used prior to macOS 10.6. The system searches for loadable bundles with a ",
+              "type": "text"
+            },
+            {
+              "code": ".audiocomp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".component",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filename extension in the following locations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "~/Library/Audio/Plug-Ins/Components",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/Library/Audio/Plug-Ins/Components",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/System/Library/Components",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bundle ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file needs to contain an ",
+              "type": "text"
+            },
+            {
+              "code": "AudioComponents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " item whose value is an array of dictionaries. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>AudioComponents</key>",
+            "<array>",
+            "    <dict>",
+            "        <key>type</key>",
+            "        <string>aufx</string>",
+            "        <key>subtype</key>",
+            "        <string>XMPL</string>",
+            "        <key>manufacturer</key>",
+            "        <string>ACME</string>",
+            "        <key>name</key>",
+            "        <string>AUExample</string>",
+            "        <key>version</key>",
+            "        <integer>12345</integer>",
+            "        <key>factoryFunction</key>",
+            "        <string>AUExampleFactory</string>",
+            "        ",
+            "        <!-- An AudioComponent is sandbox safe. -->",
+            "        ",
+            "        <key>sandboxSafe</key>",
+            "        <true/>",
+            "        ",
+            "        <!-- Or it can describe its resource usage. -->",
+            "        ",
+            "        <key>resourceUsage</key>",
+            "        <dict>",
+            "            <key>iokit.user-client</key>",
+            "            <array>",
+            "                <string>CustomUserClient1</string>",
+            "                <string>CustomUserClient2</string>",
+            "            </array>",
+            "            <key>mach-lookup.global-name</key>",
+            "            <array>",
+            "                <string>MachServiceName1</string>",
+            "                <string>MachServiceName2</string>",
+            "            </array>",
+            "            <key>network.client</key>",
+            "            <true/>",
+            "            <key>temporary-exception.files.all.read-write</key>",
+            "            </true>",
+            "        </dict>",
+            "",
+            "        <!-- An AudioComponent can define its tags. -->",
+            "        ",
+            "        <key>tags</key>",
+            "        <array>",
+            "            <string>Effect</string>",
+            "            <string>Equalizer</string>",
+            "        </array>",
+            "    </dict>",
+            "</array>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619490-audio-component-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619490-audio-component-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Component Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1619490-audio-component-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponent": {
+      "abstract": [
+        {
+          "text": "An audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponent",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponent"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyConfigurationInfo(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCopyConfigurationInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyConfigurationInfo(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCopyConfigurationInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentCopyConfigurationInfo(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentcopyconfigurationinfo(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyIcon(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCopyIcon"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyIcon(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCopyIcon"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentCopyIcon(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentcopyicon(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyName(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the generic name of an audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCopyName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyName(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCopyName"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentCopyName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentcopyname(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCount(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of audio components that match a specified ",
+          "type": "text"
+        },
+        {
+          "code": "AudioComponentDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioComponentDescription",
+          "text": "AudioComponentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentCount(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentcount(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentDescription": {
+      "abstract": [
+        {
+          "text": "Identifying information for an audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentDescription",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentdescription"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFactoryFunction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentFactoryFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFactoryFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentFactoryFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentFactoryFunction",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentfactoryfunction"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFindNext(_:_:)": {
+      "abstract": [
+        {
+          "text": "Finds the next component that matches a specified ",
+          "type": "text"
+        },
+        {
+          "code": "AudioComponentDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure after a specified audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentFindNext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioComponentDescription",
+          "text": "AudioComponentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFindNext(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentFindNext"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentFindNext(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentfindnext(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetDescription(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the class description, as an ",
+          "type": "text"
+        },
+        {
+          "code": "AudioComponentDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structure, of an audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentGetDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioComponentDescription",
+          "text": "AudioComponentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetDescription(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentGetDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentGetDescription(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentgetdescription(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetVersion(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the version of an audio component in hexadecimal form as ",
+          "type": "text"
+        },
+        {
+          "code": "0xMMMMmmDD",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (major, minor, dot).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentGetVersion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetVersion(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentGetVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentGetVersion(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentgetversion(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstance": {
+      "abstract": [
+        {
+          "text": "A component instance, or object, is an audio unit or audio codec.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstance"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstance"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstance",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstance"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceCanDo(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines if an audio component instance implements a particular function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceCanDo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceCanDo(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceCanDo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstanceCanDo(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstancecando(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of an audio component instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstanceDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstancedispose(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceGetComponent(_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a reference to an audio component from an instance of that audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceGetComponent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceGetComponent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceGetComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstanceGetComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstancegetcomponent(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance of an audio component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceNew"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstanceNew"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstanceNew(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstancenew(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstantiate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioComponentInstantiationOptions",
+          "text": "AudioComponentInstantiationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentInstance",
+          "text": "AudioComponentInstance"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstantiate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstantiate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstantiate(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstantiationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentInstantiationOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentInstantiationOptions",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentinstantiationoptions"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentMethod": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentMethod",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentmethod"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentPlugInInterface": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentPlugInInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentPlugInInterface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentPlugInInterface"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentPlugInInterface",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentplugininterface"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentRegister(_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentRegister"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioComponentDescription",
+          "text": "AudioComponentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponentFactoryFunction",
+          "text": "AudioComponentFactoryFunction"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentRegister(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentRegister"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentRegister(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentregister(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidate(_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentValidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioComponent",
+          "text": "AudioComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioComponentValidationResult",
+          "text": "AudioComponentValidationResult"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentValidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentValidate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentvalidate(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidationResult": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioComponentValidationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioComponentValidationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioComponentValidationResult",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiocomponentvalidationresult"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties": {
+      "abstract": [
+        {
+          "text": "Obtain information about the built-in mixers, equalizers, filters, effects, and other Audio Unit app extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api": {
+      "abstract": [
+        {
+          "text": "Configure an Audio Unit and prepare it to render audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v2 (C) API",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v2-c-api"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins": {
+      "abstract": [
+        {
+          "text": "Deliver custom audio effects, instruments, and other audio behaviors using an Audio Unit v3 app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit v3 Plug-Ins",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-v3-plug-ins"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o": {
+      "abstract": [
+        {
+          "text": "Configure system voice processing and respond to speech events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Voice I/O",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-voice-i-o"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/generating-spatial-audio-from-a-multichannel-audio-stream": {
+      "abstract": [
+        {
+          "text": "Convert 8-channel audio to 2-channel spatial audio by using a spatial mixer audio unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/generating-spatial-audio-from-a-multichannel-audio-stream",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating spatial audio from a multichannel audio stream",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/generating-spatial-audio-from-a-multichannel-audio-stream"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentConfigurationInfo_ValidationResult": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentConfigurationInfo_ValidationResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentConfigurationInfo_ValidationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentConfigurationInfo_ValidationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioComponentConfigurationInfo_ValidationResult",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiocomponentconfigurationinfo_validationresult"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentInstanceInvalidationNotification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentInstanceInvalidationNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentInstanceInvalidationNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentInstanceInvalidationNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioComponentInstanceInvalidationNotification",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiocomponentinstanceinvalidationnotification"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentRegistrationsChangedNotification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentRegistrationsChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentRegistrationsChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentRegistrationsChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioComponentRegistrationsChangedNotification",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiocomponentregistrationschangednotification"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_ForceValidation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentValidationParameter_ForceValidation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_ForceValidation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentValidationParameter_ForceValidation"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioComponentValidationParameter_ForceValidation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiocomponentvalidationparameter_forcevalidation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_LoadOutOfProcess": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentValidationParameter_LoadOutOfProcess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_LoadOutOfProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentValidationParameter_LoadOutOfProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioComponentValidationParameter_LoadOutOfProcess",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiocomponentvalidationparameter_loadoutofprocess"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_TimeOut": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentValidationParameter_TimeOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_TimeOut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioComponentValidationParameter_TimeOut"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioComponentValidationParameter_TimeOut",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiocomponentvalidationparameter_timeout"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Units",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/generating-spatial-audio-from-a-multichannel-audio-stream",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o"
+      ],
+      "title": "Audio Units"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Audio-Component-Instance",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceDispose(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponent",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619490-audio-component-errors"
+      ],
+      "title": "Creating an Audio Component Instance"
+    },
+    {
+      "anchor": "Creating-an-Audio-Component-Dynamically",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentRegister(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCount(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFindNext(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceGetComponent(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentDescription",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstance",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFactoryFunction"
+      ],
+      "title": "Creating an Audio Component Dynamically"
+    },
+    {
+      "anchor": "Getting-Information-About-a-Component",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceCanDo(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetDescription(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyName(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetVersion(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyIcon(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyConfigurationInfo(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentPlugInInterface",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentMethod"
+      ],
+      "title": "Getting Information About a Component"
+    },
+    {
+      "anchor": "Validating-an-Audio-Component",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidate(_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_LoadOutOfProcess",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidationResult"
+      ],
+      "title": "Validating an Audio Component"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentConfigurationInfo_ValidationResult",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentInstanceInvalidationNotification",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentRegistrationsChangedNotification",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_ForceValidation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_TimeOut"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Audio-Component-Instance",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceNew(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiate(_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceDispose(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponent",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstantiationOptions",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1619490-audio-component-errors"
+              ],
+              "title": "Creating an Audio Component Instance"
+            },
+            {
+              "anchor": "Creating-an-Audio-Component-Dynamically",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentRegister(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCount(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFindNext(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceGetComponent(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentDescription",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstance",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentFactoryFunction"
+              ],
+              "title": "Creating an Audio Component Dynamically"
+            },
+            {
+              "anchor": "Getting-Information-About-a-Component",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentInstanceCanDo(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetDescription(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyName(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentGetVersion(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyIcon(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentCopyConfigurationInfo(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentPlugInInterface",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentMethod"
+              ],
+              "title": "Getting Information About a Component"
+            },
+            {
+              "anchor": "Validating-an-Audio-Component",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidate(_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_LoadOutOfProcess",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioComponentValidationResult"
+              ],
+              "title": "Validating an Audio Component"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentConfigurationInfo_ValidationResult",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentInstanceInvalidationNotification",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentRegistrationsChangedNotification",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_ForceValidation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioComponentValidationParameter_TimeOut"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Units",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/generating-spatial-audio-from-a-multichannel-audio-stream",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v3-plug-ins",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-v2-c-api",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-voice-i-o"
+              ],
+              "title": "Audio Units"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponent/title",
+          "value": "AudioComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFactoryFunction/title",
+          "value": "AudioComponentFactoryFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFactoryFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentFactoryFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFactoryFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentFactoryFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentGetDescription(_:_:)/title",
+          "value": "AudioComponentGetDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentGetDescription(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentGetDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiationOptions/title",
+          "value": "AudioComponentInstantiationOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiationOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstantiationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiationOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstantiationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentDescription/title",
+          "value": "AudioComponentDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceDispose(_:)/title",
+          "value": "AudioComponentInstanceDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstanceDispose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceGetComponent(_:)/title",
+          "value": "AudioComponentInstanceGetComponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceGetComponent(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstanceGetComponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstance/title",
+          "value": "AudioComponentInstance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCopyIcon(_:)/title",
+          "value": "AudioComponentCopyIcon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCopyIcon(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentCopyIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiate(_:_:_:)/title",
+          "value": "AudioComponentInstantiate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstantiate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstantiate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentRegistrationsChangedNotification/title",
+          "value": "kAudioComponentRegistrationsChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentRegistrationsChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentRegistrationsChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentPlugInInterface/title",
+          "value": "AudioComponentPlugInInterface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentPlugInInterface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentPlugInInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentPlugInInterface/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentPlugInInterface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCopyName(_:_:)/title",
+          "value": "AudioComponentCopyName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCopyName(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentCopyName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFlags/title",
+          "value": "AudioComponentFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceNew(_:_:)/title",
+          "value": "AudioComponentInstanceNew"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceNew(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstanceNew"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCount(_:)/title",
+          "value": "AudioComponentCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentValidationParameter_TimeOut/title",
+          "value": "kAudioComponentValidationParameter_TimeOut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentValidationParameter_TimeOut/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentValidationParameter_TimeOut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceCanDo(_:_:)/title",
+          "value": "AudioComponentInstanceCanDo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentInstanceCanDo(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentInstanceCanDo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentConfigurationInfo_ValidationResult/title",
+          "value": "kAudioComponentConfigurationInfo_ValidationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentConfigurationInfo_ValidationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentConfigurationInfo_ValidationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentValidationParameter_LoadOutOfProcess/title",
+          "value": "kAudioComponentValidationParameter_LoadOutOfProcess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentValidationParameter_LoadOutOfProcess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentValidationParameter_LoadOutOfProcess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFindNext(_:_:)/title",
+          "value": "AudioComponentFindNext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentFindNext(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentFindNext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentValidate(_:_:_:)/title",
+          "value": "AudioComponentValidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentValidate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentValidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentValidationResult/title",
+          "value": "AudioComponentValidationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentValidationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentValidationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentValidationResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentValidationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentInstanceInvalidationNotification/title",
+          "value": "kAudioComponentInstanceInvalidationNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentInstanceInvalidationNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentInstanceInvalidationNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentValidationParameter_ForceValidation/title",
+          "value": "kAudioComponentValidationParameter_ForceValidation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioComponentValidationParameter_ForceValidation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioComponentValidationParameter_ForceValidation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentGetVersion(_:_:)/title",
+          "value": "AudioComponentGetVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentGetVersion(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentGetVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentMethod/title",
+          "value": "AudioComponentMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentRegister(_:_:_:_:)/title",
+          "value": "AudioComponentRegister"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentRegister(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentRegister"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCopyConfigurationInfo(_:_:)/title",
+          "value": "AudioComponentCopyConfigurationInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioComponentCopyConfigurationInfo(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioComponentCopyConfigurationInfo"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-components"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-components"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

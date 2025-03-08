@@ -1,0 +1,1072 @@
+{
+  "abstract": [
+    {
+      "text": "A concrete implementation of an IOOutputQueue.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1567080,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOBasicOutputQueue",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOBasicOutputQueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOBasicOutputQueue"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iooutputqueue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOOutputQueue",
+              "text": "IOOutputQueue"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This object uses a mutex to protect the packet queue from multiple producers. A single producer is promoted to become a consumer when the queue is not active. Otherwise, the producer will simply queue the packet and return without blocking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The flow of packets from the queue to its target can be controlled by calling methods such as start(), stop(), or service(). The target is expected to call those methods from a single threaded context, i.e. the work loop context in a network driver. In addition, the target must also return a status for every packet delivered by the consumer thread. This return value is the only mechanism that the target can use to manage the queue when it is running on the consumer thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue": {
+      "abstract": [
+        {
+          "text": "A concrete implementation of an IOOutputQueue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBasicOutputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567081-getstallcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStallCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567081-getstallcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStallCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567081-getstallcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567082-service": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "service"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567082-service",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "service",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567082-service"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567083-getdropcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDropCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567083-getdropcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDropCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567083-getdropcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567084-getoutputcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getOutputCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567084-getoutputcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getOutputCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567084-getoutputcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567085-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567085-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567085-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567086-getstatisticsdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatisticsData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567086-getstatisticsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatisticsData",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567086-getstatisticsdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567087-servicethread": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceThread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567087-servicethread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serviceThread",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567087-servicethread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567088-output": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567088-output",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "output",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567088-output"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567089-dequeue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567089-dequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dequeue",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567089-dequeue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567090-enqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567090-enqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567090-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567091-dispatchnetworkdatanotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchNetworkDataNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567091-dispatchnetworkdatanotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchNetworkDataNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567091-dispatchnetworkdatanotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567093-flush": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flush"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567093-flush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flush",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567093-flush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567094-start": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567094-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567094-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567095-getstate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567095-getstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getState",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567095-getstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567096-getsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567096-getsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567096-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567097-handlenetworkdataaccess": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNetworkDataAccess"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567097-handlenetworkdataaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleNetworkDataAccess",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567097-handlenetworkdataaccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567098-getretrycount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRetryCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567098-getretrycount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRetryCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567098-getretrycount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567099-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567099-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567099-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567100-stop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567100-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567100-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567101-withtarget": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567101-withtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567101-withtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567102-getcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567102-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567102-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567103-setcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567103-setcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1567103-setcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811623-enqueue": {
+      "abstract": [
+        {
+          "text": "Adds a packet, or a chain of packets, to the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811623-enqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811623-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811630-flush": {
+      "abstract": [
+        {
+          "text": "Drops and frees all packets currently held by the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811630-flush",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flush",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811630-flush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811636-free": {
+      "abstract": [
+        {
+          "text": "Frees the IOBasicOutputQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811636-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811636-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811642-getcapacity": {
+      "abstract": [
+        {
+          "text": "Gets the number of packets that the queue can hold.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811642-getcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811642-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811646-getdropcount": {
+      "abstract": [
+        {
+          "text": "Gets the number of packets dropped by the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811646-getdropcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDropCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811646-getdropcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811651-getoutputcount": {
+      "abstract": [
+        {
+          "text": "Gets the number of packets accepted by the target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811651-getoutputcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOutputCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811651-getoutputcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811660-getretrycount": {
+      "abstract": [
+        {
+          "text": "Gets the number of instances when the target has refused to accept the packet provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811660-getretrycount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRetryCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811660-getretrycount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811664-getsize": {
+      "abstract": [
+        {
+          "text": "Gets the number of packets currently held in the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811664-getsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811664-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811671-getstallcount": {
+      "abstract": [
+        {
+          "text": "Gets the number of instances when the target has stalled the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811671-getstallcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStallCount",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811671-getstallcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811677-getstate": {
+      "abstract": [
+        {
+          "text": "Gets the state of the queue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811677-getstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getState",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811677-getstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811683-getstatisticsdata": {
+      "abstract": [
+        {
+          "text": "Returns an IONetworkData object containing statistics counters updated by the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811683-getstatisticsdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStatisticsData",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811683-getstatisticsdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811690-handlenetworkdataaccess": {
+      "abstract": [
+        {
+          "text": "Handles an external access to the IONetworkData object returned by getStatisticsData().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811690-handlenetworkdataaccess",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleNetworkDataAccess",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811690-handlenetworkdataaccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811696-init": {
+      "abstract": [
+        {
+          "text": "Initializes an IOBasicOutputQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811696-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811696-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811702-output": {
+      "abstract": [
+        {
+          "text": "Transfers all packets in the mbuf queue to the target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811702-output",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "output",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811702-output"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811708-service": {
+      "abstract": [
+        {
+          "text": "Services a queue that was stalled by the target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811708-service",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "service",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811708-service"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811713-servicethread": {
+      "abstract": [
+        {
+          "text": "Provides an implementation for the serviceThread() method defined in IOOutputQueue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811713-servicethread",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serviceThread",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811713-servicethread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811721-setcapacity": {
+      "abstract": [
+        {
+          "text": "Changes the number of packets that the queue can hold before it begins to drop excess packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811721-setcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811721-setcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811726-start": {
+      "abstract": [
+        {
+          "text": "Starts up the packet flow between the queue and its target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811726-start",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811726-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811734-stop": {
+      "abstract": [
+        {
+          "text": "Stops the packet flow between the queue and its target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811734-stop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811734-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811748-withtarget": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IOBasicOutputQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811748-withtarget",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withTarget(IONetworkController *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811748-withtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811755-withtarget": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IOBasicOutputQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811755-withtarget",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withTarget(IONetworkController *, UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811755-withtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811763-withtarget": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IOBasicOutputQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811763-withtarget",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withTarget(OSObject *, IOOutputAction, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811763-withtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811770-withtarget": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IOBasicOutputQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811770-withtarget",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withTarget(OSObject *, IOOutputAction, UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/1811770-withtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/3516604-withtarget": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/3516604-withtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/3516604-withtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/getstatebits": {
+      "abstract": [
+        {
+          "text": "The bits in the value returned by getState().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/getstatebits",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "GetStateBits",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/getstatebits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/serviceasync": {
+      "abstract": [
+        {
+          "text": "The option bits recognized by service().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/serviceasync",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ServiceAsync",
+      "type": "topic",
+      "url": "/documentation/kernel/iobasicoutputqueue/serviceasync"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iogatedoutputqueue": {
+      "abstract": [
+        {
+          "text": "An extension of an IOBasicOutputQueue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iogatedoutputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOGatedOutputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iogatedoutputqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iooutputqueue": {
+      "abstract": [
+        {
+          "text": "A packet queue that supports multiple producers and a single consumer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iooutputqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOOutputQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iooutputqueue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iooutputqueue"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iogatedoutputqueue",
+        "doc://com.apple.documentation/documentation/kernel/iooutputqueue"
+      ],
+      "title": "Output Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1675764",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811623-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811630-flush",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811636-free",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811642-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811646-getdropcount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811651-getoutputcount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811660-getretrycount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811664-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811671-getstallcount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811677-getstate",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811683-getstatisticsdata",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811690-handlenetworkdataaccess",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811696-init",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811702-output",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811708-service",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811713-servicethread",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811721-setcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811726-start",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811734-stop",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811748-withtarget",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811755-withtarget",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811763-withtarget",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1811770-withtarget"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1675931",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/getstatebits",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/serviceasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2860186",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567089-dequeue",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567090-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567093-flush",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567099-free",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567102-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567083-getdropcount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567085-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567084-getoutputcount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567098-getretrycount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567096-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567081-getstallcount",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567095-getstate",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567086-getstatisticsdata",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567097-handlenetworkdataaccess",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567088-output",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567082-service",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567087-servicethread",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567103-setcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567094-start",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567100-stop"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2860187",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567091-dispatchnetworkdatanotification",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/1567101-withtarget",
+        "doc://com.apple.documentation/documentation/kernel/iobasicoutputqueue/3516604-withtarget"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iobasicoutputqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,863 @@
+{
+  "abstract": [
+    {
+      "text": "A stream that provides write-only stream functionality.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/outputstream"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415806,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOutputStream",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "OutputStream"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OutputStream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OutputStream"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSStream",
+              "text": "Stream"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on toll-free bridging, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1653590",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that lets you write data to a stream. Although ",
+              "type": "text"
+            },
+            {
+              "code": "NSOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is probably sufficient for most situations requiring this capability, you can create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you want more specialized behavior (for example, you want to record statistics on the data in a stream).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1653610",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSOutputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you may have to implement initializers for the type of stream data supported and suitably reimplement existing initializers. You must also provide complete implementations of the following methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the current write pointer, take up to the number of bytes specified in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "maxLength:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter from the client-supplied buffer (first parameter) and put them onto the stream. The buffer must be of the size specified by the second parameter. To prepare for the next operation, offset the write pointer by the number of bytes written. Return a signed integer based on the outcome of the current operation:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "If the write operation is successful, return the actual number of bytes put onto the stream.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "If the stream is of a fixed length and has reached its capacity, return ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "0",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "If there was an error writing to the stream, return ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "-1",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1411335-hasspaceavailable",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if the stream can currently accept more data, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if it cannot. If you want to be semantically compatible with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSOutputStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if a write must be attempted to determine if space is available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream": {
+      "abstract": [
+        {
+          "text": "A stream that provides read-only stream functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream": {
+      "abstract": [
+        {
+          "text": "A stream that provides write-only stream functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1409909-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized output stream that will write to memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toMemory"
+        },
+        {
+          "kind": "text",
+          "text": ": ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1409909-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(toMemory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1409909-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write": {
+      "abstract": [
+        {
+          "text": "Writes the contents of a provided data buffer to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<UInt8>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(_:maxLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1410720-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1410805-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized output stream that can write to a provided buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<UInt8>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1410805-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(toBuffer:capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1410805-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1411335-hasspaceavailable": {
+      "abstract": [
+        {
+          "text": "A boolean value that indicates whether the receiver can be written to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasSpaceAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1411335-hasspaceavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasSpaceAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1411335-hasspaceavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1411948-tomemory": {
+      "abstract": [
+        {
+          "text": "Creates and returns an initialized output stream that will write stream data to memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "toMemory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1411948-tomemory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toMemory()",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1411948-tomemory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1414446-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized output stream for writing to a specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1414446-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:append:)",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1414446-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1416367-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized output stream for writing to a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "toFileAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1416367-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(toFileAtPath:append:)",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1416367-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream": {
+      "abstract": [
+        {
+          "text": "An abstract class representing a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stream",
+      "type": "topic",
+      "url": "/documentation/foundation/stream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streamdelegate": {
+      "abstract": [
+        {
+          "text": "An interface that delegates of a stream instance use to handle events on the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StreamDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StreamDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/streamdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/stream"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/stream",
+        "doc://com.apple.documentation/documentation/foundation/inputstream",
+        "doc://com.apple.documentation/documentation/foundation/streamdelegate"
+      ],
+      "title": "Streams"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653629",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1411948-tomemory",
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1409909-init",
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1410805-init",
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1416367-init",
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1414446-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Streams"
+    },
+    {
+      "anchor": "1653736",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1411335-hasspaceavailable",
+        "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Streams"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsoutputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/outputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

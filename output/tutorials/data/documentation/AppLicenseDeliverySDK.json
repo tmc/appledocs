@@ -1,0 +1,509 @@
+{
+  "abstract": [
+    {
+      "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AppLicenseDeliverySDK",
+    "modules": [
+      {
+        "name": "App License Delivery SDK"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "App License Delivery SDK"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This Swift SDK enables ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "digital rights management",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (DRM) for alternative distribution apps. Use this SDK to generate licenses for alternative app marketplaces you build with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or other apps that you distribute from your website. Alternative app marketplaces use this SDK to generate a license for each app that developers distribute on the marketplace. By licensing each download individually, you provide a secure installation experience similar to the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this SDK’s framework to implement a license server on your website back end that’s capable of running compiled Swift code. Then, publish endpoints for your license server in a standard location that the device’s operating system expects. On an as-needed basis, the system retrieves licenses from your endpoints when a person downloads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An alternative app marketplace from your website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An app that developers distribute on your alternative app marketplace",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An app that you develop and distribute on your website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app-license-delivery-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can download this SDK from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/all/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if your developer account qualifies to distribute apps from your website. For more information, see  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apple silicon Macs, Intel Macs, macOS 13.5+, select Linux versions on x86_64, and Xcode 15+ (including the macOS 14 SDK).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Platform, OS, and tools requirements",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "app-license-delivery-hero": {
+      "alt": "A flow diagram that consists of two boxes stacked. The title of the upper box reads App web server and the title of the lower box reads The device’s OS. The flow begins with a stage at left in the lower box that reads Install request. A line extends to its right to a stage that reads Checks licensing endpoint. The diagram flow continues with an arrow upward into the upper-box to a stage that reads Provides licensing endpoint. Flow returns to the prior stage in the lower box and then continues to the right to a stage that reads Requests app license. Flow continues with an arrow upward to a stage in the upper box that reads Swift licenseing endpoint, which contains another box within it that reads Generates app license. A callout extends from the inner stage that reads App License Delivery SDK. Flow returns to the prior stage in the lower box and then continues to the right to a stage that reads Downloads app.",
+      "identifier": "app-license-delivery-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c876327122638bd2bbab73f72fab6637/app-license-delivery-hero@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1327bda44e53f0b32cb4e07ef585ac48/app-license-delivery-hero~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey": {
+      "abstract": [
+        {
+          "text": "A structure that identifies an app and a key that’s required to decrypt the app’s license request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDAppKey"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDAppKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDAppKey",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldappkey"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute": {
+      "abstract": [
+        {
+          "text": "A structure that defines the requested license type for the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDLicenseAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDLicenseAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDLicenseAttribute",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates a session with the alternative app marketplace’s signing assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDProvider",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldprovider"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession": {
+      "abstract": [
+        {
+          "text": "A structure that contains the details of a license request and methods to generate license responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDSession"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDSession",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment": {
+      "abstract": [
+        {
+          "text": "Create your account-level signing assets and build the SDK for your target platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app licensing environment",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps": {
+      "abstract": [
+        {
+          "text": "Build a license server that supports the installation of your apps and the apps available in your marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Licensing alternative distribution apps",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses": {
+      "abstract": [
+        {
+          "text": "Determine whether an app for which you issue a license launches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses",
+      "kind": "article",
+      "role": "article",
+      "title": "Renewing and revoking app licenses",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/download/all/": {
+      "identifier": "https://developer.apple.com/download/all/",
+      "title": "Downloads",
+      "titleInlineContent": [
+        {
+          "text": "Downloads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/all/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "App-licensing",
+      "identifiers": [
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession"
+      ],
+      "title": "App licensing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applicensedeliverysdk"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

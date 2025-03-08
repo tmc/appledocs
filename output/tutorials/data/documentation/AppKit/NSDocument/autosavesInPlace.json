@@ -1,0 +1,1468 @@
+{
+  "abstract": [
+    {
+      "text": "Returns whether the receiver supports autosaving in place.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesInPlace"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDocument(cpy)autosavesInPlace",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "autosavesInPlace"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "autosavesInPlace"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "autosavesInPlace"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "autosavesInPlace"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the receiver supports autosaving in place; ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default implementation of this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can override it and return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to declare that your subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can do autosaving in place. You should not invoke this method to find out whether autosaving in place is actually being done at any particular moment. You should instead use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter that the system passes to your overrides of save and write methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit invokes this method at a variety of times, and not always on the main thread. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " invokes this method as part of determining whether the autosaving will be performed in place (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveInPlaceOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or in a separate autosave directory (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveElsewhereOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). As another example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/canClose(withDelegate:shouldClose:contextInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " machinery for handling unsaved changes at app termination time both invoke this method as part of determining whether alerts about unsaved changes should be presented to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for macOS documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType": {
+      "abstract": [
+        {
+          "text": "Constants for specifying the type of document-save operation to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SaveOperationType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SaveOperationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument.SaveOperationType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/saveoperationtype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveElsewhereOperation": {
+      "abstract": [
+        {
+          "text": "An operation that writes an autosave version of the file to a different location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosaveElsewhereOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveElsewhereOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAutosaveElsewhereOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument.SaveOperationType.autosaveElsewhereOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/saveoperationtype/autosaveelsewhereoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveInPlaceOperation": {
+      "abstract": [
+        {
+          "text": "An operation that overwrites the document’s current contents with autosave data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosaveInPlaceOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/SaveOperationType/autosaveInPlaceOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAutosaveInPlaceOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument.SaveOperationType.autosaveInPlaceOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/saveoperationtype/autosaveinplaceoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Autosaves the document’s contents to an appropriate file-system location, as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withImplicitCancellability"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosaveWithImplicitCancellability:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosave(withImplicitCancellability:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosave(withimplicitcancellability:completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavedContentsFileURL": {
+      "abstract": [
+        {
+          "text": "The location of the most recently autosaved document contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavedContentsFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavedContentsFileURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavedContentsFileURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavedContentsFileURL",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosavedcontentsfileurl"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesDrafts": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the document subclass supports autosaving of drafts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavesDrafts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesDrafts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavesDrafts"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavesDrafts",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosavesdrafts"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesInPlace": {
+      "abstract": [
+        {
+          "text": "Returns whether the receiver supports autosaving in place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavesInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesInPlace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavesInPlace"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavesInPlace",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosavesinplace"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingFileType": {
+      "abstract": [
+        {
+          "text": "Returns the document type to use for an autosave operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavingFileType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingFileType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavingFileType"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavingFileType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosavingfiletype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingIsImplicitlyCancellable": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether you can cancel an in-progress autosave operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavingIsImplicitlyCancellable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingIsImplicitlyCancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavingIsImplicitlyCancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavingIsImplicitlyCancellable",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/autosavingisimplicitlycancellable"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/canClose(withDelegate:shouldClose:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Determines whether to close the document, prompting the user as needed to choose a course of action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canClose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldClose"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/canClose(withDelegate:shouldClose:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canClose(withDelegate:shouldClose:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/canclose(withdelegate:shouldclose:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions": {
+      "abstract": [
+        {
+          "text": "Returns whether the document subclass supports version management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preservesVersions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preservesVersions"
+        }
+      ],
+      "role": "symbol",
+      "title": "preservesVersions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument/preservesversions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocumentController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-Autosave-Behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesDrafts",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavedContentsFileURL",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingFileType",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingIsImplicitlyCancellable"
+      ],
+      "title": "Configuring the Autosave Behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "autosavesInPlace"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavesInPlace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Autosave-Behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavesDrafts",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/preservesVersions",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavedContentsFileURL",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingFileType",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument/autosavingIsImplicitlyCancellable"
+              ],
+              "title": "Configuring the Autosave Behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "class"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "autosavesInPlace"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavedContentsFileURL/title",
+          "value": "autosavedContentsFileURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavedContentsFileURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavedContentsFileURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavingIsImplicitlyCancellable/title",
+          "value": "autosavingIsImplicitlyCancellable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavingIsImplicitlyCancellable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavingIsImplicitlyCancellable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1autosaveElsewhereOperation/title",
+          "value": "NSAutosaveElsewhereOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1autosaveElsewhereOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAutosaveElsewhereOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/title",
+          "value": "NSDocumentController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosave(withImplicitCancellability:completionHandler:)/title",
+          "value": "autosaveWithImplicitCancellability:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosave(withImplicitCancellability:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "autosaveWithImplicitCancellability:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/title",
+          "value": "NSDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1autosaveInPlaceOperation/title",
+          "value": "NSAutosaveInPlaceOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType~1autosaveInPlaceOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAutosaveInPlaceOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavesInPlace/title",
+          "value": "autosavesInPlace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavesInPlace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavesInPlace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType/title",
+          "value": "NSSaveOperationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSaveOperationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1SaveOperationType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSaveOperationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1canClose(withDelegate:shouldClose:contextInfo:)/title",
+          "value": "canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1canClose(withDelegate:shouldClose:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavesDrafts/title",
+          "value": "autosavesDrafts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavesDrafts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavesDrafts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavingFileType/title",
+          "value": "autosavingFileType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1autosavingFileType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavingFileType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1preservesVersions/title",
+          "value": "preservesVersions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument~1preservesVersions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preservesVersions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsdocument/autosavesinplace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsdocument/autosavesinplace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

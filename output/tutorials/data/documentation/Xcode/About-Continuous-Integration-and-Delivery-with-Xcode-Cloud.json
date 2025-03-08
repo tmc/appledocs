@@ -1,0 +1,1079 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how continuous integration and delivery with Xcode Cloud helps you create high-quality apps and frameworks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About continuous integration and delivery with Xcode Cloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode consists of a suite of tools you use to build, test, and release apps and frameworks for Apple platforms. When you add features and support more devices and platforms, your app or framework and its codebase grow in complexity, making it harder to ensure its quality. With Xcode Cloud, you can adopt ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "continuous integration and delivery",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (CI/CD), a standard practice to monitor, ensure, and improve the quality of your apps and frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud is a CI/CD system that uses Git for source control and provides you with an integrated system that ensures the quality and stability of your codebase. It also helps you publish apps efficiently. By combining ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/xcode/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with Apple’s cloud infrastructure for building and testing your code — along with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — Xcode Cloud makes it easy for you to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and test your code automatically.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test your app on Apple devices in Simulator automatically and frequently.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive notifications from Xcode Cloud to identify errors before they become serious issues.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Distribute new versions of your app to team members and testers with TestFlight.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Making new versions of your app available for app review before publishing them in the App Store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Develop your software collaboratively using Xcode and Apple’s cloud infrastructure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to introduce every aspect of continuous integration and delivery at once. Instead, take a slow but steady approach and start by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://git-scm.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for managing your project’s source code. After you’re comfortable with Git’s workflows and processes, configure your project to use Xcode Cloud at the most basic level — for continually building and testing your projects. As you become more familiar with how Xcode Cloud works, you can start to take advantage of its CD features like delivering test builds with TestFlight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-role-of-source-control",
+          "level": 3,
+          "text": "The role of source control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes to your app’s code can be difficult to manage. This is especially true when you work on several changes at the same time. To help you organize, manage, and document source code changes, Xcode supports source control with Git. By using source control, you improve your project’s quality by tracking and reviewing code changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because source control plays such a fundamental role in CI/CD, Xcode Cloud requires your code to be in a Git repository. It supports the following ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source code management",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (SCM) providers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://bitbucket.org",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://bitbucket.org/product/enterprise",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://github.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/enterprise",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://gitlab.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://about.gitlab.com/install",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud comes with support for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://git-lfs.github.com/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about source control with Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-importance-of-automated-building-and-testing",
+          "level": 3,
+          "text": "The importance of automated building and testing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A typical development process starts with making changes to your code, building the project, and running your app in the Simulator or on a test device. Your process may even include verifying changes locally by running unit tests you create with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and by running integration, performance, or user interface tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While Xcode can reduce the time it takes to perform these tasks, they still take a significant amount of your time. This is especially true for complex apps or frameworks that support a wide range of devices and operating systems. With Xcode Cloud, however, you can build, run, and test your project on multiple simulated devices in less time than you can traditionally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After verifying a change, Xcode Cloud automatically notifies you about the result via email. You can also view the results in Xcode or in App Store Connect. This helps you detect errors before they become an issue, and gives you the reassurance you need about the stability and quality of your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about automatically building your project with Xcode Cloud, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about testing your code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Continuous-delivery",
+          "level": 3,
+          "text": "Continuous delivery",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The flip side to continuous integration (CI) is continuous delivery (CD). While automatic building and testing are important to developing high-quality apps and frameworks, it doesn’t replace the hands-on testing you get from team members and testers. When Xcode Cloud verifies a change to your code (CI), it can automatically deliver (CD) a new version of your app to internal testers with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "overridingTitle": "TestFlight",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TestFlight",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Xcode Cloud can also sign your app for external testing with TestFlight and submission to app review. You can also upload the exported app archive or a framework to your own server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collaborative-software-development-with-Xcode-Cloud",
+          "level": 3,
+          "text": "Collaborative software development with Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Source control with Git helps you manage changes to your code. For example, Git branches enable you to make a change without affecting your verified, stable codebase. Additionally, branches are helpful when you develop your app or framework as a team. However, merging changes, resolving conflicts, and verifying code changes can be time-consuming.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make code review and merging easier, SCM providers offer support for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pull requests",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (PRs), also known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "merge requests",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". When you create a PR, you inform your team that a change is ready for review, and you and your team can take a look at each other’s code changes, and provide and address feedback before merging branches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you develop code as a team, or if you work on several changes at the same time, a common practice to follow is to use separate branches for each change and then create PRs to receive code reviews from your peers. This introduces another verification step that helps you identify errors before they become serious issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode allows you to create, view, and comment on PRs, and merge changes into your codebase if you host your Git repository with ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://bitbucket.org/product/enterprise",
+              "isActive": true,
+              "overridingTitle": "Bitbucket Server",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Bitbucket Server",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com",
+              "isActive": true,
+              "overridingTitle": "GitHub",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "GitHub",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/enterprise",
+              "isActive": true,
+              "overridingTitle": "GitHub Enterprise",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "GitHub Enterprise",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also configure Xcode Cloud to detect new PRs, or changes to an existing PR. When it detects a change, Xcode Cloud merges the involved branches in a temporary build environment, and automatically builds your project and runs your tests to verify the merged code. After verifying the changes, Xcode Cloud adds a status message to the PR to inform you of the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Using your SCM provider’s website, you can require the Xcode Cloud build to succeed before team members can complete the PR and merge branches.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-1": {
+      "alt": "A figure that shows the iterative continuous integration and delivery process that’s made of building, testing, distributing, and gathering feedback to fix issues and verify a change.",
+      "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bca93b3fc3895d146eeb3773171a9c1f/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2628bcded3e0e3e27989e74e6e76e2e8/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-1~dark@2x.png"
+        }
+      ]
+    },
+    "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-2": {
+      "alt": "A figure that illustrates the various steps of automated building and testing: a change leads to automated building, testing, and other actions that verify a change.",
+      "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2427429f22f500f2ccc63735bf2e77bc/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c397e992505576379d651930499baec0/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-2~dark@2x.png"
+        }
+      ]
+    },
+    "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-3": {
+      "alt": "A figure that illustrates the various steps of CD that happen after CI has passed: distribution to internal testers, external testers, and the App Store.",
+      "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/35478ba6fa547f5adb9387b9e78b99b6/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca1e396473a27d0c77d24301455e7e97/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-3~dark@2x.png"
+        }
+      ]
+    },
+    "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-4": {
+      "alt": "A figure that illustrates a collaborative software development workflow with Git. A team member creates a PR, gathers feedback, addresses the feedback, and eventually merges branches.",
+      "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/352978554e67a633b443c9a585695f1f/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57a14b9031a332efc213cc643a0d1958/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-4~dark@2x.png"
+        }
+      ]
+    },
+    "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-5": {
+      "alt": "A figure that illustrates how Xcode Cloud integrates with pull requests. When someone creates a pull request, Xcode Cloud detects this change, builds the project, runs configured tests, and posts the status to the pull request.",
+      "identifier": "About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b158559eb1ebf931b65b806796cc8445/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a48618afa289d80fc4329c6f87bfef75/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud-5~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow": {
+      "abstract": [
+        {
+          "text": "Set up your project or workspace to use Xcode Cloud and adopt continuous integration and delivery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your first Xcode Cloud workflow",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review account, project, and source control requirements before configuring your project or workspace to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up your project to use Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-up-your-project-to-use-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-control-management": {
+      "abstract": [
+        {
+          "text": "Back up your files, collaborate with others, and tag your releases with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source control support in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source control management",
+      "type": "topic",
+      "url": "/documentation/xcode/source-control-management"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/xcode/testing"
+    },
+    "doc://com.apple.documentation/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/Testing"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://about.gitlab.com/install": {
+      "identifier": "https://about.gitlab.com/install",
+      "title": "self-managed GitLab",
+      "titleInlineContent": [
+        {
+          "text": "self-managed GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://about.gitlab.com/install"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://bitbucket.org": {
+      "identifier": "https://bitbucket.org",
+      "title": "Bitbucket Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org"
+    },
+    "https://bitbucket.org/product/enterprise": {
+      "identifier": "https://bitbucket.org/product/enterprise",
+      "title": "Bitbucket Server",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org/product/enterprise"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://developer.apple.com/xcode/": {
+      "identifier": "https://developer.apple.com/xcode/",
+      "title": "Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/xcode/"
+    },
+    "https://git-lfs.github.com/": {
+      "identifier": "https://git-lfs.github.com/",
+      "title": "Git LFS",
+      "titleInlineContent": [
+        {
+          "text": "Git LFS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://git-lfs.github.com/"
+    },
+    "https://git-scm.com": {
+      "identifier": "https://git-scm.com",
+      "title": "Git",
+      "titleInlineContent": [
+        {
+          "text": "Git",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://git-scm.com"
+    },
+    "https://github.com": {
+      "identifier": "https://github.com",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com"
+    },
+    "https://github.com/enterprise": {
+      "identifier": "https://github.com/enterprise",
+      "title": "GitHub Enterprise",
+      "titleInlineContent": [
+        {
+          "text": "GitHub Enterprise",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/enterprise"
+    },
+    "https://gitlab.com": {
+      "identifier": "https://gitlab.com",
+      "title": "GitLab",
+      "titleInlineContent": [
+        {
+          "text": "GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://gitlab.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

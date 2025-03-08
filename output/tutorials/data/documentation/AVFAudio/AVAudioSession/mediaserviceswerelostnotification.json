@@ -1,0 +1,800 @@
+{
+  "abstract": [
+    {
+      "text": "A notification the system posts when it terminates the media server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereLostNotification"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AVFAudio",
+    "externalID": "c:@AVAudioSessionMediaServicesWereLostNotification",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "mediaServicesWereLostNotification"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSNotification",
+        "text": "NSNotification"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSNotificationName",
+        "text": "Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAudioSessionMediaServicesWereLostNotification"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "mediaServicesWereLostNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "mediaServicesWereLostNotification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system posts this notification when the media server first becomes unavailable. Most apps don’t need to subscribe to this notification and should instead subscribe to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereResetNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification. However, you can use this notification as a cue to take any appropriate steps to handle requests that come in before the server restarts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This notification has no ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system posts this notification on the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereLostNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when it terminates the media server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaServicesWereLostNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereLostNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionMediaServicesWereLostNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaServicesWereLostNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereResetNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when the media server restarts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaServicesWereResetNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereResetNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionMediaServicesWereResetNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaServicesWereResetNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/mediaserviceswereresetnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo": {
+      "abstract": [
+        {
+          "text": "The user information dictionary associated with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1409222-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSNotificationName": {
+      "abstract": [
+        {
+          "text": "A structure that defines the name of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification": {
+      "abstract": [
+        {
+          "text": "An object containing information broadcast to registered observers that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-a-change-of-media-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereResetNotification"
+      ],
+      "title": "Handling a change of media services"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAudioSessionMediaServicesWereLostNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionMediaServicesWereLostNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-a-change-of-media-services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/mediaServicesWereResetNotification"
+              ],
+              "title": "Handling a change of media services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSNotificationName",
+                    "text": "NSNotificationName"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAudioSessionMediaServicesWereLostNotification"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1mediaServicesWereLostNotification/title",
+          "value": "AVAudioSessionMediaServicesWereLostNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1mediaServicesWereLostNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionMediaServicesWereLostNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSNotificationName/title",
+          "value": "NSNotificationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/title",
+          "value": "AVAudioSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1mediaServicesWereResetNotification/title",
+          "value": "AVAudioSessionMediaServicesWereResetNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1mediaServicesWereResetNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionMediaServicesWereResetNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSNotification/abstract",
+          "value": [
+            {
+              "text": "A container for information broadcast through a notification center to all registered observers.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudiosession/mediaserviceswerelostnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

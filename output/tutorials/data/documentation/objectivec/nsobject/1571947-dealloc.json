@@ -1,0 +1,637 @@
+{
+  "abstract": [
+    {
+      "text": "Deallocates the memory occupied by the receiver.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1571947,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(im)dealloc",
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "dealloc"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "dealloc"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subsequent messages to the receiver may generate an error indicating that a message was sent to a deallocated object (provided the deallocated memory hasn’t been reused yet).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You override this method to dispose of resources other than the object’s instance variables, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)dealloc {",
+            "    free(myBigBlockOfMemory);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555755",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In an implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "dealloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", do not invoke the superclass’s implementation. You should try to avoid managing the lifetime of limited resources such as file descriptors using ",
+              "type": "text"
+            },
+            {
+              "code": "dealloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You never send a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " message directly. Instead, an object’s ",
+              "type": "text"
+            },
+            {
+              "code": "dealloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method is invoked by the runtime. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695206",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1968705",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When not using ARC, your implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "dealloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must invoke the superclass’s implementation as its last instruction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695206": {
+      "identifier": "devLink-1695206",
+      "title": "Advanced Memory Management Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying/1410311-copywithzone": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyWithZone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying/1410311-copywithzone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyWithZone:",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying/1410311-copywithzone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopywithzone": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableCopyWithZone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopywithzone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableCopyWithZone:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying/1414175-mutablecopywithzone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init": {
+      "abstract": [
+        {
+          "text": "Implemented by subclasses to initialize a new object (the receiver) immediately after memory for it has been allocated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418641-init"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418807-copy": {
+      "abstract": [
+        {
+          "text": "Returns the object returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying/1410311-copywithzone",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418807-copy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418807-copy"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy": {
+      "abstract": [
+        {
+          "text": "Returns the object returned by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopywithzone",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " where the zone is ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableCopy",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418978-mutablecopy"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571945-allocwithzone": {
+      "abstract": [
+        {
+          "text": "Returns a new instance of the receiving class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocWithZone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571945-allocwithzone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocWithZone:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571945-allocwithzone"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc": {
+      "abstract": [
+        {
+          "text": "Deallocates the memory occupied by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dealloc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dealloc",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571947-dealloc"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc#2555755": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc#2555755",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/objectivec/nsobject/1571947-dealloc#2555755"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571948-new": {
+      "abstract": [
+        {
+          "text": "Allocates a new instance of the receiving class, sends it an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " message, and returns the initialized object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571948-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571948-new"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571953-copywithzone": {
+      "abstract": [
+        {
+          "text": "Returns the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyWithZone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571953-copywithzone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyWithZone:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571953-copywithzone"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571956-mutablecopywithzone": {
+      "abstract": [
+        {
+          "text": "Returns the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableCopyWithZone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571956-mutablecopywithzone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableCopyWithZone:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571956-mutablecopywithzone"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571958-alloc": {
+      "abstract": [
+        {
+          "text": "Returns a new instance of the receiving class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "alloc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571958-alloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alloc",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571958-alloc"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1571958-alloc",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1571945-allocwithzone",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1418807-copy",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1571953-copywithzone",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1571956-mutablecopywithzone",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1571948-new"
+      ],
+      "title": "Creating, Copying, and Deallocating Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1571947-dealloc"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

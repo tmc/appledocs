@@ -1,0 +1,760 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how Swift represents imported C structures and unions, including types with",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "bitfields and unnamed fields.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/using-imported-c-structs-and-unions-in-swift"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Imported C Structs and Unions in Swift"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift imports any C structure declared in a C header as a Swift structure. The imported",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift structure contains a stored property for each C structure field and an initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whose parameters correspond to the stored properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Structures-with-Default-Values",
+          "level": 3,
+          "text": "Structures with Default Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If all imported members have default values, Swift also provides a default initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that takes no arguments. For example, given the following C structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Color {",
+            "    float r, g, b;",
+            "};",
+            "typedef struct Color Color;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you import the Color structure, the Swift version is equivalent to the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public struct Color {",
+            "    var r: Float",
+            "    var g: Float",
+            "    var b: Float",
+            "",
+            "    init()",
+            "    init(r: Float, g: Float, b: Float)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Unions",
+          "level": 3,
+          "text": "Unions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift imports C unions as Swift structures. Although Swift doesn’t support natively",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declared unions, a C union imported as a Swift structure still behaves like a C union.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, consider a C union named ",
+              "type": "text"
+            },
+            {
+              "code": "SchroedingersCat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that has an ",
+              "type": "text"
+            },
+            {
+              "code": "isAlive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "code": "isDead",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "union SchroedingersCat {",
+            "    bool isAlive;",
+            "    bool isDead;",
+            "};"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, it’s imported like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SchroedingersCat {",
+            "    var isAlive: Bool { get set }",
+            "    var isDead: Bool { get set }",
+            "",
+            "    init(isAlive: Bool)",
+            "    init(isDead: Bool)",
+            "",
+            "    init()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because unions in C use the same base memory address for all of their fields, all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the computed properties in a union imported by Swift use the same underlying memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a result, changing the value of a property on an instance of the imported structure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes the value of all other properties defined by that structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example below, changing the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "isAlive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " computed property on an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "SchroedingersCat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure also changes the value of the instance’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "isDead",
+              "type": "codeVoice"
+            },
+            {
+              "text": " computed property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var mittens = SchroedingersCat(isAlive: false)",
+            "",
+            "print(mittens.isAlive, mittens.isDead)",
+            "// Prints \"false false\"",
+            "",
+            "mittens.isAlive = true",
+            "print(mittens.isDead)",
+            "// Prints \"true\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Bit-Fields",
+          "level": 3,
+          "text": "Bit Fields",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift imports bit fields that are declared in structures, like those found in Foundation’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NSDecimal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, as computed properties. When accessing a computed property corresponding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a bit field, Swift automatically converts the value to and from compatible Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Unnamed-Structure-and-Union-Fields",
+          "level": 3,
+          "text": "Unnamed Structure and Union Fields",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "C ",
+              "type": "text"
+            },
+            {
+              "code": "struct",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "union",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types can define fields that have no name or that are of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unnamed type. Unnamed fields consist of a nested ",
+              "type": "text"
+            },
+            {
+              "code": "struct",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "union",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type with named",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider a C structure named ",
+              "type": "text"
+            },
+            {
+              "code": "Cake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains the fields ",
+              "type": "text"
+            },
+            {
+              "code": "layers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "height",
+              "type": "codeVoice"
+            },
+            {
+              "text": " nested within an unnamed union type, and a field ",
+              "type": "text"
+            },
+            {
+              "code": "toppings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of an unnamed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "struct type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Cake {",
+            "    union {",
+            "        int layers;",
+            "        double height;",
+            "    };",
+            "",
+            "    struct {",
+            "        bool icing;",
+            "        bool sprinkles;",
+            "    } toppings;",
+            "};"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the ",
+              "type": "text"
+            },
+            {
+              "code": "Cake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure has been imported, you can use the default initializer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create an instance and use it as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var simpleCake = Cake()",
+            "simpleCake.layers = 5",
+            "print(simpleCake.toppings.icing)",
+            "// Prints \"false\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The imported ",
+              "type": "text"
+            },
+            {
+              "code": "Cake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure and its nested types are imported with a memberwise",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer that you can use to initialize the structure with custom values for its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cake = Cake(",
+            "    .init(layers: 2),",
+            "    toppings: .init(icing: true, sprinkles: false)",
+            ")",
+            "",
+            "print(\"The cake has \\(cake.layers) layers.\")",
+            "// Prints \"The cake has 2 layers.\"",
+            "print(\"Does it have sprinkles?\", cake.toppings.sprinkles ? \"Yes.\" : \"No.\")",
+            "// Prints \"Does it have sprinkles? No.\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the first field of the ",
+              "type": "text"
+            },
+            {
+              "code": "Cake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure is unnamed, its initializer’s first",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter doesn’t have a label. Because the ",
+              "type": "text"
+            },
+            {
+              "code": "Cake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure has fields with unnamed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types, you use the ",
+              "type": "text"
+            },
+            {
+              "code": ".init",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializers (allowed due to Swift’s type inference) to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "set the initial value for each of the structure’s unnamed fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use native Swift syntax to interoperate with types and functions in C and Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Imported C and Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/imported-c-and-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift": {
+      "abstract": [
+        {
+          "text": "Learn how to call imported functions that are declared in a C header.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Imported C Functions in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-imported-c-functions-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-imported-c-macros-in-swift": {
+      "abstract": [
+        {
+          "text": "Use imported C-defined macros as constants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-imported-c-macros-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Imported C Macros in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-imported-c-macros-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "C-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift",
+        "doc://com.apple.Swift/documentation/Swift/using-imported-c-macros-in-swift"
+      ],
+      "title": "C APIs"
+    }
+  ]
+}

@@ -1,0 +1,1089 @@
+{
+  "abstract": [
+    {
+      "text": "A recurrent neural network layer for inference on Metal Performance Shaders images.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2865716,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSRNNImageInferenceLayer",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSRNNImageInferenceLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSRNNImageInferenceLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSRNNImageInferenceLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSCNNKernel",
+              "text": "MPSCNNKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " specifies a recurrent neural network layer for inference on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Two types of recurrent layers are supported: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "—Operates with convolutions on images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "—Operates on matrices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to implement the latter by using 1 x 1 images, but due to image size restrictions and performance, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is the better choice for linear recurrent layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is initialized using either of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A single ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance, which further specifies the recurrent network layer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances, which specifies a stack of recurrent layers that can operate in parallel a subset of the inputs in a sequence of inputs and recurrent outputs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Stacks with bidirectionally traversing encode functions don't support starting from a previous set of recurrent states. However, you can achieve this effect by defining two separate unidirectional stacks of layers, running the same input sequence on them separately (one forward and one backward), and ultimately combining the two result sequences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a gated recurrent unit block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSGRUDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSGRUDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsgrudescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a long short-term memory block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSLSTMDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSLSTMDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpslstmdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode": {
+      "abstract": [
+        {
+          "text": "Modes that define how two images or matrices are combined. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNBidirectionalCombineMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNBidirectionalCombineMode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a recursive neural network block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnndescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNImageInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNImageInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865682-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "rnnDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSRNNDescriptor])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865682-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:rnnDescriptors:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865682-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865691-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "rnnDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSRNNDescriptor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865691-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:rnnDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865691-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865693-encodebidirectionalsequence": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeBidirectionalSequence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationForwardImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationBackwardImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865693-encodebidirectionalsequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeBidirectionalSequence(commandBuffer:sourceSequence:destinationForwardImages:destinationBackwardImages:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865693-encodebidirectionalsequence"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865697-numberoflayers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfLayers"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865697-numberoflayers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfLayers",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865697-numberoflayers"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865706-storeallintermediatestates": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeAllIntermediateStates"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865706-storeallintermediatestates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeAllIntermediateStates",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865706-storeallintermediatestates"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865717-encodesequence": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationImages"
+        },
+        {
+          "kind": "text",
+          "text": ": [MPSImage], "
+        },
+        {
+          "kind": "identifier",
+          "text": "recurrentInputState"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSRNNRecurrentImageState?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "recurrentOutputStates"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableArray?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865717-encodesequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeSequence(commandBuffer:sourceImages:destinationImages:recurrentInputState:recurrentOutputStates:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865717-encodesequence"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865728-copy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSZone?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLDevice)?) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865728-copy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy(with:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865728-copy"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865737-bidirectionalcombinemode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bidirectionalCombineMode"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSRNNBidirectionalCombineMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865737-bidirectionalcombinemode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bidirectionalCombineMode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865737-bidirectionalcombinemode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865743-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865743-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865743-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865749-recurrentoutputistemporary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "recurrentOutputIsTemporary"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865749-recurrentoutputistemporary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recurrentOutputIsTemporary",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865749-recurrentoutputistemporary"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890140-outputfeaturechannels": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890140-outputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890140-outputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890141-inputfeaturechannels": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890141-inputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890141-inputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer": {
+      "abstract": [
+        {
+          "text": "A recurrent neural network layer for inference on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixInferenceLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixInferenceLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer": {
+      "abstract": [
+        {
+          "text": "A layer for training recurrent neural networks on Metal Performance Shaders matrices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingLayer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate": {
+      "abstract": [
+        {
+          "text": "A class that holds data from a forward pass to be used in a backward pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNMatrixTrainingState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNMatrixTrainingState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate": {
+      "abstract": [
+        {
+          "text": "A class that holds all the data that's passed from one sequence iteration of the image-based recurrent neural network layer (stack) to the next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNRecurrentImageState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNRecurrentImageState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection": {
+      "abstract": [
+        {
+          "text": "Directions that a sequence of inputs can be processed by a recurrent neural network layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSequenceDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSequenceDirection",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsequencedirection"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a simple recurrent block or layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSRNNSingleGateDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSRNNSingleGateDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsgrudescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpslstmdescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnsequencedirection",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate"
+      ],
+      "title": "Recurrent Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2868907",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865743-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865691-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865682-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnndescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2868908",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865737-bidirectionalcombinemode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865697-numberoflayers",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865749-recurrentoutputistemporary",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865706-storeallintermediatestates",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890141-inputfeaturechannels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2890140-outputfeaturechannels"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2868909",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865728-copy",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865693-encodebidirectionalsequence",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnimageinferencelayer/2865717-encodesequence",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsrnnimageinferencelayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

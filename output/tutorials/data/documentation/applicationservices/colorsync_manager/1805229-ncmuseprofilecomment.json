@@ -1,0 +1,704 @@
+{
+  "abstract": [
+    {
+      "text": "Automatically embeds a profile or a profile identifier into an open picture.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805229,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "NCMUseProfileComment"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError NCMUseProfileComment ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef prof,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 flags"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the profile to embed. See the QuickDraw Reference for a description of the PixMap data type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "prof"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A flag value in which individual bits determine settings. ",
+                  "type": "text"
+                },
+                {
+                  "code": "Embedded Profile Identifiers",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " describes constants for use with this parameter. For example, you pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmEmbedWholeProfile",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to embed a whole profile or ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmEmbedProfileIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to embed a profile identifier. No other values are currently defined; all other bits are reserved for future use. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NCMUseProfileComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function automatically generates the picture comments required to embed the specified profile or profile identifier into the open picture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To embed a profile, you use the constant ",
+              "type": "text"
+            },
+            {
+              "code": "cmEmbedWholeProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to set the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter before calling ",
+              "type": "text"
+            },
+            {
+              "code": "NCMUseProfileComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "NCMUseProfileComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls the QuickDraw ",
+              "type": "text"
+            },
+            {
+              "code": "PicComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function with a picture comment ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of ",
+              "type": "text"
+            },
+            {
+              "code": "cmComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a 4-byte selector that describes the type of data in the picture comment: ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfileSel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to begin the profile, ",
+              "type": "text"
+            },
+            {
+              "code": "cmContinueProfileSel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to continue, and ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfileSel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to end the profile. These constants are described in ",
+              "type": "text"
+            },
+            {
+              "code": "Picture Comment Selectors",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the size in bytes of the profile and the 4-byte selector together exceed 32 KB, this function segments the profile data and embeds the multiple segments in consecutive order using selector ",
+              "type": "text"
+            },
+            {
+              "code": "cmContinueProfileSel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to embed each segment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To embed a profile identifier of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMProfileIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " , you use the constant ",
+              "type": "text"
+            },
+            {
+              "code": "cmEmbedProfileIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to set the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter before calling ",
+              "type": "text"
+            },
+            {
+              "code": "NCMUseProfileComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The function extracts the necessary information from the profile reference ( ",
+              "type": "text"
+            },
+            {
+              "code": "prof",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to embed a profile identifier for the profile. The profile reference can refer to a previously embedded profile, or to a profile on disk in the ColorSync Profiles folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this function to embed most types of profiles in an image, including device link profiles, but not abstract profiles. You cannot use this function to embed ColorSync 1.0 profiles in an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NCMUseProfileComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function precedes the profile it embeds with a picture comment of kind ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For embedding to work correctly, the currently effective profile must be terminated by a picture comment of kind ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after drawing operations using that profile are performed. You are responsible for adding the picture comment of kind ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If a picture comment was not specified to end the profile following the drawing operations to which the profile applies, the profile will remain in effect until the next embedded profile is introduced with a picture comment of kind ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However, use of the next profile might not be the intended action. Always pair use of the ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " picture comments. When the ColorSync Manager encounters a ",
+              "type": "text"
+            },
+            {
+              "code": "cmEndProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " picture comment, it restores use of the system profile for matching until it encounters another ",
+              "type": "text"
+            },
+            {
+              "code": "cmBeginProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " picture comment. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819444",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ColorSync 2.0, the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter was ignored and the routine always embedded the entire profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ColorSync 2.0, if the ",
+              "type": "text"
+            },
+            {
+              "code": "prof",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter refers to a version 1.0 profile, the profile is not embedded into the picture correctly. In ColorSync versions starting with 2.1, this bug has been fixed. One possible workaround for this problem in ColorSync 2.0 is to call ",
+              "type": "text"
+            },
+            {
+              "code": "CMCopyProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to copy the 1.0 profile reference into a handle. The handle can then be embedded into the picture using ",
+              "type": "text"
+            },
+            {
+              "code": "CMUseProfileComment",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileref": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap": {
+      "abstract": [
+        {
+          "text": "Matches a pixel map in place based on a specified color world. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWMatchPixMap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap": {
+      "abstract": [
+        {
+          "text": "Checks the colors of a pixel map using the profiles of a specified color world to determine whether the colors are in the gamut of the destination device. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWCheckPixMap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching": {
+      "abstract": [
+        {
+          "text": "Sets up a QuickDraw-specific ColorSync matching session, using the specified source and destination profiles. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMBeginMatching",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805220-cmendmatching": {
+      "abstract": [
+        {
+          "text": "Concludes a QuickDraw-specific ColorSync matching session initiated by a previous call to the ",
+          "type": "text"
+        },
+        {
+          "code": "NCMBeginMatching",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805220-cmendmatching",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMEndMatching",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805220-cmendmatching"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture": {
+      "abstract": [
+        {
+          "text": "Matches a picture’s colors to a destination device’s color gamut, as the picture is drawn, using the specified destination profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMDrawMatchedPicture",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment": {
+      "abstract": [
+        {
+          "text": "Inserts a comment into the currently open picture to turn matching on or off. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMEnableMatchingComment",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment": {
+      "abstract": [
+        {
+          "text": "Automatically embeds a profile or a profile identifier into an open picture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMUseProfileComment",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805211-cwmatchpixmap",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805214-cwcheckpixmap",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805216-ncmbeginmatching",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805220-cmendmatching",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805223-ncmdrawmatchedpicture",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805227-cmenablematchingcomment"
+      ],
+      "title": "Working With QuickDraw"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1805229-ncmuseprofilecomment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

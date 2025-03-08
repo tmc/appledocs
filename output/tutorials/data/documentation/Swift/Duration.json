@@ -1,0 +1,2272 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of high precision time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Duration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s8DurationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Duration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Duration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Duration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Duration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents an elapsed time value with high precision in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "integral form. It may be used for measurements of varying clock sources. In",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those cases it represents the elapsed time measured by that clock.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Calculations using ",
+              "type": "text"
+            },
+            {
+              "code": "Duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may span from a negative value to a positive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value and have a suitable range to at least cover attosecond scale for both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "small elapsed durations like sub-second precision to durations that span",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "centuries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typical construction of ",
+              "type": "text"
+            },
+            {
+              "code": "Duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values should be created via the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "static methods for specific time values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " var d: Duration = .seconds(3)",
+            " d += .milliseconds(33)",
+            " print(d) // 3.033 seconds"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " itself does not ferry any additional information other than the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "temporal measurement component; specifically leap seconds should be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represented as an additional accessor since that is specific only to certain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clock implementations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic": {
+      "abstract": [
+        {
+          "text": "A type with values that support addition and subtraction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdditiveArithmetic"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdditiveArithmetic"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdditiveArithmetic",
+      "type": "topic",
+      "url": "/documentation/swift/additivearithmetic"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/swift/bitwisecopyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators ",
+          "type": "text"
+        },
+        {
+          "code": "<",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "<=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": ">=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": ">",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/swift/comparable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/*(_:_:)-3d469": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "*"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/*(_:_:)-3d469",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "*(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/*(_:_:)-3d469"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/*=(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "*="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/*=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "*=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/*=(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/AdditiveArithmetic-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/AdditiveArithmetic-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AdditiveArithmetic Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/additivearithmetic-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/AtomicRepresentable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/AtomicRepresentable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AtomicRepresentable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/atomicrepresentable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/Comparable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/Comparable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Comparable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/comparable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/customstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/decodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/DurationProtocol-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/DurationProtocol-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DurationProtocol Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/durationprotocol-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/encodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/duration/hashable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations in a compact, localized format with separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeFormatStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.TimeFormatStyle",
+      "type": "topic",
+      "url": "/documentation/swift/duration/timeformatstyle"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations with localized labeled components",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/_(_:_:)-7fkmh": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "/"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/_(_:_:)-7fkmh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "/(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/_(_:_:)-7fkmh"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/_=(_:_:)-10rgx": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "/="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/_=(_:_:)-10rgx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "/=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/_=(_:_:)-10rgx"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/_=(_:_:)-1qfv3": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "/="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/_=(_:_:)-1qfv3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "/=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/_=(_:_:)-1qfv3"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/components": {
+      "abstract": [
+        {
+          "text": "The composite components of the ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": (seconds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", attoseconds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/swift/duration/components"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/formatted()": {
+      "abstract": [
+        {
+          "text": "Formats the string using a localized hour-minute-second time pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/swift/duration/formatted()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)": {
+      "abstract": [
+        {
+          "text": "Formats the duration, using the provided format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11FormatStyleP0B6OutputQa",
+          "text": "FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/formatted(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/init(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@timeval",
+          "text": "timeval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/init(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/init(secondsComponent:attosecondsComponent:)": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by adding attoseconds to a seconds value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "secondsComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attosecondsComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/init(secondsComponent:attosecondsComponent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(secondsComponent:attosecondsComponent:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/init(secondscomponent:attosecondscomponent:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/microseconds(_:)-1zzcc": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of seconds microseconds as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Double",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by converting the value into the closest attosecond scale value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "microseconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/microseconds(_:)-1zzcc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "microseconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/microseconds(_:)-1zzcc"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/microseconds(_:)-2majo": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of microseconds represented as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "BinaryInteger",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "microseconds"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/microseconds(_:)-2majo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "microseconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/microseconds(_:)-2majo"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/milliseconds(_:)-1w328": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of milliseconds represented as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "BinaryInteger",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "milliseconds"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/milliseconds(_:)-1w328",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "milliseconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/milliseconds(_:)-1w328"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/milliseconds(_:)-7ledy": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of seconds milliseconds as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Double",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by converting the value into the closest attosecond scale value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "milliseconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/milliseconds(_:)-7ledy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "milliseconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/milliseconds(_:)-7ledy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/nanoseconds(_:)": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of nanoseconds represented as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "BinaryInteger",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nanoseconds"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/nanoseconds(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nanoseconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/nanoseconds(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/seconds(_:)-311cx": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of seconds represented as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "BinaryInteger",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seconds"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/seconds(_:)-311cx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/seconds(_:)-311cx"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/seconds(_:)-5ifzr": {
+      "abstract": [
+        {
+          "text": "Construct a ",
+          "type": "text"
+        },
+        {
+          "code": "Duration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " given a number of seconds represented as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Double",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by converting the value into the closest attosecond scale value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/seconds(_:)-5ifzr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seconds(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/seconds(_:)-5ifzr"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DurationProtocol": {
+      "abstract": [
+        {
+          "text": "A type that defines a duration for a given ",
+          "type": "text"
+        },
+        {
+          "code": "InstantProtocol",
+          "type": "codeVoice"
+        },
+        {
+          "text": " type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DurationProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DurationProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DurationProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "DurationProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/durationprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that supports atomic operations through a separate atomic storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+        "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+        "doc://com.apple.Swift/documentation/Swift/Comparable",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/DurationProtocol",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Durations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/DurationProtocol"
+      ],
+      "title": "Durations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-duration",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/init(secondsComponent:attosecondsComponent:)",
+        "doc://com.apple.Swift/documentation/Swift/Duration/seconds(_:)-311cx",
+        "doc://com.apple.Swift/documentation/Swift/Duration/seconds(_:)-5ifzr",
+        "doc://com.apple.Swift/documentation/Swift/Duration/milliseconds(_:)-1w328",
+        "doc://com.apple.Swift/documentation/Swift/Duration/milliseconds(_:)-7ledy",
+        "doc://com.apple.Swift/documentation/Swift/Duration/microseconds(_:)-1zzcc",
+        "doc://com.apple.Swift/documentation/Swift/Duration/microseconds(_:)-2majo",
+        "doc://com.apple.Swift/documentation/Swift/Duration/nanoseconds(_:)"
+      ],
+      "title": "Creating a duration"
+    },
+    {
+      "anchor": "Accessing-a-durations-components",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/components"
+      ],
+      "title": "Accessing a duration’s components"
+    },
+    {
+      "anchor": "Performing-calculations-on-durations",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/*(_:_:)-3d469",
+        "doc://com.apple.Swift/documentation/Swift/Duration/*=(_:_:)",
+        "doc://com.apple.Swift/documentation/Swift/Duration/_(_:_:)-7fkmh",
+        "doc://com.apple.Swift/documentation/Swift/Duration/_=(_:_:)-10rgx",
+        "doc://com.apple.Swift/documentation/Swift/Duration/_=(_:_:)-1qfv3"
+      ],
+      "title": "Performing calculations on durations"
+    },
+    {
+      "anchor": "Formatting-a-duration",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/formatted()",
+        "doc://com.apple.Swift/documentation/Swift/Duration/formatted(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Duration/TimeFormatStyle",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle"
+      ],
+      "title": "Formatting a duration"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/init(_:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/AdditiveArithmetic-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/AtomicRepresentable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/Comparable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/CustomStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/Decodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/DurationProtocol-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/Encodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/Equatable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Duration/Hashable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/duration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

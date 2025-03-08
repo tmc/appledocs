@@ -1,0 +1,895 @@
+{
+  "abstract": [
+    {
+      "text": "Build an extension by using an Xcode template.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/creating-an-audio-unit-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an audio unit extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An audio unit extension provides a way to create or modify audio and MIDI data in an iOS or macOS app that uses sound — including music production apps. It contains the audio unit and, optionally, a user interface to control the audio unit. The audio unit is a custom plug-in where you generate audio or implement an audio-processing algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an audio unit extension, you create an Xcode project using the Audio Unit Extension App template.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-new-audio-unit-extension-project",
+          "level": 3,
+          "text": "Create a new audio unit extension project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new project in Xcode, choose File > New > Project. In the template chooser, select either the iOS or macOS platform. Scroll to the end of the template chooser and select the Audio Unit Extension App template under the Other section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4093016",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After clicking Next, configure the options for the project — including choosing what kind of audio unit to generate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-project-options",
+          "level": 3,
+          "text": "Configure the project options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the options for your new audio unit extension application. The template creates an extension and a host application for your audio unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4093019",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an Audio Unit Extension App template, Xcode provides a starting point for the type of audio unit you’re creating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An audio unit that accepts incoming MIDI data and produces only audio output. The template provides a basic mono sine wave synthesizer with a parameter to adjust the gain. Incoming MIDI data sets the pitch and volume of the output sine wave signal.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Instrument",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An audio unit that provides a basic sine wave generator and produces only audio output. It has a parameter to adjust the gain, and produces a continuous sine wave signal.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Generator",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An audio unit that accepts audio input and produces audio output. The template provides an audio pass-through effect with a signal parameter to adjust the gain of the audio that passes through the audio unit.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Effect",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An audio unit that accepts audio and MIDI input, and produces audio output. The template provides a MIDI-controlled audio gate with one signal parameter to adjust the gain. It allows audio to pass through only when it receives a MIDI note-on message.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Music Effect",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An audio unit that accepts MIDI input and produces MIDI output. The template provides a MIDI note-on and note-off message generator.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MIDI Processor",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An audio unit for custom spoken voice generation. The template provides the setup for a speech synthesizer that’s ready for customization.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Speech Synthesis",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose a subtype code that reflects the type of extension, and a manufacturer code that’s unique to your company.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your extension doesn’t need a user interface, choose No User Interface; otherwise, Xcode creates a view for you to customize.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explore-the-generated-extension-project",
+          "level": 3,
+          "text": "Explore the generated extension project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode generates two targets for you — the host app and the extension. The template uses Swift and SwiftUI for the business logic and user interface, C++ for real-time processing, and Objective-C for interacting between Swift and C++.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4093014",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Common group contains code — organized by functionality — that you rarely need to change. In the above image, the project name ",
+              "type": "text"
+            },
+            {
+              "code": "NewAU",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is prefixed to many files. The file ",
+              "type": "text"
+            },
+            {
+              "code": "NewAUExtensionAudioUnit.mm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that implements the audio unit, and is where you add additional functionality from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", if necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, you only need to edit the extension files within the top-level groups Parameters, DSP, and UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An enumeration that contains parameter addresses that Swift and C++ use to reference parameters.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NewAUExtensionParameterAddress.h",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A source code file where you describe your extension’s parameters and their layout.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Parameters.swift",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A class that handles the real-time aspects of the extension and is where you implement signal processing.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NewAUExtensionDSPKernel.hpp",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A view you use to customize your user interface, if your audio unit presents one.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NewAUExtensionMainView.swift",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Add-a-new-parameter-address",
+          "level": 3,
+          "text": "Add a new parameter address",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template project contains a parameter that allows you to adjust the audio gain. To add a signal parameter to the template project, navigate to ",
+              "type": "text"
+            },
+            {
+              "code": "NewAUExtensionParameterAddress.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and add it to the enumeration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef NS_ENUM(AUParameterAddress, NewAUExtensionParameterAddress) {",
+            "    gain = 0,",
+            "    attack",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow your host app to interact with the parameter, describe its default value, value range, name, and identifier in ",
+              "type": "text"
+            },
+            {
+              "code": "Parameters.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The identifier value you specify is what you use to reference the parameter from your host app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ParameterSpec(address: .attack,",
+            "              identifier: \"attack\",",
+            "              name: \"Attack\",",
+            "              units: .milliseconds,",
+            "              valueRange: 0.0…1000.0,",
+            "              defaultValue: 100.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Navigate to ",
+              "type": "text"
+            },
+            {
+              "code": "NewAUExtensionDSPKernel.hpp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to expose the parameter for digital signal processing. Add the custom member variable at the end of the source file, and use the ",
+              "type": "text"
+            },
+            {
+              "code": "setParameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "getParameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions to access it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void setParameter(AUParameterAddress address, AUValue value) {",
+            "    switch (address) {",
+            "        case NewAUExtensionParameterAddress::attack:",
+            "            mAttack = value;",
+            "    }",
+            "}",
+            "",
+            "AUValue getParameter(AUParameterAddress address) {",
+            "    switch (address) {",
+            "        case NewAUExtensionParameterAddress::attack:",
+            "            return (AUValue)mAttack;",
+            "        default:",
+            "            return 0.f;",
+            "    }",
+            "}"
+          ],
+          "syntax": "c++",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to implement your custom signal-processing algorithm. For audio units that present a user interface, you access the parameter by using the ",
+              "type": "text"
+            },
+            {
+              "code": "parameterTree",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in the main view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the attack parameter value.",
+            "value.let attack = parameterTree.global.attack.value",
+            "",
+            "// Set the attack parameter value.",
+            "value.parameterTree.global.attack.value = 0.5",
+            "",
+            "// Bind the parameter to a slider.",
+            "var body: some Value {",
+            "    ParameterSlider(param: parameterTree.global.attack)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit": {
+      "abstract": [
+        {
+          "text": "A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioUnit",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiounit"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine": {
+      "abstract": [
+        {
+          "text": "Perform advanced real-time and offline audio processing, implement 3D spatialization, and work with MIDI and samplers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-engine",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Engine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-engine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units": {
+      "abstract": [
+        {
+          "text": "The data type for a plug-in component that provides audio processing or audio data generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/audio-units",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Units",
+      "type": "topic",
+      "url": "/documentation/avfaudio/audio-units"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing": {
+      "abstract": [
+        {
+          "text": "Add voice-processing capabilities to your app by using audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using voice processing",
+      "type": "topic",
+      "url": "/documentation/avfaudio/using-voice-processing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4093014": {
+      "alt": "A screenshot of the Xcode Project navigator showing a project with the name NewAU. The project is expanded and shows a host app group and NewAU Extension group, with the extension group expanded. The extension group contains expanded groups with the names Common, Parameters, DSP, and UI. The Common group shows an expanded Audio Unit group with a file named NewAUExtensionAudioUnit. The expanded Parameters group shows the files NewAUExtensionParameterAddresses and Parameters. The expanded DSP group shows the file NewAUExtensionDSPKernel. The expanded UI group shows the files NewAUExtensionMainView and ParameterSlider.",
+      "identifier": "media-4093014",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c443c21b6971bb8f9924a37c9d10542b/media-4093014@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1acd8a290be977e1f4d38e61c977c23a/media-4093014~dark@2x.png"
+        }
+      ]
+    },
+    "media-4093016": {
+      "alt": "A screenshot of the Choose a template for your new project dialog in Xcode. It shows a section with the name Other, with the Audio Unit Extension App template selected.",
+      "identifier": "media-4093016",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7edcd83eb46c0ffc070fc65c983e09d6/media-4093016@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e03f774096f0b06804d9966cd2a71e8d/media-4093016~dark@2x.png"
+        }
+      ]
+    },
+    "media-4093019": {
+      "alt": "A screenshot of the Choose options for your new project dialog in Xcode. The fields for Product Name, Team, Organization Name, Subtype Code, and Manufacturer Code are empty. The Organization Identifier field contains com.examples. It shows a menu to select the Audio Unit Type, with Effect selected by default. It shows a User Interface menu, with Presents User Interface selected by default. Below the User Interface option, a checkbox for including tests is unchecked. At the bottom of the dialog, there are three buttons: Cancel, Previous, and Next. The Next button is grayed out. ",
+      "identifier": "media-4093019",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b658e9c2106862250b875460534c6a48/media-4093019@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca063e5862c99b0ea531b3d8c08a881a/media-4093019~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/using-voice-processing",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnit/title",
+          "value": "AVAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/creating-an-audio-unit-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/creating-an-audio-unit-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

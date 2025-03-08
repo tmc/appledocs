@@ -1,0 +1,1230 @@
+{
+  "abstract": [
+    {
+      "text": "An object for configuring macOS apps to participate in AirPods Automatic Switching.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioRoutingArbiter",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAudioRoutingArbiter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAudioRoutingArbiter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAudioRoutingArbiter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AirPods Automatic Switching is a feature of Apple operating systems that intelligently connects wireless headphones to the most appropriate audio device in a multidevice environment. For example, if a user plays a movie on iPad, and then locks the device and starts playing music on iPhone, the system automatically switches the source audio device from iPad to iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS apps automatically participate in AirPods Automatic Switching. To enable your macOS app to participate in this behavior, use ",
+              "type": "text"
+            },
+            {
+              "code": "AVAudioRoutingArbiter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate when your app starts and finishes playing or recording audio. For example, a Voice over IP (VoIP) app might request arbitration before starting a call, and when the arbitration completes, begin the VoIP session. Likewise, when the call ends, the app would end the VoIP session and leave arbitration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startCall() {",
+            "    let arbiter = AVAudioRoutingArbiter.shared",
+            "    arbiter.begin(category: .playAndRecordVoice) { deviceChanged, error in",
+            "        // Start VoIP session.",
+            "    }",
+            "}",
+            "",
+            "func endCall() {",
+            "    // End VoIP session.",
+            "    AVAudioRoutingArbiter.shared.leave()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only certain Apple and Beats wireless headsets support this feature.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages one or more audio sessions that belong to an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter": {
+      "abstract": [
+        {
+          "text": "An object for configuring macOS apps to participate in AirPods Automatic Switching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/Category": {
+      "abstract": [
+        {
+          "text": "Categories that describe the general nature of your app’s audio use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/Category",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter.Category",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter/category"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Begins routing arbitration to take ownership of a nearby Bluetooth audio route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioRoutingArbiter",
+          "text": "AVAudioRoutingArbiter"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioRoutingArbitrationCategory",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginArbitrationWithCategory:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "begin(category:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter/begin(category:completionhandler:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/leave()": {
+      "abstract": [
+        {
+          "text": "Stops an app’s participation in audio routing arbitration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leave"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/leave()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leaveArbitration"
+        }
+      ],
+      "role": "symbol",
+      "title": "leave()",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter/leave()"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/shared": {
+      "abstract": [
+        {
+          "text": "The shared routing arbiter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioRoutingArbiter",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedRoutingArbiter"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter/shared"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls": {
+      "abstract": [
+        {
+          "text": "Provide a more accessible experience by adding your app’s audio to a call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding synthesized speech to calls",
+      "type": "topic",
+      "url": "/documentation/avfaudio/adding-synthesized-speech-to-calls"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones": {
+      "abstract": [
+        {
+          "text": "Configure an iOS device’s built-in microphones to add stereo recording capabilities to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing stereo audio from built-In microphones",
+      "type": "topic",
+      "url": "/documentation/avfaudio/capturing-stereo-audio-from-built-in-microphones"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling audio interruptions",
+      "type": "topic",
+      "url": "/documentation/avfaudio/handling-audio-interruptions"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to route changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to audio route changes",
+      "type": "topic",
+      "url": "/documentation/avfaudio/responding-to-audio-route-changes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "System-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication"
+      ],
+      "title": "System audio"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Routing-Arbiter",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/shared"
+      ],
+      "title": "Creating a Routing Arbiter"
+    },
+    {
+      "anchor": "Participating-in-AirPods-Automatic-Switching",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/Category",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/leave()"
+      ],
+      "title": "Participating in AirPods Automatic Switching"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAudioRoutingArbiter"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Routing-Arbiter",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/shared"
+              ],
+              "title": "Creating a Routing Arbiter"
+            },
+            {
+              "anchor": "Participating-in-AirPods-Automatic-Switching",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/Category",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter/leave()"
+              ],
+              "title": "Participating in AirPods Automatic Switching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "System-audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication"
+              ],
+              "title": "System audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAudioRoutingArbiter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1Category/title",
+          "value": "AVAudioRoutingArbitrationCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1Category/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbitrationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1Category/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbitrationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/title",
+          "value": "AVAudioApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1leave()/title",
+          "value": "leaveArbitration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1leave()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "leaveArbitration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/title",
+          "value": "AVAudioRoutingArbiter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/title",
+          "value": "AVAudioSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1shared/title",
+          "value": "sharedRoutingArbiter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1begin(category:completionHandler:)/title",
+          "value": "beginArbitrationWithCategory:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter~1begin(category:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginArbitrationWithCategory:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioroutingarbiter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioroutingarbiter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

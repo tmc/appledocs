@@ -1,0 +1,1398 @@
+{
+  "abstract": [
+    {
+      "text": "Identify individual sounds in a file, such as a recording, with an audio file analyzer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Sound Analysis"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Classifying Sounds in an Audio File"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Recognize sounds, such as laughter and applause, when they occur in a recording by processing audio files with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, a sound recording app can use an audio file analyzer to assign searchable metadata tags to each sound file in its library. The same app could also use the analyzer to add timestamps to each recording so that the user can jump to a moment with a specific sound.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Sound-Classification-Request",
+          "level": 3,
+          "text": "Create a Sound Classification Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by passing a version identifier to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let version1 = SNClassifierIdentifier.version1",
+            "let request = try SNClassifySoundRequest(classifierIdentifier: version1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can create a sound request that uses a custom Core ML model. For example, you can train your own sound classifier with Create ML’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CreateML/MLSoundClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a custom sound classifier model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a sound classifier’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " model file to your project (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an instance of the model’s wrapper class. Xcode automatically generates a class with the same name (minus the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mlmodel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " extension).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass the instance’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "model",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " initializer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Use a default model configuration.",
+            "let defaultConfig = MLModelConfiguration()",
+            "",
+            "// Create an instance of the sound classifier's wrapper class.",
+            "let soundClassifier = try SoundClassifier(configuration: defaultConfig)",
+            "",
+            "// Create a classify sound request that uses the custom sound classifier.",
+            "let classifySoundRequest = try SNClassifySoundRequest(mlModel: soundClassifier.model)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-a-Results-Observer",
+          "level": 3,
+          "text": "Implement a Results Observer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement a type that receives results from an audio analyzer by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The protocol defines the methods an analyzer calls as it generates results or errors, or when it completes a task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let resultsObserver = ResultsObserver()",
+            "",
+            "/// An observer that receives results from a classify sound request.",
+            "class ResultsObserver: NSObject, SNResultsObserving {",
+            "    /// Notifies the observer when a request generates a prediction.",
+            "    func request(_ request: SNRequest, didProduce result: SNResult) {",
+            "        // Downcast the result to a classification result.",
+            "        guard let result = result as? SNClassificationResult else  { return }",
+            "",
+            "        // Get the prediction with the highest confidence.",
+            "        guard let classification = result.classifications.first else { return }",
+            "",
+            "        // Get the starting time.",
+            "        let timeInSeconds = result.timeRange.start.seconds",
+            "",
+            "        // Convert the time to a human-readable string.",
+            "        let formattedTime = String(format: \"%.2f\", timeInSeconds)",
+            "        print(\"Analysis result for audio at time: \\(formattedTime)\")",
+            "",
+            "        // Convert the confidence to a percentage string.",
+            "        let percent = classification.confidence * 100.0",
+            "        let percentString = String(format: \"%.2f%%\", percent)",
+            "",
+            "        // Print the classification's name (label) with its confidence.",
+            "        print(\"\\(classification.identifier): \\(percentString) confidence.\\n\")",
+            "    }",
+            "",
+            "",
+            "    /// Notifies the observer when a request generates an error.",
+            "    func request(_ request: SNRequest, didFailWithError error: Error) {",
+            "        print(\"The analysis failed: \\(error.localizedDescription)\")",
+            "    }",
+            "",
+            "    /// Notifies the observer when a request is complete.",
+            "    func requestDidComplete(_ request: SNRequest) {",
+            "        print(\"The request completed successfully!\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The observer in this example prints the prediction’s result — a timestamp, a classification name, and the classifier’s confidence — to the console. Implement your observer to take action that’s appropriate for your app according to the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must maintain a strong reference to your observer. Sound analyzers don’t keep strong references to your observer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-an-Audio-File-Analyzer",
+          "level": 3,
+          "text": "Create an Audio File Analyzer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Analyze an audio file by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passing a URL to an audio file to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/init(url:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Creates an analyzer for an audio file.",
+            "/// - Parameter audioFileURL: The URL to an audio file.",
+            "func createAnalyzer(audioFileURL: URL) -> SNAudioFileAnalyzer? {",
+            "    return try? SNAudioFileAnalyzer(url: audioFileURL)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Audio file analyzers work with any compressed or uncompressed audio file format that ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreAudio",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " supports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add your sound classification request and results observer to the analyzer by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/add(_:withObserver:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new observer to receive notifications for analysis results.",
+            "resultsObserver = ResultsObserver()",
+            "",
+            "// Add a request to analyze.",
+            "try audioFileAnalyzer.add(classifySoundRequest, withObserver: resultsObserver)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start analyzing the audio file by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/analyze()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/analyze(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Analyze the audio data.",
+            "audioFileAnalyzer.analyze()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-the-Results",
+          "level": 3,
+          "text": "Receive the Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The audio analyzer sends each result to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance as it processes the audio data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Analysis result for audio at time: 1.45",
+            "Acoustic Guitar: 92.39% confidence.",
+            "",
+            "...",
+            "",
+            "Analysis result for audio at time: 8.74",
+            "Acoustic Guitar: 94.45% confidence.",
+            "",
+            "...",
+            "",
+            "Analysis result for audio at time: 14.15",
+            "Tambourine: 85.39% confidence.",
+            "",
+            "...",
+            "",
+            "Analysis result for audio at time: 20.92",
+            "Snare Drum: 96.87% confidence."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreAudio": {
+      "abstract": [
+        {
+          "text": "Use the Core Audio framework to interact with device’s audio hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Audio",
+      "type": "topic",
+      "url": "/documentation/CoreAudio"
+    },
+    "doc://com.apple.documentation/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/CoreML"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/integrating-a-core-ml-model-into-your-app": {
+      "abstract": [
+        {
+          "text": "Add a simple model to an app, pass input data to the model, and process the model’s predictions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating a Core ML Model into Your App",
+      "type": "topic",
+      "url": "/documentation/CoreML/integrating-a-core-ml-model-into-your-app"
+    },
+    "doc://com.apple.documentation/documentation/CreateML/MLSoundClassifier": {
+      "abstract": [
+        {
+          "text": "A machine learning model you train with audio files to recognize and identify sounds on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLSoundClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CreateML/MLSoundClassifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSoundClassifier",
+      "type": "topic",
+      "url": "/documentation/CreateML/MLSoundClassifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis": {
+      "abstract": [
+        {
+          "text": "Classify various sounds by analyzing audio files or streams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sound Analysis",
+      "type": "topic",
+      "url": "/documentation/soundanalysis"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer": {
+      "abstract": [
+        {
+          "text": "An analyzer that runs sound classification requests on an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNAudioFileAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNAudioFileAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNAudioFileAnalyzer",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/add(_:withObserver:)": {
+      "abstract": [
+        {
+          "text": "Adds a new analysis request to the audio file analyzer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SNRequest",
+          "text": "SNRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withObserver"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SNResultsObserving",
+          "text": "SNResultsObserving"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/add(_:withObserver:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRequest:withObserver:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:withObserver:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer/add(_:withobserver:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/analyze()": {
+      "abstract": [
+        {
+          "text": "Analyzes the audio file synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analyze"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/analyze()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analyze"
+        }
+      ],
+      "role": "symbol",
+      "title": "analyze()",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer/analyze()"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/analyze(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Analyzes the audio file asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analyze"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/analyze(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "analyzeWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "analyze(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer/analyze(completionhandler:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/init(url:)": {
+      "abstract": [
+        {
+          "text": "Creates a new audio file analyzer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer/init(url:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiofileanalyzer/init(url:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object you create to analyze a stream of audio data and provide the results to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNAudioStreamAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNAudioStreamAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNAudioStreamAnalyzer",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snaudiostreamanalyzer"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest": {
+      "abstract": [
+        {
+          "text": "A request that classifies sound using a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNClassifySoundRequest",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a request that uses the framework’s built-in sound classification model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "classifierIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SNClassifierIdentifier",
+          "text": "SNClassifierIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(classifierIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithClassifierIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(classifierIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/init(classifieridentifier:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)": {
+      "abstract": [
+        {
+          "text": "Creates a request that uses a custom sound classification model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mlModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNClassifySoundRequest/init(mlModel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithMLModel:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(mlModel:)",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snclassifysoundrequest/init(mlmodel:)"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving": {
+      "abstract": [
+        {
+          "text": "The interface your app implements to receive the results of an analysis request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNResultsObserving"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNResultsObserving",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SNResultsObserving"
+        }
+      ],
+      "role": "symbol",
+      "title": "SNResultsObserving",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/snresultsobserving"
+    },
+    "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream": {
+      "abstract": [
+        {
+          "text": "Identify individual sounds in an audio data stream, such as from a microphone, with an audio stream analyzer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+      "kind": "article",
+      "role": "article",
+      "title": "Classifying Sounds in an Audio Stream",
+      "type": "topic",
+      "url": "/documentation/soundanalysis/classifying-sounds-in-an-audio-stream"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-analyzers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+        "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer"
+      ],
+      "title": "Audio analyzers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-analyzers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioFileAnalyzer",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+                "doc://com.apple.soundanalysis/documentation/SoundAnalysis/SNAudioStreamAnalyzer"
+              ],
+              "title": "Audio analyzers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/title",
+          "value": "SNAudioFileAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioFileAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioFileAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1analyze()/title",
+          "value": "analyze"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1analyze()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "analyze"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1analyze(completionHandler:)/title",
+          "value": "analyzeWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1analyze(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "analyzeWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/title",
+          "value": "SNClassifySoundRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(classifierIdentifier:)/title",
+          "value": "initWithClassifierIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(classifierIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithClassifierIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1init(url:)/title",
+          "value": "initWithURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1init(url:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(mlModel:)/title",
+          "value": "initWithMLModel:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNClassifySoundRequest~1init(mlModel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithMLModel:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1add(_:withObserver:)/title",
+          "value": "addRequest:withObserver:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioFileAnalyzer~1add(_:withObserver:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRequest:withObserver:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNResultsObserving/title",
+          "value": "SNResultsObserving"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNResultsObserving/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNResultsObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNResultsObserving/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNResultsObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/title",
+          "value": "SNAudioStreamAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioStreamAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.soundanalysis~1documentation~1SoundAnalysis~1SNAudioStreamAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SNAudioStreamAnalyzer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/soundanalysis/classifying-sounds-in-an-audio-file"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/soundanalysis/classifying-sounds-in-an-audio-file"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

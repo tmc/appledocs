@@ -1,0 +1,1398 @@
+{
+  "abstract": [
+    {
+      "text": "Adopt Touch Bar support by displaying interactive content and controls for your macOS apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/touch-bar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/creating-and-customizing-the-touch-bar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating and Customizing the Touch Bar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the Touch Bar to display interactive content and controls for supported models of MacBook Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses a split-view controller architecture to navigate various ways to implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. The ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class shows the available use cases. When you select one of the use cases, the secondary view shows what you can do with the Touch Bar controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The description in each secondary view controller reflects its target item. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "ButtonViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class shows how to use an ",
+              "type": "text"
+            },
+            {
+              "code": "NSButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. The sample hosts all view controllers in separate storyboards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refer to this sample if you’re looking for specific ways to use and customize the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTouchBar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It shows how to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for use with buttons, views, pickers, sliders, popovers, scrubbers, text fields, and text views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample also displays a secondary window that shows a typical use case with the Touch Bar that uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrubber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to pick an image that changes the window background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, select your development team on the macOS target’s Signing and Capabilities tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Simulate-the-Touch-Bar-in-Xcode",
+          "level": 3,
+          "text": "Simulate the Touch Bar in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When adopting Touch Bar support for your app, but running Xcode on a Mac without a Touch Bar, enable the Xcode Touch Bar simulator by choosing Window > Touch Bar -> Show Touch Bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Touch-Bar",
+          "level": 3,
+          "text": "Create the Touch Bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a Touch Bar by adding one to a view controller in the storyboard, or by creating one programmatically by overriding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. The following example demonstrates overriding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that displays a color-picker button or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorPickerTouchBarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func makeTouchBar() -> NSTouchBar? {",
+            "    let touchBar = NSTouchBar()",
+            "    touchBar.delegate = self",
+            "    ",
+            "    touchBar.customizationIdentifier = colorPickerBar",
+            "    touchBar.defaultItemIdentifiers = [selectedItemIdentifier]",
+            "    touchBar.customizationAllowedItemIdentifiers = [selectedItemIdentifier]",
+            "    touchBar.principalItemIdentifier = selectedItemIdentifier",
+            "    ",
+            "    return touchBar",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Content-to-the-Touch-Bar",
+          "level": 3,
+          "text": "Add Content to the Touch Bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add content to the Touch Bar by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate/touchBar(_:makeItemForIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following example adds a Sharing Service button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {",
+            "    guard identifier == services else { return nil }",
+            "    ",
+            "    let services = NSSharingServicePickerTouchBarItem(identifier: identifier)",
+            "    services.delegate = self",
+            "    ",
+            "    return services",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-Scrubber-to-the-Touch-Bar",
+          "level": 3,
+          "text": "Add a Scrubber to the Touch Bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSScrubber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides a way to add a flexible, horizontally oriented picker. Add a scrubber view to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCustomTouchBarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and that view adds a scrubber to the Touch Bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {",
+            "    let scrubberItem: NSCustomTouchBarItem",
+            "    ",
+            "    scrubberItem = NSCustomTouchBarItem(identifier: identifier)",
+            "    scrubberItem.customizationLabel = NSLocalizedString(\"Choose Photo\", comment: \"\")",
+            "    ",
+            "    let scrubber = NSScrubber()",
+            "    scrubber.register(NSScrubberImageItemView.self, forItemIdentifier: itemViewIdentifier)",
+            "    scrubber.mode = .free",
+            "    scrubber.selectionBackgroundStyle = .roundedBackground",
+            "    scrubber.delegate = self",
+            "    scrubber.dataSource = self",
+            "    scrubber.showsAdditionalContentIndicators = true",
+            "    scrubber.scrubberLayout = NSScrubberFlowLayout()",
+            "    ",
+            "    scrubberItem.view = scrubber",
+            "    ",
+            "    // Set the scrubber's width to be 400.",
+            "    let viewBindings: [String: NSView] = [\"scrubber\": scrubber]",
+            "    let hconstraints =",
+            "        NSLayoutConstraint.constraints(withVisualFormat: \"H:[scrubber(400)]\",",
+            "                                       options: [],",
+            "                                       metrics: nil,",
+            "                                       views: viewBindings)",
+            "    NSLayoutConstraint.activate(hconstraints)",
+            "    ",
+            "    return scrubberItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-Popover-to-the-Touch-Bar",
+          "level": 3,
+          "text": "Add a Popover to the Touch Bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCustomTouchBarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class shows its own Touch Bar when the user taps and holds on it. This class is a two-state control that can expand into its second state, which shows the contents of a bar it owns. The second Touch Bar displays when this item ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pops",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The following example shows how to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPopoverTouchBarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrubber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view with a set of numbered text items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {",
+            "    guard identifier == scrubberPopover else { return nil }",
+            "    ",
+            "    let popoverItem = NSPopoverTouchBarItem(identifier: identifier)",
+            "    popoverItem.collapsedRepresentationLabel =",
+            "        NSLocalizedString(\"Scrubber Popover\", comment: \"\")",
+            "    popoverItem.customizationLabel =",
+            "        NSLocalizedString(\"Scrubber Popover\", comment: \"\")",
+            "    ",
+            "    let scrubber = PopoverScrubber()",
+            "    scrubber.register(NSScrubberTextItemView.self, forItemIdentifier: textScrubber)",
+            "    ",
+            "    scrubber.mode = .free",
+            "    scrubber.selectionBackgroundStyle = .roundedBackground",
+            "    scrubber.delegate = self",
+            "    scrubber.dataSource = self",
+            "    scrubber.presentingItem = popoverItem",
+            "    ",
+            "    popoverItem.collapsedRepresentation = scrubber",
+            "    ",
+            "    popoverItem.popoverTouchBar =",
+            "        PopoverTouchBarSample(presentingItem: popoverItem)",
+            "    ",
+            "    return popoverItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4110bf888f80/CreatingAndCustomizingTheTouchBar.zip": {
+      "checksum": "4110bf888f8003ba83e36f0791422aef4bbeb31c88c4ea592cfeed89af4d4508c1bad5fb872abe90ab821ea0dfbd85764b343e483a81d8d5516f148457b0f985",
+      "identifier": "4110bf888f80/CreatingAndCustomizingTheTouchBar.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4110bf888f80/CreatingAndCustomizingTheTouchBar.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSColorPickerTouchBarItem": {
+      "abstract": [
+        {
+          "text": "A bar item that provides a system-defined color picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColorPickerTouchBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSColorPickerTouchBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSColorPickerTouchBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSColorPickerTouchBarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nscolorpickertouchbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCustomTouchBarItem": {
+      "abstract": [
+        {
+          "text": "A bar item that contains a responder of your choice, such as a view, a button, or a scrubber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCustomTouchBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCustomTouchBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCustomTouchBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCustomTouchBarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nscustomtouchbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPopoverTouchBarItem": {
+      "abstract": [
+        {
+          "text": "A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPopoverTouchBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPopoverTouchBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPopoverTouchBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPopoverTouchBarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nspopovertouchbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder": {
+      "abstract": [
+        {
+          "text": "An abstract class that forms the basis of event and command processing in AppKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()": {
+      "abstract": [
+        {
+          "text": "Your custom subclass of the ",
+          "type": "text"
+        },
+        {
+          "code": "NSResponder",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class should override this method to create and configure your subclass’s default ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBar",
+          "text": "NSTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeTouchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeTouchBar()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/maketouchbar()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScrubber": {
+      "abstract": [
+        {
+          "text": "A customizable item picker control for the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScrubber"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrubber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSScrubber"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSScrubber",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscrubber"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBar": {
+      "abstract": [
+        {
+          "text": "An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBar",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that allows you to provide the items for a bar dynamically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbardelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate/touchBar(_:makeItemForIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate object for the bar item for the specified bar and item identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBar",
+          "text": "NSTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "makeItemForIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBarItem",
+          "text": "NSTouchBarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTouchBarItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBarItem",
+          "text": "NSTouchBarItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate/touchBar(_:makeItemForIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchBar:makeItemForIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchBar(_:makeItemForIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbardelegate/touchbar(_:makeitemforidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarItem": {
+      "abstract": [
+        {
+          "text": "A UI control shown in the Touch Bar on supported models of MacBook Pro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/integrating-a-toolbar-and-touch-bar-into-your-app": {
+      "abstract": [
+        {
+          "text": "Provide users quick access to your app’s features from a toolbar and corresponding Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/integrating-a-toolbar-and-touch-bar-into-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating a Toolbar and Touch Bar into Your App",
+      "type": "topic",
+      "url": "/documentation/appkit/integrating-a-toolbar-and-touch-bar-into-your-app"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/appkit/touch-bar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4110bf888f80/CreatingAndCustomizingTheTouchBar.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/integrating-a-toolbar-and-touch-bar-into-your-app",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/integrating-a-toolbar-and-touch-bar-into-your-app",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScrubber/title",
+          "value": "NSScrubber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScrubber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSScrubber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSScrubber/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSScrubber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopoverTouchBarItem/title",
+          "value": "NSPopoverTouchBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopoverTouchBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPopoverTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPopoverTouchBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPopoverTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorPickerTouchBarItem/title",
+          "value": "NSColorPickerTouchBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorPickerTouchBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorPickerTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSColorPickerTouchBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSColorPickerTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate/title",
+          "value": "NSTouchBarDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarItem/title",
+          "value": "NSTouchBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/title",
+          "value": "NSResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1makeTouchBar()/title",
+          "value": "makeTouchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1makeTouchBar()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate~1touchBar(_:makeItemForIdentifier:)/title",
+          "value": "touchBar:makeItemForIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate~1touchBar(_:makeItemForIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchBar:makeItemForIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/title",
+          "value": "NSTouchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCustomTouchBarItem/title",
+          "value": "NSCustomTouchBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCustomTouchBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomTouchBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCustomTouchBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomTouchBarItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/creating-and-customizing-the-touch-bar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/creating-and-customizing-the-touch-bar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

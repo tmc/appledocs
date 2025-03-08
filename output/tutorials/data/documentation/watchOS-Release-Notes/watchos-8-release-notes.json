@@ -1,0 +1,5673 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "watchOS 8 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS 8 SDK provides support to develop watchOS apps for Apple Watch devices running watchOS 8. The SDK comes bundled with Xcode 13, available from the Mac App Store. For information on the compatibility requirements for Xcode 13, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your watch might repeatedly disconnect unexpectedly from your phone. (80733338)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Restart your phone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "App-Store",
+          "level": 3,
+          "text": "App Store",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " 2 introduces a modern Swift-based API that takes advantage of new language features like Swift concurrency. Use this API to load product information, display in-app purchases in your store, allow customers to make purchases, manage access to content and subscriptions, and receive transaction information signed by the App Store in JSON Web Signature (JWS) format. (66587964)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "request(with:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type method on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has been renamed to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/products(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (79410910)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "listener",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type properties on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Storefront",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are now ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/updates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Storefront/updates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", respectively. The nested ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " conforming structures are now ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/Transactions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/Statuses",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Storefront/Storefronts",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Both ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TransactionSequence",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TransactionListener",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/Transactions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (79034347)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "StoreKitError.userDidNotAuthenticate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is no longer available; use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/StoreKitError/userCancelled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead. (78270199)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now access ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " raw JSON data for custom decoding:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Multiple ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " methods are now allowed. ",
+                              "type": "text"
+                            },
+                            {
+                              "code": ".custom(_:)",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " is replaced with several new type methods, namely ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-3g3nc",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-8tjim",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", and ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-7rju9",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Subscript operators on ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", and ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/renewalInfo",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " are removed, along with the nested ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "Key",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " enumerations.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "BackingValue",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " and extensions adding initializers from ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "BackingValue",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " are removed. (79101606)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/onStorefrontChange(shouldContinuePurchase:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is available in StoreKit 2. You can use this purchase option to determine whether the transaction continues if the App Store storefront changes during a transaction. The default is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if this option isn’t added. (70757789)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "VerificationResult.unverified(SignedType)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VerificationResult.unverified(SignedType, VerificationError)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to provide a reason for unverified signed values. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/jsonRepresentation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is available on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/jsonRepresentation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is available on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/renewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; both properties provide the payload JSON as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/VerificationResult/payloadValue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/VerificationResult/unsafePayloadValue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties are available on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/VerificationResult",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as a convenience to access the signed value. (80701792)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where purchases performed in the Sandbox environment returned ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VerificationResult.unverified(_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (71949674)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Resolved Issues",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Fixed issue where ",
+              "type": "text"
+            },
+            {
+              "code": "jwsRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and other validation related properties were not available on ",
+              "type": "text"
+            },
+            {
+              "code": "VerificationResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (81517650)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/unfinished",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property might return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VerificationResult<Transaction>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for transactions that have already finished. (81346114)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Focus",
+          "level": 3,
+          "text": "Focus",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps installed only on your watch aren’t available in the Focus settings allow list. (76064919)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPinAnnotationView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MapPin",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are marked as deprecated in this beta. (78536295)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Music",
+          "level": 3,
+          "text": "Music",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Radio app has merged into the Music app. (67836373)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When using Watch apps, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " might be unable to generate a developer token. (78478620)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Register the bundle identifier of your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " Extension target as a separate App ID in the Developer portal, and enable the MusicKit App Service for the new App ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Accept-Language",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sends has an updated format and corrected values for multiple locales. In addition to the preferred language, the header also includes the current system language as a fallback if it differs from the preferred language. This behavior affects apps that link against macOS 12, iOS 15, tvOS 15, and watchOS 8 SDKs. (38772422)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for cleartext HTTP URL schemes for Proxy Automatic Configuration (PAC) is now deprecated. Use only HTTPS URL schemes for PAC. This affects all PAC configurations, including, but not limited to, configurations set via Settings, System Preferences, profiles, and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " APIs such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you configure a cleartext HTTP PAC URL, the system may upgrade it to HTTPS during PAC file loads. Web Proxy Auto-Discovery (WPAD) Protocol via DNS isn’t affected. Dynamic Host Configuration Protocol (DHCP) Option 252 WPAD may attempt to upgrade cleartext HTTP URLs to HTTPS during PAC file loads. (61981845)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Pairing",
+          "level": 3,
+          "text": "Pairing",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issue",
+          "level": 4,
+          "text": "Known Issue",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Watch app might crash when pairing through the camera. (80804790)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Pair the Watch using the “Pair Manually” button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Shazam",
+          "level": 3,
+          "text": "Shazam",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ShazamKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " might be unable to generate a developer token in apps using Shazam Catalog. (78589082)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Register the bundle identifier of your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " Extension target as a separate App ID in the developer portal, then enable the ShazamKit App Service for this new App ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/LocalizedStringKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " can now contain Markdown syntax. The system parses Markdown strings when you create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " view from a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LocalizedStringKey",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", including ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Text",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " views created with a string literal. The system styles ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Text",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " according to Markdown constructs. (74515884)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can create ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Text",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " respects the styles you provide through attributes within the SwiftUI attribute scope; these styles take precedence over styles you provide through view modifiers. (74841755)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specific kinds of animations now execute off the main thread, so there are new thread-safety requirements. (70524799)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the following functions and types are thread-safe:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "All methods and accessors of types conforming to these protocols: ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AlignmentID",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animatable",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentKey",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryEffect",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreferenceKey",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ", ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/VectorArithmetic",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Any closures you pass to the following types and functions, but only if the views that created them don’t have references to ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " types:",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/hstack/backgroundpreferencevalue(_:_:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/emptyview/overlaypreferencevalue(_:_:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/hstack/transformpreference(_:_:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/hstack/anchorpreference(key:value:transform:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/hstack/transformanchorpreference(key:value:transform:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/hstack/transformenvironment(_:transform:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ",",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "doc://com.apple.documentation/documentation/swiftui/form/transaction(_:)",
+                              "type": "text"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provided an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsformatter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now updates its binding as the user types. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSFormatter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " formats the text of the field when the user submits the field, or when focus moves away from the field. (67899823)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now initialize ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (72159423)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "While searching, if you tap a suggestion that uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/swiftui/anyview/searchcompletion(_:)",
+                      "type": "text"
+                    },
+                    {
+                      "text": " modifier, the suggestion list now disappears rather than displaying the single suggestion you selected. (76965399)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now customize the prompt of a search field that a searchable modifier configures using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "prompt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter instead of the previous ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. (77988967)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "buttonBorderShape",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which can be used to control the shape of bordered buttons. (79456465)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " attributes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes/3862794-underlinestyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes/3862793-strikethroughstyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " were added to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (78437803)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Types conforming to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animatable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and also conforming to either the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewModifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocols now apply animations when their values change. Consequently, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AnimatableModifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol is soft-deprecated. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Animatable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directly when targeting the latest OS versions; for example, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "struct CustomModifier: ViewModifer, Animatable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " rather than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "struct CustomModifier: AnimatableModifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (76971100)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/contentShape(_:eoFill:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier now allows fine-grained control over different kinds of shapes. For drag previews, hover effects, and context menus, the matching ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ContentShapeKinds",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is required to affect the shape of previews when linked on iOS 15.0 or newer. The default behavior is to set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "interaction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " kind. (60792377)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment value can now be set and used to customize URL handling in the view hierarchy, including URL handling in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views and links embedded in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views. (78551237)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " allows you to pass the priority to be used when spawning a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Task",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (80599258)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " views that contain excessive line height characters now have a larger default size to avoid clipping or overlapping of oversized characters. (80665315)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t push to a third screen after popping from a third screen in the navigation stack. (79076444)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "controlProminence",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is deprecated. Use the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".borderedProminent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ButtonStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead. (78908460)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "TabularData",
+          "level": 3,
+          "text": "TabularData",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/TabularData",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is a new Swift framework you use to analyze and manipulate tabular data. You can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/TabularData/DataFrame",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to read CSV and JSON files, as well as join, group, and aggregate data. (69982458)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Xcode",
+          "level": 3,
+          "text": "Xcode",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " functionality, such as loading content with music requests, doesn’t work in simulated devices. (78559381)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Test your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MusicKit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " functionality on a physical device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Downloads a proxy autoconfiguration script and executes it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "proxyAutoConfigURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "targetURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "cb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+          "text": "CFProxyAutoConfigurationResultCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "clientContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamClientContext",
+          "text": "CFStreamClientContext"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+          "text": "CFRunLoopSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Combine/ObservableObject": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPinAnnotationView": {
+      "abstract": [
+        {
+          "text": "An annotation view that displays a pin image on the map.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPinAnnotationView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPinAnnotationView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPinAnnotationView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPinAnnotationView"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MapPin": {
+      "abstract": [
+        {
+          "text": "A pin-shaped annotation used to indicate a location on a map.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapPin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MapPin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MapPin",
+      "type": "topic",
+      "url": "/documentation/MapKit/MapPin"
+    },
+    "doc://com.apple.documentation/documentation/MusicKit": {
+      "abstract": [
+        {
+          "text": "Integrate your app with Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MusicKit",
+      "type": "topic",
+      "url": "/documentation/MusicKit"
+    },
+    "doc://com.apple.documentation/documentation/ShazamKit": {
+      "abstract": [
+        {
+          "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ShazamKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShazamKit",
+      "type": "topic",
+      "url": "/documentation/ShazamKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption": {
+      "abstract": [
+        {
+          "text": "Optional settings for a product purchase that add account information, purchase details, and offers, or that specify behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product.PurchaseOption",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-3g3nc": {
+      "abstract": [
+        {
+          "text": "Adds a string for a custom key to a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-3g3nc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(key:value:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-3g3nc"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-7rju9": {
+      "abstract": [
+        {
+          "text": "Adds a number for a custom key to a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-7rju9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(key:value:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-7rju9"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh": {
+      "abstract": [
+        {
+          "text": "Adds data for a custom key to a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(key:value:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-8tjim": {
+      "abstract": [
+        {
+          "text": "Adds a Boolean value for a custom key to a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-8tjim",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(key:value:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-8tjim"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/onStorefrontChange(shouldContinuePurchase:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether a transaction needs to continue if the App Store storefront changes on the device during the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onStorefrontChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldContinuePurchase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV",
+          "text": "Storefront"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/PurchaseOption/onStorefrontChange(shouldContinuePurchase:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onStorefrontChange(shouldContinuePurchase:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/PurchaseOption/onStorefrontChange(shouldContinuePurchase:)"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/jsonRepresentation": {
+      "abstract": [
+        {
+          "text": "The JSON representation of the subscription renewal information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jsonRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/jsonRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jsonRepresentation",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/jsonRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct": {
+      "abstract": [
+        {
+          "text": "The renewal status information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.Status",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/Statuses": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that listens for new subscription status information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Statuses"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/Statuses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.Status.Statuses",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/Statuses"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/renewalInfo": {
+      "abstract": [
+        {
+          "text": "The signed renewal information for the auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renewalInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit18VerificationResultO",
+          "text": "VerificationResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV",
+          "text": "SubscriptionInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V",
+          "text": "RenewalInfo"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/renewalInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renewalInfo",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/SubscriptionInfo/Status-swift.struct/renewalInfo"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Product/products(for:)": {
+      "abstract": [
+        {
+          "text": "Requests product data from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "products"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Identifiers"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "identifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Identifiers"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "] "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Identifiers"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Identifiers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Product/products(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "products(for:)",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Product/products(for:)"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/StoreKitError/userCancelled": {
+      "abstract": [
+        {
+          "text": "The user canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userCancelled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/StoreKitError/userCancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StoreKitError.userCancelled",
+      "type": "topic",
+      "url": "/documentation/StoreKit/StoreKitError/userCancelled"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Storefront": {
+      "abstract": [
+        {
+          "text": "The region and unique identifier of the App Store storefront for the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Storefront"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Storefront",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Storefront",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Storefront"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Storefront/Storefronts": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that listens for changes to the storefront.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Storefronts"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Storefront/Storefronts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Storefront.Storefronts",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Storefront/Storefronts"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Storefront/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits storefront information when the system updates the storefront.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV",
+          "text": "Storefront"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit10StorefrontV11StorefrontsV",
+          "text": "Storefronts"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Storefront/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Storefront/updates"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/Transactions": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of transactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/Transactions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transaction.Transactions",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/Transactions"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/jsonRepresentation": {
+      "abstract": [
+        {
+          "text": "The JSON representation of the transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jsonRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/jsonRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jsonRepresentation",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/jsonRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/unfinished": {
+      "abstract": [
+        {
+          "text": "A sequence that emits unfinished transactions for the customer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unfinished"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/unfinished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unfinished",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/unfinished"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/updates": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that emits a transaction when the system creates or updates transactions that occur outside the app or on other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/updates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updates",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/updates"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/VerificationResult": {
+      "abstract": [
+        {
+          "text": "A type that describes the result of a StoreKit verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerificationResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SignedType"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/VerificationResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VerificationResult",
+      "type": "topic",
+      "url": "/documentation/StoreKit/VerificationResult"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/VerificationResult/payloadValue": {
+      "abstract": [
+        {
+          "text": "The verified value of the signed type that StoreKit confirms as verified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "payloadValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SignedType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/VerificationResult/payloadValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "payloadValue",
+      "type": "topic",
+      "url": "/documentation/StoreKit/VerificationResult/payloadValue"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/VerificationResult/unsafePayloadValue": {
+      "abstract": [
+        {
+          "text": "The associated value of the verification result that StoreKit doesn’t confirm as verified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsafePayloadValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SignedType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/VerificationResult/unsafePayloadValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unsafePayloadValue",
+      "type": "topic",
+      "url": "/documentation/StoreKit/VerificationResult/unsafePayloadValue"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AsyncSequence": {
+      "abstract": [
+        {
+          "text": "A type that provides asynchronous, sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AlignmentID": {
+      "abstract": [
+        {
+          "text": "A type that you use to create custom alignment guides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlignmentID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AlignmentID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AlignmentID",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AlignmentID"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animatable": {
+      "abstract": [
+        {
+          "text": "A type that describes how to animate a property of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animatable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Animatable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animatable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AnimatableModifier": {
+      "abstract": [
+        {
+          "text": "A modifier that can create another modifier with animation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimatableModifier"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10AnimatableP",
+          "text": "Animatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12ViewModifierP",
+          "text": "ViewModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AnimatableModifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnimatableModifier",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AnimatableModifier"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ButtonStyle": {
+      "abstract": [
+        {
+          "text": "A type that applies standard interaction behavior and a custom appearance to all buttons within a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ButtonStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ButtonStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ButtonStyle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentKey": {
+      "abstract": [
+        {
+          "text": "A key for accessing values in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentKey",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentKey"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues": {
+      "abstract": [
+        {
+          "text": "A collection of environment values propagated through a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentValues",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openURL": {
+      "abstract": [
+        {
+          "text": "An action that opens a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13OpenURLActionV",
+          "text": "OpenURLAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openURL",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openURL"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ForEach"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/GeometryEffect": {
+      "abstract": [
+        {
+          "text": "An effect that changes the visual appearance of a view, largely without changing its ancestors or descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryEffect"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10AnimatableP",
+          "text": "Animatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12ViewModifierP",
+          "text": "ViewModifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_RemoveGlobalActorIsolation"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12ViewModifierP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometryEffect",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/GeometryEffect"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader": {
+      "abstract": [
+        {
+          "text": "A container view that defines its content as a function of its own size and coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryReader"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometryReader",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/GeometryReader"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Link"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/LocalizedStringKey": {
+      "abstract": [
+        {
+          "text": "The key used to look up an entry in a strings file or strings dictionary file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/LocalizedStringKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LocalizedStringKey",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/LocalizedStringKey"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PreferenceKey": {
+      "abstract": [
+        {
+          "text": "A named value produced by a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreferenceKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreferenceKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PreferenceKey",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PreferenceKey"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Shape": {
+      "abstract": [
+        {
+          "text": "A 2D shape that you can use when drawing a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10AnimatableP",
+          "text": "Animatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_RemoveGlobalActorIsolation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Shape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Shape",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Shape"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextField": {
+      "abstract": [
+        {
+          "text": "A control that displays an editable text interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextField"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextField",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextField"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/VectorArithmetic": {
+      "abstract": [
+        {
+          "text": "A type that can serve as the animatable data of an animatable type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VectorArithmetic"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s18AdditiveArithmeticP",
+          "text": "AdditiveArithmetic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/VectorArithmetic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VectorArithmetic",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/VectorArithmetic"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/contentShape(_:eoFill:)": {
+      "abstract": [
+        {
+          "text": "Defines the content shape for hit testing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentShape"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "shape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eoFill"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ShapeP",
+          "text": "Shape"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/contentShape(_:eoFill:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentShape(_:eoFill:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/contentShape(_:eoFill:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ViewModifier": {
+      "abstract": [
+        {
+          "text": "A modifier that you apply to a view or another view modifier, producing a different version of the original value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ViewModifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ViewModifier",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ViewModifier"
+    },
+    "doc://com.apple.documentation/documentation/TabularData": {
+      "abstract": [
+        {
+          "text": "Import, organize, and prepare a table of data to train a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TabularData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabularData",
+      "type": "topic",
+      "url": "/documentation/TabularData"
+    },
+    "doc://com.apple.documentation/documentation/TabularData/DataFrame": {
+      "abstract": [
+        {
+          "text": "A collection that arranges data in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@dynamicMemberLookup"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TabularData/DataFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataFrame",
+      "type": "topic",
+      "url": "/documentation/TabularData/DataFrame"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/WatchKit"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-13-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes": {
+      "abstract": [
+        {
+          "text": "Attribute scopes that SwiftUI defines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributeScopes.SwiftUIAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeScopes.SwiftUIAttributes",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/swiftuiattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes/3862793-strikethroughstyle": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "strikethroughStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributeScopes.SwiftUIAttributes.StrikethroughStyleAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes/3862793-strikethroughstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strikethroughStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/swiftuiattributes/3862793-strikethroughstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes/3862794-underlinestyle": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "underlineStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributeScopes.SwiftUIAttributes.UnderlineStyleAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributescopes/swiftuiattributes/3862794-underlinestyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underlineStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/attributescopes/swiftuiattributes/3862794-underlinestyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "abstract": [
+        {
+          "text": "A type that converts a given data type into a representation in another type, such as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsformatter": {
+      "abstract": [
+        {
+          "text": "An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary containing information about the proxy to use within this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionProxyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionProxyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 8.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-8_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 8.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-8_3-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 8.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-8_4-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 8.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-8_5-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 8.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-8_6-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_7-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_7-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 8.7 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-8_7-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the watchOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "watchOS-8",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_7-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_6-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_5-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_4-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_3-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-8_1-release-notes"
+      ],
+      "title": "watchOS 8"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/title",
+          "value": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+              "text": "CFRunLoopSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "proxyAutoConfigURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+              "text": "CFProxyAutoConfigurationResultCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cb"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CFStreamClientContext",
+              "text": "CFStreamClientContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "clientContext"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPinAnnotationView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPinAnnotationView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+              "text": "MKAnnotationView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsformatter/title",
+          "value": "Formatter"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsformatter/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "Formatter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

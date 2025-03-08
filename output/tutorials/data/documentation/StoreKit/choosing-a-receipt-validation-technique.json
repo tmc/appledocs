@@ -1,0 +1,1279 @@
+{
+  "abstract": [
+    {
+      "text": "Select the type of receipt validation, on the device or on your server, that works for your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a receipt validation technique"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The receipt isn’t necessary if you use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to validate the app download, or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to validate in-app purchases. Only use the receipt if your app uses the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or needs the receipt to validate the app download because it can’t use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Store receipt provides a record of the sale of an app and any purchases the person makes within the app. You can authenticate purchased content by adding receipt validation code to your app or server. Receipt validation requires an understanding of secure coding techniques to employ a solution that’s secure and unique to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-validation-technique",
+          "level": 3,
+          "text": "Choose a validation technique",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways to verify a receipt’s authenticity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locally, on the device. Validating receipts locally requires code that reads and validates a binary file that Apple encodes and signs as a PKCS #7 container. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On your server with the App Store. Validating receipts with the App Store requires secure connections between your app and your server, and between your server and the App Store. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compare the approaches and determine the method that best fits your app and your infrastructure. You can also choose to implement both approaches. For managing auto-renewable subscriptions, see the following table for the key advantages that server-side receipt validation provides over on-device receipt validation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capability",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On-device validation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Server-side validation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Validates authenticity of receipt",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Includes subscription renewal transactions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Includes additional subscription information",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resistant to device clock change",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Receipts contain non-consumable in-app purchases, auto-renewable subscriptions, and non-renewing subscriptions indefinitely. Consumable in-app purchases remain in the receipt until you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You may choose to maintain and manage records of consumable in-app purchases on your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-latest-receipt",
+          "level": 3,
+          "text": "Get the latest receipt",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store updates receipts immediately after completed purchases. When you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from your server, the App Store returns the latest transaction information, regardless of the contents of the receipt you send in the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the device, the system updates the receipt immediately when it has an internet connection, and any of the following occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The customer completes an in-app purchase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app launches its transaction observer (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") and has unfinished transactions or subscription renewals.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to restore transactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app sends a request to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get a receipt if the receipt is invalid or missing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Transactions can also occur at times when the app isn’t running. When necessary, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ensure the receipt you’re working with is up-to-date. For example, if a customer purchases an auto-renewable subscription on another device, call this method to get those transactions and update the receipt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that your app receives all transactions, add the transaction observer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", at app launch time. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 705: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2018/705/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related Sessions from WWDC 2018",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device": {
+      "abstract": [
+        {
+          "text": "Verify the contents of app receipts by decoding and parsing the receipt on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/validating_receipts_on_the_device",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts on the device",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/validating_receipts_on_the_device"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "article",
+      "role": "symbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl": {
+      "abstract": [
+        {
+          "text": "The file URL for the bundle’s App Store receipt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStoreReceiptURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appStoreReceiptURL",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1407276-appstorereceipturl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppTransaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of the app, cryptographically signed by the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/apptransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2": {
+      "abstract": [
+        {
+          "text": "Adds an observer to the payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SKPaymentTransactionObserver",
+          "text": "SKPaymentTransactionObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTransactionObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/add(_:)-5ciz2"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the App Store that the app finished processing the transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentTransaction",
+          "text": "SKPaymentTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishTransaction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishTransaction(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/finishtransaction(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()": {
+      "abstract": [
+        {
+          "text": "Asks the payment queue to restore previously completed purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreCompletedTransactions()",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/restorecompletedtransactions()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)": {
+      "abstract": [
+        {
+          "text": "Asks the payment queue to restore previously completed purchases, providing an opaque identifier for the user’s account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withApplicationUsername"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactionsWithApplicationUsername:"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreCompletedTransactions(withApplicationUsername:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/restorecompletedtransactions(withapplicationusername:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver": {
+      "abstract": [
+        {
+          "text": "A set of methods that process transactions, unlock purchased functionality, and continue promoted In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionObserver",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to get the app receipt, which represents the customer’s transactions with your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKReceiptRefreshRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKReceiptRefreshRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKReceiptRefreshRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skreceiptrefreshrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue": {
+      "abstract": [
+        {
+          "text": "Enable your app to receive and handle transactions by adding an observer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up the transaction observer for the payment queue",
+      "type": "topic",
+      "url": "/documentation/storekit/setting-up-the-transaction-observer-for-the-payment-queue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store": {
+      "abstract": [
+        {
+          "text": "Verify transactions with the App Store on a secure server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts with the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/validating-receipts-with-the-app-store"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/705/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/705/",
+      "title": "Engineering Subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Engineering Subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/705/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Purchase-validation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+        "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+        "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest"
+      ],
+      "title": "Purchase validation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Purchase-validation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+                "doc://com.apple.documentation/documentation/foundation/bundle/1407276-appstorereceipturl",
+                "doc://com.apple.storekit/documentation/StoreKit/SKReceiptRefreshRequest"
+              ],
+              "title": "Purchase validation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/title",
+          "value": "SKPaymentTransactionObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1add(_:)-5ciz2/title",
+          "value": "addTransactionObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1add(_:)-5ciz2/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTransactionObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions(withApplicationUsername:)/title",
+          "value": "restoreCompletedTransactionsWithApplicationUsername:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions(withApplicationUsername:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactionsWithApplicationUsername:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/title",
+          "value": "SKReceiptRefreshRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReceiptRefreshRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKReceiptRefreshRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReceiptRefreshRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1finishTransaction(_:)/title",
+          "value": "finishTransaction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1finishTransaction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishTransaction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions()/title",
+          "value": "restoreCompletedTransactions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/choosing-a-receipt-validation-technique"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/choosing-a-receipt-validation-technique"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

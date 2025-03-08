@@ -1,0 +1,538 @@
+{
+  "abstract": [
+    {
+      "text": "A decimal value that is the exchange rate you use to convert the pricing currency to the reporting currency, when the two currencies differ.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/exchangeRate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:external_purchase_server_api:exchangeRate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "exchangeRate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "External Purchase Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "exchangeRate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.0",
+        "name": "External Purchase Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "exchangeRate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: External Purchase Server API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "double "
+            },
+            {
+              "kind": "identifier",
+              "text": "exchangeRate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Maximum length: 128.",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "The field must contain a number that can optionally be followed by a “.” and additional digits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "exchangeRate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field is required when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/pricingCurrency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportingCurrency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fields differ. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "exchangeRate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to convert amounts in the pricing currency to amounts in the reporting currency. The conversion calculation is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "(amount in pricing currency) * exchangeRate = (amount in reporting currency)",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To determine an exchange rate for your calculations, use the Bloomberg exchange rate from within 48 hours of the transaction date.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/pricingCurrency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportingCurrency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field values are the same currency, don’t include an ",
+              "type": "text"
+            },
+            {
+              "code": "exchangeRate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the line item.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about determining which reporting currency to use, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportingCurrency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/amountTaxExclusive": {
+      "abstract": [
+        {
+          "text": "The amount, in milli-units, that the customer paid or was refunded, excluding taxes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "amountTaxExclusive"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/amountTaxExclusive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "amountTaxExclusive"
+        }
+      ],
+      "role": "symbol",
+      "title": "amountTaxExclusive",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/amounttaxexclusive"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/amountTaxInclusive": {
+      "abstract": [
+        {
+          "text": "The amount, in milli-units, that the customer paid, including taxes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "amountTaxInclusive"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/amountTaxInclusive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "amountTaxInclusive"
+        }
+      ],
+      "role": "symbol",
+      "title": "amountTaxInclusive",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/amounttaxinclusive"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/exchangeRate": {
+      "abstract": [
+        {
+          "text": "A decimal value that is the exchange rate you use to convert the pricing currency to the reporting currency, when the two currencies differ.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "exchangeRate"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/exchangeRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exchangeRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "exchangeRate",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/exchangerate"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive": {
+      "abstract": [
+        {
+          "text": "The net amount, in milli-units, that you charged the customer, pre-tax, and after deducting all refunds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "netAmountTaxExclusive"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "netAmountTaxExclusive"
+        }
+      ],
+      "role": "symbol",
+      "title": "netAmountTaxExclusive",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/netamounttaxexclusive"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/pricingCurrency": {
+      "abstract": [
+        {
+          "text": "The currency used in the transaction to bill or refund the customer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "pricingCurrency"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/pricingCurrency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pricingCurrency"
+        }
+      ],
+      "role": "symbol",
+      "title": "pricingCurrency",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/pricingcurrency"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportingCurrency": {
+      "abstract": [
+        {
+          "text": "The currency the line item uses to report all amount values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportingCurrency"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportingCurrency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reportingCurrency"
+        }
+      ],
+      "role": "symbol",
+      "title": "reportingCurrency",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/reportingcurrency"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/taxAmount": {
+      "abstract": [
+        {
+          "text": "The amount, in milli-units, that the customer paid in taxes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "taxAmount"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/taxAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "taxAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "taxAmount",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/taxamount"
+    },
+    "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/taxCountry": {
+      "abstract": [
+        {
+          "text": "The three-letter country code of the country that collects the taxes for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "taxCountry"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/taxCountry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "taxCountry"
+        }
+      ],
+      "role": "symbol",
+      "title": "taxCountry",
+      "type": "topic",
+      "url": "/documentation/externalpurchaseserverapi/taxcountry"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifying-amounts-and-currency",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/amountTaxExclusive",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/amountTaxInclusive",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/netAmountTaxExclusive",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/taxAmount",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/taxCountry",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/pricingCurrency",
+        "doc://org.swift.docc.ExternalPurchaseServerAPI/documentation/ExternalPurchaseServerAPI/reportingCurrency"
+      ],
+      "title": "Specifying amounts and currency"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/externalpurchaseserverapi/exchangerate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

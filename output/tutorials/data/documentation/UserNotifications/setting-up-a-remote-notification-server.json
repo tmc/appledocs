@@ -1,0 +1,1130 @@
+{
+  "abstract": [
+    {
+      "text": "Generate notifications and push them to user devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Setting up a remote notification server"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use remote notifications (also known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "push notifications",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") to push small amounts of data to devices that use your app, even when your app isn’t running. Apps use notifications to provide important information to users. For example, a messaging service sends remote notifications when new messages arrive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delivery of remote notifications involves several key components:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your company’s server, known as the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "provider server",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Push Notification service (APNs)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app running on the user’s device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remote notifications begin with your company’s server. You decide which notifications you want to send to your users, and when to send them. When it’s time to send a notification, you generate a request that contains the notification data and a unique identifier for the user’s device. You then forward your request to APNs, which handles the delivery of the notification to the user’s device. Upon receipt of the notification, the operating system on the user’s device handles any user interactions and delivers the notification to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2953615",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’re responsible for setting up a provider server (or servers) and for configuring your app to handle notifications on the user’s device. Apple manages everything in between, including the presentation of notifications to the user. You must also have an app running on the user’s device that can communicate with your server and provide necessary information. For information about how to configure your app to handle remote notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you’re setting up a provider server to send push notifications to users in Safari and other browsers, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Build-custom-infrastructure-for-notifications",
+          "level": 3,
+          "text": "Build custom infrastructure for notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting up a remote notification server consists of a few key tasks. How you implement these tasks depends on your infrastructure. Use the technologies that are appropriate for your company:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write code to receive device tokens from instances of your app running on user devices, and to associate those tokens with your users’ accounts. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine when to send notifications to your users, and write code to generate notification payloads. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manage a connection to APNs using HTTP/2 and TLS. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write code to generate POST requests that contain your payloads, and send those requests over your HTTP/2 connection. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Regenerate your token periodically for token-based authentication. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Establish-a-trusted-connection-to-APNs",
+          "level": 3,
+          "text": "Establish a trusted connection to APNs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Communication between your provider server and APNs must take place over a secure connection. Creating a secure connection requires installing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://comodoca.my.salesforce.com/sfc/dist/version/download/?oid=00D1N000002Ljih&ids=0683l00000G9fLm&d=%2Fa%2F3l000000VbG0%2Fh70Hv.GWfGuD79pR_if0MtGjJFcUj.NRZS_RLqEyC_4&asPdf=false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.sectigo.com/knowledge-base/detail/Sectigo-Intermediate-Certificates/kA01N000000rfBO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on each of your provider servers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your provider server runs macOS Sequoia or later, both AAA and UserTrust Certificate Services root certificate are in the keychain by default. On other systems, you might need to install this certificate yourself. You can download the “AAACertificateServices 5/12/2020” certificate from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.sectigo.com/Com_KnowledgeDetailPage?Id=kA03l00000117cL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " website and “SHA-2 Root : USERTrust RSA Certification Authority” certificate from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.sectigo.com/knowledge-base/detail/Sectigo-Intermediate-Certificates/kA01N000000rfBO",
+              "isActive": true,
+              "overridingTitle": "Sectigo KnowledgeBase",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Sectigo KnowledgeBase",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "APNs is migrating from AAA to UserTrust Certificate Services root certificate. For migration dates, consult ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/news/?id=09za8wzy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send notifications, your provider server must establish either token-based or certificate-based trust with APNs using HTTP/2 and TLS. Both techniques have advantages and disadvantages, so decide which technique is best for your company.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To set up token-based trust with APNs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To set up certificate-based trust with APNs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Understand-what-APNs-provides",
+          "level": 3,
+          "text": "Understand what APNs provides",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "APNs makes every effort to deliver your notifications, and to deliver them with the best user experience:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "APNs manages an accredited, encrypted, and persistent IP connection to the user’s device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "APNs can store notifications for a device that’s currently offline. APNs then forwards the stored notifications when the device comes online.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If APNs doesn’t deliver a notification immediately, either for device power considerations or because the destination is offline, it may coalesce notifications for the same bundle ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Settingup-broadcast-PageImage-card.png": {
+      "alt": "A Live Activity with two teams displayed on the lock screen of an iOS device.",
+      "identifier": "Settingup-broadcast-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1a4297582c3e863f33c879994cb4360/Settingup-broadcast-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/167c2ee164ee75ad9ca79dfaa0f938f9/Settingup-broadcast-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by installing a certificate on your provider server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a certificate-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with APNs to send API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a connection to Apple Push Notification service (APNs)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by using stateless authentication tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a token-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-token-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification": {
+      "abstract": [
+        {
+          "text": "Send notifications to the user’s device with a JSON payload.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a remote notification",
+      "type": "topic",
+      "url": "/documentation/usernotifications/generating-a-remote-notification"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns": {
+      "abstract": [
+        {
+          "text": "Respond to the status codes returned by APNs servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling error responses from Apple Push Notification service",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-error-responses-from-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns": {
+      "abstract": [
+        {
+          "text": "Respond to the status codes that the APNs servers return.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling notification responses from APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-notification-responses-from-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app": {
+      "abstract": [
+        {
+          "text": "Deliver notifications that wake your app and update it in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Pushing background updates to your App",
+      "type": "topic",
+      "url": "/documentation/usernotifications/pushing-background-updates-to-your-app"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns": {
+      "abstract": [
+        {
+          "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering your app with APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/registering-your-app-with-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your broadcast notification payload to Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending broadcast push notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-broadcast-push-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Manage channels that your application uses for broadcast push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending channel management requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-channel-management-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools": {
+      "abstract": [
+        {
+          "text": "Use basic macOS command-line tools to send push notifications to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending push notifications using command-line tools",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-push-notifications-using-command-line-tools"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers": {
+      "abstract": [
+        {
+          "text": "Update your web server and website to send push notifications that work in Safari, other browsers, and web apps, following cross-browser standards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending web push notifications in web apps and browsers",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-web-push-notifications-in-web-apps-and-browsers"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications": {
+      "abstract": [
+        {
+          "text": "Enable broadcast capability for Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+      "images": [
+        {
+          "identifier": "Settingup-broadcast-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up broadcast push notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-broadcast-push-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console": {
+      "abstract": [
+        {
+          "text": "Send test notifications and access delivery logs to test your app’s integration with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing notifications using the Push Notification Console",
+      "type": "topic",
+      "url": "/documentation/usernotifications/testing-notifications-using-the-push-notification-console"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/troubleshooting-push-notifications": {
+      "abstract": [
+        {
+          "text": "Debug your server to send push notifications with device and broadcast push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/troubleshooting-push-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting push notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/troubleshooting-push-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns": {
+      "abstract": [
+        {
+          "text": "Monitor and interpret the status of your push notifications with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the status of push notifications using Metrics and APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+    },
+    "https://comodoca.my.salesforce.com/sfc/dist/version/download/?oid=00D1N000002Ljih&ids=0683l00000G9fLm&d=%2Fa%2F3l000000VbG0%2Fh70Hv.GWfGuD79pR_if0MtGjJFcUj.NRZS_RLqEyC_4&asPdf=false": {
+      "identifier": "https://comodoca.my.salesforce.com/sfc/dist/version/download/?oid=00D1N000002Ljih&ids=0683l00000G9fLm&d=%2Fa%2F3l000000VbG0%2Fh70Hv.GWfGuD79pR_if0MtGjJFcUj.NRZS_RLqEyC_4&asPdf=false",
+      "title": "AAA Certificate Services root certificate",
+      "titleInlineContent": [
+        {
+          "text": "AAA Certificate Services root certificate",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://comodoca.my.salesforce.com/sfc/dist/version/download/?oid=00D1N000002Ljih&ids=0683l00000G9fLm&d=%2Fa%2F3l000000VbG0%2Fh70Hv.GWfGuD79pR_if0MtGjJFcUj.NRZS_RLqEyC_4&asPdf=false"
+    },
+    "https://developer.apple.com/news/?id=09za8wzy": {
+      "identifier": "https://developer.apple.com/news/?id=09za8wzy",
+      "title": "Developer News",
+      "titleInlineContent": [
+        {
+          "text": "Developer News",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/news/?id=09za8wzy"
+    },
+    "https://support.sectigo.com/Com_KnowledgeDetailPage?Id=kA03l00000117cL": {
+      "identifier": "https://support.sectigo.com/Com_KnowledgeDetailPage?Id=kA03l00000117cL",
+      "title": "Sectigo KnowledgeBase",
+      "titleInlineContent": [
+        {
+          "text": "Sectigo KnowledgeBase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.sectigo.com/Com_KnowledgeDetailPage?Id=kA03l00000117cL"
+    },
+    "https://www.sectigo.com/knowledge-base/detail/Sectigo-Intermediate-Certificates/kA01N000000rfBO": {
+      "identifier": "https://www.sectigo.com/knowledge-base/detail/Sectigo-Intermediate-Certificates/kA01N000000rfBO",
+      "title": "SHA-2 Root : USERTrust RSA Certification Authority certificate",
+      "titleInlineContent": [
+        {
+          "text": "SHA-2 Root : USERTrust RSA Certification Authority certificate",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.sectigo.com/knowledge-base/detail/Sectigo-Intermediate-Certificates/kA01N000000rfBO"
+    },
+    "media-2953615": {
+      "alt": "Your company’s provider server communicates with Apple Push Notification service, which in turn communicates with the user’s devices.",
+      "identifier": "media-2953615",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8aa0ea03600ff29e4b9634c3de1ebf1/media-2953615.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f70fd156eda99becc550aa1e97bc87d6/media-2953615@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Remote-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+      ],
+      "title": "Remote notifications"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Server-tasks",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns"
+      ],
+      "title": "Server tasks"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Create a secure connection between your provider server and APNs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Security",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns"
+      ],
+      "title": "Security"
+    },
+    {
+      "anchor": "Device-push-notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+      ],
+      "title": "Device push notifications"
+    },
+    {
+      "anchor": "Broadcast-push-notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+      ],
+      "title": "Broadcast push notifications"
+    },
+    {
+      "anchor": "Troubleshooting",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/troubleshooting-push-notifications"
+      ],
+      "title": "Troubleshooting"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Server-tasks",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns"
+              ],
+              "title": "Server tasks"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Create a secure connection between your provider server and APNs.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Security",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns"
+              ],
+              "title": "Security"
+            },
+            {
+              "anchor": "Device-push-notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+              ],
+              "title": "Device push notifications"
+            },
+            {
+              "anchor": "Broadcast-push-notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+              ],
+              "title": "Broadcast push notifications"
+            },
+            {
+              "anchor": "Troubleshooting",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/troubleshooting-push-notifications"
+              ],
+              "title": "Troubleshooting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Remote-notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+              ],
+              "title": "Remote notifications"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/setting-up-a-remote-notification-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/setting-up-a-remote-notification-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

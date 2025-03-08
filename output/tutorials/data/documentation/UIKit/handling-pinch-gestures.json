@@ -1,0 +1,980 @@
+{
+  "abstract": [
+    {
+      "text": "Track the distance between two fingers and use that information to scale or zoom your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling pinch gestures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pinch gesture is a continuous gesture that tracks the distance between the first two fingers that touch the screen. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to detect pinch gestures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can attach a gesture recognizer in one of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Programmatically. Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Interface Builder. Drag the appropriate object from the library and drop it onto your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004406",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pinch gesture recognizer reports changes to the distance between two fingers touching the screen. Pinch gestures are continuous, so your action method is called each time the distance between the fingers changes. The distance between the fingers is reported as a scale factor. At the beginning of the gesture, the scale factor is ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". As the distance between the two fingers increases, the scale factor increases proportionally. Similarly, the scale factor decreases as the distance between the fingers decreases. Pinch gestures are used most commonly to change the size of objects or content onscreen. For example, map views use pinch gestures to change the zoom level of the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pinch gesture recognizer enters the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state only after the distance between the two fingers changes for the first time. After that initial change, subsequent changes to the distance put the gesture recognizer into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state and update the scale factor. When a person’s fingers lift from the screen, the gesture recognizer enters the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Take care when applying a pinch gesture recognizer’s scale factor to your content, or you might get unexpected results. Because your action method may be called many times, you can’t simply apply the current scale factor to your content. If you multiply each new scale value by the current value of your content, which has already been scaled by previous calls to your action method, your content will grow or shrink exponentially. Instead, cache the original value of your content, apply the scale factor to that original value, and apply the new value back to your content. Alternatively, reset the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer/scale",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " factor to ",
+                  "type": "text"
+                },
+                {
+                  "code": "1.0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " after applying each new change.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates how to resize a view linearly using a pinch gesture recognizer. This action method applies the current scale factor to the view’s transform and then resets the gesture recognizer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer/scale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Resetting the scale factor causes the gesture recognizer to report only the amount of change since the value was reset, which results in linear scaling of the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func scalePiece(_ gestureRecognizer : UIPinchGestureRecognizer) {   guard gestureRecognizer.view != nil else { return }",
+            "",
+            "   if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {",
+            "      gestureRecognizer.view?.transform = (gestureRecognizer.view?.transform.",
+            "                    scaledBy(x: gestureRecognizer.scale, y: gestureRecognizer.scale))!",
+            "      gestureRecognizer.scale = 1.0",
+            "   }}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the code for your pinch gesture recognizer isn’t called, or isn’t working correctly, check to see if the following conditions are true, and make corrections as needed:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the view is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Image views and labels set this property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At least two fingers are touching the screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re applying scale factors to your content correctly. Exponential growth of a value happens when you simply apply the scale factor to the current value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touch objects recognized as a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "began"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateBegan"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.began",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/began"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as a change to a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changed"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.changed",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/changed"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as the end of a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ended"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateEnded"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.ended",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/ended"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pinching gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPinchGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipinchgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer/scale": {
+      "abstract": [
+        {
+          "text": "The scale factor relative to the points of the two touches in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer/scale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scale"
+        }
+      ],
+      "role": "symbol",
+      "title": "scale",
+      "type": "topic",
+      "url": "/documentation/uikit/uipinchgesturerecognizer/scale"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture recognizer to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addGestureRecognizer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addGestureRecognizer(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/addgesturerecognizer(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether user events are ignored and removed from the event queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUserInteractionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/isUserInteractionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUserInteractionEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/isuserinteractionenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures": {
+      "abstract": [
+        {
+          "text": "Detect extended duration taps on the screen, and use them to reveal contextually relevant content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling long-press gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-long-press-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures": {
+      "abstract": [
+        {
+          "text": "Trace the movement of fingers around the screen, and apply that movement to your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling pan gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-pan-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures": {
+      "abstract": [
+        {
+          "text": "Measure the relative rotation of two fingers on the screen, and use that motion to rotate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling rotation gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-rotation-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures": {
+      "abstract": [
+        {
+          "text": "Detect a horizontal or vertical swipe motion on the screen, and use it to trigger navigation through your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling swipe gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-swipe-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures": {
+      "abstract": [
+        {
+          "text": "Use brief taps on the screen to implement button-like interactions with your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling tap gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-tap-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling UIKit gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-uikit-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004406": {
+      "alt": "A diagram demonstrating how two fingers can trigger a pinch gesture",
+      "identifier": "media-3004406",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18917d55299c44a6f006c3313b7ebee6/media-3004406@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+      ],
+      "title": "Gestures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Gestures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+              ],
+              "title": "Gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addGestureRecognizer(_:)/title",
+          "value": "addGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addGestureRecognizer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer~1scale/title",
+          "value": "scale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer~1scale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1began/title",
+          "value": "UIGestureRecognizerStateBegan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1began/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateBegan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/title",
+          "value": "UIPinchGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1ended/title",
+          "value": "UIGestureRecognizerStateEnded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1ended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateEnded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/title",
+          "value": "UIGestureRecognizerStateChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1isUserInteractionEnabled/title",
+          "value": "userInteractionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1isUserInteractionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInteractionEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-pinch-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-pinch-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

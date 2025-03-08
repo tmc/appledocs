@@ -1,0 +1,830 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about URL permissions for scripts and style sheets in a Safari app extension using information property list keys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using permissions for scripts and style sheets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify ",
+              "type": "text"
+            },
+            {
+              "code": "Some",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "All",
+              "type": "codeVoice"
+            },
+            {
+              "text": " access for your Safari app extension, Safari can inject scripts or style sheets that your app extension provides into the webpage. In Safari 17 or later, users also need to grant your extension access to a website. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, the setting is ",
+              "type": "text"
+            },
+            {
+              "code": "All",
+              "type": "codeVoice"
+            },
+            {
+              "text": " access. However, you can set separate, precise controls for each file that define whether Safari injects it into the webpage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each file you add to the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariContentScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariStyleSheet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sections of your app extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, you create a dictionary to describe the file. The required key specifies a path to the file. If you don’t specify any optional keys, Safari can inject the file into any website. You can add additional keys to this dictionary to permit or prevent injection of the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For both ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariContentScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariStyleSheet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a key’s ",
+              "type": "text"
+            },
+            {
+              "code": "Allowed URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Excluded URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subkeys work in conjunction with the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariWebsiteAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to specify accessible webpages. First, the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariWebsiteAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values limit access, and then Safari applies the ",
+              "type": "text"
+            },
+            {
+              "code": "Allowed URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Excluded URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys. Here’s how these keys work:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you don’t specify either key, Safari can inject the file into any website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Allowed URL Patterns",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, Safari can inject the file only into webpages with a URL that matches one of these patterns. The value for this key is an array of domain patterns.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Excluded URL Patterns",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, Safari can’t inject the file into any webpages with a URL that matches any of these patterns. The value for this key is an array of domain patterns.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These restrictions are in addition to those that you set in the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariWebsiteAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values. If you specify ",
+              "type": "text"
+            },
+            {
+              "code": "Some",
+              "type": "codeVoice"
+            },
+            {
+              "text": " access for your app extension, you have access only to the domains matching your provided domain patterns. Items in ",
+              "type": "text"
+            },
+            {
+              "code": "Allowed URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Excluded URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " create additional restrictions within those domains. Be sure all the items in your ",
+              "type": "text"
+            },
+            {
+              "code": "Allowed URL Patterns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are within a domain you have access to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-URL-patterns",
+          "level": 3,
+          "text": "Specify URL patterns",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A URL pattern takes the form ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Scheme://Domain/Path",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Scheme",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " can be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "http",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Domain",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the host domain, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "developer.apple.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "www.example.co.jp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Path",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the directory or webpage, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safari/",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safari/library/navigation/index.html",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A URL pattern can include the asterisk (*) character to match any string. Using an asterisk, you can specify all pages in a particular domain without having to create an exhaustive list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the asterisk character anywhere in the domain or path, but not in the scheme. Here are some examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "http://*/*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Matches all HTTP URLs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "http://*.example.com/*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Matches all webpages from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "http://subdomain.example.com/*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Matches all webpages from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subdomain.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "http://www.example.com/thepath/thepage.html",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Matches one webpage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://*/*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Matches all webpages that Safari delivers over HTTPS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://secure.example.com/accounts/*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Matches all webpages from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "accounts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "secure.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that Safari delivers over HTTPS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The format for URL patterns in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Allowed URL Patterns",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "Excluded URL Patterns",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " keys isn’t the same as the format for domain patterns in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Allowed Domains",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array that you specify in your website access list.  See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions": {
+      "abstract": [
+        {
+          "text": "Set website access permissions in a Safari app extension using information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting website access permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-website-access-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys": {
+      "abstract": [
+        {
+          "text": "Set keys for permissions, scripts, style sheets, contextual menu items, and toolbar items in the information property list file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Safari app extension feature keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/setting-safari-app-extension-feature-keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Access-and-permissions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+        "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions"
+      ],
+      "title": "Access and permissions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Access-and-permissions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+                "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions"
+              ],
+              "title": "Access and permissions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/using-permissions-for-scripts-and-style-sheets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/using-permissions-for-scripts-and-style-sheets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,823 @@
+{
+  "abstract": [
+    {
+      "text": "Define a test function to validate that code is working correctly.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/DefiningTests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Defining test functions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Defining a test function for a Swift package or project is straightforward.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-the-testing-library",
+          "level": 3,
+          "text": "Import the testing library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To import the testing library, add the following to the Swift source file that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains the test:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Testing"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only import the testing library into a test target. Importing the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "testing library into an application, library, or binary target isn’t",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "supported or recommended. Test functions aren’t stripped from binaries when",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "building for release, so logic and fixtures of a test may be visible to anyone",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "who inspects a build product that contains a test function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Declare-a-test-function",
+          "level": 3,
+          "text": "Declare a test function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To declare a test function, write a Swift function declaration that doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "take any arguments, then prefix its name with the ",
+              "type": "text"
+            },
+            {
+              "code": "@Test",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test func foodTruckExists() {",
+            "  // Test logic goes here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This test function can be present at file scope or within a type. A type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "containing test functions is automatically a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "test suite",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and can be optionally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "annotated with the ",
+              "type": "text"
+            },
+            {
+              "code": "@Suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute. For more information about suites, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/OrganizingTests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that, while this function is a valid test function, it doesn’t actually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perform any action or test any code. To check for expected values and outcomes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in test functions, add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Expectations",
+              "isActive": true,
+              "overridingTitle": "expectations",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "expectations",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to the test function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-a-tests-name",
+          "level": 3,
+          "text": "Customize a test’s name",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize a test function’s name as presented in an IDE or at the command",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "line, supply a string literal as an argument to the ",
+              "type": "text"
+            },
+            {
+              "code": "@Test",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test(\"Food truck exists\") func foodTruckExists() { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To further customize the appearance and behavior of a test function, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Traits",
+              "isActive": true,
+              "overridingTitle": "traits",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "traits",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-concurrent-or-throwing-tests",
+          "level": 3,
+          "text": "Write concurrent or throwing tests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with other Swift functions, test functions can be marked ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to annotate them as concurrent or throwing, respectively. If a test is only safe",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to run in the main actor’s execution context (that is, from the main thread of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the process), it can be annotated ",
+              "type": "text"
+            },
+            {
+              "code": "@MainActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test @MainActor func foodTruckExists() async throws { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Limit-the-availability-of-a-test",
+          "level": 3,
+          "text": "Limit the availability of a test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a test function can only run on newer versions of an operating system or of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Swift language, use the ",
+              "type": "text"
+            },
+            {
+              "code": "@available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute when declaring it. Use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument of the ",
+              "type": "text"
+            },
+            {
+              "code": "@available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to specify a message to log if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a test is unable to run due to limited availability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@available(macOS 11.0, *)",
+            "@available(swift, introduced: 8.0, message: \"Requires Swift 8.0 features to run\")",
+            "@Test func foodTruckExists() { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/Expectations": {
+      "abstract": [
+        {
+          "text": "Check for expected values, outcomes, and asynchronous events in tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Expectations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Expectations and confirmations",
+      "type": "topic",
+      "url": "/documentation/testing/expectations"
+    },
+    "doc://org.swift.testing/documentation/Testing/MigratingFromXCTest": {
+      "abstract": [
+        {
+          "text": "Migrate an existing test method or test class written using XCTest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/MigratingFromXCTest",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating a test from XCTest",
+      "type": "topic",
+      "url": "/documentation/testing/migratingfromxctest"
+    },
+    "doc://org.swift.testing/documentation/Testing/OrganizingTests": {
+      "abstract": [
+        {
+          "text": "Organize tests into test suites.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/OrganizingTests",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing test functions with suite types",
+      "type": "topic",
+      "url": "/documentation/testing/organizingtests"
+    },
+    "doc://org.swift.testing/documentation/Testing/Suite(_:_:)": {
+      "abstract": [
+        {
+          "text": "Declare a test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Suite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing10SuiteTraitP",
+          "text": "SuiteTrait"
+        },
+        {
+          "kind": "text",
+          "text": "...)"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Suite(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Suite(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/suite(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Test": {
+      "abstract": [
+        {
+          "text": "A type representing a test or suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Test"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Test",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Test"
+        }
+      ],
+      "role": "symbol",
+      "title": "Test",
+      "type": "topic",
+      "url": "/documentation/testing/test"
+    },
+    "doc://org.swift.testing/documentation/Testing/Test(_:_:)": {
+      "abstract": [
+        {
+          "text": "Declare a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Test"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing9TestTraitP",
+          "text": "TestTrait"
+        },
+        {
+          "kind": "text",
+          "text": "...)"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Test(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Test(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/test(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)": {
+      "abstract": [
+        {
+          "text": "Construct a list of tags to apply to a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Tag.List",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing3TagV",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/tags(_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Traits": {
+      "abstract": [
+        {
+          "text": "Add traits to tests to annotate them or customize their behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Traits",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Traits",
+      "type": "topic",
+      "url": "/documentation/testing/traits"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/OrganizingTests",
+        "doc://org.swift.testing/documentation/Testing/MigratingFromXCTest",
+        "doc://org.swift.testing/documentation/Testing/Test(_:_:)",
+        "doc://org.swift.testing/documentation/Testing/Test",
+        "doc://org.swift.testing/documentation/Testing/Suite(_:_:)"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/definingtests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

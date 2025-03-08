@@ -1,0 +1,712 @@
+{
+  "abstract": [
+    {
+      "text": "Provide support for bidirectional discovery and configuration of devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremidi/documentation/CoreMIDI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core MIDI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "MIDI Capability Inquiry"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MIDI Capability Inquiry (MIDI-CI) uses bidirectional communication to enable devices to exchange information about their capabilities and automatically configure themselves to work together. MIDI-CI discovers and configures devices using the following means:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Profile configuration. Profiles define a standard set of rules for how devices respond to MIDI messages. For example, devices that support a piano profile respond to messages common to a piano, such as note on and off, velocity, and pedaling.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property exchange. Devices can use a set of System Exclusive (SysEx) messages to find and control various properties of other devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Protocol negotiation. MIDI 2.0 devices can select between using the MIDI 1.0 or 2.0 protocols, falling back to 1.0 when not supported by other devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MIDI-CI defines two roles in the communication between devices: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "initiator",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "responder",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Client processes acting as the initiator use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICISession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, which allows for profile and property configuration of the associated responder. Client processes that advertise their own profile and property capabilities use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, which sends responder-originated messages to initiators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremidi/documentation/CoreMIDI": {
+      "abstract": [
+        {
+          "text": "Communicate with MIDI devices such as hardware keyboards and synthesizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core MIDI",
+      "type": "topic",
+      "url": "/documentation/coremidi"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIDiscoveryManager": {
+      "abstract": [
+        {
+          "text": "A singleton object that performs systemwide MIDI-CI discovery.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDICIDiscoveryManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIDiscoveryManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDICIDiscoveryManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDICIDiscoveryManager",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicidiscoverymanager"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfile": {
+      "abstract": [
+        {
+          "text": "A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDICIProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDICIProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDICIProfile",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiciprofile"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileState": {
+      "abstract": [
+        {
+          "text": "An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDICIProfileState"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDICIProfileState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDICIProfileState",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiciprofilestate"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileStateList": {
+      "abstract": [
+        {
+          "text": "An array of profile state objects that describes the profile configuration for all channels of a reachable MIDI-CI node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MIDICIProfileStateList"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileStateList",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MIDICIProfileStateList",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiciprofilestatelist"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIResponder": {
+      "abstract": [
+        {
+          "text": "An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDICIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDICIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDICIResponder",
+      "type": "topic",
+      "url": "/documentation/coremidi/midiciresponder"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICISession": {
+      "abstract": [
+        {
+          "text": "An object that represents a MIDI-CI session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDICISession"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICISession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDICISession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDICISession",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicisession"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth": {
+      "abstract": [
+        {
+          "text": "Connect to Bluetooth Low Energy MIDI peripherals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Bluetooth",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-bluetooth"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers": {
+      "abstract": [
+        {
+          "text": "Create driver plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Drivers",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-drivers"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages": {
+      "abstract": [
+        {
+          "text": "Create and configure messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Messages",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-messages"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking": {
+      "abstract": [
+        {
+          "text": "Create and manage devices connected over a local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Networking",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-networking"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services": {
+      "abstract": [
+        {
+          "text": "Communicate with hardware using Universal MIDI Packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Services",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-services"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup": {
+      "abstract": [
+        {
+          "text": "Configure the global MIDI system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI System Setup",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-system-setup"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection": {
+      "abstract": [
+        {
+          "text": "Create play-through connections between sources and destinations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Thru Connection",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-thru-connection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Capability-Inquiry",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIDiscoveryManager",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICISession",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfile",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileState",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIResponder"
+      ],
+      "title": "Capability Inquiry"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Capability-Inquiry",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIDiscoveryManager",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICISession",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfile",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileState",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIProfileStateList",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDICIResponder"
+              ],
+              "title": "Capability Inquiry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIDiscoveryManager/title",
+          "value": "MIDICIDiscoveryManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIDiscoveryManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIDiscoveryManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIDiscoveryManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIDiscoveryManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIProfileState/title",
+          "value": "MIDICIProfileState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIProfileState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIProfileState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIProfileState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIProfileState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIResponder/title",
+          "value": "MIDICIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIProfile/title",
+          "value": "MIDICIProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICIProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICIProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICISession/title",
+          "value": "MIDICISession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICISession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICISession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDICISession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDICISession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremidi/midi-capability-inquiry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremidi/midi-capability-inquiry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

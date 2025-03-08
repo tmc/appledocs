@@ -1,0 +1,1508 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure your app maintains academic integrity by reviewing assessment practices and managing system capabilities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Automatic Assessment Configuration"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing an educational assessment app for distribution"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help ensure academic integrity for iOS, iPadOS, and macOS assessment apps, it’s critical to acquire an Automatic Assessment Configuration (AAC) entitlement, assess your security policies, and manage capabilities. Ensure the AAC entitlement is in your app’s provisioning profile and decide how to manage system capabilities not already restricted by AAC, and third-party keyboards. For macOS apps, focus on handling app termination and window operations during assessments to prevent the system from getting locked in assessment mode and providing a poor user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-and-use-the-Automatic-Assessment-Configuration-entitlement",
+          "level": 3,
+          "text": "Configure and use the Automatic Assessment Configuration entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by completing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/automatic-assessment-configuration/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After receiving your AAC entitlement, you must set up provisioning before building your app using AAC.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-your-apps-security-requirements",
+          "level": 3,
+          "text": "Determine your app’s security requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AAC creates a secure environment for delivering assessments in iOS, iPadOS, and macOS by restricting hardware and software capabilities at the system level. When a student starts a test in assessment mode in iOS and iPadOS, the device automatically restricts usage to just that specific app. This prevents students from accessing any other apps or capabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In assessment mode, iPadOS and iOS automatically turn off certain capabilities, like the functionality of certain hardware buttons, screen recording and screenshots, remote observation with Classroom, and dictionary definition lookup. Assessment mode also turns off a set of configurable features that you can enable to meet specific assessment needs and requirements. These include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Typing capabilities like autocorrect, spell checker, predictive text, keyboard text shortcuts, and smart punctuation, and continuous path keyboard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Spoken content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Password autofill",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handoff",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In assessment mode, macOS automatically limits access to one or more apps and restricts access to the following capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mission Control",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Menu bar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launching apps using function keys",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification Center and notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Music app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Screen sharing and mirroring",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Screen recording and screenshots",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Emoji keyboard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Trackpad lookup gesture",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Consider your app’s assessment security policies to determine what additional capabilities to build into your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Restrict-third-party-software-keyboards-for-iOS-and-iPadOS",
+          "level": 3,
+          "text": "Restrict third-party software keyboards for iOS and iPadOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AAC doesn’t restrict third-party software keyboards, and some third-party keyboards support searching from within the keyboard. If you don’t want these used in your assessment app, you restrict their use with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as shown in the code below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Implement this in the app delegate.",
+            "func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool {",
+            "    // Disallow custom keyboard extensions.",
+            "    if extensionPointIdentifier == .keyboard {",
+            "        return false",
+            "    }",
+            "    return false",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Control-the-context-menu-in-iOS-and-iPadOS",
+          "level": 3,
+          "text": "Control the context menu in iOS and iPadOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A context menu appears when someone selects text or uses a long-press gesture in a text field in iOS or iPadOS. AAC removes the Share, Translate, and Scan Text options from the top-level menu. It’s important to carefully review any additional items that appear and remove them from the menu if you don’t want students to access them during testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder/buildMenu(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " removes unwanted items or the entire menu. The following code in the app’s delegate removes the Autofill menu (which gives access to Contacts and Passwords) to prevent people from using Autofill to access content they’ve added:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func buildMenu(with builder: UIMenuBuilder) {",
+            "    if #available(iOS 17.0, *) {",
+            "        builder.remove(menu: .autoFill)",
+            "    } else {",
+            "        // Fall back to earlier versions.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIMenu/Identifier-swift.struct/lookup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " removes the Lookup menu, which is another item in this menu that assessment developers often prefer to remove. For more information about this property, see  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIMenu/Identifier-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about context menus, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/context-menus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-permissions-for-your-macOS-app",
+          "level": 3,
+          "text": "Request permissions for your macOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AAC prevents the system from showing notifications to people. This means that notifications requesting the user to give permissions, like microphone or camera access, aren’t displayed to users. Therefore, it’s essential to request all necessary permissions before entering AAC, allowing people to respond appropriately. Additionally, rechecking permissions before entering AAC is advisable to confirm that users have granted all required permissions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " explains how to prompt the user to authorize access to the camera and microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-the-context-menu-for-macOS",
+          "level": 3,
+          "text": "Control the context menu for macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can associate a menu with each view. Your view subclasses can arrange to build their own context menus, or they can customize the default context menu by implementing ",
+              "type": "text"
+            },
+            {
+              "code": "menuWillOpen:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the menu’s delegate by calling ",
+              "type": "text"
+            },
+            {
+              "code": "removeAllItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Another approach is to capture all events at the top level of the application, via ",
+              "type": "text"
+            },
+            {
+              "code": "NSEvent.addLocalMonitorForEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for click events so they’re ignored, which prevents the appearance of any context menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-text-replacement-in-macOS",
+          "level": 3,
+          "text": "Handle text replacement in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assessment mode doesn’t block text replacements. A person’s text replacement dictionary, set in System Settings > Keyboard, is kept in a global default. Your app can override this global default and replace it with an empty dictionary by adding the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UserDefaults.standard.setValue([:], forKey:\"NSUserDictionaryReplacementItems\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replacing with an empty dictionary ensures that your app doesn’t offer text replacements in assessment mode. It’s important to do this before anything in your UI is loaded, so add it to ",
+              "type": "text"
+            },
+            {
+              "code": "init()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prevent-early-termination-of-an-assessment-in-macOS",
+          "level": 3,
+          "text": "Prevent early termination of an assessment in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app includes a window with an exit button for assessment mode, ensure that people can’t close that window while an assessment is ongoing to prevent premature termination of the assessment. One solution is to remove the close and minimize buttons from the window’s title bar and the Close menu item if your app has one. You can edit the window’s properties in the Attributes inspector or programmatically remove the buttons. You can also arrange to have the window’s delegate deny the close operation if a test is in progress.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// For the window's delegate.",
+            "func windowShouldClose(_ sender: NSWindow) -> Bool {",
+            "    if aTestIsInProgress {",
+            "        return false // Don't allow the window to close.",
+            "    }",
+            "    return true // It's OK to close the window.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though your app’s menu bar isn’t visible and someone can’t reach it when in assessment mode, people can still type command key equivalents to invoke menu items, such as Command-Q for Quit.  Check which of your app’s menu items have key equivalents and make sure you handle them properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Test these options carefully. Be careful not to lock your development Mac in assessment mode accidentally, which happens when Xcode pauses at a breakpoint while the Mac is in this mode, potentially leaving you with no option but to restart the Mac to exit assessment mode. To prevent such situations, test these functionalities in a virtual machine, which offers the flexibility to force quit if required.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Consider-interactions-with-app-based-content-filters-and-VPNs-in-macOS",
+          "level": 3,
+          "text": "Consider interactions with app-based content filters and VPNs in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AAC restricts network access to every process except those the developer allows. Temporary network access is granted to any process working on behalf of a process that has network access. Some app-based third-party network solutions, such as content filters and VPNs, may prevent an assessment app from connecting to the network during AAC. To accommodate AAC usage on Mac computers with these products, consider these strategies:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Grant internet access to the network product by including it as a participant in the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Exclude the domains the assessment app requires from being routed through the network product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, schools may temporarily uninstall the incompatible network product. Alternatively, if removal isn’t feasible, developers might provide a version of the app that employs different methods to secure the Mac for testing, bypassing the need for AAC.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "components-context-menus-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-context-menus-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4dcf19cb8c346800d0f1e5c4fa0dc1ed/components-context-menus-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81627d4fbeb8beae307beed226b40787/components-context-menus-thumbnail@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Enter single-app mode and prevent students from accessing specific system features while taking an exam.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automatic Assessment Configuration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration information for an assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentConfiguration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession": {
+      "abstract": [
+        {
+          "text": "A session that your app uses to protect an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentSession",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app": {
+      "abstract": [
+        {
+          "text": "Ensure the academic integrity of your assessment app by using Automatic Assessment Configuration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Build an Educational Assessment App",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/build-an-educational-assessment-app"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/context-menus": {
+      "abstract": [
+        {
+          "text": "A context menu provides access to functionality that’s directly related to an item, without cluttering the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/context-menus",
+      "images": [
+        {
+          "identifier": "components-context-menus-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Context menus",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/context-menus"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera and microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Authorization for Media Capture on macOS",
+      "type": "topic",
+      "url": "/documentation/BundleResources/requesting-authorization-for-media-capture-on-macos"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to grant permission to use app extensions that are based on a specified extension point identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldAllowExtensionPointIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "extensionPointIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationExtensionPointIdentifier",
+          "text": "ExtensionPointIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:shouldAllowExtensionPointIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIMenu/Identifier-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants you use to identify an app’s standard menus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIMenu/Identifier-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIMenu.Identifier",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIMenu/Identifier-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIMenu/Identifier-swift.struct/lookup": {
+      "abstract": [
+        {
+          "text": "The Lookup menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lookup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIMenu",
+          "text": "UIMenu"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIMenuIdentifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIMenu/Identifier-swift.struct/lookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lookup",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIMenu/Identifier-swift.struct/lookup"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIResponder/buildMenu(with:)": {
+      "abstract": [
+        {
+          "text": "Asks the receiving responder to add and remove items from a menu system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "builder"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIMenuBuilder",
+          "text": "UIMenuBuilder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder/buildMenu(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildMenu(with:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponder/buildMenu(with:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/automatic-assessment-configuration/": {
+      "identifier": "https://developer.apple.com/contact/request/automatic-assessment-configuration/",
+      "title": "Automatic Assessment Configuration Entitlement Request",
+      "titleInlineContent": [
+        {
+          "text": "Automatic Assessment Configuration Entitlement Request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/automatic-assessment-configuration/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+      ],
+      "title": "Sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+              ],
+              "title": "Sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/title",
+          "value": "AEAssessmentSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIResponder~1buildMenu(with:)/title",
+          "value": "buildMenuWithBuilder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIResponder~1buildMenu(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "buildMenuWithBuilder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIMenuBuilder",
+              "text": "id<UIMenuBuilder>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "builder"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIMenu~1Identifier-swift.struct~1lookup/title",
+          "value": "UIMenuLookup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIMenu~1Identifier-swift.struct~1lookup/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIMenuIdentifier",
+              "text": "UIMenuIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIMenuLookup"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldAllowExtensionPointIdentifier:)/title",
+          "value": "application:shouldAllowExtensionPointIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldAllowExtensionPointIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldAllowExtensionPointIdentifier:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIApplicationExtensionPointIdentifier",
+              "text": "UIApplicationExtensionPointIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "extensionPointIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/title",
+          "value": "AEAssessmentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIMenu~1Identifier-swift.struct/title",
+          "value": "UIMenuIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIMenu~1Identifier-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIMenuIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/preparing-an-educational-assessment-app-for-distribution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/preparing-an-educational-assessment-app-for-distribution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

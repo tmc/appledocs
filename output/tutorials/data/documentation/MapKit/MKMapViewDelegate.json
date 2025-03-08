@@ -1,0 +1,3207 @@
+{
+  "abstract": [
+    {
+      "text": "Optional methods that you use to receive map-related update messages.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MKMapViewDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MKMapViewDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MKMapViewDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MKMapViewDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapViewDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because many map operations require the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to load data asynchronously, the map view calls these methods to notify your app when specific operations complete. The map view also uses these methods to request annotation and overlay views, and to manage interactions with those views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before releasing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that you set a delegate for, remember to set that object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". MapKit calls all of your delegate methods on the app’s main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/delegate": {
+      "abstract": [
+        {
+          "text": "The receiver’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKMapViewDelegate",
+          "text": "MKMapViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/delegate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/selectableMapFeatures": {
+      "abstract": [
+        {
+          "text": "The property that describes which selectable features the map responds to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectableMapFeatures"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MKMapFeatureOptions",
+          "text": "MKMapFeatureOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/selectableMapFeatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectableMapFeatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectableMapFeatures",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/selectablemapfeatures"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate": {
+      "abstract": [
+        {
+          "text": "Optional methods that you use to receive map-related update messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapViewDelegate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:calloutAccessoryControlTapped:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user taps one of the annotation view’s accessory buttons.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "annotationView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "calloutAccessoryControlTapped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIControl",
+          "text": "UIControl"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:calloutAccessoryControlTapped:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:annotationView:calloutAccessoryControlTapped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:annotationView:calloutAccessoryControlTapped:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:annotationview:calloutaccessorycontroltapped:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:didChange:fromOldState:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the drag state of one of its annotation views changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "annotationView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MKAnnotationViewDragState",
+          "text": "DragState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromOldState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MKAnnotationViewDragState",
+          "text": "DragState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:didChange:fromOldState:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:annotationView:didChangeDragState:fromOldState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:annotationView:didChange:fromOldState:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:annotationview:didchange:fromoldstate:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:clusterAnnotationForMemberAnnotations:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide a cluster annotation object for the specified annotations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "clusterAnnotationForMemberAnnotations"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKClusterAnnotation",
+          "text": "MKClusterAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:clusterAnnotationForMemberAnnotations:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:clusterAnnotationForMemberAnnotations:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:clusterAnnotationForMemberAnnotations:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:clusterannotationformemberannotations:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-44xon": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view adds one or more annotation views to the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-44xon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didAddAnnotationViews:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didadd:)-44xon"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-793gj": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view adds one or more renderer objects to the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKOverlayRenderer",
+          "text": "MKOverlayRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-793gj",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didAddOverlayRenderers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didadd:)-793gj"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAddOverlayViews:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map adds one or more overlay views to the map.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAddOverlayViews"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAddOverlayViews:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didAddOverlayViews:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didAddOverlayViews:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didaddoverlayviews:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didChange:animated:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user-tracking mode changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MKUserTrackingMode",
+          "text": "MKUserTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didChange:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didChangeUserTrackingMode:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didChange:animated:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didchange:animated:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-4ldss": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user deselects one or more annotations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDeselect"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-4ldss",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didDeselectAnnotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didDeselect:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:diddeselect:)-4ldss"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-yo7q": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user deselects one or more of its annotation views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDeselect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-yo7q",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didDeselectAnnotationView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didDeselect:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:diddeselect:)-yo7q"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didFailToLocateUserWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when an attempt to locate the user’s location fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFailToLocateUserWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didFailToLocateUserWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didFailToLocateUserWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didFailToLocateUserWithError:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didfailtolocateuserwitherror:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-41by3": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user selects one or more of its annotation views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-41by3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didSelectAnnotationView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didSelect:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didselect:)-41by3"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-9km43": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user selects one or more annotations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-9km43",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didSelectAnnotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didSelect:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didselect:)-9km43"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view updates the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKUserLocation",
+          "text": "MKUserLocation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didUpdateUserLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didupdate:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionDidChangeAnimated:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the region the map view is displaying changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "regionDidChangeAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionDidChangeAnimated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:regionDidChangeAnimated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:regionDidChangeAnimated:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:regiondidchangeanimated:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionWillChangeAnimated:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the region the map view is displaying is about to change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "regionWillChangeAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionWillChangeAnimated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:regionWillChangeAnimated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:regionWillChangeAnimated:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:regionwillchangeanimated:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for a renderer object to use when drawing the specified overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rendererFor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKOverlay",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKOverlayRenderer",
+          "text": "MKOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:rendererForOverlay:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:rendererFor:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:rendererfor:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:selectionAccessoryFor:)": {
+      "abstract": [
+        {
+          "text": "Specifies the accessory to display for a selected annotation",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selectionAccessoryFor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKSelectionAccessory",
+          "text": "MKSelectionAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:selectionAccessoryFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:selectionAccessoryForAnnotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:selectionAccessoryFor:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:selectionaccessoryfor:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-6j267": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for the overlay view to use when displaying the specified overlay object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewFor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKOverlay",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKOverlayView",
+          "text": "MKOverlayView"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-6j267",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:viewForOverlay:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:viewFor:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-6j267"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-8humz": {
+      "abstract": [
+        {
+          "text": "Returns the view associated with the specified annotation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewFor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+          "text": "MKAnnotationView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-8humz",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:viewForAnnotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:viewFor:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidChangeVisibleRegion(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view’s visible region changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewDidChangeVisibleRegion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidChangeVisibleRegion(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewDidChangeVisibleRegion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewDidChangeVisibleRegion(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewdidchangevisibleregion(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFailLoadingMap(_:withError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the specified view is unable to load the map data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewDidFailLoadingMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFailLoadingMap(_:withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewDidFailLoadingMap:withError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewDidFailLoadingMap(_:withError:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewdidfailloadingmap(_:witherror:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishLoadingMap(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the specified map view successfully loads the needed map data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewDidFinishLoadingMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishLoadingMap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewDidFinishLoadingMap:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewDidFinishLoadingMap(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewdidfinishloadingmap(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishRenderingMap(_:fullyRendered:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view finishes rendering all visible tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewDidFinishRenderingMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fullyRendered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishRenderingMap(_:fullyRendered:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewDidFinishRenderingMap:fullyRendered:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewDidFinishRenderingMap(_:fullyRendered:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewdidfinishrenderingmap(_:fullyrendered:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidStopLocatingUser(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view stops tracking the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewDidStopLocatingUser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidStopLocatingUser(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewDidStopLocatingUser:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewDidStopLocatingUser(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewdidstoplocatinguser(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLoadingMap(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the specified map view is about to retrieve some map data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewWillStartLoadingMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLoadingMap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewWillStartLoadingMap:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewWillStartLoadingMap(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewwillstartloadingmap(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLocatingUser(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the map view is about to start tracking the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewWillStartLocatingUser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLocatingUser(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewWillStartLocatingUser:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewWillStartLocatingUser(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewwillstartlocatinguser(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartRenderingMap(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the map view is about to start rendering some of its tiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapViewWillStartRenderingMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartRenderingMap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapViewWillStartRenderingMap:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapViewWillStartRenderingMap(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapviewwillstartrenderingmap(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-the-map-view-behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/delegate"
+      ],
+      "title": "Customizing the map view behavior"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-map-position-changes",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionWillChangeAnimated:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidChangeVisibleRegion(_:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionDidChangeAnimated:)"
+      ],
+      "title": "Responding to map position changes"
+    },
+    {
+      "anchor": "Loading-the-map-data",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLoadingMap(_:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishLoadingMap(_:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFailLoadingMap(_:withError:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartRenderingMap(_:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishRenderingMap(_:fullyRendered:)"
+      ],
+      "title": "Loading the map data"
+    },
+    {
+      "anchor": "Tracking-the-users-location",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLocatingUser(_:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidStopLocatingUser(_:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didFailToLocateUserWithError:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didChange:animated:)"
+      ],
+      "title": "Tracking the user’s location"
+    },
+    {
+      "anchor": "Managing-annotation-views",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-8humz",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-44xon",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:calloutAccessoryControlTapped:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:clusterAnnotationForMemberAnnotations:)"
+      ],
+      "title": "Managing annotation views"
+    },
+    {
+      "anchor": "Dragging-an-annotation-view",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:didChange:fromOldState:)"
+      ],
+      "title": "Dragging an annotation view"
+    },
+    {
+      "anchor": "Selecting-annotations-and-annotations-views",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-41by3",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-yo7q",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-4ldss",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-9km43",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/selectableMapFeatures"
+      ],
+      "title": "Selecting annotations and annotations views"
+    },
+    {
+      "anchor": "Managing-the-display-of-overlays",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:selectionAccessoryFor:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-793gj",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-6j267",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAddOverlayViews:)"
+      ],
+      "title": "Managing the display of overlays"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MKMapViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mapkit/documentation/MapKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-map-position-changes",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionWillChangeAnimated:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidChangeVisibleRegion(_:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:regionDidChangeAnimated:)"
+              ],
+              "title": "Responding to map position changes"
+            },
+            {
+              "anchor": "Loading-the-map-data",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLoadingMap(_:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishLoadingMap(_:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFailLoadingMap(_:withError:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartRenderingMap(_:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidFinishRenderingMap(_:fullyRendered:)"
+              ],
+              "title": "Loading the map data"
+            },
+            {
+              "anchor": "Tracking-the-users-location",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewWillStartLocatingUser(_:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapViewDidStopLocatingUser(_:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didFailToLocateUserWithError:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didChange:animated:)"
+              ],
+              "title": "Tracking the user’s location"
+            },
+            {
+              "anchor": "Managing-annotation-views",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-8humz",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-44xon",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:calloutAccessoryControlTapped:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:clusterAnnotationForMemberAnnotations:)"
+              ],
+              "title": "Managing annotation views"
+            },
+            {
+              "anchor": "Dragging-an-annotation-view",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:annotationView:didChange:fromOldState:)"
+              ],
+              "title": "Dragging an annotation view"
+            },
+            {
+              "anchor": "Selecting-annotations-and-annotations-views",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-41by3",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-yo7q",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didDeselect:)-4ldss",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didSelect:)-9km43",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/selectableMapFeatures"
+              ],
+              "title": "Selecting annotations and annotations views"
+            },
+            {
+              "anchor": "Managing-the-display-of-overlays",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:selectionAccessoryFor:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAdd:)-793gj",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:viewFor:)-6j267",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didAddOverlayViews:)"
+              ],
+              "title": "Managing the display of overlays"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Customizing-the-map-view-behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/delegate"
+              ],
+              "title": "Customizing the map view behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MKMapViewDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didAdd:)-793gj/title",
+          "value": "mapView:didAddOverlayRenderers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didAdd:)-793gj/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didAddOverlayRenderers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1selectableMapFeatures/title",
+          "value": "selectableMapFeatures"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1selectableMapFeatures/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectableMapFeatures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:regionDidChangeAnimated:)/title",
+          "value": "mapView:regionDidChangeAnimated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:regionDidChangeAnimated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:regionDidChangeAnimated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didSelect:)-41by3/title",
+          "value": "mapView:didSelectAnnotationView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didSelect:)-41by3/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didSelectAnnotationView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didUpdate:)/title",
+          "value": "mapView:didUpdateUserLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didUpdate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didUpdateUserLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidFinishLoadingMap(_:)/title",
+          "value": "mapViewDidFinishLoadingMap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidFinishLoadingMap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewDidFinishLoadingMap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewWillStartLocatingUser(_:)/title",
+          "value": "mapViewWillStartLocatingUser:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewWillStartLocatingUser(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewWillStartLocatingUser:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:viewFor:)-6j267/title",
+          "value": "mapView:viewForOverlay:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:viewFor:)-6j267/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:viewForOverlay:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didDeselect:)-4ldss/title",
+          "value": "mapView:didDeselectAnnotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didDeselect:)-4ldss/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didDeselectAnnotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didDeselect:)-yo7q/title",
+          "value": "mapView:didDeselectAnnotationView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didDeselect:)-yo7q/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didDeselectAnnotationView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didAdd:)-44xon/title",
+          "value": "mapView:didAddAnnotationViews:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didAdd:)-44xon/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didAddAnnotationViews:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:selectionAccessoryFor:)/title",
+          "value": "mapView:selectionAccessoryForAnnotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:selectionAccessoryFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:selectionAccessoryForAnnotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidFailLoadingMap(_:withError:)/title",
+          "value": "mapViewDidFailLoadingMap:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidFailLoadingMap(_:withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewDidFailLoadingMap:withError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didAddOverlayViews:)/title",
+          "value": "mapView:didAddOverlayViews:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didAddOverlayViews:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didAddOverlayViews:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewWillStartRenderingMap(_:)/title",
+          "value": "mapViewWillStartRenderingMap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewWillStartRenderingMap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewWillStartRenderingMap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidStopLocatingUser(_:)/title",
+          "value": "mapViewDidStopLocatingUser:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidStopLocatingUser(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewDidStopLocatingUser:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:rendererFor:)/title",
+          "value": "mapView:rendererForOverlay:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:rendererFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:rendererForOverlay:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidFinishRenderingMap(_:fullyRendered:)/title",
+          "value": "mapViewDidFinishRenderingMap:fullyRendered:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidFinishRenderingMap(_:fullyRendered:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewDidFinishRenderingMap:fullyRendered:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:clusterAnnotationForMemberAnnotations:)/title",
+          "value": "mapView:clusterAnnotationForMemberAnnotations:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:clusterAnnotationForMemberAnnotations:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:clusterAnnotationForMemberAnnotations:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:annotationView:calloutAccessoryControlTapped:)/title",
+          "value": "mapView:annotationView:calloutAccessoryControlTapped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:annotationView:calloutAccessoryControlTapped:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:annotationView:calloutAccessoryControlTapped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidChangeVisibleRegion(_:)/title",
+          "value": "mapViewDidChangeVisibleRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewDidChangeVisibleRegion(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewDidChangeVisibleRegion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate/title",
+          "value": "MKMapViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewWillStartLoadingMap(_:)/title",
+          "value": "mapViewWillStartLoadingMap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapViewWillStartLoadingMap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapViewWillStartLoadingMap:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:viewFor:)-8humz/title",
+          "value": "mapView:viewForAnnotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:viewFor:)-8humz/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:viewForAnnotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didFailToLocateUserWithError:)/title",
+          "value": "mapView:didFailToLocateUserWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didFailToLocateUserWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didFailToLocateUserWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didSelect:)-9km43/title",
+          "value": "mapView:didSelectAnnotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didSelect:)-9km43/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didSelectAnnotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/title",
+          "value": "MKMapView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didChange:animated:)/title",
+          "value": "mapView:didChangeUserTrackingMode:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didChange:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didChangeUserTrackingMode:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:annotationView:didChange:fromOldState:)/title",
+          "value": "mapView:annotationView:didChangeDragState:fromOldState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:annotationView:didChange:fromOldState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:annotationView:didChangeDragState:fromOldState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:regionWillChangeAnimated:)/title",
+          "value": "mapView:regionWillChangeAnimated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:regionWillChangeAnimated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:regionWillChangeAnimated:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/mkmapviewdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/mkmapviewdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

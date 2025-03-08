@@ -1,0 +1,4108 @@
+{
+  "abstract": [
+    {
+      "text": "Capture high-quality photos, video, and audio in your Apple TV app by connecting",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "an iPhone or iPad as a continuity device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Supporting Continuity Camera in your tvOS app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continuity Camera brings the power of the cameras and microphones from an iOS or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iPadOS device to Apple TV, including advanced features like Center Stage and Portrait mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project provides an example implementation that accesses a camera and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "microphone from a nearby iPhone or iPad in an Apple TV app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It builds on a similar sample,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/supporting-continuity-camera-in-your-macos-app",
+              "isActive": true,
+              "overridingTitle": "Supporting Continuity Camera in your macOS app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Supporting Continuity Camera in your macOS app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and shares some of its functionality, including automatic camera selection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and observing the state of video effects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following sections focus on the aspects specific to tvOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10256:",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10256",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample app, you need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An Apple TV 4k (2nd generation) or later with tvOS 17 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iPhone or iPad with iOS 17 or iPadOS 17, respectively, or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to run this sample code project on physical devices, because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Simulator doesn’t include the components to support cameras.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continuity Camera works with all iPhone and iPad models that support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video effects in Control Center.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to sign in with an Apple ID that uses two-factor authentication for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple TV and the device with a camera.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use a separate Apple ID for each device or the same Apple ID for both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you run the app on an Apple TV, the system prompts you for permission to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access to the camera and microphone.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app needs these permissions to function correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-the-continuity-device-picker",
+          "level": 3,
+          "text": "Present the continuity device picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app launches, it immediately presents a continuity device picker by calling the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/VideoPlayer/continuityDevicePicker(isPresented:onDidConnect:)",
+              "isActive": true,
+              "overridingTitle": "continuityDevicePicker(isPresented:onDidConnect:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "continuityDevicePicker(isPresented:onDidConnect:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier in its SwiftUI implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".continuityDevicePicker(isPresented: $showContinuityDevicePicker,",
+            "                        onDidConnect: handleNewConnectionForDevice)",
+            ".task {",
+            "    // Shows the picker when app has no continuity device at launch.",
+            "    if !captureManager.activateDefaultContinuityCameraDevice() {",
+            "        showContinuityDevicePicker = true",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The picker only appears if the ",
+              "type": "text"
+            },
+            {
+              "code": "isPresented",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— which is a Boolean ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "overridingTitle": "Binding",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Binding",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " — is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The picker calls the closure the app passes to the ",
+              "type": "text"
+            },
+            {
+              "code": "onDidConnect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when a person selects a device and the system successfully connects to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleNewConnectionForDevice(_ device: AVContinuityDevice?) {",
+            "    guard let device else {",
+            "        print(\"The Continuity Device Picker didn't connect a device.\")",
+            "        return",
+            "    }",
+            "",
+            "    guard let firstCamera = device.videoDevices.first else {",
+            "        print(\"The Continuity Device Picker doesn't have any cameras.\")",
+            "        return",
+            "    }",
+            "",
+            "    captureManager.setActiveVideoInput(firstCamera,",
+            "                                       isUserPreferredCamera: true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The handling closure’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVContinuityDevice",
+              "isActive": true,
+              "overridingTitle": "AVContinuityDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVContinuityDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " parameter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents the device that a person selects on their Apple TV.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each continuity device has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVContinuityDevice/videoDevices",
+              "isActive": true,
+              "overridingTitle": "videoDevices",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "videoDevices",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which is an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDevice",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureDevice",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "handleNewConnectionForDevice(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method is a minimal implementation that selects the first video device in the array.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps typically compare all the video device elements and select one that’s appropriate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for their needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit",
+                  "isActive": true,
+                  "overridingTitle": "UIKit",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "UIKit",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " based apps can create a continuity device picker by creating an",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVKit/AVContinuityDevicePickerViewController",
+                  "isActive": true,
+                  "overridingTitle": "AVContinuityDevicePickerViewController",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "AVContinuityDevicePickerViewController",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Connect-a-video-device-to-a-capture-session",
+          "level": 3,
+          "text": "Connect a video device to a capture session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "CaptureManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class creates and maintains an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "overridingTitle": "AVCaptureSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance for the app’s lifetime.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The capture manager’s ",
+              "type": "text"
+            },
+            {
+              "code": "setActiveVideoInput(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+              "isActive": true,
+              "overridingTitle": "AVCaptureDeviceInput",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVCaptureDeviceInput",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance from the video device,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then tests to see whether it’s an acceptable input for the capture session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let name = camera.localizedName",
+            "print(\"Setting video input to: \\(name).\")",
+            "",
+            "// Creates a video input with the camera.",
+            "guard let videoInput = try? AVCaptureDeviceInput(device: camera) else {",
+            "    print(\"Couldn't make an input from: \\(name).\")",
+            "    return false",
+            "}",
+            "",
+            "// Checks whether the capture session accepts the new camera as an input.",
+            "guard session.canAddInput(videoInput) else {",
+            "    print(\"Capture session rejected '\\(name)' as an input.\")",
+            "    return false",
+            "}",
+            "",
+            "// Adds the new camera input to the capture session.",
+            "activeInput = videoInput"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the new device is an acceptable input, the method assigns it to the app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "activeInput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The property updates the capture session with its ",
+              "type": "text"
+            },
+            {
+              "code": "willSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property observers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "internal var activeInput: AVCaptureDeviceInput? {",
+            "    willSet {",
+            "        if let oldInput = activeInput {",
+            "            session.removeInput(oldInput)",
+            "        }",
+            "    }",
+            "    didSet {",
+            "        if let newInput = activeInput {",
+            "            session.addInput(newInput)",
+            "        }",
+            "        isActive = (activeInput != nil)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "willSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " observer removes the capture session’s current input, if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applicable. The ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " observer adds the new input to the capture session.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " observer also updates the ",
+              "type": "text"
+            },
+            {
+              "code": "isActive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Boolean property,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which can cause the app to change its behavior and UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-for-capture-device-updates",
+          "level": 3,
+          "text": "Register for capture device updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app receives various updates related to its capture device by registering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "overridingTitle": "NotificationCenter",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "NotificationCenter",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and with key-value observation (KVO).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift",
+              "isActive": true,
+              "overridingTitle": "Using Key-Value Observing in Swift",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Using Key-Value Observing in Swift",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nskeyvalueobserving",
+              "isActive": true,
+              "overridingTitle": "NSKeyValueObserving",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "NSKeyValueObserving",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app specifically registers for the following events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A specific video effect, such as Center Stage, changes its active state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system changes the capture device it prefers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The active capture device disconnects from the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "People can enable video effects in Control Center on Apple TV.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s implementation that monitors the video effects and system changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is similar to the macOS equivalent of this sample, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/supporting-continuity-camera-in-your-macos-app",
+              "isActive": true,
+              "overridingTitle": "Supporting Continuity Camera in your macOS app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Supporting Continuity Camera in your macOS app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample also monitors Notification Center events related to the camera.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app’s capture manager responds when a capture device disconnects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by registering with Notification Center for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+              "isActive": true,
+              "overridingTitle": ".AVCaptureDeviceWasDisconnected",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".AVCaptureDeviceWasDisconnected",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func observeCamera(_ camera: AVCaptureDevice) {",
+            "    // Tells the observer to watch the new camera's properties.",
+            "    videoEffectsObvserver.observeCamera(camera)",
+            "",
+            "    // Tells the notification observer to monitor camera-related events.",
+            "    notificationObserver.observeCamera(camera,",
+            "                                       with: notification(_:for:))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "CaptureDeviceNotificationObserver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure listens for the these events on behalf of the capture manager and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls the manager’s ",
+              "type": "text"
+            },
+            {
+              "code": "notification(_:for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each event it gets from Notification Center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-audio-engine-with-an-audio-input-device",
+          "level": 3,
+          "text": "Configure the audio engine with an audio input device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch, the app creates an ",
+              "type": "text"
+            },
+            {
+              "code": "AudioCapturer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which checks for audio inputs (microphones).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It does this by inspecting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/availableInputs",
+              "isActive": true,
+              "overridingTitle": "AVAudioSession.availableInputs",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVAudioSession.availableInputs",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "overridingTitle": "AVAudioSession",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVAudioSession",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " type’s shared instance, and then monitoring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the property for updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app monitors for new microphones — similar to how the app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "capture manager monitors for new cameras — by observing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/isInputAvailable",
+              "isActive": true,
+              "overridingTitle": "isInputAvailable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "isInputAvailable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AVAudioSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type’s shared instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private static let inputAvailableKeyPath = \"isInputAvailable\"",
+            "",
+            "func registerForInputAvailabilityUpdates(on session: AVAudioSession) {",
+            "    session.addObserver(self,",
+            "                        forKeyPath: Self.inputAvailableKeyPath,",
+            "                        options: [.new],",
+            "                        context: nil)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app has access to a microphone, it configures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+              "isActive": true,
+              "overridingTitle": "AVAudioEngine",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AVAudioEngine",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance in the audio capturer’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "setupAndStartAudioSession()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupAndStartAudioSession() {",
+            "    configureAudioOutput()",
+            "    enableVoiceProcessing(true)",
+            "    configureAudioSessionForVoiceChat()",
+            "    startAudioEngine()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method configures the audio engine for a conference call scenario when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app gains access to a microphone — at launch or later — with the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configures the audio engine to produce sound from the system’s first audio output.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enables voice processing on the audio engine’s input node.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configures the audio engine for conversational audio.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starts the audio engine.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Configure-the-audio-engine-for-a-call",
+          "level": 3,
+          "text": "Configure the audio engine for a call",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The third step is important for conferencing apps that use Voice over IP (VoIP).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "configureAudioSessionForVoiceChat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configures the audio session by passing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/Mode-swift.struct/voiceChat",
+              "isActive": true,
+              "overridingTitle": ".voiceChat",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".voiceChat",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " mode to the audio session’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/setCategory(_:options:)",
+              "isActive": true,
+              "overridingTitle": "setCategory(_:options:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "setCategory(_:options:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try avAudioSession.setCategory(.playAndRecord,",
+            "                               mode: .voiceChat,",
+            "                               options: [])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app gains access to additional audio features and microphone modes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including automatic gain correction, voice processing, and muting,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by configuring the audio session for VoIP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s audio interface has a button that lets a person temporarily disable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "microphone processing, including echo cancellation, by bypassing the audio",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "engine’s voice processing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each time a person toggles the button, the app calls audio capturer’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "bypassVoiceProcessing(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public func bypassVoiceProcessing(_ bypass: Bool) {",
+            "    // If true, temporarily disables echo cancelation.",
+            "    avAudioEngine.inputNode.isVoiceProcessingBypassed = bypass",
+            "",
+            "    DispatchQueue.main.async {",
+            "        self.isVoiceProcessingBypassed = bypass",
+            "    }",
+            "",
+            "    var message = \"Audio engine's voice processing: \"",
+            "    message += bypass ? \"bypassed\" : \"normal\"",
+            "    print(message)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app can temporarily disable voice processing by setting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed",
+              "isActive": true,
+              "overridingTitle": "isVoiceProcessingBypassed",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "isVoiceProcessingBypassed",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "audio engine’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/inputNode",
+              "isActive": true,
+              "overridingTitle": "inputNode",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "inputNode",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This gives the app all the incoming audio from the microphone without any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adjustments from the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The behavior of the audio engine’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "isVoiceProcessingBypassed",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property is similar to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/kAUVoiceIOProperty_BypassVoiceProcessing",
+                  "isActive": true,
+                  "overridingTitle": "kAUVoiceIOProperty_BypassVoiceProcessing",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "kAUVoiceIOProperty_BypassVoiceProcessing",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/audio-unit-voice-i-o",
+                  "isActive": true,
+                  "overridingTitle": "Audio Unit Voice I/O",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Audio Unit Voice I/O",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "68f244622734/SupportingContinuityCameraInYourTvOSApp.zip": {
+      "checksum": "68f2446227346250fbc3cd33248ff77c811abe4a412dd6e868fbf6792eec609188d1cd08c59929441e8cd19f9f814a4c74a129b8a9fef5e3fa1025282c16b529",
+      "identifier": "68f244622734/SupportingContinuityCameraInYourTvOSApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/68f244622734/SupportingContinuityCameraInYourTvOSApp.zip"
+    },
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that proposes content to watch next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContentProposalViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontentproposalviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides an interface to a person so they can select and connect a continuity device to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that responds to events from a continuity device picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager": {
+      "abstract": [
+        {
+          "text": "A tvOS management object that controls whether a TV switches modes to match the video’s native mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDisplayManager",
+      "type": "topic",
+      "url": "/documentation/avkit/avdisplaymanager"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange": {
+      "abstract": [
+        {
+          "text": "A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVInterstitialTimeRange",
+      "type": "topic",
+      "url": "/documentation/avkit/avinterstitialtimerange"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup": {
+      "abstract": [
+        {
+          "text": "A set of markers for navigating playback of an audiovisual presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVNavigationMarkersGroup",
+      "type": "topic",
+      "url": "/documentation/avkit/avnavigationmarkersgroup"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience": {
+      "abstract": [
+        {
+          "text": "Adopt the latest features of the redesigned tvOS player user interface to provide a more streamlined way to watch your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the tvOS Playback Experience",
+      "type": "topic",
+      "url": "/documentation/avkit/customizing-the-tvos-playback-experience"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos": {
+      "abstract": [
+        {
+          "text": "Display a preview of an upcoming media item at the conclusion of the currently playing media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Content Proposals in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-content-proposals-in-tvos"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers": {
+      "abstract": [
+        {
+          "text": "Present navigation markers in the Chapters panel to help users quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Navigation Markers",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-navigation-markers"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content": {
+      "abstract": [
+        {
+          "text": "Present additional content alongside your main media presentation using HTTP Live Streaming support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Interstitial Content",
+      "type": "topic",
+      "url": "/documentation/avkit/working-with-interstitial-content"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos": {
+      "abstract": [
+        {
+          "text": "Add interactive overlays, parental controls, and livestream channel flipping using a player view controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Working with Overlays and Parental Controls in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/working-with-overlays-and-parental-controls-in-tvos"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/inputNode": {
+      "abstract": [
+        {
+          "text": "The audio engine’s singleton input audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioInputNode",
+          "text": "AVAudioInputNode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioEngine/inputNode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputNode",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioEngine/inputNode"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVoiceProcessingBypassed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isVoiceProcessingBypassed",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/Mode-swift.struct/voiceChat": {
+      "abstract": [
+        {
+          "text": "A mode that indicates that your app is performing two-way voice communication, such as using Voice over Internet Protocol (VoIP).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voiceChat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioSessionMode",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/Mode-swift.struct/voiceChat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "voiceChat",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession/Mode-swift.struct/voiceChat"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/availableInputs": {
+      "abstract": [
+        {
+          "text": "An array of input ports available for audio routing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableInputs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSessionPortDescription",
+          "text": "AVAudioSessionPortDescription"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/availableInputs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableInputs",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession/availableInputs"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/isInputAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an audio input path is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInputAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/isInputAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isInputAvailable",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession/isInputAvailable"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/setCategory(_:options:)": {
+      "abstract": [
+        {
+          "text": "Sets the audio session’s category with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCategory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioSessionCategory",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioSessionCategoryOptions",
+          "text": "CategoryOptions"
+        },
+        {
+          "kind": "text",
+          "text": " = []) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/setCategory(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCategory(_:options:)",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession/setCategory(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a new capture device becomes available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wasConnectedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wasConnectedNotification",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/wasConnectedNotification"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput": {
+      "abstract": [
+        {
+          "text": "An object that provides media input from a capture device to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDeviceInput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDeviceInput",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDeviceInput"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVContinuityDevice": {
+      "abstract": [
+        {
+          "text": "A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVContinuityDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVContinuityDevice",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVContinuityDevice"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVContinuityDevice/videoDevices": {
+      "abstract": [
+        {
+          "text": "An array of the continuity device’s video-capture devices available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoDevices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVContinuityDevice/videoDevices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "videoDevices",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVContinuityDevice/videoDevices"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/supporting-continuity-camera-in-your-macos-app": {
+      "abstract": [
+        {
+          "text": "Enable high-quality photo and video capture by using an iPhone camera as an external capture device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/supporting-continuity-camera-in-your-macos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Continuity Camera in your macOS app",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/supporting-continuity-camera-in-your-macos-app"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVContinuityDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides an interface to a person so they can select and connect a continuity device to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVContinuityDevicePickerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVContinuityDevicePickerViewController"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/VideoPlayer/continuityDevicePicker(isPresented:onDidConnect:)": {
+      "abstract": [
+        {
+          "text": "A `continuityDevicePicker` should be used to discover and connect nearby continuity device through a button interface or other form of activation. On tvOS, this presents a fullscreen continuity device picker experience when selected. The modal view covers as much the screen of `self` as possible when a given condition is true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "continuityDevicePicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onDidConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVContinuityDevice",
+          "text": "AVContinuityDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/VideoPlayer/continuityDevicePicker(isPresented:onDidConnect:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "continuityDevicePicker(isPresented:onDidConnect:)",
+      "type": "topic",
+      "url": "/documentation/AVKit/VideoPlayer/continuityDevicePicker(isPresented:onDidConnect:)"
+    },
+    "doc://com.apple.documentation/documentation/AudioToolbox/audio-unit-voice-i-o": {
+      "abstract": [
+        {
+          "text": "Configure system voice processing and respond to speech events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/audio-unit-voice-i-o",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Unit Voice I/O",
+      "type": "topic",
+      "url": "/documentation/AudioToolbox/audio-unit-voice-i-o"
+    },
+    "doc://com.apple.documentation/documentation/AudioToolbox/kAUVoiceIOProperty_BypassVoiceProcessing": {
+      "abstract": [
+        {
+          "text": "A property that bypasses all processing for microphone uplink done by the voice processing unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAUVoiceIOProperty_BypassVoiceProcessing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AudioToolbox/kAUVoiceIOProperty_BypassVoiceProcessing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAUVoiceIOProperty_BypassVoiceProcessing",
+      "type": "topic",
+      "url": "/documentation/AudioToolbox/kAUVoiceIOProperty_BypassVoiceProcessing"
+    },
+    "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift": {
+      "abstract": [
+        {
+          "text": "Notify objects about changes to the properties of other objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Key-Value Observing in Swift",
+      "type": "topic",
+      "url": "/documentation/Swift/using-key-value-observing-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@dynamicMemberLookup"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Binding"
+    },
+    "doc://com.apple.documentation/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/nskeyvalueobserving": {
+      "abstract": [
+        {
+          "text": "An informal protocol that objects adopt to be notified of changes to the specified properties of other objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nskeyvalueobserving",
+      "kind": "article",
+      "role": "article",
+      "title": "NSKeyValueObserving",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/nskeyvalueobserving"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc23/10256": {
+      "identifier": "https://developer.apple.com/wwdc23/10256",
+      "title": "Discover Continuity Camera on tvOS",
+      "titleInlineContent": [
+        {
+          "text": "Discover Continuity Camera on tvOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10256"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "68f244622734/SupportingContinuityCameraInYourTvOSApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "tvOS-Playback-and-Capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+        "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+        "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+        "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+      ],
+      "title": "tvOS Playback and Capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "tvOS-Playback-and-Capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+                "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+                "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+                "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+                "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+              ],
+              "title": "tvOS Playback and Capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1wasConnectedNotification/title",
+          "value": "AVCaptureDeviceWasConnectedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1wasConnectedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceWasConnectedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVContinuityDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/title",
+          "value": "AVContentProposalViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/title",
+          "value": "AVContinuityDevicePickerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1availableInputs/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<AVAudioSessionPortDescription *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableInputs"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/title",
+          "value": "AVContinuityDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine~1inputNode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioInputNode",
+              "text": "AVAudioInputNode"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "inputNode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AudioToolbox~1kAUVoiceIOProperty_BypassVoiceProcessing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAUVoiceIOProperty_BypassVoiceProcessing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingBypassed/title",
+          "value": "voiceProcessingBypassed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioInputNode~1isVoiceProcessingBypassed/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isVoiceProcessingBypassed"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "voiceProcessingBypassed"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1isInputAvailable/title",
+          "value": "inputAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1isInputAvailable/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isInputAvailable"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "inputAvailable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter/title",
+          "value": "NSNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVContinuityDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1setCategory(_:options:)/title",
+          "value": "setCategory:withOptions:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1setCategory(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCategory:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVAudioSessionCategory",
+              "text": "AVAudioSessionCategory"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "category"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@AVAudioSessionCategoryOptions",
+              "text": "AVAudioSessionCategoryOptions"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outError"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/title",
+          "value": "AVDisplayManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/title",
+          "value": "AVNavigationMarkersGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1Mode-swift.struct~1voiceChat/title",
+          "value": "AVAudioSessionModeVoiceChat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1Mode-swift.struct~1voiceChat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVAudioSessionMode",
+              "text": "AVAudioSessionMode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionModeVoiceChat"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVContinuityDevice~1videoDevices/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<AVCaptureDevice *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoDevices"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVCaptureInput",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/title",
+          "value": "AVInterstitialTimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/supporting-continuity-camera-in-your-tvos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/supporting-continuity-camera-in-your-tvos-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

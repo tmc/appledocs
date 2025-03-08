@@ -1,0 +1,552 @@
+{
+  "abstract": [
+    {
+      "text": "A comparison between an object specifier and a test object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1393868,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSpecifierTest",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSpecifierTest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSSpecifierTest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSpecifierTest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSScriptWhoseTest",
+              "text": "NSScriptWhoseTest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of this class represent a Boolean expression; they evaluate an object specifier and compare the resulting object to another object using a given comparison method. For more information on ",
+              "type": "text"
+            },
+            {
+              "code": "NSSpecifierTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see the method description for its sole public method, its initializer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393833-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an ",
+              "type": "text"
+            },
+            {
+              "code": "NSSpecifierTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is properly initialized, it holds two objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A “value” or “test” object used as the basis of the comparison; this object can be a regular object or object specifier (such as “blue” in “words whose color is blue”).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An object specifier evaluating to the container (“words”). ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The instance also encapsulates a selector identifying the method performing this comparison. The informal protocol ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support/nscomparisonmethods",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines a set of comparison methods useful for this purpose, while ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptingcomparisonmethods",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes additional methods you may need to use for scripting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test object is compared, using the selector, against each object in the container. Specifiers in these tests usually have ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " invoked on their topmost container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should rarely need to subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSSpecifierTest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslogicaltest": {
+      "abstract": [
+        {
+          "text": "The logical combination of one or more specifier tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLogicalTest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslogicaltest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLogicalTest",
+      "type": "topic",
+      "url": "/documentation/foundation/nslogicaltest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerIsObjectBeingTested",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest": {
+      "abstract": [
+        {
+          "text": "An abstract class that provides the basis for testing specifiers one at a time or in groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptWhoseTest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptWhoseTest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptwhosetest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsspecifiertest": {
+      "abstract": [
+        {
+          "text": "A comparison between an object specifier and a test object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpecifierTest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSpecifierTest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsspecifiertest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393833-init": {
+      "abstract": [
+        {
+          "text": "Returns a specifier test initialized to evaluate a test object against an object specified by an object specifier using a given comparison operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objectSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comparisonOperator"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSpecifierTest.TestComparisonOperation, "
+        },
+        {
+          "kind": "identifier",
+          "text": "test"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393833-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objectSpecifier:comparisonOperator:test:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsspecifiertest/1393833-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393881-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393881-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsspecifiertest/1393881-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/testcomparisonoperation": {
+      "abstract": [
+        {
+          "text": "These are passed to  ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393833-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to specify the comparison operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpecifierTest.TestComparisonOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/testcomparisonoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSpecifierTest.TestComparisonOperation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsspecifiertest/testcomparisonoperation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support/nscomparisonmethods": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support/nscomparisonmethods",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSComparisonMethods",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support/nscomparisonmethods"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptingcomparisonmethods": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptingcomparisonmethods",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptingComparisonMethods",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/nsscriptingcomparisonmethods"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+        "doc://com.apple.documentation/documentation/foundation/nslogicaltest"
+      ],
+      "title": "Object Matching Tests"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679237",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393833-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a specifier test"
+    },
+    {
+      "anchor": "1668606",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/testcomparisonoperation"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2855596",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsspecifiertest/1393881-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsspecifiertest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsspecifiertest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

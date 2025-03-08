@@ -1,0 +1,2328 @@
+{
+  "abstract": [
+    {
+      "text": "Customize your watchOS app’s user interface for continuous display.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Designing your app for the Always On state"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The launch of watchOS 6 introduced the Always On state. Supported devices continued",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to display the time, even when the user isn’t actively interacting with the watch;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "however, when running an app, the system blurs the app’s user interface and displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the time over it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 8, Always On expands to include your apps. Apple Watch continues to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s user interface as long as it’s either the frontmost app or running a background",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session. To preserve battery life, the system updates the user interface at a much",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lower frequency than when running in the foreground. It also dims the watch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though your app is inactive or running in the background, the system continues",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to update and monitor many of the user interface elements. For example, when displaying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dates and times, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/relative",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/offset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically updates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view while in Always On.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, any controls in the user interface remain interactive. Users can tap",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "buttons, toggle switches, or select items from a list. When the user interacts with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a control, the system runs the associated action and transitions your app back to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the active state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always On isn’t available on Apple Watch SE or Apple Watch Series 4 and earlier.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For these devices, the screen turns off when the app transitions to the background",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or inactive states.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps compiled for watchOS 8 and later have Always On enabled by default. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "disable this feature by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKSupportsAlwaysOnDisplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the WatchKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Users can also disable Always On for the entire device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or on a per-app basis by choosing Settings > Display & Brightness > Always",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-frontmost-app-behavior",
+          "level": 3,
+          "text": "Understand frontmost app behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, when the user lowers their wrist or stops interacting with their watch,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app transitions to the inactive state. The system continues to display your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s user interface as long as your app remains the frontmost app (usually two minutes)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before transitioning to the background and becoming suspended. If the user dismisses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app (for example, by pressing the Digital Crown or by covering the screen), the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app transitions immediately to the background and doesn’t become the frontmost app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can set the amount of time that apps remain the frontmost app by changing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "settings at Settings > General > Wake Screen > Return to Clock. They can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also specify a custom time for individual apps from the Wake Screen. In watchOS 8",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and later, apps can remain in the frontmost app state for a maximum of 1 hour.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app is inactive, the user interface doesn’t update by default. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to schedule periodic updates. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-display-during-background-sessions",
+          "level": 3,
+          "text": "Update the display during background sessions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps running a background session, such as a workout session or background audio",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session, remain onscreen as long as the session is active. Unlike frontmost apps,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps running a background session can continue to update their user interface; however,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to save battery life, the system reduces the update frequency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the best user experience when the app transitions to the background, pause any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation and show the final state (or a good static image), and remove any subsecond",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updates. For example, when the workout app is running in the foreground, the duration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows hundredths of a second, and the BPM row shows an animated heart beat. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it transitions to the background, the app displays a static heart image and the duration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only shows time to the nearest second.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For animation or updates driven by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "check the view’s cadence and update the appearance to match. For more information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on timelines, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TimelineView(PeriodicTimelineSchedule(from: Date(), by: 1.0/60.0)) { context in",
+            "    switch context.cadence {",
+            "    case .live:",
+            "        // Display up to 60 updates per second.",
+            "    case .seconds:",
+            "        // Only show items that update approximately once per second.",
+            "    case .minutes:",
+            "        // Only show items that update approximately once per minute.",
+            "    @unknown default:",
+            "       fatalError(\"*** Received an unknown cadence: \\(context.cadence) ***\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For other views, monitor the app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/scenePhase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variable, and hide or stop subsecond updates when it becomes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/inactive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.scenePhase) private var scenePhase",
+            "",
+            "var body: some View {",
+            "    if scenePhase == .active {",
+            "        // Animation and subsecond updates here.",
+            "    } else {",
+            "        // Low-frequency updates here.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Hide-sensitive-information",
+          "level": 3,
+          "text": "Hide sensitive information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because displayed information may be visible to casual observers, be sure to hide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any sensitive data while your app is in Always On. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier to blur out specific user interface elements during Always On.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"Account Number:\")",
+            "    .font(.headline)",
+            "Text(accountNumber)",
+            "    .privacySensitive()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/redactionReasons",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.redactionReasons) var redactionReasons"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check if this variable contains the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/RedactionReasons/privacy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value. If it does, eliminate or obscure any sensitive data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if !redactionReasons.contains(.privacy) {",
+            "    Text(\"Balance:\")",
+            "        .font(.headline)",
+            "    Text(balance)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting user interface displays the private data while the app is running in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the foreground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "But the interface obscures sensitive data, such as the account number and balance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when the app is in the Always On state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To protect the user’s privacy, always hide any highly sensitive information, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as financial information or health data. For information that may or may not be sensitive,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as incoming messages or appointments, default to showing the information. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user has any concerns, they can disable Always On on a per-app basis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-reduced-luminance-appearance",
+          "level": 3,
+          "text": "Customize the reduced luminance appearance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preserve battery life, the system dims the screen during Always On. The system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determines the screen’s overall luminance by comparing the ratio of lit pixels to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dark pixels. It then reduces the overall brightness to an appropriate level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many system controls also automatically update their appearance during Always On.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically dims the background for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/CarouselListStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many apps can use the system’s default Always On appearance. For example, if your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view is mostly black and uses system controls, you may not need to change anything.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you can customize the appearance during Always On to highlight glanceable,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "important information in your user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you may consider replacing large blocks of bright content with stroked",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "outlines and dimmed interiors, as shown on the Numerals Duo watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also dim or remove nonessential information. To customize your interface,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.isLuminanceReduced) var isLuminanceReduced"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then use this value to modify your user interface, as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"Hello!\")",
+            "    .font(.title)",
+            "    .fontWeight(.bold)",
+            "    .opacity(isLuminanceReduced ? 0.5 : 1.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting interface displays the title text at full brightness when active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then it dims the title in Always On. Because the ratio of lit to dark pixels is low,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system doesn’t need to make any other changes to the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preview-both-interfaces-in-Xcode",
+          "level": 3,
+          "text": "Preview both interfaces in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can preview both the regular and Always On interfaces in Xcode. To see the Always",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On interface, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/redactionReasons",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variables in the preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView_Previews: PreviewProvider {",
+            "    static var previews: some View {",
+            "        Group {",
+            "            ContentView()",
+            "            ContentView()",
+            "                .environment(\\.isLuminanceReduced, true)",
+            "                .environment(\\.redactionReasons, [.privacy])",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting preview shows both the regular and the Always On interfaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system doesn’t automatically dim the user interface when previewing in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Xcode. To see how the system automatically dims the user interface, you must test",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "it on a device or in the simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Test-Always-On-in-the-Simulator",
+          "level": 3,
+          "text": "Test Always On in the Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode supports Always On in the simulator. Simply click the Toggle Always On button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the status bar to test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "designing-your-app-for-the-always-on-state-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can view any changes to your user interface related to privacy, reduced luminance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or transitioning to an inactive state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "designing-your-app-for-the-always-on-state-1": {
+      "alt": "A foreground watchOS app showing the user’s name, account number, and balance.",
+      "identifier": "designing-your-app-for-the-always-on-state-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cae695c8e57f164a8eaf6823deb31092/designing-your-app-for-the-always-on-state-1@2x.png"
+        }
+      ]
+    },
+    "designing-your-app-for-the-always-on-state-2": {
+      "alt": "A watchOS app in Always On, with the account number obscured and the balance removed.",
+      "identifier": "designing-your-app-for-the-always-on-state-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/75e8f4d37a5c71aa03b288c6927a8dc5/designing-your-app-for-the-always-on-state-2@2x.png"
+        }
+      ]
+    },
+    "designing-your-app-for-the-always-on-state-3": {
+      "alt": "The Numerals Duo watch face in Always On, showing strong outlines and dimmed fills for the large numbers.",
+      "identifier": "designing-your-app-for-the-always-on-state-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fb0e5a0dcb82d33d5868cccc258298b6/designing-your-app-for-the-always-on-state-3@2x.png"
+        }
+      ]
+    },
+    "designing-your-app-for-the-always-on-state-4": {
+      "alt": "A watchOS app running in the foreground. It shows a large, white title, status text, and a button.",
+      "identifier": "designing-your-app-for-the-always-on-state-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c499385710a6262baf912402d45c286/designing-your-app-for-the-always-on-state-4@2x.png"
+        }
+      ]
+    },
+    "designing-your-app-for-the-always-on-state-5": {
+      "alt": "A watchOS app running in Always On. The app dims the title, but the appearance of the status text and button don’t changed.",
+      "identifier": "designing-your-app-for-the-always-on-state-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a35de826853db88aca3c819f9ef5b4fb/designing-your-app-for-the-always-on-state-5@2x.png"
+        }
+      ]
+    },
+    "designing-your-app-for-the-always-on-state-6": {
+      "alt": "The regular and Always On previews in Xcode’s canvas.",
+      "identifier": "designing-your-app-for-the-always-on-state-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1eb718ab4fcd800ebc884ca2c913af9/designing-your-app-for-the-always-on-state-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6a01a6e0bf55fc318418fad4a538cff/designing-your-app-for-the-always-on-state-6~dark@2x.png"
+        }
+      ]
+    },
+    "designing-your-app-for-the-always-on-state-7": {
+      "alt": "A screenshot of a 44 mm watch face in the Xcode simulator. The Toggle Always On button is highlighted in the tool bar above the image of the watch face.",
+      "identifier": "designing-your-app-for-the-always-on-state-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45acf539e733ef9462c45fe47b89cb3c/designing-your-app-for-the-always-on-state-7@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKSupportsAlwaysOnDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the system displays the app in the Always On state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKSupportsAlwaysOnDisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKSupportsAlwaysOnDisplay",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKSupportsAlwaysOnDisplay"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/CarouselListStyle": {
+      "abstract": [
+        {
+          "text": "The carousel list style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarouselListStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/CarouselListStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CarouselListStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/CarouselListStyle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the display or environment currently requires reduced luminance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLuminanceReduced"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLuminanceReduced",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/isLuminanceReduced"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/redactionReasons": {
+      "abstract": [
+        {
+          "text": "The current redaction reasons applied to the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "redactionReasons"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16RedactionReasonsV",
+          "text": "RedactionReasons"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/redactionReasons",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "redactionReasons",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/redactionReasons"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/scenePhase": {
+      "abstract": [
+        {
+          "text": "The current phase of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ScenePhaseO",
+          "text": "ScenePhase"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/scenePhase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scenePhase",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/scenePhase"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column, optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/List"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/RedactionReasons/privacy": {
+      "abstract": [
+        {
+          "text": "Displayed data should be obscured to protect private information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16RedactionReasonsV",
+          "text": "RedactionReasons"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/RedactionReasons/privacy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "privacy",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/RedactionReasons/privacy"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/background": {
+      "abstract": [
+        {
+          "text": "The scene isn’t currently visible in the UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/background",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScenePhase.background",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ScenePhase/background"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/inactive": {
+      "abstract": [
+        {
+          "text": "The scene is in the foreground but should pause its work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inactive"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScenePhase/inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScenePhase.inactive",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ScenePhase/inactive"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle": {
+      "abstract": [
+        {
+          "text": "A predefined style used to display a `Date`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text.DateStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/DateStyle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/offset": {
+      "abstract": [
+        {
+          "text": "A style displaying a date as offset from now.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9DateStyleV",
+          "text": "DateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/DateStyle/offset"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/relative": {
+      "abstract": [
+        {
+          "text": "A style displaying a date as relative to now.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9DateStyleV",
+          "text": "DateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/relative",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relative",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/DateStyle/relative"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/timer": {
+      "abstract": [
+        {
+          "text": "A style displaying a date as timer counting from now.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9DateStyleV",
+          "text": "DateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/DateStyle/timer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timer",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/DateStyle/timer"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TimelineView": {
+      "abstract": [
+        {
+          "text": "A view that updates according to a schedule that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16TimelineScheduleP",
+          "text": "TimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TimelineView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimelineView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TimelineView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the view as containing sensitive, private user data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "privacySensitive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sensitive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/privacySensitive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "privacySensitive(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/privacySensitive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch": {
+      "abstract": [
+        {
+          "text": "Create a watch app to manage and share a task list and visualize the status with a chart.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a productivity app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/building_a_productivity_app_for_apple_watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color": {
+      "abstract": [
+        {
+          "text": "Set your app’s accent color.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the app’s accent color",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-the-app-s-accent-color"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes": {
+      "abstract": [
+        {
+          "text": "Customize the layout of your user interface to support all Apple Watch sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting multiple watch sizes",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/supporting-multiple-watch-sizes"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines": {
+      "abstract": [
+        {
+          "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating watchOS apps with timelines",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-watchos-apps-with-timelines"
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKSupportsAlwaysOnDisplay"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color"
+      ],
+      "title": "User interface"
+    }
+  ]
+}

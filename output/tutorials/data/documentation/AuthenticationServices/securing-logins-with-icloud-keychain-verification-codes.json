@@ -1,0 +1,1193 @@
+{
+  "abstract": [
+    {
+      "text": "Use time-based codes generated on-device for a secure authentication experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/securing-logins-with-icloud-keychain-verification-codes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Securing Logins with iCloud Keychain Verification Codes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps and services often use verification codes in a two-factor authentication scheme. When used properly, they strengthen account security over just using passwords alone. During sign in, a service asks for a code to verify the user’s identity. These codes are often sent over SMS. The user then confirms their identity by entering the code they receive. Delivering codes over SMS entails a number of risks. For example, SMS-based verification codes can be snooped on carrier networks, or redirected to an attacker through SIM swapping attacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With iCloud Keychain verification codes, iPhones, iPads, and Macs generate verification codes entirely offline, reducing the risk associated with sending them online. iCloud Keychain synchronizes codes across all of the user’s devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-the-Verification-Code",
+          "level": 3,
+          "text": "Set Up the Verification Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both iOS and macOS handle a special URL based on the industry standard ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/google/google-authenticator/wiki/Key-Uri-Format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The Apple-specific version of this URL is identical to the standard, but uses the ",
+              "type": "text"
+            },
+            {
+              "code": "apple-otpauth:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scheme. Embed this URL in your webpages and apps to allow your users to set up new code generators directly in the iCloud Keychain password manager with minimal effort. On the web, use an ",
+              "type": "text"
+            },
+            {
+              "code": "<a>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to create a link. In apps, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/key/1535719-link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute, or open the URL in response to a button tap. When the user taps on the URL, the system prompts them to choose a credential. A new verification code is set up for that credential using the parameters specified in the URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The host portion of the URL must be ",
+              "type": "text"
+            },
+            {
+              "code": "totp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the path should be the proper name of your service, followed by a colon and the user name or email of the account. The ",
+              "type": "text"
+            },
+            {
+              "code": "otpauth:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specification defines a number of query parameters. The following are the most important:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An arbitrary key value encoded in Base32. Secrets should be at least 160 bits.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "secret",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The length of a one-time passcode. The value is either 6 or 8. The default is 6.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "digits",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of seconds that a verification code is valid for. The default value is 30.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "period",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The domain of the site or app. The password manager uses this field to suggest credentials when setting up a new code generator.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "issuer",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of the URL for an app called Example for the user meichen3@icloud.com:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "apple-otpauth://totp/Example:meichen3@icloud.com?secret=HAZDGMBWGE4DOMZYGEYTOMJTG43TMOJRGE4DANJQGE3DGOBRGI4TOOJZGEYTENJTGIYTEMJRHEZDA&digits=6&period=30&issuer=example.com",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-Text-Input-Field",
+          "level": 3,
+          "text": "Prepare the Text Input Field",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AutoFill on iOS and macOS offer to fill verification codes automatically in text fields where you set the content type of the field to a one-time code type. In SwiftUI, set the content type to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/textContentType(_:)-ufdv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier. In UIKit, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In AppKit, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContent/contentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContentType/oneTimeCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For web-based text fields, set the HTML attribute on the input element to ",
+              "type": "text"
+            },
+            {
+              "code": "autocomplete=one-time-code",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A session that an app uses to authenticate a user through a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASWebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsession"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager": {
+      "abstract": [
+        {
+          "text": "A session manager that mediates sharing data between an app and a web browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASWebAuthenticationSessionWebBrowserSessionManager",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/WebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A SwiftUI environment value that views use to authenticate someone using a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/WebAuthenticationSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebAuthenticationSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/webauthenticationsession"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service": {
+      "abstract": [
+        {
+          "text": "Use a web authentication session to authenticate a user in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating a User Through a Web Service",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authenticating-a-user-through-a-web-service"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app": {
+      "abstract": [
+        {
+          "text": "Extend your web browser app to handle web authentication requests from other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Single Sign-On in a Web Browser App",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-single-sign-on-in-a-web-browser-app"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTextContent/contentType": {
+      "abstract": [
+        {
+          "text": "The semantic meaning for a text input area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTextContentType",
+          "text": "NSTextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContent/contentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentType",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTextContent/contentType"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTextContentType/oneTimeCode": {
+      "abstract": [
+        {
+          "text": "A property that defines the content in a text input area as a one-time code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "oneTimeCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTextContentType",
+          "text": "NSTextContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContentType/oneTimeCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oneTimeCode",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTextContentType/oneTimeCode"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities": {
+      "abstract": [
+        {
+          "text": "A collection of keys that a browser app uses to declare its ability to handle authentication requests from other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASWebAuthenticationSessionWebBrowserSupportCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/textContentType(_:)-ufdv": {
+      "abstract": [
+        {
+          "text": "Sets the text content type for this view, which the system uses to offer suggestions while the user enters text on an iOS or tvOS device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/textContentType(_:)-ufdv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textContentType(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/textContentType(_:)-ufdv"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode": {
+      "abstract": [
+        {
+          "text": "A property that defines the content in a text input area as a one-time code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "oneTimeCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oneTimeCode",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextContentType/oneTimeCode"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType": {
+      "abstract": [
+        {
+          "text": "The semantic meaning for a text input area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "! { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textContentType",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextInputTraits/textContentType"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/key/1535719-link": {
+      "abstract": [
+        {
+          "text": "The link for the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "link"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAttributedString.Key"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/key/1535719-link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "link",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/key/1535719-link"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://github.com/google/google-authenticator/wiki/Key-Uri-Format": {
+      "identifier": "https://github.com/google/google-authenticator/wiki/Key-Uri-Format",
+      "title": "otpauth specification",
+      "titleInlineContent": [
+        {
+          "text": "otpauth specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/google-authenticator/wiki/Key-Uri-Format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-authentication-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/WebAuthenticationSession",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities"
+      ],
+      "title": "Web authentication sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Web-authentication-sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities"
+              ],
+              "title": "Web authentication sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSessionWebBrowserSessionManager/title",
+          "value": "ASWebAuthenticationSessionWebBrowserSessionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSessionWebBrowserSessionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSessionWebBrowserSessionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextContentType~1oneTimeCode/title",
+          "value": "NSTextContentTypeOneTimeCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextContentType~1oneTimeCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTextContentType",
+              "text": "NSTextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextContentTypeOneTimeCode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextInputTraits~1textContentType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UITextContentType",
+              "text": "UITextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "textContentType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextContent~1contentType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTextContentType",
+              "text": "NSTextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextContentType~1oneTimeCode/title",
+          "value": "UITextContentTypeOneTimeCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextContentType~1oneTimeCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UITextContentType",
+              "text": "UITextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextContentTypeOneTimeCode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/title",
+          "value": "ASWebAuthenticationSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/securing-logins-with-icloud-keychain-verification-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/securing-logins-with-icloud-keychain-verification-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

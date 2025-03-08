@@ -1,0 +1,864 @@
+{
+  "abstract": [
+    {
+      "text": "Use macros to generate repetitive code at compile time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+        "doc://com.apple.Swift/documentation/Swift/macros"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/applying-macros"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying Macros"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift macros help you avoid writing repetitive code in Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by generating that part of your source code at compile time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Calling a macro is always additive:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The macro adds new code alongside the code that you wrote,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but never modifies or deletes code that’s already part of your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many libraries provide macros,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the Swift standard library and many frameworks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also write your own macros.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because macros generate Swift code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use the same tools for development and debugging,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regardless of whether your code uses macros.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "macro-expansion",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Call-a-Macro",
+          "level": 3,
+          "text": "Call a Macro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The syntax you use to call a macro varies slightly,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depending on whether you attach the macro to a declaration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attach a macro to a declaration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write an at sign (",
+              "type": "text"
+            },
+            {
+              "code": "@",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") before the macro’s name",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and write any macro arguments after its name.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This syntax is the same as writing an attribute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Observable",
+            "public final class MyObject {",
+            "    public var someProperty: String = \"\"",
+            "    public var someOtherProperty: Int = 0",
+            "    fileprivate var somePrivateProperty: Int = 1",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A macro that’s attached to a declaration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generates code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and adds that code to the declaration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro in the code above",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adds additional members to the ",
+              "type": "text"
+            },
+            {
+              "code": "MyObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so it implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Observation/Observable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and marks ",
+              "type": "text"
+            },
+            {
+              "code": "MyObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "Observable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To call a macro without attaching it to a declaration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write a number sign (",
+              "type": "text"
+            },
+            {
+              "code": "#",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") before the macro’s name",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and write any macro arguments after its name.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This syntax is the same as ",
+              "type": "text"
+            },
+            {
+              "code": "#if",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and other compile-time operations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let messagePredicate = #Predicate<Message> { message in",
+            "    message.recipient == \"John Appleseed\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A macro that isn’t attached to a declaration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generates code and adds that code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the location where where you call the macro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "Predicate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro in the code above creates an instance of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/macros",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-an-Expanded-Macro",
+          "level": 3,
+          "text": "Inspect an Expanded Macro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your project,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift reads your code and finds the places where you call a macro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift then calls the implementation of each macro,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to expand the code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, Swift builds your project as usual,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the generated code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view the code that a macro generated,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click on the code where you call the macro in Xcode,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then choose Editor > Expand Macro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can read the expanded code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to help you understand details about the macro’s behavior,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you can use the expanded code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to help you debug code that uses macros.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can set breakpoints inside code generated by a macro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Observation/Observable": {
+      "abstract": [
+        {
+          "text": "A type that emits notifications to observers when underlying data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Observation/Observable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Observable",
+      "type": "topic",
+      "url": "/documentation/observation/observable"
+    },
+    "doc://com.apple.Swift/documentation/Observation/Observable()": {
+      "abstract": [
+        {
+          "text": "Defines and implements conformance of the Observable protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Observation/Observable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Observable()",
+      "type": "topic",
+      "url": "/documentation/observation/observable()"
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/macros": {
+      "abstract": [
+        {
+          "text": "Generate boilerplate code and perform other compile-time operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Macros",
+      "type": "topic",
+      "url": "/documentation/swift/macros"
+    },
+    "doc://com.apple.Swift/documentation/Swift/swift-standard-library": {
+      "abstract": [
+        {
+          "text": "Solve complex problems and write high-performance, readable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/swift-standard-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift Standard Library",
+      "type": "topic",
+      "url": "/documentation/swift/swift-standard-library"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/macros": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/macros",
+      "title": "Macros",
+      "titleInlineContent": [
+        {
+          "text": "Macros",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/macros"
+    },
+    "macro-expansion": {
+      "alt": "A diagram showing an overview of macro expansion. On the left, a stylized representation of Swift code. On the right, the same code with several lines added by the macro.",
+      "identifier": "macro-expansion",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd3ccec7b33d53326428504038b73961/macro-expansion@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/434b478c601a348159b0be2cd52ad153/macro-expansion~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

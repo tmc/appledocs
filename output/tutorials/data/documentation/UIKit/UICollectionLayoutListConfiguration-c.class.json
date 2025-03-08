@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration for creating a list layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionLayoutListConfiguration",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionLayoutListConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionLayoutListConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionLayoutListConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionLayoutListConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this configuration to create a list section for a compositional layout (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or a layout containing only list sections. The following example shows how to create a compositional layout that contains only list sections by applying the same configuration to each section in the list layout:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UICollectionLayoutListConfiguration *configuration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearanceSidebar];",
+            "UICollectionViewCompositionalLayout *layout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:configuration];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement different list configurations for different sections, use a compositional layout’s section provider to create each section with its own list configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSectionProvider:^NSCollectionLayoutSection *(NSInteger sectionIndex, id<NSCollectionLayoutEnvironment> layoutEnvironment) {",
+            "    UICollectionLayoutListConfiguration *configuration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearanceInsetGrouped];",
+            "    UICollectionLayoutListHeaderMode mode = (sectionIndex == 0) ? UICollectionLayoutListHeaderModeSupplementary : UICollectionLayoutListHeaderModeNone;",
+            "    [configuration setHeaderMode:mode];",
+            "    NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithListConfiguration:configuration layoutEnvironment:layoutEnvironment];",
+            "    return section;",
+            "}];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSection/sectionWithListConfiguration:layoutEnvironment:": {
+      "abstract": [
+        {
+          "text": "Creates a list section with the specified list configuration and layout environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionWithListConfiguration:layoutEnvironment:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSection/sectionWithListConfiguration:layoutEnvironment:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sectionWithListConfiguration:layoutEnvironment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sectionWithListConfiguration:layoutEnvironment:",
+      "type": "topic",
+      "url": "/documentation/uikit/nscollectionlayoutsection/sectionwithlistconfiguration:layoutenvironment:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListAppearance": {
+      "abstract": [
+        {
+          "text": "Constants that describe the appearance of the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListAppearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class": {
+      "abstract": [
+        {
+          "text": "A configuration for creating a list layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/appearance": {
+      "abstract": [
+        {
+          "text": "The overall appearance of the list layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "appearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/appearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/appearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The background color of the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/backgroundColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/backgroundcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/contentHuggingElements": {
+      "abstract": [
+        {
+          "text": "A setting that determines which type of items tightly hug their content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "contentHuggingElements"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/contentHuggingElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentHuggingElements",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/contenthuggingelements"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/footerMode": {
+      "abstract": [
+        {
+          "text": "The type of footer to use for the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "footerMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/footerMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "footerMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/footermode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/headerMode": {
+      "abstract": [
+        {
+          "text": "The type of header to use for the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "headerMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/headerMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/headermode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/headerTopPadding": {
+      "abstract": [
+        {
+          "text": "The amount of padding above each section header.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "headerTopPadding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/headerTopPadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerTopPadding",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/headertoppadding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/initWithAppearance:": {
+      "abstract": [
+        {
+          "text": "Creates a list layout configuration with the specified appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithAppearance:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/initWithAppearance:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAppearance:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithAppearance:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/initwithappearance:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/itemSeparatorHandler": {
+      "abstract": [
+        {
+          "text": "The closure that provides granular control over the list separator appearance of each item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "itemSeparatorHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/itemSeparatorHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemSeparatorHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/itemseparatorhandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/leadingSwipeActionsConfigurationProvider": {
+      "abstract": [
+        {
+          "text": "The closure that provides the set of actions to display when swiping on the leading edge of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "leadingSwipeActionsConfigurationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/leadingSwipeActionsConfigurationProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leadingSwipeActionsConfigurationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/leadingswipeactionsconfigurationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/separatorConfiguration": {
+      "abstract": [
+        {
+          "text": "The section’s preferred configuration for list separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "separatorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/separatorConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "separatorConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/separatorconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/showsSeparators": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the list shows separators between cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "showsSeparators"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/showsSeparators",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showsSeparators",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/showsseparators"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/trailingSwipeActionsConfigurationProvider": {
+      "abstract": [
+        {
+          "text": "The closure that provides the set of actions to display when swiping on the trailing edge of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "trailingSwipeActionsConfigurationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/trailingSwipeActionsConfigurationProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trailingSwipeActionsConfigurationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/trailingswipeactionsconfigurationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListContentHuggingElements": {
+      "abstract": [
+        {
+          "text": "Constants that determine which types of items in a collection view tightly hug their content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListContentHuggingElements"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListContentHuggingElements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListContentHuggingElements",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistcontenthuggingelements"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListFooterMode": {
+      "abstract": [
+        {
+          "text": "Constants that describe the list’s footer mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListFooterMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListFooterMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListFooterMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistfootermode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListHeaderMode": {
+      "abstract": [
+        {
+          "text": "Constants that describe the list’s header mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListHeaderMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListHeaderMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListHeaderMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistheadermode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListItemSeparatorHandler": {
+      "abstract": [
+        {
+          "text": "A closure that provides granular control over list separator appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListItemSeparatorHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListItemSeparatorHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListItemSeparatorHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistitemseparatorhandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListSwipeActionsConfigurationProvider": {
+      "abstract": [
+        {
+          "text": "A closure that configures the swipe actions for a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionLayoutListSwipeActionsConfigurationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListSwipeActionsConfigurationProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionLayoutListSwipeActionsConfigurationProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionlayoutlistswipeactionsconfigurationprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout": {
+      "abstract": [
+        {
+          "text": "A layout object that lets you combine items in highly adaptive and flexible visual arrangements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCompositionalLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCompositionalLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewCompositionalLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcompositionallayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout/layoutWithListConfiguration:": {
+      "abstract": [
+        {
+          "text": "Creates a compositional layout that contains only list sections of the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutWithListConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout/layoutWithListConfiguration:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutWithListConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutWithListConfiguration:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcompositionallayout/layoutwithlistconfiguration:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAutomaticDimension": {
+      "abstract": [
+        {
+          "text": "A constant that specifies a default value for a particular dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAutomaticDimension"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAutomaticDimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewLayoutAutomaticDimension",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutautomaticdimension"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIListSeparatorConfiguration-c.class": {
+      "abstract": [
+        {
+          "text": "A configuration that controls the list separator appearance in a list section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIListSeparatorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIListSeparatorConfiguration-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIListSeparatorConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uilistseparatorconfiguration-c.class"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSection/sectionWithListConfiguration:layoutEnvironment:"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Creating-a-list-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCompositionalLayout/layoutWithListConfiguration:"
+      ],
+      "title": "Creating a list layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-list-layout-configuration",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/initWithAppearance:"
+      ],
+      "title": "Creating a list layout configuration"
+    },
+    {
+      "anchor": "Configuring-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/appearance",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/backgroundColor",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListAppearance"
+      ],
+      "title": "Configuring appearance"
+    },
+    {
+      "anchor": "Configuring-separators",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/showsSeparators",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/separatorConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UIListSeparatorConfiguration-c.class",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/itemSeparatorHandler",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListItemSeparatorHandler"
+      ],
+      "title": "Configuring separators"
+    },
+    {
+      "anchor": "Configuring-headers-and-footers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/headerMode",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/footerMode",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListHeaderMode",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListFooterMode",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/headerTopPadding",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAutomaticDimension"
+      ],
+      "title": "Configuring headers and footers"
+    },
+    {
+      "anchor": "Customizing-swipe-actions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/leadingSwipeActionsConfigurationProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/trailingSwipeActionsConfigurationProvider",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListSwipeActionsConfigurationProvider"
+      ],
+      "title": "Customizing swipe actions"
+    },
+    {
+      "anchor": "Managing-content-hugging-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListConfiguration-c.class/contentHuggingElements",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionLayoutListContentHuggingElements"
+      ],
+      "title": "Managing content-hugging behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCompositionalLayout/title",
+          "value": "UICollectionViewCompositionalLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCompositionalLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCompositionalLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCompositionalLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCompositionalLayout"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionlayoutlistconfiguration-c.class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

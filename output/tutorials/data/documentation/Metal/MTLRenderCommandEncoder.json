@@ -1,0 +1,3566 @@
+{
+  "abstract": [
+    {
+      "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLRenderCommandEncoder",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLRenderCommandEncoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLRenderCommandEncoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLRenderCommandEncoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+        "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification",
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol defines an interface that configures and encodes a render pass. Use a render pass to draw a scene, or a component within a scene, to its render ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "attachments",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the outputs of a render pass. You can use various approaches to render to those outputs, including techniques that apply the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Primitive drawing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mesh drawing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ray tracing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tile shaders dispatching",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeRenderCommandEncoder(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder/makeRenderCommandEncoder()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the render pass for your first drawing commands, start with a pipeline state by passing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to the encoder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setRenderPipelineState(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You create the pipeline states your render pass needs, typically ahead of time, by calling one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/pipeline-state-creation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Avoid visual stutter by creating pipeline states at a noncritical time, such as during launch, because of the time it can take to make them.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set any other applicable parts of the encoder’s configuration by calling the methods on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/render-pass-configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page. For example, you may need to configure the pass’s viewport, its scissor rectangle, and the settings for depth and stencil tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assign resources, such as buffers and textures, for the shaders that depend on them. For more information, see the shader-specific pages in the resource preparation section, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your shaders access resources through an argument buffer, ensure the pass makes those resources ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resident",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " by loading those resources resident in GPU memory. You do this by calling the methods on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encode drawing commands by calling the methods on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/render-pass-drawing-commands",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page after you configure the state and resources the commands depend on. The encoder maintains its current state and applies them to all subsequent draw commands. For drawing commands that need different states or resources, reconfigure the render pass appropriately and then encode those draw commands. Repeat the process for each batch of drawing commands that depend on the same render pass configuration and resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you finish encoding the render pass’s commands, finalize it into the command buffer by calling the encoder’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeRenderCommandEncoder(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a render command encoder from a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPassDescriptor",
+          "text": "MTLRenderPassDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderCommandEncoder",
+          "text": "MTLRenderCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/makeRenderCommandEncoder(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderCommandEncoderWithDescriptor:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderCommandEncoder(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/makerendercommandencoder(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that writes GPU commands into a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()": {
+      "abstract": [
+        {
+          "text": "Declares that all command generation from the encoder is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder/endEncoding()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endEncoding"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "endEncoding()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder/endencoding()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCullMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines whether to perform culling and which type of primitive to cull.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCullMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcullmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines how to deal with fragments outside of the near or far planes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDepthClipMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDepthClipMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDepthClipMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtldepthclipmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked": {
+      "abstract": [
+        {
+          "text": "An option specifying that the app must prevent hazards when modifying this object’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "untracked"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingModeUntracked"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHazardTrackingMode.untracked",
+      "type": "topic",
+      "url": "/documentation/metal/mtlhazardtrackingmode/untracked"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap/hazardTrackingMode": {
+      "abstract": [
+        {
+          "text": "The heap’s hazard tracking mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hazardTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLHazardTrackingMode",
+          "text": "MTLHazardTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap/hazardTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hazardTrackingMode"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "hazardTrackingMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap/hazardtrackingmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndexType": {
+      "abstract": [
+        {
+          "text": "The index type for an index buffer that references vertices of geometric primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndexType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndexType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndexType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndexType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindextype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An object that splits up a single render pass so that it can be simultaneously encoded from multiple threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLParallelRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLParallelRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLParallelRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlparallelrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder/makeRenderCommandEncoder()": {
+      "abstract": [
+        {
+          "text": "Create an object that encodes commands that perform graphics rendering operations and may be assigned to a different thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRenderCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderCommandEncoder",
+          "text": "MTLRenderCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder/makeRenderCommandEncoder()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderCommandEncoder"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRenderCommandEncoder()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlparallelrendercommandencoder/makerendercommandencoder()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType": {
+      "abstract": [
+        {
+          "text": "The geometric primitive type for drawing commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPrimitiveType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPrimitiveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPrimitiveType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlprimitivetype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer(_:indirectBuffer:offset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that runs an indirect range of commands from an indirect command buffer (ICB).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indirectBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer(_:indirectBuffer:offset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommandsInBuffer(_:indirectBuffer:offset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/executecommandsinbuffer(_:indirectbuffer:offset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that runs a range of commands from an indirect command buffer (ICB).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommandsInBuffer(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/executecommandsinbuffer(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that runs an indirect range of commands from an indirect command buffer (ICB).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/executecommandsinbuffer:indirectbuffer:indirectbufferoffset:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes a command that runs a range of commands from an indirect command buffer (ICB).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeCommandsInBuffer:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "executeCommandsInBuffer:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/executecommandsinbuffer:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(resources:after:before:)": {
+      "abstract": [
+        {
+          "text": "Creates a memory barrier that enforces the order of write and read operations for specific resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryBarrier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(resources:after:before:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "memoryBarrier(resources:after:before:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/memorybarrier(resources:after:before:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(scope:after:before:)": {
+      "abstract": [
+        {
+          "text": "Creates a memory barrier that enforces the order of write and read operations for specific resource types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryBarrier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLBarrierScope",
+          "text": "MTLBarrierScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(scope:after:before:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "memoryBarrierWithScope:afterStages:beforeStages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "memoryBarrier(scope:after:before:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/memorybarrier(scope:after:before:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrierWithResources:count:afterStages:beforeStages:": {
+      "abstract": [
+        {
+          "text": "Creates a memory barrier that enforces the order of write and read operations for specific resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "memoryBarrierWithResources:count:afterStages:beforeStages:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrierWithResources:count:afterStages:beforeStages:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "memoryBarrierWithResources:count:afterStages:beforeStages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "memoryBarrierWithResources:count:afterStages:beforeStages:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/memorybarrierwithresources:count:afterstages:beforestages:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that samples hardware counters during the render pass and stores the data into a counter sample buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCounters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounterSampleBuffer",
+          "text": "MTLCounterSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "barrier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sampleCounters(sampleBuffer:sampleIndex:barrier:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setRenderPipelineState(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the encoder with a render or tile pipeline state instance that applies to your subsequent draw commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setRenderPipelineState(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setRenderPipelineState(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setrenderpipelinestate(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:attributeStride:index:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:attributeStride:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffer:offset:attributeStride:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexBuffer(_:offset:attributeStride:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbuffer(_:offset:attributestride:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(offset:attributeStride:index:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(offset:attributeStride:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBufferOffset:attributeStride:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexBufferOffset(offset:attributeStride:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbufferoffset(offset:attributestride:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers(_:offsets:attributeStrides:range:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStrides"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers(_:offsets:attributeStrides:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVertexBuffers(_:offsets:attributeStrides:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbuffers(_:offsets:attributestrides:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers:offsets:attributeStrides:withRange:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffers:offsets:attributeStrides:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers:offsets:attributeStrides:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBuffers:offsets:attributeStrides:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVertexBuffers:offsets:attributeStrides:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbuffers:offsets:attributestrides:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:attributeStride:index:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributeStride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:attributeStride:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexBytes:length:attributeStride:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexBytes(_:length:attributeStride:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexbytes(_:length:attributestride:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/updateFence(_:after:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that instructs the GPU to update a fence after one or more stages, which signals passes waiting on the fence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateFence"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFence",
+          "text": "MTLFence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/updateFence(_:after:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateFence:afterStages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "updateFence(_:after:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/updatefence(_:after:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/waitForFence(_:before:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that instructs the GPU to pause before starting one or more stages of the render pass until a pass updates a fence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForFence"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLFence",
+          "text": "MTLFence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/waitForFence(_:before:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "waitForFence:beforeStages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "waitForFence(_:before:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/waitforfence(_:before:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode": {
+      "abstract": [
+        {
+          "text": "Specifies how to rasterize triangle and triangle strip primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTriangleFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTriangleFillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTriangleFillMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtltrianglefillmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode": {
+      "abstract": [
+        {
+          "text": "The mode that determines what, if anything, the GPU writes to the results buffer, after the GPU executes the render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVisibilityResultMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVisibilityResultMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVisibilityResultMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvisibilityresultmode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLWinding": {
+      "abstract": [
+        {
+          "text": "The vertex winding rule that determines a front-facing primitive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLWinding"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLWinding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLWinding"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLWinding",
+      "type": "topic",
+      "url": "/documentation/metal/mtlwinding"
+    },
+    "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Load individual resources and multiple resources within a heap into GPU memory so that they’re available to shaders through argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Argument Buffer Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/argument-buffer-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/metal/deprecated-symbols"
+    },
+    "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to fragment shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fragment Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/fragment-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification": {
+      "abstract": [
+        {
+          "text": "Run draw commands that render to different outputs using the same vertex data multiple times.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Rendering Performance with Vertex Amplification",
+      "type": "topic",
+      "url": "/documentation/metal/improving-rendering-performance-with-vertex-amplification"
+    },
+    "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to mesh and object shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mesh and Object Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/mesh-and-object-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/pipeline-state-creation": {
+      "abstract": [
+        {
+          "text": "Create pipeline states for render and compute passes, samplers, depth and stencil states, and indirect command buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/pipeline-state-creation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pipeline State Creation",
+      "type": "topic",
+      "url": "/documentation/metal/pipeline-state-creation"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-pass-configuration": {
+      "abstract": [
+        {
+          "text": "Set a render pass’s pipeline state, attachment actions, viewports, and so on, that affect subsequent drawing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-pass-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Pass Configuration",
+      "type": "topic",
+      "url": "/documentation/metal/render-pass-configuration"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-pass-drawing-commands": {
+      "abstract": [
+        {
+          "text": "Render an image by drawing meshes, primitives, tessellation patches, and by dispatching tile shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-pass-drawing-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Pass Drawing Commands",
+      "type": "topic",
+      "url": "/documentation/metal/render-pass-drawing-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve a GPU’s counter data at a time the GPU supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/sampling-gpu-data-into-counter-sample-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sampling GPU Data into Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/sampling-gpu-data-into-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure": {
+      "abstract": [
+        {
+          "text": "Discover how Metal executes commands on a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Command Structure",
+      "type": "topic",
+      "url": "/documentation/metal/setting-up-a-command-structure"
+    },
+    "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets": {
+      "abstract": [
+        {
+          "text": "Organize your resources into groups and influence when they become accessible to the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying GPU Resource Management with Residency Sets",
+      "type": "topic",
+      "url": "/documentation/metal/simplifying-gpu-resource-management-with-residency-sets"
+    },
+    "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to tile shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tile Shaders Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/tile-shaders-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to vertex shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vertex Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/vertex-shader-resource-preparation-commands"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-a-Render-Pass",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode",
+        "doc://com.apple.metal/documentation/Metal/MTLWinding",
+        "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+        "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType",
+        "doc://com.apple.metal/documentation/Metal/MTLIndexType",
+        "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode",
+        "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode"
+      ],
+      "title": "Encoding a Render Pass"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Manage the render pass’s overall state.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Configuration-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/render-pass-configuration"
+      ],
+      "title": "Encoding Configuration Commands"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Load buffers, textures, and other resources into GPU memory for each shader type, including mesh, object, vertex, fragment, and tile shaders.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Resource-Preparation-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+      ],
+      "title": "Encoding Resource Preparation Commands"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Render your content with draw commands that invoke the shaders of the pass’s current pipeline state.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Draw-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/render-pass-drawing-commands"
+      ],
+      "title": "Encoding Draw Commands"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Protect against data hazards for resources with a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap/hazardTrackingMode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property that’s ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " with memory fences and barriers.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Resource-Synchronization-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/waitForFence(_:before:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/updateFence(_:after:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(resources:after:before:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(scope:after:before:)"
+      ],
+      "title": "Encoding Resource Synchronization Commands"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Run a command that tells the GPU to run other commands in a buffer, typically for commands your app needs frequently.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Commands-that-Run-Indirect-Command-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer(_:indirectBuffer:offset:)"
+      ],
+      "title": "Encoding Commands that Run Indirect Command Buffers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Sample realtime data from the GPU’s hardware as it runs the render pass.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Encoding-Data-Sampling-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)"
+      ],
+      "title": "Encoding Data Sampling Commands"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Replace older symbols in this group with their newer equivalents.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:attributeStride:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(offset:attributeStride:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers(_:offsets:attributeStrides:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:attributeStride:index:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Manage the render pass’s overall state.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Configuration-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/render-pass-configuration"
+              ],
+              "title": "Encoding Configuration Commands"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Load buffers, textures, and other resources into GPU memory for each shader type, including mesh, object, vertex, fragment, and tile shaders.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Resource-Preparation-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+              ],
+              "title": "Encoding Resource Preparation Commands"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Render your content with draw commands that invoke the shaders of the pass’s current pipeline state.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Draw-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/render-pass-drawing-commands"
+              ],
+              "title": "Encoding Draw Commands"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Protect against data hazards for resources with a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap/hazardTrackingMode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property that’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with memory fences and barriers.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Resource-Synchronization-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/waitForFence(_:before:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/updateFence(_:after:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrierWithResources:count:afterStages:beforeStages:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/memoryBarrier(scope:after:before:)"
+              ],
+              "title": "Encoding Resource Synchronization Commands"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Run a command that tells the GPU to run other commands in a buffer, typically for commands your app needs frequently.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Commands-that-Run-Indirect-Command-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:"
+              ],
+              "title": "Encoding Commands that Run Indirect Command Buffers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Sample realtime data from the GPU’s hardware as it runs the render pass.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Encoding-Data-Sampling-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/sampleCounters(sampleBuffer:sampleIndex:barrier:)"
+              ],
+              "title": "Encoding Data Sampling Commands"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Replace older symbols in this group with their newer equivalents.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffer(_:offset:attributeStride:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBufferOffset(offset:attributeStride:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBuffers:offsets:attributeStrides:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexBytes(_:length:attributeStride:index:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-a-Render-Pass",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLTriangleFillMode",
+                "doc://com.apple.metal/documentation/Metal/MTLWinding",
+                "doc://com.apple.metal/documentation/Metal/MTLCullMode",
+                "doc://com.apple.metal/documentation/Metal/MTLPrimitiveType",
+                "doc://com.apple.metal/documentation/Metal/MTLIndexType",
+                "doc://com.apple.metal/documentation/Metal/MTLDepthClipMode",
+                "doc://com.apple.metal/documentation/Metal/MTLVisibilityResultMode"
+              ],
+              "title": "Encoding a Render Pass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLRenderCommandEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+                    "text": "MTLCommandEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBufferOffset(offset:attributeStride:index:)/title",
+          "value": "setVertexBufferOffset:attributeStride:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBufferOffset(offset:attributeStride:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexBufferOffset:attributeStride:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeRenderCommandEncoder(descriptor:)/title",
+          "value": "renderCommandEncoderWithDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1makeRenderCommandEncoder(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderCommandEncoderWithDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1sampleCounters(sampleBuffer:sampleIndex:barrier:)/title",
+          "value": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1sampleCounters(sampleBuffer:sampleIndex:barrier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleCountersInBuffer:atSampleIndex:withBarrier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBytes(_:length:attributeStride:index:)/title",
+          "value": "setVertexBytes:length:attributeStride:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBytes(_:length:attributeStride:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexBytes:length:attributeStride:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode~1untracked/title",
+          "value": "MTLHazardTrackingModeUntracked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode~1untracked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingModeUntracked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBuffer(_:offset:attributeStride:index:)/title",
+          "value": "setVertexBuffer:offset:attributeStride:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexBuffer(_:offset:attributeStride:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexBuffer:offset:attributeStride:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveType/title",
+          "value": "MTLPrimitiveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPrimitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPrimitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthClipMode/title",
+          "value": "MTLDepthClipMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthClipMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthClipMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDepthClipMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDepthClipMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setRenderPipelineState(_:)/title",
+          "value": "setRenderPipelineState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setRenderPipelineState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRenderPipelineState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1waitForFence(_:before:)/title",
+          "value": "waitForFence:beforeStages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1waitForFence(_:before:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "waitForFence:beforeStages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1memoryBarrier(scope:after:before:)/title",
+          "value": "memoryBarrierWithScope:afterStages:beforeStages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1memoryBarrier(scope:after:before:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "memoryBarrierWithScope:afterStages:beforeStages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/title",
+          "value": "MTLCullMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCullMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCullMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1updateFence(_:after:)/title",
+          "value": "updateFence:afterStages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1updateFence(_:after:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateFence:afterStages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode/title",
+          "value": "MTLVisibilityResultMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibilityResultMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVisibilityResultMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVisibilityResultMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap~1hazardTrackingMode/title",
+          "value": "hazardTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap~1hazardTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hazardTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndexType/title",
+          "value": "MTLIndexType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndexType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndexType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndexType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndexType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/title",
+          "value": "endEncoding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder~1endEncoding()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endEncoding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder/title",
+          "value": "MTLParallelRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLParallelRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLParallelRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder~1makeRenderCommandEncoder()/title",
+          "value": "renderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLParallelRenderCommandEncoder~1makeRenderCommandEncoder()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleFillMode/title",
+          "value": "MTLTriangleFillMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleFillMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTriangleFillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTriangleFillMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTriangleFillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/title",
+          "value": "MTLCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/title",
+          "value": "MTLRenderPipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/title",
+          "value": "MTLWinding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWinding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLWinding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLWinding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlrendercommandencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlrendercommandencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

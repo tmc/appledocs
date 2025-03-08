@@ -1,0 +1,1045 @@
+{
+  "abstract": [
+    {
+      "text": "An accessory in a collection view list cell.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICellAccessory",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UICellAccessory"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICellAccessory"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICellAccessory"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICellAccessory"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A cell accessory is a visual element that you can add to a list cell (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). You use a cell accessory as a visual indicator or to let a user perform a cell-specific action like selecting, reordering, or deleting the cell. A cell accessory appears either on the leading or the trailing edge of a cell, outside of the cell’s content view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit defines a set of standard system cell accessories. System accessories have default system-defined appearances, but you can make some customizations to them, like setting a custom tint color. You can’t customize the placement of system accessories. If you want additional customization, you can create a custom accessory with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCustomView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add accessories to a list cell by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell/accessories-88j0f",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "UICellAccessoryDisclosureIndicator *disclosure = [[UICellAccessoryDisclosureIndicator alloc] init];",
+            "[disclosure setTintColor:[UIColor systemGrayColor]];",
+            "",
+            "[cell setAccessories: @[ [[UICellAccessoryCheckmark alloc] init],",
+            "                         disclosure,",
+            "                         [[UICellAccessoryDelete alloc] init],",
+            "                         [[UICellAccessoryReorder alloc] init]",
+            "                      ]];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system throws an exception if you include more than one instance of any system accessory. You can include multiple custom accessories.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class": {
+      "abstract": [
+        {
+          "text": "An accessory in a collection view list cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessory",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/displayedState": {
+      "abstract": [
+        {
+          "text": "The cell-editing states that the accessory appears in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "displayedState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/displayedState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayedState",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class/displayedstate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/hidden": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the cell hides the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/hidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class/hidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/init": {
+      "abstract": [
+        {
+          "text": "Creates a cell accessory object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/init",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class/init"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/initWithCoder:": {
+      "abstract": [
+        {
+          "text": "Creates a cell accessory object from data in a given unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/initWithCoder:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithCoder:",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class/initwithcoder:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/reservedLayoutWidth": {
+      "abstract": [
+        {
+          "text": "The layout width that the system reserves for the accessory and then centers the accessory within.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "reservedLayoutWidth"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/reservedLayoutWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reservedLayoutWidth",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class/reservedlayoutwidth"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/tintColor": {
+      "abstract": [
+        {
+          "text": "The tint color to apply to the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "tintColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/tintColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tintColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessory-c.class/tintcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCheckmark": {
+      "abstract": [
+        {
+          "text": "The checkmark system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryCheckmark"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCheckmark",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryCheckmark",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorycheckmark"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCustomView": {
+      "abstract": [
+        {
+          "text": "A custom cell accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryCustomView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCustomView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryCustomView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorycustomview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDelete": {
+      "abstract": [
+        {
+          "text": "The delete system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryDelete"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDelete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryDelete",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorydelete"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDetail": {
+      "abstract": [
+        {
+          "text": "The detail system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryDetail"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDetail",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryDetail",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorydetail"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisclosureIndicator": {
+      "abstract": [
+        {
+          "text": "The disclosure indicator system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryDisclosureIndicator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisclosureIndicator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryDisclosureIndicator",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorydisclosureindicator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisplayedState": {
+      "abstract": [
+        {
+          "text": "Constants that describe the cell-editing states that the accessory appears in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryDisplayedState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisplayedState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryDisplayedState",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorydisplayedstate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryInsert": {
+      "abstract": [
+        {
+          "text": "The insert system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryInsert"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryInsert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryInsert",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessoryinsert"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryLabel": {
+      "abstract": [
+        {
+          "text": "The label system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryLabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorylabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryMultiselect": {
+      "abstract": [
+        {
+          "text": "The multiselect system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryMultiselect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryMultiselect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryMultiselect",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorymultiselect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryOutlineDisclosure": {
+      "abstract": [
+        {
+          "text": "The outline disclosure system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryOutlineDisclosure"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryOutlineDisclosure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryOutlineDisclosure",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessoryoutlinedisclosure"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPlacement": {
+      "abstract": [
+        {
+          "text": "Constants that describe the placement of the accessory within the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPlacement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryPlacement",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessoryplacement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPopUpMenu": {
+      "abstract": [
+        {
+          "text": "The popup menu system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryPopUpMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPopUpMenu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryPopUpMenu",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorypopupmenu"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPosition": {
+      "abstract": [
+        {
+          "text": "The index position of the cell accessory in relation to the other accessories in the specified array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPosition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryPosition",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessoryposition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPositionAfterAccessoryOfClass": {
+      "abstract": [
+        {
+          "text": "Provides a position after the accessory that matches the specified class, or at the end if there’s no matching class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryPositionAfterAccessoryOfClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPositionAfterAccessoryOfClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryPositionAfterAccessoryOfClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorypositionafteraccessoryofclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPositionBeforeAccessoryOfClass": {
+      "abstract": [
+        {
+          "text": "Provides a position before the accessory that matches the specified class, or at the beginning if there’s no matching class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryPositionBeforeAccessoryOfClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPositionBeforeAccessoryOfClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryPositionBeforeAccessoryOfClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorypositionbeforeaccessoryofclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryReorder": {
+      "abstract": [
+        {
+          "text": "The reorder system accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryReorder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryReorder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryReorder",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessoryreorder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryStandardDimension": {
+      "abstract": [
+        {
+          "text": "The system standard layout dimension for accessories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICellAccessoryStandardDimension"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryStandardDimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICellAccessoryStandardDimension",
+      "type": "topic",
+      "url": "/documentation/uikit/uicellaccessorystandarddimension"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell": {
+      "abstract": [
+        {
+          "text": "A collection view cell that provides list features and default styling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewListCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewListCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewListCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlistcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell/accessories-88j0f": {
+      "abstract": [
+        {
+          "text": "An array of the accessories that decorate the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell/accessories-88j0f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessories",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlistcell/accessories-88j0f"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCheckmark",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCustomView",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDelete",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDetail",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisclosureIndicator",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryInsert",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryLabel",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryMultiselect",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryOutlineDisclosure",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPopUpMenu",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryReorder"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-cell-accessories",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewListCell/accessories-88j0f"
+      ],
+      "title": "Managing cell accessories"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-cell-accessory",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/init",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/initWithCoder:"
+      ],
+      "title": "Creating a cell accessory"
+    },
+    {
+      "anchor": "Creating-a-system-accessory",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisclosureIndicator",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryOutlineDisclosure",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPopUpMenu",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCheckmark",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDelete",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryInsert",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryReorder",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryMultiselect",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryLabel",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDetail"
+      ],
+      "title": "Creating a system accessory"
+    },
+    {
+      "anchor": "Creating-a-custom-accessory",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryCustomView"
+      ],
+      "title": "Creating a custom accessory"
+    },
+    {
+      "anchor": "Customizing-appearance",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/hidden",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/tintColor",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/displayedState",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryDisplayedState"
+      ],
+      "title": "Customizing appearance"
+    },
+    {
+      "anchor": "Customizing-layout-and-placement",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessory-c.class/reservedLayoutWidth",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryStandardDimension",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPlacement",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPosition",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPositionAfterAccessoryOfClass",
+        "doc://com.apple.uikit/documentation/UIKit/UICellAccessoryPositionBeforeAccessoryOfClass"
+      ],
+      "title": "Customizing layout and placement"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/title",
+          "value": "UICollectionViewListCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewListCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewListCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewListCell"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicellaccessory-c.class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

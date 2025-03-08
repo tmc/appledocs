@@ -1,0 +1,1766 @@
+{
+  "abstract": [
+    {
+      "text": "An object that presents the visual contents of a player object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVPlayerLayer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVPlayerLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVPlayerLayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVPlayerLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common way to use this object in iOS or tvOS is as the backing layer for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A view that displays the visual contents of a player object.",
+            "class PlayerView: UIView {",
+            "",
+            "    // Override the property to make AVPlayerLayer the view's backing layer.",
+            "    override static var layerClass: AnyClass { AVPlayerLayer.self }",
+            "    ",
+            "    // The associated player object.",
+            "    var player: AVPlayer? {",
+            "        get { playerLayer.player }",
+            "        set { playerLayer.player = newValue }",
+            "    }",
+            "    ",
+            "    private var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The value of a player layer’s inherited ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/contents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property is opaque and you can’t change it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVLayerVideoGravity": {
+      "abstract": [
+        {
+          "text": "A structure that defines how a layer displays a player’s visual content within the layer’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVLayerVideoGravity"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVLayerVideoGravity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVLayerVideoGravity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVLayerVideoGravity",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avlayervideogravity"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer": {
+      "abstract": [
+        {
+          "text": "An object that presents the visual contents of a player object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/displayedPixelBuffer()": {
+      "abstract": [
+        {
+          "text": "Returns the pixel buffer that the player layer currently displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayedPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/displayedPixelBuffer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyDisplayedPixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayedPixelBuffer()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/displayedpixelbuffer()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/init(player:)": {
+      "abstract": [
+        {
+          "text": "Creates a layer object to present the visual contents of a player’s current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayer",
+          "text": "AVPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/init(player:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerLayerWithPlayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(player:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/init(player:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/isReadyForDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the first video frame of the player’s current item is ready for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadyForDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/isReadyForDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyForDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReadyForDisplay",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/isreadyfordisplay"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/pixelBufferAttributes": {
+      "abstract": [
+        {
+          "text": "The attributes of the visual output that displays in the player layer during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelBufferAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/pixelBufferAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelBufferAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelBufferAttributes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/pixelbufferattributes"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/player": {
+      "abstract": [
+        {
+          "text": "The player whose visual content the layer displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayer",
+          "text": "AVPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/player",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "player"
+        }
+      ],
+      "role": "symbol",
+      "title": "player",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/player"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoGravity": {
+      "abstract": [
+        {
+          "text": "A value that specifies how the layer displays the player’s visual content within the layer’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoGravity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVLayerVideoGravity",
+          "text": "AVLayerVideoGravity"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoGravity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoGravity"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoGravity",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/videogravity"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoRect": {
+      "abstract": [
+        {
+          "text": "The current size and position of the video image that displays within the layer’s bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoRect",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayerlayer/videorect"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSynchronizedLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSynchronizedLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSynchronizedLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsynchronizedlayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app": {
+      "abstract": [
+        {
+          "text": "Observe the playback of a media asset to update your app’s user-interface state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Monitoring playback progress in your app",
+      "type": "topic",
+      "url": "/documentation/avfoundation/monitoring-playback-progress-in-your-app"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks": {
+      "abstract": [
+        {
+          "text": "Extend your app’s appeal to users by adding subtitles and alternative audio tracks in their native language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/selecting-subtitles-and-alternative-audio-tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Selecting Subtitles and Alternative Audio Tracks",
+      "type": "topic",
+      "url": "/documentation/avfoundation/selecting-subtitles-and-alternative-audio-tracks"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha": {
+      "abstract": [
+        {
+          "text": "Play, write, and export HEVC video with an alpha channel to add overlay effects to your video processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using HEVC Video with Alpha",
+      "type": "topic",
+      "url": "/documentation/avfoundation/using-hevc-video-with-alpha"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer/contents": {
+      "abstract": [
+        {
+          "text": "An object that provides the contents of the layer. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/contents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contents",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer/contents"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)CAMediaTiming": {
+      "abstract": [
+        {
+          "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)CAMediaTiming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMediaTiming",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMediaTiming"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)CALayer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)CAMediaTiming",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presentation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/using-hevc-video-with-alpha",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer"
+      ],
+      "title": "Presentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Player-Layer",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/init(player:)"
+      ],
+      "title": "Creating a Player Layer"
+    },
+    {
+      "anchor": "Configuring-the-Presentation",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoRect",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoGravity",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVLayerVideoGravity"
+      ],
+      "title": "Configuring the Presentation"
+    },
+    {
+      "anchor": "Determining-Display-Readiness",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/isReadyForDisplay"
+      ],
+      "title": "Determining Display Readiness"
+    },
+    {
+      "anchor": "Accessing-the-Player",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/player"
+      ],
+      "title": "Accessing the Player"
+    },
+    {
+      "anchor": "Processing-Pixel-Buffers",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/pixelBufferAttributes",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/displayedPixelBuffer()"
+      ],
+      "title": "Processing Pixel Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVPlayerLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Player-Layer",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/init(player:)"
+              ],
+              "title": "Creating a Player Layer"
+            },
+            {
+              "anchor": "Configuring-the-Presentation",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoRect",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/videoGravity",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVLayerVideoGravity"
+              ],
+              "title": "Configuring the Presentation"
+            },
+            {
+              "anchor": "Determining-Display-Readiness",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/isReadyForDisplay"
+              ],
+              "title": "Determining Display Readiness"
+            },
+            {
+              "anchor": "Accessing-the-Player",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/player"
+              ],
+              "title": "Accessing the Player"
+            },
+            {
+              "anchor": "Processing-Pixel-Buffers",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/pixelBufferAttributes",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerLayer/displayedPixelBuffer()"
+              ],
+              "title": "Processing Pixel Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)CALayer"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Presentation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/monitoring-playback-progress-in-your-app",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVSynchronizedLayer"
+              ],
+              "title": "Presentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVPlayerLayer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)CALayer",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CALayer",
+                    "text": "CALayer"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1videoGravity/title",
+          "value": "videoGravity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1videoGravity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVLayerVideoGravity/title",
+          "value": "AVLayerVideoGravity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVLayerVideoGravity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVLayerVideoGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVLayerVideoGravity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVLayerVideoGravity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1player/title",
+          "value": "player"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1player/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "player"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer/title",
+          "value": "AVPlayerLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1isReadyForDisplay/title",
+          "value": "readyForDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1isReadyForDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readyForDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1pixelBufferAttributes/title",
+          "value": "pixelBufferAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1pixelBufferAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelBufferAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1init(player:)/title",
+          "value": "playerLayerWithPlayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1init(player:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerLayerWithPlayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer~1contents/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contents"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1videoRect/title",
+          "value": "videoRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1videoRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)CAMediaTiming/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSynchronizedLayer/title",
+          "value": "AVSynchronizedLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSynchronizedLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSynchronizedLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSynchronizedLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSynchronizedLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1displayedPixelBuffer()/title",
+          "value": "copyDisplayedPixelBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerLayer~1displayedPixelBuffer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyDisplayedPixelBuffer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avplayerlayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avplayerlayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

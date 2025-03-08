@@ -1,0 +1,479 @@
+{
+  "abstract": [
+    {
+      "text": "Removes the elements in the specified subrange from the collection.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+        "doc://com.apple.documentation/documentation/foundation/data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/data/2224163-removesubrange"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2224163,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:SmsE14removeSubrangeyySny5IndexQzGF::SYNTHESIZED::s:10Foundation4DataV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "removeSubrange"
+      },
+      {
+        "kind": "text",
+        "text": "(Range<Int>)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Data"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "removeSubrange(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "mutating"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeSubrange"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "bounds"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sn",
+              "text": "Range"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The range of the collection to be removed. The bounds of the range must be valid indices of the collection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bounds"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All the elements following the specified position are moved to close the gap. This example removes three elements from the middle of an array of measurements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]",
+            "measurements.removeSubrange(1..<4)",
+            "print(measurements)",
+            "// Prints \"[1.2, 1.5]\""
+          ],
+          "metadata": {
+            "anchor": "2844564",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method may invalidate any existing indices for use with this collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complexity: O(",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "n",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "), where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "n",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the length of the collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Range": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Range",
+      "type": "topic",
+      "url": "/documentation/swift/range"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/2224163-removesubrange": {
+      "abstract": [
+        {
+          "text": "Removes the elements in the specified subrange from the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeSubrange"
+        },
+        {
+          "kind": "text",
+          "text": "(Range<Int>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/2224163-removesubrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeSubrange(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/data/2224163-removesubrange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/2224163-removesubrange#2844564": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/2224163-removesubrange#2844564",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/data/2224163-removesubrange#2844564"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/2224169-removeall": {
+      "abstract": [
+        {
+          "text": "Removes all elements from the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "keepingCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/2224169-removeall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAll(keepingCapacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/data/2224169-removeall"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/2224281-remove": {
+      "abstract": [
+        {
+          "text": "Removes and returns the element at the specified position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/2224281-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/data/2224281-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/data/2224281-remove",
+        "doc://com.apple.documentation/documentation/foundation/data/2224169-removeall"
+      ],
+      "title": "Removing Bytes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/data/2224163-removesubrange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1071 @@
+{
+  "abstract": [
+    {
+      "text": "A GPU-based image-processing routine used to create custom Core Image filters.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cikernel"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437965,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIKernel",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIKernel"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIKernel"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIKernel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your custom filter uses both color and geometry information, but does not require processing both at the same time, you can improve performance by separating your image processing code: use a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolorkernel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object for the color processing step and a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object for the geometry processing step.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kernel language routine for a general-purpose filter kernel has the following characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Its return type is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vec4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Core Image Kernel Language) or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Metal Shading Language); that is, it returns a pixel color for the output image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It may use zero or more input images. Each input image is represented by a parameter of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sampler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A kernel routine typically produces its output by calculating source image coordinates (using the ",
+              "type": "text"
+            },
+            {
+              "code": "destCoord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "samplerTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions or the ",
+              "type": "text"
+            },
+            {
+              "code": "samplerTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function), samples from the source images (using the ",
+              "type": "text"
+            },
+            {
+              "code": "sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function), and computes a final pixel color (output using the ",
+              "type": "text"
+            },
+            {
+              "code": "return",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <CoreImage/CoreImage.h>",
+            " ",
+            "extern \"C\" {",
+            "    namespace coreimage {",
+            "        float4 do_nothing(sampler src) {",
+            "            return src.sample(src.coord());",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2924267",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The equivalent code in Core Image Kernel Language is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kernel vec4 do_nothing(sampler image) {",
+            "    vec2 dc = destCoord();",
+            "    return sample(image, samplerTransform(image, dc));",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2315159",
+            "title": "Listing 2"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1731143",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1720743",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720743": {
+      "identifier": "devLink-1720743",
+      "title": "Core Image Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185"
+    },
+    "devLink-1731143": {
+      "identifier": "devLink-1731143",
+      "title": "Core Image Kernel Language Reference",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CIKernelLangRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004397"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciblendkernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine that is optimized for blending two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIBlendKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciblendkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIBlendKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciblendkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolorkernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIColorKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolorkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColorKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolorkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltershape": {
+      "abstract": [
+        {
+          "text": "A description of the bounding shape of a filter and the domain of definition for a filter operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterShape"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltershape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterShape",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltershape"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat": {
+      "abstract": [
+        {
+          "text": "Pixel data formats for image input, output, and processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel#2315159": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel#2315159",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreimage/cikernel#2315159"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel#2924267": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel#2924267",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cikernel#2924267"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector": {
+      "abstract": [
+        {
+          "text": "Sets the selector Core Image uses to query the region of interest for image processing with the kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setROISelector"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setROISelector(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1437691-setroiselector"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1437796-init": {
+      "abstract": [
+        {
+          "text": "Creates a single kernel object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1437796-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(source:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1437796-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1437876-makekernels": {
+      "abstract": [
+        {
+          "text": "Creates and returns and array of  ",
+          "type": "text"
+        },
+        {
+          "code": "CIKernel",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeKernels"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [CIKernel]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1437876-makekernels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeKernels(source:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1437876-makekernels"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1438067-name": {
+      "abstract": [
+        {
+          "text": "The name of the kernel routine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1438067-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1438067-name"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply": {
+      "abstract": [
+        {
+          "text": "Creates a new image using the kernel and specified arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "roiCallback"
+        },
+        {
+          "kind": "text",
+          "text": ": CIKernelROICallback, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]) -> CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(extent:roiCallback:arguments:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1438243-apply"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init": {
+      "abstract": [
+        {
+          "text": "Creates a single kernel object using a Metal Shading Language (MSL) kernel function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "functionName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetalLibraryData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(functionName:fromMetalLibraryData:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/2880194-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/2880195-init": {
+      "abstract": [
+        {
+          "text": "Creates a single kernel object using a Metal Shading Language kernel function with optional pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "functionName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetalLibraryData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/2880195-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(functionName:fromMetalLibraryData:outputPixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/2880195-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/3577535-kernelnames": {
+      "abstract": [
+        {
+          "text": "Return an array of strings containing the names of all of the kernels contained in the Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromMetalLibraryData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/3577535-kernelnames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelNames(fromMetalLibraryData:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/3577535-kernelnames"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/3857565-kernels": {
+      "abstract": [
+        {
+          "text": "Load kernels from a Metal language string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernels"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withMetalString"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [CIKernel]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/3857565-kernels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernels(withMetalString:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/3857565-kernels"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernelroicallback": {
+      "abstract": [
+        {
+          "text": "The signature for a block that computes the region of interest (ROI) for a given area of destination image pixels. Core Image calls this block when applying the kernel. You specify this block when using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIKernelROICallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernelroicallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIKernelROICallback",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernelroicallback"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cisampler": {
+      "abstract": [
+        {
+          "text": "An object that retrieves pixel samples for processing by a filter kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CISampler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cisampler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CISampler",
+      "type": "topic",
+      "url": "/documentation/coreimage/cisampler"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIWarpKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIWarpKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciwarpkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/writing_custom_kernels": {
+      "abstract": [
+        {
+          "text": "Write your own custom kernels in either the Core Image Kernel Language or the Metal Shading Language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/writing_custom_kernels",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Custom Kernels",
+      "type": "topic",
+      "url": "/documentation/coreimage/writing_custom_kernels"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/writing_custom_kernels",
+        "doc://com.apple.documentation/documentation/coreimage/cicolorkernel",
+        "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel",
+        "doc://com.apple.documentation/documentation/coreimage/ciblendkernel",
+        "doc://com.apple.documentation/documentation/coreimage/cisampler",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltershape",
+        "doc://com.apple.documentation/documentation/coreimage/ciformat"
+      ],
+      "title": "Custom Filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2922582",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/2880194-init",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/2880195-init",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/3577535-kernelnames",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/3857565-kernels"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Kernel Using Metal Shading Language"
+    },
+    {
+      "anchor": "1680448",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/1438067-name"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a Kernel Name"
+    },
+    {
+      "anchor": "1680460",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector"
+      ],
+      "kind": "taskGroup",
+      "title": "Identifying the Region of Interest for the Kernel"
+    },
+    {
+      "anchor": "1680479",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+        "doc://com.apple.documentation/documentation/coreimage/cikernelroicallback"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying a Kernel to Filter an Image"
+    },
+    {
+      "anchor": "4390073",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/1437796-init",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/1437876-makekernels"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cikernel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cikernel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

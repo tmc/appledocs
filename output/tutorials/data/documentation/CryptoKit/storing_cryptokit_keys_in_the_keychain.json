@@ -1,0 +1,1137 @@
+{
+  "abstract": [
+    {
+      "text": "Convert between strongly typed cryptographic keys and native keychain types.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/cryptokit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain"
+  },
+  "kind": "article",
+  "legacy_identifier": 3330219,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple CryptoKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Storing CryptoKit Keys in the Keychain"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CryptoKit defines highly specific key types that embody a particular cryptographic algorithm and purpose. Some of these key types, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P256/Signing/PrivateKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", correspond to items that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API stores natively as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances. Other key types, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Curve25519/Signing/PrivateKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", have no direct keychain corollary. To store these kinds of keys, you package them as generic passwords.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates the conversions needed to store all the CryptoKit key types in the keychain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3369555",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample provides targets for both iOS and macOS. For both platforms, specify your developer team in the Xcode Signing & Capabilities tab before building. The macOS target also sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/keychain-access-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to enable access to the keychain on that platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3369556",
+          "level": 3,
+          "text": "Declare the Convertibility of NIST Keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " lets you convert between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances and data in the X9.63 data format. For NIST keys that support that representation, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P256",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P384",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P521",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", CryptoKit defines a property that you use to get the X9.63 data. The framework also provides a complementary initializer that creates a new key from data in that format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a protocol called ",
+              "type": "text"
+            },
+            {
+              "code": "SecKeyConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to express this interface:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocol SecKeyConvertible: CustomStringConvertible {",
+            "    /// Creates a key from an X9.63 representation.",
+            "    init<Bytes>(x963Representation: Bytes) throws where Bytes: ContiguousBytes",
+            "    ",
+            "    /// An X9.63 representation of the key.",
+            "    var x963Representation: Data { get }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369534",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then assert that all the NIST private keys adopt this protocol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension P256.Signing.PrivateKey: SecKeyConvertible {}",
+            "extension P256.KeyAgreement.PrivateKey: SecKeyConvertible {}",
+            "extension P384.Signing.PrivateKey: SecKeyConvertible {}",
+            "extension P384.KeyAgreement.PrivateKey: SecKeyConvertible {}",
+            "extension P521.Signing.PrivateKey: SecKeyConvertible {}",
+            "extension P521.KeyAgreement.PrivateKey: SecKeyConvertible {}"
+          ],
+          "metadata": {
+            "anchor": "3369535",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3369557",
+          "level": 3,
+          "text": "Declare the Convertibility of Other Key Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also lets you securely store small chunks of data as a generic password keychain item. For any CryptoKit key without a X9.63 representation, CryptoKit provides a means to obtain a data representation of the key, enabling generic password storage. Define the ",
+              "type": "text"
+            },
+            {
+              "code": "GenericPasswordConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to establish an interface for these items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocol GenericPasswordConvertible: CustomStringConvertible {",
+            "    /// Creates a key from a raw representation.",
+            "    init<D>(rawRepresentation data: D) throws where D: ContiguousBytes",
+            "    ",
+            "    /// A raw representation of the key.",
+            "    var rawRepresentation: Data { get }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369537",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some keys, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Curve25519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", adopt this interface directly, and you simply assert that they do:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Curve25519.KeyAgreement.PrivateKey: GenericPasswordConvertible {}",
+            "extension Curve25519.Signing.PrivateKey: GenericPasswordConvertible {}"
+          ],
+          "metadata": {
+            "anchor": "3369538",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other keys offer similar functionality, but require modest adjustments to their interface. For example, you provide a secure conversion for instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension SymmetricKey: GenericPasswordConvertible {",
+            "    init<D>(rawRepresentation data: D) throws where D: ContiguousBytes {",
+            "        self.init(data: data)",
+            "    }",
+            "    ",
+            "    var rawRepresentation: Data {",
+            "        return dataRepresentation  // Contiguous bytes repackaged as a Data instance.",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369539",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keys that you store in the Secure Enclave expose a raw representation as well, but in this case the data isn’t the raw key. Instead, the Secure Enclave exports an encrypted block that only the same Secure Enclave can later use to restore the key. You can adopt the same convertibility protocol to store the Secure Enclave’s encrypted data in the keychain as a generic password, and later allow the Secure Enclave to reconstruct the key on the same device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension SecureEnclave.P256.Signing.PrivateKey: GenericPasswordConvertible {",
+            "    init<D>(rawRepresentation data: D) throws where D: ContiguousBytes {",
+            "        try self.init(dataRepresentation: data.dataRepresentation)",
+            "    }",
+            "    ",
+            "    var rawRepresentation: Data {",
+            "        return dataRepresentation  // Contiguous bytes repackaged as a Data instance.",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369540",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3369558",
+          "level": 3,
+          "text": "Store a NIST Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To store a NIST key in the keychain, create a storage method that constrains input keys to be of type ",
+              "type": "text"
+            },
+            {
+              "code": "SecKeyConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func storeKey<T: SecKeyConvertible>(_ key: T, label: String) throws {"
+          ],
+          "metadata": {
+            "anchor": "3369542",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateWithData(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function with the X9.63 representation of the key to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. Include attributes that describe the key as a private, elliptic-curve key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Describe the key.",
+            "let attributes = [kSecAttrKeyType: kSecAttrKeyTypeECSECPrimeRandom,",
+            "                  kSecAttrKeyClass: kSecAttrKeyClassPrivate] as [String: Any]",
+            "",
+            "// Get a SecKey representation.",
+            "guard let secKey = SecKeyCreateWithData(key.x963Representation as CFData,",
+            "                                        attributes as CFDictionary,",
+            "                                        nil)",
+            "    else {",
+            "        throw KeyStoreError(\"Unable to create SecKey representation.\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369543",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Store the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " representation in the keychain by placing it in an add query and calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Give the key a label to make it easier to find later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Describe the add operation.",
+            "let query = [kSecClass: kSecClassKey,",
+            "             kSecAttrApplicationLabel: label,",
+            "             kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,",
+            "             kSecUseDataProtectionKeychain: true,",
+            "             kSecValueRef: secKey] as [String: Any]",
+            "",
+            "// Add the key to the keychain.",
+            "let status = SecItemAdd(query as CFDictionary, nil)",
+            "guard status == errSecSuccess else {",
+            "    throw KeyStoreError(\"Unable to store item: \\(status.message)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369544",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3369559",
+          "level": 3,
+          "text": "Store Other Key Types in the Keychain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To store other kinds of keys, create a different storage method that constrains input keys to be of type ",
+              "type": "text"
+            },
+            {
+              "code": "GenericPasswordConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func storeKey<T: GenericPasswordConvertible>(_ key: T, account: String) throws {"
+          ],
+          "metadata": {
+            "anchor": "3369546",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, you provide the raw representation as the data for the password item, and store that with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Treat the key data as a generic password.",
+            "let query = [kSecClass: kSecClassGenericPassword,",
+            "             kSecAttrAccount: account,",
+            "             kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,",
+            "             kSecUseDataProtectionKeychain: true,",
+            "             kSecValueData: key.rawRepresentation] as [String: Any]",
+            "",
+            "// Add the key data.",
+            "let status = SecItemAdd(query as CFDictionary, nil)",
+            "guard status == errSecSuccess else {",
+            "    throw KeyStoreError(\"Unable to store item: \\(status.message)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369547",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3369560",
+          "level": 3,
+          "text": "Retrieve a NIST Key as a Native Keychain Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You retrieve a key from the keychain using a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Construct a query dictionary that pinpoints the particular key that you want to find. After your search returns the desired key—stored as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance—you cast it as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Seek an elliptic-curve key with a given label.",
+            "let query = [kSecClass: kSecClassKey,",
+            "             kSecAttrApplicationLabel: label,",
+            "             kSecAttrKeyType: kSecAttrKeyTypeECSECPrimeRandom,",
+            "             kSecUseDataProtectionKeychain: true,",
+            "             kSecReturnRef: true] as [String: Any]",
+            "",
+            "// Find and cast the result as a SecKey instance.",
+            "var item: CFTypeRef?",
+            "var secKey: SecKey",
+            "switch SecItemCopyMatching(query as CFDictionary, &item) {",
+            "case errSecSuccess: secKey = item as! SecKey",
+            "case errSecItemNotFound: return nil",
+            "case let status: throw KeyStoreError(\"Keychain read failed: \\(status.message)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369549",
+            "title": "Listing 12"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The above query returns the first elliptic-curve key with the given label found in the user’s keychain. You might need to perform a more sophisticated search if more than one key might match, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reference, initialize a CryptoKit key using the X9.63 representation returned by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Convert the SecKey into a CryptoKit key.",
+            "var error: Unmanaged<CFError>?",
+            "guard let data = SecKeyCopyExternalRepresentation(secKey, &error) as Data? else {",
+            "    throw KeyStoreError(error.debugDescription)",
+            "}",
+            "let key = try T(x963Representation: data)"
+          ],
+          "metadata": {
+            "anchor": "3369550",
+            "title": "Listing 13"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure that the type of the key that you initialize using the data matches the type of the original key. For example, initializing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P256",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key from the data corresponding to a keychain item that you created using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P384",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key produces undefined results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3369561",
+          "level": 3,
+          "text": "Retrieve Keys Stored as Generic Passwords",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also retrieve generic passwords using the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, in this case using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecClassGenericPassword",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the item’s class. You convert the returned item to data, and use it directly to instantiate a key of the corresponding type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Seek a generic password with the given account.",
+            "let query = [kSecClass: kSecClassGenericPassword,",
+            "             kSecAttrAccount: account,",
+            "             kSecUseDataProtectionKeychain: true,",
+            "             kSecReturnData: true] as [String: Any]",
+            "",
+            "// Find and cast the result as data.",
+            "var item: CFTypeRef?",
+            "switch SecItemCopyMatching(query as CFDictionary, &item) {",
+            "case errSecSuccess:",
+            "    guard let data = item as? Data else { return nil }",
+            "    return try T(rawRepresentation: data)  // Convert back to a key.",
+            "case errSecItemNotFound: return nil",
+            "case let status: throw KeyStoreError(\"Keychain read failed: \\(status.message)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3369552",
+            "title": "Listing 14"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As long as the type you initialize matches the type that you previously used to store the item in the keychain, the initialization correctly reconstructs the key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Curve25519": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Curve25519",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Curve25519",
+      "type": "topic",
+      "url": "/documentation/cryptokit/curve25519"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Curve25519/Signing/PrivateKey": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Curve25519/Signing/PrivateKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Curve25519.Signing.PrivateKey",
+      "type": "topic",
+      "url": "/documentation/cryptokit/curve25519/signing/privatekey"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/P256": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P256",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "P256",
+      "type": "topic",
+      "url": "/documentation/cryptokit/p256"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/P256/Signing/PrivateKey": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P256/Signing/PrivateKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "P256.Signing.PrivateKey",
+      "type": "topic",
+      "url": "/documentation/cryptokit/p256/signing/privatekey"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/P384": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P384",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "P384",
+      "type": "topic",
+      "url": "/documentation/cryptokit/p384"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/P521": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/P521",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "P521",
+      "type": "topic",
+      "url": "/documentation/cryptokit/p521"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey": {
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SymmetricKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SymmetricKey",
+      "type": "topic",
+      "url": "/documentation/cryptokit/symmetrickey"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/keychain-access-groups": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/keychain-access-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Keychain Access Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/keychain-access-groups"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/cryptokit"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369534": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369534",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369534"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369535": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369535",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369535"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369537": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369537",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369537"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369538": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369538",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369538"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369539": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369539",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369539"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369540": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369540",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369540"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369542": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369542",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369542"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369543": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369543",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369543"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369544": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369544",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369544"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369546": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369546",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369546"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369547": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369547",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369547"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369549": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369549",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 12",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369549"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369550": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369550",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 13",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369550"
+    },
+    "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369552": {
+      "identifier": "doc://com.apple.documentation/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369552",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 14",
+      "type": "section",
+      "url": "/documentation/cryptokit/storing_cryptokit_keys_in_the_keychain#3369552"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)": {
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecItemAdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemadd(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)": {
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecItemCopyMatching(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemcopymatching(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKey": {
+      "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKey",
+      "type": "topic",
+      "url": "/documentation/security/seckey"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)": {
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeyCopyExternalRepresentation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycopyexternalrepresentation(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateWithData(_:_:_:)": {
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateWithData(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeyCreateWithData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreatewithdata(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItem": {
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainItem",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitem"
+    },
+    "doc://com.apple.security/documentation/Security/kSecClassGenericPassword": {
+      "identifier": "doc://com.apple.security/documentation/Security/kSecClassGenericPassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecClassGenericPassword",
+      "type": "topic",
+      "url": "/documentation/security/ksecclassgenericpassword"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    },
+    "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain": {
+      "identifier": "doc://com.apple.security/documentation/Security/storing-keys-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Keys in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-keys-in-the-keychain"
+    },
+    "https://docs-assets.developer.apple.com/published/1a05d60f64/StoringCryptoKitKeysInTheKeychain.zip": {
+      "checksum": "98d34e9d10729a9ef353e47e0edb2cd431b249637eaa828674991894f632f16245526c7f48b158881e2e5c5dd41d2bd78d40c8f751102dd5e83fe1e6ceb7af2c",
+      "identifier": "https://docs-assets.developer.apple.com/published/1a05d60f64/StoringCryptoKitKeysInTheKeychain.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/1a05d60f64/StoringCryptoKitKeysInTheKeychain.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/1a05d60f64/StoringCryptoKitKeysInTheKeychain.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/cryptokit/storing_cryptokit_keys_in_the_keychain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

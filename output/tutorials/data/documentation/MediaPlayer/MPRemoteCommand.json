@@ -1,0 +1,1889 @@
+{
+  "abstract": [
+    {
+      "text": "An object that responds to remote command events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPRemoteCommand",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPRemoteCommand"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MPRemoteCommand"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12.2",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.1",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MPRemoteCommand"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommand"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Media Player framework defines a standard set of remote command objects for handling media-related events. When an accessory or iOS user interface generates a remote control event, the system notifies the corresponding command object on the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. That command object executes any attached handlers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To respond to a particular event, register a handler with the appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Registering a remote control event handler",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get the shared command center.",
+                    "let commandCenter = MPRemoteCommandCenter.shared()",
+                    "",
+                    "// Add a handler for the play command.",
+                    "commandCenter.playCommand.addTarget { [unowned self] event in",
+                    "    if self.player.rate == 0.0 {",
+                    "        self.player.play()",
+                    "        return .success",
+                    "    }",
+                    "    return .commandFailed",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Get the shared command center.",
+                    "MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];",
+                    "",
+                    "// Add a handler for the play command.",
+                    "[commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {",
+                    "    if (self.player.rate == 0.0) {",
+                    "        [self.player play];",
+                    "        return MPRemoteCommandHandlerStatusSuccess;",
+                    "    }",
+                    "    return MPRemoteCommandHandlerStatusCommandFailed;",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you explicitly don’t want to enable a given command, fetch the command object and set its enabled property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Disabling a remote command lets the system know that it shouldn’t display any related UI for that command when your app is the Now Playing app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework defines many subclasses to handle specific kinds of commands. Sometimes, these subclasses let you specify other information related to the command. For example, feedback commands let you specify a localized string that describes the meaning of the feedback. When supporting a particular command, be sure to look up the specific class used to handle those events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackPositionCommand": {
+      "abstract": [
+        {
+          "text": "An object that responds to requests to change the current playback position of the playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPChangePlaybackPositionCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackPositionCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPChangePlaybackPositionCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPChangePlaybackPositionCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpchangeplaybackpositioncommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackRateCommand": {
+      "abstract": [
+        {
+          "text": "An object that responds to requests to change the playback rate of the playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPChangePlaybackRateCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackRateCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPChangePlaybackRateCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPChangePlaybackRateCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpchangeplaybackratecommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeRepeatModeCommand": {
+      "abstract": [
+        {
+          "text": "An object that responds to requests to change the current repeat mode used during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPChangeRepeatModeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeRepeatModeCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPChangeRepeatModeCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPChangeRepeatModeCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpchangerepeatmodecommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeShuffleModeCommand": {
+      "abstract": [
+        {
+          "text": "An object that responds to requests to change the current shuffle mode used during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPChangeShuffleModeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeShuffleModeCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPChangeShuffleModeCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPChangeShuffleModeCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpchangeshufflemodecommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPFeedbackCommand": {
+      "abstract": [
+        {
+          "text": "An object that reflects the feedback state for the playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPFeedbackCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPFeedbackCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPFeedbackCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPFeedbackCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpfeedbackcommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRatingCommand": {
+      "abstract": [
+        {
+          "text": "An object that provides a detailed rating for the playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPRatingCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRatingCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPRatingCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPRatingCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpratingcommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand": {
+      "abstract": [
+        {
+          "text": "An object that responds to remote command events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPRemoteCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(_:action:)": {
+      "abstract": [
+        {
+          "text": "Adds a target object to be called when an event is received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(_:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTarget:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTarget(_:action:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommand/addtarget(_:action:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(handler:)": {
+      "abstract": [
+        {
+          "text": "Adds a block to be called when an event is received.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPRemoteCommandEvent",
+          "text": "MPRemoteCommandEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPRemoteCommandHandlerStatus",
+          "text": "MPRemoteCommandHandlerStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTargetWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTarget(handler:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommand/addtarget(handler:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a user can interact with the displayed element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommand/isenabled"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a target from the remote command object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTarget:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTarget(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommand/removetarget(_:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:action:)": {
+      "abstract": [
+        {
+          "text": "Removes a target and action from a remote command object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTarget:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTarget(_:action:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommand/removetarget(_:action:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandCenter": {
+      "abstract": [
+        {
+          "text": "An object that responds to remote control events sent by external accessories and system controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommandCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommandCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPRemoteCommandCenter",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommandcenter"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandEvent": {
+      "abstract": [
+        {
+          "text": "A description of a command sent by an external media player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommandEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommandEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPRemoteCommandEvent",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommandevent"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandHandlerStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating the status of a command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommandHandlerStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandHandlerStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPRemoteCommandHandlerStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPRemoteCommandHandlerStatus",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpremotecommandhandlerstatus"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSkipIntervalCommand": {
+      "abstract": [
+        {
+          "text": "An object that defines the skip intervals for the player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSkipIntervalCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSkipIntervalCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPSkipIntervalCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPSkipIntervalCommand",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpskipintervalcommand"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app": {
+      "abstract": [
+        {
+          "text": "Ensure your app is eligible to become the Now Playing app by adopting best practices for providing Now Playing info and registering for remote command center actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Becoming a now playable app",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/becoming-a-now-playable-app"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackPositionCommand",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackRateCommand",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeRepeatModeCommand",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeShuffleModeCommand",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPFeedbackCommand",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRatingCommand",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSkipIntervalCommand"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-up-the-remote-event-handler",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandCenter",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandEvent"
+      ],
+      "title": "Setting up the remote event handler"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-events",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(handler:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(_:action:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:action:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandHandlerStatus"
+      ],
+      "title": "Handling events"
+    },
+    {
+      "anchor": "Enabling-a-command-object",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/isEnabled"
+      ],
+      "title": "Enabling a command object"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12.2",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.1",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MPRemoteCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-events",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(handler:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/addTarget(_:action:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/removeTarget(_:action:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandHandlerStatus"
+              ],
+              "title": "Handling events"
+            },
+            {
+              "anchor": "Enabling-a-command-object",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommand/isEnabled"
+              ],
+              "title": "Enabling a command object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackPositionCommand",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangePlaybackRateCommand",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeRepeatModeCommand",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPChangeShuffleModeCommand",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPFeedbackCommand",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRatingCommand",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSkipIntervalCommand"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setting-up-the-remote-event-handler",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandCenter",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPRemoteCommandEvent"
+              ],
+              "title": "Setting up the remote event handler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MPRemoteCommand"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1removeTarget(_:)/title",
+          "value": "removeTarget:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1removeTarget(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTarget:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRatingCommand/title",
+          "value": "MPRatingCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRatingCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRatingCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRatingCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRatingCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangeShuffleModeCommand/title",
+          "value": "MPChangeShuffleModeCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangeShuffleModeCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangeShuffleModeCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangeShuffleModeCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangeShuffleModeCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSkipIntervalCommand/title",
+          "value": "MPSkipIntervalCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSkipIntervalCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPSkipIntervalCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSkipIntervalCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPSkipIntervalCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1addTarget(_:action:)/title",
+          "value": "addTarget:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1addTarget(_:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTarget:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1removeTarget(_:action:)/title",
+          "value": "removeTarget:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1removeTarget(_:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTarget:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPFeedbackCommand/title",
+          "value": "MPFeedbackCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPFeedbackCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPFeedbackCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPFeedbackCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPFeedbackCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangePlaybackRateCommand/title",
+          "value": "MPChangePlaybackRateCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangePlaybackRateCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangePlaybackRateCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangePlaybackRateCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangePlaybackRateCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangeRepeatModeCommand/title",
+          "value": "MPChangeRepeatModeCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangeRepeatModeCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangeRepeatModeCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangeRepeatModeCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangeRepeatModeCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand/title",
+          "value": "MPRemoteCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangePlaybackPositionCommand/title",
+          "value": "MPChangePlaybackPositionCommand"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangePlaybackPositionCommand/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangePlaybackPositionCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPChangePlaybackPositionCommand/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPChangePlaybackPositionCommand"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandHandlerStatus/title",
+          "value": "MPRemoteCommandHandlerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandHandlerStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommandHandlerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandHandlerStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommandHandlerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1addTarget(handler:)/title",
+          "value": "addTargetWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommand~1addTarget(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTargetWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandCenter/title",
+          "value": "MPRemoteCommandCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommandCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommandCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandEvent/title",
+          "value": "MPRemoteCommandEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommandEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPRemoteCommandEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPRemoteCommandEvent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpremotecommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpremotecommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

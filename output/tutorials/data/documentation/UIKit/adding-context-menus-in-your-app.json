@@ -1,0 +1,2878 @@
+{
+  "abstract": [
+    {
+      "text": "Provide quick access to useful actions by adding context menus to your iOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/UITargetedPreview"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/UIControl"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/writing-tools",
+        "doc://com.apple.uikit/documentation/UIKit/UITargetedPreview"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/table-views",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/table-views",
+        "doc://com.apple.uikit/documentation/UIKit/UITableView",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adding-context-menus-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adding context menus in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project demonstrates how to add context menus to user-interface elements such as views, controls, table views, collection views, and web views. Apps enhance and extend context menus with actions, nested submenu actions, and custom previews. For more information on context menu design, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/controls/context-menus/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-context-menu",
+          "level": 3,
+          "text": "Create a context menu",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows two ways to create context menus:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the sample creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object and attaches it to that view. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIContextMenuInteraction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object focuses the user’s attention on a specific portion of the UI, and provides actions for the user to perform on that content. Then, the app adopts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and provides a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more specific UI elements like tables, collections, and web views, the app adopts specific protocols for those elements that return a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIContextMenuConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt ",
+              "type": "text"
+            },
+            {
+              "code": "UIContextMenuInteractionDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to manage the lifecycle of context menus. The app implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate/contextMenuInteraction(_:configurationForMenuAtLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return a ",
+              "type": "text"
+            },
+            {
+              "code": "UIContextMenuConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. This configuration object consists of an optional ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a ",
+              "type": "text"
+            },
+            {
+              "code": "previewProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and an ",
+              "type": "text"
+            },
+            {
+              "code": "actionProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Context menus with rich content also provide a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITargetedPreview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", an object that describes the source view when opening and animating the contextual menu. A ",
+              "type": "text"
+            },
+            {
+              "code": "UITargetedPreview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies the view to use during animated transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-context-menu-to-a-view",
+          "level": 3,
+          "text": "Add a context menu to a view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample adds a context menu to a ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addInteraction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let interaction = UIContextMenuInteraction(delegate: self)",
+            "imageView.addInteraction(interaction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user touches and holds on that view, the view asks its delegate to provide the context menu by calling ",
+              "type": "text"
+            },
+            {
+              "code": "contextMenuInteraction(_:configurationForMenuAtLocation:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func contextMenuInteraction(_ interaction: UIContextMenuInteraction,",
+            "                            configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {",
+            "    return UIContextMenuConfiguration(identifier: nil,",
+            "                                      previewProvider: nil,",
+            "                                      actionProvider: {",
+            "            suggestedActions in",
+            "        let inspectAction =",
+            "            UIAction(title: NSLocalizedString(\"InspectTitle\", comment: \"\"),",
+            "                     image: UIImage(systemName: \"arrow.up.square\")) { action in",
+            "                self.performInspect()",
+            "            }",
+            "            ",
+            "        let duplicateAction =",
+            "            UIAction(title: NSLocalizedString(\"DuplicateTitle\", comment: \"\"),",
+            "                     image: UIImage(systemName: \"plus.square.on.square\")) { action in",
+            "                self.performDuplicate()",
+            "            }",
+            "            ",
+            "        let deleteAction =",
+            "            UIAction(title: NSLocalizedString(\"DeleteTitle\", comment: \"\"),",
+            "                     image: UIImage(systemName: \"trash\"),",
+            "                     attributes: .destructive) { action in",
+            "                self.performDelete()",
+            "            }",
+            "                                        ",
+            "        return UIMenu(title: \"\", children: [inspectAction, duplicateAction, deleteAction])",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-context-menu-to-a-table-view",
+          "level": 3,
+          "text": "Add a context menu to a table view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample adds a context menu to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the user touches and holds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "UITableView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks its delegate to provide the context menu by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate/tableView(_:contextMenuConfigurationForRowAt:point:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func tableView(_ tableView: UITableView,",
+            "                        contextMenuConfigurationForRowAt indexPath: IndexPath,",
+            "                        point: CGPoint) -> UIContextMenuConfiguration? {",
+            "    return UIContextMenuConfiguration(identifier: nil,",
+            "                                      previewProvider: nil,",
+            "                                      actionProvider: {",
+            "            suggestedActions in",
+            "        let inspectAction =",
+            "            UIAction(title: NSLocalizedString(\"InspectTitle\", comment: \"\"),",
+            "                     image: UIImage(systemName: \"arrow.up.square\")) { action in",
+            "                self.performInspect(indexPath)",
+            "            }",
+            "        let duplicateAction =",
+            "            UIAction(title: NSLocalizedString(\"DuplicateTitle\", comment: \"\"),",
+            "                     image: UIImage(systemName: \"plus.square.on.square\")) { action in",
+            "                self.performDuplicate(indexPath)",
+            "            }",
+            "        let deleteAction =",
+            "            UIAction(title: NSLocalizedString(\"DeleteTitle\", comment: \"\"),",
+            "                     image: UIImage(systemName: \"trash\"),",
+            "                     attributes: .destructive) { action in",
+            "                self.performDelete(indexPath)",
+            "            }",
+            "        return UIMenu(title: \"\", children: [inspectAction, duplicateAction, deleteAction])",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-context-menu-to-a-collection-view",
+          "level": 3,
+          "text": "Add a context menu to a collection view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample adds a context menu to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the user touches and holds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks its delegate to provide the context menu by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate/collectionView(_:contextMenuConfigurationForItemAt:point:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func collectionView(_ collectionView: UICollectionView,",
+            "                             contextMenuConfigurationForItemAt indexPath: IndexPath,",
+            "                             point: CGPoint) -> UIContextMenuConfiguration? {",
+            "    return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in",
+            "        let inspectAction = self.inspectAction(indexPath)",
+            "        let duplicateAction = self.duplicateAction(indexPath)",
+            "        let deleteAction = self.deleteAction(indexPath)",
+            "        return UIMenu(title: \"\", children: [inspectAction, duplicateAction, deleteAction])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-context-menu-to-a-control",
+          "level": 3,
+          "text": "Add a context menu to a control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample adds a context menu to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". UIKit attaches a context menu to a ",
+              "type": "text"
+            },
+            {
+              "code": "UIControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in two different ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By setting the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "menu",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIMenu",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "let inspectAction = self.inspectAction()",
+            "let duplicateAction = self.duplicateAction()",
+            "let deleteAction = self.deleteAction()",
+            "buttonMenuAsPrimary.menu = UIMenu(title: \"\", children: [inspectAction, duplicateAction, deleteAction])",
+            "buttonMenuAsPrimary.showsMenuAsPrimaryAction = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By adding a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIContextMenuInteraction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "let interaction = UIContextMenuInteraction(delegate: self)",
+            "buttonMenu.addInteraction(interaction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user touches and holds on that control, the app asks its delegate to provide a context menu by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate/contextMenuInteraction(_:configurationForMenuAtLocation:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func contextMenuInteraction(_ interaction: UIContextMenuInteraction,",
+            "                            configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {",
+            "    return UIContextMenuConfiguration(identifier: nil,",
+            "                                      previewProvider: nil,",
+            "                                      actionProvider: {",
+            "            suggestedActions in",
+            "        // Use the ContextMenu protocol to produce the UIActions.",
+            "        let inspectAction = self.inspectAction()",
+            "        let duplicateAction = self.duplicateAction()",
+            "        let deleteAction = self.deleteAction()",
+            "        return UIMenu(title: \"\", children: [inspectAction, duplicateAction, deleteAction])",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-context-menu-to-a-web-view",
+          "level": 3,
+          "text": "Add a context menu to a web view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Basic test case from the sample’s Web Views outline item. When the user touches and holds on the link within the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "overridingTitle": "WKWebView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "WKWebView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the app presents a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+              "isActive": true,
+              "overridingTitle": "SFSafariViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SFSafariViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to show that link content with a set of default ",
+              "type": "text"
+            },
+            {
+              "code": "UIAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " items. When the user touches the view controller, the user moves out of the app and into Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Preview Provider test case from the sample’s Web Views outline item. When the user touches and holds on the link within the ",
+              "type": "text"
+            },
+            {
+              "code": "WKWebView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app presents a custom view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample intercepts and adds to that context menu by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKUIDelegate",
+              "isActive": true,
+              "overridingTitle": "WKUIDelegate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "WKUIDelegate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol. ",
+              "type": "text"
+            },
+            {
+              "code": "WKWebView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks its delegate to provide the context menu by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKUIDelegate/webView(_:contextMenuConfigurationForElement:completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "webView(_:contextMenuConfigurationForElement:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "webView(_:contextMenuConfigurationForElement:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func webView(_ webView: WKWebView,",
+            "             contextMenuConfigurationForElement elementInfo: WKContextMenuElementInfo,",
+            "             completionHandler: @escaping (UIContextMenuConfiguration?) -> Void) {",
+            "    let configuration =",
+            "        UIContextMenuConfiguration(identifier: nil,",
+            "                                   previewProvider: { return SFSafariViewController(url: elementInfo.linkURL!) },",
+            "                                   actionProvider: { elements in",
+            "            guard elements.isEmpty == false else { return nil }",
+            "                                    ",
+            "            // Add our custom action to the existing actions passed in.",
+            "            var elementsToUse = elements",
+            "            let inspectAction = self.extraAction(elementInfo.linkURL!)",
+            "            let editMenu = UIMenu(title: \"\", options: .displayInline, children: [inspectAction])",
+            "            elementsToUse.append(editMenu)",
+            "                   ",
+            "            let contextMenuTitle = elementInfo.linkURL?.lastPathComponent",
+            "            return UIMenu(title: contextMenuTitle!, image: nil, identifier: nil, options: [], children: elementsToUse)",
+            "        }",
+            "    )",
+            "    completionHandler(configuration)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKUIDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for presenting native user interface elements on behalf of a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKUIDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKUIDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKUIDelegate",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKUIDelegate"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKUIDelegate/webView(_:contextMenuConfigurationForElement:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a contextual menu interaction began.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextMenuConfigurationForElement"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "elementInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKContextMenuElementInfo",
+          "text": "WKContextMenuElementInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIContextMenuConfiguration",
+          "text": "UIContextMenuConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKUIDelegate/webView(_:contextMenuConfigurationForElement:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webView(_:contextMenuConfigurationForElement:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKUIDelegate/webView(_:contextMenuConfigurationForElement:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAction": {
+      "abstract": [
+        {
+          "text": "A menu element that performs its action in a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView": {
+      "abstract": [
+        {
+          "text": "An object that manages an ordered collection of data items and presents them using customizable layouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell": {
+      "abstract": [
+        {
+          "text": "A single data item when that item is within the collection view’s visible bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage user interactions with items in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate/collectionView(_:contextMenuConfigurationForItemAt:point:)": {
+      "abstract": [
+        {
+          "text": "Returns a context menu configuration for the item at a point.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionView",
+          "text": "UICollectionView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextMenuConfigurationForItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIContextMenuConfiguration",
+          "text": "UIContextMenuConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate/collectionView(_:contextMenuConfigurationForItemAt:point:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionView:contextMenuConfigurationForItemAtIndexPath:point:"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionView(_:contextMenuConfigurationForItemAt:point:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdelegate/collectionview(_:contextmenuconfigurationforitemat:point:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuConfiguration": {
+      "abstract": [
+        {
+          "text": "An object containing the configuration details for the contextual menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContextMenuConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction object that you use to display relevant actions for your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContextMenuInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction/init(delegate:)": {
+      "abstract": [
+        {
+          "text": "Creates a context menu interaction object with the specified delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIContextMenuInteractionDelegate",
+          "text": "UIContextMenuInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction/init(delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(delegate:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuinteraction/init(delegate:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for providing the set of actions to perform on your content, and for customizing the preview of that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContextMenuInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate/contextMenuInteraction(_:configurationForMenuAtLocation:)": {
+      "abstract": [
+        {
+          "text": "Returns the configuration data to use when previewing the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenuInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIContextMenuInteraction",
+          "text": "UIContextMenuInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationForMenuAtLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIContextMenuConfiguration",
+          "text": "UIContextMenuConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate/contextMenuInteraction(_:configurationForMenuAtLocation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contextMenuInteraction:configurationForMenuAtLocation:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "contextMenuInteraction(_:configurationForMenuAtLocation:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuinteractiondelegate/contextmenuinteraction(_:configurationformenuatlocation:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl": {
+      "abstract": [
+        {
+          "text": "The base class for controls, which are visual elements that convey a specific action or intention in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenu": {
+      "abstract": [
+        {
+          "text": "A container for grouping related menu elements in an app menu or contextual menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenu",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenu"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "abstract": [
+        {
+          "text": "A view that presents data using rows in a single column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell": {
+      "abstract": [
+        {
+          "text": "The visual representation of a single row in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for managing selections, configuring section headers and footers, deleting and reordering cells, and performing other actions in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate/tableView(_:contextMenuConfigurationForRowAt:point:)": {
+      "abstract": [
+        {
+          "text": "Returns a context menu configuration for the row at a point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableView",
+          "text": "UITableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextMenuConfigurationForRowAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIContextMenuConfiguration",
+          "text": "UIContextMenuConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDelegate/tableView(_:contextMenuConfigurationForRowAt:point:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:contextMenuConfigurationForRowAtIndexPath:point:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:contextMenuConfigurationForRowAt:point:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdelegate/tableview(_:contextmenuconfigurationforrowat:point:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITargetedPreview": {
+      "abstract": [
+        {
+          "text": "An object describing the view to use during preview-related animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITargetedPreview"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITargetedPreview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITargetedPreview"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITargetedPreview",
+      "type": "topic",
+      "url": "/documentation/uikit/uitargetedpreview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/addInteraction(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an interaction to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIInteraction",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/addInteraction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addInteraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addInteraction(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/addinteraction(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface": {
+      "abstract": [
+        {
+          "text": "Provide quick access to useful actions by adding menus and keyboard shortcuts to your Mac app built with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding menus and shortcuts to the menu bar and user interface",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/collection-views": {
+      "abstract": [
+        {
+          "text": "Display nested views using a configurable and highly customizable layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/collection-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/table-views": {
+      "abstract": [
+        {
+          "text": "Display data in a single column of customizable rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/table-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table views",
+      "type": "topic",
+      "url": "/documentation/uikit/table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/writing-tools": {
+      "abstract": [
+        {
+          "text": "Add support for Writing Tools to your app’s text views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/writing-tools",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing Tools",
+      "type": "topic",
+      "url": "/documentation/uikit/writing-tools"
+    },
+    "e845680c042f/AddingContextMenusInYourApp.zip": {
+      "checksum": "e845680c042f6d354304e7a3c1e89576c5bffbb6ddef79f794140b32c1a9f34d83991511180611efaa14a6cba3a3812e4db0ded4c7cb6e986f9a5d37229ba06a",
+      "identifier": "e845680c042f/AddingContextMenusInYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e845680c042f/AddingContextMenusInYourApp.zip"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/controls/context-menus/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/controls/context-menus/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/controls/context-menus/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "e845680c042f/AddingContextMenusInYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-context-menu-interaction-object",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction/init(delegate:)",
+        "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface"
+      ],
+      "title": "Creating a context menu interaction object"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-a-context-menu-interaction-object",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction/init(delegate:)",
+                "doc://com.apple.uikit/documentation/UIKit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface"
+              ],
+              "title": "Creating a context menu interaction object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/title",
+          "value": "UITableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITargetedPreview/title",
+          "value": "UITargetedPreview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITargetedPreview/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITargetedPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITargetedPreview/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITargetedPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/title",
+          "value": "UICollectionView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAction/title",
+          "value": "UIAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addInteraction(_:)/title",
+          "value": "addInteraction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1addInteraction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addInteraction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate~1tableView(_:contextMenuConfigurationForRowAt:point:)/title",
+          "value": "tableView:contextMenuConfigurationForRowAtIndexPath:point:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate~1tableView(_:contextMenuConfigurationForRowAt:point:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:contextMenuConfigurationForRowAtIndexPath:point:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction~1init(delegate:)/title",
+          "value": "initWithDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction~1init(delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/title",
+          "value": "UITableViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenu/title",
+          "value": "UIMenu"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenu/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell/title",
+          "value": "UICollectionViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKUIDelegate~1webView(_:contextMenuConfigurationForElement:completionHandler:)/title",
+          "value": "webView:contextMenuConfigurationForElement:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKUIDelegate~1webView(_:contextMenuConfigurationForElement:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKWebView",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "webView"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contextMenuConfigurationForElement:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKContextMenuElementInfo",
+              "text": "WKContextMenuElementInfo"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "elementInfo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#*$objc(cs)UIContextMenuConfiguration)",
+              "text": "void (^)(UIContextMenuConfiguration *)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKUIDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKUIDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate/title",
+          "value": "UIContextMenuInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuConfiguration/title",
+          "value": "UIContextMenuConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate~1contextMenuInteraction(_:configurationForMenuAtLocation:)/title",
+          "value": "contextMenuInteraction:configurationForMenuAtLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate~1contextMenuInteraction(_:configurationForMenuAtLocation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contextMenuInteraction:configurationForMenuAtLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate/title",
+          "value": "UITableViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/title",
+          "value": "UICollectionViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction/title",
+          "value": "UIContextMenuInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/title",
+          "value": "UIControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate~1collectionView(_:contextMenuConfigurationForItemAt:point:)/title",
+          "value": "collectionView:contextMenuConfigurationForItemAtIndexPath:point:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate~1collectionView(_:contextMenuConfigurationForItemAt:point:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "collectionView:contextMenuConfigurationForItemAtIndexPath:point:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adding-context-menus-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adding-context-menus-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

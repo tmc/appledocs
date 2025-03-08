@@ -1,0 +1,626 @@
+{
+  "abstract": [
+    {
+      "text": "Maps from a dead-key state to either the resultant Unicode character(s) or the new dead key state produced when the current state is terminated by a given character key for a ",
+      "type": "text"
+    },
+    {
+      "code": "'uchr'",
+      "type": "codeVoice"
+    },
+    {
+      "text": " resource.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1390546,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@UCKeyStateEntryRange",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "UCKeyStateEntryRange"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UCKeyStateEntryRange"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UCKeyStateEntryRange"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyStateEntryRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is used in the ",
+              "type": "text"
+            },
+            {
+              "code": "stateEntryData[]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of a structure of type  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You should use the ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyStateEntryRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format for complex (multiple) dead-key states.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each virtual key code, an entry in its dead-key state record maps from the current dead-key state to the Unicode character(s) produced or to the next dead-key state, as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the current dead-key state is within a valid dead-key state range for the given input character—that is, if its value is greater than or equal to ",
+              "type": "text"
+            },
+            {
+              "code": "curStateStart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and less than or equal to ",
+              "type": "text"
+            },
+            {
+              "code": "curStateStart + curStateRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—then",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the base ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "charData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value for the given dead-key state range is in the range of valid Unicode characters, a character is produced and the dead-key state may be terminated. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "and/or",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the base ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nextState",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value is not 0, a new dead-key state is produced. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the first case, the output character is determined as follows: The base ",
+              "type": "text"
+            },
+            {
+              "code": "charData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is incremented by the resulting product of (the difference between the current state and the start of that state’s range) and (a multiplier). That is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "charData += (curState - curStateStart) * deltaMultiplier ",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, in the second case, the resulting dead-key state, which is the new ",
+              "type": "text"
+            },
+            {
+              "code": "curState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, is determined as follows: The base ",
+              "type": "text"
+            },
+            {
+              "code": "nextState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is incremented by the resulting product of (the difference between the current state and the start of that state’s range) and (a multiplier). That is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "nextState += (curState - curStateStart) * deltaMultiplier ",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unicode Utilities",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390454-chardata": {
+      "abstract": [
+        {
+          "text": "A value of type ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyCharSeq",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". This base character value is used to determine the actual Unicode character(s) produced when a given dead-key state terminates. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "charData"
+        },
+        {
+          "kind": "text",
+          "text": ": UCKeyCharSeq"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390454-chardata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "charData",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1390454-chardata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390484-nextstate": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer. This base dead-key state value is used to determine the following dead-key state, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextState"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390484-nextstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nextState",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1390484-nextstate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390496-curstatestart": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer specifying the beginning of a given dead-key state range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "curStateStart"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390496-curstatestart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "curStateStart",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1390496-curstatestart"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390515-curstaterange": {
+      "abstract": [
+        {
+          "text": "An unsigned 8-bit integer specifying the number of entries in a given dead-key state range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "curStateRange"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390515-curstaterange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "curStateRange",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1390515-curstaterange"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390570-deltamultiplier": {
+      "abstract": [
+        {
+          "text": "An unsigned 8-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "deltaMultiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390570-deltamultiplier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deltaMultiplier",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1390570-deltamultiplier"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1446762-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "curStateStart"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "curStateRange"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt8, "
+        },
+        {
+          "kind": "identifier",
+          "text": "deltaMultiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt8, "
+        },
+        {
+          "kind": "identifier",
+          "text": "charData"
+        },
+        {
+          "kind": "text",
+          "text": ": UCKeyCharSeq, "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextState"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1446762-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(curStateStart:curStateRange:deltaMultiplier:charData:nextState:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1446762-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1448909-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1448909-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystateentryrange/1448909-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeystaterecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyStateRecord",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeystaterecord"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2856084",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1448909-init",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1446762-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2856085",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390454-chardata",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390515-curstaterange",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390496-curstatestart",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390570-deltamultiplier",
+        "doc://com.apple.documentation/documentation/coreservices/uckeystateentryrange/1390484-nextstate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/uckeystateentryrange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/uckeystateentryrange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

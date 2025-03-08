@@ -1,0 +1,788 @@
+{
+  "abstract": [
+    {
+      "text": "Configure Simulator to run and debug your CarPlay-enabled app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using the CarPlay Simulator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator provides the ability to run your CarPlay-enabled app in a second window. The window behaves as the vehicle’s primary CarPlay display, and you can interact with it like you would a real CarPlay system. Simulator provides additional options for navigation apps that you can enable to check your map content at various screen sizes and resolutions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use Simulator as your sole method of testing. Apple recommends that you also test in a vehicle or aftermarket system. If possible, use a device that supports wireless CarPlay. This allows you to use Xcode to debug your app while it’s running in a physical CarPlay environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-the-CarPlay-Simulator",
+          "level": 3,
+          "text": "Open the CarPlay Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator doesn’t open the CarPlay window by default, but does keep it open for the rest of the session after you activate it. Simulator can’t display your CarPlay-enabled app unless it has the necessary entitlements. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To open the CarPlay window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, build and run your project using the iOS simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Simulator menu bar, choose I/O > External Displays > CarPlay.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CarPlay window is 800 x 480 pixels and uses a display scale of @2x, which represents the common configuration of many CarPlay systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Additional-Options-for-Navigation-Apps",
+          "level": 3,
+          "text": "Enable Additional Options for Navigation Apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re developing a CarPlay-enabled navigation app, enable CarPlay’s additional options in Simulator, which allows you to change the window’s width, height, and scale. Use this flexibility to ensure your map content renders in all recommended configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before launching Simulator, open Terminal and enter the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "defaults write com.apple.iphonesimulator CarPlayExtraOptions -bool YES"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple recommends that you test your CarPlay-enabled app using the following configurations, at a minimum:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Width x height (pixels)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scale",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimum",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "748 x 456",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "@2x",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Portrait",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "768 x 1024",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "@2x",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Standard",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "800 x 480",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "@2x",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "High-resolution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1920 x 720",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "@3x",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Go-Beyond-Simulator",
+          "level": 3,
+          "text": "Go Beyond Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator is useful during development, but it doesn’t provide certain CarPlay features that Apple recommends you include when testing your CarPlay-enabled app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can’t use Simulator to test:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "When iOS locks the iPhone",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". A user often interacts with CarPlay without first unlocking their iPhone. Your CarPlay-enabled app must perform its primary functions when the iPhone is in a locked state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Siri",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Users interact with certain CarPlay features using Siri exclusively. Ensure that your CarPlay-enabled app works as you expect throughout these interactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Audio behavior",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". You CarPlay app must be a good audio citizen. Be mindful that audio may come from other sources when CarPlay is active. If your CarPlay-enabled app isn’t playing audio, deactivate its audio session. For example, an audio navigation prompt should cause the vehicle’s radio volume to lower and then rise again after the prompt finishes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that provides vehicle properties and configuration for the CarPlay environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsessionconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene": {
+      "abstract": [
+        {
+          "text": "A CarPlay scene that controls your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationScene",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for responding to the life cycle events of your app’s scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscenedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay": {
+      "abstract": [
+        {
+          "text": "Use scenes to present your app’s content on the vehicle’s built-in screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Content in CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay/displaying-content-in-carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements": {
+      "abstract": [
+        {
+          "text": "Configure your CarPlay-enabled app with the entitlements it requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting CarPlay Entitlements",
+      "type": "topic",
+      "url": "/documentation/carplay/requesting-carplay-entitlements"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios": {
+      "abstract": [
+        {
+          "text": "Make your CarPlay-enabled apps compatible with older system versions, such as iOS 13 and earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Previous Versions of iOS",
+      "type": "topic",
+      "url": "/documentation/carplay/supporting-previous-versions-of-ios"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "CarPlay-Integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+        "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+        "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+      ],
+      "title": "CarPlay Integration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "CarPlay-Integration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+                "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+                "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+              ],
+              "title": "CarPlay Integration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/title",
+          "value": "CPSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/title",
+          "value": "CPTemplateApplicationSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/title",
+          "value": "CPTemplateApplicationScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/using-the-carplay-simulator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/using-the-carplay-simulator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

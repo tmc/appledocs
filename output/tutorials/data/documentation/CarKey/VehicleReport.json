@@ -1,0 +1,844 @@
+{
+  "abstract": [
+    {
+      "text": "A type that contains information about a vehicle configured for",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "remote keyless entry in the user’s Apple Wallet.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CarKey/documentation/CarKey"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6CarKey13VehicleReportV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "VehicleReport"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarKey"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VehicleReport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.3",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "VehicleReport"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VehicleReport"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "VehicleReport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides information about a vehicle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you manufacture. The system generates a vehicle report for each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vehicle that matches your company’s make, and that the owner",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configured in their Apple Wallet. Use a vehicle report to get",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about the vehicle, such as whether it’s currently",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "connected and able to receive commands. You can also use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report to determine which vehicle features you can operate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A vehicle can optionally attach proprietary data to one of its function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identifiers. You might use this data to support additional features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "related to that vehicle feature. For example, you might want to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attach a unique security code to the door lock function. Use the vehicle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report to retrieve any data your vehicle sends. If the vehicle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sends new data, the system updates the report and notifies your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CarKey/documentation/CarKey": {
+      "abstract": [
+        {
+          "text": "Access the remote keyless features of configured vehicles in the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarKey",
+      "type": "topic",
+      "url": "/documentation/carkey"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl": {
+      "abstract": [
+        {
+          "text": "The object you use to start a new vehicle-related session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControl"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControl",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrol"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession": {
+      "abstract": [
+        {
+          "text": "The object that manages communication with the vehicles",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you manufacture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSession",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate": {
+      "abstract": [
+        {
+          "text": "An interface you use to receive session- and vehicle-related",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "information from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsessiondelegate"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/FunctionStatus": {
+      "abstract": [
+        {
+          "text": "A value that the vehicle can return to indicate the status of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a particular vehicle feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FunctionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/FunctionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FunctionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "FunctionStatus",
+      "type": "topic",
+      "url": "/documentation/carkey/functionstatus"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport": {
+      "abstract": [
+        {
+          "text": "A type that contains information about a vehicle configured for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "remote keyless entry in the user’s Apple Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VehicleReport"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VehicleReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "VehicleReport",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/identifier": {
+      "abstract": [
+        {
+          "text": "The string you use to identify the vehicle when making requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport/identifier"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/isConnected": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the vehicle is currently",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "connected over Bluetooth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isConnected"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/isConnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isConnected",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport/isconnected"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/proprietaryData(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the proprietary data associated with one of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "vehicle’s functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "proprietaryData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey18FunctionIdentifierV",
+          "text": "FunctionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/proprietaryData(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "proprietaryData(for:)",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport/proprietarydata(for:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/status(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the current status of the specified vehicle function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey18FunctionIdentifierV",
+          "text": "FunctionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey14FunctionStatusV",
+          "text": "FunctionStatus"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/status(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status(for:)",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport/status(for:)"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/supportedFunctions": {
+      "abstract": [
+        {
+          "text": "An array of function identifiers that indicates the features",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the vehicle supports, populated only after the first BLE connection",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with the vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedFunctions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CarKey18FunctionIdentifierV",
+          "text": "FunctionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/supportedFunctions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedFunctions",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport/supportedfunctions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Vehicle-Details",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/identifier",
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/isConnected"
+      ],
+      "title": "Getting the Vehicle Details"
+    },
+    {
+      "anchor": "Getting-the-Vehicles-Supported-Functions",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/supportedFunctions",
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/status(for:)",
+        "doc://com.apple.CarKey/documentation/CarKey/FunctionStatus"
+      ],
+      "title": "Getting the Vehicle’s Supported Functions"
+    },
+    {
+      "anchor": "Fetching-Data-Sent-by-the-Vehicle",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport/proprietaryData(for:)"
+      ],
+      "title": "Fetching Data Sent by the Vehicle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carkey/vehiclereport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

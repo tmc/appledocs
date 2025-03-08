@@ -1,0 +1,1793 @@
+{
+  "abstract": [
+    {
+      "text": "A programmatic interface for interacting with and observing calls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.callkit/documentation/CallKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.callkit/documentation/CallKit/CXCallController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CXCallController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CXCallController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CallKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CXCallController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CXCallController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object interacts with calls by performing actions, which are represented by instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses. You can request that one or more actions be performed in a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/request(_:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. A transaction may be rejected by the system for one of the reasons listed in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object manages a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which can be accessed using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/callObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You can provide an object conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallObserverDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to the call observer in order to be notified of any changes to active calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.callkit/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/callkit"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallAction": {
+      "abstract": [
+        {
+          "text": "A programmatic interface for objects that represent a telephony action associated with a call object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallAction"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallAction",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallaction"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController": {
+      "abstract": [
+        {
+          "text": "A programmatic interface for interacting with and observing calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallController"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallController"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallController",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController/callObserver": {
+      "abstract": [
+        {
+          "text": "Returns an observer for active calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callObserver"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXCallObserver",
+          "text": "CXCallObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/callObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "callObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "callObserver",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller/callobserver"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController/init()": {
+      "abstract": [
+        {
+          "text": "Initializes a new call controller with a private, serial queue, which is used for calling completion blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller/init()"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController/init(queue:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new call controller with a specified queue, which is used for calling completion blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/init(queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithQueue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(queue:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller/init(queue:)"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController/request(_:completion:)": {
+      "abstract": [
+        {
+          "text": "Requests that the actions in the specified transaction be asynchronously performed by the telephony provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXTransaction",
+          "text": "CXTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/request(_:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestTransaction:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "request(_:completion:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller/request(_:completion:)"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4": {
+      "abstract": [
+        {
+          "text": "Requests that the transaction that contains the specified actions be asynchronously performed by the telephony provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXAction",
+          "text": "CXAction"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestTransactionWithActions:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestTransaction(with:completion:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller/requesttransaction(with:completion:)-4o1m4"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-ffme": {
+      "abstract": [
+        {
+          "text": "Requests that the transaction that contains the specified action be asynchronously performed by the telephony provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CXAction",
+          "text": "CXAction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-ffme",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestTransactionWithAction:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestTransaction(with:completion:)",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallcontroller/requesttransaction(with:completion:)-ffme"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallObserver": {
+      "abstract": [
+        {
+          "text": "A programmatic interface for an object that manages a list of active calls and observes call changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallObserver",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallobserver"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXCallObserverDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods the system calls when a call changes state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXCallObserverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXCallObserverDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXCallObserverDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXCallObserverDelegate",
+      "type": "topic",
+      "url": "/documentation/callkit/cxcallobserverdelegate"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXErrorCodeRequestTransactionError"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXErrorCodeRequestTransactionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXErrorCodeRequestTransactionError",
+      "type": "topic",
+      "url": "/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for the CallKit error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXErrorCodeRequestTransactionError.Code",
+      "type": "topic",
+      "url": "/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXErrorDomainRequestTransaction": {
+      "abstract": [
+        {
+          "text": "Domain for errors when requesting a transaction from a call controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXErrorDomainRequestTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXErrorDomainRequestTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXErrorDomainRequestTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXErrorDomainRequestTransaction",
+      "type": "topic",
+      "url": "/documentation/callkit/cxerrordomainrequesttransaction"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the act of initiating an outgoing call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXStartCallAction"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXStartCallAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXStartCallAction",
+      "type": "topic",
+      "url": "/documentation/callkit/cxstartcallaction"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXTransaction": {
+      "abstract": [
+        {
+          "text": "An object that contains zero or more action objects for a call controller to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXTransaction",
+      "type": "topic",
+      "url": "/documentation/callkit/cxtransaction"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls": {
+      "abstract": [
+        {
+          "text": "Initiate outgoing calls with VoIP and configure your app to receive incoming calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Making and receiving VoIP calls",
+      "type": "topic",
+      "url": "/documentation/callkit/making-and-receiving-voip-calls"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/sending-end-to-end-encrypted-voip-calls": {
+      "abstract": [
+        {
+          "text": "Initiate VoIP calls when your server can’t determine whether an outgoing notification is a request for a VoIP call due to metadata encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/sending-end-to-end-encrypted-voip-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending End-to-End Encrypted VoIP Calls",
+      "type": "topic",
+      "url": "/documentation/callkit/sending-end-to-end-encrypted-voip-calls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Outgoing-calls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/sending-end-to-end-encrypted-voip-calls",
+        "doc://com.apple.callkit/documentation/CallKit/CXTransaction",
+        "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction"
+      ],
+      "title": "Outgoing calls"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-New-Call-Controllers",
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXCallController/init()",
+        "doc://com.apple.callkit/documentation/CallKit/CXCallController/init(queue:)"
+      ],
+      "title": "Creating New Call Controllers"
+    },
+    {
+      "anchor": "Accessing-the-Call-Observer",
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXCallController/callObserver"
+      ],
+      "title": "Accessing the Call Observer"
+    },
+    {
+      "anchor": "Requesting-Transactions",
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXCallController/request(_:completion:)",
+        "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-ffme",
+        "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4"
+      ],
+      "title": "Requesting Transactions"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct",
+        "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code",
+        "doc://com.apple.callkit/documentation/CallKit/CXErrorDomainRequestTransaction"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CXCallController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.callkit/documentation/CallKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-New-Call-Controllers",
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXCallController/init()",
+                "doc://com.apple.callkit/documentation/CallKit/CXCallController/init(queue:)"
+              ],
+              "title": "Creating New Call Controllers"
+            },
+            {
+              "anchor": "Accessing-the-Call-Observer",
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXCallController/callObserver"
+              ],
+              "title": "Accessing the Call Observer"
+            },
+            {
+              "anchor": "Requesting-Transactions",
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXCallController/request(_:completion:)",
+                "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-ffme",
+                "doc://com.apple.callkit/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4"
+              ],
+              "title": "Requesting Transactions"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code",
+                "doc://com.apple.callkit/documentation/CallKit/CXErrorDomainRequestTransaction"
+              ],
+              "title": "Errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Outgoing-calls",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/sending-end-to-end-encrypted-voip-calls",
+                "doc://com.apple.callkit/documentation/CallKit/CXTransaction",
+                "doc://com.apple.callkit/documentation/CallKit/CXStartCallAction"
+              ],
+              "title": "Outgoing calls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CXCallController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXTransaction/title",
+          "value": "CXTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallObserverDelegate/title",
+          "value": "CXCallObserverDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallObserverDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallObserverDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallObserverDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallObserverDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXStartCallAction/title",
+          "value": "CXStartCallAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXStartCallAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXStartCallAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXStartCallAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXStartCallAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallAction/title",
+          "value": "CXCallAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1requestTransaction(with:completion:)-4o1m4/title",
+          "value": "requestTransactionWithActions:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1requestTransaction(with:completion:)-4o1m4/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestTransactionWithActions:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController/title",
+          "value": "CXCallController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXErrorDomainRequestTransaction/title",
+          "value": "CXErrorDomainRequestTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXErrorDomainRequestTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXErrorDomainRequestTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1init(queue:)/title",
+          "value": "initWithQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1init(queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithQueue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1requestTransaction(with:completion:)-ffme/title",
+          "value": "requestTransactionWithAction:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1requestTransaction(with:completion:)-ffme/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestTransactionWithAction:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1callObserver/title",
+          "value": "callObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1callObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "callObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXErrorCodeRequestTransactionError-swift.struct~1Code/title",
+          "value": "CXErrorCodeRequestTransactionError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXErrorCodeRequestTransactionError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXErrorCodeRequestTransactionError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXErrorCodeRequestTransactionError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXErrorCodeRequestTransactionError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallObserver/title",
+          "value": "CXCallObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXCallObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1request(_:completion:)/title",
+          "value": "requestTransaction:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXCallController~1request(_:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestTransaction:completion:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/callkit/cxcallcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/callkit/cxcallcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

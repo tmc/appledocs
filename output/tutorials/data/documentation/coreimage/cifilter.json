@@ -1,0 +1,2470 @@
+{
+  "abstract": [
+    {
+      "text": "An image processor that produces an image by manipulating one or more input images or by generating new image data.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz",
+        "doc://com.apple.documentation/documentation/quartz/imagekit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437961,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIFilter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIFilter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIFilter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class produces a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object as output. Typically, a filter takes one or more images as input. Some filters, however, generate an image based on other types of input parameters. The parameters of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object are set and retrieved through the use of key-value pairs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object in conjunction with other Core Image classes, such as  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to take advantage of the built-in Core Image filters when processing images, creating filter generators, or writing custom filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects are mutable, and thus cannot be shared safely among threads. Each thread must create its own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects, but you can pass a filter’s immutable input and output ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects between threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get a quick overview of how to set up and use Core Image filters, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1720743",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4336878",
+          "level": 3,
+          "text": "Create Type-Safe Filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Image provides methods that create type-safe ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances. Use these filters to avoid run-time errors that can occur when relying on Core Image’s string-based API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the type-safe API, import ",
+              "type": "text"
+            },
+            {
+              "code": "CoreImage.CIFilterBuiltins",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import CoreImage",
+            "import CoreImage.CIFilterBuiltins"
+          ],
+          "metadata": {
+            "anchor": "4336875",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The type-safe approach returns a non-optional filter. Because the returned filter conforms to the relevant protocol—for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifalsecolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the case of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228325-falsecolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—the parameters are available as properties. The following creates and applies a false color filter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func falseColor(inputImage: CIImage) -> CIImage? {",
+            "    let falseColorFilter = CIFilter.falseColor()",
+            "    falseColorFilter.color0 = CIColor(red: 1, green: 1, blue: 0)",
+            "    falseColorFilter.color1 = CIColor(red: 0, green: 0, blue: 1)",
+            "    falseColorFilter.inputImage = inputImage",
+            "    return falseColorFilter.outputImage",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4336876",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The false color filter maps luminance to a color ramp of two colors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4336877",
+              "metadata": {
+                "anchor": "4336877",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770534",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " in order to create custom filter effects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By chaining together two or more built-in Core Image filters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By using an image-processing kernel that you write",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Regardless of whether your subclass provides its effect by chaining filters or implementing its own kernel, you should:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare any input parameters as properties whose names are prefixed with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "input",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "inputImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437902-setdefaults",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods to provide default values for any input parameters you’ve declared.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "outputImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method to create a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with your filter’s effect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class automatically manages input parameters when archiving, copying, and deallocating filters. For this reason, your subclass must obey the following guidelines to ensure proper behavior:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store input parameters in instance variables whose names are prefixed with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "input",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use auto-synthesized instance variables, because their names are automatically prefixed with an underscore. Instead, synthesize the property manually. For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@synthesize inputMyParameter;",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If using manual reference counting, don’t release input parameter instance variables in your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method implementation. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " implementation in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "devLink-1737709",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to automatically set the values of all input parameters to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720743": {
+      "identifier": "devLink-1720743",
+      "title": "Core Image Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185"
+    },
+    "devLink-1737709": {
+      "identifier": "devLink-1737709",
+      "title": "Key-value coding",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor": {
+      "abstract": [
+        {
+          "text": "The component values defining a color in a specific color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifalsecolor": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifalsecolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFalseColor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifalsecolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "abstract": [
+        {
+          "text": "An image processor that produces an image by manipulating one or more input images or by generating new image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter#4336875": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter#4336875",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter#4336875"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter#4336876": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter#4336876",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter#4336876"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1427521-view": {
+      "abstract": [
+        {
+          "text": "Returns a filter view for the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUIConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludedKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]!) -> IKFilterUIView!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1427521-view",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "view(forUIConfiguration:excludedKeys:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1427521-view"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437591-localizeddescription": {
+      "abstract": [
+        {
+          "text": "Returns the localized description of a filter for display in the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forFilterName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437591-localizeddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedDescription(forFilterName:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437591-localizeddescription"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437595-filternames": {
+      "abstract": [
+        {
+          "text": "Returns an array of all published filter names that match all the specified categories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "inCategories"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]?) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437595-filternames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filterNames(inCategories:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437595-filternames"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437642-localizedreferencedocumentation": {
+      "abstract": [
+        {
+          "text": "Returns the location of the localized reference documentation that describes the filter. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedReferenceDocumentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forFilterName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437642-localizedreferencedocumentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedReferenceDocumentation(forFilterName:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437642-localizedreferencedocumentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437661-attributes": {
+      "abstract": [
+        {
+          "text": "A dictionary of key-value pairs that describe the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437661-attributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437661-attributes"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437697-localizedname": {
+      "abstract": [
+        {
+          "text": "Returns the localized name for the specified filter name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forFilterName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437697-localizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedName(forFilterName:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437697-localizedname"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437879-init": {
+      "abstract": [
+        {
+          "text": "Creates a filter that allows the processing of RAW images.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "identifier",
+          "text": "imageData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIRAWFilterOption : Any]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437879-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(imageData:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437879-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437889-registername": {
+      "abstract": [
+        {
+          "text": "Publishes a custom filter that is not packaged as an image unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerName"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "constructor"
+        },
+        {
+          "kind": "text",
+          "text": ": any CIFilterConstructor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "classAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437889-registername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerName(_:constructor:classAttributes:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437889-registername"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437894-init": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " object for a specific kind of filter and initializes the input values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437894-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:parameters:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437894-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437902-setdefaults": {
+      "abstract": [
+        {
+          "text": "Sets all input values for a filter to default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDefaults"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437902-setdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDefaults()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437902-setdefaults"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437997-name": {
+      "abstract": [
+        {
+          "text": "A name associated with a filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437997-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437997-name"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438006-serializedxmp": {
+      "abstract": [
+        {
+          "text": "Serializes filter parameters into XMP form that is suitable for embedding in an image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "serializedXMP"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIFilter], "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputImageExtent"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438006-serializedxmp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serializedXMP(from:inputImageExtent:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438006-serializedxmp"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438013-inputkeys": {
+      "abstract": [
+        {
+          "text": "The names of all input parameters to the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438013-inputkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputKeys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438013-inputkeys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438057-localizedname": {
+      "abstract": [
+        {
+          "text": "Returns  the localized name for the specified filter category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438057-localizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedName(forCategory:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438057-localizedname"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply": {
+      "abstract": [
+        {
+          "text": "Produces a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object by applying arguments to a kernel function and using options to control how the kernel function is evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "(CIKernel, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?) -> CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(_:arguments:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438077-apply"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438096-init": {
+      "abstract": [
+        {
+          "text": "Creates a filter that allows the processing of RAW images.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "identifier",
+          "text": "imageURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIRAWFilterOption : Any]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438096-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(imageURL:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438096-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438122-outputkeys": {
+      "abstract": [
+        {
+          "text": "The names of all output parameters from the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438122-outputkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputKeys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438122-outputkeys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438145-filternames": {
+      "abstract": [
+        {
+          "text": "Returns an array of all published filter names in the specified category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "inCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438145-filternames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filterNames(inCategory:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438145-filternames"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438169-outputimage": {
+      "abstract": [
+        {
+          "text": "Returns a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object that encapsulates the operations configured in the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438169-outputimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438169-outputimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438237-filterarray": {
+      "abstract": [
+        {
+          "text": "Returns an array of filter objects de-serialized from XMP data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromSerializedXMP"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputImageExtent"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": NSErrorPointer) -> [CIFilter]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438237-filterarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filterArray(fromSerializedXMP:inputImageExtent:error:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438237-filterarray"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438255-init": {
+      "abstract": [
+        {
+          "text": "Creates a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " object for a specific kind of filter. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438255-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438255-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438276-isenabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the filter is enabled. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438276-isenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438276-isenabled"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/2138288-init": {
+      "abstract": [
+        {
+          "text": "Creates a filter from a Core Video pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "identifier",
+          "text": "cvPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIRAWFilterOption : Any]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/2138288-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cvPixelBuffer:properties:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/2138288-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228325-falsecolor": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228325-falsecolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "falseColor()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228325-falsecolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3242782-supportedrawcameramodels": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedRawCameraModels"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [String]!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3242782-supportedrawcameramodels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedRawCameraModels()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3242782-supportedrawcameramodels"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401846-areaalphaweightedhistogram": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "areaAlphaWeightedHistogram"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIAreaHistogram"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401846-areaalphaweightedhistogram",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "areaAlphaWeightedHistogram()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401846-areaalphaweightedhistogram"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401847-areaboundsred": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "areaBoundsRed"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIAreaBoundsRed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401847-areaboundsred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "areaBoundsRed()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401847-areaboundsred"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401870-maximumscaletransform": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumScaleTransform"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMaximumScaleTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401870-maximumscaletransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumScaleTransform()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401870-maximumscaletransform"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401878-tonemapheadroom": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "toneMapHeadroom"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIToneMapHeadroom"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401878-tonemapheadroom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toneMapHeadroom()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401878-tonemapheadroom"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blur Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/blur_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Adjustment Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/color_adjustment_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/color_attribute_keys": {
+      "abstract": [
+        {
+          "text": "Color types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/color_attribute_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Attribute Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/color_attribute_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/color_effect_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/color_effect_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Effect Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/color_effect_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/composite_operations": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/composite_operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Composite Operations",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/composite_operations"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolution Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/convolution_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/data_type_attributes": {
+      "abstract": [
+        {
+          "text": "Numeric data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/data_type_attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Type Attributes",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/data_type_attributes"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/distortion_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/distortion_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distortion Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/distortion_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_attribute_keys": {
+      "abstract": [
+        {
+          "text": "Attributes for a filter and its parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_attribute_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filter Attribute Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/filter_attribute_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_category_keys": {
+      "abstract": [
+        {
+          "text": "Categories of filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_category_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filter Category Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/filter_category_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_parameter_keys": {
+      "abstract": [
+        {
+          "text": "Keys for input parameters to filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_parameter_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filter Parameter Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/filter_parameter_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Generator Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/generator_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/geometry_adjustment_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/geometry_adjustment_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Geometry Adjustment Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/geometry_adjustment_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gradient Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/gradient_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/halftone_effect_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/halftone_effect_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Halftone Effect Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/halftone_effect_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/image_attribute_keys": {
+      "abstract": [
+        {
+          "text": "Image Types",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/image_attribute_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Attribute Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/image_attribute_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/options_for_applying_a_filter": {
+      "abstract": [
+        {
+          "text": "Options that control the application of a custom Core Image filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/options_for_applying_a_filter",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Options for Applying a Filter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/options_for_applying_a_filter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/raw_image_options": {
+      "abstract": [
+        {
+          "text": "Options for creating a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " object from RAW image data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/raw_image_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RAW Image Options",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/raw_image_options"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/reduction_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/reduction_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reduction Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/reduction_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/sharpening_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/sharpening_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sharpening Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/sharpening_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/stylizing_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/stylizing_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Stylizing Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/stylizing_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/tile_effect_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/tile_effect_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tile Effect Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/tile_effect_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/transition_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/transition_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transition Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/transition_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/user_interface_control_options": {
+      "abstract": [
+        {
+          "text": "Sets of controls for various user scenarios.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/user_interface_control_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User Interface Control Options",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/user_interface_control_options"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/user_interface_options": {
+      "abstract": [
+        {
+          "text": "Keys or values for the size of the input parameter controls for a filter view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/user_interface_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User Interface Options",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/user_interface_options"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/vector_quantity_attributes": {
+      "abstract": [
+        {
+          "text": "Vector data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/vector_quantity_attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vector Quantity Attributes",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/vector_quantity_attributes"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilterprotocol": {
+      "abstract": [
+        {
+          "text": "The properties you use to configure a Core Image filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilterprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterProtocol",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilterprotocol"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirawfilter": {
+      "abstract": [
+        {
+          "text": "A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRAWFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRAWFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirawfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirawfilteroption": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRAWFilterOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirawfilteroption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRAWFilterOption",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirawfilteroption"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/civector": {
+      "abstract": [
+        {
+          "text": "A container for coordinate values, direction vectors, matrices, and other non-scalar values, typically used in Core Image for filter parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIVector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/civector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIVector",
+      "type": "topic",
+      "url": "/documentation/coreimage/civector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dealloc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571947-dealloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dealloc",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571947-dealloc"
+    },
+    "doc://com.apple.documentation/documentation/quartz": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.documentation/documentation/quartz/imagekit": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz/imagekit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageKit",
+      "type": "topic",
+      "url": "/documentation/quartz/imagekit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-4336877": {
+      "identifier": "link-media-4336877",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cifilter#4336877"
+    },
+    "media-4336877": {
+      "alt": "Two photographs showing a flower. The image on the left shows the original version of the flower. The image on the right shows the false color version of the flower.",
+      "identifier": "media-4336877",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93c7683dae/e23ecc5d-52d4-4368-a7da-8fe363616922.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cirawfilter",
+        "doc://com.apple.documentation/documentation/coreimage/cicolor",
+        "doc://com.apple.documentation/documentation/coreimage/civector"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651757",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438255-init",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437894-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Filter"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Configure Core Image filters that expose their attributes as properties.",
+          "type": "text"
+        }
+      ],
+      "anchor": "4336820",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilterprotocol",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/blur_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/color_adjustment_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/color_effect_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/composite_operations",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/convolution_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/distortion_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/geometry_adjustment_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/gradient_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/halftone_effect_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/reduction_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/sharpening_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/stylizing_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/tile_effect_filters",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/transition_filters"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Type-Safe Filters"
+    },
+    {
+      "anchor": "1651801",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437595-filternames",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438145-filternames"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Registered Filters"
+    },
+    {
+      "anchor": "1651817",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437889-registername"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering a Filter"
+    },
+    {
+      "anchor": "1651827",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437997-name",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438276-isenabled",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437661-attributes",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438013-inputkeys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438122-outputkeys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438169-outputimage"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Filter Parameters and Attributes"
+    },
+    {
+      "anchor": "1651856",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437902-setdefaults"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting Default Values"
+    },
+    {
+      "anchor": "1651870",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying a Filter"
+    },
+    {
+      "anchor": "1651887",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437697-localizedname",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438057-localizedname",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437591-localizeddescription",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437642-localizedreferencedocumentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Localized Information for Registered Filters"
+    },
+    {
+      "anchor": "1770548",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1427521-view"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Configuration View for a Filter"
+    },
+    {
+      "anchor": "1651952",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_attribute_keys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/data_type_attributes",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/vector_quantity_attributes",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/color_attribute_keys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/image_attribute_keys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_category_keys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/options_for_applying_a_filter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/user_interface_control_options",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/user_interface_options",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/filter_parameter_keys",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/raw_image_options"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "4357253",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/2138288-init",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1437879-init",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438096-init",
+        "doc://com.apple.documentation/documentation/coreimage/cirawfilteroption",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438006-serializedxmp",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438237-filterarray",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3242782-supportedrawcameramodels"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "4402453",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401846-areaalphaweightedhistogram",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401847-areaboundsred",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401870-maximumscaletransform",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401878-tonemapheadroom"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

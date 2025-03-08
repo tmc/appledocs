@@ -1,0 +1,2136 @@
+{
+  "abstract": [
+    {
+      "text": "Access the virtual file-system interfaces.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/vfs"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3572382,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "vfs"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1463707-advisory_read_ext": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1463707-advisory_read_ext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "advisory_read_ext",
+      "type": "topic",
+      "url": "/documentation/kernel/1463707-advisory_read_ext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1463716-advisory_read": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1463716-advisory_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "advisory_read",
+      "type": "topic",
+      "url": "/documentation/kernel/1463716-advisory_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523098-vfs_statfs": {
+      "abstract": [
+        {
+          "text": "Get information about filesystem status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523098-vfs_statfs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_statfs",
+      "type": "topic",
+      "url": "/documentation/kernel/1523098-vfs_statfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523104-vfs_setlocklocal": {
+      "abstract": [
+        {
+          "text": "Mark a filesystem as using VFS-level advisory locking support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523104-vfs_setlocklocal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setlocklocal",
+      "type": "topic",
+      "url": "/documentation/kernel/1523104-vfs_setlocklocal"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523107-vfs_event_signal": {
+      "abstract": [
+        {
+          "text": "Post a kqueue-style event on a filesystem (EVFILT_FS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523107-vfs_event_signal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_event_signal",
+      "type": "topic",
+      "url": "/documentation/kernel/1523107-vfs_event_signal"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523109-vfs_init_io_attributes": {
+      "abstract": [
+        {
+          "text": "Set I/O attributes on a mountpoint based on device properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523109-vfs_init_io_attributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_init_io_attributes",
+      "type": "topic",
+      "url": "/documentation/kernel/1523109-vfs_init_io_attributes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523128-vfs_name": {
+      "abstract": [
+        {
+          "text": "Copy filesystem name into a buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523128-vfs_name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_name",
+      "type": "topic",
+      "url": "/documentation/kernel/1523128-vfs_name"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523172-vfs_devblocksize": {
+      "abstract": [
+        {
+          "text": "Get the block size of the device underlying a mount.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523172-vfs_devblocksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_devblocksize",
+      "type": "topic",
+      "url": "/documentation/kernel/1523172-vfs_devblocksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523180-vfs_authcache_ttl": {
+      "abstract": [
+        {
+          "text": "Determine the time-to-live of cached authorized credentials for files in this filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523180-vfs_authcache_ttl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_authcache_ttl",
+      "type": "topic",
+      "url": "/documentation/kernel/1523180-vfs_authcache_ttl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523194-vfs_fsremove": {
+      "abstract": [
+        {
+          "text": "Unregister a filesystem with VFS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523194-vfs_fsremove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_fsremove",
+      "type": "topic",
+      "url": "/documentation/kernel/1523194-vfs_fsremove"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523197-vfs_mountedon": {
+      "abstract": [
+        {
+          "text": "Check whether a given block device has a filesystem mounted on it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523197-vfs_mountedon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_mountedon",
+      "type": "topic",
+      "url": "/documentation/kernel/1523197-vfs_mountedon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523218-vfs_setauthopaqueaccess": {
+      "abstract": [
+        {
+          "text": "Mark a filesystem as having remote VNOP_ACCESS support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523218-vfs_setauthopaqueaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setauthopaqueaccess",
+      "type": "topic",
+      "url": "/documentation/kernel/1523218-vfs_setauthopaqueaccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523223-vfs_clearauthopaque": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523223-vfs_clearauthopaque",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_clearauthopaque",
+      "type": "topic",
+      "url": "/documentation/kernel/1523223-vfs_clearauthopaque"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523231-vfs_clearauthopaqueaccess": {
+      "abstract": [
+        {
+          "text": "Mark a filesystem as not having remote VNOP_ACCESS support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523231-vfs_clearauthopaqueaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_clearauthopaqueaccess",
+      "type": "topic",
+      "url": "/documentation/kernel/1523231-vfs_clearauthopaqueaccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523233-vfs_iterate": {
+      "abstract": [
+        {
+          "text": "Iterate over all mountpoints with a callback. Used, for example, by sync().",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523233-vfs_iterate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_iterate",
+      "type": "topic",
+      "url": "/documentation/kernel/1523233-vfs_iterate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523242-vfs_isrdonly": {
+      "abstract": [
+        {
+          "text": "Determine if a filesystem is mounted read-only.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523242-vfs_isrdonly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_isrdonly",
+      "type": "topic",
+      "url": "/documentation/kernel/1523242-vfs_isrdonly"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523247-vfs_authopaqueaccess": {
+      "abstract": [
+        {
+          "text": "Check if a filesystem is marked as having reliable remote VNOP_ACCESS support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523247-vfs_authopaqueaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_authopaqueaccess",
+      "type": "topic",
+      "url": "/documentation/kernel/1523247-vfs_authopaqueaccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523259-vfs_getnewfsid": {
+      "abstract": [
+        {
+          "text": "Generate a unique filesystem ID for a mount and store it in the mount structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523259-vfs_getnewfsid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_getnewfsid",
+      "type": "topic",
+      "url": "/documentation/kernel/1523259-vfs_getnewfsid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523261-vfs_flags": {
+      "abstract": [
+        {
+          "text": "Retrieve mount flags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523261-vfs_flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_flags",
+      "type": "topic",
+      "url": "/documentation/kernel/1523261-vfs_flags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523276-vfs_authopaque": {
+      "abstract": [
+        {
+          "text": "Determine if a filesystem's authorization decisions occur remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523276-vfs_authopaque",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_authopaque",
+      "type": "topic",
+      "url": "/documentation/kernel/1523276-vfs_authopaque"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523278-vfs_update_vfsstat": {
+      "abstract": [
+        {
+          "text": "Update cached filesystem status information in the VFS mount structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523278-vfs_update_vfsstat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_update_vfsstat",
+      "type": "topic",
+      "url": "/documentation/kernel/1523278-vfs_update_vfsstat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523286-vfs_setauthcache_ttl": {
+      "abstract": [
+        {
+          "text": "Enable credential caching and set time-to-live of cached authorized credentials for files in this filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523286-vfs_setauthcache_ttl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setauthcache_ttl",
+      "type": "topic",
+      "url": "/documentation/kernel/1523286-vfs_setauthcache_ttl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523299-vfs_clearflags": {
+      "abstract": [
+        {
+          "text": "Clear flags on a mount.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523299-vfs_clearflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_clearflags",
+      "type": "topic",
+      "url": "/documentation/kernel/1523299-vfs_clearflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523301-vfs_fsprivate": {
+      "abstract": [
+        {
+          "text": "Get filesystem-private mount data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523301-vfs_fsprivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_fsprivate",
+      "type": "topic",
+      "url": "/documentation/kernel/1523301-vfs_fsprivate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523312-vfs_64bitready": {
+      "abstract": [
+        {
+          "text": "Check if the filesystem associated with a mountpoint is marked ready for interaction with 64-bit user processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523312-vfs_64bitready",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_64bitready",
+      "type": "topic",
+      "url": "/documentation/kernel/1523312-vfs_64bitready"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523316-vfs_setmaxsymlen": {
+      "abstract": [
+        {
+          "text": "Set the maximum length of a symbolic link on a filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523316-vfs_setmaxsymlen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setmaxsymlen",
+      "type": "topic",
+      "url": "/documentation/kernel/1523316-vfs_setmaxsymlen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523327-vfs_issynchronous": {
+      "abstract": [
+        {
+          "text": "Determine if writes to a filesystem occur synchronously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523327-vfs_issynchronous",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_issynchronous",
+      "type": "topic",
+      "url": "/documentation/kernel/1523327-vfs_issynchronous"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523360-vfs_setextendedsecurity": {
+      "abstract": [
+        {
+          "text": "Mark a filesystem as supporting security controls beyond POSIX permissions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523360-vfs_setextendedsecurity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setextendedsecurity",
+      "type": "topic",
+      "url": "/documentation/kernel/1523360-vfs_setextendedsecurity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523368-vfs_clearextendedsecurity": {
+      "abstract": [
+        {
+          "text": "Mark a filesystem as NOT supporting security controls beyond POSIX permissions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523368-vfs_clearextendedsecurity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_clearextendedsecurity",
+      "type": "topic",
+      "url": "/documentation/kernel/1523368-vfs_clearextendedsecurity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523380-vfs_isunmount": {
+      "abstract": [
+        {
+          "text": "Determine if an unmount is in progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523380-vfs_isunmount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_isunmount",
+      "type": "topic",
+      "url": "/documentation/kernel/1523380-vfs_isunmount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523389-vfs_busy": {
+      "abstract": [
+        {
+          "text": "\"Busy\" a mountpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523389-vfs_busy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_busy",
+      "type": "topic",
+      "url": "/documentation/kernel/1523389-vfs_busy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523411-vfs_ioattr": {
+      "abstract": [
+        {
+          "text": "Get I/O attributes associated with a mounpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523411-vfs_ioattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_ioattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523411-vfs_ioattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523413-vfs_setfsprivate": {
+      "abstract": [
+        {
+          "text": "Set filesystem-private mount data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523413-vfs_setfsprivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setfsprivate",
+      "type": "topic",
+      "url": "/documentation/kernel/1523413-vfs_setfsprivate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523418-vfs_typenum": {
+      "abstract": [
+        {
+          "text": "Get (archaic) filesystem type number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523418-vfs_typenum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_typenum",
+      "type": "topic",
+      "url": "/documentation/kernel/1523418-vfs_typenum"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523440-vfs_setauthopaque": {
+      "abstract": [
+        {
+          "text": "Mark a filesystem as having authorization decisions controlled remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523440-vfs_setauthopaque",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setauthopaque",
+      "type": "topic",
+      "url": "/documentation/kernel/1523440-vfs_setauthopaque"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523451-vfs_unbusy": {
+      "abstract": [
+        {
+          "text": "\"Unbusy\" a mountpoint by releasing its read-write lock.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523451-vfs_unbusy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_unbusy",
+      "type": "topic",
+      "url": "/documentation/kernel/1523451-vfs_unbusy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523454-vfs_isrdwr": {
+      "abstract": [
+        {
+          "text": "Determine if a filesystem is mounted with writes enabled.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523454-vfs_isrdwr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_isrdwr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523454-vfs_isrdwr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523458-vfs_setioattr": {
+      "abstract": [
+        {
+          "text": "Set I/O attributes associated with a mounpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523458-vfs_setioattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setioattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523458-vfs_setioattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523461-vfs_event_init": {
+      "abstract": [
+        {
+          "text": "This function should not be called by kexts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523461-vfs_event_init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_event_init",
+      "type": "topic",
+      "url": "/documentation/kernel/1523461-vfs_event_init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523465-vfs_getvfs": {
+      "abstract": [
+        {
+          "text": "Given a filesystem ID, look up a mount structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523465-vfs_getvfs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_getvfs",
+      "type": "topic",
+      "url": "/documentation/kernel/1523465-vfs_getvfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523469-vfs_clearauthcache_ttl": {
+      "abstract": [
+        {
+          "text": "Remove time-to-live controls for cached credentials on a filesytem. Filesystems with remote authorization decisions (opaque) will still have KAUTH_VNODE_SEARCH rights cached for a default of CACHED_LOOKUP_RIGHT_TTL seconds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523469-vfs_clearauthcache_ttl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_clearauthcache_ttl",
+      "type": "topic",
+      "url": "/documentation/kernel/1523469-vfs_clearauthcache_ttl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523486-vfs_iswriteupgrade": {
+      "abstract": [
+        {
+          "text": "Determine if a filesystem is mounted read-only but a request has been made to upgrade to read-write.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523486-vfs_iswriteupgrade",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_iswriteupgrade",
+      "type": "topic",
+      "url": "/documentation/kernel/1523486-vfs_iswriteupgrade"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523490-vfs_fsadd": {
+      "abstract": [
+        {
+          "text": "Register a filesystem with VFS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523490-vfs_fsadd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_fsadd",
+      "type": "topic",
+      "url": "/documentation/kernel/1523490-vfs_fsadd"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523503-vfs_unmountbyfsid": {
+      "abstract": [
+        {
+          "text": "Find a filesystem by ID and unmount it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523503-vfs_unmountbyfsid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_unmountbyfsid",
+      "type": "topic",
+      "url": "/documentation/kernel/1523503-vfs_unmountbyfsid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523507-vfs_maxsymlen": {
+      "abstract": [
+        {
+          "text": "Get the maximum length of a symbolic link on a filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523507-vfs_maxsymlen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_maxsymlen",
+      "type": "topic",
+      "url": "/documentation/kernel/1523507-vfs_maxsymlen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523521-vfs_setflags": {
+      "abstract": [
+        {
+          "text": "Set flags on a mount.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523521-vfs_setflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setflags",
+      "type": "topic",
+      "url": "/documentation/kernel/1523521-vfs_setflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523525-vfs_isforce": {
+      "abstract": [
+        {
+          "text": "Determine if a forced unmount is in progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523525-vfs_isforce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_isforce",
+      "type": "topic",
+      "url": "/documentation/kernel/1523525-vfs_isforce"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523536-vfs_isupdate": {
+      "abstract": [
+        {
+          "text": "Determine if a mount update is in progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523536-vfs_isupdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_isupdate",
+      "type": "topic",
+      "url": "/documentation/kernel/1523536-vfs_isupdate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523537-vfs_isreload": {
+      "abstract": [
+        {
+          "text": "Determine if a reload of filesystem data is in progress. This can only be the case for a read-only filesystem; all data is brought in from secondary storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523537-vfs_isreload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_isreload",
+      "type": "topic",
+      "url": "/documentation/kernel/1523537-vfs_isreload"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523677-nop_mkdir": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523677-nop_mkdir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_mkdir",
+      "type": "topic",
+      "url": "/documentation/kernel/1523677-nop_mkdir"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523679-err_pathconf": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523679-err_pathconf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_pathconf",
+      "type": "topic",
+      "url": "/documentation/kernel/1523679-err_pathconf"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523681-err_inactive": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523681-err_inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_inactive",
+      "type": "topic",
+      "url": "/documentation/kernel/1523681-err_inactive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523682-nop_whiteout": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523682-nop_whiteout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_whiteout",
+      "type": "topic",
+      "url": "/documentation/kernel/1523682-nop_whiteout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523683-err_exchange": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523683-err_exchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_exchange",
+      "type": "topic",
+      "url": "/documentation/kernel/1523683-err_exchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523684-err_ioctl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523684-err_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_ioctl",
+      "type": "topic",
+      "url": "/documentation/kernel/1523684-err_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523686-nop_pagein": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523686-nop_pagein",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_pagein",
+      "type": "topic",
+      "url": "/documentation/kernel/1523686-nop_pagein"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523688-err_pagein": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523688-err_pagein",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_pagein",
+      "type": "topic",
+      "url": "/documentation/kernel/1523688-err_pagein"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523690-err_create": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523690-err_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_create",
+      "type": "topic",
+      "url": "/documentation/kernel/1523690-err_create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523691-err_readdir": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523691-err_readdir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_readdir",
+      "type": "topic",
+      "url": "/documentation/kernel/1523691-err_readdir"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523693-nop_link": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523693-nop_link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_link",
+      "type": "topic",
+      "url": "/documentation/kernel/1523693-nop_link"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523694-nop_exchange": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523694-nop_exchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_exchange",
+      "type": "topic",
+      "url": "/documentation/kernel/1523694-nop_exchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523695-nop_write": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523695-nop_write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_write",
+      "type": "topic",
+      "url": "/documentation/kernel/1523695-nop_write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523696-nop_symlink": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523696-nop_symlink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_symlink",
+      "type": "topic",
+      "url": "/documentation/kernel/1523696-nop_symlink"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523698-nop_getattr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523698-nop_getattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_getattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523698-nop_getattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523700-err_pageout": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523700-err_pageout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_pageout",
+      "type": "topic",
+      "url": "/documentation/kernel/1523700-err_pageout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523702-err_searchfs": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523702-err_searchfs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_searchfs",
+      "type": "topic",
+      "url": "/documentation/kernel/1523702-err_searchfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523704-err_mmap": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523704-err_mmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_mmap",
+      "type": "topic",
+      "url": "/documentation/kernel/1523704-err_mmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523705-err_readdirattr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523705-err_readdirattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_readdirattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523705-err_readdirattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523706-err_rename": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523706-err_rename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_rename",
+      "type": "topic",
+      "url": "/documentation/kernel/1523706-err_rename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523708-nop_reclaim": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523708-nop_reclaim",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_reclaim",
+      "type": "topic",
+      "url": "/documentation/kernel/1523708-nop_reclaim"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523710-nop_readdir": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523710-nop_readdir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_readdir",
+      "type": "topic",
+      "url": "/documentation/kernel/1523710-nop_readdir"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523711-nop_inactive": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523711-nop_inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_inactive",
+      "type": "topic",
+      "url": "/documentation/kernel/1523711-nop_inactive"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523713-nop_remove": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523713-nop_remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_remove",
+      "type": "topic",
+      "url": "/documentation/kernel/1523713-nop_remove"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523714-err_select": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523714-err_select",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_select",
+      "type": "topic",
+      "url": "/documentation/kernel/1523714-err_select"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523715-nop_ioctl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523715-nop_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_ioctl",
+      "type": "topic",
+      "url": "/documentation/kernel/1523715-nop_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523716-nop_access": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523716-nop_access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_access",
+      "type": "topic",
+      "url": "/documentation/kernel/1523716-nop_access"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523717-nop_readdirattr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523717-nop_readdirattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_readdirattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523717-nop_readdirattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523718-nop_close": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523718-nop_close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_close",
+      "type": "topic",
+      "url": "/documentation/kernel/1523718-nop_close"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523719-nop_setattr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523719-nop_setattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_setattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523719-nop_setattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523720-nop_copyfile": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523720-nop_copyfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_copyfile",
+      "type": "topic",
+      "url": "/documentation/kernel/1523720-nop_copyfile"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523722-nop_create": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523722-nop_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_create",
+      "type": "topic",
+      "url": "/documentation/kernel/1523722-nop_create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523723-nop_fsync": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523723-nop_fsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_fsync",
+      "type": "topic",
+      "url": "/documentation/kernel/1523723-nop_fsync"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523725-err_write": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523725-err_write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_write",
+      "type": "topic",
+      "url": "/documentation/kernel/1523725-err_write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523726-err_reclaim": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523726-err_reclaim",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_reclaim",
+      "type": "topic",
+      "url": "/documentation/kernel/1523726-err_reclaim"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523727-nop_pathconf": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523727-nop_pathconf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_pathconf",
+      "type": "topic",
+      "url": "/documentation/kernel/1523727-nop_pathconf"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523729-nop_blockmap": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523729-nop_blockmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_blockmap",
+      "type": "topic",
+      "url": "/documentation/kernel/1523729-nop_blockmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523730-err_strategy": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523730-err_strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_strategy",
+      "type": "topic",
+      "url": "/documentation/kernel/1523730-err_strategy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523731-nop_mknod": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523731-nop_mknod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_mknod",
+      "type": "topic",
+      "url": "/documentation/kernel/1523731-nop_mknod"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523732-err_link": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523732-err_link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_link",
+      "type": "topic",
+      "url": "/documentation/kernel/1523732-err_link"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523733-nop_open": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523733-nop_open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_open",
+      "type": "topic",
+      "url": "/documentation/kernel/1523733-nop_open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523735-err_open": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523735-err_open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_open",
+      "type": "topic",
+      "url": "/documentation/kernel/1523735-err_open"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523736-err_revoke": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523736-err_revoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_revoke",
+      "type": "topic",
+      "url": "/documentation/kernel/1523736-err_revoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523737-err_bwrite": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523737-err_bwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_bwrite",
+      "type": "topic",
+      "url": "/documentation/kernel/1523737-err_bwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523738-nop_select": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523738-nop_select",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_select",
+      "type": "topic",
+      "url": "/documentation/kernel/1523738-nop_select"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523739-err_readlink": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523739-err_readlink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_readlink",
+      "type": "topic",
+      "url": "/documentation/kernel/1523739-err_readlink"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523740-err_allocate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523740-err_allocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_allocate",
+      "type": "topic",
+      "url": "/documentation/kernel/1523740-err_allocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523741-nop_rename": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523741-nop_rename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_rename",
+      "type": "topic",
+      "url": "/documentation/kernel/1523741-nop_rename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523742-err_access": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523742-err_access",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_access",
+      "type": "topic",
+      "url": "/documentation/kernel/1523742-err_access"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523744-nop_searchfs": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523744-nop_searchfs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_searchfs",
+      "type": "topic",
+      "url": "/documentation/kernel/1523744-nop_searchfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523746-nop_strategy": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523746-nop_strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_strategy",
+      "type": "topic",
+      "url": "/documentation/kernel/1523746-nop_strategy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523748-nop_blktooff": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523748-nop_blktooff",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_blktooff",
+      "type": "topic",
+      "url": "/documentation/kernel/1523748-nop_blktooff"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523750-err_mknod": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523750-err_mknod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_mknod",
+      "type": "topic",
+      "url": "/documentation/kernel/1523750-err_mknod"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523751-err_mkdir": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523751-err_mkdir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_mkdir",
+      "type": "topic",
+      "url": "/documentation/kernel/1523751-err_mkdir"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523753-nop_mmap": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523753-nop_mmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_mmap",
+      "type": "topic",
+      "url": "/documentation/kernel/1523753-nop_mmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523755-nop_bwrite": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523755-nop_bwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_bwrite",
+      "type": "topic",
+      "url": "/documentation/kernel/1523755-nop_bwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523757-err_getattr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523757-err_getattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_getattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523757-err_getattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523759-err_symlink": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523759-err_symlink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_symlink",
+      "type": "topic",
+      "url": "/documentation/kernel/1523759-err_symlink"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523761-err_fsync": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523761-err_fsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_fsync",
+      "type": "topic",
+      "url": "/documentation/kernel/1523761-err_fsync"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523763-err_copyfile": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523763-err_copyfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_copyfile",
+      "type": "topic",
+      "url": "/documentation/kernel/1523763-err_copyfile"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523764-nop_revoke": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523764-nop_revoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_revoke",
+      "type": "topic",
+      "url": "/documentation/kernel/1523764-nop_revoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523765-nop_read": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523765-nop_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_read",
+      "type": "topic",
+      "url": "/documentation/kernel/1523765-nop_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523766-err_advlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523766-err_advlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_advlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1523766-err_advlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523767-nop_rmdir": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523767-nop_rmdir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_rmdir",
+      "type": "topic",
+      "url": "/documentation/kernel/1523767-nop_rmdir"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523768-err_close": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523768-err_close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_close",
+      "type": "topic",
+      "url": "/documentation/kernel/1523768-err_close"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523769-err_remove": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523769-err_remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_remove",
+      "type": "topic",
+      "url": "/documentation/kernel/1523769-err_remove"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523770-nop_pageout": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523770-nop_pageout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_pageout",
+      "type": "topic",
+      "url": "/documentation/kernel/1523770-nop_pageout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523771-err_blockmap": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523771-err_blockmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_blockmap",
+      "type": "topic",
+      "url": "/documentation/kernel/1523771-err_blockmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523772-err_rmdir": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523772-err_rmdir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_rmdir",
+      "type": "topic",
+      "url": "/documentation/kernel/1523772-err_rmdir"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523773-nop_allocate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523773-nop_allocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_allocate",
+      "type": "topic",
+      "url": "/documentation/kernel/1523773-nop_allocate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523774-nop_readlink": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523774-nop_readlink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_readlink",
+      "type": "topic",
+      "url": "/documentation/kernel/1523774-nop_readlink"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523775-err_read": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523775-err_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_read",
+      "type": "topic",
+      "url": "/documentation/kernel/1523775-err_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523777-err_blktooff": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523777-err_blktooff",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_blktooff",
+      "type": "topic",
+      "url": "/documentation/kernel/1523777-err_blktooff"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523779-nop_advlock": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523779-nop_advlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_advlock",
+      "type": "topic",
+      "url": "/documentation/kernel/1523779-nop_advlock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523781-err_offtoblk": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523781-err_offtoblk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_offtoblk",
+      "type": "topic",
+      "url": "/documentation/kernel/1523781-err_offtoblk"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523783-nop_offtoblk": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523783-nop_offtoblk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nop_offtoblk",
+      "type": "topic",
+      "url": "/documentation/kernel/1523783-nop_offtoblk"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523785-err_whiteout": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523785-err_whiteout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_whiteout",
+      "type": "topic",
+      "url": "/documentation/kernel/1523785-err_whiteout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1523786-err_setattr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1523786-err_setattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "err_setattr",
+      "type": "topic",
+      "url": "/documentation/kernel/1523786-err_setattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562113-vfs_context_get_special_port": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562113-vfs_context_get_special_port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_get_special_port",
+      "type": "topic",
+      "url": "/documentation/kernel/1562113-vfs_context_get_special_port"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562120-vflush": {
+      "abstract": [
+        {
+          "text": "Reclaim the vnodes for a mount.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562120-vflush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vflush",
+      "type": "topic",
+      "url": "/documentation/kernel/1562120-vflush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562122-vfs_context_is64bit": {
+      "abstract": [
+        {
+          "text": "Determine if a vfs_context_t corresponds to a 64-bit user process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562122-vfs_context_is64bit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_is64bit",
+      "type": "topic",
+      "url": "/documentation/kernel/1562122-vfs_context_is64bit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562135-vfs_setup_vattr_from_attrlist": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562135-vfs_setup_vattr_from_attrlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_setup_vattr_from_attrlist",
+      "type": "topic",
+      "url": "/documentation/kernel/1562135-vfs_setup_vattr_from_attrlist"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562195-cache_lookup": {
+      "abstract": [
+        {
+          "text": "Check for a filename in a directory using the VFS name cache.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562195-cache_lookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cache_lookup",
+      "type": "topic",
+      "url": "/documentation/kernel/1562195-cache_lookup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562223-vfs_context_current": {
+      "abstract": [
+        {
+          "text": "Get the vfs_context for the current thread, or the kernel context if there is no context for current thread.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562223-vfs_context_current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_current",
+      "type": "topic",
+      "url": "/documentation/kernel/1562223-vfs_context_current"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562225-cache_purge": {
+      "abstract": [
+        {
+          "text": "Remove all data relating to a vnode from the namecache.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562225-cache_purge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cache_purge",
+      "type": "topic",
+      "url": "/documentation/kernel/1562225-cache_purge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562242-vfs_attr_pack": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562242-vfs_attr_pack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_attr_pack",
+      "type": "topic",
+      "url": "/documentation/kernel/1562242-vfs_attr_pack"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562261-vfs_context_suser": {
+      "abstract": [
+        {
+          "text": "Determine if a vfs_context_t corresponds to the superuser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562261-vfs_context_suser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_suser",
+      "type": "topic",
+      "url": "/documentation/kernel/1562261-vfs_context_suser"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562263-vfs_context_set_special_port": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562263-vfs_context_set_special_port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_set_special_port",
+      "type": "topic",
+      "url": "/documentation/kernel/1562263-vfs_context_set_special_port"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562277-vfs_get_notify_attributes": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562277-vfs_get_notify_attributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_get_notify_attributes",
+      "type": "topic",
+      "url": "/documentation/kernel/1562277-vfs_get_notify_attributes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562285-cache_enter": {
+      "abstract": [
+        {
+          "text": "Add a (name,vnode) entry to the VFS namecache.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562285-cache_enter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cache_enter",
+      "type": "topic",
+      "url": "/documentation/kernel/1562285-cache_enter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562308-vfs_context_ucred": {
+      "abstract": [
+        {
+          "text": "Get the credential associated with a vfs_context_t.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562308-vfs_context_ucred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_ucred",
+      "type": "topic",
+      "url": "/documentation/kernel/1562308-vfs_context_ucred"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562343-vfs_removename": {
+      "abstract": [
+        {
+          "text": "Deprecated",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562343-vfs_removename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_removename",
+      "type": "topic",
+      "url": "/documentation/kernel/1562343-vfs_removename"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562360-vfs_context_create": {
+      "abstract": [
+        {
+          "text": "Create a new vfs_context_t with appropriate references held.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562360-vfs_context_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_create",
+      "type": "topic",
+      "url": "/documentation/kernel/1562360-vfs_context_create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562367-vfs_context_rele": {
+      "abstract": [
+        {
+          "text": "Release references on components of a context and deallocate it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562367-vfs_context_rele",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_rele",
+      "type": "topic",
+      "url": "/documentation/kernel/1562367-vfs_context_rele"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562390-vfs_context_proc": {
+      "abstract": [
+        {
+          "text": "Get the BSD process structure associated with a vfs_context_t.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562390-vfs_context_proc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_proc",
+      "type": "topic",
+      "url": "/documentation/kernel/1562390-vfs_context_proc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562422-vfs_addname": {
+      "abstract": [
+        {
+          "text": "Deprecated",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562422-vfs_addname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_addname",
+      "type": "topic",
+      "url": "/documentation/kernel/1562422-vfs_addname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562439-vfs_rootvnode": {
+      "abstract": [
+        {
+          "text": "Returns the root vnode with an iocount.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562439-vfs_rootvnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_rootvnode",
+      "type": "topic",
+      "url": "/documentation/kernel/1562439-vfs_rootvnode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562448-vfs_context_issignal": {
+      "abstract": [
+        {
+          "text": "Get a bitfield of pending signals for the BSD process associated with a vfs_context_t.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562448-vfs_context_issignal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_issignal",
+      "type": "topic",
+      "url": "/documentation/kernel/1562448-vfs_context_issignal"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562456-cache_purge_negatives": {
+      "abstract": [
+        {
+          "text": "Remove all negative cache entries which are children of a given vnode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562456-cache_purge_negatives",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cache_purge_negatives",
+      "type": "topic",
+      "url": "/documentation/kernel/1562456-cache_purge_negatives"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1562461-vfs_context_pid": {
+      "abstract": [
+        {
+          "text": "Get the process id of the BSD process associated with a vfs_context_t.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1562461-vfs_context_pid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_context_pid",
+      "type": "topic",
+      "url": "/documentation/kernel/1562461-vfs_context_pid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1585961-vnop_bwrite": {
+      "abstract": [
+        {
+          "text": "Write a buffer to backing store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1585961-vnop_bwrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_BWRITE",
+      "type": "topic",
+      "url": "/documentation/kernel/1585961-vnop_bwrite"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586129-vnop_write": {
+      "abstract": [
+        {
+          "text": "Call down to the filesystem to write file data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586129-vnop_write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_WRITE",
+      "type": "topic",
+      "url": "/documentation/kernel/1586129-vnop_write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586200-vnop_setxattr": {
+      "abstract": [
+        {
+          "text": "Set extended file attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586200-vnop_setxattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_SETXATTR",
+      "type": "topic",
+      "url": "/documentation/kernel/1586200-vnop_setxattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586212-vnop_fsync": {
+      "abstract": [
+        {
+          "text": "Call down to a filesystem to synchronize a file with on-disk state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586212-vnop_fsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_FSYNC",
+      "type": "topic",
+      "url": "/documentation/kernel/1586212-vnop_fsync"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586257-vnop_strategy": {
+      "abstract": [
+        {
+          "text": "Initiate I/O on a file (both read and write).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586257-vnop_strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_STRATEGY",
+      "type": "topic",
+      "url": "/documentation/kernel/1586257-vnop_strategy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586258-vnop_ioctl": {
+      "abstract": [
+        {
+          "text": "Call down to a filesystem or device driver to execute various control operations on or request data about a file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586258-vnop_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_IOCTL",
+      "type": "topic",
+      "url": "/documentation/kernel/1586258-vnop_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586289-vnop_getxattr": {
+      "abstract": [
+        {
+          "text": "Get extended file attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586289-vnop_getxattr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_GETXATTR",
+      "type": "topic",
+      "url": "/documentation/kernel/1586289-vnop_getxattr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1586326-vnop_read": {
+      "abstract": [
+        {
+          "text": "Call down to a filesystem to read file data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1586326-vnop_read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNOP_READ",
+      "type": "topic",
+      "url": "/documentation/kernel/1586326-vnop_read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/2872995-vfs_set_root_unmounted_cleanly": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/2872995-vfs_set_root_unmounted_cleanly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_set_root_unmounted_cleanly",
+      "type": "topic",
+      "url": "/documentation/kernel/2872995-vfs_set_root_unmounted_cleanly"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3042879-vfs_nspace_server": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3042879-vfs_nspace_server",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_nspace_server",
+      "type": "topic",
+      "url": "/documentation/kernel/3042879-vfs_nspace_server"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3042880-vfs_nspace_server_routine": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3042880-vfs_nspace_server_routine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_nspace_server_routine",
+      "type": "topic",
+      "url": "/documentation/kernel/3042880-vfs_nspace_server_routine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/3353091-vfs_attr_pack_ext": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/3353091-vfs_attr_pack_ext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vfs_attr_pack_ext",
+      "type": "topic",
+      "url": "/documentation/kernel/3353091-vfs_attr_pack_ext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/architecture": {
+      "abstract": [
+        {
+          "text": "Access machine-level and architectural information about the current platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "architecture",
+      "type": "topic",
+      "url": "/documentation/kernel/architecture"
+    },
+    "doc://com.apple.documentation/documentation/kernel/bsm": {
+      "abstract": [
+        {
+          "text": "Audit resource usage on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/bsm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "bsm",
+      "type": "topic",
+      "url": "/documentation/kernel/bsm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hfs": {
+      "abstract": [
+        {
+          "text": "Access HFS file-system data structures. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "hfs",
+      "type": "topic",
+      "url": "/documentation/kernel/hfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern": {
+      "abstract": [
+        {
+          "text": "Access kernel-level interfaces including clock, task, kernel extension, lock, and compression utilities.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kern",
+      "type": "topic",
+      "url": "/documentation/kernel/kern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/math": {
+      "abstract": [
+        {
+          "text": "Perform mathematical operations and manipulate integer, float, and double values.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/math",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Math",
+      "type": "topic",
+      "url": "/documentation/kernel/math"
+    },
+    "doc://com.apple.documentation/documentation/kernel/miscfs": {
+      "abstract": [
+        {
+          "text": "Access device nodes and other file-system entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/miscfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "miscfs",
+      "type": "topic",
+      "url": "/documentation/kernel/miscfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/net": {
+      "abstract": [
+        {
+          "text": "Access network-related utilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/net",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "net",
+      "type": "topic",
+      "url": "/documentation/kernel/net"
+    },
+    "doc://com.apple.documentation/documentation/kernel/strings": {
+      "abstract": [
+        {
+          "text": "Compare, convert, and catenate strings and access the resulting content of those strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/strings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings",
+      "type": "topic",
+      "url": "/documentation/kernel/strings"
+    },
+    "doc://com.apple.documentation/documentation/kernel/sys": {
+      "abstract": [
+        {
+          "text": "Access general system utilities for time, file systems, and system information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/sys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "sys",
+      "type": "topic",
+      "url": "/documentation/kernel/sys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vfs": {
+      "abstract": [
+        {
+          "text": "Access the virtual file-system interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vfs",
+      "type": "topic",
+      "url": "/documentation/kernel/vfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm": {
+      "abstract": [
+        {
+          "text": "Interact with the virtual memory system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vm",
+      "type": "topic",
+      "url": "/documentation/kernel/vm"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/architecture",
+        "doc://com.apple.documentation/documentation/kernel/bsm",
+        "doc://com.apple.documentation/documentation/kernel/hfs",
+        "doc://com.apple.documentation/documentation/kernel/kern",
+        "doc://com.apple.documentation/documentation/kernel/math",
+        "doc://com.apple.documentation/documentation/kernel/miscfs",
+        "doc://com.apple.documentation/documentation/kernel/net",
+        "doc://com.apple.documentation/documentation/kernel/strings",
+        "doc://com.apple.documentation/documentation/kernel/sys",
+        "doc://com.apple.documentation/documentation/kernel/vm"
+      ],
+      "title": "BSD"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572381",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1562120-vflush",
+        "doc://com.apple.documentation/documentation/kernel/1523312-vfs_64bitready",
+        "doc://com.apple.documentation/documentation/kernel/1562422-vfs_addname",
+        "doc://com.apple.documentation/documentation/kernel/1562242-vfs_attr_pack",
+        "doc://com.apple.documentation/documentation/kernel/3353091-vfs_attr_pack_ext",
+        "doc://com.apple.documentation/documentation/kernel/1523180-vfs_authcache_ttl",
+        "doc://com.apple.documentation/documentation/kernel/1523276-vfs_authopaque",
+        "doc://com.apple.documentation/documentation/kernel/1523247-vfs_authopaqueaccess",
+        "doc://com.apple.documentation/documentation/kernel/1523389-vfs_busy",
+        "doc://com.apple.documentation/documentation/kernel/1523469-vfs_clearauthcache_ttl",
+        "doc://com.apple.documentation/documentation/kernel/1523223-vfs_clearauthopaque",
+        "doc://com.apple.documentation/documentation/kernel/1523231-vfs_clearauthopaqueaccess",
+        "doc://com.apple.documentation/documentation/kernel/1523368-vfs_clearextendedsecurity",
+        "doc://com.apple.documentation/documentation/kernel/1523299-vfs_clearflags",
+        "doc://com.apple.documentation/documentation/kernel/1562360-vfs_context_create",
+        "doc://com.apple.documentation/documentation/kernel/1562223-vfs_context_current",
+        "doc://com.apple.documentation/documentation/kernel/1562113-vfs_context_get_special_port",
+        "doc://com.apple.documentation/documentation/kernel/1562122-vfs_context_is64bit",
+        "doc://com.apple.documentation/documentation/kernel/1562448-vfs_context_issignal",
+        "doc://com.apple.documentation/documentation/kernel/1562461-vfs_context_pid",
+        "doc://com.apple.documentation/documentation/kernel/1562390-vfs_context_proc",
+        "doc://com.apple.documentation/documentation/kernel/1562367-vfs_context_rele",
+        "doc://com.apple.documentation/documentation/kernel/1562263-vfs_context_set_special_port",
+        "doc://com.apple.documentation/documentation/kernel/1562261-vfs_context_suser",
+        "doc://com.apple.documentation/documentation/kernel/1562308-vfs_context_ucred",
+        "doc://com.apple.documentation/documentation/kernel/1523172-vfs_devblocksize",
+        "doc://com.apple.documentation/documentation/kernel/1523461-vfs_event_init",
+        "doc://com.apple.documentation/documentation/kernel/1523107-vfs_event_signal",
+        "doc://com.apple.documentation/documentation/kernel/1523261-vfs_flags",
+        "doc://com.apple.documentation/documentation/kernel/1523490-vfs_fsadd",
+        "doc://com.apple.documentation/documentation/kernel/1523301-vfs_fsprivate",
+        "doc://com.apple.documentation/documentation/kernel/1523194-vfs_fsremove",
+        "doc://com.apple.documentation/documentation/kernel/1562277-vfs_get_notify_attributes",
+        "doc://com.apple.documentation/documentation/kernel/1523259-vfs_getnewfsid",
+        "doc://com.apple.documentation/documentation/kernel/1523465-vfs_getvfs",
+        "doc://com.apple.documentation/documentation/kernel/1523109-vfs_init_io_attributes",
+        "doc://com.apple.documentation/documentation/kernel/1523411-vfs_ioattr",
+        "doc://com.apple.documentation/documentation/kernel/1523525-vfs_isforce",
+        "doc://com.apple.documentation/documentation/kernel/1523242-vfs_isrdonly",
+        "doc://com.apple.documentation/documentation/kernel/1523454-vfs_isrdwr",
+        "doc://com.apple.documentation/documentation/kernel/1523537-vfs_isreload",
+        "doc://com.apple.documentation/documentation/kernel/1523327-vfs_issynchronous",
+        "doc://com.apple.documentation/documentation/kernel/1523380-vfs_isunmount",
+        "doc://com.apple.documentation/documentation/kernel/1523536-vfs_isupdate",
+        "doc://com.apple.documentation/documentation/kernel/1523486-vfs_iswriteupgrade",
+        "doc://com.apple.documentation/documentation/kernel/1523233-vfs_iterate",
+        "doc://com.apple.documentation/documentation/kernel/1523507-vfs_maxsymlen",
+        "doc://com.apple.documentation/documentation/kernel/1523197-vfs_mountedon",
+        "doc://com.apple.documentation/documentation/kernel/1523128-vfs_name",
+        "doc://com.apple.documentation/documentation/kernel/3042879-vfs_nspace_server",
+        "doc://com.apple.documentation/documentation/kernel/3042880-vfs_nspace_server_routine",
+        "doc://com.apple.documentation/documentation/kernel/1562343-vfs_removename",
+        "doc://com.apple.documentation/documentation/kernel/1562439-vfs_rootvnode",
+        "doc://com.apple.documentation/documentation/kernel/2872995-vfs_set_root_unmounted_cleanly",
+        "doc://com.apple.documentation/documentation/kernel/1523286-vfs_setauthcache_ttl",
+        "doc://com.apple.documentation/documentation/kernel/1523440-vfs_setauthopaque",
+        "doc://com.apple.documentation/documentation/kernel/1523218-vfs_setauthopaqueaccess",
+        "doc://com.apple.documentation/documentation/kernel/1523360-vfs_setextendedsecurity",
+        "doc://com.apple.documentation/documentation/kernel/1523521-vfs_setflags",
+        "doc://com.apple.documentation/documentation/kernel/1523413-vfs_setfsprivate",
+        "doc://com.apple.documentation/documentation/kernel/1523458-vfs_setioattr",
+        "doc://com.apple.documentation/documentation/kernel/1523104-vfs_setlocklocal",
+        "doc://com.apple.documentation/documentation/kernel/1523316-vfs_setmaxsymlen",
+        "doc://com.apple.documentation/documentation/kernel/1562135-vfs_setup_vattr_from_attrlist",
+        "doc://com.apple.documentation/documentation/kernel/1523098-vfs_statfs",
+        "doc://com.apple.documentation/documentation/kernel/1523418-vfs_typenum",
+        "doc://com.apple.documentation/documentation/kernel/1523451-vfs_unbusy",
+        "doc://com.apple.documentation/documentation/kernel/1523503-vfs_unmountbyfsid",
+        "doc://com.apple.documentation/documentation/kernel/1523278-vfs_update_vfsstat"
+      ],
+      "kind": "taskGroup",
+      "title": "Functions"
+    },
+    {
+      "anchor": "3570902",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1523716-nop_access",
+        "doc://com.apple.documentation/documentation/kernel/1523779-nop_advlock",
+        "doc://com.apple.documentation/documentation/kernel/1523773-nop_allocate",
+        "doc://com.apple.documentation/documentation/kernel/1523748-nop_blktooff",
+        "doc://com.apple.documentation/documentation/kernel/1523729-nop_blockmap",
+        "doc://com.apple.documentation/documentation/kernel/1523755-nop_bwrite",
+        "doc://com.apple.documentation/documentation/kernel/1523718-nop_close",
+        "doc://com.apple.documentation/documentation/kernel/1523720-nop_copyfile",
+        "doc://com.apple.documentation/documentation/kernel/1523722-nop_create",
+        "doc://com.apple.documentation/documentation/kernel/1523694-nop_exchange",
+        "doc://com.apple.documentation/documentation/kernel/1523723-nop_fsync",
+        "doc://com.apple.documentation/documentation/kernel/1523698-nop_getattr",
+        "doc://com.apple.documentation/documentation/kernel/1523711-nop_inactive",
+        "doc://com.apple.documentation/documentation/kernel/1523715-nop_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/1523693-nop_link",
+        "doc://com.apple.documentation/documentation/kernel/1523677-nop_mkdir",
+        "doc://com.apple.documentation/documentation/kernel/1523731-nop_mknod",
+        "doc://com.apple.documentation/documentation/kernel/1523753-nop_mmap",
+        "doc://com.apple.documentation/documentation/kernel/1523783-nop_offtoblk",
+        "doc://com.apple.documentation/documentation/kernel/1523733-nop_open",
+        "doc://com.apple.documentation/documentation/kernel/1523686-nop_pagein",
+        "doc://com.apple.documentation/documentation/kernel/1523770-nop_pageout",
+        "doc://com.apple.documentation/documentation/kernel/1523727-nop_pathconf",
+        "doc://com.apple.documentation/documentation/kernel/1523765-nop_read",
+        "doc://com.apple.documentation/documentation/kernel/1523710-nop_readdir",
+        "doc://com.apple.documentation/documentation/kernel/1523717-nop_readdirattr",
+        "doc://com.apple.documentation/documentation/kernel/1523774-nop_readlink",
+        "doc://com.apple.documentation/documentation/kernel/1523708-nop_reclaim",
+        "doc://com.apple.documentation/documentation/kernel/1523713-nop_remove",
+        "doc://com.apple.documentation/documentation/kernel/1523741-nop_rename",
+        "doc://com.apple.documentation/documentation/kernel/1523764-nop_revoke",
+        "doc://com.apple.documentation/documentation/kernel/1523767-nop_rmdir",
+        "doc://com.apple.documentation/documentation/kernel/1523744-nop_searchfs",
+        "doc://com.apple.documentation/documentation/kernel/1523738-nop_select",
+        "doc://com.apple.documentation/documentation/kernel/1523719-nop_setattr",
+        "doc://com.apple.documentation/documentation/kernel/1523746-nop_strategy",
+        "doc://com.apple.documentation/documentation/kernel/1523696-nop_symlink",
+        "doc://com.apple.documentation/documentation/kernel/1523682-nop_whiteout",
+        "doc://com.apple.documentation/documentation/kernel/1523695-nop_write",
+        "doc://com.apple.documentation/documentation/kernel/1523742-err_access",
+        "doc://com.apple.documentation/documentation/kernel/1523766-err_advlock",
+        "doc://com.apple.documentation/documentation/kernel/1523740-err_allocate",
+        "doc://com.apple.documentation/documentation/kernel/1523777-err_blktooff",
+        "doc://com.apple.documentation/documentation/kernel/1523771-err_blockmap",
+        "doc://com.apple.documentation/documentation/kernel/1523737-err_bwrite",
+        "doc://com.apple.documentation/documentation/kernel/1523768-err_close",
+        "doc://com.apple.documentation/documentation/kernel/1523763-err_copyfile",
+        "doc://com.apple.documentation/documentation/kernel/1523690-err_create",
+        "doc://com.apple.documentation/documentation/kernel/1523683-err_exchange",
+        "doc://com.apple.documentation/documentation/kernel/1523761-err_fsync",
+        "doc://com.apple.documentation/documentation/kernel/1523757-err_getattr",
+        "doc://com.apple.documentation/documentation/kernel/1523681-err_inactive",
+        "doc://com.apple.documentation/documentation/kernel/1523684-err_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/1523732-err_link",
+        "doc://com.apple.documentation/documentation/kernel/1523751-err_mkdir",
+        "doc://com.apple.documentation/documentation/kernel/1523750-err_mknod",
+        "doc://com.apple.documentation/documentation/kernel/1523704-err_mmap",
+        "doc://com.apple.documentation/documentation/kernel/1523781-err_offtoblk",
+        "doc://com.apple.documentation/documentation/kernel/1523735-err_open",
+        "doc://com.apple.documentation/documentation/kernel/1523688-err_pagein",
+        "doc://com.apple.documentation/documentation/kernel/1523700-err_pageout",
+        "doc://com.apple.documentation/documentation/kernel/1523679-err_pathconf",
+        "doc://com.apple.documentation/documentation/kernel/1523775-err_read",
+        "doc://com.apple.documentation/documentation/kernel/1523691-err_readdir",
+        "doc://com.apple.documentation/documentation/kernel/1523705-err_readdirattr",
+        "doc://com.apple.documentation/documentation/kernel/1523739-err_readlink",
+        "doc://com.apple.documentation/documentation/kernel/1523726-err_reclaim",
+        "doc://com.apple.documentation/documentation/kernel/1523769-err_remove",
+        "doc://com.apple.documentation/documentation/kernel/1523706-err_rename",
+        "doc://com.apple.documentation/documentation/kernel/1523736-err_revoke",
+        "doc://com.apple.documentation/documentation/kernel/1523772-err_rmdir",
+        "doc://com.apple.documentation/documentation/kernel/1523702-err_searchfs",
+        "doc://com.apple.documentation/documentation/kernel/1523714-err_select",
+        "doc://com.apple.documentation/documentation/kernel/1523786-err_setattr",
+        "doc://com.apple.documentation/documentation/kernel/1523730-err_strategy",
+        "doc://com.apple.documentation/documentation/kernel/1523759-err_symlink",
+        "doc://com.apple.documentation/documentation/kernel/1523785-err_whiteout",
+        "doc://com.apple.documentation/documentation/kernel/1523725-err_write",
+        "doc://com.apple.documentation/documentation/kernel/1463716-advisory_read",
+        "doc://com.apple.documentation/documentation/kernel/1463707-advisory_read_ext",
+        "doc://com.apple.documentation/documentation/kernel/1585961-vnop_bwrite",
+        "doc://com.apple.documentation/documentation/kernel/1586212-vnop_fsync",
+        "doc://com.apple.documentation/documentation/kernel/1586289-vnop_getxattr",
+        "doc://com.apple.documentation/documentation/kernel/1586258-vnop_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/1586326-vnop_read",
+        "doc://com.apple.documentation/documentation/kernel/1586200-vnop_setxattr",
+        "doc://com.apple.documentation/documentation/kernel/1586257-vnop_strategy",
+        "doc://com.apple.documentation/documentation/kernel/1586129-vnop_write",
+        "doc://com.apple.documentation/documentation/kernel/1562285-cache_enter",
+        "doc://com.apple.documentation/documentation/kernel/1562195-cache_lookup",
+        "doc://com.apple.documentation/documentation/kernel/1562225-cache_purge",
+        "doc://com.apple.documentation/documentation/kernel/1562456-cache_purge_negatives"
+      ],
+      "kind": "taskGroup",
+      "title": "Support"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/vfs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

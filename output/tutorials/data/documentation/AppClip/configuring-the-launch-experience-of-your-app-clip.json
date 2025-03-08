@@ -1,0 +1,2394 @@
+{
+  "abstract": [
+    {
+      "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring the launch experience of your App Clip"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People launch your App Clip by performing an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invocation",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — for example, by scanning an App Clip Code or tapping a Smart App Banner on a website. Upon launch, the App Clip receives an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invocation URL",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that determines what information appears on the App Clip card. To offer the best launch experience for the person’s current context, you can also use the invocation URL on launch to update the UI of your App Clip. To configure invocation URLs and the metadata that appears on the App Clip card, create the required ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "default App Clip experience",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To support all invocations — for example, from App Clip Codes — configure optional ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "advanced App Clip experiences",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In some cases, the App Clip doesn’t receive an invocation URL upon launch. Make sure to handle this use case in your code. For more information on responding to invocations where the invocation URL isn’t available, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations#Ensure-your-code-handles-all-invocations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The actual configuration of your App Clip experiences typically happens when you upload the first build that contains an App Clip to App Store Connect. However, it’s important you understand how App Clip experiences work before you start developing your App Clip. You need to identify invocations, invocation URLs, and plan changes to your code before or in parallel to implementing functionality provided by your App Clip. Additionally, to support advanced App Clip experiences or iOS versions older than iOS 16.4, you need to make changes to your server to associate your App Clip with your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-how-people-invoke-an-App-Clip",
+          "level": 3,
+          "text": "Review how people invoke an App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People don’t search the App Store for an App Clip. They discover it when and where they need it, and launch the App Clip by performing one of the following invocations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scanning an App Clip Code, NFC tag, or QR code at a physical location",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping a location-based suggestion from Siri Suggestions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping a link in the Maps app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping a Smart App Banner on a website in Safari or an app that uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping the action button of an App Clip card that appears in Safari or an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (requires iOS 15 or later)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping a link that someone shares in the Messages app (as a text message only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping an App Clip preview or link to an App Clip in an app (requires iOS 17 or later)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3707076",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With each invocation, the system verifies whether the invocation URL matches the invocation URL you configure in App Store Connect. After it verifies the invocation, the system uses the invocation URL to determine which App Clip experience to use for launching your App Clip. It then uses the App Clip experience’s metadata to populate the App Clip card and passes the invocation URL to the App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When people install the corresponding app for an App Clip, the full app replaces the App Clip. Every invocation from that moment on launches the full app instead of the App Clip. As a result, the full app must handle all invocations and offer the same functionality that the App Clip provides.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Compare-default-and-advanced-App-Clip-experiences",
+          "level": 3,
+          "text": "Compare default and advanced App Clip experiences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "No matter which invocation you want to support for your App Clip, you need to create a default App Clip experience in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". With a default App Clip experience, you can enable default App Clip links to support a subset of invocations without having to make changes to your server. For some App Clips, this minimal configuration may be enough to provide their functionality on their supported platforms. However, your app could benefit from suppporting invocations that require associating your App Clip with your website. For example, you may want to support App Clips and invocations on devices that run iOS 16.3 or earlier. Additionally, depending on the functionality your app and App Clip provide, you may need to configure advanced App Clip experiences in addition to the default App Clip experience. Think about where and when people use your app, and identify additional invocations that fit the functionality you offer in your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the invocations and platforms each experience supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invocation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default App Clip experience",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advanced App Clip experience",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Smart App Banner on your website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, if you associate your website with the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, if you associate your website with the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A shared link to an App Clip in the Messages app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, if you associate your website with the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, if you associate your website with the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "QR codes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, in iOS 16.4 or later if you enable default App Clip links. No in earlier iOS versions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NFC tags",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, in iOS 16.4 or later if you enable default App Clip link. No in earlier iOS versions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Clip Codes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Spotlight search",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, excluding location-based Spotlight suggestions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Another app that uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (requires iOS 17)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, if you associate your website with the App Clip or enable default App Clip links",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes, if you associate your website with the App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Another app that uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (requires iOS 17)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure an advanced App Clip experience if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want your App Clip to support all possible invocations, including invocations from App Clip Codes, and invocations from NFC tags and QR codes on devices that run iOS versions earlier than iOS 16.4.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to display a Smart App Banner and an App Clip card on an additional website that uses a different subdomain or domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You need to associate your App Clip with a physical location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You create an App Clip for multiple businesses to use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Customize-the-App-Clip-card",
+          "level": 3,
+          "text": "Customize the App Clip card",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Clip card is the first thing people see when they discover your App Clip. This makes the App Clip card’s design especially important. To explore different imagery and text, and to test their appearance on your device, use local experiences as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Clip card must match a person’s context. For example, a business with multiple physical locations must display imagery that matches the person’s current location. As a result, each physical location corresponds to a different imagery and text on the App Clip card. However, it’s not possible to programmatically change the content on the App Clip card. Instead, you need to configure an advanced App Clip experience in App Store Connect for each context that needs its own App Clip card. You can choose text and imagery for each advanced App Clip experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that you can also localize the text that appears on the App Clip card in App Store Connect. For more information on localization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/deve6f78a8e2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Keep the text that appears on the App Clip card short: Use up to 30 characters for the title and up to 56 characters for the subtitle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-a-default-App-Clip-experience",
+          "level": 3,
+          "text": "Configure a default App Clip experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Clip always requires a corresponding full app, and you submit your App Clip binary together with your full app’s binary to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". After you’ve uploaded your full app to App Store Connect, configure a default App Clip experience. Navigate to the page for the app version that offers an App Clip, expand the App Clip section, and provide the following metadata for the App Clip card:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A header image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy for the App Clip card’s subtitle",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The call-to-action verb that appears on the Action button people tap to launch the App Clip",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For your default App Clip experience, the invocation URL that’s available to the App Clip on launch is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One of up to three default App Clip links if you enable default App Clip links",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The URL of the website you associated with the App Clip and that displays the Smart App Banner and the App Clip card",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Default App Clip links are URLs generated by Apple that invoke your App Clip without additional setup on your server. They follow this URL scheme: ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.apple.com/id?=<bundle_id>&key=value.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Instead of the ",
+              "type": "text"
+            },
+            {
+              "code": "<bundle_id>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " placeholder, your default App Clip links include the bundle ID of your app and, optionally, parameters you set, represented as ",
+              "type": "text"
+            },
+            {
+              "code": "&key=value",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, a default App Clip link for a coffee shop’s app could be ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.apple.com/id?=com.example.Clip&promotion=WWDC23.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "``However, associating the App Clip with the shop’s website comes with benefits: The website can display a Smart App Banner or the App Clip card. As a result, the shop associates its App Clip with its website on ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To launch the App Clip, the website displays a Smart App Banner at various locations, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/menu",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/contact",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/menu/breakfast",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/menu/lunch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The website also displays the App Clip card on ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com/,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " a dedicated page that promotes the App Clip. Upon launch, the App Clip receives the website’s URL as the invocation URL and displays the matching functionality in the App Clip — for example, the coffee shop’s menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about associating your App Clip with your website, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-advanced-App-Clip-experiences",
+          "level": 3,
+          "text": "Configure advanced App Clip experiences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support additional invocations (for example, from scanning an App Clip Code), create an advanced App Clip experience in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you’re using a URL with a different domain than the default App Clip experience, make sure the system can verify the association between your App Clip and the domain. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In App Store Connect, select your App, and then select the iOS app version for which you want to add an advanced App Clip experience. Then, click Edit Advanced Experiences and create an advanced App Clip experience. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev43c15c696",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the App Store Connect Help.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To set up an advanced App Clip experience that appears in Apple Maps, create a place association that connects the App Clip experience to a physical location. Apple Maps uses any location data that you provide solely for matching an App Clip experience to an existing location. If it can’t find a match, Apple Maps doesn’t use the provided location data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your Xcode project, add or modify code for both your App Clip and your full app to respond to the new URL you registered. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the previous example for a coffee shop’s App Clip: It would use the default App Clip experience with ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because that’s the domain associated with the App Clip. In addition, it would use one advanced App Clip experience with ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its invocation URL, and generate an App Clip Code for the advanced App Clip experience. In its code, the App Clip handles the invocation from an App Clip Code just like an invocation from Smart App Banners, the App Clip card on a website, and the Messages app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Take-advantage-of-URL-prefix-matching",
+          "level": 3,
+          "text": "Take advantage of URL prefix matching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, try to register as few URLs as possible, and register generic URLs to take advantage of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "URL prefix matching",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Upon invocation, the system matches the invocation URL against URLs you registered as part of your advanced App Clip experiences. The system then chooses the App Clip experience with the URL that has the most specific matching prefix. This means that you can register one URL to cover many cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the example for a coffee shop. By registering one advanced App Clip experience with ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its invocation URL, it’s possible to handle invocation URLs, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/menu",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/contact",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "https://example.com/menu/breakfast",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon launch, the App Clip receives a URL, then extracts path components and query parameters and uses them to update its UI so that it corresponds to the URL and matches the person’s context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the coffee shop has multiple physical locations, its App Clip could use one advanced App Clip experience for each location with a different header image, metadata, and invocation URL — for example, ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com/location1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com/location2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on. The App Clip could then, similar to the previous example, extract path components and query parameters to update its UI for each App Clip experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/wwdc20/10146",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-URLs-to-encode-in-an-App-Clip-Code",
+          "level": 3,
+          "text": "Choose URLs to encode in an App Clip Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Clip Code is immediately recognizable to people and lets them know that an App Clip is available. The App Clip Code offers a fast and secure launch experience for your App Clip that people trust. Although App Clip Codes are a great way to launch your App Clip, an App Clip Code can only contain a limited amount of information in its visual code or NFC tag. If you plan to support invocations from App Clip Codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-short-URLs-or-redirects",
+          "level": 3,
+          "text": "Use short URLs or redirects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases — for example, if you already use shortened URLs to deep link into your app — you may want to launch your App Clip from a short URL in addition to a long URL. In other cases, you may want to redirect from the short URL to a URL with a long path or many query parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may create both short and long URLs, as well as make URL redirects to launch App Clips. However, you need to set up both the short URL and the long URL to invoke your App Clip. For example, you may want to use ",
+              "type": "text"
+            },
+            {
+              "code": "https://some.subdomain.example.com/path/to/thing?query=1234",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the invocation URL for your App Clip and a shorter URL — for example, ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com?id=1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — that redirects to the long URL. For the URL forwarding to work, add both ",
+              "type": "text"
+            },
+            {
+              "code": "https://some.subdomain.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your list of associated domains. Make sure to place an AASA file into the corresponding ",
+              "type": "text"
+            },
+            {
+              "code": ".well-known",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory for each subdomain. Then, create App Clip experiences for both URLs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Creating-App-Clip-experiences-using-the-App-Store-Connect-API",
+          "level": 3,
+          "text": "Creating App Clip experiences using the App Store Connect API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Connect website offers a convenient way to create and manage your default and advanced App Clip experiences. However, if you need to manage a large number of App Clip experiences, using the website may be too cumbersome. For example, say your App Clip allows people to order food at a chain restaurant with dozens, hundreds, or even thousands of locations. For each location, you likely want to display imagery on the App Clip card for that specific restaurant. As a result, you need to create an advanced App Clip experience for each location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help you create and manage a large number of App Clip experiences, use the App Store Connect API to automate these tasks. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/app-clips-and-app-clip-experiences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/APActivationPayload": {
+      "abstract": [
+        {
+          "text": "Information that’s passed to an App Clip on launch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "APActivationPayload",
+      "type": "topic",
+      "url": "/documentation/appclip/apactivationpayload"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website": {
+      "abstract": [
+        {
+          "text": "Enable the system to verify your App Clip to support invocations in iOS 16.3 or earlier and from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating your App Clip with your website",
+      "type": "topic",
+      "url": "/documentation/appclip/associating-your-app-clip-with-your-website"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location": {
+      "abstract": [
+        {
+          "text": "Add code to quickly confirm a person’s physical location while respecting their privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming a person’s physical location",
+      "type": "topic",
+      "url": "/documentation/appclip/confirming-a-person-s-physical-location"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes": {
+      "abstract": [
+        {
+          "text": "Help users discover your App Clip by using an NFC-integrated or scan-only App Clip Code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating App Clip Codes",
+      "type": "topic",
+      "url": "/documentation/appclip/creating-app-clip-codes"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code": {
+      "abstract": [
+        {
+          "text": "Choose an invocation URL for your App Clip Code that you can encode efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/encoding-a-url-in-an-app-clip-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Encoding a URL in an App Clip Code",
+      "type": "topic",
+      "url": "/documentation/appclip/encoding-a-url-in-an-app-clip-code"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app": {
+      "abstract": [
+        {
+          "text": "Enable people to launch another app’s App Clip from your app with App Clip links and offer a rich preview of it with the Link Presentation framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Launching another app’s App Clip from your app",
+      "type": "topic",
+      "url": "/documentation/appclip/launching-another-app-s-app-clip-from-your-app"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations": {
+      "abstract": [
+        {
+          "text": "Add code to respond to invocations and offer a focused launch experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to invocations",
+      "type": "topic",
+      "url": "/documentation/appclip/responding-to-invocations"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations#Ensure-your-code-handles-all-invocations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations#Ensure-your-code-handles-all-invocations",
+      "kind": "section",
+      "title": "Ensure your code handles all invocations",
+      "type": "topic",
+      "url": "/documentation/appclip/responding-to-invocations#Ensure-your-code-handles-all-invocations"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app": {
+      "abstract": [
+        {
+          "text": "Display a Smart App Banner and the App Clip card on your website that people tap to launch your App Clip, and add support for invocations from the Messages app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting invocations from your website and the Messages app",
+      "type": "topic",
+      "url": "/documentation/appclip/supporting-invocations-from-your-website-and-the-messages-app"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Debug App Clip invocations, test the launch experience, and verify the configuration of your released App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/testing-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/app-clips-and-app-clip-experiences": {
+      "abstract": [
+        {
+          "text": "Read App Clip information and manage App Clip experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/app-clips-and-app-clip-experiences",
+      "kind": "article",
+      "role": "article",
+      "title": "App Clips and App Clip Experiences",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/app-clips-and-app-clip-experiences"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip": {
+      "abstract": [
+        {
+          "text": "A collection of keys that an App Clip uses to get additional capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppClip",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppClip"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation": {
+      "abstract": [
+        {
+          "text": "Fetch, provide, and present rich links in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Link Presentation",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Link"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Attempts to asynchronously open the resource at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationOpenExternalURLOptionsKey",
+          "text": "OpenExternalURLOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (@"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "open(_:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/open(_:options:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/login": {
+      "identifier": "https://appstoreconnect.apple.com/login",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/login"
+    },
+    "https://developer.apple.com/wwdc20/10146": {
+      "identifier": "https://developer.apple.com/wwdc20/10146",
+      "title": "WWDC20: Configure and Link Your App Clips",
+      "titleInlineContent": [
+        {
+          "text": "WWDC20: Configure and Link Your App Clips",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10146"
+    },
+    "https://help.apple.com/app-store-connect/#/dev43c15c696": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev43c15c696",
+      "title": "Set up an App Clip experience",
+      "titleInlineContent": [
+        {
+          "text": "Set up an App Clip experience",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev43c15c696"
+    },
+    "https://help.apple.com/app-store-connect/#/deve6f78a8e2": {
+      "identifier": "https://help.apple.com/app-store-connect/#/deve6f78a8e2",
+      "title": "Localize App Store Information",
+      "titleInlineContent": [
+        {
+          "text": "Localize App Store Information",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/deve6f78a8e2"
+    },
+    "media-3707076": {
+      "alt": "A flowchart illustrating the launch experience of an App Clip from left to right. The first element list the possible invocations: App Clip Code, NFC tag, QR code, Safari, Messages, Maps, Location, and other app. An arrow labeled with Invocation points to a box that reads App Clip card. The next arrow carries the Invocation URL label and points to the next box that reads App Clip. The last arrow in the flow chart points to a box with the label Completed task. ",
+      "identifier": "media-3707076",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/437831f3bacaddb85c6b98b8475a4da1/media-3707076@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6beeedc3df4c3768c5c1622ad50400fb/media-3707076~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Launch",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+        "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+        "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+        "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+        "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+        "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+      ],
+      "title": "Launch"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Launch",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+                "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+                "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+                "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+                "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+              ],
+              "title": "Launch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1open(_:options:completionHandler:)/title",
+          "value": "openURL:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1open(_:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#b)",
+              "text": "void (^)(_Bool)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/title",
+          "value": "APActivationPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,622 @@
+{
+  "abstract": [
+    {
+      "text": "Loads the suite definition encapsulated in ",
+      "type": "text"
+    },
+    {
+      "code": "dictionary",
+      "type": "codeVoice"
+    },
+    {
+      "text": "; previously, this suite definition was parsed from a ",
+      "type": "text"
+    },
+    {
+      "code": ".scriptSuite",
+      "type": "codeVoice"
+    },
+    {
+      "text": " property list contained in a framework or in ",
+      "type": "text"
+    },
+    {
+      "code": "bundle",
+      "type": "codeVoice"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1413397-loadsuite"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413397,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScriptSuiteRegistry(im)loadSuiteWithDictionary:fromBundle:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "loadSuite"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "with"
+      },
+      {
+        "kind": "text",
+        "text": ": [AnyHashable : Any], "
+      },
+      {
+        "kind": "identifier",
+        "text": "from"
+      },
+      {
+        "kind": "text",
+        "text": ": Bundle)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSScriptSuiteRegistry"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "loadSuite(with:from:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadSuite"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "suiteDeclaration"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/AnyHashable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s11AnyHashableV",
+              "text": "AnyHashable"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "from"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "bundle"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSBundle",
+              "text": "Bundle"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " The method extracts information from the dictionary and caches it in various internal collection objects. If keys are missing or values are of the wrong type, it logs messages to the console. It also registers class descriptions and command descriptions. In registering a class description, it invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In registering a command description, it arranges for the Apple event translator to handle incoming Apple events that represent the defined commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is invoked when the shared instance is initialized and when bundles are loaded at runtime. Prior to invoking it, ",
+              "type": "text"
+            },
+            {
+              "code": "NSScriptSuiteRegistry",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates the dictionary argument from the ",
+              "type": "text"
+            },
+            {
+              "code": ".scriptSuite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property list. If you invoke this method in your code, you should try to do it before the application receives its first Apple event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/AnyHashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AnyHashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnyHashable",
+      "type": "topic",
+      "url": "/documentation/swift/anyhashable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSClassDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "register(_:for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1407444-register"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry": {
+      "abstract": [
+        {
+          "text": "The top-level repository of scriptability information for an app at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptSuiteRegistry",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1408858-register": {
+      "abstract": [
+        {
+          "text": "Registers command description ",
+          "type": "text"
+        },
+        {
+          "code": "commandDesc",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the command name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "(NSScriptCommandDescription)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1408858-register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "register(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry/1408858-register"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1410575-loadsuites": {
+      "abstract": [
+        {
+          "text": "Loads the suite definitions in bundle ",
+          "type": "text"
+        },
+        {
+          "code": "aBundle",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", invoking ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1413397-loadsuite",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " for each suite found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadSuites"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1410575-loadsuites",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadSuites(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry/1410575-loadsuites"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1412869-register": {
+      "abstract": [
+        {
+          "text": "Registers class description ",
+          "type": "text"
+        },
+        {
+          "code": "classDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for use by Cocoa’s built-in scripting support by storing it in a per-suite internal dictionary under the class name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "(NSScriptClassDescription)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1412869-register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "register(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry/1412869-register"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1413397-loadsuite": {
+      "abstract": [
+        {
+          "text": "Loads the suite definition encapsulated in ",
+          "type": "text"
+        },
+        {
+          "code": "dictionary",
+          "type": "codeVoice"
+        },
+        {
+          "text": "; previously, this suite definition was parsed from a ",
+          "type": "text"
+        },
+        {
+          "code": ".scriptSuite",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property list contained in a framework or in ",
+          "type": "text"
+        },
+        {
+          "code": "bundle",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadSuite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1413397-loadsuite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadSuite(with:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry/1413397-loadsuite"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1417166-shared": {
+      "abstract": [
+        {
+          "text": "Returns the single, shared instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSScriptSuiteRegistry",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", creating it first if it doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSScriptSuiteRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1417166-shared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry/1417166-shared"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1410575-loadsuites"
+      ],
+      "title": "Loading Suites"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1412869-register",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1417166-shared",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry/1408858-register"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscriptsuiteregistry/1413397-loadsuitewithdictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsscriptsuiteregistry/1413397-loadsuite"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

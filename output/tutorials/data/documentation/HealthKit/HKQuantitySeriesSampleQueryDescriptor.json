@@ -1,0 +1,1658 @@
+{
+  "abstract": [
+    {
+      "text": "A query interface that reads the series data associated with quantity samples using Swift concurrency.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKQuantitySeriesSampleQueryDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKQuantitySeriesSampleQueryDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.5",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HKQuantitySeriesSampleQueryDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleQueryDescriptor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to read the series data included in quantity samples. Apps can save any quantity data as a series using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleBuilder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class; however, series data typically comes from high-frequency data saved during a workout. Any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/count",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains series data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only use this query when you need direct access to the high-frequency series data, for example when visualizing the raw data or when exporting objects from the HealthKit store. For most common calculations, consider using a statistical query instead. Statistical queries correctly handle quantity data, whether the samples represent a single quantity or a series.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read the individual data entries, create a predicate that identifies the sample type and limits the results to the desired data. For example, to read the series for a particular sample object, include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " predicate. However, if you’re reading high-frequency data during a workout, you may want to include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForSamples(withStart:end:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " predicate that returns matching series data based on the workout’s time period instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the predicate for the data.",
+            "let heartRate = HKQuantityType(.heartRate)",
+            "let objectPredicate = HKQuery.predicateForObject(with: myHeartRateSample.uuid)",
+            "let predicate = HKSamplePredicate.quantitySample(type: heartRate,",
+            "                                                 predicate: objectPredicate)",
+            "",
+            "",
+            "// Create the source descriptor.",
+            "let seriesDescriptor =",
+            "HKQuantitySeriesSampleQueryDescriptor(predicate: predicate,",
+            "                                      options: .orderByQuantitySampleStartDate)",
+            "",
+            "// Get the AsyncSequence that returns the individual data entries.",
+            "let series = seriesDescriptor.results(for: store)",
+            "",
+            "// Access each data entry in the series",
+            "for try await entry in series {",
+            "    ",
+            "    // Process results here.",
+            "    let steps = entry.quantity.doubleValue(for: .count())",
+            "    print(steps)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While this method returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", unlike the long-running queries, this sequence has a finite size. Iterating over the sequence asynchronously returns data entries, automatically terminating after you receive all the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/AsyncSequence": {
+      "abstract": [
+        {
+          "text": "A type that provides asynchronous, sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a method for running queries that returns results using an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAsyncSequenceQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAsyncSequenceQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAsyncSequenceQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkasyncsequencequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQuery": {
+      "abstract": [
+        {
+          "text": "A query that returns the underlying voltage measurements for an electrocardiogram sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogramQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogramQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogramQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogramquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads the underlying voltage measurements for an electrocardiogram sample using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogramQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogramQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogramQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogramquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesQuery": {
+      "abstract": [
+        {
+          "text": "A query that returns the heartbeat data contained in a heartbeat series sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHeartbeatSeriesQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkheartbeatseriesquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads the heartbeat series data stored in a heartbeat sample using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKHeartbeatSeriesQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKHeartbeatSeriesQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkheartbeatseriesquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a quantity, including the value and the units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/count": {
+      "abstract": [
+        {
+          "text": "The number of quantities contained in this sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/count",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "count"
+        }
+      ],
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample/count"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object for incrementally building a sample that contains multiple quantities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplebuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQuery": {
+      "abstract": [
+        {
+          "text": "A query that accesses the series data associated with a quantity sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads the series data associated with quantity samples using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySeriesSampleQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/HKAsyncSequenceQuery-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/HKAsyncSequenceQuery-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HKAsyncSequenceQuery Implementations",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/hkasyncsequencequery-implementations"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Options-swift.struct": {
+      "abstract": [
+        {
+          "text": "Options used when querying series data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Options-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleQueryDescriptor.Options",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/options-swift.struct"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Result": {
+      "abstract": [
+        {
+          "text": "A set of results from a quantity series sample descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Result",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Result"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleQueryDescriptor.Result",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/result"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Results": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that emits data from the quantity series query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Results"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Results",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Results"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySeriesSampleQueryDescriptor.Results",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/results"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/init(predicate:options:)": {
+      "abstract": [
+        {
+          "text": "Creates a quantity series query descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantitySample",
+          "text": "HKQuantitySample"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV",
+          "text": "HKQuantitySeriesSampleQueryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/init(predicate:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(predicate:options:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/init(predicate:options:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/options-swift.property": {
+      "abstract": [
+        {
+          "text": "A set of options for the query. For a list of possible values, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Options-swift.struct",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV",
+          "text": "HKQuantitySeriesSampleQueryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7OptionsV",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/options-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/options-swift.property"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/predicate": {
+      "abstract": [
+        {
+          "text": "A predicate that defines the set of series samples that the query returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantitySample",
+          "text": "HKQuantitySample"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/predicate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/results(for:)": {
+      "abstract": [
+        {
+          "text": "Runs a one-shot query that returns an asynchronous sequence of matching series samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "results"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHealthStore",
+          "text": "HKHealthStore"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV",
+          "text": "HKQuantitySeriesSampleQueryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7ResultsV",
+          "text": "Results"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/results(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "results(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantityseriessamplequerydescriptor/results(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches an object with the specified universally unique identifier (UUID).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForObject(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForObjectWithUUID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForObject(with:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforobject(with:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForSamples(withStart:end:options:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate for samples whose start and end dates fall within the specified time interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicateForSamples"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKQueryOptions",
+          "text": "HKQueryOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuery/predicateForSamples(withStart:end:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateForSamplesWithStartDate:endDate:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicateForSamples(withStart:end:options:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquery/predicateforsamples(withstart:end:options:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery": {
+      "abstract": [
+        {
+          "text": "A query to access the location data stored in a workout route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRouteQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroutequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query interface that reads the location data stored in a workout route using Swift concurrency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutRouteQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutRouteQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutroutequerydescriptor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Series-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutRouteQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKHeartbeatSeriesQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQuery"
+      ],
+      "title": "Series queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Series-Query-Descriptors",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/init(predicate:options:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Options-swift.struct"
+      ],
+      "title": "Creating Series Query Descriptors"
+    },
+    {
+      "anchor": "Running-Queries",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/results(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Results",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/Result"
+      ],
+      "title": "Running Queries"
+    },
+    {
+      "anchor": "Accessing-Query-Properties",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/options-swift.property",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/predicate"
+      ],
+      "title": "Accessing Query Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySeriesSampleQueryDescriptor/HKAsyncSequenceQuery-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleBuilder/title",
+          "value": "HKQuantitySeriesSampleBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleQuery/title",
+          "value": "HKQuantitySeriesSampleQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySeriesSampleQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySeriesSampleQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesQuery/title",
+          "value": "HKHeartbeatSeriesQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHeartbeatSeriesQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKHeartbeatSeriesQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKHeartbeatSeriesQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForSamples(withStart:end:options:)/title",
+          "value": "predicateForSamplesWithStartDate:endDate:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForSamples(withStart:end:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForSamplesWithStartDate:endDate:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteQuery/title",
+          "value": "HKWorkoutRouteQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutRouteQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutRouteQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObject(with:)/title",
+          "value": "predicateForObjectWithUUID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuery~1predicateForObject(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateForObjectWithUUID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/title",
+          "value": "HKQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogramQuery/title",
+          "value": "HKElectrocardiogramQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogramQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogramQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample~1count/title",
+          "value": "count"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample~1count/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "count"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkquantityseriessamplequerydescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

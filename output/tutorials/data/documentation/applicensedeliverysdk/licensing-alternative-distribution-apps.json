@@ -1,0 +1,3011 @@
+{
+  "abstract": [
+    {
+      "text": "Build a license server that supports the installation of your apps and the apps available in your marketplace.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App License Delivery SDK"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Licensing alternative distribution apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS and iPadOS require each app that installs outside of the App Store to have a license issued by the developer. As the developer of an alternative app marketplace or other app that installs over the web, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate a license for each download request for your app. Alternative app marketplaces also create a license for each download request for the apps that they distribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before continuing, ensure you complete the steps in either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/creating-an-alternative-app-marketplace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " installation methods trigger the device’s operating system to request a license from your web server before installing a particular app. To support installation of your app or the apps on your marketplace, implement a license server to process the requests. Your license server consists of two endpoints that use this SDK: one that creates licenses for new installations and another that updates the licenses of existing installations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Prepare your App License Delivery (ALD) encryption assets and development environment for use with the licensing workflow. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Publish-your-licensing-endpoint-details",
+          "level": 2,
+          "text": "Publish your licensing endpoint details",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To inform the system of the details of your license server, publish a ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file in the standard location. The system checks for the file at the following relative path:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://<fully qualified domain>/.well-known/marketplace-kit"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The base domain, ",
+              "type": "text"
+            },
+            {
+              "code": "<fully qualified domain>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", of the above URL is from the app’s domain that you add to App Store Connect. For more information about adding and managing domains in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/alternative-distribution-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This URL is your licensing endpoint, so your web server needs to serve a JSON configuration file that identifies your license server details:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"license\": {",
+            "        \"dynamicLicenseURL\" : \"<licensing endpoint>\",",
+            "        \"licenseRenewalURL\" : \"<renewal endpoint>\",",
+            "        \"licenseResolutionURL\": \"<resolution webpage>\",",
+            "        \"signingCertificateURL\" : \"SIGNING_CERTIFICATE_URL\",",
+            "        \"encryptionCertificateURL\" : \"ENCRYPTION_CERTIFICATE_URL\",",
+            "    }",
+            "    \"restore\": ...",
+            "    \"updates\": ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system requires that the “",
+              "type": "text"
+            },
+            {
+              "code": "license",
+              "type": "codeVoice"
+            },
+            {
+              "text": "” key specifies the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "license",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dynamicLicenseURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An endpoint that generates licenses for apps and app versions new to a device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "licenseRenewalURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An endpoint that generates updated licenses for apps and app versions already installed on the device. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "licenseResolutionURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A webpage that gives a person more information about an expired app license or the opportunity to renew the license. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "signingCertificateURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A certificate that signs liceneses you create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "encryptionCertificateURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A certificate that the system uses to encrypt license requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The “",
+                  "type": "text"
+                },
+                {
+                  "code": "restore",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "” and “",
+                  "type": "text"
+                },
+                {
+                  "code": "updates",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "” keys configuration require you to set a value. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for alternative marketplace apps, and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for other apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Host the file using the ",
+              "type": "text"
+            },
+            {
+              "code": "https://",
+              "type": "codeVoice"
+            },
+            {
+              "text": " URL scheme with a valid certificate, and don’t use redirects. This configuration publication follows the same pattern as the ",
+              "type": "text"
+            },
+            {
+              "code": "apple-app-site-association",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the signing and encryption certificates, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-a-dynamic-license-request",
+          "level": 2,
+          "text": "Handle a dynamic license request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A license request consists of a single POST to your licensing endpoint. Each POST can contain a request for a license for one or more apps. Your license server sends a single response to the POST which typically includes one license for each requested app. The license request is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dynamic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", meaning that your license server provides a new license for each install request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you limit app licenses to authenticated devices, check the POST header for an access token that links the license request to an account. The following is an example header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /resource HTTP/1.1",
+            "Host: server.example.com",
+            "Authorization: Bearer mF_9.B5f-4.1JqM"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your token endpoint issues the bearer token to the signed-in person at the start of the app download request and the system adds it to all further communication with your server for their account. Use your rules to decide whether to issue the licenses in the request for the account. For more information about authorization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example reflects the body of a dynamic license request the system makes to your licensing endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"licenseRequest\": \"ZpGAfk4LjzwrVVrBo9mwll0vQ/tbtsrdP18t8bK[...]\",",
+            "\"licenseKey\": \"T3b3pO5Z1BCsnBFDAMJv8PHW0JXQ/WYOYzZoSJJMUH/[...]\",  ",
+            "\"appsById\": {",
+            "      \"6476788646\": {",
+            "          \"appleVersionId\": \"863214182\",",
+            "          \"assetPublicId\": \"d48693c5-214e-42e3-ae52-2fa4fa9326bc\"",
+            "      },",
+            "      \"6763788646\": {",
+            "          \"appleVersionId\": \"891242134\",",
+            "          \"assetPublicId\": \"3bbb71c5-ad23-4df4-a779-dd9e797fbb40\"",
+            "      },",
+            "}}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The license request payload contains the following data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "License request payload key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "licenseRequest",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " encoded license request that’s AES CBC encrypted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "licenseKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An AES key/IV that’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " encoded and RSA-OAEP encrypted. This key encrypts the license request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appsById",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A set of one or more identifiers (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") that refer to an app that your marketplace distributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each item in ",
+              "type": "text"
+            },
+            {
+              "code": "appsById",
+              "type": "codeVoice"
+            },
+            {
+              "text": " describes the following data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appsById",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleVersionID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app version (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") that the device requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "assetPublicId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app variant that the system chooses for the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin processing the request, parse the payload using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct LicenseRequest: Decodable {",
+            "    let licenseRequest: String",
+            "    let licenseKey: String",
+            "    let appsById: [String:VersionAndPublicID]",
+            "}",
+            "",
+            "struct VersionAndPublicID: Decodable {",
+            "    let appleVersionID: String",
+            "    let assetPublicId: String",
+            "}",
+            "",
+            "func processRequest() {",
+            "    let jsonContents: URL = /* The JSON contents. */ ",
+            "    let data = try Data(contentsOf: jsonContents, options: .mappedIfSafe)",
+            "    let request: LicenseRequest = try! ",
+            "        JSONDecoder().decode(LicenseRequest.self, from: data)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Organize the payload components in the right format. Decode the ",
+              "type": "text"
+            },
+            {
+              "code": "licenseRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "licenseKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (which are both ",
+              "type": "text"
+            },
+            {
+              "code": "base64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " encoded) to reveal their raw, encrypted representations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encryptedLicenseRequest = Data(base64Encoded: request.licenseRequest)!",
+            "let encryptedRequestKey = Data(base64Encoded: request.licenseKey)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Validate that ",
+              "type": "text"
+            },
+            {
+              "code": "encryptedRequestKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is RSA3072 by ensuring ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the expected number of bytes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard encryptedRequestKey.count == 384 else { return nil }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, load your encryption certificate private key (in PEM or DER format) as necessary to decrypt the license request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encryptionCertificateKeyPath = \"path/to/<encryption-certificate-key-filename>\"",
+            "let encryptionCertificateKey = try String(contentsOf: ",
+            "    URL(fileURLWithPath: encryptionCertificateKeyPath))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Decrypt-the-request-payload",
+          "level": 2,
+          "text": "Decrypt the request payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system encrypts the payload ",
+              "type": "text"
+            },
+            {
+              "code": "licenseRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and sends the request to your server. Then, your license server uses your App License Delivery assets in combination with the payload ",
+              "type": "text"
+            },
+            {
+              "code": "licenseKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to decrypt the ",
+              "type": "text"
+            },
+            {
+              "code": "licenseRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " payload and create a license.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To assist with decryption, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/swift-crypto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Crypto // Requires the `swift-crypto 3.2.0` package.",
+            "import _CryptoExtras"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extract the AES key/IV by decrypting the AES key with the encryption certificate’s private key. Use ",
+              "type": "text"
+            },
+            {
+              "code": ".PKCS1_OAEP_SHA256",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as RSA decryption specifies a padding mode of OAEP and a SHA256 hash function with MGF1 and OAEP:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var rsaDecryptResult: Data",
+            "do {",
+            "    let derPrivKey = try _RSA.Encryption.PrivateKey(",
+            "        /* Private key is PEM format in this example. */",
+            "        pemRepresentation: encryptionCertificateKey)     ",
+            "    rsaDecryptResult = try derPrivKey.decrypt(encryptedRequestKey, ",
+            "        padding: .PKCS1_OAEP_SHA256)",
+            "} catch {",
+            "    print(\"Failed to decrypt: \\(error)\")",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the 32-byte decryption as a ",
+              "type": "text"
+            },
+            {
+              "code": "UInt8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, access the AES key in the byte range ",
+              "type": "text"
+            },
+            {
+              "code": "[0-15]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the IV in byte range ",
+              "type": "text"
+            },
+            {
+              "code": "[16-31]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let keyBytes = rsaDecryptResult.bytes",
+            "let keyData = keyBytes[0..<16]",
+            "let ivData = keyBytes[16..<32]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, decrypt the encrypted license request with the extracted AES key and IV using the CBC decryption mode. The encrypted request uses PKCS #7 padding:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let decryptedRequest = try AES._CBC.decrypt(",
+            "        encryptedLicenseRequest, using: SymmetricKey(data: keyData), ",
+            "            iv: AES._CBC.IV(ivBytes: ivData)",
+            "    )",
+            "    return decryptedRequest",
+            "} catch {",
+            "    print(\"Failed to decrypt: \\(error)\")",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-a-license-session",
+          "level": 2,
+          "text": "Start a license session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The decrypted payload includes details about the apps for which the system requests a license. To assist with creating licenses for the apps, the framework needs your ALD encryption assets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PASK, which you can find at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account/resources/certificates/list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", is a JSON file with a ",
+              "type": "text"
+            },
+            {
+              "code": "base64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " encoded authorization key inside (",
+              "type": "text"
+            },
+            {
+              "code": "authorizationKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Extract the ",
+              "type": "text"
+            },
+            {
+              "code": "authorizationKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to its own file on disk. The following code decodes the ",
+              "type": "text"
+            },
+            {
+              "code": "base64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contents of the value for use with the framework:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let paskPath = \"path/to/<PASK-authorization-key-filename>\"",
+            "let pask = Data(base64Encoded: ",
+            "    try String(contentsOf: URL(fileURLWithPath: paskPath)))!.bytes"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Load the ALD encryption and signing certificates from disk:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encryptionCertPath = \"path/to/<encryption-certificate-filename>\"",
+            "let encryptionCert = try Data(contentsOf: ",
+            "    URL(fileURLWithPath: encryptionCertPath)).bytes",
+            "",
+            "let signingCertificatePath = \"path/to/<signing-certificate-filename>\"",
+            "let signingCert = try Data(contentsOf: ",
+            "    URL(fileURLWithPath: signingCertificatePath)).bytes"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare a ",
+              "type": "text"
+            },
+            {
+              "code": ".DER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with ",
+              "type": "text"
+            },
+            {
+              "code": "ASN.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " encoding for your signing certificate private key and load it as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let signingKeyPath = \"path/to/<signing-key-filename>\"",
+            "let signingKey = Data(base64Encoded: try String(contentsOf: ",
+            "    URL(fileURLWithPath: signingKeyPath)))!.bytes"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider/init(encryptionCert:signingCert:PASK:signingKey:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, passing your ALD encryption assets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let provider = ALDProvider(encryptionCert: encryptionCert, ",
+            "    signingCert: signingCert, PASK: pask, signingKey: signingKey)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, hand the decrypted payload to the framework through a session object. Create a session by calling the provider’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider/createSession(clientRequest:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let session = try provider.createSession(clientRequest: decryptedRequest.bytes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestedAppleItemIDList",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " list to confirm which of the requested apps you approve for download. If the device isn’t eligible for a particular app — for example, if a required subscription lapsed — you can omit a license for that app in the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-dynamic-license",
+          "level": 2,
+          "text": "Generate a dynamic license",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the session object, generate a license for each app that you approve for download.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a value for the license ID. Ensure the ID is unique across all the licenses your license server distributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a license attribute for the license ID by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/init(licenseID:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/issuedTime",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/duration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", in seconds, that determines when the license expires. For example, setting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "duration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "86400",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " prevents the licensed app from launching after a day.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appKey",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the app, or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "key blob",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", which is unique per app variant.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appsById",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the request payload for the app ID, and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "assetPublicId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the variant that iOS needs for that app.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "App Store Connect provides the key blob during app ingestion. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the license by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicense(attr:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method with the license attribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "let licenseID: UInt64 = 1 // Placeholder value.",
+            "",
+            "var attribute = ALDLicenseAttribute(licenseID: licenseID)",
+            "attribute.issuedTime = UInt64(Date.now.timeIntervalSince1970)",
+            "attribute.duration = 86400 // One day; for example only.  ",
+            "",
+            "let appKeyBlob = try Data(contentsOf: URL(fileURLWithPath: appKeyBlobPath)).bytes",
+            "let appkey = ALDAppKey(appItemID: appID, appKeyBlob: appKeyBlob)",
+            "try attribute.addAppKey(appKey: appKey)",
+            "",
+            "try session.generateLicense(attr: attribute)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system requests a license for multiple apps in its POST, repeat this process for each app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Every time you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicense(attr:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the framework queues an additional license for the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In iOS 17.4, set a value less than ",
+                  "type": "text"
+                },
+                {
+                  "code": "Int64.max",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "; see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Respond-with-the-generated-licenses",
+          "level": 2,
+          "text": "Respond with the generated licenses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework assists you with preparing a response to the original POST. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicenseResponse()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " begin the response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let response = try session.generateLicenseResponse()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/finalizeLicenseResponse(licenseResponse:signature:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve the response data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let staticBlob = try session.finalizeLicenseResponse(licenseResponse: response)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response data contains the license(s), signing, and encryption certificates. To prepare for transit over the network, validate the data and encode it in ",
+              "type": "text"
+            },
+            {
+              "code": "base64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if staticBlob.count > 0 {",
+            "    print(\"Dynamic license created\")",
+            "    let data = Data(staticBlob)",
+            "    license = data.base64EncodedString()",
+            "    print(license)",
+            "} else { print(\"Failed to generate dynamic license\") }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format of the license response payload is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"license\" : \"<BASE_64_ENCODED_LICENSE>\",",
+            "    \"unlicensedApps\": [ ",
+            "        \"<An app's appleItemID>\",",
+            "        \"<Another app's appleItemID>\",",
+            "        ...",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "License response payload key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "license",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "finalizeLicenseResponse",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " return result that you encode in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This value contains the license(s) that you added to the session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unlicensedApps",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array that contains an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for each app from the request for which you choose not to provide a license.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To complete an installation, the system requires a response from your server within 60 seconds of making the request. If you use a web debugging proxy tool to test license generation, make sure it doesn’t interfere with your server’s ability to respond promptly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system receives the ",
+              "type": "text"
+            },
+            {
+              "code": "license",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response, it validates the licenses contained within according to the signing and encryption certificates in your JSON configuration file (specifically, ",
+              "type": "text"
+            },
+            {
+              "code": "signingCertificateURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "encryptionCertificateURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the system downloads the licensed app(s) from your app web server. For more information about serving app downloads, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for alternative marketplace apps or other apps that install from your website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for other apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Track-the-number-of-simultaneous-app-installs-for-an-account",
+          "level": 2,
+          "text": "Track the number of simultaneous app installs for an account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system sends a request to your license server, it includes the authentication token in the header. Use the token to associate the request with a specific person’s account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestDeviceID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property represents a unique ID for the device on which the person requests to install the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can determine the number of active installs of a particular app for an account by counting the unique device IDs your license server encounters minus any unique device IDs associated with revoked or expired licenses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey": {
+      "abstract": [
+        {
+          "text": "A structure that identifies an app and a key that’s required to decrypt the app’s license request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDAppKey"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDAppKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDAppKey",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldappkey"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute": {
+      "abstract": [
+        {
+          "text": "A structure that defines the requested license type for the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDLicenseAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDLicenseAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDLicenseAttribute",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/duration": {
+      "abstract": [
+        {
+          "text": "The maximum amount of time, in seconds, that iOS considers the license valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute/duration"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/init(licenseID:)": {
+      "abstract": [
+        {
+          "text": "Create a license attribue",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "licenseID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/init(licenseID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(licenseID:)",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute/init(licenseid:)"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/issuedTime": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "issuedTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/issuedTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "issuedTime",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute/issuedtime"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates a session with the alternative app marketplace’s signing assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDProvider",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldprovider"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider/createSession(clientRequest:)": {
+      "abstract": [
+        {
+          "text": "Creates an ALD Session",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "clientRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3ALD10ALDSessionC",
+          "text": "ALDSession"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider/createSession(clientRequest:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createSession(clientRequest:)",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldprovider/createsession(clientrequest:)"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider/init(encryptionCert:signingCert:PASK:signingKey:)": {
+      "abstract": [
+        {
+          "text": "Initializes a provider with the marketplace’s App License Delivery assets and their unique signing key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "encryptionCert"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signingCert"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "PASK"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signingKey"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider/init(encryptionCert:signingCert:PASK:signingKey:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(encryptionCert:signingCert:PASK:signingKey:)",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldprovider/init(encryptioncert:signingcert:pask:signingkey:)"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession": {
+      "abstract": [
+        {
+          "text": "A structure that contains the details of a license request and methods to generate license responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDSession"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDSession",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/finalizeLicenseResponse(licenseResponse:signature:)": {
+      "abstract": [
+        {
+          "text": "Returns a signed license in a byte array to send in response to a license request from iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalizeLicenseResponse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "licenseResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/finalizeLicenseResponse(licenseResponse:signature:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalizeLicenseResponse(licenseResponse:signature:)",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession/finalizelicenseresponse(licenseresponse:signature:)"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicense(attr:)": {
+      "abstract": [
+        {
+          "text": "Generates a license based on the provided ALDLicenseAttribute and add it to the session.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Multiple licenses can be generated in this session by callling this function multiple times, they get added to the session response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateLicense"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:3ALD19ALDLicenseAttributeV",
+          "text": "ALDLicenseAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicense(attr:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateLicense(attr:)",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession/generatelicense(attr:)"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicenseResponse()": {
+      "abstract": [
+        {
+          "text": "Generates a license response. This method produces a license response, in a bytes array. The response is not yet signed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateLicenseResponse"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/generateLicenseResponse()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateLicenseResponse()",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession/generatelicenseresponse()"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestDeviceID": {
+      "abstract": [
+        {
+          "text": "the device ID of the requested device",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestDeviceID"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestDeviceID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestDeviceID",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession/requestdeviceid"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestedAppleItemIDList": {
+      "abstract": [
+        {
+          "text": "An array of identifiers for apps that iOS requests a license request for in the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedAppleItemIDList"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestedAppleItemIDList",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestedAppleItemIDList",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession/requestedappleitemidlist"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment": {
+      "abstract": [
+        {
+          "text": "Create your account-level signing assets and build the SDK for your target platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app licensing environment",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/configuring-the-app-licensing-environment"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses": {
+      "abstract": [
+        {
+          "text": "Determine whether an app for which you issue a license launches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses",
+      "kind": "article",
+      "role": "article",
+      "title": "Renewing and revoking app licenses",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/alternative-distribution-domains": {
+      "abstract": [
+        {
+          "text": "Create and read alternative distribution domains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/alternative-distribution-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Alternative Distribution Domains",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/alternative-distribution-domains"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppleItemID",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/AppleItemID"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/AppleVersionID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents a single app version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleVersionID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppleVersionID",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/AppleVersionID"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/creating-an-alternative-app-marketplace": {
+      "abstract": [
+        {
+          "text": "Enable the distribution of other third-party apps from within your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/creating-an-alternative-app-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an alternative app marketplace",
+      "type": "topic",
+      "url": "/documentation/appdistribution/creating-an-alternative-app-marketplace"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appdistribution/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/installing-apps-from-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Manage the installation of apps that developers distribute from your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing apps from an alternative marketplace",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-apps-from-an-alternative-marketplace"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsondecoder": {
+      "abstract": [
+        {
+          "text": "An object that decodes instances of a data type from JSON objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSONDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsondecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONDecoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsondecoder"
+    },
+    "doc://com.apple.documentation/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/resources/certificates/list": {
+      "identifier": "https://developer.apple.com/account/resources/certificates/list",
+      "title": "Certificates, Identifiers & Profiles",
+      "titleInlineContent": [
+        {
+          "text": "Certificates, Identifiers & Profiles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/certificates/list"
+    },
+    "https://github.com/apple/swift-crypto": {
+      "identifier": "https://github.com/apple/swift-crypto",
+      "title": "swift-crypto",
+      "titleInlineContent": [
+        {
+          "text": "swift-crypto",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-crypto"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-licensing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession"
+      ],
+      "title": "App licensing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

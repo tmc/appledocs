@@ -1,0 +1,1675 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for locating entities by matching values against one or more of their properties.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10AppIntents19EntityPropertyQueryP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EntityPropertyQuery"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EntityPropertyQuery"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "EntityPropertyQuery"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EntityPropertyQuery"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10AppIntents11EntityQueryP",
+              "text": "EntityQuery"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "EntityPropertyQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " the ability to query instances according to its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "traits as they are modeled through query properties and their corresponding comparators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/entities(matching:mode:sortedBy:limit:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " receives an array of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ComparatorMappingType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances - a type of your choice that represents the different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comparator mappings given by the user - and is responsible for fetching entities matching those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comparators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "properties",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property on a ",
+              "type": "text"
+            },
+            {
+              "code": "EntityPropertyQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the query accepts. When declaring each property’s set of supported ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "s,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you will supply a closure that will transform a runtime user-supplied value into an instance of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ComparatorMappingType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The AppIntents runtime will invoke query comparator mapping closures for each comparator included",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the user request, gather their output ",
+              "type": "text"
+            },
+            {
+              "code": "ComparatorMappingType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values, and then invoke the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "entities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. It is then up to you to retrieve entities matching those comparators,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using whichever backend (in-memory lookup, CoreData, remote network call, …) suits your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "application. For example, consider the following simplified ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a photo:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyPhoto: AppEntity {",
+            "    @Property(title: \"Date taken\")",
+            "    let takenAt: Date",
+            "",
+            "    @Property(title: \"Tags\")",
+            "    let tags: [String]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how you would build a ",
+              "type": "text"
+            },
+            {
+              "code": "EntityPropertyQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that allows the user to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "query for photos taken:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Before a certain date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After a certain date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Containing a given tag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "code": "entities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you want to retrieve photos through a network request, so you supply mapping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closures returning ",
+              "type": "text"
+            },
+            {
+              "code": "URLQueryItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances for each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then you can use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those ",
+              "type": "text"
+            },
+            {
+              "code": "URLQueryItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "entities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to construct the correct ",
+              "type": "text"
+            },
+            {
+              "code": "URL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to fetch entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyPhotoQuery: EntityPropertyQuery {",
+            "   static var properties = QueryProperties {",
+            "       Property(\\.$takenAt) {",
+            "           LessThanMapping { URLQueryItem(name: \"takenBefore\", value: $0) }",
+            "           GreaterThanMapping { URLQueryItem(name: \"takenAfter\": value: $0) }",
+            "       }",
+            "       Property(\\.$tags) {",
+            "           ContainsComparator { URLQueryItem(name: \"tagsContains\", value: $0) }",
+            "       }",
+            "   }",
+            "",
+            "   func entities(",
+            "       matching comparators: [URLQueryItem],",
+            "       mode: ComparatorMode,",
+            "       sortedBy: [Sort<MyPhoto>],",
+            "       limit: Int?",
+            "   ) async throws -> [MyPhoto] {",
+            "       let components = URLComponents()",
+            "       components.queryItems = comparators",
+            "       let url = components.url(relativeTo: \"https://myphotosbackend.com/photos\")",
+            "",
+            "       return try await PhotosBackend.fetch(url: url)",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider": {
+      "abstract": [
+        {
+          "text": "An interface for providing a dynamic list of options for a parameter of your app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicOptionsProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicOptionsProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicOptionsProvider",
+      "type": "topic",
+      "url": "/documentation/appintents/dynamicoptionsprovider"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities by matching values against one or more of their properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/ComparatorMappingType": {
+      "abstract": [
+        {
+          "text": "Type produced by ",
+          "type": "text"
+        },
+        {
+          "code": "EntityQueryComparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " mapping closures and supplied as input to ",
+          "type": "text"
+        },
+        {
+          "code": "results",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComparatorMappingType"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/ComparatorMappingType",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "ComparatorMappingType",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/comparatormappingtype"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/ComparatorMode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComparatorMode"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/ComparatorMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComparatorMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery.ComparatorMode",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/comparatormode"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/Property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Property"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/Property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Property"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery.Property",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/property"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/QueryProperties": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueryProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/QueryProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueryProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery.QueryProperties",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/queryproperties"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/Sort": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sort"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/Sort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sort"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery.Sort",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/sort"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/SortableBy": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortableBy"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/SortableBy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SortableBy"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery.SortableBy",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/sortableby"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/SortingOptions-swift.typealias": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/SortingOptions-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SortingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityPropertyQuery.SortingOptions",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/sortingoptions-swift.typealias"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/entities(matching:mode:sortedBy:limit:)": {
+      "abstract": [
+        {
+          "text": "Retrieves instances matching the supplied comparators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents19EntityPropertyQueryP21ComparatorMappingTypeQa",
+          "text": "ComparatorMappingType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents19EntityPropertyQueryPAAE14ComparatorModea",
+          "text": "ComparatorMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sortedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents15EntityQuerySortV",
+          "text": "EntityQuerySort"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents11EntityQueryP0C0Qa",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/entities(matching:mode:sortedBy:limit:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "entities(matching:mode:sortedBy:limit:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/entities(matching:mode:sortedby:limit:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/findIntentDescription": {
+      "abstract": [
+        {
+          "text": "Defines how the generated ‘Find’ Shortcuts action of this query type is displayed to the user.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findIntentDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents17IntentDescriptionV",
+          "text": "IntentDescription"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/findIntentDescription",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "findIntentDescription",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/findintentdescription"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/properties": {
+      "abstract": [
+        {
+          "text": "The set of query properties supported by this query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents19EntityPropertyQueryPAAE0E10Propertiesa",
+          "text": "QueryProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/properties",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/properties"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/sortingOptions-swift.type.property": {
+      "abstract": [
+        {
+          "text": "The set of sorting orders supported by this query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents19EntityPropertyQueryPAAE14SortingOptionsa",
+          "text": "SortingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/sortingOptions-swift.type.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "sortingOptions",
+      "type": "topic",
+      "url": "/documentation/appintents/entitypropertyquery/sortingoptions-swift.type.property"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquery"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparator": {
+      "abstract": [
+        {
+          "text": "The base class for all concrete entity query comparators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQueryComparator"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQueryComparator"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQueryComparator",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquerycomparator"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparatorMode": {
+      "abstract": [
+        {
+          "text": "Modes that determine how to apply a query’s comparators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQueryComparatorMode"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparatorMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQueryComparatorMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQueryComparatorMode",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquerycomparatormode"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperties": {
+      "abstract": [
+        {
+          "text": "A type that provides the properties to include in a property-matched query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQueryProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQueryProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQueryProperties",
+      "type": "topic",
+      "url": "/documentation/appintents/entityqueryproperties"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperty": {
+      "abstract": [
+        {
+          "text": "An object that provides the supported comparators you use to describe the different ways users can query against a property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an app entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQueryProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQueryProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQueryProperty",
+      "type": "topic",
+      "url": "/documentation/appintents/entityqueryproperty"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySort": {
+      "abstract": [
+        {
+          "text": "The properties to use to sort the results when the query runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuerySort"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuerySort"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuerySort",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquerysort"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySortableByProperty": {
+      "abstract": [
+        {
+          "text": "Details about a specific property you use to sort the query results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuerySortableByProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySortableByProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuerySortableByProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuerySortableByProperty",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquerysortablebyproperty"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySortingOptions": {
+      "abstract": [
+        {
+          "text": "The potential properties you can use to sort the results of a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuerySortingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySortingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuerySortingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuerySortingOptions",
+      "type": "topic",
+      "url": "/documentation/appintents/entityquerysortingoptions"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents": {
+      "abstract": [
+        {
+          "text": "Provide the system with information about the types your app uses to model its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "data so that your intents can use those types as parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-custom-types-into-your-intents",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating custom data types into your intents",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-custom-types-into-your-intents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable": {
+      "abstract": [
+        {
+          "text": "Defines a string that uniquely identifies a type. This is useful for maintaining the identity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a type, even when its type name is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentlyIdentifiable",
+      "type": "topic",
+      "url": "/documentation/appintents/persistentlyidentifiable"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/property-comparators": {
+      "abstract": [
+        {
+          "text": "Specify the type of comparison to perform during a property-matched query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/property-comparators",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Property comparators",
+      "type": "topic",
+      "url": "/documentation/appintents/property-comparators"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/DynamicOptionsProvider",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuery",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Property-matched-queries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperties",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryProperty",
+        "doc://com.apple.AppIntents/documentation/AppIntents/property-comparators",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySortingOptions",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySortableByProperty",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQuerySort"
+      ],
+      "title": "Property-matched queries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Specifying-the-queryable-properties",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/properties",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/QueryProperties",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/Property",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/ComparatorMappingType"
+      ],
+      "title": "Specifying the queryable properties"
+    },
+    {
+      "anchor": "Sorting-the-results",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/sortingOptions-swift.type.property",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/SortingOptions-swift.typealias",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/SortableBy"
+      ],
+      "title": "Sorting the results"
+    },
+    {
+      "anchor": "Searching-for-entities",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/entities(matching:mode:sortedBy:limit:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/Sort",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/ComparatorMode",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityQueryComparatorMode"
+      ],
+      "title": "Searching for entities"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityPropertyQuery/findIntentDescription"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/entitypropertyquery"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

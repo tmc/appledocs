@@ -1,0 +1,1482 @@
+{
+  "abstract": [
+    {
+      "text": "Methods that, when implemented, allow any class to participate in the SpriteKit render loop callbacks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)SKSceneDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKSceneDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKSceneDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SKSceneDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes",
+        "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body",
+        "doc://com.apple.spritekit/documentation/SpriteKit/disconnecting-bodies-from-joints",
+        "doc://com.apple.spritekit/documentation/SpriteKit/detecting-changes-at-each-step-of-an-animation",
+        "doc://com.apple.spritekit/documentation/SpriteKit/displaying-3d-content-in-a-spritekit-scene",
+        "doc://com.apple.spritekit/documentation/SpriteKit/use-spritekit-objects-within-scene-delegate-callbacks",
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol is used to implement a delegate to be called whenever the scene is being animated. Typically, you supply a delegate when you want to use a scene without requiring the scene to be subclassed. The methods in this protocol all correspond to methods implemented by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. If the delegate implements a particular method, that method is called instead of the corresponding method on the scene object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When processing a scene, SpriteKit runs a loop that processes and renders the scene. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods allows you to add logic at any step of the loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2527821",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your view has a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate/view(_:shouldRenderAtTime:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method returns ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", the update is skipped and none of the scene delegate methods are called.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene": {
+      "abstract": [
+        {
+          "text": "An object that organizes all of the active SpriteKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate to be called during the animation loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SKSceneDelegate",
+          "text": "SKSceneDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/delegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that, when implemented, allow any class to participate in the SpriteKit render loop callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didApplyConstraints(for:)": {
+      "abstract": [
+        {
+          "text": "Tells you to peform any necessary logic after constraints are applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didApplyConstraints"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didApplyConstraints(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didApplyConstraintsForScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didApplyConstraints(for:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate/didapplyconstraints(for:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didEvaluateActions(for:)": {
+      "abstract": [
+        {
+          "text": "Tells you to peform any necessary logic after scene actions are evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didEvaluateActions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didEvaluateActions(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didEvaluateActionsForScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didEvaluateActions(for:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate/didevaluateactions(for:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didFinishUpdate(for:)": {
+      "abstract": [
+        {
+          "text": "Tells you to peform any necessary logic after the scene has finished all of the steps required to process animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFinishUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didFinishUpdate(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didFinishUpdateForScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didFinishUpdate(for:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate/didfinishupdate(for:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didSimulatePhysics(for:)": {
+      "abstract": [
+        {
+          "text": "Tells you to peform any necessary logic after physics simulations are performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didSimulatePhysics"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didSimulatePhysics(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didSimulatePhysicsForScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didSimulatePhysics(for:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate/didsimulatephysics(for:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/update(_:for:)": {
+      "abstract": [
+        {
+          "text": "Tells you to perform any app specific logic to update your scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/update(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "update:forScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(_:for:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscenedelegate/update(_:for:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods to take custom control over the view’s render rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skviewdelegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate/view(_:shouldRenderAtTime:)": {
+      "abstract": [
+        {
+          "text": "Specifies whether the view should render at the given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKView",
+          "text": "SKView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldRenderAtTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKViewDelegate/view(_:shouldRenderAtTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view:shouldRenderAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "view(_:shouldRenderAtTime:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skviewdelegate/view(_:shouldrenderattime:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body": {
+      "abstract": [
+        {
+          "text": "Move a physics body, and make it collide with other objects, by setting its physical properties once or changing them dynamically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/configuring-a-physics-body",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a Physics Body",
+      "type": "topic",
+      "url": "/documentation/spritekit/configuring-a-physics-body"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/detecting-changes-at-each-step-of-an-animation": {
+      "abstract": [
+        {
+          "text": "Get notified of a property change on your node subclass and retrieve the amount of change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/detecting-changes-at-each-step-of-an-animation",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting Changes at Each Step of an Animation",
+      "type": "topic",
+      "url": "/documentation/spritekit/detecting-changes-at-each-step-of-an-animation"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/disconnecting-bodies-from-joints": {
+      "abstract": [
+        {
+          "text": "Disconnect joints from nodes in your scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/disconnecting-bodies-from-joints",
+      "kind": "article",
+      "role": "article",
+      "title": "Disconnecting Bodies from Joints",
+      "type": "topic",
+      "url": "/documentation/spritekit/disconnecting-bodies-from-joints"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/displaying-3d-content-in-a-spritekit-scene": {
+      "abstract": [
+        {
+          "text": "Draw SceneKit content in a SpriteKit scene by using a 3D node.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/displaying-3d-content-in-a-spritekit-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying 3D Content in a SpriteKit Scene",
+      "type": "topic",
+      "url": "/documentation/spritekit/displaying-3d-content-in-a-spritekit-scene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions": {
+      "abstract": [
+        {
+          "text": "Create, configure, and run actions in SpriteKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Actions",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-actions"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes": {
+      "abstract": [
+        {
+          "text": "Learn about the fundamental properties that provide a foundation for all other nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-nodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Nodes",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-nodes"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events": {
+      "abstract": [
+        {
+          "text": "Implement per-frame app logic, such as the scene’s update function that’s called every frame.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/responding-to-frame-cycle-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Frame-Cycle Events",
+      "type": "topic",
+      "url": "/documentation/spritekit/responding-to-frame-cycle-events"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate": {
+      "abstract": [
+        {
+          "text": "Use a scene delegate to share app logic across various scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+      "kind": "article",
+      "role": "article",
+      "title": "Subclassing Scenes Versus Assigning a Delegate",
+      "type": "topic",
+      "url": "/documentation/spritekit/subclassing-scenes-versus-assigning-a-delegate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/use-spritekit-objects-within-scene-delegate-callbacks": {
+      "abstract": [
+        {
+          "text": "Follow threading guidelines to keep your SpriteKit app thread safe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/use-spritekit-objects-within-scene-delegate-callbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Use SpriteKit Objects within Scene Delegate Callbacks",
+      "type": "topic",
+      "url": "/documentation/spritekit/use-spritekit-objects-within-scene-delegate-callbacks"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "media-2527821": {
+      "alt": "Frame processing in a scene",
+      "identifier": "media-2527821",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be1a33d8b82e5a33a9f3873c756bb121/media-2527821@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-a-Delegate",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate"
+      ],
+      "title": "Configuring a Delegate"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-Animation-Events",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/use-spritekit-objects-within-scene-delegate-callbacks",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/update(_:for:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didEvaluateActions(for:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didSimulatePhysics(for:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didApplyConstraints(for:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didFinishUpdate(for:)"
+      ],
+      "title": "Handling Animation Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.spritekit/documentation/SpriteKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-Animation-Events",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/use-spritekit-objects-within-scene-delegate-callbacks",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/update(_:for:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didEvaluateActions(for:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didSimulatePhysics(for:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didApplyConstraints(for:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSceneDelegate/didFinishUpdate(for:)"
+              ],
+              "title": "Handling Animation Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-a-Delegate",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/subclassing-scenes-versus-assigning-a-delegate",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/delegate"
+              ],
+              "title": "Configuring a Delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKSceneDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didFinishUpdate(for:)/title",
+          "value": "didFinishUpdateForScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didFinishUpdate(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishUpdateForScene:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1update(_:for:)/title",
+          "value": "update:forScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1update(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "update:forScene:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate~1view(_:shouldRenderAtTime:)/title",
+          "value": "view:shouldRenderAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate~1view(_:shouldRenderAtTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "view:shouldRenderAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/title",
+          "value": "SKSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didApplyConstraints(for:)/title",
+          "value": "didApplyConstraintsForScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didApplyConstraints(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didApplyConstraintsForScene:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didEvaluateActions(for:)/title",
+          "value": "didEvaluateActionsForScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didEvaluateActions(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didEvaluateActionsForScene:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didSimulatePhysics(for:)/title",
+          "value": "didSimulatePhysicsForScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSceneDelegate~1didSimulatePhysics(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didSimulatePhysicsForScene:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate/title",
+          "value": "SKViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKViewDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/skscenedelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/skscenedelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

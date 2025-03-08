@@ -1,0 +1,1092 @@
+{
+  "abstract": [
+    {
+      "text": "Inspect webpages, Service Workers, Home Screen web apps, extensions, and content inside apps on iOS and iPadOS devices and simulators from a connected Mac.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Developer Features"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting iOS and iPadOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Web content on iOS and iPadOS is inspectable when you connect the device to your Mac. You can also use simulators on macOS to test your webpages and apps without a physical device. To learn more about device simulators, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enabling-inspecting-your-device-from-a-connected-Mac",
+          "level": 2,
+          "text": "Enabling inspecting your device from a connected Mac",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can connect your device to a Mac to inspect it, you must allow the device to be inspected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Settings",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Apps",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Safari",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll down to ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Advanced",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Web Inspector",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " toggle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now, connect the device to your Mac using a cable. In Safari, the device will appear in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You may need to trust the Mac you connect your device to when the device prompts you before it appears in the ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Develop",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": " menu on your Mac.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Connecting-over-the-network",
+          "level": 3,
+          "text": "Connecting over the network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to being able to inspect devices over a wired connection, you can also connect to your device over Wi-Fi or another network connection. To enable connecting over the network, you must first have enabled ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Web Inspector",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " on your device and connected it to your Mac using a cable. Then, you can enable ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Connect via Network",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " from the device’s submenu in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu. Alternatively, you can also ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devbc48d1bad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "iOS-and-iPadOS-simulators",
+          "level": 3,
+          "text": "iOS and iPadOS simulators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Web Inspector",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " is always enabled for simulators, and currently booted simulators will appear in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu just like connected devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspecting-a-webpage",
+          "level": 2,
+          "text": "Inspecting a webpage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Webpages you open in Safari in iOS and iPadOS appear in a submenu for the connected device of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu of Safari on a connected Mac. Safari groups webpages and other content by app, making it easier to find the webpage you want to inspect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Find the webpage you want to inspect, then select it to open a new Web Inspector window. This window continues inspecting the tab you started inspecting, including across navigations. If you close the tab in iOS or iPadOS, the Web Inspector window disappears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For webpages, some additional options are available only while inspecting a connected device or a simulator to allow you to override the user agent, disable cross-origin restrictions, disable site-specific hacks, and more. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/web-inspector/device-settings/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspecting-a-service-worker",
+          "level": 2,
+          "text": "Inspecting a service worker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are shared between webpages and don’t necessarily belong to any individual webpage. For this reason, they are inspectable separately from webpages in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can only inspect service workers that are currently running. To inspect service workers, open the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu, find the menu item for the visionOS device you want to inspect, and select them from the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Service Workers",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " section near the bottom of the menu. This section doesn’t appear if there aren’t any service workers currently running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspecting-Home-Screen-web-apps",
+          "level": 2,
+          "text": "Inspecting Home Screen web apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/iphone/bookmark-favorite-webpages-iph42ab2f3a7/ios",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is in the foreground, you can inspect it from the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu. Find the menu item for the iOS or iPadOS device you wish to inspect, and then find the web app’s URL in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Home Screen Web Apps",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " section near the bottom of the menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspecting-extensions",
+          "level": 2,
+          "text": "Inspecting extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensions can run scripts or create webpages in several places, and how you inspect them varies depending on the content. ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Content-scripts",
+          "level": 3,
+          "text": "Content scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug the scripts that web extensions inject into webpages, first ",
+              "type": "text"
+            },
+            {
+              "identifier": "#Inspecting-a-webpage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Open Web Inspector, then click the Sources tab and select your content script file from the Extension Scripts folder at the lower left. Select your extension’s execution context using the selector in the lower-right corner of the inspector. Set breakpoints by clicking the gutter with line numbers in the source view. Inspect other source files for your extension, such as style sheets, in the Sources area at the lower left.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Background-scripts",
+          "level": 3,
+          "text": "Background scripts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug background scripts, open the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu, find the menu item for the iOS or iPadOS device you wish to inspect, and then find the item with the name of the extension, “",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Extension Background Page",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": "”, and the file name of the background script.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Toolbar-pop-up",
+          "level": 3,
+          "text": "Toolbar pop-up",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug your extension’s pop-up, open your pop-up on the device. Now from the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu find the menu item for the iOS or iPadOS device you wish to inspect, and then find the item with the name of the extension, “",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Extension Pop-up Page",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": "”, and the file name of the pop-up’s HTML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspecting-JavaScript-and-webpages-in-apps",
+          "level": 2,
+          "text": "Inspecting JavaScript and webpages in apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can make ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "s and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/JavaScriptCore/JSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "s in apps inspectable, allowing anyone who enables ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Web Inspector",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " on the device to inspect them. Content you can inspect appears in a submenu for the connected device of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu of Safari on a connected Mac. Safari separates webpages and JavaScript contexts by app, making finding the content you want to inspect easier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Learn more about ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "#Inspecting-a-webpage": {
+      "identifier": "#Inspecting-a-webpage",
+      "title": "inspect the webpage",
+      "titleInlineContent": [
+        {
+          "text": "inspect the webpage",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "#Inspecting-a-webpage"
+    },
+    "Safari-Developer-Tools-PageImage-card.png": {
+      "alt": "A blue tools logo on a gradient background.",
+      "identifier": "Safari-Developer-Tools-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77bad5e1be417d2e9f3bb2ff2698c1f9/Safari-Developer-Tools-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae177e98052f40b765cec73979b779b7/Safari-Developer-Tools-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/JavaScriptCore/JSContext": {
+      "abstract": [
+        {
+          "text": "A JavaScript execution environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/JavaScriptCore/JSContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSContext",
+      "type": "topic",
+      "url": "/documentation/JavaScriptCore/JSContext"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu": {
+      "abstract": [
+        {
+          "text": "Access tools for debugging webpages in Safari, as well as tools for debugging web content in other apps and on other devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+      "kind": "article",
+      "role": "article",
+      "title": "Develop menu",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/develop-menu"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Enable the inspection of webpages and JavaScript in apps you develop when inspected from a connected Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling inspecting content in your apps",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/enabling-inspecting-content-in-your-apps"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-safari-macos": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, Service Workers, and extensions in Safari on macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-safari-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting Safari on macOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-safari-macos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos": {
+      "abstract": [
+        {
+          "text": "Inspect JavaScript and TVML content on tvOS from a Mac on the same network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting tvOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-tvos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, service workers, extensions, and content inside apps in visionOS from a Mac on the same network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting visionOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-visionos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators": {
+      "abstract": [
+        {
+          "text": "Install simulators to use for web development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Xcode and Simulators",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/installing-xcode-and-simulators"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools": {
+      "abstract": [
+        {
+          "text": "Inspect, debug, and test web content in Safari, in other apps, and on other devices including iPhone and iPad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools",
+      "images": [
+        {
+          "identifier": "Safari-Developer-Tools-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Developer Features",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools"
+    },
+    "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523": {
+      "identifier": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523",
+      "title": "Learn more about debugging web extensions…",
+      "titleInlineContent": [
+        {
+          "text": "Learn more about debugging web extensions…",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523"
+    },
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "title": "Service Workers",
+      "titleInlineContent": [
+        {
+          "text": "Service Workers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devbc48d1bad": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devbc48d1bad",
+      "title": "connect to the device using Xcode",
+      "titleInlineContent": [
+        {
+          "text": "connect to the device using Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devbc48d1bad"
+    },
+    "https://support.apple.com/guide/iphone/bookmark-favorite-webpages-iph42ab2f3a7/ios": {
+      "identifier": "https://support.apple.com/guide/iphone/bookmark-favorite-webpages-iph42ab2f3a7/ios",
+      "title": "Home Screen web app",
+      "titleInlineContent": [
+        {
+          "text": "Home Screen web app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/iphone/bookmark-favorite-webpages-iph42ab2f3a7/ios"
+    },
+    "https://webkit.org/web-inspector/device-settings/": {
+      "identifier": "https://webkit.org/web-inspector/device-settings/",
+      "title": "Device Settings",
+      "titleInlineContent": [
+        {
+          "text": "Device Settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/web-inspector/device-settings/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Inspecting-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-safari-macos",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps"
+      ],
+      "title": "Inspecting content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1JavaScriptCore~1JSContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safari-developer-tools/inspecting-ios"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

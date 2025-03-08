@@ -1,0 +1,747 @@
+{
+  "abstract": [
+    {
+      "text": "Use the Apple Pay JS API to check whether Apple Pay is available, to check whether a device has a payment credential provisioned in Wallet, and to determine when to display an Apple Pay button.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability"
+  },
+  "kind": "article",
+  "legacy_identifier": 2930241,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Checking for Apple Pay availability"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before displaying an Apple Pay button or creating an Apple Pay session, ensure that the Apple Pay JS API is available and enabled on the current device. To check whether the Apple Pay JS API is available in the browser, verify that the ",
+              "type": "text"
+            },
+            {
+              "code": "window",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "code": "ApplePaySession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class exists:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (window.ApplePaySession) {",
+            "   // The Apple Pay JS API is available.",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2930244",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, check whether payments are possible. Call either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This method verifies that the device is capable of making Apple Pay payments; it doesn’t verify that the person has a provisioned card for use with Apple Pay on the device. You can call this method at any time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This method verifies both that the device is capable of making Apple Pay payments, and that the person has at least one provisioned card. This method asynchronously contacts the Apple Pay servers as part of the verification process. You can only call this method if you want to default to Apple Pay during your checkout flow, or if you want to add an Apple Pay button to your product detail page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4453502",
+          "level": 3,
+          "text": "Verify whether the device supports Apple Pay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "According to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4453504",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", if you invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API and determine that a person has an active card provisioned into Wallet, then Apple Pay should be the primary, but not necessarily sole payment option on any webpage that accepts payments, like the checkout page or product detail page. In all other situations, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method asynchronously contacts Apple Pay servers as part of the verification process and returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse/4440088-paymentcredentialstatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the device. This verifies on Safari and third-party browsers that the device is capable of making Apple Pay payments. It also verifies on Safari browsers that the device has at least one payment credential provisioned in Wallet. Depending on the response, you can determine if the device supports Apple Pay and whether to display an Apple Pay button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following are possible return values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Confirms that the device supports Apple Pay and there’s at least one active payment credential in Wallet that qualifies for payments on the web. Show an Apple Pay button and offer Apple Pay as the primary, but not necessarily sole, payment option.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "paymentCredentialsAvailable",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Confirms that the device supports Apple Pay, but the Wallet information is unknown. Show an Apple Pay button and offer Apple Pay as a possible payment option.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "paymentCredentialStatusUnknown",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Confirms that the device supports Apple Pay and that the device doesn’t have any active payment credentials in Wallet. Offer Apple Pay as a payment option, but don’t make it the sole or default payment option. This gives people the option to set up Apple Pay as part of their purchase.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "paymentCredentialsUnavailable",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates that the device doesn’t support Apple Pay. Don’t display an Apple Pay button or offer Apple Pay as a payment option.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "applePayUnsupported",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to check that a payment method is available before displaying an Apple Pay button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check if the Apple Pay JS API is available.",
+            "  if (window.ApplePaySession) {",
+            "    var merchantIdentifier = 'YOUR MERCHANT IDENTIFIER';",
+            "    var promise = ApplePaySession.applePayCapabilities(merchantIdentifier);",
+            "    promise.then(function(capabilities) {",
+            "      // Check if the person has an active payment credential provisioned in Wallet.",
+            "      switch (capabilities.paymentCredentialStatus) {",
+            "        case \"paymentCredentialsAvailable\":",
+            "          // Display an Apple Pay button and offer Apple Pay as the primary payment option. ",
+            "        case \"paymentCredentialStatusUnknown\":",
+            "          // Display an Apple Pay button and offer Apple Pay as a payment option.",
+            "        case \"paymentCredentialsUnavailable\":",
+            "          // Consider displaying an Apple Pay button.",
+            "        case \"applePayUnsupported\":",
+            "          // Don't show an Apple Pay button or offer Apple Pay.",
+            "      }",
+            "    })",
+            "  }"
+          ],
+          "metadata": {
+            "anchor": "4454279",
+            "title": "Listing 2"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2978508",
+          "level": 3,
+          "text": "Verify Apple Pay availability in China",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide Apple Pay on the web for customers in China, you must first verify compatibility by checking the browser’s ",
+              "type": "text"
+            },
+            {
+              "code": "userAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string. This string provides information about the customer’s device and operating system. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the Chinese market, you need to check the user agent string to confirm that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The person’s device is an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“iPhone",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "” or an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“iPad",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device is running iOS 11.2 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following shows a user agent string received from Safari on an iPhone running iOS 11.2:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko)CriOS/64.0.3282.112 Mobile/15C202 Safari/604.1"
+          ],
+          "metadata": {
+            "anchor": "4457348",
+            "title": "Listing 3"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After verifying the person’s device type and iOS version, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as shown earlier, and display the Apple Pay button if the call returns ",
+              "type": "text"
+            },
+            {
+              "code": "paymentCredentialsAvailable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t display the Apple Pay button if the device is a Mac, if the iOS version is earlier than 11.2, or if the call to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " returns ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability": {
+      "abstract": [
+        {
+          "text": "Use the Apple Pay JS API to check whether Apple Pay is available, to check whether a device has a payment credential provisioned in Wallet, and to determine when to display an Apple Pay button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability",
+      "kind": "article",
+      "role": "article",
+      "title": "Checking for Apple Pay availability",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#2930244": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#2930244",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#2930244"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#4454279": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#4454279",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#4454279"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#4457348": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#4457348",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability#4457348"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778000-canmakepaymentswithactivecard": {
+      "abstract": [
+        {
+          "text": "Indicates whether the device supports Apple Pay and whether the user has an active card in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778000-canmakepaymentswithactivecard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canMakePaymentsWithActiveCard",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778000-canmakepaymentswithactivecard"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments": {
+      "abstract": [
+        {
+          "text": "Indicates whether the device supports Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canMakePayments",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities": {
+      "abstract": [
+        {
+          "text": "Indicates whether the device supports Apple Pay and whether the person has an active card in Wallet that qualifies for web payments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applePayCapabilities",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatus": {
+      "abstract": [
+        {
+          "text": "Information about whether the device supports Apple Pay and the possible payment credentials the person has provisioned in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentCredentialStatus",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/paymentcredentialstatus"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse": {
+      "abstract": [
+        {
+          "text": "The response for information about the device’s support for Apple Pay and the payment credential status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentCredentialStatusResponse",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse/4440088-paymentcredentialstatus": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse/4440088-paymentcredentialstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paymentCredentialStatus",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse/4440088-paymentcredentialstatus"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-4453504": {
+      "identifier": "link-4453504",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Pay on the Web Acceptable Use Guidelines",
+      "type": "topic",
+      "url": "https://developer.apple.com/apple-pay/acceptable-use-guidelines-for-websites/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778027-canmakepayments",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/4440085-applepaycapabilities",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaysession/1778000-canmakepaymentswithactivecard",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatus",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentcredentialstatusresponse"
+      ],
+      "title": "Apple Pay availability"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/apple_pay_js_api/checking_for_apple_pay_availability"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

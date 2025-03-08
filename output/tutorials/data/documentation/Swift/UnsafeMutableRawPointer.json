@@ -1,0 +1,4601 @@
+{
+  "abstract": [
+    {
+      "text": "A raw pointer for accessing and manipulating untyped data.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:Sv",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UnsafeMutableRawPointer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UnsafeMutableRawPointer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UnsafeMutableRawPointer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UnsafeMutableRawPointer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type provides no automated memory management,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "no type safety, and no alignment guarantees. You are responsible for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handling the life cycle of any memory you work with through unsafe pointers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to avoid leaks or undefined behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Memory that you manually manage can be either ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "untyped",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bound",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific type. You use the ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type to access and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manage raw bytes in memory, whether or not that memory has been bound to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understanding-a-Pointers-Memory-State",
+          "level": 1,
+          "text": "Understanding a Pointer’s Memory State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memory referenced by an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance can be in one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of several states. Many pointer operations must only be applied to pointers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with memory in a specific state—you must keep track of the state of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory you are working with and understand the changes to that state that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different operations perform. Memory can be untyped and uninitialized, bound",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a type and uninitialized, or bound to a type and initialized to a value.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, memory that was allocated previously may have been deallocated,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leaving existing pointers referencing unallocated memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Raw-Uninitialized-Memory",
+          "level": 2,
+          "text": "Raw, Uninitialized Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Raw memory that has just been allocated is in an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "uninitialized, untyped",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state. Uninitialized memory must be initialized with values of a type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before it can be used with any typed operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use methods like ",
+              "type": "text"
+            },
+            {
+              "code": "initializeMemory(as:from:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "moveInitializeMemory(as:from:count:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to bind raw memory to a type and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialize it with a value or series of values. To bind uninitialized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory to a type without initializing it, use the ",
+              "type": "text"
+            },
+            {
+              "code": "bindMemory(to:count:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. These methods all return typed pointers for further typed access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Typed-Memory",
+          "level": 2,
+          "text": "Typed Memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Memory that has been bound to a type, whether it is initialized or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uninitialized, is typically accessed using typed pointers—instances of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafePointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutablePointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Initialization, assignment,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and deinitialization can be performed using ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutablePointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Memory that has been bound to a type can be rebound to a different type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only after it has been deinitialized or if the bound type is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "trivial",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "type",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Deinitializing typed memory does not unbind that memory’s type. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deinitialized memory can be reinitialized with values of the same type,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bound to a new type, or deallocated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A trivial type can be copied bit for bit with no indirection or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "reference-counting operations. Generally, native Swift types that do not",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "contain strong or weak references or other forms of indirection are",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "trivial, as are imported C structs and enumerations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When reading from or writing to  memory as raw",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bytes when that memory is bound to a type, you must ensure that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "satisfy any alignment requirements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Writing to typed memory as raw bytes must only be performed when the bound",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type is a trivial type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Raw-Pointer-Arithmetic",
+          "level": 1,
+          "text": "Raw Pointer Arithmetic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pointer arithmetic with raw pointers is performed at the byte level. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you add to or subtract from a raw pointer, the result is a new raw pointer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "offset by that number of bytes. The following example allocates four bytes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of memory and stores ",
+              "type": "text"
+            },
+            {
+              "code": "0xFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in all four bytes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bytesPointer = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 1)",
+            "bytesPointer.storeBytes(of: 0xFFFF_FFFF, as: UInt32.self)",
+            "",
+            "// Load a value from the memory referenced by 'bytesPointer'",
+            "let x = bytesPointer.load(as: UInt8.self)       // 255",
+            "",
+            "// Load a value from the last two allocated bytes",
+            "let offsetPointer = bytesPointer + 2",
+            "let y = offsetPointer.load(as: UInt16.self)     // 65535"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code above stores the value ",
+              "type": "text"
+            },
+            {
+              "code": "0xFFFF_FFFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the four newly allocated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bytes, and then loads the first byte as a ",
+              "type": "text"
+            },
+            {
+              "code": "UInt8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance and the third",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and fourth bytes as a ",
+              "type": "text"
+            },
+            {
+              "code": "UInt16",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always remember to deallocate any memory that you allocate yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bytesPointer.deallocate()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implicit-Casting-and-Bridging",
+          "level": 1,
+          "text": "Implicit Casting and Bridging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When calling a function or method with an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter, you can pass an instance of that specific pointer type, pass an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of a compatible pointer type, or use Swift’s implicit bridging to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pass a compatible pointer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "print(address:as:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in the following code sample",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "takes an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance as its first parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func print<T>(address p: UnsafeMutableRawPointer, as type: T.Type) {",
+            "    let value = p.load(as: type)",
+            "    print(value)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As is typical in Swift, you can call the ",
+              "type": "text"
+            },
+            {
+              "code": "print(address:as:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "code": "UnsafeMutableRawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. This example passes ",
+              "type": "text"
+            },
+            {
+              "code": "rawPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the initial parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 'rawPointer' points to memory initialized with `Int` values.",
+            "let rawPointer: UnsafeMutableRawPointer = ...",
+            "print(address: rawPointer, as: Int.self)",
+            "// Prints \"42\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because typed pointers can be implicitly cast to raw pointers when passed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a parameter, you can also call ",
+              "type": "text"
+            },
+            {
+              "code": "print(address:as:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with any mutable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "typed pointer instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let intPointer: UnsafeMutablePointer<Int> = ...",
+            "print(address: intPointer, as: Int.self)",
+            "// Prints \"42\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can use Swift’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "implicit bridging",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to pass a pointer to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an instance or to the elements of an array. Use inout syntax to implicitly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a pointer to an instance of any type. The following example uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implicit bridging to pass a pointer to ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "print(address:as:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var value: Int = 23",
+            "print(address: &value, as: Int.self)",
+            "// Prints \"23\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A mutable pointer to the elements of an array is implicitly created when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you pass the array using inout syntax. This example uses implicit bridging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to pass a pointer to the elements of ",
+              "type": "text"
+            },
+            {
+              "code": "numbers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "print(address:as:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var numbers = [5, 10, 15, 20]",
+            "print(address: &numbers, as: Int.self)",
+            "// Prints \"5\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pointer created through implicit bridging of an instance",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or of an array’s elements is only valid during the execution of the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "called function. Escaping the pointer to use after the execution of the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "function is undefined behavior. In particular, do not use implicit",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "bridging when calling an ",
+                  "type": "text"
+                },
+                {
+                  "code": "UnsafeMutableRawPointer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " initializer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "var number = 5",
+                "let numberPointer = UnsafeMutableRawPointer(&number)",
+                "// Accessing 'numberPointer' is undefined behavior."
+              ],
+              "syntax": "swift",
+              "type": "codeListing"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/swift/bitwisecopyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators ",
+          "type": "text"
+        },
+        {
+          "code": "<",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "<=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": ">=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": ">",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/swift/comparable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "abstract": [
+        {
+          "text": "A type that explicitly supplies its own mirror.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomReflectable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Strideable": {
+      "abstract": [
+        {
+          "text": "A type representing continuous, one-dimensional values that can be offset",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and measured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Strideable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Strideable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Strideable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Strideable",
+      "type": "topic",
+      "url": "/documentation/swift/strideable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawBufferPointer": {
+      "abstract": [
+        {
+          "text": "A mutable nonowning collection interface to the bytes in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "region of memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableRawBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawbufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/AtomicOptionalRepresentable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/AtomicOptionalRepresentable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AtomicOptionalRepresentable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/atomicoptionalrepresentable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/AtomicRepresentable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/AtomicRepresentable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AtomicRepresentable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/atomicrepresentable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Comparable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Comparable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Comparable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/comparable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/CustomReflectable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/CustomReflectable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomReflectable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/customreflectable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/hashable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Pointee": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pointee"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Pointee",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pointee"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer.Pointee",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/pointee"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Strideable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Strideable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strideable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/strideable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedDown(for:)": {
+      "abstract": [
+        {
+          "text": "Obtain the preceding pointer properly aligned to store a value of type",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignedDown"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedDown(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignedDown(for:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/aligneddown(for:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedDown(toMultipleOf:)": {
+      "abstract": [
+        {
+          "text": "Obtain the preceding pointer whose bit pattern is a multiple of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "alignment",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignedDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toMultipleOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedDown(toMultipleOf:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignedDown(toMultipleOf:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/aligneddown(tomultipleof:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedUp(for:)": {
+      "abstract": [
+        {
+          "text": "Obtain the next pointer properly aligned to store a value of type ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignedUp"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedUp(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignedUp(for:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/alignedup(for:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedUp(toMultipleOf:)": {
+      "abstract": [
+        {
+          "text": "Obtain the next pointer whose bit pattern is a multiple of ",
+          "type": "text"
+        },
+        {
+          "code": "alignment",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignedUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toMultipleOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedUp(toMultipleOf:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignedUp(toMultipleOf:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/alignedup(tomultipleof:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)": {
+      "abstract": [
+        {
+          "text": "Allocates uninitialized memory with the specified size and alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(byteCount:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/allocate(bytecount:alignment:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/allocate(bytes:alignedTo:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/allocate(bytes:alignedTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(bytes:alignedTo:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/allocate(bytes:alignedto:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/assumingMemoryBound(to:)": {
+      "abstract": [
+        {
+          "text": "Returns a typed pointer to the memory referenced by this pointer,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "assuming that the memory is already bound to the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assumingMemoryBound"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/assumingMemoryBound(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assumingMemoryBound(to:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/assumingmemorybound(to:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/bindMemory(to:capacity:)": {
+      "abstract": [
+        {
+          "text": "Binds the memory to the specified type and returns a typed pointer to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bound memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/bindMemory(to:capacity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bindMemory(to:capacity:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/bindmemory(to:capacity:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/copyBytes(from:count:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/copyBytes(from:count:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyBytes(from:count:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/copybytes(from:count:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)": {
+      "abstract": [
+        {
+          "text": "Copies the specified number of bytes from the given raw pointer’s memory",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "into this pointer’s memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyMemory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyMemory(from:byteCount:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/copymemory(from:bytecount:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/customPlaygroundQuickLook": {
+      "abstract": [
+        {
+          "text": "A custom playground Quick Look for this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customPlaygroundQuickLook"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_PlaygroundQuickLook"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/customPlaygroundQuickLook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customPlaygroundQuickLook",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/customplaygroundquicklook"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/deallocate()": {
+      "abstract": [
+        {
+          "text": "Deallocates the previously allocated memory block referenced by this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/deallocate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocate()",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/deallocate()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/deallocate(bytes:alignedTo:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/deallocate(bytes:alignedTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocate(bytes:alignedTo:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/deallocate(bytes:alignedto:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/hashvalue"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-4sdp3": {
+      "abstract": [
+        {
+          "text": "Creates a new raw pointer from an ",
+          "type": "text"
+        },
+        {
+          "code": "AutoreleasingUnsafeMutablePointer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-4sdp3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/init(_:)-4sdp3"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-5r9za": {
+      "abstract": [
+        {
+          "text": "Creates a new raw pointer from the given typed pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-5r9za",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/init(_:)-5r9za"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-7oubm": {
+      "abstract": [
+        {
+          "text": "Creates a new raw pointer from the given typed pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-7oubm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/init(_:)-7oubm"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-7xubw": {
+      "abstract": [
+        {
+          "text": "Creates a new raw pointer from an ",
+          "type": "text"
+        },
+        {
+          "code": "AutoreleasingUnsafeMutablePointer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-7xubw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/init(_:)-7xubw"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(mutating:)-3ws4f": {
+      "abstract": [
+        {
+          "text": "Creates a new mutable raw pointer from the given immutable raw pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(mutating:)-3ws4f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mutating:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/init(mutating:)-3ws4f"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(mutating:)-7kfot": {
+      "abstract": [
+        {
+          "text": "Creates a new mutable raw pointer from the given immutable raw pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(mutating:)-7kfot",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mutating:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/init(mutating:)-7kfot"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:at:count:to:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initializeMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:at:count:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initializeMemory(as:at:count:to:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/initializememory(as:at:count:to:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:from:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initializeMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initializeMemory(as:from:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/initializememory(as:from:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:from:count:)": {
+      "abstract": [
+        {
+          "text": "Initializes the memory referenced by this pointer with the values",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "starting at the given pointer, binds the memory to the values’ type, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns a typed pointer to the initialized memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initializeMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:from:count:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initializeMemory(as:from:count:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/initializememory(as:from:count:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:repeating:count:)": {
+      "abstract": [
+        {
+          "text": "Initializes the memory referenced by this pointer with the given value,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "binds the memory to the value’s type, and returns a typed pointer to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "initialized memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initializeMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:repeating:count:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initializeMemory(as:repeating:count:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/initializememory(as:repeating:count:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:to:)": {
+      "abstract": [
+        {
+          "text": "Initializes the memory referenced by this pointer with the given value,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "binds the memory to the value’s type, and returns a typed pointer to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "initialized memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initializeMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initializeMemory(as:to:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/initializememory(as:to:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/load(fromByteOffset:as:)": {
+      "abstract": [
+        {
+          "text": "Returns a new instance of the given type, constructed from the raw memory",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "at the specified offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/load(fromByteOffset:as:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load(fromByteOffset:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/load(frombyteoffset:as:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/loadUnaligned(fromByteOffset:as:)-3rcfy": {
+      "abstract": [
+        {
+          "text": "Returns a new instance of the given type, constructed from the raw memory",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "at the specified offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadUnaligned"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/loadUnaligned(fromByteOffset:as:)-3rcfy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadUnaligned(fromByteOffset:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/loadunaligned(frombyteoffset:as:)-3rcfy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/loadUnaligned(fromByteOffset:as:)-4br03": {
+      "abstract": [
+        {
+          "text": "Returns a new instance of the given type, constructed from the raw memory",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "at the specified offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadUnaligned"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/loadUnaligned(fromByteOffset:as:)-4br03",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadUnaligned(fromByteOffset:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/loadunaligned(frombyteoffset:as:)-4br03"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/moveInitializeMemory(as:from:count:)": {
+      "abstract": [
+        {
+          "text": "Initializes the memory referenced by this pointer with the values",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "starting at the given pointer, binds the memory to the values’ type,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "deinitializes the source memory, and returns a typed pointer to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "newly initialized memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveInitializeMemory"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/moveInitializeMemory(as:from:count:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveInitializeMemory(as:from:count:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/moveinitializememory(as:from:count:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/storeBytes(of:toByteOffset:as:)-3chnc": {
+      "abstract": [
+        {
+          "text": "Stores the given value’s bytes into raw memory at the specified offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/storeBytes(of:toByteOffset:as:)-3chnc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeBytes(of:toByteOffset:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/storebytes(of:tobyteoffset:as:)-3chnc"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/storeBytes(of:toByteOffset:as:)-9mpot": {
+      "abstract": [
+        {
+          "text": "Stores the given value’s bytes into raw memory at the specified offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/storeBytes(of:toByteOffset:as:)-9mpot",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeBytes(of:toByteOffset:as:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/storebytes(of:tobyteoffset:as:)-9mpot"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/withMemoryRebound(to:capacity:_:)": {
+      "abstract": [
+        {
+          "text": "Executes the given closure while temporarily binding memory to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the specified number of instances of type ",
+          "type": "text"
+        },
+        {
+          "code": "T",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withMemoryRebound"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/withMemoryRebound(to:capacity:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withMemoryRebound(to:capacity:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer/withmemoryrebound(to:capacity:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeRawBufferPointer": {
+      "abstract": [
+        {
+          "text": "A  nonowning collection interface to the bytes in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "region of memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeRawBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsaferawbufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsaferawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift": {
+      "abstract": [
+        {
+          "text": "Learn how to call imported functions that are declared in a C header.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-imported-c-functions-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Imported C Functions in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-imported-c-functions-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable": {
+      "abstract": [
+        {
+          "text": "An atomic value that also supports atomic operations when wrapped",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in an ",
+          "type": "text"
+        },
+        {
+          "code": "Optional",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". Atomic optional representable types come with a standalone",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "atomic representation for their optional-wrapped variants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicOptionalRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicoptionalrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that supports atomic operations through a separate atomic storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+        "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+        "doc://com.apple.Swift/documentation/Swift/Comparable",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Strideable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Raw-Pointers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeRawBufferPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawBufferPointer"
+      ],
+      "title": "Raw Pointers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-4sdp3",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-5r9za",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-7oubm",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(_:)-7xubw",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(mutating:)-3ws4f",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/init(mutating:)-7kfot"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/customPlaygroundQuickLook",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/hashValue"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedDown(for:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedDown(toMultipleOf:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedUp(for:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/alignedUp(toMultipleOf:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/assumingMemoryBound(to:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/bindMemory(to:capacity:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/copyBytes(from:count:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/copyMemory(from:byteCount:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/deallocate()",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/deallocate(bytes:alignedTo:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:at:count:to:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:from:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:from:count:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:repeating:count:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/initializeMemory(as:to:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/load(fromByteOffset:as:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/loadUnaligned(fromByteOffset:as:)-3rcfy",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/loadUnaligned(fromByteOffset:as:)-4br03",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/moveInitializeMemory(as:from:count:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/storeBytes(of:toByteOffset:as:)-3chnc",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/storeBytes(of:toByteOffset:as:)-9mpot",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/withMemoryRebound(to:capacity:_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Pointee"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/allocate(bytes:alignedTo:)"
+      ],
+      "title": "Type Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/AtomicOptionalRepresentable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/AtomicRepresentable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Comparable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/CustomReflectable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Equatable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Hashable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer/Strideable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/unsafemutablerawpointer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

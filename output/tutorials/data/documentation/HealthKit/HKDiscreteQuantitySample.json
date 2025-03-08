@@ -1,0 +1,2089 @@
+{
+  "abstract": [
+    {
+      "text": "A sample that represents a discrete quantity.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKDiscreteQuantitySample",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKDiscreteQuantitySample"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKDiscreteQuantitySample"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKDiscreteQuantitySample"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-condensed-workout-samples"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A quantity sample contains one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. Use these samples to store data representing independent measurements, such as height, heart rate, or temperature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is a concrete subclass of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. Discrete quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extend-Discrete-Quantity-Samples",
+          "level": 3,
+          "text": "Extend Discrete Quantity Samples",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like many HealthKit classes, you should not subclass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. You may extend this class by adding metadata with custom keys to save related data used by your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample": {
+      "abstract": [
+        {
+          "text": "A sample with values from a short list of possible values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCategorySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCategorySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCategorySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcategorysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation": {
+      "abstract": [
+        {
+          "text": "A sample that groups multiple related samples into a single entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCorrelation"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCorrelation"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCorrelation",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcorrelation"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a cumulative quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCumulativeQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCumulativeQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCumulativeQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcumulativequantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a discrete quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDiscreteQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDiscreteQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDiscreteQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/averageQuantity": {
+      "abstract": [
+        {
+          "text": "The average of all quantities contained by the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "averageQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/averageQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "averageQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "averageQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample/averagequantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/maximumQuantity": {
+      "abstract": [
+        {
+          "text": "The maximum quantity contained by the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/maximumQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample/maximumquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/minimumQuantity": {
+      "abstract": [
+        {
+          "text": "The minimum value contained by the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/minimumQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample/minimumquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantity": {
+      "abstract": [
+        {
+          "text": "The most recent quantity contained by the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostRecentQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample/mostrecentquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantityDateInterval": {
+      "abstract": [
+        {
+          "text": "The date interval for the most recent quantity contained by the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityDateInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12DateIntervalV",
+          "text": "DateInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantityDateInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityDateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostRecentQuantityDateInterval",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverage": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s average quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathAverage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathAverage"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathAverage",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathaverage"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMax": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s maximum quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMax"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMax",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathMax",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathmax"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMin": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s minimum quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMin"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathMin",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathmin"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecent": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s most recent quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecent"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathMostRecent",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathmostrecent"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentDuration": {
+      "abstract": [
+        {
+          "text": "A key path for the duration of the sample’s most recent quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecentDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecentDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathMostRecentDuration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathmostrecentduration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentEndDate": {
+      "abstract": [
+        {
+          "text": "The key path for the end date of the sample’s most recent quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecentEndDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentEndDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecentEndDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathMostRecentEndDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathmostrecentenddate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentStartDate": {
+      "abstract": [
+        {
+          "text": "The key path for the start date of the sample’s most recent quantity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecentStartDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentStartDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathMostRecentStartDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathMostRecentStartDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathmostrecentstartdate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity": {
+      "abstract": [
+        {
+          "text": "An object that stores a value for a given unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample": {
+      "abstract": [
+        {
+          "text": "A sample that represents a quantity, including the value and the units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantitySample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantitySample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample containing a numeric measurement with the provided metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "quantity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quantitySampleWithType:quantity:startDate:endDate:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(type:quantity:start:end:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitysample/init(type:quantity:start:end:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-condensed-workout-samples": {
+      "abstract": [
+        {
+          "text": "Read series data from condensed workouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-condensed-workout-samples",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing condensed workout samples",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-condensed-workout-samples"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/metadata-keys": {
+      "abstract": [
+        {
+          "text": "Constants used to add metadata to objects stored in HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/metadata-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metadata Keys",
+      "type": "topic",
+      "url": "/documentation/healthkit/metadata-keys"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities": {
+      "abstract": [
+        {
+          "text": "Objects used to specify a quantity for a given unit, and to convert between units.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and quantities",
+      "type": "topic",
+      "url": "/documentation/healthkit/units-and-quantities"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Basic-samples",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation",
+        "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities",
+        "doc://com.apple.healthkit/documentation/HealthKit/metadata-keys"
+      ],
+      "title": "Basic samples"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Calculated-Values",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/averageQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/maximumQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/minimumQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantityDateInterval"
+      ],
+      "title": "Accessing Calculated Values"
+    },
+    {
+      "anchor": "Specifying-Predicate-Key-Paths",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMin",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverage",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMax",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecent",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentStartDate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentEndDate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentDuration"
+      ],
+      "title": "Specifying Predicate Key Paths"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKDiscreteQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Calculated-Values",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/averageQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/maximumQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/minimumQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantityDateInterval"
+              ],
+              "title": "Accessing Calculated Values"
+            },
+            {
+              "anchor": "Specifying-Predicate-Key-Paths",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMin",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverage",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMax",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecent",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentStartDate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentEndDate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathMostRecentDuration"
+              ],
+              "title": "Specifying Predicate Key Paths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Basic-samples",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKCumulativeQuantitySample",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKCategorySample",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKCorrelation"
+              ],
+              "title": "Basic samples"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKDiscreteQuantitySample"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantitySample",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)HKQuantitySample",
+                    "text": "HKQuantitySample"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathAverage/title",
+          "value": "HKPredicateKeyPathAverage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathAverage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathAverage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1maximumQuantity/title",
+          "value": "maximumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1maximumQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/title",
+          "value": "HKQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1minimumQuantity/title",
+          "value": "minimumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1minimumQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMax/title",
+          "value": "HKPredicateKeyPathMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMax/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecentStartDate/title",
+          "value": "HKPredicateKeyPathMostRecentStartDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecentStartDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathMostRecentStartDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample/title",
+          "value": "HKDiscreteQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDiscreteQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample~1init(type:quantity:start:end:metadata:)/title",
+          "value": "quantitySampleWithType:quantity:startDate:endDate:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample~1init(type:quantity:start:end:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "quantitySampleWithType:quantity:startDate:endDate:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecent/title",
+          "value": "HKPredicateKeyPathMostRecent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathMostRecent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySample/title",
+          "value": "HKCumulativeQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCumulativeQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCumulativeQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCumulativeQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategorySample/title",
+          "value": "HKCategorySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategorySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategorySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCategorySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCategorySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/title",
+          "value": "HKQuantitySample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantitySample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantitySample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMin/title",
+          "value": "HKPredicateKeyPathMin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathMin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelation/title",
+          "value": "HKCorrelation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCorrelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCorrelation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCorrelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1mostRecentQuantity/title",
+          "value": "mostRecentQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1mostRecentQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mostRecentQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1averageQuantity/title",
+          "value": "averageQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1averageQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "averageQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecentEndDate/title",
+          "value": "HKPredicateKeyPathMostRecentEndDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecentEndDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathMostRecentEndDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecentDuration/title",
+          "value": "HKPredicateKeyPathMostRecentDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathMostRecentDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathMostRecentDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1mostRecentQuantityDateInterval/title",
+          "value": "mostRecentQuantityDateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDiscreteQuantitySample~1mostRecentQuantityDateInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mostRecentQuantityDateInterval"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkdiscretequantitysample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkdiscretequantitysample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1714 @@
+{
+  "abstract": [
+    {
+      "text": "A map of strings in a vector space that enable your app to find similar",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "strings by looking at a string’s neighbors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML15MLWordEmbeddingV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLWordEmbedding"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLWordEmbedding"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MLWordEmbedding"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLWordEmbedding"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure and save a word embedding to a file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which you then add to your project in Xcode. Your project uses that word",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "embedding file at runtime to create an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLEmbedding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance, which finds similar strings based on the proximity of their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure a word embedding with a dictionary, keyed by strings which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make up the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "vocabulary",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of the word embedding. The value for each string is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an array of doubles, which represents a vector. The length of the arrays is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arbitrary but all arrays in a word embedding must be the same length. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "length of the arrays determine the number of dimensions in the vector space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following listing creates a word embedding with four",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dimensions and a vocabulary of two strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let wordEmbedding = try! MLWordEmbedding(dictionary: [",
+            "    \"Hello\"   : [0.0, 1.2, 5.0, 0.0],",
+            "    \"Goodbye\" : [0.0, 1.3, -6.2, 0.1]",
+            "])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve configured an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", save it to an ",
+              "type": "text"
+            },
+            {
+              "code": ".mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to include in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try wordEmbedding.write(toFile: \"~/Desktop/WordEmbedding.mlmodel\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A word embedding file can efficiently store many strings and their vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer": {
+      "abstract": [
+        {
+          "text": "A collection of terms and their labels, which augments a tagger that analyzes natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLGazetteer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLGazetteer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLGazetteer",
+      "type": "topic",
+      "url": "/documentation/createml/mlgazetteer"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTextClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mltextclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding": {
+      "abstract": [
+        {
+          "text": "A map of strings in a vector space that enable your app to find similar",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strings by looking at a string’s neighbors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLWordEmbedding"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLWordEmbedding"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLWordEmbedding",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomPlaygroundDisplayConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomPlaygroundDisplayConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomPlaygroundDisplayConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/customplaygrounddisplayconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/customstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/ModelParameters-swift.struct": {
+      "abstract": [
+        {
+          "text": "The model configuration parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/ModelParameters-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLWordEmbedding.ModelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/modelparameters-swift.struct"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/contains(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the vocabulary contains the given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/contains(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/contains(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/debugDescription": {
+      "abstract": [
+        {
+          "text": "A text representation of the word embedding that’s suitable for output during debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/debugdescription"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/description": {
+      "abstract": [
+        {
+          "text": "A text representation of the word embedding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/description"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/dimension": {
+      "abstract": [
+        {
+          "text": "The number of dimensions in the vocabulary embedding space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dimension"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/dimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dimension",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/dimension"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/distance(between:and:distanceType:)": {
+      "abstract": [
+        {
+          "text": "Calculates the distance between two strings in the vocabulary space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distance"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "between"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "and"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "distanceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLDistanceType",
+          "text": "NLDistanceType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/distance(between:and:distanceType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distance(between:and:distanceType:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/distance(between:and:distancetype:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/init(dictionary:parameters:)": {
+      "abstract": [
+        {
+          "text": "Creates a word embedding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLWordEmbeddingV",
+          "text": "MLWordEmbedding"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLWordEmbeddingV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/init(dictionary:parameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionary:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/init(dictionary:parameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/model": {
+      "abstract": [
+        {
+          "text": "The word embedding contained within a Core ML model file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/model",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/modelParameters-swift.property": {
+      "abstract": [
+        {
+          "text": "The model configuration parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLWordEmbeddingV",
+          "text": "MLWordEmbedding"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLWordEmbeddingV15ModelParametersV",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/modelParameters-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/modelparameters-swift.property"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/playgroundDescription": {
+      "abstract": [
+        {
+          "text": "A description of the word embedding shown in a playground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playgroundDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/playgroundDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playgroundDescription",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/playgrounddescription"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/prediction(from:maxCount:maxDistance:distanceType:)": {
+      "abstract": [
+        {
+          "text": "Predicts neighbors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prediction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "distanceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLDistanceType",
+          "text": "NLDistanceType"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> [(text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", distance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/prediction(from:maxCount:maxDistance:distanceType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prediction(from:maxCount:maxDistance:distanceType:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/prediction(from:maxcount:maxdistance:distancetype:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/vector(for:)": {
+      "abstract": [
+        {
+          "text": "Accesses the vector associated with the given string in the vocabulary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vector"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/vector(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vector(for:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/vector(for:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/vocabularySize": {
+      "abstract": [
+        {
+          "text": "The number of strings in the vocabulary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vocabularySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/vocabularySize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vocabularySize",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/vocabularysize"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/write(to:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the word embedding as a Core ML model file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/write(to:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/write(to:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/write(toFile:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the word embedding as a Core ML model file at the specified file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/write(toFile:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordembedding/write(tofile:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLWordTagger": {
+      "abstract": [
+        {
+          "text": "A word-tagging model you train to classify natural language text at the word level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLWordTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLWordTagger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLWordTagger"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLWordTagger",
+      "type": "topic",
+      "url": "/documentation/createml/mlwordtagger"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-a-text-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-a-text-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a text classifier model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-a-text-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLDistanceType": {
+      "abstract": [
+        {
+          "text": "The means of calculating a distance between two locations in a text embedding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLDistanceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLDistanceType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLDistanceType",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLDistanceType"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/NLEmbedding": {
+      "abstract": [
+        {
+          "text": "A map of strings to vectors, which locates neighboring, similar strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLEmbedding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/NLEmbedding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NLEmbedding",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/NLEmbedding"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage/creating-a-word-tagger-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to tag individual words in natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage/creating-a-word-tagger-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a word tagger model",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage/creating-a-word-tagger-model"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type that supplies a custom description for playground logging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomPlaygroundDisplayConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomPlaygroundDisplayConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomPlaygroundDisplayConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/creating-a-text-classifier-model",
+        "doc://com.apple.documentation/documentation/NaturalLanguage/creating-a-word-tagger-model",
+        "doc://com.apple.CreateML/documentation/CreateML/MLTextClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordTagger",
+        "doc://com.apple.CreateML/documentation/CreateML/MLGazetteer"
+      ],
+      "title": "Text Models"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-word-embedding",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/init(dictionary:parameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/ModelParameters-swift.struct",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/modelParameters-swift.property"
+      ],
+      "title": "Creating a word embedding"
+    },
+    {
+      "anchor": "Testing-a-word-embedding",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/prediction(from:maxCount:maxDistance:distanceType:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/distance(between:and:distanceType:)",
+        "doc://com.apple.documentation/documentation/NaturalLanguage/NLDistanceType",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/contains(_:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/vector(for:)"
+      ],
+      "title": "Testing a word embedding"
+    },
+    {
+      "anchor": "Saving-a-word-embedding",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/write(to:metadata:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/write(toFile:metadata:)"
+      ],
+      "title": "Saving a word embedding"
+    },
+    {
+      "anchor": "Describing-a-word-embedding",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/dimension",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/vocabularySize",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/model",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/description",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/debugDescription",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/playgroundDescription"
+      ],
+      "title": "Describing a word embedding"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomPlaygroundDisplayConvertible-Implementations",
+        "doc://com.apple.CreateML/documentation/CreateML/MLWordEmbedding/CustomStringConvertible-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLEmbedding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLEmbedding"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NaturalLanguage~1NLDistanceType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLDistanceType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlwordembedding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

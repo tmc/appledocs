@@ -1,0 +1,597 @@
+{
+  "abstract": [
+    {
+      "text": "Convert a legacy Safari extension to a Safari app extension, automatically with keys or manually.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting a legacy Safari extension to a Safari app extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you distribute your Safari app extension, you may want it to completely replace your previously provided legacy Safari extensions. Two options are available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure your Safari app extension to provide a clean upgrade path that automatically removes the previous legacy Safari extension when installing the Safari app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manually convert your legacy Safari extension to a Safari app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Convert-legacy-Safari-extensions-automatically",
+          "level": 3,
+          "text": "Convert legacy Safari extensions automatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariExtensionBundleIdentifiersToUninstall",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element inside your app extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plis",
+              "type": "codeVoice"
+            },
+            {
+              "text": "t file. It specifies any legacy Safari extensions that you want to remove when your Safari app extension loads. The value for this key is an array of strings, each of which is the bundle identifier of a legacy Safari extension that you want to remove.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The legacy Safari extension you’re replacing must have been created by the same developer account that you use to create the Safari app extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app installs, the Safari app extension installs with it, and the system removes the legacy Safari extensions you include in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file from Safari. If any of the legacy Safari extensions are enabled when the upgrade occurs, the Safari app extension is also enabled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-legacy-Safari-extensions-manually",
+          "level": 3,
+          "text": "Convert legacy Safari extensions manually",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you already have a legacy Safari extension and you want to convert it to a Safari app extension, you need to modify parts of it and completely rewrite others. The lists below describe these changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modifications are required in these areas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Context menu item validation.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Specify these items statically. In a Safari app extension, there’s no validation of contextual menu items before the menu appears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Number of toolbar items.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " You can have only one toolbar item. In a Safari app extension, the system statically determines the image to display in the toolbar at build time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Extension bars.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Remove any extension bars from your legacy Safari extension. A Safari app extension can’t create extension bars.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rewrites are required in these areas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Using an",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "file.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Create an Xcode project for your Safari app extension. For data that you previously entered in the Safari Extension Builder interface, enter it instead in the app extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Working in the native app extension.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " A Safari app extension doesn’t have a global HTML page. Instead, pass messages from your injected code into the app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Sending messages.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In legacy Safari extensions, you used a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safari.application.activeBrowserWindow.activeTab.page",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to send messages. In a Safari app extension, if you specify user data when sending a message, the data must be a dictionary object. For more information about the message-handling process in the native app extension, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Creating popovers.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use AppKit views and view controllers to create popovers in native code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension": {
+      "abstract": [
+        {
+          "text": "Add, build, and enable a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/building-a-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts": {
+      "abstract": [
+        {
+          "text": "Communicate between your Safari app extension and injected scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing messages between Safari app extensions and injected scripts",
+      "type": "topic",
+      "url": "/documentation/safariservices/passing-messages-between-safari-app-extensions-and-injected-scripts"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension": {
+      "abstract": [
+        {
+          "text": "Debug your Safari app extension with these techniques.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-app-extension"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,462 @@
+{
+  "abstract": [
+    {
+      "text": "Frees the memory associated with a pixel format object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglDestroyPixelFormat"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglDestroyPixelFormat",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglDestroyPixelFormat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglDestroyPixelFormat"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglDestroyPixelFormat"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglDestroyPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLPixelFormat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLPixelFormat",
+              "text": "AGLPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pix"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pixel format object whose resources you want to release. This must be a  pixel format object returned by the function",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". AGL sets a ",
+                  "type": "text"
+                },
+                {
+                  "code": "AGL_BAD_PIXELFMT",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error if you pass the returned value from the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or the ",
+                  "type": "text"
+                },
+                {
+                  "code": "pix",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is not a valid pixel format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pix"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A copy of the pixel format data is made by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglCreateContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, so your application can free a pixel format immediately after creating a rendering context with it. On the other hand, a pixel format object can be useful for enumerating virtual screens when multiple renderers are supported, so you may want to retain it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLPixelFormat": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat": {
+      "abstract": [
+        {
+          "text": "Creates a pixel format object that satisfies the constraints of the specified buffer and renderer attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglChoosePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglChoosePixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglchoosepixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreateContext": {
+      "abstract": [
+        {
+          "text": "Creates an AGL rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreateContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatecontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreatePixelFormat": {
+      "abstract": [
+        {
+          "text": "Creates a pixel format with the provided attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreatePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreatePixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreatePixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatepixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribePixelFormat": {
+      "abstract": [
+        {
+          "text": "Retrieves the value of an attribute associated with a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribePixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribePixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribePixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldescribepixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyPixelFormat": {
+      "abstract": [
+        {
+          "text": "Frees the memory associated with a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroypixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDevicesOfPixelFormat": {
+      "abstract": [
+        {
+          "text": "Returns the graphics devices supported by a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDevicesOfPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDevicesOfPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDevicesOfPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldevicesofpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDisplaysOfPixelFormat": {
+      "abstract": [
+        {
+          "text": "Returns the graphics devices supported by a pixel format object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDisplaysOfPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDisplaysOfPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDisplaysOfPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/agldisplaysofpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetCGLPixelFormat": {
+      "abstract": [
+        {
+          "text": "Gets the CGL pixel format object associated with an AGL pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetCGLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetCGLPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetCGLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetcglpixelformat"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat": {
+      "abstract": [
+        {
+          "text": "Returns the next pixel format object in a list of pixel format objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglNextPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglNextPixelFormat",
+      "type": "topic",
+      "url": "/documentation/agl/aglnextpixelformat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Pixel-Format-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglCreatePixelFormat",
+        "doc://com.apple.agl/documentation/AGL/aglChoosePixelFormat",
+        "doc://com.apple.agl/documentation/AGL/aglDescribePixelFormat",
+        "doc://com.apple.agl/documentation/AGL/aglGetCGLPixelFormat",
+        "doc://com.apple.agl/documentation/AGL/aglDisplaysOfPixelFormat",
+        "doc://com.apple.agl/documentation/AGL/aglDevicesOfPixelFormat",
+        "doc://com.apple.agl/documentation/AGL/aglNextPixelFormat"
+      ],
+      "title": "Managing Pixel Format Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/agldestroypixelformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

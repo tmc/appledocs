@@ -1,0 +1,1049 @@
+{
+  "abstract": [
+    {
+      "text": "Understand timeframes and priorities for ad impressions that result in ad attributions, and how impressions qualify for postbacks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Receiving ad attributions and postbacks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ad networks receive attributions in the form of postbacks. Before an ad network can receive a postback, the following events need to occur within limited time-windows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ad networks sign and present ads in the form of StoreKit-rendered ads and custom-rendered ads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Someone installs or reengages with the advertised app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person or AdAttributionKit launches the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app updates the conversion values when the app launches, and continues to update it as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the time-windows for the events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Time-window",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View-through custom or StoreKit rendered ads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person has 24 hours to install the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click-through custom or StoreKit-rendered ads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person has 30 days to install the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Someone installs the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device has 60 days to send the first conversion value update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Someone reengages with the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device has 2 days to send the first conversion value update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The minimum elapsed time between a conversion event for the advertised app and the time the ad network receives a postback is 24 to 48 hours. To reduce that time to 5 to 10 minutes during testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Time-windows for events apply equally to winning and nonwinning postbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Process-install-conversions",
+          "level": 2,
+          "text": "Process install conversions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install conversion events occur when someone installs the app from the App Store or alternative app marketplace after interacting with an AdAttributionKit ad. Install conversions create winning and nonwinning postbacks for ad networks that had qualifying ad impressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AdAttributionKit represents install postbacks as either ",
+              "type": "text"
+            },
+            {
+              "code": "download",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "redownload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the postback’s ",
+              "type": "text"
+            },
+            {
+              "code": "conversion-type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. For more information about the postback parameters, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-a-winning-postback",
+          "level": 3,
+          "text": "Receive a winning postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When multiple ad impressions qualify for postbacks from an install conversion, the device sorts the ad impressions and selects a single winner. The system considers ad impressions from both AdAttributionKit and SKAdNetwork when evaluating the attribution after someone installs the advertised app. For more information about the ad sorting criteria, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Install conversions always produce winning postbacks if there’s a qualifying ad impression, subject to their Crowd Anonymity tier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Receive-a-nonwinning-postback",
+          "level": 3,
+          "text": "Receive a nonwinning postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ad network can receive only one postback, winning or nonwinning. If you receive the winning postback, you don’t receive any nonwinning postbacks even if your ads have multiple qualifying ad impressions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Up to five ad networks receive one nonwinning postback each. The system sorts the recorded ad impressions based on recency and whether they are click-through or view-through, with the most recent ad views and click-through taking precedence. Devices send nonwinning postbacks for the top five ad impressions from different ad networks that qualify for ad attribution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-reengagement-conversions",
+          "level": 2,
+          "text": "Handle reengagement conversions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reengagement conversions occur when someone already has the advertised app installed and taps a custom rendered ad, or they tap the Open button on a StoreKit rendered ad. Reengagement only involves the impression that drives the conversion, so there are no nonwinning postbacks. Additionally, the system only processes reengagement conversions as a result of click interactions on ads. The system doesn’t create reengagement postbacks from view-through ads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18 and later, AdAttributionsKit allows publisher apps to pass a reengagement URL. The system opens the reengagement URL if the device has the advertised app installed, and the URL is a registered universal link for the advertised app. The system also appends the query parameter ",
+              "type": "text"
+            },
+            {
+              "code": "AdAttributionKitReengagementOpen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the URL to indicate AdAttributionKit opened it. When the advertised app receives the universal link, it can check the URL for the presence of this parameter to determine whether AdAttributionKit opened it. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/reengagementOpenURLParameter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property also defines this parameter as a constant. For more information about universal links, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system also strips known tracking parameters from the URL before delivering them to the advertised app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s possible a reengagement conversion may occur for an app when there’s already an existing install or reengagement conversion for that app. In this case, the system locks the active postbacks from the prior conversion and schedules them for transmission. AdAttributionsKit removes postbacks from the prior conversions that you haven’t registered and replaces them with any postbacks from the latest conversion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AdAttributionsKit represents reengagement postbacks as ",
+              "type": "text"
+            },
+            {
+              "code": "reengagement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the postback’s ",
+              "type": "text"
+            },
+            {
+              "code": "conversion-type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. For more information about the postback parameters, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system doesn’t always produce postbacks after a reengagement. The device is subject to reengagement limits on a monthly per-app basis, as well as a yearly per-device basis. The parameter AdAttributionsKit appends to the URL is always present on the URL, however, even if AdAttributionsKit doesn’t create reengagement postbacks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Update-postbacks-by-their-conversion-type",
+          "level": 2,
+          "text": "Update postbacks by their conversion type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Advertisers may attribute conversion values differently inside their app, depending on the conversion type: ",
+              "type": "text"
+            },
+            {
+              "code": "install",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "reengagement",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In iOS 18 and later, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify which types of postbacks to update. The system defaults to updating all types of postbacks if you specify ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the conversion types, or if you use an API that doesn’t contain conversion types to update the conversion value, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example in an onboarding flow, an advertiser can attribute conversion values differently, depending on whether the conversion is an install or a reengagement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func attributeCustomerAccountCreated() async {",
+            "    do {",
+            "        // Updates any active install postbacks with a conversion value of 20.",
+            "        let installPostbackUpdate = PostbackUpdate(fineConversionValue: 20, lockPostback: false, conversionTypes: [.install])",
+            "        try await Postback.updateConversionValue(installPostbackUpdate)",
+            "",
+            "        // Updates any active reengagement postbacks with a conversion value of 12.",
+            "        let reengagementPostbackUpdate = PostbackUpdate(fineConversionValue: 12, lockPostback: false, conversionTypes: [.reengagement])",
+            "        try await Postback.updateConversionValue(installPostbackUpdate)",
+            "    }",
+            "    catch {",
+            "        print(\"Failed to update postback conversion value: \\(error)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Opt-in-to-receive-a-copy-of-the-winning-postback",
+          "level": 2,
+          "text": "Opt in to receive a copy of the winning postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices can send a copy of the winning postback to the developer of the advertised app. Developers opt in to receive the postback by specifying a server endpoint in their app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. For more information about opting in and specifying the endpoint, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The postback that developers receive is an exact copy of the winning postback that the device sends to the ad network. The device sends the postback to developers at the same time it sends the winning postback to the ad network. To verify the postback, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-the-number-of-view-through-ad-impressions-from-a-publisher-app",
+          "level": 2,
+          "text": "Limit the number of view-through ad impressions from a publisher app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AdAttributionKit records a maximum of 15 view-through ad impressions per publisher app before discarding the oldest one. The recorded ad impressions may advertise various products, and are each eligible to become pending attributions until they expire (after 24 hours).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/reengagementOpenURLParameter": {
+      "abstract": [
+        {
+          "text": "A string that represents the query parameter that AdAttributionKit appends to the URL to indicate that a reengagement has",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reengagementOpenURLParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/reengagementOpenURLParameter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reengagementOpenURLParameter",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/reengagementopenurlparameter"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the conversion value using the given postback update configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit14PostbackUpdateV",
+          "text": "PostbackUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)": {
+      "abstract": [
+        {
+          "text": "Updates the conversion value with the provided fine and coarse conversion values, and optionally locks the postback, reducing the amount of time the system needs to deliver a signal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16AdAttributionKit21CoarseConversionValueO",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockPostback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/Postback/updateConversionValue(_:coarseConversionValue:lockPostback:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConversionValue(_:coarseConversionValue:lockPostback:)",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/postback/updateconversionvalue(_:coarseconversionvalue:lockpostback:)"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability": {
+      "abstract": [
+        {
+          "text": "Learn how attribution APIs interact to deliver ad impressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding AdAttributionKit and SKAdNetwork interoperability",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/adattributionkit-skadnetwork-interoperability"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app": {
+      "abstract": [
+        {
+          "text": "Prepare an advertised app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an advertised app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/configuring-an-advertised-app"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback": {
+      "abstract": [
+        {
+          "text": "Interpret postback properties to understand the attribution report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying the parameters in a postback",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/identifying-the-parameters-in-a-postback"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app": {
+      "abstract": [
+        {
+          "text": "Render different ad styles in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting ads in your app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/presenting-ads-in-your-app"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with a downloaded profile",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/testing-ad-attributions-with-a-downloaded-profile"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with Developer Mode",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/testing-adattributionkit-with-developer-mode"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying a postback",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/verifying-a-postback"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content": {
+      "identifier": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content",
+      "title": "Allowing apps and websites to link to your content",
+      "titleInlineContent": [
+        {
+          "text": "Allowing apps and websites to link to your content",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/receiving-ad-attributions-and-postbacks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

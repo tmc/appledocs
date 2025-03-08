@@ -1,0 +1,1623 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the relationship between skeletal animations and the nodes and geometries they animate.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNSkinner",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNSkinner"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNSkinner"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNSkinner"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Skeletal animation is a technique for simplifying the animation of complex geometries, such as humanoid characters in a game. An animation skeleton is a simple hierarchy of control nodes, which themselves have no visible geometry. Associating the skeleton with a geometry (also called “skinning” the skeleton or creating a skinned model) allows SceneKit to automatically deform the geometry when you move the skeleton’s control nodes, as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2929790",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Working-with-an-Animation-Skeleton",
+          "level": 3,
+          "text": "Working with an Animation Skeleton",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, an artist creates a skinned model using external 3D authoring tools and saves it, along with animations that use the skeleton, in a scene file. You load the model from the scene file and pose or animate it in your app, either by using animation objects also loaded from the scene file or by directly manipulating the nodes in the skeleton.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create a skinned model from separately defined geometry and skeleton data using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sharing-a-Skinner-Object",
+          "level": 3,
+          "text": "Sharing a Skinner Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To work with a skinned model’s skeleton, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/skinner",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the model’s root node. For example, one file might contain an animated game character, and other files might contain accessories (such as hats or backpacks) for the character to wear. An artist using 3D authoring tools can specify that the character and the accessories be animated using identical skeletons. To attach a hat to the character so that they animate together, you link the skinner object responsible for animating the hat to the skeleton associated with the animated character, as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SCNNode *hero = [SCNScene sceneNamed:@\"Hero\"].rootNode;",
+            "SCNNode *hat = [SCNScene sceneNamed:@\"FancyFedora\"].rootNode;",
+            "hat.skinner.skeleton = hero.skinner.skeleton;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher": {
+      "abstract": [
+        {
+          "text": "An object that manages smooth transitions between a node’s base geometry and one or more target geometries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMorpher"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMorpher"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMorpher",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/skinner": {
+      "abstract": [
+        {
+          "text": "The skinner object responsible for skeletal animations of node’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "skinner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNSkinner",
+          "text": "SCNSkinner"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/skinner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "skinner"
+        }
+      ],
+      "role": "symbol",
+      "title": "skinner",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/skinner"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner": {
+      "abstract": [
+        {
+          "text": "An object that manages the relationship between skeletal animations and the nodes and geometries they animate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSkinner"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSkinner"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSkinner",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometry": {
+      "abstract": [
+        {
+          "text": "The geometry whose surface the skinner’s animation skeleton deforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseGeometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometry",
+          "text": "SCNGeometry"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "baseGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "baseGeometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/basegeometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometryBindTransform": {
+      "abstract": [
+        {
+          "text": "The coordinate transformation for the skinner’s geometry in its default state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseGeometryBindTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNMatrix4",
+          "text": "SCNMatrix4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometryBindTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "baseGeometryBindTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "baseGeometryBindTransform",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/basegeometrybindtransform"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneIndices": {
+      "abstract": [
+        {
+          "text": "The geometry source defining the mapping from bone indices in skeleton data to the skinner’s bones array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boneIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneIndices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boneIndices"
+        }
+      ],
+      "role": "symbol",
+      "title": "boneIndices",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/boneindices"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneInverseBindTransforms": {
+      "abstract": [
+        {
+          "text": "The default transforms for the animation skeleton’s bone nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boneInverseBindTransforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSValue",
+          "text": "NSValue"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneInverseBindTransforms",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boneInverseBindTransforms"
+        }
+      ],
+      "role": "symbol",
+      "title": "boneInverseBindTransforms",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/boneinversebindtransforms"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneWeights": {
+      "abstract": [
+        {
+          "text": "The geometry source that defines the influence of each bone on the positions the geometry’s vertices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boneWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneWeights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boneWeights"
+        }
+      ],
+      "role": "symbol",
+      "title": "boneWeights",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/boneweights"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/bones": {
+      "abstract": [
+        {
+          "text": "The control nodes of the animation skeleton.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bones"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/bones",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bones"
+        }
+      ],
+      "role": "symbol",
+      "title": "bones",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/bones"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)": {
+      "abstract": [
+        {
+          "text": "Creates a skinner object with the specified visible geometry and skeleton information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "baseGeometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometry",
+          "text": "SCNGeometry"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bones"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boneInverseBindTransforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSValue",
+          "text": "NSValue"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boneWeights"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boneIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometrySource",
+          "text": "SCNGeometrySource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/init(basegeometry:bones:boneinversebindtransforms:boneweights:boneindices:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/skeleton": {
+      "abstract": [
+        {
+          "text": "The root node of the skinner object’s animation skeleton.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "skeleton"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/skeleton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "skeleton"
+        }
+      ],
+      "role": "symbol",
+      "title": "skeleton",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner/skeleton"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/animation": {
+      "abstract": [
+        {
+          "text": "Create declarative animations that move elements of a scene in predetermined ways, or manage animations imported with external authoring tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/scenekit/animation"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/constraints": {
+      "abstract": [
+        {
+          "text": "Automatically adjust the position or orientation of a node based on specified rules.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/constraints",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Constraints",
+      "type": "topic",
+      "url": "/documentation/scenekit/constraints"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-2929790": {
+      "alt": null,
+      "identifier": "media-2929790",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/171656cd5d3d3b9b2e3c16e67e23641f/media-2929790@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation-and-Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/animation",
+        "doc://com.apple.scenekit/documentation/SceneKit/constraints",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher"
+      ],
+      "title": "Animation and Constraints"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Skinner-Object",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)"
+      ],
+      "title": "Creating a Skinner Object"
+    },
+    {
+      "anchor": "Working-with-a-Skinned-Geometry",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometry",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometryBindTransform"
+      ],
+      "title": "Working with a Skinned Geometry"
+    },
+    {
+      "anchor": "Working-with-an-Animation-Skeleton",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/skeleton",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/bones",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneInverseBindTransforms",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneWeights",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneIndices"
+      ],
+      "title": "Working with an Animation Skeleton"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNSkinner"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Skinner-Object",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)"
+              ],
+              "title": "Creating a Skinner Object"
+            },
+            {
+              "anchor": "Working-with-a-Skinned-Geometry",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometry",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/baseGeometryBindTransform"
+              ],
+              "title": "Working with a Skinned Geometry"
+            },
+            {
+              "anchor": "Working-with-an-Animation-Skeleton",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/skeleton",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/bones",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneInverseBindTransforms",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneWeights",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner/boneIndices"
+              ],
+              "title": "Working with an Animation Skeleton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animation-and-Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/animation",
+                "doc://com.apple.scenekit/documentation/SceneKit/constraints",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher"
+              ],
+              "title": "Animation and Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNSkinner"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/title",
+          "value": "SCNMorpher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1boneIndices/title",
+          "value": "boneIndices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1boneIndices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boneIndices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1skinner/title",
+          "value": "skinner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1skinner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "skinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1baseGeometry/title",
+          "value": "baseGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1baseGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "baseGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)/title",
+          "value": "skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1init(baseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner/title",
+          "value": "SCNSkinner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1boneInverseBindTransforms/title",
+          "value": "boneInverseBindTransforms"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1boneInverseBindTransforms/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boneInverseBindTransforms"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1baseGeometryBindTransform/title",
+          "value": "baseGeometryBindTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1baseGeometryBindTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "baseGeometryBindTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1boneWeights/title",
+          "value": "boneWeights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1boneWeights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boneWeights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1skeleton/title",
+          "value": "skeleton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1skeleton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "skeleton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1bones/title",
+          "value": "bones"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner~1bones/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bones"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnskinner"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnskinner"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

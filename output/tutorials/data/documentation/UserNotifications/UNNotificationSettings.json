@@ -1,0 +1,2292 @@
+{
+  "abstract": [
+    {
+      "text": "The object for managing notification-related settings and the authorization status of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UNNotificationSettings",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UNNotificationSettings"
+      }
+    ],
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UNNotificationSettings"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UNNotificationSettings"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains the current authorization status and notification-related settings for your app. Apps must receive authorization to schedule notifications and to interact with the user. Apps that run in CarPlay must similarly receive authorization to do so. Use this object to determine what notification-related actions your app can perform. You might then use that information to enable, disable, or adjust your app’s notification-related behaviors. Regardless of whether you take action, the system enforces your app’s settings by preventing denied interactions from occurring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create instances of this class directly. Instead, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to get the current settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about requesting authorization for user interactions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNAlertStyle": {
+      "abstract": [
+        {
+          "text": "Constants indicating the presentation styles for alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNAlertStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNAlertStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNAlertStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNAlertStyle",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unalertstyle"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating whether the app is allowed to schedule notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unauthorizationstatus"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSetting": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the current status of a notification setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings": {
+      "abstract": [
+        {
+          "text": "The object for managing notification-related settings and the authorization status of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSettings",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertSetting": {
+      "abstract": [
+        {
+          "text": "The authorization status for displaying alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alertSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alertSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "alertSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/alertsetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertStyle": {
+      "abstract": [
+        {
+          "text": "The type of alert that the app may display when the device is unlocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alertStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNAlertStyle",
+          "text": "UNAlertStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alertStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "alertStyle",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/alertstyle"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/announcementSetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates whether Siri can announce your app’s notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "announcementSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/announcementSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "announcementSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "announcementSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/announcementsetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "The app’s ability to schedule and receive local and remote notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNAuthorizationStatus",
+          "text": "UNAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/authorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/authorizationstatus"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/badgeSetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates whether badges appear on your app’s icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badgeSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/badgeSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "badgeSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "badgeSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/badgesetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/carPlaySetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates whether your app’s notifications appear in CarPlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "carPlaySetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/carPlaySetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "carPlaySetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "carPlaySetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/carplaysetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/criticalAlertSetting": {
+      "abstract": [
+        {
+          "text": "The authorization status for playing sounds for critical alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "criticalAlertSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/criticalAlertSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "criticalAlertSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "criticalAlertSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/criticalalertsetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/directMessagesSetting": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "directMessagesSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/directMessagesSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "directMessagesSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "directMessagesSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/directmessagessetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/lockScreenSetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates whether your app’s notifications appear on a device’s Lock screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockScreenSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/lockScreenSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockScreenSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockScreenSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/lockscreensetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/notificationCenterSetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates whether your app’s notifications appear in Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationCenterSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/notificationCenterSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notificationCenterSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "notificationCenterSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/notificationcentersetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/providesAppNotificationSettings": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating the system displays a button for in-app notification settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "providesAppNotificationSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/providesAppNotificationSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "providesAppNotificationSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "providesAppNotificationSettings",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/providesappnotificationsettings"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/scheduledDeliverySetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates the system schedules the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledDeliverySetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/scheduledDeliverySetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scheduledDeliverySetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "scheduledDeliverySetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/scheduleddeliverysetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/showPreviewsSetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates whether the app shows a preview of the notification’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showPreviewsSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNShowPreviewsSetting",
+          "text": "UNShowPreviewsSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/showPreviewsSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showPreviewsSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "showPreviewsSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/showpreviewssetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/soundSetting": {
+      "abstract": [
+        {
+          "text": "The authorization status for playing sounds for incoming notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "soundSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/soundSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "soundSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "soundSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/soundsetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/timeSensitiveSetting": {
+      "abstract": [
+        {
+          "text": "The setting that indicates the system treats the notification as time-sensitive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeSensitiveSetting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationSetting",
+          "text": "UNNotificationSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/timeSensitiveSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeSensitiveSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeSensitiveSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings/timesensitivesetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNShowPreviewsSetting": {
+      "abstract": [
+        {
+          "text": "Constants indicating the style previewing a notification’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNShowPreviewsSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNShowPreviewsSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNShowPreviewsSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNShowPreviewsSetting",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unshowpreviewssetting"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter": {
+      "abstract": [
+        {
+          "text": "The central object for managing notification-related activities for your app or app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization and feature-related settings for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationSettings",
+          "text": "UNNotificationSettings"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter/getNotificationSettings(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getNotificationSettingsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getNotificationSettings(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter/getnotificationsettings(completionhandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for processing incoming notifications and responding to notification actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenterDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenterDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenterDelegate",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenterdelegate"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications": {
+      "abstract": [
+        {
+          "text": "Request permission to display alerts, play sounds, or badge the app’s icon in response to a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Asking permission to use notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/asking-permission-to-use-notifications"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate"
+      ],
+      "title": "Notification management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Authorization-Status",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/authorizationStatus",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationStatus"
+      ],
+      "title": "Getting the Authorization Status"
+    },
+    {
+      "anchor": "Getting-Device-Specific-Settings",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/notificationCenterSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/lockScreenSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/carPlaySetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/badgeSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/soundSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/criticalAlertSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/announcementSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/scheduledDeliverySetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/timeSensitiveSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSetting"
+      ],
+      "title": "Getting Device-Specific Settings"
+    },
+    {
+      "anchor": "Getting-Interface-Settings",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertStyle",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNAlertStyle",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/showPreviewsSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNShowPreviewsSetting",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/providesAppNotificationSettings"
+      ],
+      "title": "Getting Interface Settings"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/directMessagesSetting"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UNNotificationSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.usernotifications/documentation/UserNotifications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Authorization-Status",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/authorizationStatus",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNAuthorizationStatus"
+              ],
+              "title": "Getting the Authorization Status"
+            },
+            {
+              "anchor": "Getting-Device-Specific-Settings",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/notificationCenterSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/lockScreenSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/carPlaySetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/badgeSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/soundSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/criticalAlertSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/announcementSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/scheduledDeliverySetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/timeSensitiveSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSetting"
+              ],
+              "title": "Getting Device-Specific Settings"
+            },
+            {
+              "anchor": "Getting-Interface-Settings",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/alertStyle",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNAlertStyle",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/showPreviewsSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNShowPreviewsSetting",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/providesAppNotificationSettings"
+              ],
+              "title": "Getting Interface Settings"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings/directMessagesSetting"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate"
+              ],
+              "title": "Notification management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UNNotificationSettings"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1showPreviewsSetting/title",
+          "value": "showPreviewsSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1showPreviewsSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showPreviewsSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAuthorizationStatus/title",
+          "value": "UNAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1criticalAlertSetting/title",
+          "value": "criticalAlertSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1criticalAlertSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "criticalAlertSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1alertStyle/title",
+          "value": "alertStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1alertStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alertStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1scheduledDeliverySetting/title",
+          "value": "scheduledDeliverySetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1scheduledDeliverySetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scheduledDeliverySetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1timeSensitiveSetting/title",
+          "value": "timeSensitiveSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1timeSensitiveSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeSensitiveSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1authorizationStatus/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1authorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1directMessagesSetting/title",
+          "value": "directMessagesSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1directMessagesSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "directMessagesSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNShowPreviewsSetting/title",
+          "value": "UNShowPreviewsSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNShowPreviewsSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNShowPreviewsSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNShowPreviewsSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNShowPreviewsSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1alertSetting/title",
+          "value": "alertSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1alertSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alertSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/title",
+          "value": "UNNotificationSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAlertStyle/title",
+          "value": "UNAlertStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAlertStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNAlertStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNAlertStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNAlertStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSetting/title",
+          "value": "UNNotificationSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1carPlaySetting/title",
+          "value": "carPlaySetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1carPlaySetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "carPlaySetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1providesAppNotificationSettings/title",
+          "value": "providesAppNotificationSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1providesAppNotificationSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "providesAppNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1badgeSetting/title",
+          "value": "badgeSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1badgeSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "badgeSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/title",
+          "value": "UNUserNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1lockScreenSetting/title",
+          "value": "lockScreenSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1lockScreenSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lockScreenSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1announcementSetting/title",
+          "value": "announcementSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1announcementSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "announcementSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getNotificationSettings(completionHandler:)/title",
+          "value": "getNotificationSettingsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter~1getNotificationSettings(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getNotificationSettingsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/title",
+          "value": "UNUserNotificationCenterDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1soundSetting/title",
+          "value": "soundSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1soundSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "soundSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1notificationCenterSetting/title",
+          "value": "notificationCenterSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings~1notificationCenterSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "notificationCenterSetting"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/unnotificationsettings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/unnotificationsettings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

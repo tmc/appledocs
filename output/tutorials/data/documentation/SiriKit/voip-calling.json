@@ -1,0 +1,2337 @@
+{
+  "abstract": [
+    {
+      "text": "Initiate calls and search the user’s call history.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/voip-calling"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "VoIP Calling"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the VoIP domain, users can ask Siri to initiate audio and video calls or search for calls already received by your app. Your Intents app extension validates the intent parameters, but doesn’t place calls or perform searches directly. Instead, SiriKit expects you to hand off control to your app, which is responsible for displaying the search results and managing calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "It’s strongly recommended that you use CallKit to initiate and manage your app’s calls. CallKit lets you integrate your calling services with the system, making it easier for users to receive and manage calls from your app and other calling apps. If you don’t support CallKit, Siri launches your app so it can begin the call.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAnswerCallIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inanswercallintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentHandling": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAnswerCallIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inanswercallintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAnswerCallIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inanswercallintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentResponseCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAnswerCallIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAnswerCallIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/intents/inanswercallintentresponsecode"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityOptions": {
+      "abstract": [
+        {
+          "text": "Constants indicating the capabilities of the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallCapabilityOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallCapabilityOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallCapabilityOptions",
+      "type": "topic",
+      "url": "/documentation/intents/incallcapabilityoptions"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the call capability for the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallCapabilityResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallCapabilityResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallCapabilityResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallcapabilityresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallDestinationType": {
+      "abstract": [
+        {
+          "text": "Constants describing the destination of a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallDestinationType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallDestinationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallDestinationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallDestinationType",
+      "type": "topic",
+      "url": "/documentation/intents/incalldestinationtype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the destination type of a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallDestinationTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallDestinationTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallDestinationTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incalldestinationtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallGroup": {
+      "abstract": [
+        {
+          "text": "The details of a group call handled by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallGroup",
+      "type": "topic",
+      "url": "/documentation/intents/incallgroup"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecord": {
+      "abstract": [
+        {
+          "text": "The details about a call handled by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecord",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecord"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordFilter": {
+      "abstract": [
+        {
+          "text": "Filters a user specifies to redial a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordFilter",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordfilter"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the details of a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordType": {
+      "abstract": [
+        {
+          "text": "Constants describing the type of the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordType",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordtype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptions": {
+      "abstract": [
+        {
+          "text": "Constants describing the types of calls to include during a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordTypeOptions",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordtypeoptions"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the call types to include in a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordTypeOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordtypeoptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the types of calls that your app handled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFocusStatus": {
+      "abstract": [
+        {
+          "text": "The user’s preference for receiving notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFocusStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFocusStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFocusStatus",
+      "type": "topic",
+      "url": "/documentation/intents/infocusstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFocusStatusAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "A constant that indicates whether your app has authorization to access the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFocusStatusAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFocusStatusAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/intents/infocusstatusauthorizationstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFocusStatusCenter": {
+      "abstract": [
+        {
+          "text": "An object that maintains the user’s current focus status and your app’s ability to access it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFocusStatusCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFocusStatusCenter",
+      "type": "topic",
+      "url": "/documentation/intents/infocusstatuscenter"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INHangUpCallIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inhangupcallintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentHandling": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INHangUpCallIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inhangupcallintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentResponse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INHangUpCallIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inhangupcallintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentResponseCode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INHangUpCallIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INHangUpCallIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/intents/inhangupcallintentresponsecode"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntent": {
+      "abstract": [
+        {
+          "text": "An object that indicates the user’s focus status is changing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentHandling": {
+      "abstract": [
+        {
+          "text": "A set of methods an object implements to process intents that share the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to an intent that shares the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponseCode": {
+      "abstract": [
+        {
+          "text": "A constant that indicates your app’s ability to handle an intent to share the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShareFocusStatusIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShareFocusStatusIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/intents/insharefocusstatusintentresponsecode"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallCallCapabilityResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the call capability for the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallCallCapabilityResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallCallCapabilityResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallCallCapabilityResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallCallCapabilityResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallcallcapabilityresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallCallRecordToCallBackResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the redial capabilities of a missed call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallCallRecordToCallBackResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallCallRecordToCallBackResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallCallRecordToCallBackResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallCallRecordToCallBackResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallcallrecordtocallbackresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallCallRecordToCallBackUnsupportedReason": {
+      "abstract": [
+        {
+          "text": "A reason why your app can’t use a record to call a person back.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallCallRecordToCallBackUnsupportedReason"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallCallRecordToCallBackUnsupportedReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallCallRecordToCallBackUnsupportedReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallCallRecordToCallBackUnsupportedReason",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallcallrecordtocallbackunsupportedreason"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallContactResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the contact for the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallContactResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallContactResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallContactResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallContactResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallcontactresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallIntent": {
+      "abstract": [
+        {
+          "text": "A request to start an audio or video call with one or more users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallIntent",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallIntentHandling": {
+      "abstract": [
+        {
+          "text": "An interface that handles requests to start audio and video calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStartCallIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a start call intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStartCallIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStartCallIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/instartcallintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/car-commands": {
+      "abstract": [
+        {
+          "text": "Manage vehicle door locks and get the vehicle’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Car Commands",
+      "type": "topic",
+      "url": "/documentation/sirikit/car-commands"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers": {
+      "abstract": [
+        {
+          "text": "Identify intents that user notifications specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Class Identifiers",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-class-identifiers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes": {
+      "abstract": [
+        {
+          "text": "Create and manage notes and to-do list items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists and Notes",
+      "type": "topic",
+      "url": "/documentation/sirikit/lists-and-notes"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/media": {
+      "abstract": [
+        {
+          "text": "Listen and control audio through Siri Intents, or listen and watch media content from your app with shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media",
+      "type": "topic",
+      "url": "/documentation/sirikit/media"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/messaging": {
+      "abstract": [
+        {
+          "text": "Send messages and search the user’s received messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Messaging",
+      "type": "topic",
+      "url": "/documentation/sirikit/messaging"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/payments": {
+      "abstract": [
+        {
+          "text": "Send payments between users or pay bills.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/payments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payments",
+      "type": "topic",
+      "url": "/documentation/sirikit/payments"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations": {
+      "abstract": [
+        {
+          "text": "Create and manage restaurant reservations with help from the Maps app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Restaurant Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/restaurant-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/ride-booking": {
+      "abstract": [
+        {
+          "text": "Book rides and report their status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ride Booking",
+      "type": "topic",
+      "url": "/documentation/sirikit/ride-booking"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/workouts": {
+      "abstract": [
+        {
+          "text": "Start, end, and manage fitness routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts",
+      "type": "topic",
+      "url": "/documentation/sirikit/workouts"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+        "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes",
+        "doc://com.apple.sirikit/documentation/SiriKit/media",
+        "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+        "doc://com.apple.sirikit/documentation/SiriKit/payments",
+        "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+        "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers"
+      ],
+      "title": "Standard Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Starting-a-Call",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallCallRecordToCallBackUnsupportedReason"
+      ],
+      "title": "Starting a Call"
+    },
+    {
+      "anchor": "Answering-a-Call",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INAnswerCallIntentResponseCode"
+      ],
+      "title": "Answering a Call"
+    },
+    {
+      "anchor": "Describing-a-Call",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecord",
+        "doc://com.apple.sirikit/documentation/Intents/INCallGroup",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordFilter",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordType",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptions",
+        "doc://com.apple.sirikit/documentation/Intents/INCallDestinationType"
+      ],
+      "title": "Describing a Call"
+    },
+    {
+      "anchor": "Ending-a-Call",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INHangUpCallIntentResponseCode"
+      ],
+      "title": "Ending a Call"
+    },
+    {
+      "anchor": "Resolution-Results",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallContactResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallCallCapabilityResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INStartCallCallRecordToCallBackResolutionResult"
+      ],
+      "title": "Resolution Results"
+    },
+    {
+      "anchor": "Sharing-the-Users-Focus-Status",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INFocusStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INFocusStatusCenter",
+        "doc://com.apple.sirikit/documentation/Intents/INFocusStatusAuthorizationStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INShareFocusStatusIntentResponseCode"
+      ],
+      "title": "Sharing the User’s Focus Status"
+    },
+    {
+      "anchor": "Specifying-Search-Options",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityOptions"
+      ],
+      "title": "Specifying Search Options"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordFilter/title",
+          "value": "INCallRecordFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentHandling/title",
+          "value": "INShareFocusStatusIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecord/title",
+          "value": "INCallRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptionsResolutionResult/title",
+          "value": "INCallRecordTypeOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntent/title",
+          "value": "INShareFocusStatusIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntent/title",
+          "value": "INAnswerCallIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallRecordToCallBackUnsupportedReason/title",
+          "value": "INStartCallCallRecordToCallBackUnsupportedReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallRecordToCallBackUnsupportedReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallCallRecordToCallBackUnsupportedReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallRecordToCallBackUnsupportedReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallCallRecordToCallBackUnsupportedReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityOptions/title",
+          "value": "INCallCapabilityOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallCapabilityOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallCapabilityOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentResponseCode/title",
+          "value": "INAnswerCallIntentResponseCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentResponseCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponseCode/title",
+          "value": "INShareFocusStatusIntentResponseCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponseCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptions/title",
+          "value": "INCallRecordTypeOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntentHandling/title",
+          "value": "INStartCallIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntent/title",
+          "value": "INHangUpCallIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponse/title",
+          "value": "INShareFocusStatusIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShareFocusStatusIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShareFocusStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityResolutionResult/title",
+          "value": "INCallCapabilityResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallCapabilityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallCapabilityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationTypeResolutionResult/title",
+          "value": "INCallDestinationTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallDestinationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallDestinationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordType/title",
+          "value": "INCallRecordType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusCenter/title",
+          "value": "INFocusStatusCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentResponse/title",
+          "value": "INAnswerCallIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordResolutionResult/title",
+          "value": "INCallRecordResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusAuthorizationStatus/title",
+          "value": "INFocusStatusAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatusAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallContactResolutionResult/title",
+          "value": "INStartCallContactResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallContactResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallContactResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallContactResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallContactResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntent/title",
+          "value": "INStartCallIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentResponse/title",
+          "value": "INHangUpCallIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntentResponse/title",
+          "value": "INStartCallIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentResponseCode/title",
+          "value": "INHangUpCallIntentResponseCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentResponseCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentResponseCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntentResponseCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallRecordToCallBackResolutionResult/title",
+          "value": "INStartCallCallRecordToCallBackResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallRecordToCallBackResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallCallRecordToCallBackResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallRecordToCallBackResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallCallRecordToCallBackResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentHandling/title",
+          "value": "INHangUpCallIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INHangUpCallIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INHangUpCallIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationType/title",
+          "value": "INCallDestinationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallDestinationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallDestinationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeResolutionResult/title",
+          "value": "INCallRecordTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentHandling/title",
+          "value": "INAnswerCallIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAnswerCallIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAnswerCallIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatus/title",
+          "value": "INFocusStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFocusStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFocusStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallCapabilityResolutionResult/title",
+          "value": "INStartCallCallCapabilityResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallCapabilityResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallCallCapabilityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStartCallCallCapabilityResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStartCallCallCapabilityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallGroup/title",
+          "value": "INCallGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallGroup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

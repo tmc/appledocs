@@ -1,0 +1,966 @@
+{
+  "abstract": [
+    {
+      "text": "Review the differences between Simulator and hardware devices to determine which you should choose to test a scenario.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing in Simulator versus testing on hardware devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While Simulator is useful for many types of tests, there are significant differences between Simulator and actual hardware devices that you need to consider when you choose which platform to use. These differences fall into several categories:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "General: there are differences in processing, graphics, and network speed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display: there are differences in resolution and color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "System: there are differences in how the system handles backgrounding your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hardware: Simulator doesn’t support some hardware features.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "API: Simulator doesn’t support some APIs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal: there are differences between the device GPU and your computer GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Evaluate the differences to help you determine what features and functionality you can test in Simulator in addition to the testing you perform on hardware devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-general-differences",
+          "level": 3,
+          "text": "Evaluate general differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use hardware devices to do performance testing for processing, graphics, and networking to ensure accurate results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator is an app running on a Mac using the computer’s resources including the CPU, memory, and network connection. As a result, Simulator is not an accurate test of an app’s performance, memory usage, and networking speed. Use performance testing results in Simulator to determine relative differences in app functionality. If you encounter performance issues in Simulator but not on a hardware device, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/troubleshooting-simulator-launch-or-animation-issues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Perform user testing on hardware devices when you require real-world results, such as confirming that tap areas are large enough for users to tap, or text in your user interface is legible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User interaction with a pointer and keyboard is different from using fingers on iOS and watchOS, hand gestures on visionOS, or the focus-based model used on tvOS. After you are satisfied that your app functions correctly in Simulator, test on devices to catch any unexpected issues with user interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-display-differences",
+          "level": 3,
+          "text": "Evaluate display differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resolution, or pixels per point, on the hardware device and on the Mac can differ. This results in text and images that appear jagged, especially with smaller text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Increasing the scale of the Simulator window can make text and images appear clearer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The color gamut of the Mac screen can differ resulting in inaccurate colors in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-system-differences",
+          "level": 3,
+          "text": "Evaluate system differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator suspends background apps and processes on iOS 11 and later, tvOS 11 and later, and watchOS 4 and later. The debugger can resume a suspended process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator treats the file system as case-sensitive on HFS+ and APFS formatted volumes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-hardware-differences",
+          "level": 3,
+          "text": "Evaluate hardware differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is a reliable connection between simulated watchOS and iOS devices because they are both running in the Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator doesn’t support the following hardware:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ambient light sensor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio input, except for using Siri by choosing Device > Siri",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Barometer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bluetooth",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Motion support (accelerometer and gyroscope)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Proximity sensor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Evaluate-API-differences",
+          "level": 3,
+          "text": "Evaluate API differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator doesn’t support the following frameworks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ExternalAccessory",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/HomeKit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MessageUI",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following features of APIs are not available in Simulator:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving and sending Apple push notifications. Drag and drop a JSON file with a push notification payload on the simulator to test receiving a push notification.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIVideoEditorController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/handoff/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Evaluate-Metal-differences",
+          "level": 3,
+          "text": "Evaluate Metal differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator includes a Metal implementation that you can use to start developing your app. For more information on how it differs from a hardware processor, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator": {
+      "abstract": [
+        {
+          "text": "Configure and manage devices connected to your Mac or devices in Simulator and use them to run your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Devices and Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/devices-and-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator": {
+      "abstract": [
+        {
+          "text": "Reveal performance and display issues in your views with color overlays, and slow down animations to debug and improve them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying graphics and animations issues in Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-graphics-and-animations-issues-in-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator": {
+      "abstract": [
+        {
+          "text": "Enter text directly in Simulator, or share location data, images, web addresses, files, or data from the clipboard with Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing data with Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-data-with-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator": {
+      "abstract": [
+        {
+          "text": "Test hardware device-specific scenarios, such as Face ID or Touch ID authentication, fall detection, getting a memory warning, or location changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing complex hardware device scenarios in Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-complex-hardware-device-scenarios-in-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/troubleshooting-simulator-launch-or-animation-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose and resolve issues launching a simulator, or with slow scrolling or animations in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/troubleshooting-simulator-launch-or-animation-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting Simulator launch or animation issues",
+      "type": "topic",
+      "url": "/documentation/xcode/troubleshooting-simulator-launch-or-animation-issues"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes": {
+      "abstract": [
+        {
+          "text": "Services provided by an app that require it to run in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBackgroundModes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIBackgroundModes"
+    },
+    "doc://com.apple.documentation/documentation/ExternalAccessory": {
+      "abstract": [
+        {
+          "text": "Communicate with accessories that connect to a device with the Apple Lightning connector, or with Bluetooth wireless technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExternalAccessory",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Accessory",
+      "type": "topic",
+      "url": "/documentation/ExternalAccessory"
+    },
+    "doc://com.apple.documentation/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/HomeKit"
+    },
+    "doc://com.apple.documentation/documentation/IOSurface": {
+      "abstract": [
+        {
+          "text": "Share hardware-accelerated buffer data (framebuffers and textures) across multiple processes. Manage image memory more efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/IOSurface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOSurface",
+      "type": "topic",
+      "url": "/documentation/IOSurface"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer"
+    },
+    "doc://com.apple.documentation/documentation/MessageUI": {
+      "abstract": [
+        {
+          "text": "Create a user interface for composing email and text messages, so users can edit and send messages without leaving your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MessageUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Message UI",
+      "type": "topic",
+      "url": "/documentation/MessageUI"
+    },
+    "doc://com.apple.documentation/documentation/Metal/developing-metal-apps-that-run-in-simulator": {
+      "abstract": [
+        {
+          "text": "Prototype and test your Metal apps in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing Metal apps that run in Simulator",
+      "type": "topic",
+      "url": "/documentation/Metal/developing-metal-apps-that-run-in-simulator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIVideoEditorController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interface for trimming video frames and encoding a previously recorded movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVideoEditorController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIVideoEditorController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIVideoEditorController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIVideoEditorController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/handoff/": {
+      "identifier": "https://developer.apple.com/handoff/",
+      "title": "Handoff",
+      "titleInlineContent": [
+        {
+          "text": "Handoff",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/handoff/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Simulator-testing-considerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator",
+        "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator"
+      ],
+      "title": "Simulator testing considerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIVideoEditorController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIVideoEditorController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

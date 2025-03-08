@@ -1,0 +1,4013 @@
+{
+  "abstract": [
+    {
+      "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/BOT-anist"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "BOT-anist-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "BOT-anist"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "BOT-anist is a game-like experience where you build a custom robot botanist by selecting from a variety of color and shape options, and then guide your robot around a futuristic greenhouse to plant alien flowers. This app demonstrates how to build an app for iOS, iPadOS, macOS, and visionOS using a single shared Xcode target and a shared Reality Composer Pro project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows off a number of RealityKit and visionOS features, including volume ornaments, dynamic lights and shadows, animation library components, and vertex animation using blend shapes. It also demonstrates how to set a volume’s default size and enable user resizing of volumes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "BOT-anist-overview.mp4",
+          "type": "video"
+        },
+        {
+          "anchor": "Customize-the-robot-and-explore",
+          "level": 3,
+          "text": "Customize the robot and explore",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the app launches, you see a window that contains your robot and a number of different user interface elements you can use to customize it. You can change the shape of your robot’s head, backpack, and body, as well as the material and color scheme for each part. You can also change the color of the lights for each piece.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To get a better look at your robot while customizing it, spin it using a drag gesture on iOS and visionOS, or by dragging it with your mouse in macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "drag-gesture.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re happy with the look of your robot botanist, tap or click the Start Planting button to send the robot to explore its futuristic greenhouse. In visionOS, BOT-anist displays the greenhouse in a resizable 3D volume. In iOS and macOS, it appears in the same window as the customization tools. There are three illuminated planters in different colors on the floor of the greenhouse. Move your robot around using drag gestures or keyboard controls to plant flowers in each one. When using the keyboard to control the robot, you have the option to use the traditional ",
+              "type": "text"
+            },
+            {
+              "code": "WASD",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key combination on QWERTY keyboards, as well as the right-handed equivalent (",
+              "type": "text"
+            },
+            {
+              "code": "IJKL",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). You can also use the arrow keys and, if using an extended keyboard, the numeric keypad (",
+              "type": "text"
+            },
+            {
+              "code": "8456",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). You can find the key bindings in ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView+KeyboardControls.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you want to change them to an alternative scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "keyboard.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-the-project-multiplatform",
+          "level": 3,
+          "text": "Make the project multiplatform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can now use RealityKit to create multiplatform apps that run in iOS, iPadOS, macOS, and visionOS using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As long as your Xcode project uses only SwiftUI for its user interface, you can convert it to a multiplatform app by navigating to your app target in Xcode and adding the platforms you want to support.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You don’t need to add a new target or scheme.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you’re developing your app, Xcode compiles the right code for the selected destination.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you build your app for distribution, it builds it for all the platforms you select.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "supported-destinations.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are, however, platform differences you need to take into account in some apps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, visionOS uses a different unit scale for RealityKit scenes than other platforms do.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Also, different devices have different screen sizes and aspect ratios.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To account for these differences, you may want to set the scale and position of the root entity in the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using different values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(visionOS)",
+            "self.creationRoot.scale = SIMD3<Float>(repeating: 0.23)",
+            "self.creationRoot.position = SIMD3<Float>(x: -0.02, y: -0.175, z: -0.05)",
+            "#else",
+            "self.creationRoot.scale = SIMD3<Float>(repeating: 0.027)",
+            "self.creationRoot.position = SIMD3<Float>(x: -0, y: -0.022, z: -0.05)",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In BOT-anist on visionOS, you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader3D",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to position and resize the robot view to fill 80% of the available space",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let robotVisualBounds = appState.creationRoot.visualBounds(relativeTo: nil)",
+            "",
+            "appState.creationRoot.position = SIMD3<Float>.zero",
+            "",
+            "// Adjust the model's position on the y-axis to align with the center of the view bounds.",
+            "appState.creationRoot.position.y -= appState.creationRoot.visualBounds(relativeTo: nil).extents.y / 2",
+            "",
+            "// Adjust the robot to be positioned against the window, rather than in the center of the z-axis.",
+            "appState.creationRoot.position.z -= viewBounds.max.z / 2",
+            "appState.creationRoot.position.z += appState.creationRoot.visualBounds(relativeTo: nil).extents.z",
+            "",
+            "/// The base size of the model when the scale is 1.",
+            "let baseExtents = robotVisualBounds.extents / appState.creationRoot.scale",
+            "",
+            "/// The scale required for the model to fit the bounds of 80% of the volumetric window.",
+            "let scaleToFitHeight = Float(viewBounds.extents.y * 0.8) / baseExtents.y",
+            "let scaleToFitWidth = Float(viewBounds.extents.x * 0.8) / baseExtents.x",
+            "",
+            "// Apply the scale to the model to fill the full size of the window.",
+            "appState.creationRoot.scale = SIMD3<Float>(repeating: min(scaleToFitWidth, scaleToFitHeight))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-the-window-groups",
+          "level": 3,
+          "text": "Set up the window groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "BOT-anist sets up two window groups because it uses both a window and a volume in visionOS, but runs the entire app in a single window on its other supported platforms. The first window group uses the default platform window style, which creates a standard window for the platform it’s running on. In visionOS only, the app configures this window group to dismiss the other window group, which holds the 3D volume, when this window appears. That ensures the window and volume are never visible at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "WindowGroup(id: \"RobotCreation\") {",
+            "    ContentView()",
+            "        .environment(appState)",
+            "    .onAppear {",
+            "        #if os(visionOS)",
+            "            dismissWindow(id: \"RobotExploration\")",
+            "        // ...",
+            "        #endif",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app class contains a second window group with a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style to hold the greenhouse in visionOS. This second window group uses platform conditionals to ensure that it only compiles for visionOS. The default window style behavior in visionOS for 2D windows is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WorldScalingBehavior/dynamic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which means the window changes its size as it changes its distance to the player to ensure the window is always a good size for them to interact with.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Volumes, on the other hand, default to a fixed window style, which means the farther away from the player the volume is, the smaller it appears. This is often the desired behavior for volumes because you want the virtual contents to blend in with real-world perspective. In this case, however, the player needs to interact with the greenhouse features much like they do with the UI elements in a 2D window. BOT-anist changes the default scaling of the volume to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WorldScalingBehavior/dynamic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so it stays usable even if the player moves away from it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(visionOS)",
+            "WindowGroup(id: \"RobotExploration\") {",
+            "    GeometryReader3D { geometry in",
+            "        ExplorationView()",
+            "            .volumeBaseplateVisibility(.visible)",
+            "            .environment(appState)",
+            "            .scaleEffect(geometry.size.width / initialVolumeSize.width)",
+            "            .ornament(attachmentAnchor: .scene(.topBack)) {",
+            "                OrnamentView()",
+            "                    .environment(appState)",
+            "            }",
+            "            .onAppear {",
+            "                dismissWindow(id: \"RobotCreation\")",
+            "            }",
+            "            .onChange(of: geometry.size) { _, newSize in",
+            "                appState.robot?.speedScale = Float(newSize.width / initialVolumeSize.width)",
+            "            }",
+            "    }",
+            "}",
+            ".windowStyle(.volumetric)",
+            ".defaultWorldScaling(.dynamic)",
+            ".defaultSize(initialVolumeSize)",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-the-volumes-baseplate",
+          "level": 3,
+          "text": "Show the volume’s baseplate",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "visionOS volumes are, by default, user resizable. People can resize them by looking at one of the four bottom corners of the volume, and then pinching and dragging the control that appears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "baseplate-resize.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "BOT-anist uses the default behavior for the volume that displays the greenhouse. To make it more obvious to the player that they can resize the volume, and to give them better visual feedback when doing it, BOT-anist makes the volume’s baseplate visible. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "baseplate",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a white, rounded rectangle on the bottom plane of the volume that the app enables by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/volumeBaseplateVisibility(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the volume’s root view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ExplorationView()",
+            ".volumeBaseplateVisibility(.visible)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "BOT-anist also sets the default size of the volume to make sure it starts large enough for the player to interact with.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var initialVolumeSize: Size3D = Size3D(width: 900, height: 500, depth: 900)",
+            "",
+            "// ... ",
+            "",
+            ".defaultSize(initialVolumeSize)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To create a volume with fixed style, don’t specify a default size. Instead, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " on the volume’s root view and pass the same value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "minDepth",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "idealDepth",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "maxDepth",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, when a volume changes size, the size of its contents don’t scale with it. BOT-anist’s contents do resize with the volume, which it accomplishes using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/scaleEffect(_:anchor:)-7q7as",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".scaleEffect(geometry.size.width / initialVolumeSize.width)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the contents resize relative to the real-world surroundings, it affects the robot’s speed of movement, causing it to move too fast when you make the volume smaller and move too slow when you make it larger. To make sure the robot moves at a consistent speed no matter the size of the volume, the window group uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onChange(of:initial:_:)-8wgw9",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to update the robot’s speed based on the volume’s size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".onChange(of: geometry.size) { _, newSize in",
+            "    appState.robot?.speedScale = Float(newSize.width / initialVolumeSize.width)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-the-volumes-ornament-view",
+          "level": 3,
+          "text": "Specify the volume’s ornament view",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starting with visionOS 2, you can place ornaments in different locations in the 3D space of a volume. BOT-anist uses an ornament view to display the score, along with buttons for re-starting and for going back to the robot customization screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "ornament.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of the default placement, BOT-anist displays the ornament view at the top back. To specify its ornament view, it uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UnitPoint3D/topBack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which centers it at the top of the far side of the volume.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".ornament(attachmentAnchor: .scene(.topBack)) {",
+            "    OrnamentView()",
+            "        .environment(appState)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-dynamic-lights-with-shadows-using-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Create dynamic lights with shadows using Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create dynamic lighting effects with shadows, add lights to your Reality Composer Pro project. To see the lights that BOT-anist uses, open ",
+              "type": "text"
+            },
+            {
+              "code": "BOTanistAssets.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Reality Composer Pro and open the scene called ",
+              "type": "text"
+            },
+            {
+              "code": "volume.usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "RCP-lights.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add lights to your scene, build and run your app to see it with the new lights, including dynamic shadows. If you watch the robot botanist as you move it around the greenhouse, you see that it casts a shadow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use up to eight lights in a RealityKit scene, but lights have a nontrivial performance impact, so use them strategically. Even when using dynamic lights, your entities still receive light from any image-based or environmental lighting your app uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "RCP-shadow.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Detect-viewpoint-changes-in-volumes",
+          "level": 3,
+          "text": "Detect viewpoint changes in volumes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS 2 and later, apps can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive updates when the player moves to a different side. When BOT-anist receives an update, it rotates the robot toward the viewer and waves to them at their new location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "viewpoint-changes.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "code": "ExplorationView.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the top-level view in the volume’s window group, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive updates about which side of the volume is facing the person, and stores the new facing in a property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(visionOS)",
+            "// ...",
+            ".onVolumeViewpointChange { _, newViewpoint in",
+            "    currentViewpoint = newViewpoint",
+            "}",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value the app receives is of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Viewpoint3D",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and it identifies which side of the volume is currently facing the viewer relative to which side was the front face when the app first launched. The code that handles movement input monitors this property. When it detects a viewpoint change and the robot isn’t moving, it starts the animations that cause the robot to rotate toward the new front face and wave cheerily.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Animate-the-robot",
+          "level": 3,
+          "text": "Animate the robot",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "BOT-anist contains multiple different body types that players can choose when building their robot, including one that walks, one that rolls, and one that floats. Each of these bodies has a different set of animations, and the app uses a state machine defined in ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationStateMachine.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to keep track of which animation is currently playing, and when and how it transitions to a different animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit can load multiple animations from different USDZ files and store them in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnimationLibraryComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As long as two rigged entities have the same joint hierarchy, they can use each other’s animations. BOT-anist uses one ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnimationLibraryComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " per body entity to store the animations for that body type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At launch, BOT-anist loads each of the different modular parts that players use to build their robot. When it loads the bodies, it creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnimationLibraryComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on each loaded entity, then loads and stores one animation per animation state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if part == .body {",
+            "    var libComponent = AnimationLibraryComponent()",
+            "    let animationDirectory = \"Assets/Robot/animations/\\(partName)/\"",
+            "    for animationType in AnimationState.allCases {",
+            "        if let rootEntity = try? await Entity(named: \"\\(animationDirectory)\\(partName)\\(animationType.fileSuffix())\",",
+            "                                              in: BOTanistAssetsBundle) {",
+            "            if let animationEntity = await rootEntity.findEntity(named: \"rig_grp\") {",
+            "                if let animationLibraryComponent = await animationEntity.animationLibraryComponent {",
+            "                    libComponent.animations[animationType.rawValue] = animationLibraryComponent.defaultAnimation",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "    await entity.components.set(libComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app transitions to a new animation state, it can find and play the correct animation by retrieving the animation for the current state from the animation library on the body entity that’s in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let anim = body.animationLibraryComponent?.animations[animState.rawValue] else { ",
+            "    fatalError(\"Didn't find requested animation in library.\") ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Animate-the-plants-using-blend-shapes",
+          "level": 3,
+          "text": "Animate the plants using blend shapes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While skeletal animations are an incredibly powerful and useful tool, certain types of animations need to move each vertex in the model individually. RealityKit stores vertex-level changes to a model using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "blend shapes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which contain offset data for the model entity’s vertices. You can set each blend shape to a value between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Any value other than ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents a partial state in-between the model’s default shape, and the shape contained in that blend shape.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, if you have a model of a plant as a sprout, and a shape key representing its fully grown shape, you can set the plant to grow only partially by setting that blend shape to a fractional value. Animating that value over time creates a blend-shape animation, which is how BOT-anist grows the flowers when you plant them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "identifier": "blend-shapes.mp4",
+                  "type": "video"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access blend shapes, use  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/BlendShapeWeightsComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can create blend shapes and set their values procedurally but, more often, you create blend shapes and blend shape animations using a 3D modeling tool, then store them in the model’s USDZ file. RealityKit automatically creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/BlendShapeWeightsComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for any model entity it loads from a USDZ file that contains blend shapes. It also adds any blend shape animations in the USDZ file to the entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnimationLibraryComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some software uses different terms when referring to per-vertex offset data. In addition to blend shape, you may also find the same functionality referred to as ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "morph targets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "shape keys",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ". All of these export to USDZ files as blend shapes and work identically.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To animate the plants growing, BOT-anist uses blend shape animations created in a 3D modeling program and stored in the model’s USDZ file. It uses the same approach to animate the celebratory dancing the flowers do once the robot has planted them all. Each type of plant has its own blend shapes and blend shape animations to show the plant growing and celebrating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play the blend shape animations, the app iterates through entities in the scene that have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/BlendShapeWeightsComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and plays the corresponding blend shape weight animation. For example, here’s how it generates the grow animation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func generateGrowAnimationResource(for plantType: PlantComponent.PlantTypeKey) async ",
+            "    -> AnimationResource {",
+            "    let sceneName = \"Assets/plants/animations/\\(plantType.rawValue)_grow_anim\"",
+            "    var ret: AnimationResource? = nil",
+            "    do {",
+            "        let rootEntity = try await Entity(named: sceneName, in: BOTanistAssetsBundle)",
+            "        rootEntity.forEachDescendant(withComponent: BlendShapeWeightsComponent.self) { entity, component in",
+            "        if let index = entity.animationLibraryComponent?.animations.startIndex {",
+            "            ret = entity.animationLibraryComponent?.animations[index].value",
+            "        }",
+            "        }",
+            "        guard let ret else { ",
+            "            fatalError(\"Animation resource unexpectedly nil.\") ",
+            "        }",
+            "        return ret",
+            "    } catch {",
+            "        fatalError(\"Error: \\(error.localizedDescription)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When BOT-anist transitions to the greenhouse, it has to make sure that all the growing plants are reset to their initial value. To do that, it manually sets all of the blend shapes to ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " except for the one that represents the initial hidden state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let modelComponent = entity.modelComponent else { ",
+            "    fatalError(\"Entity must be model entity. No ModelComponent found.\") ",
+            "    }",
+            "let meshResource = modelComponent.mesh",
+            "let blendShapeWeightsMapping = BlendShapeWeightsMapping(meshResource: meshResource)",
+            "var blendComponent = BlendShapeWeightsComponent(weightsMapping: blendShapeWeightsMapping)",
+            "blendComponent.weightSet[0].weights = BlendShapeWeights([0, 1, 0, 0, 0, 0, 0])",
+            "entity.components.set(blendComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Animate-the-head-and-backpack",
+          "level": 3,
+          "text": "Animate the head and backpack",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the robot customizable, the app combines three separate entities to build it. Each of the three bodies (walking, rolling, floating) is a skeletal mesh with its own unique set of animations. When the app enters the greenhouse mode, it combines the selected head and backpack, which are static meshes, with the animated entity for the selected body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the head and backpack to animate correctly, BOT-anist needs to update their position and rotation every frame so they line up with the appropriate joint in the body’s skeleton. BOT-anist does this using a system and custom component called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JointPinSystem",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JointPinComponent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which together to keep the robot parts animating in sync. When the player taps or clicks the Start Planting button, the app adds the component to the parent entity that the three body parts share. It identifies that its entity has children that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JointPinSystem",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " needs to reposition. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JointPinSystem",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " then uses the data ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JointPinComponent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " provides to reposition the backpack and head to match the body’s animated position on each frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "joint-pinning.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the player selects the Start Planting button, the app combines the three selected entities using the ",
+              "type": "text"
+            },
+            {
+              "code": "RobotCharacter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. That class’s initializer retrieves the transforms for the head and backpack joints using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/pins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This property provides access to the entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/GeometricPinsComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which stores a collection of transforms, each of which identifies a different location, orientation, and scale relative to the entity, but without the overhead of a separate child entity for each one. People can create pins, but RealityKit also automatically creates a collection of pins to represent the joints in a rigged model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the player taps or clicks the button, the app retrieves the two geometric pins that represent the head and backpack joints in the body’s skeleton. Because skeleton joints are arranged in a hierarchy, with each joint inheriting its parent’s transform, the app retrieves the entire joint chain from the root joint to the backpack or head joint using a private function called ",
+              "type": "text"
+            },
+            {
+              "code": "getJointHierarchy(_:for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let headJointIndices = getJointHierarchy(skeleton, for: \"head\")",
+            "let backpackJointIndices = getJointHierarchy(skeleton, for: \"backpack\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, it calculates an offset for the two pins. The back and head model entities are places so they align with the correct spot on the body model. Because they’re not at the origin, in order to rotate them on the origin, the ",
+              "type": "text"
+            },
+            {
+              "code": "JointPinSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " needs to move them before applying the transform, otherwise they have the wrong pivot point. To calculate the offset, it gets the position of each pin and inverts it by multiplying the position by ",
+              "type": "text"
+            },
+            {
+              "code": "-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard var headOffset = headOffset ?? skeleton.pins[\"head\"]?.position,",
+            "      var backpackOffset = backpackOffset ?? skeleton.pins[\"backpack\"]?.position else {",
+            "    fatalError(\"Didn't find expected joint for head or backpack.\")",
+            "}",
+            "headOffset *= -1",
+            "backpackOffset *= -1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, it creates the ",
+              "type": "text"
+            },
+            {
+              "code": "JointPinComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with all the information the system needs to update the head and backpack entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "skeletonClone.jointPinComponent = JointPinComponent(headEntity: self.head,",
+            "                                                    headJointIndices: headJointIndices,",
+            "                                                    headOffset: Transform(translation: headOffset).matrix,",
+            "                                                    backpackEntity: self.backpack,",
+            "                                                    backpackJointIndices: backpackJointIndices,",
+            "                                                    backpackOffset: Transform(translation: backpackOffset).matrix,",
+            "                                                    bodyEntity: self.body)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move the head and body each frame, ",
+              "type": "text"
+            },
+            {
+              "code": "JointPinSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses an entity query to find the parent entity the head, body, and backpack share. It then retrieves the entity representing the body’s skeleton and also retrieves all of the skeleton’s joint transforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let skeleton = skeleton as? ModelEntity,",
+            "      let component = skeleton.jointPinComponent else { fatalError(\"Skeleton doesn't have required joint pin component.\") }",
+            "",
+            "let transforms = skeleton.jointTransforms"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because BOT-anist has to apply the same logic to two different meshes, only using a different joint and offset, it uses a private function called ",
+              "type": "text"
+            },
+            {
+              "code": "pinEntity(indices:skeleton:transforms:offset:staticEntity:shouldRotate)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to apply that logic, which it then calls twice — once for the head and once for the backpack — after retrieving the data it needs from the component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let skeleton = skeleton as? ModelEntity,",
+            "      let component = skeleton.jointPinComponent else { ",
+            "        fatalError(\"Skeleton doesn't have required joint pin component.\") ",
+            "    }",
+            "",
+            "let transforms = skeleton.jointTransforms",
+            "",
+            "pinEntity(indices: component.headJointIndices,",
+            "          skeleton: skeleton,",
+            "          transforms: transforms,",
+            "          offset: component.headOffset,",
+            "          staticEntity: component.headEntity,",
+            "          shouldRotate: component.bodyEntity.name == \"body1\")",
+            "",
+            "pinEntity(indices: component.backpackJointIndices,",
+            "          skeleton: skeleton,",
+            "          transforms: transforms,",
+            "          offset: component.backpackOffset,",
+            "          staticEntity: component.backpackEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To calculate the correct transform for each joint, the system uses the joint chain it put in the component, and multiplies each joint’s transform matrix together starting with the root joint. It uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to iterate through the joint chain, multiplying each transform with the next one. It then takes that calculated transform and offsets it to move it back to its original location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var headTransform = component.headJointIndices.reduce(matrix_identity_float4x4) { partialResult, index in",
+            "    transforms[index].matrix * partialResult",
+            "}",
+            "let previousHeadScale = component.headEntity.scale(relativeTo: skeleton)",
+            "component.headEntity.setTransformMatrix(headTransform * component.headOffset, relativeTo: skeleton)",
+            "component.headEntity.setScale(previousHeadScale, relativeTo: skeleton)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/World",
+            "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+            "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+            "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+            "doc://com.apple.visionOS/documentation/visionOS/diorama"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+            "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+            "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+            "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+            "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2024/10153",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10102",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10103",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10106",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10151",
+            "doc://com.apple.documentation/videos/play/wwdc2024/10186"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1dbb5daa97bc/BOTAnist.zip": {
+      "checksum": "1dbb5daa97bc78db5f4cbc57bd3fae8048ae19a6b0368eef3421a337cb72d08c0d14d1ec1ad9bbd419170aa9afe5e169007da00bd82cca29256e9749050769af",
+      "identifier": "1dbb5daa97bc/BOTAnist.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/1dbb5daa97bc/BOTAnist.zip"
+    },
+    "9DD44795-1758-4A3C-BE0B-CCE59ABC09E3": {
+      "alt": null,
+      "identifier": "9DD44795-1758-4A3C-BE0B-CCE59ABC09E3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/9DD44795-1758-4A3C-BE0B-CCE59ABC09E3/9225_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/9DD44795-1758-4A3C-BE0B-CCE59ABC09E3/9225_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/9DD44795-1758-4A3C-BE0B-CCE59ABC09E3/9225_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "A8B41955-2BE1-4128-A4DB-E1A48F09D461": {
+      "alt": null,
+      "identifier": "A8B41955-2BE1-4128-A4DB-E1A48F09D461",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/A8B41955-2BE1-4128-A4DB-E1A48F09D461/9228_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/A8B41955-2BE1-4128-A4DB-E1A48F09D461/9228_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/A8B41955-2BE1-4128-A4DB-E1A48F09D461/9228_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "A8C0D750-CF09-48F3-982B-0D1B870F273F": {
+      "alt": null,
+      "identifier": "A8C0D750-CF09-48F3-982B-0D1B870F273F",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/A8C0D750-CF09-48F3-982B-0D1B870F273F/9279_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/A8C0D750-CF09-48F3-982B-0D1B870F273F/9279_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/A8C0D750-CF09-48F3-982B-0D1B870F273F/9279_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "BCD51027-0E0F-4788-9635-6988DB67B722": {
+      "alt": null,
+      "identifier": "BCD51027-0E0F-4788-9635-6988DB67B722",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BCD51027-0E0F-4788-9635-6988DB67B722/9224_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BCD51027-0E0F-4788-9635-6988DB67B722/9224_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BCD51027-0E0F-4788-9635-6988DB67B722/9224_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "BD36BE26-DA8C-48D1-B02B-89895BE244C1": {
+      "alt": null,
+      "identifier": "BD36BE26-DA8C-48D1-B02B-89895BE244C1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BD36BE26-DA8C-48D1-B02B-89895BE244C1/9281_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BD36BE26-DA8C-48D1-B02B-89895BE244C1/9281_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/BD36BE26-DA8C-48D1-B02B-89895BE244C1/9281_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "BOT-anist-PageImage-card.png": {
+      "alt": null,
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "BOT-anist-overview-poster-image.png": {
+      "alt": null,
+      "identifier": "BOT-anist-overview-poster-image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cbae54a321c5d72d45450e7ba8a61724/BOT-anist-overview-poster-image@2x.png"
+        }
+      ]
+    },
+    "BOT-anist-overview.mp4": {
+      "alt": "A screenshot from the Apple Vision Pro simulator with a single floating window. The window contains a robot on the right side, and controls to customize the robots appearance on the left.",
+      "identifier": "BOT-anist-overview.mp4",
+      "poster": "BOT-anist-overview-poster-image.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/110f75d78a3e7755c6aba5c137c07ff7/BOT-anist-overview.mp4"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": "An image showing Destination Video on visionOS.",
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "E72C2546-D05B-4938-9855-EEF54A998257": {
+      "alt": null,
+      "identifier": "E72C2546-D05B-4938-9855-EEF54A998257",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/E72C2546-D05B-4938-9855-EEF54A998257/9316_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/E72C2546-D05B-4938-9855-EEF54A998257/9316_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/E72C2546-D05B-4938-9855-EEF54A998257/9316_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": "A screenshot showing the Happy Beam game. A player makes a heart gesture with their hands, a beam projects from it aimed at nearby clouds, and a scoreboard window shows seven points.",
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Hello-World-intro.png": {
+      "alt": "",
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "RCP-lights.png": {
+      "alt": "A screenshot of Reality Composer Pro showing the robot's greenhouse environment with several gray circles representing different kinds of dynamic lights.",
+      "identifier": "RCP-lights.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7cf9d51194eba5ba94f9a292499305dd/RCP-lights@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b36cbe035479af59600428700e60162d/RCP-lights~dark@2x.png"
+        }
+      ]
+    },
+    "RCP-shadow.png": {
+      "alt": "A screenshot of the robot botanist casting a dynamic shadow on the white floor.",
+      "identifier": "RCP-shadow.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51a5f5eb2d69bc238e8c92a4283084e8/RCP-shadow@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5965fc6fb31455e23ecc400340f5d7c/RCP-shadow~dark@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": "",
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "baseplate-resize-poster-image.png": {
+      "alt": null,
+      "identifier": "baseplate-resize-poster-image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a2d7a37b0ac48b428bc939d46bf3d0a1/baseplate-resize-poster-image@2x.png"
+        }
+      ]
+    },
+    "baseplate-resize.mp4": {
+      "alt": "An animated screen capture shows the volume's baseplate - a white rounded rectangle on the ground plane - and how to use it to resize the volume by dragging the corner controls.",
+      "identifier": "baseplate-resize.mp4",
+      "poster": "baseplate-resize-poster-image.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c145a5bf2382a1cad85c5c59f40e138/baseplate-resize.mp4"
+        }
+      ]
+    },
+    "blend-shapes-poster-image.png": {
+      "alt": null,
+      "identifier": "blend-shapes-poster-image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d7f5c84c45dd734e45b0199c897edb8/blend-shapes-poster-image@2x.png"
+        }
+      ]
+    },
+    "blend-shapes.mp4": {
+      "alt": "An animation showing a flower growing when the robot plants it.",
+      "identifier": "blend-shapes.mp4",
+      "poster": "blend-shapes-poster-image.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/639c96ec4bdc212cc5e2777ea31f5555/blend-shapes.mp4"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnimationLibraryComponent": {
+      "abstract": [
+        {
+          "text": "A component that represents a collection of animations that an entity can play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationLibraryComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnimationLibraryComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnimationLibraryComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnimationLibraryComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/BlendShapeWeightsComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides access to the current weights associated with all blend shape meshes on an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendShapeWeightsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/BlendShapeWeightsComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BlendShapeWeightsComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/BlendShapeWeightsComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity/pins": {
+      "abstract": [
+        {
+          "text": "The entity’s geometric pins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19EntityGeometricPinsV",
+          "text": "EntityGeometricPins"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/pins",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pins",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity/pins"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/GeometricPinsComponent": {
+      "abstract": [
+        {
+          "text": "A component that stores a sequence of geometric pins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometricPinsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/GeometricPinsComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometricPinsComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/GeometricPinsComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Generate 3D assets that render as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating USD files for Apple devices",
+      "type": "topic",
+      "url": "/documentation/RealityKit/creating-usd-files-for-apple-devices"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Apply behaviors and physical effects to the objects and characters in a RealityKit scene with the Entity Component System (ECS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing systems for entities in a scene",
+      "type": "topic",
+      "url": "/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of combining the elements of the sequence using the given closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reduce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "initialResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "nextPartialResult"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Array/reduce(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reduce(_:_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Array/reduce(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader3D": {
+      "abstract": [
+        {
+          "text": "A container view that defines its content as a function of its own size and coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryReader3D"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader3D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometryReader3D",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/GeometryReader3D"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UnitPoint3D/topBack": {
+      "abstract": [
+        {
+          "text": "A point that’s centered horizontally on the top-back edge of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "topBack"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11UnitPoint3DV",
+          "text": "UnitPoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UnitPoint3D/topBack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "topBack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UnitPoint3D/topBack"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame having the specified depth constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14DepthAlignmentV",
+          "text": "DepthAlignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(minDepth:idealDepth:maxDepth:alignment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/frame(minDepth:idealDepth:maxDepth:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onChange(of:initial:_:)-8wgw9": {
+      "abstract": [
+        {
+          "text": "Adds a modifier for this view that fires an action when a specific value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onChange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onChange(of:initial:_:)-8wgw9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onChange(of:initial:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onChange(of:initial:_:)-8wgw9"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when the viewpoint of the volume changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onVolumeViewpointChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29VolumeViewpointUpdateStrategyV",
+          "text": "VolumeViewpointUpdateStrategy"
+        },
+        {
+          "kind": "text",
+          "text": " = .supported, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11Viewpoint3DV",
+          "text": "Viewpoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11Viewpoint3DV",
+          "text": "Viewpoint3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onVolumeViewpointChange(updateStrategy:initial:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onVolumeViewpointChange(updateStrategy:initial:_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)": {
+      "abstract": [
+        {
+          "text": "Presents an ornament.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ornament"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": " = .automatic, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OrnamentAttachmentAnchorV",
+          "text": "OrnamentAttachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ornament"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ornament(visibility:attachmentAnchor:contentAlignment:ornament:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/scaleEffect(_:anchor:)-7q7as": {
+      "abstract": [
+        {
+          "text": "Scales this view’s rendered output by the given vertical and horizontal size amounts, relative to an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": " = .center) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/scaleEffect(_:anchor:)-7q7as",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scaleEffect(_:anchor:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/scaleEffect(_:anchor:)-7q7as"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/volumeBaseplateVisibility(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the visibility of the baseplate of a volume, which appears when a user looks towards the ‘floor’ of a volume and during resize. Both `automatic` and `visible` will show the baseplate. `hidden` will never show it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeBaseplateVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/volumeBaseplateVisibility(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeBaseplateVisibility(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/volumeBaseplateVisibility(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Viewpoint3D": {
+      "abstract": [
+        {
+          "text": "A type describing what direction something is being viewed from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Viewpoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Viewpoint3D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Viewpoint3D",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Viewpoint3D"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric": {
+      "abstract": [
+        {
+          "text": "A window style that creates a 3D volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumetric"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21VolumetricWindowStyleV",
+          "text": "VolumetricWindowStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumetric",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WindowStyle/volumetric"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WorldScalingBehavior/dynamic": {
+      "abstract": [
+        {
+          "text": "The window will scale up as it moves further away, maintaining the same angular size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dynamic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20WorldScalingBehaviorV",
+          "text": "WorldScalingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WorldScalingBehavior/dynamic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dynamic",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WorldScalingBehavior/dynamic"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10102": {
+      "abstract": [
+        {
+          "text": "Discover how the Timeline view in Reality Composer Pro can bring your 3D content to life. Learn how to create an animated story in which characters and objects interact with each other and the world around them using inverse kinematics, blend shapes, and skeletal poses. We’ll also show you how to use built-in and custom actions, sequence your actions, apply triggers, and implement natural movements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10102",
+      "images": [
+        {
+          "identifier": "BCD51027-0E0F-4788-9635-6988DB67B722",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Compose interactive 3D content in Reality Composer Pro",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10102"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10103": {
+      "abstract": [
+        {
+          "text": "Learn how new cross-platform APIs in RealityKit can help you build immersive apps for iOS, macOS, and visionOS. Check out the new hover effects, lights and shadows, and portal crossing features, and view them in action through real examples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10103",
+      "images": [
+        {
+          "identifier": "9DD44795-1758-4A3C-BE0B-CCE59ABC09E3",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Discover RealityKit APIs for iOS, macOS, and visionOS",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10103"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10106": {
+      "abstract": [
+        {
+          "text": "Explore updates to Universal Scene Description and MaterialX support on Apple platforms. Discover how these technologies provide a foundation for 3D content creation and delivery, and learn how they can help streamline your workflows for creating great spatial experiences. Learn about USD and MaterialX support in RealityKit and Storm, advancements in our system-provided tooling, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10106",
+      "images": [
+        {
+          "identifier": "A8B41955-2BE1-4128-A4DB-E1A48F09D461",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "What’s new in USD and MaterialX",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10106"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10151": {
+      "abstract": [
+        {
+          "text": "Discover how to create stunning visual effects in SwiftUI. Learn to build unique scroll effects, rich color treatments, and custom transitions. We’ll also explore advanced graphic effects using Metal shaders and custom text rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10151",
+      "images": [
+        {
+          "identifier": "A8C0D750-CF09-48F3-982B-0D1B870F273F",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Create custom visual effects with SwiftUI",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10151"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10153": {
+      "abstract": [
+        {
+          "text": "Discover powerful new ways to customize volumes and immersive spaces in visionOS. Learn to fine-tune how volumes resize and respond to people moving around them. Make volumes and immersive spaces interact through the power of coordinate conversions. Find out how to make your app react when people adjust immersion with the Digital Crown, and use a surrounding effect to dynamically customize the passthrough tint in your immersive space experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10153",
+      "images": [
+        {
+          "identifier": "BD36BE26-DA8C-48D1-B02B-89895BE244C1",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Dive deep into volumes and immersive spaces",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10153"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10186": {
+      "abstract": [
+        {
+          "text": "Dive into an end-to-end workflow for optimized 3D asset creation. Discover best practices for optimizing meshes, materials, and textures in your digital content creation tool. Learn how to harness shader graph, baking, and material instances to enhance your 3D scene while optimizing performance. Take advantage of native tools to work more effectively with your assets and improve your app’s performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10186",
+      "images": [
+        {
+          "identifier": "E72C2546-D05B-4938-9855-EEF54A998257",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Optimize your 3D assets for spatial computing",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10186"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionos/world"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app": {
+      "abstract": [
+        {
+          "text": "Add depth and dimension to your visionOS app and discover how",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to incorporate your app’s content into a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding 3D content to your app",
+      "type": "topic",
+      "url": "/documentation/visionos/adding-3d-content-to-your-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionos/destination-video"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionos/happybeam"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionos/swift-splash"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "drag-gesture-poster-image.png": {
+      "alt": null,
+      "identifier": "drag-gesture-poster-image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db683b885b740ab3be1565b390cfcc05/drag-gesture-poster-image@2x.png"
+        }
+      ]
+    },
+    "drag-gesture.mp4": {
+      "alt": "A screenshot from the Apple Vision Pro simulator showing a single floating window. On the right is a robot, and on the left are color and lighting options for customizing that robot.",
+      "identifier": "drag-gesture.mp4",
+      "poster": "drag-gesture-poster-image.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c97b3756d67d20b934b6063d4175fe8a/drag-gesture.mp4"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "joint-pinning.png": {
+      "alt": "An illustration of the robot head and backpack pinned to the body.",
+      "identifier": "joint-pinning.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a8c9d851eb7cb4690512b453b0840f4/joint-pinning@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94322370b9b4d8d8979ade7aa4090026/joint-pinning~dark@2x.png"
+        }
+      ]
+    },
+    "keyboard.png": {
+      "alt": "An illustration of an extended keyboard with the letters \\\"WASD\\\" highlighted in red with arrows overlaid, the letters \\\"IJKL\\\" outlined in blue, the arrow keys outlined in green, and the keys 8, 4, 5, 6 outlined in  Yellow.",
+      "identifier": "keyboard.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b05cf41a4210cdefc45f9888c4958658/keyboard@2x.png"
+        }
+      ]
+    },
+    "ornament.png": {
+      "alt": "An illustration showing the volume as a transparent white box around the greenhouse. The ornament view is shown at the back of the volume toward the top. The word \\\".topback\\\" points to the top plane, indicating that it's the ornament location for this app.",
+      "identifier": "ornament.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06c0869065816a7cf1a8a4e12bdce346/ornament@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/deb8cb10d4e9feea4e1d6433a8488ffc/ornament~dark@2x.png"
+        }
+      ]
+    },
+    "supported-destinations.png": {
+      "alt": "A screenshot of Xcode's supported destinations. There are entries for iPhone, iPad, Mac, and Apple Vision.",
+      "identifier": "supported-destinations.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c713935e95f630a9b1f15247655337d/supported-destinations@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39bb69ad474f19e953bbd905bdf245b2/supported-destinations~dark@2x.png"
+        }
+      ]
+    },
+    "viewpoint-changes-poster-image.png": {
+      "alt": null,
+      "identifier": "viewpoint-changes-poster-image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00a5e2778189d8fc975d97abeacd2887/viewpoint-changes-poster-image@2x.png"
+        }
+      ]
+    },
+    "viewpoint-changes.mp4": {
+      "alt": "A video showing the viewer moving around the greenhouse until the robot hops and rotates, then waves.",
+      "identifier": "viewpoint-changes.mp4",
+      "poster": "viewpoint-changes-poster-image.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc0de8fcf145b3ac67bfccce137d5bee/viewpoint-changes.mp4"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "1dbb5daa97bc/BOTAnist.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

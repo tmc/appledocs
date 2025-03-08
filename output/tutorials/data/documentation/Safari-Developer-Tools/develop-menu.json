@@ -1,0 +1,1146 @@
+{
+  "abstract": [
+    {
+      "text": "Access tools for debugging webpages in Safari, as well as tools for debugging web content in other apps and on other devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Developer Features"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Develop menu"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu is home to the tools available to design and develop web content in Safari, as well as web content used by other applications on your Mac and other devices. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu also provides quick access to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you haven’t already enabled features for web developers in Safari, follow the instruction for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-developer-features",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Once enabled, the ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Develop",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": " menu will be shown in the menu bar for Safari.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "DevelopMenu",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-Page-With",
+          "level": 2,
+          "text": "Open Page With",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Open Page With",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu shows you other apps and simulators you can open the current webpage in. Other browsers on your Mac are listed here, like Safari Technology Preview, allowing you to quickly open a page in another browser.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have Xcode installed, you’ll also see a list of available iOS, iPadOS, and visionOS simulators here. Select a simulator to test your page across different device sizes and OS versions. If you don’t have Xcode installed, or want to add more simulators, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/adding-additional-simulators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "User-Agent",
+          "level": 2,
+          "text": "User Agent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browsers send a string that identifies the browser type to servers, called the User Agent. This same string is also available via JavaScript. You can change the User Agent to ensure that your site behaves the same regardless of the reported User Agent, or to debug a webpage that uses the User Agent string to enable functionality instead of feature detection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use feature detection to enable or disable functionality instead of relying on the name or version of the browser in the User Agent string. ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Devices-and-Simulators",
+          "level": 2,
+          "text": "Devices and Simulators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari in macOS can inspect web content running in other applications in macOS, as well as inspect Safari, Home Screen web apps, Service Workers, and other apps in iOS, iPadOS (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and visionOS (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and JavaScript and TVML in tvOS (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Develop menu displays your Mac here and shows Mac web apps and other apps that have enabled inspection of their web content (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). The Develop menu lists each inspectable device or simulator with their name and OS version to make it easier to find the specific device you want to inspect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each device (including the Mac you are using) and simulator has its own menu that lists the inspectable content on that device, as well as device-specific options. Not all options are available for all devices, and each option only applies to a specific device or simulator, not all of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When enabled, Web Inspector is automatically opened whenever a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "JSContext",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is created by any inspectable application on the device.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Automatically Show Web Inspector for JSContexts",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When enabled, Web Inspector will automatically pause JavaScript execution when inspecting any JSContext. This option is typically used with ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Automatically Show Web Inspector for JSContexts",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " to automatically inspect and pause a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "JSContext",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to debug issues in short-lived scripts or at the beginning of a script.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Automatically Pause Connecting to JSContexts",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For devices that are paired using a wired connection, you can enable ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Connect via Network",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " to allow the device to be inspected wirelessly over the network, as long as both the device and your Mac are on the same network.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Connect via Network",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For devices that are paired over the network, you can also unpair from the device in Safari. Once unpaired, it will stop appearing in the Develop menu until you pair with it again.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Unpair…",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Service-Workers",
+          "level": 2,
+          "text": "Service Workers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are shared between webpages and don’t necessarily belong to any individual webpage. For this reason, they are inspectable separately from webpages in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a service worker is running it will appear in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Service Workers",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Web-Extension-Background-Content",
+          "level": 2,
+          "text": "Web Extension Background Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Web Extension Background Content includes background pages and service workers which are scripts that run separately from webpages for each extension. These scripts, housing the core logic of a web extension, are responsible for preserving the extension’s state and reacting to extension-specific events. ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Responsive-Design-Mode",
+          "level": 2,
+          "text": "Responsive Design Mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Enter Responsive Design Mode",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " item allows you to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/responsive-design-mode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to test how your webpage adapts to various viewport sizes, as well as different display pixel ratios. While in Responsive Design Mode you can exit it using the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Exit Responsive Design Mode",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Web-Inspector",
+          "level": 2,
+          "text": "Web Inspector",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to inspect and debug your HTML, CSS, and JavaScript. These menu items allow you to open Web Inspector into various tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Open Web Inspector to the tab that was used last time Web Inspector was open.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show Web Inspector",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Open Web Inspector to the Console tab to see messages the page has logged.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show JavaScript Console",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Open Web Inspector to the Sources tab, selecting the main resource to view.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show Page Source",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Open Web Inspector to the Source tab.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show Page Resources",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Open Web Inspector and record detailed information about the status of incoming HTTP requests, JavaScript events, and layout. ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://webkit.org/web-inspector/timelines-tab/",
+                        "isActive": true,
+                        "type": "reference"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Start Timeline Recording",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When in Element Selection Mode, an overlay is shown on the page as you hover over elements, providing a visualization to help developers understand the page structure in general, as well as the layout effects of various CSS properties (e.g. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "margin",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "padding",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "border",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "display",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", etc.).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Start Element Selection",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Empty-Caches",
+          "level": 2,
+          "text": "Empty Caches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Delete all caches stored by the browser. This is useful when a server is causing content you are developing to be cached, preventing you from seeing changes locally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Settings",
+          "level": 2,
+          "text": "Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the bottom of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu, there are quick links to both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as well as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to go directly to those specific Settings panes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "DevelopMenu": {
+      "alt": "Develop menu open, with an iPad attached showing three inspectable items for the iPad, a webpage, a Home Screen web app, and a service worker.",
+      "identifier": "DevelopMenu",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f94ecb74ec50470120bfb2bf877196c/DevelopMenu@2x.png"
+        }
+      ]
+    },
+    "Safari-Developer-Tools-PageImage-card.png": {
+      "alt": "A blue tools logo on a gradient background.",
+      "identifier": "Safari-Developer-Tools-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77bad5e1be417d2e9f3bb2ff2698c1f9/Safari-Developer-Tools-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae177e98052f40b765cec73979b779b7/Safari-Developer-Tools-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/adding-additional-simulators": {
+      "abstract": [
+        {
+          "text": "Add simulators for different devices and iOS versions to use for web development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/adding-additional-simulators",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding additional simulators",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/adding-additional-simulators"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings": {
+      "abstract": [
+        {
+          "text": "Change developer-centric settings that change the behavior of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Developer settings in Safari on macOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/developer-settings"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-developer-features": {
+      "abstract": [
+        {
+          "text": "Enable features and settings for web developers in Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-developer-features",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling features for web developers",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/enabling-developer-features"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Enable the inspection of webpages and JavaScript in apps you develop when inspected from a connected Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling inspecting content in your apps",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/enabling-inspecting-content-in-your-apps"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings": {
+      "abstract": [
+        {
+          "text": "Test new web platform features before they ship in Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Feature Flag settings in Safari on macOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/feature-flag-settings"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, Service Workers, Home Screen web apps, extensions, and content inside apps on iOS and iPadOS devices and simulators from a connected Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting iOS and iPadOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-ios"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos": {
+      "abstract": [
+        {
+          "text": "Inspect JavaScript and TVML content on tvOS from a Mac on the same network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting tvOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-tvos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, service workers, extensions, and content inside apps in visionOS from a Mac on the same network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting visionOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-visionos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators": {
+      "abstract": [
+        {
+          "text": "Install simulators to use for web development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Xcode and Simulators",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/installing-xcode-and-simulators"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/responsive-design-mode": {
+      "abstract": [
+        {
+          "text": "Use Responsive Design Mode to test your ",
+          "type": "text"
+        },
+        {
+          "code": "media",
+          "type": "codeVoice"
+        },
+        {
+          "text": " queries and other dynamic styles to ensure your webpages look great on any screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/responsive-design-mode",
+      "kind": "article",
+      "role": "article",
+      "title": "Responsive Design Mode",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/responsive-design-mode"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector": {
+      "abstract": [
+        {
+          "text": "Use Web Inspector to inspect and debug your HTML, CSS, and JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector",
+      "kind": "article",
+      "role": "article",
+      "title": "Web Inspector",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/web-inspector"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver": {
+      "abstract": [
+        {
+          "text": "Use WebDriver to write robust, comprehensive tests and run them against any browser that has a WebDriver-compliant driver, including Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WebDriver",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/webdriver"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools": {
+      "abstract": [
+        {
+          "text": "Inspect, debug, and test web content in Safari, in other apps, and on other devices including iPhone and iPad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools",
+      "images": [
+        {
+          "identifier": "Safari-Developer-Tools-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Developer Features",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools"
+    },
+    "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523": {
+      "identifier": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523",
+      "title": "Learn more about debugging web extensions…",
+      "titleInlineContent": [
+        {
+          "text": "Learn more about debugging web extensions…",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/safariservices/safari_web_extensions/troubleshooting_your_safari_web_extension#3734523"
+    },
+    "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection",
+      "title": "Learn how to detect available features on MDN…",
+      "titleInlineContent": [
+        {
+          "text": "Learn how to detect available features on MDN…",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection"
+    },
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API": {
+      "identifier": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "title": "Service Workers",
+      "titleInlineContent": [
+        {
+          "text": "Service Workers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API"
+    },
+    "https://webkit.org/web-inspector/timelines-tab/": {
+      "identifier": "https://webkit.org/web-inspector/timelines-tab/",
+      "title": "Learn more about timeline recordings…",
+      "titleInlineContent": [
+        {
+          "text": "Learn more about timeline recordings…",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/web-inspector/timelines-tab/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/responsive-design-mode",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver"
+      ],
+      "title": "Tools"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safari-developer-tools/develop-menu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

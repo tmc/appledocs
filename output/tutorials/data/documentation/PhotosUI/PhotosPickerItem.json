@@ -1,0 +1,1068 @@
+{
+  "abstract": [
+    {
+      "text": "A type that represents an item you use with a Photos picker.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:015_PhotosUI_SwiftB00A10PickerItemV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PhotosPickerItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PhotosUI",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PhotosPickerItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PhotosPickerItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PhotosPickerItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The selection results you get from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are placeholder objects. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and allows you to load the representation you request. To load a SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and track progress, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func loadTransferable(from imageSelection: PhotosPickerItem) -> Progress {",
+            "    return imageSelection.loadTransferable(type: Image.self) { result in",
+            "        DispatchQueue.main.async {",
+            "            guard imageSelection == self.imageSelection else { return }",
+            "            switch result {",
+            "            case .success(let image?):",
+            "                // Handle the success case with the image.",
+            "            case .success(nil):",
+            "                // Handle the success case with an empty value.",
+            "            case .failure(let error):",
+            "                // Handle the failure case with the provided error.",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A failure can occur when the system attempts to retrieve the data. For example, if the picker tries to download data from iCloud Photos without a network connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " only supports ",
+                  "type": "text"
+                },
+                {
+                  "code": "PNG",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file types through its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " conformance. For more information on creating a custom ",
+                  "type": "text"
+                },
+                {
+                  "code": "Transferable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " model to support other image types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Select media assets by using a Photos picker view that SwiftUI provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing Photos picker to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/photokit/bringing-photos-picker-to-your-swiftui-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker": {
+      "abstract": [
+        {
+          "text": "Embed a system-provided, half-height Photos picker into your app’s view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing an inline Photos picker",
+      "type": "topic",
+      "url": "/documentation/photokit/implementing-an-inline-photos-picker"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker": {
+      "abstract": [
+        {
+          "text": "A view that displays a Photos picker for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhotosPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPicker",
+      "type": "topic",
+      "url": "/documentation/photosui/photospicker"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem": {
+      "abstract": [
+        {
+          "text": "A type that represents an item you use with a Photos picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPickerItem",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/EncodingDisambiguationPolicy": {
+      "abstract": [
+        {
+          "text": "A type that determines the encoding to use when multiple encodings are available, based on the content type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EncodingDisambiguationPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/EncodingDisambiguationPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EncodingDisambiguationPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPickerItem.EncodingDisambiguationPolicy",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem/encodingdisambiguationpolicy"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/init(itemIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a picker item with the identifier you specify, and without any representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/init(itemIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(itemIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem/init(itemidentifier:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/itemIdentifier": {
+      "abstract": [
+        {
+          "text": "The local identifier of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/itemIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemIdentifier",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem/itemidentifier"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:)": {
+      "abstract": [
+        {
+          "text": "Attempts to load an instance of the type you specify from the item provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTransferable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> sending "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadTransferable(type:)",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem/loadtransferable(type:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Attempts to load an instance of the type you specify from the item provider, with a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTransferable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?, any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadTransferable(type:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem/loadtransferable(type:completionhandler:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/supportedContentTypes": {
+      "abstract": [
+        {
+          "text": "The content types the item supports in order of the most preferred to the least.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/supportedContentTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedContentTypes",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem/supportedcontenttypes"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerSelectionBehavior": {
+      "abstract": [
+        {
+          "text": "A type that describes how the Photos picker handles user selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerSelectionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerSelectionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerSelectionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPickerSelectionBehavior",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickerselectionbehavior"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPickerStyle",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickerstyle"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Photos-picker-for-SwiftUI",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker",
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerSelectionBehavior",
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerStyle"
+      ],
+      "title": "Photos picker for SwiftUI"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-picker-item",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/init(itemIdentifier:)"
+      ],
+      "title": "Creating a picker item"
+    },
+    {
+      "anchor": "Inspecting-a-picker-item",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/itemIdentifier",
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/supportedContentTypes"
+      ],
+      "title": "Inspecting a picker item"
+    },
+    {
+      "anchor": "Getting-an-encoding-policy",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/EncodingDisambiguationPolicy"
+      ],
+      "title": "Getting an encoding policy"
+    },
+    {
+      "anchor": "Loading-the-providers-contents",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:)",
+        "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem/loadTransferable(type:completionHandler:)"
+      ],
+      "title": "Loading the provider’s contents"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photosui/photospickeritem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

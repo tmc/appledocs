@@ -1,0 +1,458 @@
+{
+  "abstract": [
+    {
+      "text": "Respond to events that trigger when MapKit JS initializes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/handling-initialization-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling initialization events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "mapkit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object emits two events to indicate the success or failure of a configuration operation. The initialization process configures MapKit JS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Summary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "configuration-change",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The MapKit configuration changes due to either a successful initialization or a refresh. The event has the property ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "status",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), which indicates the configuration change status. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Initialized",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": MapKit successfully initializes and configures. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Refreshed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The MapKit configuration updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "error",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MapKit fails to initialize. The event has the property ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "status",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), which indicates the status response. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Unauthorized",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The provided authorization token is invalid. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Too Many Requests",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The Maps ID for the authorization token provided exceeds its allowed daily usage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit JS invokes these events asynchronously upon success or failure of the initialization request. The example below shows a common use case:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mapkit.init({ authorizationCallback: function(done) { done(\"your-token\"); }, ... });",
+            "mapkit.addEventListener(\"configuration-change\", function(event) {",
+            "    switch (event.status) {",
+            "    case \"Initialized\":",
+            "        // MapKit JS initializes and configures.",
+            "        break;",
+            "    case \"Refreshed\":",
+            "        // The MapKit JS configuration updates.",
+            "        break;",
+            "    }",
+            "});",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions": {
+      "abstract": [
+        {
+          "text": "Initialization options for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MapKitInitOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkitinitoptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit": {
+      "abstract": [
+        {
+          "text": "The JavaScript API for embedding Apple Maps on your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/Libraries": {
+      "abstract": [
+        {
+          "text": "The list of available libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/Libraries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Libraries",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/libraries"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/addEventListener": {
+      "abstract": [
+        {
+          "text": "Subscribes a listener function to an event type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/addEventListener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addEventListener",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/addeventlistener"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/init": {
+      "abstract": [
+        {
+          "text": "Initializes MapKit JS by providing an authorization callback function and optional language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/init"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/load": {
+      "abstract": [
+        {
+          "text": "Tells MapKit JS which libraries to load.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/load"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/loadedLibraries": {
+      "abstract": [
+        {
+          "text": "A string that describes the list of loaded libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/loadedLibraries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadedLibraries",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/loadedlibraries"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/removeEventListener": {
+      "abstract": [
+        {
+          "text": "Unsubscribes a listener function from an event type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/removeEventListener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeEventListener",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit/removeeventlistener"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Initialization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/init",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/MapKitInitOptions",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/Libraries",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/loadedLibraries",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/load",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/addEventListener",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit/removeEventListener"
+      ],
+      "title": "Initialization"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/handling-initialization-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1146 @@
+{
+  "abstract": [
+    {
+      "text": "A 32-bit extended-range pixel format with three fixed-point components of 10-bit blue, 10-bit green, and 10-bit red.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLPixelFormat"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MTLPixelFormat@MTLPixelFormatBGR10_XR",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "case"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "bgr10_xr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLPixelFormatBGR10_XR"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Case",
+    "symbolKind": "case",
+    "title": "MTLPixelFormat.bgr10_xr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "bgr10_xr"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pixel components are in blue, green, and red order, from least significant bit to most significant bit. Bits 30 and 31 are padding, and their value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2952459",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Components are linearly encoded in a transform from ",
+              "type": "text"
+            },
+            {
+              "code": "[0,2^10)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to [",
+              "type": "text"
+            },
+            {
+              "code": "-0.752941, 1.25098]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The formula used in this linear encoding is ",
+              "type": "text"
+            },
+            {
+              "code": "shader_float = (xr10_value - 384) / 510.0f",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each UNorm8-based pixel value has an exact corresponding value in the XR10 pixel range, given by ",
+                  "type": "text"
+                },
+                {
+                  "code": "xr10_value = unorm8_value * 2 + 384",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display wide color values on devices with wide color displays, set this pixel format on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView/colorPixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only devices with a wide color display can display color values outside the ",
+                  "type": "text"
+                },
+                {
+                  "code": "[0.0, 1.0]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " range; all other devices clamp color values to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "[0.0, 1.0]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " range.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView/colorPixelFormat": {
+      "abstract": [
+        {
+          "text": "The color pixel format for the current drawable’s texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView/colorPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorPixelFormat",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView/colorPixelFormat"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/pixelFormat": {
+      "abstract": [
+        {
+          "text": "The pixel format of the layer’s textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer/pixelFormat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr": {
+      "abstract": [
+        {
+          "text": "A 32-bit extended-range pixel format with three fixed-point components of 10-bit blue, 10-bit green, and 10-bit red.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgr10_xr"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGR10_XR"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgr10_xr",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgr10_xr"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr_srgb": {
+      "abstract": [
+        {
+          "text": "A 32-bit extended-range pixel format with sRGB conversion and three fixed-point components of 10-bit blue, 10-bit green, and 10-bit red.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgr10_xr_srgb"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr_srgb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGR10_XR_sRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgr10_xr_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgr10_xr_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr": {
+      "abstract": [
+        {
+          "text": "A 64-bit extended-range pixel format with four fixed-point components of 10-bit blue, 10-bit green, 10-bit red, and 10-bit alpha.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgra10_xr"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGRA10_XR"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgra10_xr",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgra10_xr"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr_srgb": {
+      "abstract": [
+        {
+          "text": "A 64-bit extended-range pixel format with sRGB conversion and four fixed-point components of 10-bit blue, 10-bit green, 10-bit red, and 10-bit alpha.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bgra10_xr_srgb"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr_srgb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormatBGRA10_XR_sRGB"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgra10_xr_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgra10_xr_srgb"
+    },
+    "media-2952459": {
+      "alt": "Bit layout diagram showing the pixel data storage arrangement of the bgr10_xr pixel format. The blue component is stored in bits 0 to 9, the green component is stored in bits 10 to 19, the red component is stored in bits 20 to 29, and bits 30 to 31 are used as padding.",
+      "identifier": "media-2952459",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cefdcac9a82ab54f7f8ca981e2fedc5c/media-2952459.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b8b5ef3d46f2f39a29d9230a1a67a11/media-2952459@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extended-Range-and-Wide-Color-Pixel-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr",
+        "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr_srgb",
+        "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr_srgb"
+      ],
+      "title": "Extended Range and Wide Color Pixel Formats"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration Case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLPixelFormatBGR10_XR"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGR10_XR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLPixelFormat"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extended-Range-and-Wide-Color-Pixel-Formats",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr",
+                "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra10_xr_srgb",
+                "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgr10_xr_srgb"
+              ],
+              "title": "Extended Range and Wide Color Pixel Formats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "identifier",
+                    "text": "MTLPixelFormatBGR10_XR"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgra10_xr_srgb/title",
+          "value": "MTLPixelFormatBGRA10_XR_sRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgra10_xr_srgb/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGRA10_XR_sRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1pixelFormat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLPixelFormat",
+              "text": "MTLPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "pixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgra10_xr/title",
+          "value": "MTLPixelFormatBGRA10_XR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgra10_xr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGRA10_XR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView~1colorPixelFormat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLPixelFormat",
+              "text": "MTLPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr10_xr_srgb/title",
+          "value": "MTLPixelFormatBGR10_XR_sRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr10_xr_srgb/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGR10_XR_sRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/title",
+          "value": "MTLPixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr10_xr/title",
+          "value": "MTLPixelFormatBGR10_XR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPixelFormat~1bgr10_xr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPixelFormatBGR10_XR"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlpixelformat/bgr10_xr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlpixelformat/bgr10_xr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

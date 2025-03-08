@@ -1,0 +1,1803 @@
+{
+  "abstract": [
+    {
+      "text": "Fill the gaps in arrays of numerical data using linear interpolation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/linear-interpolation-functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using linear interpolation to construct new data points"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Linear interpolation is a method of calculating intermediate data between known values by conceptually drawing a straight line between two adjacent known values. An interpolated value is any point along that line. You use linear interpolation to, for example, draw graphs or animate between keyframes. The following figure shows an example interpolated value between two points:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122762",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides the following functions to linearly interpolate between the elements in an array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The single-precision function ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the double-precision function ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-9rxb4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that provide a simple interface for generating interpolated data. These functions wrap ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgenp",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgenpD",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The single-precision function ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the double-precision function ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-5i3jc",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that provide fine control over the interpolation. These functions wrap ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vlint",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vlintD",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article discusses using these functions to draw a continuous line graph based on a set of discrete data points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-data",
+          "level": 3,
+          "text": "Create the data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the code interpolates the data that the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays represent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let values: [Float] = [50,  90,  55,  10,  40,  85,  65,  15,  30,   80]",
+            "let indices: [Float] = [0, 113, 227, 341, 455, 568, 682, 796, 910, 1024]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each array consists of 10 elements. A pair of corresponding elements in the two arrays defines a single point in the diagram as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elements in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "values",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array denote the vertical position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Elements in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "indices",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array denote the horizontal position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122542",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-constant-that-represents-the-number-of-elements",
+          "level": 3,
+          "text": "Define the constant that represents the number of elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code defines ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the number of elements in the interpolation result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let count = 1024"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Generate-a-vector-by-interpolation",
+          "level": 3,
+          "text": "Generate a vector by interpolation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function accepts the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays and returns the interpolation result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let result = vDSP.linearInterpolate(values: values,",
+            "                                    atIndices: indices)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the interpolated values. The following graph shows the values in ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a line between the known values that the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays describe:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122764",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpolate-with-fine-control",
+          "level": 3,
+          "text": "Interpolate with fine control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function requires a control vector array that includes fractional parts. The fractional parts define the interpolation between the pair of values in the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, starting at the index that the integer part defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(in:count:)-79aw7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate a linear ramp from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the number of elements in ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", minus ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Note that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(in:count:)-79aw7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function wraps ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let base: Float = 0",
+            "let end = Float(values.count - 1)",
+            "",
+            "let control = vDSP.ramp(in: base ... end,",
+            "                        count: count)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "control",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "[0]\tFloat\t0.0000",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "[1]\tFloat\t0.0087",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "[2]\tFloat\t0.0175",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "[1021]\tFloat\t8.9824",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "[1022]\tFloat\t8.9912",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "        ",
+              "type": "text"
+            },
+            {
+              "code": "[1023]\tFloat\t9.0000",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a visualization of the values in ",
+              "type": "text"
+            },
+            {
+              "code": "control",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with small circles indicating each integer index:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122765",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code passes the control values to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to calculate the interpolated values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let result = vDSP.linearInterpolate(elementsOf: values,",
+            "                                    using: control)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the interpolated values. The graph below shows the values in ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a line between the known values that the ",
+              "type": "text"
+            },
+            {
+              "code": "values",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays describe:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122535",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is equal to the result of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-smoothing-to-the-interpolation-result",
+          "level": 3,
+          "text": "Add smoothing to the interpolation result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change the way that you generate the control array to alter the interpolated result. For example, you may want to add smoothing between the segments of a line graph or add easing to an animation. The following code uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/simd/simd_smoothstep(_:_:_:)-993b1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to smooth the fractional parts of ",
+              "type": "text"
+            },
+            {
+              "code": "control",
+              "type": "codeVoice"
+            },
+            {
+              "text": " near the increments to the integer parts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let denominator = Float(n) / Float(values.count - 1)",
+            "",
+            "let control: [Float] = (0 ... count).map {",
+            "    let x = Float($0) / denominator",
+            "    return floor(x) + simd_smoothstep(0, 1, simd_fract(x))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following graph shows a visualization of the values in ",
+              "type": "text"
+            },
+            {
+              "code": "control",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with small circles indicating each integer index:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122763",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the same call to  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as above, the result, as shown below, shows a smoother transition between the known values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3122543",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride": {
+      "abstract": [
+        {
+          "text": "Operate selectively on the elements of a vector at regular intervals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling vDSP operations with stride",
+      "type": "topic",
+      "url": "/documentation/accelerate/controlling-vdsp-operations-with-stride"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/linear-interpolation-functions": {
+      "abstract": [
+        {
+          "text": "Compute the linear average between two vectors or between the neighboring elements in one vector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/linear-interpolation-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Linear interpolation functions",
+      "type": "topic",
+      "url": "/documentation/accelerate/linear-interpolation-functions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation": {
+      "abstract": [
+        {
+          "text": "Reduce the sample rate of a signal by specifying a decimation factor and applying a custom antialiasing filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+      "kind": "article",
+      "role": "article",
+      "title": "Resampling a signal with decimation",
+      "type": "topic",
+      "url": "/documentation/accelerate/resampling-a-signal-with-decimation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic": {
+      "abstract": [
+        {
+          "text": "Increase the performance of common mathematical tasks with vDSP vector-vector and vector-scalar operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic",
+      "kind": "article",
+      "role": "article",
+      "title": "Using vDSP for vector-based arithmetic",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vdsp-for-vector-based-arithmetic"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c": {
+      "abstract": [
+        {
+          "text": "Returns the interpolation between the neighboring elements of a single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearInterpolate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "elementsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-49r3c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearInterpolate(elementsOf:using:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/linearinterpolate(elementsof:using:)-49r3c"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-5i3jc": {
+      "abstract": [
+        {
+          "text": "Returns the interpolation between the neighboring elements of a double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearInterpolate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "elementsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(elementsOf:using:)-5i3jc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearInterpolate(elementsOf:using:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/linearinterpolate(elementsof:using:)-5i3jc"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision linearly interpolated values of a vector at the specified indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearInterpolate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "values"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearInterpolate(values:atIndices:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/linearinterpolate(values:atindices:)-5mbnu"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-9rxb4": {
+      "abstract": [
+        {
+          "text": "Returns the double-precision linearly interpolated values of a vector at the specified indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearInterpolate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "values"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-9rxb4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearInterpolate(values:atIndices:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/linearinterpolate(values:atindices:)-9rxb4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(in:count:)-79aw7": {
+      "abstract": [
+        {
+          "text": "Returns a double-precision vector that contains monotonically incrementing or decrementing values within a range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ramp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(in:count:)-79aw7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ramp(in:count:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/ramp(in:count:)-79aw7"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgen": {
+      "abstract": [
+        {
+          "text": "Generates a single-precision vector that contains monotonically incrementing or decrementing values within a range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vgen"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vgen",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vgen"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgenp": {
+      "abstract": [
+        {
+          "text": "Generates the single-precision linearly interpolated values of a vector at the specified indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vgenp"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgenp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vgenp",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vgenp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgenpD": {
+      "abstract": [
+        {
+          "text": "Generates the double-precision linearly interpolated values of a vector at the specified indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vgenpD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vgenpD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vgenpD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vgenpd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vlint": {
+      "abstract": [
+        {
+          "text": "Calculates the interpolation between the neighboring elements of a single-precision vector using the specified stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vlint"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vlint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vlint",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vlint"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vlintD": {
+      "abstract": [
+        {
+          "text": "Calculates the interpolation between the neighboring elements of a double-precision vector using the specified stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_vlintD"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_vlintD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_vlintD",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_vlintd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_smoothstep(_:_:_:)-993b1": {
+      "abstract": [
+        {
+          "text": "Returns an element-wise smoothly interpolated value between two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_smoothstep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_smoothstep(_:_:_:)-993b1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_smoothstep"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_smoothstep(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/simd/simd_smoothstep(_:_:_:)-993b1"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3122535": {
+      "alt": "A line graph showing the known values as small circles joined together by a series of lines that represent the interpolation result.",
+      "identifier": "media-3122535",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f63663a39c97078fc7191f42f69a0e52/media-3122535@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f63663a39c97078fc7191f42f69a0e52/media-3122535~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122542": {
+      "alt": "A scatter chart showing a plot of the data points as small circles formed by the corresponding elements in vectors values and indices. ",
+      "identifier": "media-3122542",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a658658d3fc93c24761ba8a51c79f234/media-3122542@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a658658d3fc93c24761ba8a51c79f234/media-3122542~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122543": {
+      "alt": "A line graph showing the known values as small circles joined together by a series of smoothly curved lines that represent the interpolation result. ",
+      "identifier": "media-3122543",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8128c0584c0f2e51ec4374c046989fb6/media-3122543@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8128c0584c0f2e51ec4374c046989fb6/media-3122543~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122762": {
+      "alt": "An illustration containing two points joined by a straight line. The first point is at the bottom left of the illustration and the second point is at the top right of the illustration. A point on the line represents an interpolated value.",
+      "identifier": "media-3122762",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5d40e6d782fb5fd618590f925934e0a/media-3122762@2x.png"
+        }
+      ]
+    },
+    "media-3122763": {
+      "alt": "A line graph showing the smoothed ramp result as a line from the bottom left to the top right. The line flattens near the circles that indicate the index positions.",
+      "identifier": "media-3122763",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/daffca770b58e0483c3146b920a85869/media-3122763@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/daffca770b58e0483c3146b920a85869/media-3122763~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122764": {
+      "alt": "A line graph showing the known values as small circles joined together by a series of lines that represent the interpolation result.",
+      "identifier": "media-3122764",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f63663a39c97078fc7191f42f69a0e52/media-3122764@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f63663a39c97078fc7191f42f69a0e52/media-3122764~dark@2x.png"
+        }
+      ]
+    },
+    "media-3122765": {
+      "alt": "A line graph showing the linear ramp result as a line from the bottom left to the top right and a series of ten small circles along the line’s length that represent the known values.",
+      "identifier": "media-3122765",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e51407e907ca6096167ee55c36a20d6/media-3122765@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e51407e907ca6096167ee55c36a20d6/media-3122765~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signal-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride",
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic",
+        "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ],
+      "title": "Signal Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_smoothstep(_:_:_:)-993b1/title",
+          "value": "simd_smoothstep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_smoothstep(_:_:_:)-993b1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_smoothstep"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

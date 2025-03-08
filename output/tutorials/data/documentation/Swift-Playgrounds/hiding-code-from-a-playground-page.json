@@ -1,0 +1,288 @@
+{
+  "abstract": [
+    {
+      "text": "Use special Swift comments to hide code from display but continue to run it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Hiding Code from a Playground Page"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can hide code that’s unrelated to the main content of a playground page, like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls to page setup functions, code for assessing the learner’s progress, and functions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in editable examples. Hidden code is still executed when the learner runs the playground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place code you want to hide between the ",
+              "type": "text"
+            },
+            {
+              "code": "hidden-code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "end-hidden-code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delimiters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "hiding-code-from-a-playground-page-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows the raw syntax for a playground page with hidden code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//#-hidden-code",
+            "import UIKit",
+            "import PlaygroundSupport",
+            "let viewRect = CGRect(x: 0, y: 0, width: 100 , height: 400)",
+            "let theView = CustomView(frame: viewRect)",
+            "PlaygroundPage.current.liveView = theView",
+            "//#-end-hidden-code",
+            "//#-editable-code",
+            "theView.markColor = UIColor.darkGray",
+            "theView.isChecked = true",
+            "//#-end-editable-code"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows how the previous code appears when it’s rendered in the playground",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "page source editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "theView.markColor = UIColor.darkGray",
+            "theView.isChecked = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar": {
+      "abstract": [
+        {
+          "text": "Guide learners toward a solution by hiding some symbols and showing others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the Completions in the Shortcut Bar",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/customizing-the-completions-in-the-shortcut-bar"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, mark up code zones to replace them with code that’s localized for the current user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing Code Comments and String Literals",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/localizing-code-comments-and-string-literals"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Guide learning by marking code that learners can change or copy forward.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Editable Regions in a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/specifying-editable-regions-in-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Add comment markers in your Swift code to mark text as prose.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Prose for a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/writing-prose-for-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "hiding-code-from-a-playground-page-1": {
+      "alt": "Diagram showing the hidden-code and end-hidden code comment syntax. The first line is “//#-hidden-code”, followed by a placeholder line, terminated with a line with contents “//#-end-hidden-code”.",
+      "identifier": "hiding-code-from-a-playground-page-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8bdfe3e44e58770fc17748e2752dc1c/hiding-code-from-a-playground-page-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals"
+      ],
+      "title": "Annotations"
+    }
+  ]
+}

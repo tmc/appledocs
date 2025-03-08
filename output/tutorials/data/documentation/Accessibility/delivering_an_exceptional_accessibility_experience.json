@@ -1,0 +1,1761 @@
+{
+  "abstract": [
+    {
+      "text": "Make improvements to your app’s interaction model to support assistive technologies such as VoiceOver.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/delivering_an_exceptional_accessibility_experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Delivering an exceptional accessibility experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide an exceptional accessibility experience, you need to think about how users with accessibility needs interact with your app. For example, your app should:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Be easy to navigate using assistive technologies such as VoiceOver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make the most frequently used features easily available to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convey different elements in the proper context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the predictability of user interactions, which is to say, if a gesture works with VoiceOver one way in other apps, the gesture should work the same way in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to provide an exceptional accessibility experience for VoiceOver. The sample app contains a gallery of dogs available for adoption. With VoiceOver enabled, the system reads aloud information about each dog as you swipe through the list. You’ll also hear details about the dog—such as the age, gender, and attitude—mark the dog as a favorite, and view a gallery with more photos of the lovable canine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-started",
+          "level": 3,
+          "text": "Get started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the sample app in action, use Xcode to build and run the app on your iOS device. Be sure to turn on VoiceOver, which you can do from Settings under ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "General > Accessibility > VoiceOver",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-carousel-navigation",
+          "level": 3,
+          "text": "Improve carousel navigation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To preview each pup available for adoption, the user swipes left and right across the collection view at the top of the screen. There is, however, a problem with this interaction when VoiceOver is on, the assistive technology doesn’t recognize visible elements, such as the favorite and gallery buttons, and it doesn’t know the details of the dog until the user reaches the end of the list. This behavior is far from being an exceptional accessibility experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Navigating through the collection of dogs is central to the app. It’s the primary feature that users use, and as such, it should be easy for the user to perform. To provide a better accessibility experience, the sample defines the custom class ",
+              "type": "text"
+            },
+            {
+              "identifier": "x-source-tag://CarouselAccessibilityElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615202-accessibilitytraits",
+              "isActive": true,
+              "overridingTitle": "accessibilityTraits",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessibilityTraits",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/adjustable",
+              "isActive": true,
+              "overridingTitle": "adjustable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "adjustable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override var accessibilityTraits: UIAccessibilityTraits {",
+            "    get {",
+            "        return .adjustable",
+            "    }",
+            "    set {",
+            "        super.accessibilityTraits = newValue",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://accessibility_traits",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/adjustable",
+              "isActive": true,
+              "overridingTitle": "adjustable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "adjustable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " trait tells VoiceOver that the element behaves like a picker by responding to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615076-accessibilityincrement",
+              "isActive": true,
+              "overridingTitle": "accessibilityIncrement()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessibilityIncrement()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615169-accessibilitydecrement",
+              "isActive": true,
+              "overridingTitle": "accessibilityDecrement()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessibilityDecrement()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " callback methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func accessibilityIncrement() {",
+            "    // This causes the picker to move forward one if the user swipes up.",
+            "    _ = accessibilityScrollForward()",
+            "}",
+            "",
+            "override func accessibilityDecrement() {",
+            "    // This causes the picker to move back one if the user swipes down.",
+            "    _ = accessibilityScrollBackward()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://accessibility_increment_decrement",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample then creates an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "x-source-tag://CarouselAccessibilityElement",
+              "isActive": true,
+              "overridingTitle": "CarouselAccessibilityElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CarouselAccessibilityElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", settings its frame to the collection view’s frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let carouselAccessibilityElement: CarouselAccessibilityElement",
+            "if let theCarouselAccessibilityElement = self.carouselAccessibilityElement {",
+            "    carouselAccessibilityElement = theCarouselAccessibilityElement",
+            "} else {",
+            "    carouselAccessibilityElement = CarouselAccessibilityElement(",
+            "        accessibilityContainer: self,",
+            "        dog: currentDog",
+            "    )",
+            "    ",
+            "    carouselAccessibilityElement.accessibilityFrameInContainerSpace = dogCollectionView.frame",
+            "    self.carouselAccessibilityElement = carouselAccessibilityElement",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://using_carousel_accessibility_element",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With VoiceOver on, the carousel accessibility element adds two new gestures on top of the collection view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe up to move forward through the collection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe down to move backward through the collection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s use of ",
+              "type": "text"
+            },
+            {
+              "identifier": "x-source-tag://CarouselAccessibilityElement",
+              "isActive": true,
+              "overridingTitle": "CarouselAccessibilityElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CarouselAccessibilityElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " also makes it possible for the user to swipe to the favorite and gallery buttons for every dog in the list, rather than having the buttons reachable only at the end of the list. Although the gestures to swipe through the list of dogs is different when VoiceOver is on, this difference makes it easier for users needing assistance to preview each dog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-non-modal-modal-views",
+          "level": 3,
+          "text": "Display non-modal modal views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user taps the gallery button, the app displays a full-screen modal view. However, in the sample this modal view isn’t from a view controller that the app presents modally. Instead, it’s a view with a transparent background displayed on top of the app’s main view. Because of the transparent background, parts of the underlying view are still available to VoiceOver, and VoiceOver doesn’t know that those visible parts should not be available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To tell VoiceOver that the underlying view is not available, and to treat the top view as a modal view, the top view returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615089-accessibilityviewismodal",
+              "isActive": true,
+              "overridingTitle": "accessibilityViewIsModal",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessibilityViewIsModal",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override var accessibilityViewIsModal: Bool {",
+            "    get {",
+            "        return true",
+            "    }",
+            "",
+            "    set {}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://is_modal",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Group-labels",
+          "level": 3,
+          "text": "Group labels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When referring to separate elements belonging in the same context, it’s essential to convey a single set of information about the items. For example, the sample app displays a title label, such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "NAME",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and a value label, such as the dog’s name. These are two separate elements—",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "title",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "value",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—but they are part of the same context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To place these two elements into the same accessibility context, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement",
+              "isActive": true,
+              "overridingTitle": "UIAccessibilityElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UIAccessibilityElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to encapsulate the information from each label. For example, the sample project’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "x-source-tag://DogStatsView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " groups each ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "title",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "value",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " label combination into accessibility elements. The project also sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement/accessibilityLabel",
+              "isActive": true,
+              "overridingTitle": "accessibilityLabel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessibilityLabel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with the text from the two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UILabel",
+              "isActive": true,
+              "overridingTitle": "UILabel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UILabel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects, and sets ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement/accessibilityFrameInContainerSpace",
+              "isActive": true,
+              "overridingTitle": "accessibilityFrameInContainerSpace",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "accessibilityFrameInContainerSpace",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to a frame containing both labels. This allows VoiceOver to recognize each ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "title-value",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " label pairing as a single accessibility element. In turn, the user hears the title and value each time a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "title-value",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " accessibility element has focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var elements = [UIAccessibilityElement]()",
+            "let nameElement = UIAccessibilityElement(accessibilityContainer: self)",
+            "nameElement.accessibilityLabel = \"\\(nameTitleLabel.text!), \\(nameLabel.text!)\"",
+            "",
+            "/*",
+            "    This tells VoiceOver where the object should be onscreen. As the user",
+            "    touches around with their finger, we can determine if an element is below",
+            "    their finger.",
+            "*/",
+            "nameElement.accessibilityFrameInContainerSpace = nameTitleLabel.frame.union(nameLabel.frame)",
+            "elements.append(nameElement)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://grouping_elements",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-custom-actions",
+          "level": 3,
+          "text": "Add custom actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app also displays the name of the animal shelter housing the dog. Next to the shelter name are two buttons: one initiates a call to the shelter and the other displays the location of the shelter. To make the buttons available to VoiceOver users, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityCustomAction",
+              "isActive": true,
+              "overridingTitle": "UIAccessibilityCustomAction",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UIAccessibilityCustomAction",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to specify a name for the action along with the object and selector to use when performing the action. With the custom action, VoiceOver users can access the action using the VoiceOver rotor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "shelterInfoView.accessibilityCustomActions = [",
+            "    UIAccessibilityCustomAction(",
+            "        name: \"Call\",",
+            "        target: self,",
+            "        selector: #selector(activateCallButton)",
+            "    ),",
+            "    UIAccessibilityCustomAction(",
+            "        name: \"Open address in Maps\",",
+            "        target: self,",
+            "        selector: #selector(activateLocationButton)",
+            "    )",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://custom_actions",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "410d99e88578/DeliveringAnExceptionalAccessibilityExperience.zip": {
+      "checksum": "410d99e88578d47dc58dc82d19ee5b155c1d4d15984af15076f5b7bd530a954b8d7931bd5ab2f6728ebcf39ab9bdc874d62f9d065bf993905f31a2d16e6f8fc2",
+      "identifier": "410d99e88578/DeliveringAnExceptionalAccessibilityExperience.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/410d99e88578/DeliveringAnExceptionalAccessibilityExperience.zip"
+    },
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst": {
+      "abstract": [
+        {
+          "text": "Improve navigation in your app by using keyboard shortcuts and accessibility containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessibility design for Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility_design_for_mac_catalyst"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/enhancing-the-accessibility-of-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Support advancements in SwiftUI accessibility to make your app accessible to everyone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/enhancing-the-accessibility-of-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing the accessibility of your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/accessibility/enhancing-the-accessibility-of-your-swiftui-app"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/integrating_accessibility_into_your_app": {
+      "abstract": [
+        {
+          "text": "Make your app more accessible to users with disabilities by adding accessibility features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/integrating_accessibility_into_your_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating accessibility into your app",
+      "type": "topic",
+      "url": "/documentation/accessibility/integrating_accessibility_into_your_app"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityCustomAction": {
+      "abstract": [
+        {
+          "text": "A custom action to perform on an accessible object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityCustomAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityCustomAction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityCustomAction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "An element that should be accessible to users with disabilities, but that isn’t accessible by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityElement"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement/accessibilityFrameInContainerSpace": {
+      "abstract": [
+        {
+          "text": "The frame of the accessibility element, in the coordinate space of its container view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityFrameInContainerSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement/accessibilityFrameInContainerSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityFrameInContainerSpace",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityElement/accessibilityFrameInContainerSpace"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement/accessibilityLabel": {
+      "abstract": [
+        {
+          "text": "A string that succinctly identifies the accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityElement/accessibilityLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityElement/accessibilityLabel"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/adjustable": {
+      "abstract": [
+        {
+          "text": "The accessibility element allows continuous adjustment through a range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/adjustable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adjustable",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityTraits/adjustable"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UILabel": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of informational text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILabel"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615076-accessibilityincrement": {
+      "abstract": [
+        {
+          "text": "Tells the accessibility element to increment the value of its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityIncrement"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615076-accessibilityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityIncrement()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615076-accessibilityincrement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615089-accessibilityviewismodal": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether VoiceOver ignores the accessibility elements within views that are siblings of the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityViewIsModal"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615089-accessibilityviewismodal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityViewIsModal",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615089-accessibilityviewismodal"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615169-accessibilitydecrement": {
+      "abstract": [
+        {
+          "text": "Tells the accessibility element to decrement the value of its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDecrement"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615169-accessibilitydecrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDecrement()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615169-accessibilitydecrement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1615202-accessibilitytraits": {
+      "abstract": [
+        {
+          "text": "The combination of accessibility traits that best characterizes the accessibility element. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1615202-accessibilitytraits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityTraits",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1615202-accessibilitytraits"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views": {
+      "abstract": [
+        {
+          "text": "Make your app accessible to everyone by applying accessibility modifiers to your SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Accessible Views",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating_accessible_views"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "x-source-tag://CarouselAccessibilityElement": {
+      "identifier": "x-source-tag://CarouselAccessibilityElement",
+      "title": "CarouselAccessibilityElement",
+      "titleInlineContent": [
+        {
+          "code": "CarouselAccessibilityElement",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://CarouselAccessibilityElement"
+    },
+    "x-source-tag://DogStatsView": {
+      "identifier": "x-source-tag://DogStatsView",
+      "title": "DogStatsView",
+      "titleInlineContent": [
+        {
+          "code": "DogStatsView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://DogStatsView"
+    },
+    "x-source-tag://accessibility_increment_decrement": {
+      "identifier": "x-source-tag://accessibility_increment_decrement",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://accessibility_increment_decrement"
+    },
+    "x-source-tag://accessibility_traits": {
+      "identifier": "x-source-tag://accessibility_traits",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://accessibility_traits"
+    },
+    "x-source-tag://custom_actions": {
+      "identifier": "x-source-tag://custom_actions",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://custom_actions"
+    },
+    "x-source-tag://grouping_elements": {
+      "identifier": "x-source-tag://grouping_elements",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://grouping_elements"
+    },
+    "x-source-tag://is_modal": {
+      "identifier": "x-source-tag://is_modal",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://is_modal"
+    },
+    "x-source-tag://using_carousel_accessibility_element": {
+      "identifier": "x-source-tag://using_carousel_accessibility_element",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://using_carousel_accessibility_element"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "410d99e88578/DeliveringAnExceptionalAccessibilityExperience.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/enhancing-the-accessibility-of-your-swiftui-app",
+        "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views",
+        "doc://com.apple.Accessibility/documentation/Accessibility/integrating_accessibility_into_your_app",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sample-code",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/integrating_accessibility_into_your_app",
+                "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+              ],
+              "title": "Sample code"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityElement~1accessibilityLabel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityLabel"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11615076-accessibilityincrement/title",
+          "value": "accessibilityIncrement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityElement~1accessibilityFrameInContainerSpace/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityFrameInContainerSpace"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11615169-accessibilitydecrement/title",
+          "value": "accessibilityDecrement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityCustomAction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomAction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UILabel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityTraits~1adjustable/title",
+          "value": "UIAccessibilityTraitAdjustable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityTraits~1adjustable/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+              "text": "UIAccessibilityTraits"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityTraitAdjustable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/delivering_an_exceptional_accessibility_experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/delivering_an_exceptional_accessibility_experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

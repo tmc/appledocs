@@ -1,0 +1,468 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance testing of your web content using Safari’s enhancements to WebDriver.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/about-webdriver-for-safari"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About WebDriver for Safari"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WebDriver, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/seleniumhq/selenium",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s cross-platform, cross-browser API, automates testing of web content interactions on all major platforms and browsers, without requiring browser-specific code. Use WebDriver to write robust, comprehensive tests and run them against any browser that has a WebDriver-compliant driver. Safari’s driver is called ",
+              "type": "text"
+            },
+            {
+              "code": "safaridriver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and has a preset available in most Selenium client libraries. You can write tests in Python, Java, PHP, JavaScript, and any other language whose library is compatible with the W3C WebDriver protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WebDriver is a REST API. It hosts a local web server that accepts REST-style HTTP requests, so it can accept automation commands from a wide variety of test setups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support WebDriver without sacrificing a user’s privacy or security, Safari’s driver provides extra safeguards to ensure that test execution is isolated from normal browsing data and from other test runs. The driver is available in Safari 10 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Isolated-Automation-Windows",
+          "level": 3,
+          "text": "Isolated Automation Windows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test execution is confined to special automation windows that are isolated from normal browsing windows, user settings, and preferences. You can recognize these windows by their orange Smart Search field. Like a private browsing session, an automation session always starts from a clean slate. It can’t access Safari’s browsing history, AutoFill data, or other sensitive information available in a normal browsing session. These isolated sessions also help to ensure that tests are unaffected by a previous test session’s persistent state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2957225",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Glass-Panes",
+          "level": 3,
+          "text": "Glass Panes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent any attempts to interact with the window or web content during a test, Safari installs a transparent “glass pane” over the automation windows while the browser is being used for WebDriver testing. This pane catches any stray interactions (mouse, keyboard, resizing, and so on) that could affect the automation window. If a running test gets stuck, you can interrupt it by “breaking” the glass pane and stopping the session. When an automation session is interrupted, the test’s connection to the browser is permanently severed, and the automation window remains open for further inspection, until closed manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2957221",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Web-Inspector-and-WebDriver",
+          "level": 3,
+          "text": "Web Inspector and WebDriver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use Web Inspector during and after the execution of a WebDriver test. Web Inspector features such as console logging, the Elements tab, and the script debugger are fully functional when running WebDriver tests. Choose the Develop > Show Web Inspector menu item (shortcut: ⌥⌘I) to launch Web Inspector while a test is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "WebDriver-Commands-for-Debugging",
+          "level": 3,
+          "text": "WebDriver Commands for Debugging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify some WebDriver capabilities in a New Session request to assist debugging:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "safari:automaticInspection",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—When passed the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safari:automaticInspection",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " capability in a New Session request, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safaridriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " preloads the Web Inspector and JavaScript debugger in the background. To pause test execution and bring up Web Inspector’s Debugger tab, evaluate a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "debugger;",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " statement in the test page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "safari:automaticProfiling",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—When passed the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safari:automaticProfiling",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " capability in a New Session request, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "safaridriver",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " preloads Web Inspector and starts a timeline recording in the background. Open the Timelines tab in Web Inspector to see the captured timeline recording in its entirety.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "One-Session-at-a-Time-to-Mimic-User-Interaction",
+          "level": 3,
+          "text": "One Session at a Time, to Mimic User Interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only one Safari browser instance can be active at any given time, and only one WebDriver session at a time can be attached to the browser instance. These constraints ensure that the  simulated behavior (mouse, keyboard, touch, and so forth) accurately reflects what a user can do in a macOS windowing environment and prevents tests from competing with each other for window and keyboard focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-11-1-and-earlier": {
+      "abstract": [
+        {
+          "text": "Test your web content using the WebDriver commands supported by Safari 11.1 and earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-11-1-and-earlier",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS WebDriver Commands for Safari 11.1 and earlier",
+      "type": "topic",
+      "url": "/documentation/webkit/macos-webdriver-commands-for-safari-11-1-and-earlier"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-12-and-later": {
+      "abstract": [
+        {
+          "text": "Test your web content using the WebDriver commands supported by Safari 12 and later.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-12-and-later",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS WebDriver Commands for Safari 12 and later",
+      "type": "topic",
+      "url": "/documentation/webkit/macos-webdriver-commands-for-safari-12-and-later"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/testing-with-webdriver-in-safari": {
+      "abstract": [
+        {
+          "text": "Enable WebDriver and run a test.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/testing-with-webdriver-in-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing with WebDriver in Safari",
+      "type": "topic",
+      "url": "/documentation/webkit/testing-with-webdriver-in-safari"
+    },
+    "https://github.com/seleniumhq/selenium": {
+      "identifier": "https://github.com/seleniumhq/selenium",
+      "title": "Selenium",
+      "titleInlineContent": [
+        {
+          "text": "Selenium",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/seleniumhq/selenium"
+    },
+    "media-2957221": {
+      "alt": "Screenshot of the dialog that appears when you try to break the glass pane. The dialog presents three buttons: Turn Off All Automation, Stop Session, and Continue Session",
+      "identifier": "media-2957221",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd5b51e368807b5fa53be790f043a67b/media-2957221.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52ae8d370de587d6419aae6277ed4c3a/media-2957221@2x.png"
+        }
+      ]
+    },
+    "media-2957225": {
+      "alt": "Screenshot of an automation window with an orange Smart Search field. ",
+      "identifier": "media-2957225",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b46708d1fb551793903b424516122eb4/media-2957225.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7851ca0bd577ad0b59391f86ed6d62c5/media-2957225@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "WebDriver",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-11-1-and-earlier",
+        "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-12-and-later",
+        "doc://com.apple.webkit/documentation/WebKit/testing-with-webdriver-in-safari"
+      ],
+      "title": "WebDriver"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "WebDriver",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-11-1-and-earlier",
+                "doc://com.apple.webkit/documentation/WebKit/macos-webdriver-commands-for-safari-12-and-later",
+                "doc://com.apple.webkit/documentation/WebKit/testing-with-webdriver-in-safari"
+              ],
+              "title": "WebDriver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/about-webdriver-for-safari"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/about-webdriver-for-safari"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1271 @@
+{
+  "abstract": [
+    {
+      "text": "Capture specific GPU commands by using custom capture scopes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Creating-and-using-custom-capture-scopes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating and using custom capture scopes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you capture a frame using the default capture scope by clicking the Metal Capture button in Xcode’s debug bar, the resulting capture contains all of the data for a single frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In some cases, you may want to debug a partial frame rather than an entire frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can accomplish this by setting up and using a custom capture scope that lets you choose exactly which Metal commands to record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t allocate custom capture scopes yourself. Instead, call one of the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods:",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-capture-boundaries",
+          "level": 3,
+          "text": "Define capture boundaries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/begin()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your capture scope to instruct the Metal debugger to record your app’s subsequent Metal activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To stop recording a frame and to present the Metal debugger, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/end()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create myCaptureScope outside of your rendering loop.",
+            "myCaptureScope.begin()",
+            "",
+            "if let commandBuffer = commandQueue.makeCommandBuffer() {",
+            "    // Do Metal work.",
+            "    commandBuffer.commit()",
+            "}",
+            "",
+            "myCaptureScope.end()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create capture scopes outside your rendering or compute loop, situating your calls between ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/begin()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/end()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For Metal capture to work correctly, you need to hold a strong reference to an active capture scope for the duration of the work that the capture scope contains.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Label-your-capture-scope",
+          "level": 3,
+          "text": "Label your capture scope",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify your custom capture scope when capturing a trace from the Metal Capture popover, set your capture scope’s label property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myCaptureScope.label = \"My Capture Scope\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to capture a frame, click the Metal Capture button in the debug bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There, you can find your custom capture scope with the matching label available in the list for capturing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep a strong reference to the capture scope in your code for as long as you want the option to be visible in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-a-custom-capture-scope-the-default",
+          "level": 3,
+          "text": "Make a custom capture scope the default",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you perform a capture from Xcode, it defaults to the capture scope that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/defaultCaptureScope",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the value of this property is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Xcode defines the default capture scope using drawable presentation boundaries; for example, using your calls to the methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDrawable/present()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the default scope, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and assign it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/defaultCaptureScope",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLCaptureManager.shared().defaultCaptureScope = myCaptureScope"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": "Metal logo",
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources": {
+      "abstract": [
+        {
+          "text": "Prepare to debug your project’s shaders by including source code in the build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with embedded shader sources",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-embedded-shader-sources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-developer-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands": {
+      "abstract": [
+        {
+          "text": "Enhance the debugging of your Metal app using labels and grouping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands",
+      "kind": "article",
+      "role": "article",
+      "title": "Naming resources and commands",
+      "type": "topic",
+      "url": "/documentation/xcode/naming-resources-and-commands"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager": {
+      "abstract": [
+        {
+          "text": "An instance you use to capture Metal command data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCaptureManager",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureManager"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/defaultCaptureScope": {
+      "abstract": [
+        {
+          "text": "The capture scope to use when a capture is initiated in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": ")? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/defaultCaptureScope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultCaptureScope",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureManager/defaultCaptureScope"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)": {
+      "abstract": [
+        {
+          "text": "Creates a capture scope for commands submitted to a specific command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandQueue",
+          "text": "MTLCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCaptureScope(commandQueue:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureManager/makeCaptureScope(commandQueue:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)": {
+      "abstract": [
+        {
+          "text": "Creates a capture scope for commands submitted to a specific device object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCaptureScope",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCaptureScope(device:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureManager/makeCaptureScope(device:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope": {
+      "abstract": [
+        {
+          "text": "A protocol that defines custom boundaries for a GPU frame capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureScope"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCaptureScope",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureScope"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/begin()": {
+      "abstract": [
+        {
+          "text": "Tells Metal to begin recording command information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/begin()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "begin()",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureScope/begin()"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/end()": {
+      "abstract": [
+        {
+          "text": "Tells Metal to stop recording command information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCaptureScope/end()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCaptureScope/end()"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)": {
+      "abstract": [
+        {
+          "text": "Presents a drawable as early as possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "drawable"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDrawable",
+          "text": "MTLDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present(_:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCommandBuffer/present(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDrawable/present()": {
+      "abstract": [
+        {
+          "text": "Presents the drawable onscreen as soon as possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDrawable/present()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present()",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDrawable/present()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Project-preparation-for-debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+        "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands"
+      ],
+      "title": "Project preparation for debugging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCommandBuffer~1present(_:)/title",
+          "value": "presentDrawable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCommandBuffer~1present(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentDrawable:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLDrawable",
+              "text": "id<MTLDrawable>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "drawable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(device:)/title",
+          "value": "newCaptureScopeWithDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(device:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLCaptureScope",
+              "text": "id<MTLCaptureScope>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "newCaptureScopeWithDevice:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLDevice",
+              "text": "id<MTLDevice>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "device"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureScope~1end()/title",
+          "value": "endScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureScope~1end()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "endScope"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureScope~1begin()/title",
+          "value": "beginScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureScope~1begin()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginScope"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(commandQueue:)/title",
+          "value": "newCaptureScopeWithCommandQueue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureManager~1makeCaptureScope(commandQueue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLCaptureScope",
+              "text": "id<MTLCaptureScope>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "newCaptureScopeWithCommandQueue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLCommandQueue",
+              "text": "id<MTLCommandQueue>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commandQueue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureManager~1defaultCaptureScope/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLCaptureScope",
+              "text": "id<MTLCaptureScope>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultCaptureScope"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDrawable~1present()/title",
+          "value": "present"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDrawable~1present()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "present"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCaptureScope/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureScope"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

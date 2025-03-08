@@ -1,0 +1,1760 @@
+{
+  "abstract": [
+    {
+      "text": "Request an encrypted embedded assertion for login types that require password encryption.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-encrypted-embedded-assertion"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an encrypted embedded assertion"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During authentication, if the SSO extension requests password encryption by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/loginRequestEncryptionPublicKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the login configuration, the system doesn’t send the password in the login request. Instead, it creates an encrypted embedded assertion instead, that contains the password. The assertion is a JSON Web Encryption (JWE) object that’s encrypted according to RFC 7516 Section 5.1 with JWE Compact Serialization. The supported key agreement algorithm is ",
+              "type": "text"
+            },
+            {
+              "code": "ECDH-ES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " per RFC 7518 Section 4.6. This algorithm is ",
+              "type": "text"
+            },
+            {
+              "code": "ECIES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a proven-secure algorithm with the public keys included. See the Configure concatenation key derivation function (Concat KDF) section below for input values. Key agreement uses the public key for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/loginRequestEncryptionPublicKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that’s supplied during registration. The supported encryption algorithm is ",
+              "type": "text"
+            },
+            {
+              "code": "A256GCM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " per RFC 7518 Section 5.3.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table specifies the header parameters that the system uses to create an encrypted embedded assertion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "typ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "platformsso-encrypted-login-assertion+jwt",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "enc",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "A256GCM",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The supported encryption algorithm per RFC 7518 Section 4.6.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ECDH-ES",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The supported key agreement algorithm per RFC 7518 Section 5.3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "epk",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ephemeral public key for the key exchange",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. Per RFC 7518 Section 4.6.1.1, formatted per RFC 7517.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the ephemeral public key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apu",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The base-64 URL encoded ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PartyUInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Concat KDF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. Per RFC 7518 Section 4.6.1.2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apv",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The base-64 URL encoded ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PartyVInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Concat KDF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. Per RFC 7518 Section 4.6.1.3, the client uses the value from the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "loginConfiguration.customAssertionRequestHeaderClaims",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " merged with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "userLoginConfiguration.customAssertionRequestHeaderClaims",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional. If present, adds key value pairs to the assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table specifies the body parameters that the system uses to create an encrypted embedded assertion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aud",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/audience",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The identity provider (IdP) needs to verify the value to ensure that the system created the assertion for them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The IdP needs to verify the value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5 minutes from now",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The IdP needs to verify the value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. If not set, the system uses the local account name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sub",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. If not set, the system uses the local account name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A nonce value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required: If included, the IdP needs to verify that this value matches the nonce in the login request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "scope",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "openid offline_access",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/additionalScopes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required. The requested scope for the assertion. The default value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "openid offline_access",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the system appends any additional ones to it. The default additional scope is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "urn:apple:platformsso",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This value needs to match the scope in the login request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "password",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The password for authentication",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/serverNonceClaimName",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "request_nonce",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value returned from the nonce request",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required: The key name is either the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/serverNonceClaimName",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or the default value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "request_nonce",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "loginConfiguration.customAssertionRequestBodyClaims",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " merged with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "userLoginConfiguration.customAssertionRequestBodyClaims",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional: If present, adds the key value pairs to the assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Configure-concatenation-key-derivation-function-Concat-KDF",
+          "level": 3,
+          "text": "Configure concatenation key derivation function (Concat KDF)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configuration of Concat KDF for platform SSO is per RFC 7518 Section 4.6.2 and NIST.800-56A sections 5.8.1 and 6.2.2.2. See the input definitions in the table below. The system concatenates these values per NIST.800-56A sections 5.8.1 and then it computes a SHA-256 hash to create the key. Then, it sends the ",
+              "type": "text"
+            },
+            {
+              "code": "PartyUInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PartyVInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values to the server in the header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "extendedData": {
+            "2_1": {
+              "colspan": 2,
+              "rowspan": 1
+            },
+            "2_2": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "3_1": {
+              "colspan": 2,
+              "rowspan": 1
+            },
+            "3_2": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlgorithmID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set to the octets of the ASCII representation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (algorithm) header parameter value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per RFC 7518 Section 4.6.2 when using direct key agreement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PartyUInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "`",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PartyVInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This needs to use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "jwe_crypto.apv",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value from the login request.  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " `",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SuppPubInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set to the number of bits in the desired output key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per RFC 7518 Section 4.6.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SuppPrivInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NULL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per RFC 7518 Section 4.6.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code sample provides an example of an encrypted embedded assertion request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"enc\" : \"A256GCM\",",
+            "  \"apv\" : \"AAAADUFQUExFRU1CRURERUQAAABBBCX87eqonWyNUNz2JeH2wG68_WiPfQlJw6AiDvHSD08n5Hdn1oDUBxhL_TRarvhUUGDYsnBRk2HRH_ZoXGtpUncAAABuQXdBQkFBQUFBQUFEQU96X0JBRHZfeHRndV9TTTFNdm9xMDJQWXpfWWZYeHg1RkFnY0xITE5pa0g2Z2pyQld3Y3FuUldfaGF4cU85SkNpUGF0NUtma1RpbHkwNFM4RUgzQVF3VnNXQ3hIWVFnQUE\",",
+            "  \"alg\" : \"ECDH-ES\",",
+            "  \"epk\" : {",
+            "    \"y\" : \"1wfUpcnhOq7SPl77UBfkanXdQObiBXDIDLx0n1_zlJI\",",
+            "    \"x\" : \"NUnMKzz81Fl0SilEVYgWWjL_4lTAaXHeJ4uJGQ19AAk\",",
+            "    \"kty\" : \"EC\",",
+            "    \"crv\" : \"P-256\"",
+            "  },",
+            "  \"kid\" : \"7y1xXc4I6iAyldmVkIeGtQxo8NRq2FgKFb++Or13jxU=\",",
+            "  \"apu\" : \"AAAABUFQUExFAAAAQQQ1ScwrPPzUWXRKKURViBZaMv_iVMBpcd4ni4kZDX0ACdcH1KXJ4Tqu0j5e-1AX5Gp13UDm4gVwyAy8dJ9f85SS\",",
+            "  \"typ\" : \"platformsso-encrypted-login-assertion+jwt\"",
+            "}.{",
+            "  \"iat\" : 1685732130,",
+            "  \"password\" : \"bar\",",
+            "  \"iss\" : \"foo\",",
+            "  \"request_nonce\" : \"AwABAAAAAAADAOz_BADv_xtgu_SM1Mvoq02PYz_YfXxx5FAgcLHLNikH6gjrBWwcqnRW_haxqO9JCiPat5KfkTily04S8EH3AQwVsWCxHYQgAA\",",
+            "  \"sub\" : \"foo\",",
+            "  \"scope\" : \"openid offline_access urn:apple:platformsso\",",
+            "  \"exp\" : 1685732430,",
+            "  \"aud\" : \"060798FF-814E-4C38-97F8-28C954B7E058\",",
+            "  \"nonce\" : \"D1DEE607-0F44-43F5-8B3E-042E91F425A7\"",
+            "}.[Signature]",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/additionalScopes": {
+      "abstract": [
+        {
+          "text": "A set of extra scopes to add to the base for the authentication request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalScopes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/additionalScopes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "additionalScopes"
+        }
+      ],
+      "role": "symbol",
+      "title": "additionalScopes",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/additionalscopes"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/audience": {
+      "abstract": [
+        {
+          "text": "The audience for validation and requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audience"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/audience",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audience"
+        }
+      ],
+      "role": "symbol",
+      "title": "audience",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/audience"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/loginRequestEncryptionPublicKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginRequestEncryptionPublicKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/loginRequestEncryptionPublicKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loginRequestEncryptionPublicKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "loginRequestEncryptionPublicKey",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/loginrequestencryptionpublickey"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/serverNonceClaimName": {
+      "abstract": [
+        {
+          "text": "The name of the claim to include in authentication requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serverNonceClaimName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/serverNonceClaimName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serverNonceClaimName"
+        }
+      ],
+      "role": "symbol",
+      "title": "serverNonceClaimName",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/servernonceclaimname"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginUserName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/loginUserName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loginUserName"
+        }
+      ],
+      "role": "symbol",
+      "title": "loginUserName",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process": {
+      "abstract": [
+        {
+          "text": "Use a system-supported method to authenticate with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authentication process",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authentication-process"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request": {
+      "abstract": [
+        {
+          "text": "Refresh a non-expired token instead of sending a new login request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a refresh request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-a-refresh-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion": {
+      "abstract": [
+        {
+          "text": "Request an embedded assertion for login types that require a digital signature for authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an embedded assertion",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-an-embedded-assertion"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request": {
+      "abstract": [
+        {
+          "text": "Create a signed JOSE login request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and validating a login request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/creating-and-validating-a-login-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request": {
+      "abstract": [
+        {
+          "text": "Create a WS-Trust login request using the metadata exchange data (MEX) response.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a WS-Trust login request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-a-ws-trust-login-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests": {
+      "abstract": [
+        {
+          "text": "Support the platform SSO 2.0 protocol for encryption and decryption operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting key requests and key exchange requests",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-key-requests-and-key-exchange-requests"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Login-request",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests"
+      ],
+      "title": "Login request"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Login-request",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-login-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-an-embedded-assertion",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-and-validating-a-login-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/creating-a-refresh-request",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-key-requests-and-key-exchange-requests"
+              ],
+              "title": "Login request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1audience/title",
+          "value": "audience"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1audience/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audience"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1serverNonceClaimName/title",
+          "value": "serverNonceClaimName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1serverNonceClaimName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "serverNonceClaimName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1additionalScopes/title",
+          "value": "additionalScopes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1additionalScopes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "additionalScopes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration~1loginUserName/title",
+          "value": "loginUserName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionUserLoginConfiguration~1loginUserName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "loginUserName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1loginRequestEncryptionPublicKey/title",
+          "value": "loginRequestEncryptionPublicKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1loginRequestEncryptionPublicKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "loginRequestEncryptionPublicKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/creating-an-encrypted-embedded-assertion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/creating-an-encrypted-embedded-assertion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

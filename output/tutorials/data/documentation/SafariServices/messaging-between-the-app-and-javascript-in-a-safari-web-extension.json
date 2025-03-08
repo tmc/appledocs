@@ -1,0 +1,764 @@
+{
+  "abstract": [
+    {
+      "text": "Communicate about events and share data between the containing app and JavaScript by using native messaging and app groups.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-the-app-and-javascript-in-a-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Messaging between the app and JavaScript in a Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Safari web extension consists of three parts that operate independently in their own sandboxed environments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A macOS or iOS app that can have a user interface",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "JavaScript code and web files that work in the browser or Mac web app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A native app extension that mediates between the macOS or iOS app and the JavaScript code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use messaging APIs to communicate events and event data between these parts. You use app groups to share app data between them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the macOS or iOS app and the native app extension each run in their own sandboxed environments, they cannot share data in their respective containers. You can store data in a shared space that both the macOS or iOS app and the native app extension can access and update, by enabling app groups. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-messages-from-JavaScript-to-the-app",
+          "level": 3,
+          "text": "Send messages from JavaScript to the app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can send messages to the native app extension from a background script or from extension pages that provide a user interface for your Safari web extension. Content scripts that are injected into web content cannot send messages to the native app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable sending messages from JavaScript to the native app extension, add ",
+              "type": "text"
+            },
+            {
+              "code": "nativeMessaging",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the list of ",
+              "type": "text"
+            },
+            {
+              "code": "permissions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From a script running in the browser or Mac web app, use ",
+              "type": "text"
+            },
+            {
+              "code": "browser.runtime.sendNativeMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to send a message to the native app extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "browser.runtime.sendNativeMessage(\"application.id\", {message: \"Hello from background page\"}, function(response) {",
+            "    console.log(\"Received sendNativeMessage response:\");",
+            "    console.log(response);",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari ignores the ",
+              "type": "text"
+            },
+            {
+              "code": "application.id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and only sends the message to the containing app’s native app extension. To receive the message, implement the ",
+              "type": "text"
+            },
+            {
+              "code": "beginRequest:with:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in the native app extension to handle the message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func beginRequest(with context: NSExtensionContext) {",
+            "        guard let item = context.inputItems.first as? NSExtensionItem,",
+            "              let userInfo = item.userInfo as? [String: Any],",
+            "              let message = userInfo[SFExtensionMessageKey] else {",
+            "            context.completeRequest(returningItems: nil, completionHandler: nil)",
+            "            return",
+            "        }",
+            "",
+            "        if let profileIdentifier = userInfo[SFExtensionProfileKey] as? UUID {",
+            "            // Perform profile specific tasks.",
+            "        } else {",
+            "            // Perform normal browsing tasks.",
+            "        }",
+            "",
+            "        let response = NSExtensionItem()",
+            "        response.userInfo = [ SFExtensionMessageKey: [ \"Response to\": message ] ]",
+            "            ",
+            "        context.completeRequest(returningItems: [response], completionHandler: nil)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The message from the script is the first item in the ",
+              "type": "text"
+            },
+            {
+              "code": "context.inputItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the key. In Safari 17 or later, get the profile identifier from the ",
+              "type": "text"
+            },
+            {
+              "code": "context.inputItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the key. Use the profile identifier for any extension logic that you need to limit to the user’s profile or to a web app instance, such as fetching or storing data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reply to the message by creating an ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response, populating response data in ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and calling ",
+              "type": "text"
+            },
+            {
+              "code": "context.completeResponse:returningItems:completionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-messages-from-the-app-to-JavaScript",
+          "level": 3,
+          "text": "Send messages from the app to JavaScript",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable sending messages from the Safari web extension’s containing macOS app to its JavaScript scripts running in the browser or Mac web app, add ",
+              "type": "text"
+            },
+            {
+              "code": "nativeMessaging",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the list of ",
+              "type": "text"
+            },
+            {
+              "code": "permissions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Send messages from the macOS app to notify the web scripts of important events, like when the user clicks a button or when data that the JavaScript script uses changes. You can’t send messages from a containing iOS app to your web extension’s JavaScript scripts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare the JavaScript script to receive messages from the macOS app, use ",
+              "type": "text"
+            },
+            {
+              "code": "browser.runtime.connectNative",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to establish a port connection to the containing app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let port = browser.runtime.connectNative(\"application.id\");"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari ignores the ",
+              "type": "text"
+            },
+            {
+              "code": "application.id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and only allows the script to establish a port connection with the containing macOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Send a message to the JavaScript script from the macOS app using ",
+              "type": "text"
+            },
+            {
+              "code": "dispatchMessageWithName:toExtensionWithIdentifier:userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func sendMessageToExtension(_ sender: AnyObject?) {",
+            "    let messageName = \"Hello from App\"",
+            "    let messageInfo = [\"AdditionalInformation\":\"Goes Here\"]",
+            "    SFSafariApplication.dispatchMessage(withName: messageName, toExtensionWithIdentifier: extensionBundleIdentifier, userInfo: messageInfo) { error in",
+            "        debugPrint(\"Message attempted. Error info: \\(String.init(describing: error))\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive the message in the JavaScript script, add a closure using ",
+              "type": "text"
+            },
+            {
+              "code": "port.onMessage.addListener",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to process the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "port.onMessage.addListener(function(message) {",
+            "    console.log(\"Received native port message:\");",
+            "    console.log(message);",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The script then processes the message and initiates events in the browser.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionMessageKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionMessageKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionMessageKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionmessagekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a profile identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionProfileKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionprofilekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app": {
+      "abstract": [
+        {
+          "text": "Communicate between your Safari web extension and its containing app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Messaging a Web Extension’s Native App",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-a-web-extension-s-native-app"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Configure your extension to enable messaging from webpages, and then update your extension to handle messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Messaging between a webpage and your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/messaging-between-a-webpage-and-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6",
+      "title": "Sharing Data with Your Containing App",
+      "titleInlineContent": [
+        {
+          "text": "Sharing Data with Your Containing App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW6"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Messaging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+        "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension"
+      ],
+      "title": "Messaging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Messaging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionMessageKey",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-a-web-extension-s-native-app",
+                "doc://com.apple.safariservices/documentation/SafariServices/messaging-between-a-webpage-and-your-safari-web-extension"
+              ],
+              "title": "Messaging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionMessageKey/title",
+          "value": "SFExtensionMessageKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionMessageKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionMessageKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/title",
+          "value": "SFExtensionProfileKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionProfileKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/messaging-between-the-app-and-javascript-in-a-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/messaging-between-the-app-and-javascript-in-a-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

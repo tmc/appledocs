@@ -1,0 +1,2013 @@
+{
+  "abstract": [
+    {
+      "text": "Initiate a request for identity information by prompting a user for permission and decrypting a response payload.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/wallet"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/requesting-identity-data-from-a-wallet-pass"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting identity data from a Wallet pass"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Wallet app allows people to store a state identification card, mobile driver’s license (mDL), or national identification card from a government issuing authority, such as the department of motor vehicles. These documents are between a person and the issuing authority — Apple doesn’t create or see the documents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beginning on iPhone with iOS 16, you can request information from IDs in Wallet to verify a person’s age or identity. If a person accepts the request, the system gets the information from their issuing authority and your app receives a payload. After decryption, the payload contains data that follows the ISO 18013-5 specification. To use the elements your app requests, send the payload to your server for verification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/technologies/wallet/introduction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This API only works on iPhone and returns an error if you access it on iPad. It requires a special entitlement from Apple. Building an app with this entitlement requires macOS 13 or later. For more information about the entitlement, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wallet/get-started-with-verify-with-wallet/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-an-identity-document-descriptor",
+          "level": 3,
+          "text": "Create an identity document descriptor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you request information from an ID in Wallet, you create an object to describe the elements you need. Your app can only request the elements your entitlement grants. Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDriversLicenseDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you’re requesting information from a person’s state or mobile driver’s license. Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you’re requesting information from their national identificaton card, and add the elements to the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each element, you specify your intent to store the resulting data by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/mayStore(days:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/mayStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/willNotStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Upon request, the system presents the information for a person to review in a system sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework allows for requesting the Boolean ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age(atLeast:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " element for any age between ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "125",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only if the issuer includes it. If an app requests ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age(atLeast:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "age_over_XX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element isn’t present in the mobile driver’s license, the framework falls back to a request for the age element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can’t include both an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age(atLeast:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " element and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " element in the same request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the creation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDriversLicenseDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requesting information from a person’s state or mobile driver’s license and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requesting information from a person’s national identification card.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let driversLicenseDescriptor = PKIdentityDriversLicenseDescriptor()",
+            "driversLicenseDescriptor.addElements([.age(atLeast: 18)],",
+            "                       intentToStore: .willNotStore)",
+            "driversLicenseDescriptor.addElements([.givenName, ",
+            "                        .familyName,",
+            "                        .portrait],",
+            "                       intentToStore: .mayStore(days: 30))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "let nationalIDCardDescriptor = PKIdentityNationalIDCardDescriptor()",
+            "nationalIDCardDescriptor.addElements([.age(atLeast: 18)],",
+            "                       intentToStore: .willNotStore)",
+            "nationalIDCardDescriptor.addElements([.givenName, ",
+            "                        .familyName,",
+            "                        .portrait],",
+            "                       intentToStore: .mayStore(days: 30))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check whether the identity document you describe is available to request, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController/checkCanRequestDocument(_:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the document exists, show a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow the user to begin the authorization request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let controller = PKIdentityAuthorizationController()",
+            "controller.checkCanRequestDocument(descriptor) { canRequest in",
+            "    // Show or hide the identity button.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-request",
+          "level": 3,
+          "text": "Create a request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an identity request, you need the merchant identifier you configure in the developer portal. A merchant identifier never expires, and you can use the same one that you use for Apple Pay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A request also needs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prevent your server from using a response document more than once. Your server needs the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to decrypt the response document, so generate it there and associate it with the user’s session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let request = PKIdentityRequest()",
+            "request.descriptor = descriptor",
+            "request.merchantIdentifier = // The merchant identifier.",
+            "request.nonce = // The nonce your server generates."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file needs to provide a message for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSIdentityUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. If this key is missing, any attempt to request a document fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-the-document",
+          "level": 3,
+          "text": "Request the document",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When requesting a document, the system presents a sheet to the user to confirm the request before retrieving any data. If the user rejects the request, your app receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code/cancelled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let document = try await controller.requestDocument(request)",
+            "} catch {",
+            "    // Handle the error.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you’re ready to verify the request payload. The data in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument/encryptedData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property isn’t readable on the device, so you need to send it to your server for verification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The elements in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDriversLicenseDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " map to a set of elements in the ISO and American Association of Motor Vehicle Administrators (AAMVA) namespaces in the response. For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the elements map to a set of elements in the ISO and JP namespace in the response. For a list of elements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDriversLicenseDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only one request can be in progress at a time. Otherwise, the system returns a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code/requestAlreadyInProgress",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about verifying identity requests, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/verifying-wallet-identity-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-the-implementation",
+          "level": 3,
+          "text": "Test the implementation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if you don’t live in an area that supports IDs in Wallet, you can test your implementation through the iPhone simulator or by downloading a developer profile on your local device. When you request a document, you receive a mock mDL that’s similar to a real ID. When you test with the simulator, the response doesn’t include a real issuing authority or device signature. The developer test profile produces a real device signature, but not a real issuer signature. A mock mDL isn’t visible in the Wallet app, so don’t treat it as real. To activate a mock mDL on your device, download the Wallet identity developer profile from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/PassKit/verifying-wallet-identity-requests": {
+      "abstract": [
+        {
+          "text": "Decrypt and verify an in-app presentment request on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/verifying-wallet-identity-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying Wallet identity requests",
+      "type": "topic",
+      "url": "/documentation/PassKit/verifying-wallet-identity-requests"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to allow a request for identity information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityauthorizationcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController/checkCanRequestDocument(_:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns whether an identity document is available to request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkCanRequestDocument"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKIdentityDocumentDescriptor",
+          "text": "PKIdentityDocumentDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController/checkCanRequestDocument(_:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkCanRequestDocument:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkCanRequestDocument(_:completion:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityauthorizationcontroller/checkcanrequestdocument(_:completion:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton": {
+      "abstract": [
+        {
+          "text": "An object that displays a button to trigger the identity verification flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityButton",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitybutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument": {
+      "abstract": [
+        {
+          "text": "An object that represents the response to a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityDocument",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitydocument"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument/encryptedData": {
+      "abstract": [
+        {
+          "text": "An encrypted data object that contains the document information and metadata to associate with a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encryptedData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument/encryptedData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encryptedData"
+        }
+      ],
+      "role": "symbol",
+      "title": "encryptedData",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitydocument/encrypteddata"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityDriversLicenseDescriptor": {
+      "abstract": [
+        {
+          "text": "An object for requesting information from a user’s driver’s license or equivalent document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDriversLicenseDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityDriversLicenseDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityDriversLicenseDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityDriversLicenseDescriptor",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitydriverslicensedescriptor"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement": {
+      "abstract": [
+        {
+          "text": "An object that represents the elements an app requests from identity documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityElement",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityelement"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age": {
+      "abstract": [
+        {
+          "text": "An element that represents the user’s age, in years.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "age"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKIdentityElement",
+          "text": "PKIdentityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ageElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "age",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityelement/age"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age(atLeast:)": {
+      "abstract": [
+        {
+          "text": "Returns an element that represents the user’s age is at least the age you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "age"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atLeast"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement/age(atLeast:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ageThresholdElementWithAge:"
+        }
+      ],
+      "role": "symbol",
+      "title": "age(atLeast:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityelement/age(atleast:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code/cancelled": {
+      "abstract": [
+        {
+          "text": "An error that indicates the user cancels the presented sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelled"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code/cancelled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityErrorCancelled"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityError.Code.cancelled",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityerror-swift.struct/code/cancelled"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code/requestAlreadyInProgress": {
+      "abstract": [
+        {
+          "text": "An error that indicates a request is already in progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAlreadyInProgress"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityError-swift.struct/Code/requestAlreadyInProgress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityErrorRequestAlreadyInProgress"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityError.Code.requestAlreadyInProgress",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityerror-swift.struct/code/requestalreadyinprogress"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/mayStore": {
+      "abstract": [
+        {
+          "text": "An object that indicates your app may store a data element for an indefinite length of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mayStore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKIdentityIntentToStore",
+          "text": "PKIdentityIntentToStore"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/mayStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mayStoreIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "mayStore",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityintenttostore/maystore"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/mayStore(days:)": {
+      "abstract": [
+        {
+          "text": "An object that indicates your app may store a data element for the length of time you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mayStore"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "days"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/mayStore(days:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mayStoreIntentForDays:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mayStore(days:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityintenttostore/maystore(days:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/willNotStore": {
+      "abstract": [
+        {
+          "text": "An object that indicates your app won’t store a data element any longer than necessary to complete a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willNotStore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKIdentityIntentToStore",
+          "text": "PKIdentityIntentToStore"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityIntentToStore/willNotStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willNotStoreIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "willNotStore",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityintenttostore/willnotstore"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor": {
+      "abstract": [
+        {
+          "text": "An object for requesting information from a user’s national ID card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityNationalIDCardDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityNationalIDCardDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityNationalIDCardDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityNationalIDCardDescriptor",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentitynationalidcarddescriptor"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for identity information from a Wallet pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIdentityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIdentityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIdentityRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce": {
+      "abstract": [
+        {
+          "text": "An arbitrary number that the signed response playload includes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest/nonce",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nonce"
+        }
+      ],
+      "role": "symbol",
+      "title": "nonce",
+      "type": "topic",
+      "url": "/documentation/passkit/pkidentityrequest/nonce"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton": {
+      "abstract": [
+        {
+          "text": "A view that displays a button for identity verification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButton",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel": {
+      "abstract": [
+        {
+          "text": "A type that represents the label you use with a verify identity button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButtonLabel",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbuttonlabel"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle": {
+      "abstract": [
+        {
+          "text": "A type that represents the style you use with a verify identity button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VerifyIdentityWithWalletButtonStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "VerifyIdentityWithWalletButtonStyle",
+      "type": "topic",
+      "url": "/documentation/passkit/verifyidentitywithwalletbuttonstyle"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests": {
+      "abstract": [
+        {
+          "text": "Decrypt and verify an in-app presentment request on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying Wallet identity requests",
+      "type": "topic",
+      "url": "/documentation/passkit/verifying-wallet-identity-requests"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/wallet": {
+      "abstract": [
+        {
+          "text": "Manage tickets, boarding passes, payment cards and other passes in the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/wallet",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Wallet",
+      "type": "topic",
+      "url": "/documentation/passkit/wallet"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/",
+      "title": "Profiles and Logs",
+      "titleInlineContent": [
+        {
+          "text": "Profiles and Logs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/technologies/wallet/introduction": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/technologies/wallet/introduction",
+      "title": "Human Interface Guidelines > Technologies > Wallet",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Technologies > Wallet",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/technologies/wallet/introduction"
+    },
+    "https://developer.apple.com/wallet/get-started-with-verify-with-wallet/": {
+      "identifier": "https://developer.apple.com/wallet/get-started-with-verify-with-wallet/",
+      "title": "Getting started with the Verify with Wallet API",
+      "titleInlineContent": [
+        {
+          "text": "Getting started with the Verify with Wallet API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wallet/get-started-with-verify-with-wallet/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Identity-sheet-interactions-and-authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+        "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButton",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonLabel",
+        "doc://com.apple.passkit/documentation/PassKit/VerifyIdentityWithWalletButtonStyle"
+      ],
+      "title": "Identity sheet interactions and authorization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Identity-sheet-interactions-and-authorization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/verifying-wallet-identity-requests",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityAuthorizationController",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityRequest",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityDocument",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityElement",
+                "doc://com.apple.passkit/documentation/PassKit/PKIdentityButton"
+              ],
+              "title": "Identity sheet interactions and authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/title",
+          "value": "PKIdentityAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/title",
+          "value": "PKIdentityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityNationalIDCardDescriptor/title",
+          "value": "PKIdentityNationalIDCardDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityNationalIDCardDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityNationalIDCardDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityNationalIDCardDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityNationalIDCardDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code~1requestAlreadyInProgress/title",
+          "value": "PKIdentityErrorRequestAlreadyInProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code~1requestAlreadyInProgress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityErrorRequestAlreadyInProgress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument~1encryptedData/title",
+          "value": "encryptedData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument~1encryptedData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "encryptedData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code~1cancelled/title",
+          "value": "PKIdentityErrorCancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityError-swift.struct~1Code~1cancelled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityErrorCancelled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityIntentToStore~1mayStore/title",
+          "value": "mayStoreIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityIntentToStore~1mayStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mayStoreIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityIntentToStore~1willNotStore/title",
+          "value": "willNotStoreIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityIntentToStore~1willNotStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "willNotStoreIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest~1nonce/title",
+          "value": "nonce"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest~1nonce/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nonce"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement~1age/title",
+          "value": "ageElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement~1age/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ageElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDriversLicenseDescriptor/title",
+          "value": "PKIdentityDriversLicenseDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDriversLicenseDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDriversLicenseDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDriversLicenseDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDriversLicenseDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/title",
+          "value": "PKIdentityRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController~1checkCanRequestDocument(_:completion:)/title",
+          "value": "checkCanRequestDocument:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityAuthorizationController~1checkCanRequestDocument(_:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkCanRequestDocument:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/title",
+          "value": "PKIdentityButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/title",
+          "value": "PKIdentityDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIdentityDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement~1age(atLeast:)/title",
+          "value": "ageThresholdElementWithAge:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityElement~1age(atLeast:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "ageThresholdElementWithAge:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityIntentToStore~1mayStore(days:)/title",
+          "value": "mayStoreIntentForDays:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIdentityIntentToStore~1mayStore(days:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "mayStoreIntentForDays:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/requesting-identity-data-from-a-wallet-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/requesting-identity-data-from-a-wallet-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "abstract": [
+    {
+      "text": "Add exclusion paths, text attachments, and text lists to your text, and render it with text views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/textkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/enriching-your-text-in-text-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Enriching your text in text views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10090/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "78ef49b6f6d9/EnrichingYourTextInTextViews.zip": {
+      "checksum": "78ef49b6f6d959bbbad65486edb22a1bfe008f2f598c80149c2b272e5fd6fc6a790d1ddabeb0028e4e15afe3fc53e29e72b745439837b0702be8ff5e7602912d",
+      "identifier": "78ef49b6f6d9/EnrichingYourTextInTextViews.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/78ef49b6f6d9/EnrichingYourTextInTextViews.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextElement": {
+      "abstract": [
+        {
+          "text": "An abstract base class that represents the smallest units of text layout such as paragraphs or attachments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextElement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextElement",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextelement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextElementProvider": {
+      "abstract": [
+        {
+          "text": "A protocol the text content manager and its concrete subclasses conform to, which defines the interface for interacting with custom content types of a text document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextElementProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextElementProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextElementProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextElementProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextelementprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextListElement": {
+      "abstract": [
+        {
+          "text": "A class that represents a text list node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextListElement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextListElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextListElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextListElement",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextlistelement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSTextParagraph": {
+      "abstract": [
+        {
+          "text": "A class that represents a single paragraph backed by an attributed string as the contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextParagraph"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSTextParagraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextParagraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextParagraph",
+      "type": "topic",
+      "url": "/documentation/uikit/nstextparagraph"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/textkit": {
+      "abstract": [
+        {
+          "text": "Manage text storage and perform custom layout of text-based content in your app’s views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/textkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextKit",
+      "type": "topic",
+      "url": "/documentation/uikit/textkit"
+    },
+    "https://developer.apple.com/wwdc22/10090/": {
+      "identifier": "https://developer.apple.com/wwdc22/10090/",
+      "title": "10090: What’s new in TextKit and text views",
+      "titleInlineContent": [
+        {
+          "text": "10090: What’s new in TextKit and text views",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10090/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "78ef49b6f6d9/EnrichingYourTextInTextViews.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSTextParagraph",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextListElement",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextElement",
+        "doc://com.apple.uikit/documentation/UIKit/NSTextElementProvider"
+      ],
+      "title": "Content elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSTextParagraph",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextListElement",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextElement",
+                "doc://com.apple.uikit/documentation/UIKit/NSTextElementProvider"
+              ],
+              "title": "Content elements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextListElement/title",
+          "value": "NSTextListElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextListElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextListElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextListElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextListElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextElement/title",
+          "value": "NSTextElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextElementProvider/title",
+          "value": "NSTextElementProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextElementProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElementProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextElementProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextElementProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextParagraph/title",
+          "value": "NSTextParagraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextParagraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextParagraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSTextParagraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextParagraph"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/enriching-your-text-in-text-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/enriching-your-text-in-text-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

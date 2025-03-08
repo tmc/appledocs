@@ -1,0 +1,1078 @@
+{
+  "abstract": [
+    {
+      "text": "A container for grouping controls used for data entry, such as in settings",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "or inspectors.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Form"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI4FormV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Form"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Form"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Form"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Form"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI applies platform-appropriate styling to views contained inside a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "form, to group them together. Form-specific styling applies to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "things like buttons, toggles, labels, lists, and more. Keep in mind that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these stylings may be platform-specific. For example, forms apppear as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "grouped lists on iOS, and as aligned vertical stacks on macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a simple data entry form on iOS, grouped into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two sections. The supporting types (",
+              "type": "text"
+            },
+            {
+              "code": "NotifyMeAboutType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileImageSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and state variables (",
+              "type": "text"
+            },
+            {
+              "code": "notifyMeAbout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "profileImageSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "playNotificationSounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "sendReadReceipts",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") are omitted for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simplicity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    NavigationView {",
+            "        Form {",
+            "            Section(header: Text(\"Notifications\")) {",
+            "                Picker(\"Notify Me About\", selection: $notifyMeAbout) {",
+            "                    Text(\"Direct Messages\").tag(NotifyMeAboutType.directMessages)",
+            "                    Text(\"Mentions\").tag(NotifyMeAboutType.mentions)",
+            "                    Text(\"Anything\").tag(NotifyMeAboutType.anything)",
+            "                }",
+            "                Toggle(\"Play notification sounds\", isOn: $playNotificationSounds)",
+            "                Toggle(\"Send read receipts\", isOn: $sendReadReceipts)",
+            "            }",
+            "            Section(header: Text(\"User Profiles\")) {",
+            "                Picker(\"Profile Image Size\", selection: $profileImageSize) {",
+            "                    Text(\"Large\").tag(ProfileImageSize.large)",
+            "                    Text(\"Medium\").tag(ProfileImageSize.medium)",
+            "                    Text(\"Small\").tag(ProfileImageSize.small)",
+            "                }",
+            "                Button(\"Clear Image Cache\") {}",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Form-iOS.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, a similar form renders as a vertical stack. To adhere to macOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform conventions, this version doesn’t use sections, and uses colons at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the end of its labels. It also sets the picker to use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PickerStyle/inline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " style, which produces radio buttons on macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    Spacer()",
+            "    HStack {",
+            "        Spacer()",
+            "        Form {",
+            "            Picker(\"Notify Me About:\", selection: $notifyMeAbout) {",
+            "                Text(\"Direct Messages\").tag(NotifyMeAboutType.directMessages)",
+            "                Text(\"Mentions\").tag(NotifyMeAboutType.mentions)",
+            "                Text(\"Anything\").tag(NotifyMeAboutType.anything)",
+            "            }",
+            "            Toggle(\"Play notification sounds\", isOn: $playNotificationSounds)",
+            "            Toggle(\"Send read receipts\", isOn: $sendReadReceipts)",
+            "",
+            "            Picker(\"Profile Image Size:\", selection: $profileImageSize) {",
+            "                Text(\"Large\").tag(ProfileImageSize.large)",
+            "                Text(\"Medium\").tag(ProfileImageSize.medium)",
+            "                Text(\"Small\").tag(ProfileImageSize.small)",
+            "            }",
+            "            .pickerStyle(.inline)",
+            "",
+            "            Button(\"Clear Image Cache\") {}",
+            "        }",
+            "        Spacer()",
+            "    }",
+            "    Spacer()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Form-macOS.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-Form-iOS.png": {
+      "alt": "A form on iOS, presented as a grouped list with two sections. The",
+      "identifier": "SwiftUI-Form-iOS.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b9f14a16c5d9d1fed7b121071bdb262/SwiftUI-Form-iOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddc1161550f74ed17c15168a3b5370f7/SwiftUI-Form-iOS~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-Form-macOS.png": {
+      "alt": "A form on iOS, presented as a vertical stack of views. At top, it shows",
+      "identifier": "SwiftUI-Form-macOS.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cdbe25e36916e95c7d68402249d02bb4/SwiftUI-Form-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec5905d0e414b752641cd09d4ab756e6/SwiftUI-Form-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Form": {
+      "abstract": [
+        {
+          "text": "A container for grouping controls used for data entry, such as in settings",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or inspectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Form"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Form",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Form"
+        }
+      ],
+      "role": "symbol",
+      "title": "Form",
+      "type": "topic",
+      "url": "/documentation/swiftui/form"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Form/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a form based on a form style configuration.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "FormStyleConfiguration.Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22FormStyleConfigurationV",
+          "text": "FormStyleConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Form/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/form/init(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Form/init(content:)": {
+      "abstract": [
+        {
+          "text": "Creates a form with the provided content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Form/init(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/form/init(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Split content into logical sections inside lazy stack views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Grouping data with lazy stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/grouping-data-with-lazy-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabeledContent": {
+      "abstract": [
+        {
+          "text": "A container for attaching a label to a value-bearing view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LabeledContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabeledContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LabeledContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "LabeledContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/labeledcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PickerStyle/inline": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "PickerStyle",
+          "type": "codeVoice"
+        },
+        {
+          "text": " where each option is displayed inline with other views",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the current container.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "InlinePickerStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17InlinePickerStyleV",
+          "text": "InlinePickerStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PickerStyle/inline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inline",
+      "type": "topic",
+      "url": "/documentation/swiftui/pickerstyle/inline"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content": {
+      "abstract": [
+        {
+          "text": "Build flexible user interfaces by using stacks, grids, lists, and forms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content",
+      "kind": "article",
+      "role": "article",
+      "title": "Picking container views for your content",
+      "type": "topic",
+      "url": "/documentation/swiftui/picking-container-views-for-your-content"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/formStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for forms in a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/formStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/formstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labeledContentStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a style for labeled content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labeledContentStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labeledContentStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labeledContentStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/labeledcontentstyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Grouping-inputs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/formStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabeledContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labeledContentStyle(_:)"
+      ],
+      "title": "Grouping inputs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-form",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Form/init(content:)"
+      ],
+      "title": "Creating a form"
+    },
+    {
+      "anchor": "Creating-a-form-from-a-configuration",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Form/init(_:)"
+      ],
+      "title": "Creating a form from a configuration"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/form"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

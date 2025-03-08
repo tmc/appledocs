@@ -1,0 +1,1170 @@
+{
+  "abstract": [
+    {
+      "text": "Receive tokens for external purchases that you use to report transactions to Apple.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/external-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/receiving-and-decoding-external-purchase-tokens"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Receiving and decoding external purchase tokens"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "external purchase token",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a unique string that your app or website receives when your app’s customer chooses to view your external purchase offerings. You receive external purchase tokens in two ways: within your app, or appended to your website URL for link out, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, the API returns the token when your app calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/presentNoticeSheet()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the response is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/NoticeResult/continuedWithExternalPurchaseToken(token:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For link out, when your app calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink/open()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink/open(url:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the API appends the token to the current storefront’s destination URL that you configure in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseLink",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseMultiLink",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property list keys, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For custom link out, when your app configures the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseCustomLinkRegions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property list key and calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseCustomLink/token(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Decode the token to obtain its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/externalPurchaseId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which you use to report the tokens and associated transactions to Apple using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decode-external-purchase-tokens",
+          "level": 3,
+          "text": "Decode external purchase tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The token your app or website’s server receives is a string that is Base64URL-encoded JSON. Decode the token using Base64URL decoding to read the JSON, which contains the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appAppleId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bundleId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which uniquely identify the app to which the token applies",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tokenCreationDate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is the UNIX time, in milliseconds, when the system created the token",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "externalPurchaseId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is a unique value the system created to identify the token",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For custom link out, the token is represented by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseCustomLink/Token",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and has two additional fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tokenType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which has a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ACQUISITION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SERVICES",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tokenExpirationDate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is the UNIX time, in milliseconds, when the token expires, after which you no longer associate the token with new transactions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "externalPurchaseId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field is required by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint when you report tokens and transactions. To get the ",
+              "type": "text"
+            },
+            {
+              "code": "externalPurchaseId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decode the token string using Base64URL decoding. For example, if the token string is:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ewoJImFwcEFwcGxlSWQiOjEyMzQ1Njc4OTAsCgkiYnVuZGxlSWQiOiJjb20uZXhhbXBsZSIsCgkidG9rZW5DcmVhdGlvbkRhdGUiOjE3MDYxNjk2MDAwMDAsCgkiZXh0ZXJuYWxQdXJjaGFzZUlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIgp9",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the token’s value after Base64URL decoding is the following JSON:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{  ",
+            "  \"appAppleId\":1234567890,  ",
+            "  \"bundleId\":\"com.example\",  ",
+            "  \"tokenCreationDate\":1706169600000,",
+            "  \"externalPurchaseId\":\"00000000-0000-0000-0000-000000000000\"",
+            "}"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "externalPurchaseId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to identify the token when you call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Recognize-tokens-from-the-testing-environment",
+          "level": 3,
+          "text": "Recognize tokens from the testing environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/external-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API returns external purchase tokens that are specific to the app’s environment: production or sandbox. You can recognize a token for the sandbox environment by its ",
+              "type": "text"
+            },
+            {
+              "code": "externalPurchaseId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, which always begins with “",
+              "type": "text"
+            },
+            {
+              "code": "SANDBOX",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example is an external purchase token that the system created in the sandbox environment. The sandbox token string is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ewoJImFwcEFwcGxlSWQiOjEyMzQ1Njc4OTAsCgkiYnVuZGxlSWQiOiJjb20uZXhhbXBsZSIsCgkidG9rZW5DcmVhdGlvbkRhdGUiOjE3MDYxNjk2MDAwMDAsCgkiZXh0ZXJuYWxQdXJjaGFzZUlkIjoiU0FOREJPWF8wMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiCn0K",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The token’s JSON content after Base64URL decoding is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"appAppleId\":1234567890,",
+            "    \"bundleId\":\"com.example\",",
+            "    \"tokenCreationDate\":1706169600000,",
+            "    \"externalPurchaseId\":\"SANDBOX_00000000-0000-0000-0000-000000000000\"",
+            "}"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "externalPurchaseId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes the “",
+              "type": "text"
+            },
+            {
+              "code": "SANDBOX",
+              "type": "codeVoice"
+            },
+            {
+              "text": "” prefix in the testing environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseCustomLinkRegions": {
+      "abstract": [
+        {
+          "text": "An array of country code strings that indicate the regions where your app supports custom links for external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseCustomLinkRegions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKExternalPurchaseCustomLinkRegions",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/SKExternalPurchaseCustomLinkRegions"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseLink": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains URLs to websites where people using your app can make external purchases for supported regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKExternalPurchaseLink",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/SKExternalPurchaseLink"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseMultiLink": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains an array of URLs to websites where people using your app can make external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchaseMultiLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKExternalPurchaseMultiLink",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/SKExternalPurchaseMultiLink"
+    },
+    "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI": {
+      "abstract": [
+        {
+          "text": "Send and manage reports you send to Apple for tokens you receive when your app provides external purchases for digital goods and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "External Purchase Server API",
+      "type": "topic",
+      "url": "/documentation/ExternalPurchaseServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report": {
+      "abstract": [
+        {
+          "text": "Report required information about external purchase tokens and associated transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Send External Purchase Report",
+      "type": "topic",
+      "url": "/documentation/ExternalPurchaseServerAPI/Send-External-Purchase-Report"
+    },
+    "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/externalPurchaseId": {
+      "abstract": [
+        {
+          "text": "The unique identifier of an external purchase token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalPurchaseId"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExternalPurchaseServerAPI/externalPurchaseId",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "externalPurchaseId",
+      "type": "topic",
+      "url": "/documentation/ExternalPurchaseServerAPI/externalPurchaseId"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/NoticeResult/continuedWithExternalPurchaseToken(token:)": {
+      "abstract": [
+        {
+          "text": "Describes when people chose to continue to view external purchases, and provides the external purchase token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "continuedWithExternalPurchaseToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/NoticeResult/continuedWithExternalPurchaseToken(token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExternalPurchase.NoticeResult.continuedWithExternalPurchaseToken(token:)",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchase/noticeresult/continuedwithexternalpurchasetoken(token:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/presentNoticeSheet()": {
+      "abstract": [
+        {
+          "text": "Presents a notice sheet from Apple that informs people before showing external purchases and determines whether your app can present external purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentNoticeSheet"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit16ExternalPurchaseO",
+          "text": "ExternalPurchase"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit16ExternalPurchaseO12NoticeResultO",
+          "text": "NoticeResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/presentNoticeSheet()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentNoticeSheet()",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchase/presentnoticesheet()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseCustomLink/Token": {
+      "abstract": [
+        {
+          "text": "An external purchase token for use with custom links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Token"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseCustomLink/Token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Token"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchaseCustomLink.Token",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchasecustomlink/token"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseCustomLink/token(for:)": {
+      "abstract": [
+        {
+          "text": "Requests an external purchase token of the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit26ExternalPurchaseCustomLinkO",
+          "text": "ExternalPurchaseCustomLink"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit26ExternalPurchaseCustomLinkO5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseCustomLink/token(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "token(for:)",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchasecustomlink/token(for:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink/open()": {
+      "abstract": [
+        {
+          "text": "Presents a continuation sheet that enables people to choose whether your app shows its link for external purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink/open()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "open()",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchaselink/open()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink/open(url:)": {
+      "abstract": [
+        {
+          "text": "Presents a continuation sheet that enables people to choose whether your app shows the indicated URL link for external purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink/open(url:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "open(url:)",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchaselink/open(url:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/external-purchase": {
+      "abstract": [
+        {
+          "text": "Enable qualifying apps to offer external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/external-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "External Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/external-purchase"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/receiving-and-decoding-external-purchase-tokens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/receiving-and-decoding-external-purchase-tokens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

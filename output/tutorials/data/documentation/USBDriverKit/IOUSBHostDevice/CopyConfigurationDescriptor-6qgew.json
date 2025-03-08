@@ -1,0 +1,568 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the currently selected configuration descriptor.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptor-6qgew"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUSBHostDevice@F@CopyConfigurationDescriptor#*$@S@IOService#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "CopyConfigurationDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "USBDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CopyConfigurationDescriptor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "CopyConfigurationDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBConfigurationDescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOUSBConfigurationDescriptor",
+              "text": "IOUSBConfigurationDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CopyConfigurationDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "forClient"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current service object. You may specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "forClient"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pointer to the configuration descriptor if found, or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the device isn’t configured. It’s your responsibility to free the returned descriptor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method searches the descriptor cache for the specified descriptor. If the descriptor isn’t in the cache, the method retrieves it from the device using a ",
+              "type": "text"
+            },
+            {
+              "code": "GET_DESCRIPTOR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " control request (USB 2.0, section 9.4.3) and adds it to the cache. When making a ",
+              "type": "text"
+            },
+            {
+              "code": "GET_DESCRIPTOR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " control request, this method acquires the service’s workloop lock and may call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate/1573818-commandsleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate/1573818-commandsleep"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for USB-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBConfigurationDescriptor": {
+      "abstract": [
+        {
+          "text": "The structure for storing a USB configuration descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBConfigurationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBConfigurationDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBConfigurationDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbconfigurationdescriptor"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice": {
+      "abstract": [
+        {
+          "text": "A provider object that represents the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostDevice",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyCapabilityDescriptors": {
+      "abstract": [
+        {
+          "text": "Returns the device’s capability descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyCapabilityDescriptors"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyCapabilityDescriptors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyCapabilityDescriptors",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copycapabilitydescriptors"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptor-6qgew": {
+      "abstract": [
+        {
+          "text": "Returns the currently selected configuration descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyConfigurationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptor-6qgew",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyConfigurationDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copyconfigurationdescriptor-6qgew"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptor-lej1": {
+      "abstract": [
+        {
+          "text": "Returns the configuration descriptor with the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyConfigurationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptor-lej1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyConfigurationDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copyconfigurationdescriptor-lej1"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptorWithValue": {
+      "abstract": [
+        {
+          "text": "Returns the configuration descriptor with the specified configuration value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyConfigurationDescriptorWithValue"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptorWithValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyConfigurationDescriptorWithValue",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copyconfigurationdescriptorwithvalue"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyDescriptor": {
+      "abstract": [
+        {
+          "text": "Retrieves any type of descriptor from the cache or the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copydescriptor"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyDeviceDescriptor": {
+      "abstract": [
+        {
+          "text": "Returns the device descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyDeviceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyDeviceDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyDeviceDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copydevicedescriptor"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyStringDescriptor-28ybo": {
+      "abstract": [
+        {
+          "text": "Returns a string descriptor from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyStringDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyStringDescriptor-28ybo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyStringDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copystringdescriptor-28ybo"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyStringDescriptor-9h8l2": {
+      "abstract": [
+        {
+          "text": "Returns a string descriptor from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyStringDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyStringDescriptor-9h8l2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyStringDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice/copystringdescriptor-9h8l2"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/descriptor-utilities": {
+      "abstract": [
+        {
+          "text": "Iterate over the descriptors of a USB device and fetch specific values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/descriptor-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Descriptor Utilities",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/descriptor-utilities"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBDeviceRequestRecipientValue": {
+      "abstract": [
+        {
+          "text": "Constants indicating the type of object that receives the results of a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "tIOUSBDeviceRequestRecipientValue"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBDeviceRequestRecipientValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tIOUSBDeviceRequestRecipientValue",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/tiousbdevicerequestrecipientvalue"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBDeviceRequestTypeValue": {
+      "abstract": [
+        {
+          "text": "Constants indicating the type of request to make from a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "tIOUSBDeviceRequestTypeValue"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBDeviceRequestTypeValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tIOUSBDeviceRequestTypeValue",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/tiousbdevicerequesttypevalue"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-Device-Descriptors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyCapabilityDescriptors",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptor-lej1",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyConfigurationDescriptorWithValue",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyDeviceDescriptor",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyStringDescriptor-28ybo",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyStringDescriptor-9h8l2",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice/CopyDescriptor",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBDeviceRequestTypeValue",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBDeviceRequestRecipientValue",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/descriptor-utilities"
+      ],
+      "title": "Getting the Device Descriptors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usbdriverkit/iousbhostdevice/copyconfigurationdescriptor-6qgew"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

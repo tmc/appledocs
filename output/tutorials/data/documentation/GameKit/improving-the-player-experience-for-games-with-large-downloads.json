@@ -1,0 +1,1303 @@
+{
+  "abstract": [
+    {
+      "text": "Provide ample content in your base installation and then use on-demand resources and the Background Assets API to handle additional content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/improving-the-player-experience-for-games-with-large-downloads"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving the player experience for games with large downloads"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As games become larger and more visually impressive, it’s important to balance initial download time with a smooth gameplay experience and responsible disk usage. Providing a small base installation that merely begins another installation phase doesn’t make for a great experience when players are excited to play your game. Instead, provide enough content in your initial download that a player can evaluate your game, and keep your initial download to under 30 minutes. Apple provides two technologies that your game can use to provide the right amount of content in your base installation and help you download additional content in the background: on-demand resources and the Background Assets framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Maximize-your-app-bundles-size",
+          "level": 3,
+          "text": "Maximize your app bundle’s size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your game targets iOS 18, iPadOS 18, or any version of tvOS, your game’s app bundle can be up to 4 GB in size, as outlined in the table below. You need to deliver any additional content through on-demand resources, the Background Assets framework, or your own in-game solution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimum deployment target",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maximum bundle size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 17, iPadOS 17, or earlier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 18 or iPadOS 18",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tvOS (any version)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Include-additional-content-in-your-games-base-installation",
+          "level": 3,
+          "text": "Include additional content in your game’s base installation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With on-demand resources, you can specify additional content to download from the App Store while your game installs. Alternatively, you can use the Background Assets framework to write an extension that downloads content from your own website or CDN. With either solution, the player sees a single progress indicator while the system downloads your game’s app bundle and any additional first-launch content. A purely in-app solution can’t include additional content in the base installation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-tags-to-use-on-demand-resources",
+          "level": 3,
+          "text": "Apply tags to use on-demand resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On-demand resources are assets hosted by Apple. To use them, split your game’s content into asset packs, apply one or more tags to each pack, and submit your asset packs to the App Store along with your game. For more information on applying tags to your assets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-which-tags-apply-to-essential-and-early-game-content",
+          "level": 3,
+          "text": "Identify which tags apply to essential and early-game content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you assign tags to your asset packs, use the Prefetch view to identify which tags you should include in your game’s base installation. Asset packs matching these tags are included in the base installation progress and are available when your game first launches. You can also specify an additional set of tags to automatically download after the base installation completes. This prefetched content might not finish downloading before the user launches your game. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-on-demand-resources-API-for-later-game-and-optional-content",
+          "level": 3,
+          "text": "Use the on-demand resources API for later-game and optional content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your game can programmatically download asset packs using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API. This allows you to save disk space by only downloading content after the player unlocks it through progression or In-App Purchases. Because asset packs can have multiple tags, splitting your content into smaller asset packs can further reduce your game’s disk space usage. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API to request tags, which prompt the system to download any matching asset packs as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For content unlocked by progress, requesting tags before they’re needed can make the content available to the player without waiting. In case the download doesn’t complete before the player needs the content, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614838-progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to keep the user informed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the player completes part of your game’s content, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to inform the system that the asset packs containing that content are no longer necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Stay-within-the-on-demand-resources-limits",
+          "level": 3,
+          "text": "Stay within the on-demand resources limits",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your game targets iOS 18, iPadOS 18, or tvOS 18, it can have up to 70 GB of assets in up to 1,000 asset packs, an unlimited subset of which you can include in your initial install tags or prefetch tags. The table below shows the resource limits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Item",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Size prior to iOS 17, iPadOS 17, and tvOS 17",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Size when targeting iOS 17, iPadOS 17, or tvOS 17",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Size when targeting iOS 18, iPadOS 18, or tvOS 18",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "512 MB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "512 MB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asset packs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1,000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1,000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1,000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initial install tags",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initial install and prefetch tags",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In-use on-demand resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No limit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hosted on-demand resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "20 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "40 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "70 GB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Use-Background-Assets-for-content-outside-the-App-Store",
+          "level": 3,
+          "text": "Use Background Assets for content outside the App Store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework if you want to host your game’s additional content outside the App Store. To use Background Assets, write a Background Assets extension that tells the system how to download assets from your website or CDN. Your extension can also react to authentication challenges and changes in download status. Your game uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets/BADownloadManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API to stay informed of completed downloads and schedule new downloads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 110403: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/110403/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10108: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10108/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22 and WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-information-about-your-essential-content",
+          "level": 3,
+          "text": "Add information about your essential content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "BAEssentialDownloadAllowance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key tells the App Store how much additional content your Background Assets Extension downloads during installation. Your App Store listing includes this information in the displayed download size. The ",
+              "type": "text"
+            },
+            {
+              "code": "BAEssentialMaxInstallSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key tells the system how much space those assets require when uncompressed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extract-your-assets-to-the-correct-location",
+          "level": 3,
+          "text": "Extract your assets to the correct location",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system places downloaded files in a purgeable location. When the system finishes downloading your essential content, it informs your game if the user launched it immediately or it informs your extension. The process that receives the notification must extract the assets to a stable location where your game can find them. Choose a location within your game’s ",
+              "type": "text"
+            },
+            {
+              "code": "Caches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. Don’t extract your assets to the ",
+              "type": "text"
+            },
+            {
+              "code": "Documents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory because this causes them to get included in device backups. To find the appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "Caches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@implementation MyGameBADownloaderExtension",
+            "",
+            "- (void)backgroundDownload:(BADownload *)download finishedWithFileURL:(NSURL *)fileURL {",
+            "    NSFileManager *fileManager = [NSFileManager defaultManager];",
+            "    NSURL *cacheRoot = [fileManager URLForDirectory:NSCachesDirectoryinDomains:NSUserDomainMask].firstObject;",
+            "",
+            "    // Create a subdirectory with the same name as this downloaded asset.",
+            "    NSString *downloadedFileName = fileURL.lastPathComponent.stringByDeletingPathExtension;",
+            "    NSURL *extractionDir = [cacheRoot URLByAppendingPathComponent:downloadedFileName isDirectory:YES];",
+            "",
+            "    NSError *error;",
+            "    BOOL success = [fileManager createDirectoryAtURL:extractionDir withIntermediateDirectories:YES attributes:nil error:&error];",
+            "    if (success) {",
+            "        success = extractCompressedFile(fileURL, extractionDir);",
+            "        if (!success) {",
+            "            os_log_fault(OS_LOG_DEFAULT, \"Couldn't extract download from URL %@ to URL %@\", fileURL,extractionDir);",
+            "        }",
+            "    } else {",
+            "        os_log_fault(OS_LOG_DEFAULT, \"Couldn't create cache directory at URL %@\", extractionDir);",
+            "    }",
+            "",
+            "    // Clean up the downloaded file after trying to extract it.",
+            "    success = [fileManager removeItemAtURL:fileURL error:&error];",
+            "    if (!success) {",
+            "        os_log(OS_LOG_DEFAULT, \"Couldn't clean up download at URL %@\", fileURL);",
+            "    }",
+            "}",
+            "",
+            "@end"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Redownload-essential-assets-on-failure",
+          "level": 3,
+          "text": "Redownload essential assets on failure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an essential download fails, the system skips it, and installation of your app proceeds. Therefore, reschedule the asset as nonessential so that it begins downloading. The system delivers the failure notification to your game if it’s running or else to your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)backgroundDownload:(BADownload *)download failedWithError:(NSError *)error {",
+            "    // If the `BAManifestURL` fails to download, the system notifies the extension.",
+            "    // The type of the manifest isn't a `BAURLDownload`, so you can key off of",
+            "    // the download's type to filter it out.",
+            "",
+            "    // If the failed download is essential, you can re-enqueue it in the background",
+            "    // so it can download at a later time.",
+            "    if (download.isEssential) {",
+            "        os_log(OS_LOG_DEFAULT, \"Rescheduling failed essential download with identifier '%@': %@\", download.identifier, error);",
+            "        download = [download copyAsNonEssential];",
+            "    }",
+            "",
+            "    if (![BADownloadManager sharedManager] scheduleDownload:download error:error]) {",
+            "        os_log_fault(\"Couldn't reschedule essential download with identifier '%@': %@\", download.identifier, error);",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/BackgroundAssets"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundAssets/BADownloadManager": {
+      "abstract": [
+        {
+          "text": "An object that manages the queue of scheduled asset downloads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BADownloadManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets/BADownloadManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BADownloadManager",
+      "type": "topic",
+      "url": "/documentation/BackgroundAssets/BADownloadManager"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether users of the app may see and compare achievements on a leaderboard, invite friends, and start multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Game Center Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.game-center"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority": {
+      "abstract": [
+        {
+          "text": "A hint to the system of the relative order for purging tagged sets of resources in the bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPreservationPriority"
+        },
+        {
+          "kind": "text",
+          "text": "(Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forTags"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<String>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1614845-setpreservationpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPreservationPriority(_:forTags:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1614845-setpreservationpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest": {
+      "abstract": [
+        {
+          "text": "A resource manager you use to download content hosted on the App Store at the time your app needs it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBundleResourceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBundleResourceRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614838-progress": {
+      "abstract": [
+        {
+          "text": "A reference to the progress object associated with the specified resource request. (read-only)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbundleresourcerequest/1614838-progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbundleresourcerequest/1614838-progress"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player": {
+      "abstract": [
+        {
+          "text": "Confirm player credentials and device capabilities and check for account restrictions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating a player",
+      "type": "topic",
+      "url": "/documentation/gamekit/authenticating-a-player"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center": {
+      "abstract": [
+        {
+          "text": "Enable Game Center in your Xcode project and configure features in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling and configuring Game Center",
+      "type": "topic",
+      "url": "/documentation/gamekit/enabling-and-configuring-game-center"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW1": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW1",
+      "title": "Creating and Assigning Tags",
+      "titleInlineContent": [
+        {
+          "text": "Creating and Assigning Tags",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW1"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW2": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW2",
+      "title": "Prefetching Tags",
+      "titleInlineContent": [
+        {
+          "text": "Prefetching Tags",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/Tagging.html#//apple_ref/doc/uid/TP40015083-CH3-SW2"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/110403/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/110403/",
+      "title": "Meet Background Assets",
+      "titleInlineContent": [
+        {
+          "text": "Meet Background Assets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/110403/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10108/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10108/",
+      "title": "What’s New in Background Assets",
+      "titleInlineContent": [
+        {
+          "text": "What’s New in Background Assets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10108/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center",
+        "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center",
+                "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle~11614845-setpreservationpriority/title",
+          "value": "setPreservationPriority:forTags:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager/title",
+          "value": "NSFileManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BackgroundAssets~1BADownloadManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BADownloadManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/improving-the-player-experience-for-games-with-large-downloads"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/improving-the-player-experience-for-games-with-large-downloads"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

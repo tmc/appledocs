@@ -1,0 +1,453 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates the current state of Low Power Mode.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1617047,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSProcessInfo(py)lowPowerModeEnabled",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSProcessInfo"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "lowPowerModeEnabled"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(readonly, getter=isLowPowerModeEnabled) "
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "lowPowerModeEnabled"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users who wish to prolong their device’s battery life can enable Low Power Mode under Settings > Battery. In Low Power Mode, the system conserves battery life by enacting certain energy-saving measures, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reducing CPU and GPU performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reducing screen brightness.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pausing discretionary and background activities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can query the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " property at any time to determine whether Low Power Mode is active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can also register to receive notifications when the Low Power Mode state of a device changes. To register for power state notifications, send the message ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter/1415360-addobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the default notification center of your app (an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Pass it a selector to call and a notification name of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfopowerstatedidchangenotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When your app receives a notification of a power state change, query ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the current power state. If Low Power Mode is active, take appropriate steps to reduce activity in your app. Otherwise, your app can resume normal operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1758171",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1758034",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1758034": {
+      "identifier": "devLink-1758034",
+      "title": "Energy Efficiency Guide for iOS Apps",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243"
+    },
+    "devLink-1758171": {
+      "identifier": "devLink-1758171",
+      "title": "React to Low Power Mode on iPhones",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/LowPowerMode.html#//apple_ref/doc/uid/TP40015243-CH31"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter/1415360-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the notification center to call the provided selector with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver:selector:name:object:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter/1415360-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver:selector:name:object:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationcenter/1415360-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo": {
+      "abstract": [
+        {
+          "text": "A collection of information about the current process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProcessInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the current state of Low Power Mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowPowerModeEnabled",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfopowerstatedidchangenotification": {
+      "abstract": [
+        {
+          "text": "Posts when the power state of a device changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfopowerstatedidchangenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProcessInfoPowerStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfopowerstatedidchangenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfopowerstatedidchangenotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter/1415360-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsprocessinfo/1617047-lowpowermodeenabled"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/processinfo/1617047-islowpowermodeenabled"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

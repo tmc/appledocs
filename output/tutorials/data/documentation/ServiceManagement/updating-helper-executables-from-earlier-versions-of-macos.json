@@ -1,0 +1,1125 @@
+{
+  "abstract": [
+    {
+      "text": "Simplify your app’s helper executables and support new authorization controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-helper-executables-from-earlier-versions-of-macos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Service Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Updating helper executables from earlier versions of macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Launch daemons, launch agents, and startup items are helper executables that macOS starts on behalf of the user that extend the capabilities of apps or provide additional capabilities to users. For example, a ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can provide persistent background service for an app, a ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can provide auxiliary UI capabilities like menu bar extras, and a ",
+              "type": "text"
+            },
+            {
+              "code": "LoginItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can provide the ability to automount remote directories or launch applications when the user logs in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to macOS 13, part of the application-design process of helper executables included scripts that installed one or more property lists into specific directories based on the type of service, such as the following locations of property lists:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "$HOME/Library/LaunchAgents",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "/Library/LaunchAgents",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "/Library/LaunchDaemons",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 13 and later, a new structure in the app bundle simplifies the installation of these login items and associated property lists. This new structure allows you to keep helper app resources inside the app’s bundle, which reduces the need for specialized installation scripts or permission to write files into system directories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Upgrade-existing-projects",
+          "level": 3,
+          "text": "Upgrade existing projects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upgrading an existing project requires the following general steps — some of which may be optional based on the type of services your app provides:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the helper executable within the app bundle, such as in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Contents/Resources",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property lists in the app bundle in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Contents/Library/LaunchAgents",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LaunchDaemon",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property lists in the app bundle in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Contents/Library/LaunchDaemons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the agents and daemons property lists, replace the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Program",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BundleProgram",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key and make the path relative to the bundle, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Contents/Resources/mydaemon",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that don’t use the new bundle structure can determine whether their app’s login items are in a disabled state by checking ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which returns one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constants that describes the authorization status. Then your app can alert the user to take an appropriate action depending on the importance of the helper executable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In apps that target macOS 13 and later, your app needs to only use the property list locations outlined above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Tell users the purpose of the helper executables your app includes. If your app can’t run or operate correctly without helper executables, check the authorization status at launch. If helper executables don’t have authorization, alert the user, and call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to suggest that they update the System Settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Connect-services-to-app-names-in-System-Settings",
+          "level": 3,
+          "text": "Connect services to app names in System Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every app that supports a ",
+              "type": "text"
+            },
+            {
+              "code": "LoginItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a corresponding switch in the Login Items panel in System Settings. The user can use this switch to allow the corresponding executables to run when they log in, or in the case of a ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", when the system starts up.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "LaunchAgents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the app bundle automatically associate with that app in the Login Items panel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "LaunchAgents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that aren’t using the app bundle can adopt the new ",
+              "type": "text"
+            },
+            {
+              "code": "AssociatedBundleIdentifiers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in their ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property list. This optional key indicates which bundles the Login Items panel associates with the helper executable. If an app installs a legacy property list, the property list needs to include the ",
+              "type": "text"
+            },
+            {
+              "code": "AssociatedBundleIdentifiers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with a value of the app’s bundle identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Team Identifier of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Program",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "ProgramArguments",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " executable in the legacy property list must match that of the app bundle for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "AssociatedBundleIdentifiers",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key. Launch Services needs to know about the apps that the ",
+                  "type": "text"
+                },
+                {
+                  "code": "AssociatedBundleIdentifiers",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key targets. If necessary, register the app using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1446350-lsregisterurl",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a legacy ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t have the ",
+              "type": "text"
+            },
+            {
+              "code": "AssociatedBundleIdentifiers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in its property list, instead of the app name, System Settings displays the organization name in the app’s signing certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system can’t attribute a ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an app and the executable isn’t signed, System Settings displays the executable name from the ",
+              "type": "text"
+            },
+            {
+              "code": "Program",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "ProgramArguments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the legacy property list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-changes-in-System-Settings",
+          "level": 3,
+          "text": "Respond to changes in System Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 13 and later, your app can check the authorization state in the System Settings using the ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to get the status of a ",
+              "type": "text"
+            },
+            {
+              "code": "LoginItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below demonstrates checking the authorization state of the three kinds of helper executables with the bundle identifier or property lists:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func initializer_demo() {",
+            "// The identifier must match the CFBundleIdentifier string in Info.plist.",
+            "",
+            "// LoginItem path: $APP.app/Contents/Library/LoginItems/MyMenuExtra.app/Contents/Info.plist",
+            "let loginItem = SMAppService.loginItem(identifier: \"com.example.mymenuextra\")",
+            "",
+            "// LaunchDaemon path: $APP.app/Contents/Library/LaunchDaemons/com.example.daemon.plist",
+            "let daemon = SMAppService.daemon(plistName: \"com.example.daemon.plist\");",
+            "",
+            "// LaunchAgent path: $APP.app/Contents/Library/LaunchAgents/com.example.agent.plist",
+            "let agent = SMAppService.agent(plistName: \"com.example.agent.plist\");",
+            "",
+            "// Retrieving the app reference if the main app itself needs to launch instead of a helper.",
+            "let mainApp = SMAppService.mainApp",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows an approach to user interaction with the System Settings check box to register and unregister a helper executable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle_checkbox_toggle(_ checked: Bool) {",
+            "    let service = SMAppService.loginItem(identifier:\"com.example.mymenuextra\")",
+            "    if (checked) {",
+            "        do {",
+            "           try service.register()",
+            "        } catch {",
+            "            os_log(\"Unable to register \\(error)\")",
+            "        }",
+            "    } else {",
+            "        service.unregister(completionHandler: { error in",
+            "        if let error = error {",
+            "            os_log(\"Unable to unregister \\(error)\")",
+            "        } else {",
+            "            // Successfully unregistered service.",
+            "        }",
+            "    })",
+            "  }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses launch daemons, it needs to register those first. Launch daemons require authentication by the user because the user is authorizing a system level-process. If the user authorizes the ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system approves all the other helper executables present in the app bundle, which results in fewer authorization interactions with the user. If your app doesn’t provide a ",
+              "type": "text"
+            },
+            {
+              "code": "LauchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it needs to register each ",
+              "type": "text"
+            },
+            {
+              "code": "LoginItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app depends on its helper executables to operate correctly, it needs to check the authorization state and allow the user to change the app’s authorization. If the user agrees, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to open the System Settings so they can enable or disable the app’s helper executables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices/1446350-lsregisterurl": {
+      "abstract": [
+        {
+          "text": "Registers an app, using a URL, in the Launch Services database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSRegisterURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446350-lsregisterurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSRegisterURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446350-lsregisterurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement": {
+      "abstract": [
+        {
+          "text": "Manage startup items, launch agents, and launch daemons from within an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Service Management",
+      "type": "topic",
+      "url": "/documentation/servicemanagement"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the registration or authorization status of a helper executable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMAppService.Status",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/status-swift.enum"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()": {
+      "abstract": [
+        {
+          "text": "Opens System Settings to the Login Items control panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openSystemSettingsLoginItems"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openSystemSettingsLoginItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "openSystemSettingsLoginItems()",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/opensystemsettingsloginitems()"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)": {
+      "abstract": [
+        {
+          "text": "Check the authorization status of an earlier OS version login item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusForLegacyPlist"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SMAppService",
+          "text": "SMAppService"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMAppServiceStatus",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statusForLegacyURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "statusForLegacyPlist(at:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/statusforlegacyplist(at:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-your-app-package-installer-to-use-the-new-service-management-api": {
+      "abstract": [
+        {
+          "text": "Learn about the Service Management API with a GUI-less agent app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-your-app-package-installer-to-use-the-new-service-management-api",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating your app package installer to use the new Service Management API",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/updating-your-app-package-installer-to-use-the-new-service-management-api"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-your-app-package-installer-to-use-the-new-service-management-api"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-your-app-package-installer-to-use-the-new-service-management-api"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1Status-swift.enum/title",
+          "value": "SMAppServiceStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1Status-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppServiceStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1Status-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppServiceStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coreservices~11446350-lsregisterurl/title",
+          "value": "LSRegisterURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1openSystemSettingsLoginItems()/title",
+          "value": "openSystemSettingsLoginItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1openSystemSettingsLoginItems()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "openSystemSettingsLoginItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1statusForLegacyPlist(at:)/title",
+          "value": "statusForLegacyURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1statusForLegacyPlist(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "statusForLegacyURL:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/servicemanagement/updating-helper-executables-from-earlier-versions-of-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/servicemanagement/updating-helper-executables-from-earlier-versions-of-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

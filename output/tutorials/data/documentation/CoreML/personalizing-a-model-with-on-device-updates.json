@@ -1,0 +1,2131 @@
+{
+  "abstract": [
+    {
+      "text": "Modify an updatable Core ML model by running an update task with labeled data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-personalization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/personalizing-a-model-with-on-device-updates"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Personalizing a Model with On-Device Updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML",
+              "isActive": true,
+              "overridingTitle": "Core ML",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Core ML",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " framework, you can customize an updatable model at runtime on the user’s device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using this technique, you can create a personalized experience for the user while keeping their data private.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to update the drawing classifier with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLUpdateTask",
+              "isActive": true,
+              "overridingTitle": "MLUpdateTask",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLUpdateTask",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app initiates an update task with the user’s drawings paired with a string label.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once the update is complete, the app uses the updated drawing classifier to recognize similar drawings from the user and convert each into its associated string label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Run this sample on a device or Simulator with iOS 13 or later, or iPadOS 13 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Prepare-Your-Model-Update-Data",
+          "level": 3,
+          "text": "Prepare Your Model Update Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gather your training data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wrap each value of a datapoint in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue",
+                      "isActive": true,
+                      "overridingTitle": "MLFeatureValue",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLFeatureValue",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", one for each model input and output.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group all the feature values for a datapoint in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureProvider",
+                      "isActive": true,
+                      "overridingTitle": "MLFeatureProvider",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLFeatureProvider",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Group all the feature providers in an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLBatchProvider",
+                      "isActive": true,
+                      "overridingTitle": "MLBatchProvider",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLBatchProvider",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the user adds a new emoji sticker, the app prompts the user to make three drawings, and uses those drawings to update the drawing classifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It does this by first creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLDictionaryFeatureProvider",
+              "isActive": true,
+              "overridingTitle": "MLDictionaryFeatureProvider",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLDictionaryFeatureProvider",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that contains the feature values for a drawing and its label.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app appends each feature provider to an array, which it uses to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLArrayBatchProvider",
+              "isActive": true,
+              "overridingTitle": "MLArrayBatchProvider",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLArrayBatchProvider",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " at the end of the function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " var featureProviders = [MLFeatureProvider]()",
+            "",
+            " let inputName = \"drawing\"",
+            " let outputName = \"label\"",
+            "         ",
+            " for drawing in trainingDrawings {",
+            "     let inputValue = drawing.featureValue",
+            "     let outputValue = MLFeatureValue(string: String(emoji))",
+            "     ",
+            "     let dataPointFeatures: [String: MLFeatureValue] = [inputName: inputValue,",
+            "                                                        outputName: outputValue]",
+            "     ",
+            "     if let provider = try? MLDictionaryFeatureProvider(dictionary: dataPointFeatures) {",
+            "         featureProviders.append(provider)",
+            "     }",
+            " }",
+            " ",
+            "return MLArrayBatchProvider(array: featureProviders)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample makes each ",
+              "type": "text"
+            },
+            {
+              "code": "MLDictionaryFeatureProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by initializing it with a dictionary of two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue",
+              "isActive": true,
+              "overridingTitle": "MLFeatureValue",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLFeatureValue",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instances keyed by strings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The feature values are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The underlying image of the drawing keyed by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"drawing\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The emoji character as a string keyed by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"label\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a feature value for the emoji string by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue/init(string:)",
+              "isActive": true,
+              "overridingTitle": "init(string:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "init(string:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, to convert the drawing’s underlying ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "overridingTitle": "CGImage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGImage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " into a feature value, the sample acquires the image constraint of the model’s image input feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let imageFeatureValue = try? MLFeatureValue(cgImage: preparedImage,",
+            "                                            constraint: imageConstraint)",
+            "return imageFeatureValue!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample gets the drawing classifier’s ",
+              "type": "text"
+            },
+            {
+              "code": "\"drawing\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLImageConstraint",
+              "isActive": true,
+              "overridingTitle": "MLImageConstraint",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLImageConstraint",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " by inspecting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelDescription",
+              "isActive": true,
+              "overridingTitle": "MLModelDescription",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLModelDescription",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// - Tag: ImageConstraintProperty",
+            "extension UpdatableDrawingClassifier {",
+            "    /// Returns the image constraint for the model's \"drawing\" input feature.",
+            "    var imageConstraint: MLImageConstraint {",
+            "        let description = model.modelDescription",
+            "        ",
+            "        let inputName = \"drawing\"",
+            "        let imageInputDescription = description.inputDescriptionsByName[inputName]!",
+            "        ",
+            "        return imageInputDescription.imageConstraint!",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-Update-Task",
+          "level": 3,
+          "text": "Create an Update Task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLUpdateTask",
+              "isActive": true,
+              "overridingTitle": "MLUpdateTask",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLUpdateTask",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " by passing the following to an initializer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLBatchProvider",
+                      "isActive": true,
+                      "overridingTitle": "MLBatchProvider",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLBatchProvider",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that contains your update data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The location of the compiled model youʼd like to update (",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "ModelName",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ".mlmodelc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelConfiguration",
+                      "isActive": true,
+                      "overridingTitle": "MLModelConfiguration",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLModelConfiguration",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", if applicable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A completion handler with a single ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLUpdateContext",
+                      "isActive": true,
+                      "overridingTitle": "MLUpdateContext",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "MLUpdateContext",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample updates the drawing classifier model it’s currently using, which could be the original drawing classifier model or a previously updated model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an Update Task.",
+            "guard let updateTask = try? MLUpdateTask(forModelAt: url,",
+            "                                   trainingData: trainingData,",
+            "                                   configuration: nil,",
+            "                                   completionHandler: completionHandler)",
+            "    else {",
+            "        print(\"Could't create an MLUpdateTask.\")",
+            "        return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An update task can only update a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "compiled",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " model file—one whose name ends with ",
+                  "type": "text"
+                },
+                {
+                  "code": ".mlmodelc",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Run-the-Update-Task",
+          "level": 3,
+          "text": "Run the Update Task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You begin an update task by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLTask/resume()",
+              "isActive": true,
+              "overridingTitle": "resume()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "resume()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "updateTask.resume()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML",
+              "isActive": true,
+              "overridingTitle": "Core ML",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Core ML",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " updates the model on a separate thread and calls your completion handler when it finishes the update process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-the-Updated-Model",
+          "level": 3,
+          "text": "Save the Updated Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use your completion handler to save the updated model in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLUpdateContext",
+              "isActive": true,
+              "overridingTitle": "MLUpdateContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MLUpdateContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to disk.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample saves the updated model to the file system by first writing the model to a temporary location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, the sample moves the updated model to a permanent location, replacing any previously saved updated model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let updatedModel = updateContext.model",
+            "let fileManager = FileManager.default",
+            "do {",
+            "    // Create a directory for the updated model.",
+            "    try fileManager.createDirectory(at: tempUpdatedModelURL,",
+            "                                    withIntermediateDirectories: true,",
+            "                                    attributes: nil)",
+            "    ",
+            "    // Save the updated model to temporary filename.",
+            "    try updatedModel.write(to: tempUpdatedModelURL)",
+            "    ",
+            "    // Replace any previously updated model with this one.",
+            "    _ = try fileManager.replaceItemAt(updatedModelURL,",
+            "                                      withItemAt: tempUpdatedModelURL)",
+            "    ",
+            "    print(\"Updated model saved to:\\n\\t\\(updatedModelURL)\")",
+            "} catch let error {",
+            "    print(\"Could not save updated model to the file system: \\(error)\")",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-the-Updated-Model",
+          "level": 3,
+          "text": "Load the Updated Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use your updated model by loading it with the model’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/init(contentsOf:)",
+              "isActive": true,
+              "overridingTitle": "init(contentsOf:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "init(contentsOf:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample loads a new instance of ",
+              "type": "text"
+            },
+            {
+              "code": "UpdatableDrawingClassifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": true,
+              "overridingTitle": "URL",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "URL",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of the updated model file the app saved in the previous step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard FileManager.default.fileExists(atPath: updatedModelURL.path) else {",
+            "    // The updated model is not present at its designated path.",
+            "    return",
+            "}",
+            "",
+            "// Create an instance of the updated model.",
+            "guard let model = try? UpdatableDrawingClassifier(contentsOf: updatedModelURL) else {",
+            "    return",
+            "}",
+            "",
+            "// Use this updated model to make predictions in the future.",
+            "updatedDrawingClassifier = model"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9a8ff1fea55d/PersonalizingAModelWithOnDeviceUpdates.zip": {
+      "checksum": "9a8ff1fea55de4373fd85e85a6504a733a56ee9aed7441e2d9b18d0d8f7618cdb5db495bfa17a77b120c44d0e3f4a28895cb126ebcdad4d836c66748d9e02cf3",
+      "identifier": "9a8ff1fea55d/PersonalizingAModelWithOnDeviceUpdates.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9a8ff1fea55d/PersonalizingAModelWithOnDeviceUpdates.zip"
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLTask": {
+      "abstract": [
+        {
+          "text": "An abstract base class for machine learning tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTask"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTask",
+      "type": "topic",
+      "url": "/documentation/coreml/mltask"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLUpdateTask": {
+      "abstract": [
+        {
+          "text": "A task that updates a model with additional training data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLUpdateTask"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLUpdateTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLUpdateTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLUpdateTask",
+      "type": "topic",
+      "url": "/documentation/coreml/mlupdatetask"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-personalization": {
+      "abstract": [
+        {
+          "text": "Update your model to adapt to new data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-personalization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Personalization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-personalization"
+    },
+    "doc://com.apple.documentation/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/CoreML"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLArrayBatchProvider": {
+      "abstract": [
+        {
+          "text": "A convenience wrapper for batches of feature providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLArrayBatchProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLArrayBatchProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLArrayBatchProvider",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLArrayBatchProvider"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLBatchProvider": {
+      "abstract": [
+        {
+          "text": "An interface that represents a collection of feature providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLBatchProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLBatchProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLBatchProvider",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLBatchProvider"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLDictionaryFeatureProvider": {
+      "abstract": [
+        {
+          "text": "A convenience wrapper for the given dictionary of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDictionaryFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLDictionaryFeatureProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDictionaryFeatureProvider",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLDictionaryFeatureProvider"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLFeatureProvider": {
+      "abstract": [
+        {
+          "text": "An interface that represents a collection of values for either a model’s input or its output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLFeatureProvider",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLFeatureProvider"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue": {
+      "abstract": [
+        {
+          "text": "A generic wrapper around an underlying value and the value’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLFeatureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLFeatureValue",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLFeatureValue"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue/init(string:)": {
+      "abstract": [
+        {
+          "text": "Creates a feature value that contains a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLFeatureValue/init(string:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLFeatureValue/init(string:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLImageConstraint": {
+      "abstract": [
+        {
+          "text": "The width, height, and pixel format constraints of an image feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLImageConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLImageConstraint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLImageConstraint",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLImageConstraint"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModel/init(contentsOf:)": {
+      "abstract": [
+        {
+          "text": "Creates a Core ML model instance from a compiled model file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/init(contentsOf:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModel/init(contentsOf:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModelConfiguration": {
+      "abstract": [
+        {
+          "text": "The settings for creating or updating a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelConfiguration",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModelConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModelDescription": {
+      "abstract": [
+        {
+          "text": "Information about a model, primarily the input and output format for each feature the model expects, and optional metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModelDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelDescription",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModelDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLTask/resume()": {
+      "abstract": [
+        {
+          "text": "Begins or resumes a machine learning task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLTask/resume()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLTask/resume()"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLUpdateContext": {
+      "abstract": [
+        {
+          "text": "The context an update task provides to your app’s completion and update progress handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLUpdateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLUpdateContext",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLUpdateContext"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLUpdateTask": {
+      "abstract": [
+        {
+          "text": "A task that updates a model with additional training data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLUpdateTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLUpdateTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLUpdateTask",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLUpdateTask"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9a8ff1fea55d/PersonalizingAModelWithOnDeviceUpdates.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "On-Device-Model-Updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLTask",
+        "doc://com.apple.coreml/documentation/CoreML/MLUpdateTask"
+      ],
+      "title": "On-Device Model Updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "On-Device-Model-Updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLTask",
+                "doc://com.apple.coreml/documentation/CoreML/MLUpdateTask"
+              ],
+              "title": "On-Device Model Updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLUpdateTask/title",
+          "value": "MLUpdateTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLUpdateTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLUpdateTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLUpdateTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLUpdateTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLArrayBatchProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLArrayBatchProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLFeatureProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLFeatureProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLDictionaryFeatureProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLDictionaryFeatureProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLTask/title",
+          "value": "MLTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModelDescription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLModelDescription"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLUpdateTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLUpdateTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLTask",
+              "text": "MLTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLFeatureValue/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLFeatureValue"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLUpdateContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLUpdateContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLFeatureValue~1init(string:)/title",
+          "value": "featureValueWithString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLFeatureValue~1init(string:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "featureValueWithString:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "value"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModelConfiguration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLModelConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1init(contentsOf:)/title",
+          "value": "modelWithContentsOfURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1init(contentsOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "modelWithContentsOfURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLImageConstraint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLImageConstraint"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLTask~1resume()/title",
+          "value": "resume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLTask~1resume()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "resume"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLBatchProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLBatchProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/personalizing-a-model-with-on-device-updates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/personalizing-a-model-with-on-device-updates"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

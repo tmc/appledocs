@@ -1,0 +1,2470 @@
+{
+  "abstract": [
+    {
+      "text": "A template that describes available predicates and how to display them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPredicateEditorRowTemplate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPredicateEditorRowTemplate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPredicateEditorRowTemplate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSPredicateEditorRowTemplate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditorRowTemplate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditorRowTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " programmatically or in Interface Builder. By default, a noncompound row template has three views: a popup (or static text field) on the left, a popup or static text field for operators, and either a popup or other view on the right.  You can subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditorRowTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a row template with different numbers or types of views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSPredicateEditorRowTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a concrete class, but it has five primitive methods that are called by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditorRowTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements all of these methods, but you can override them for custom templates. The primitive methods are used by an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is created, and some row templates are set on it—either through a nib file or programmatically. The first thing predicate editor does is ask each of the templates for their views, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After setting up the predicate editor, you typically send it a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl/objectValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message to restore a saved predicate. ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " needs to determine which of its templates should display each predicate in the predicate tree. It does this by sending each of its row templates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message and choosing the one that returns the highest value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After finding the best match for a predicate, ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " copies that template to get fresh views, inserts them into the proper row, and then sets the predicate on the template using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Within that method, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditorRowTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object must set its views’ values to represent that predicate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSPredicateEditorRowTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " next asks the template for the “displayable sub-predicates” of the predicate by sending a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message. If a template represents a predicate in its entirety, or if the predicate has no subpredicates, it can return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this.  Otherwise, it should return a list of predicates to be made into sub-rows of that template’s row. The whole process repeats for each sub-predicate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, the user sees the predicate that was saved.  If the user then makes some changes to the views of the templates, this causes ",
+              "type": "text"
+            },
+            {
+              "code": "NSPredicateEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to recompute its predicate by asking each of the templates to return the predicate represented by the new view values, passing in the subpredicates represented by the sub-rows (an empty array if there are none, or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if they aren’t supported by that predicate type):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSControl/objectValue": {
+      "abstract": [
+        {
+          "text": "The value of the receiver’s cell as an Objective-C object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSControl/objectValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nscontrol/objectvalue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor": {
+      "abstract": [
+        {
+          "text": "A defined set of rules that allows the editing of predicate objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPredicateEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor/rowTemplates": {
+      "abstract": [
+        {
+          "text": "The row templates for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rowTemplates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicateEditorRowTemplate",
+          "text": "NSPredicateEditorRowTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor/rowTemplates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rowTemplates"
+        }
+      ],
+      "role": "symbol",
+      "title": "rowTemplates",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditor/rowtemplates"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate": {
+      "abstract": [
+        {
+          "text": "A template that describes available predicates and how to display them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditorRowTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPredicateEditorRowTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPredicateEditorRowTemplate",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/compoundTypes": {
+      "abstract": [
+        {
+          "text": "Returns the compound predicate types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compoundTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/compoundTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compoundTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "compoundTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)": {
+      "abstract": [
+        {
+          "text": "Returns the subpredicates that should be made sub-rows of a given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayableSubpredicates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayableSubpredicatesOfPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayableSubpredicates(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/displayablesubpredicates(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(compoundTypes:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a row template suitable for displaying compound predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "compoundTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(compoundTypes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCompoundTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(compoundTypes:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/init(compoundtypes:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a “pop-up-pop-up-view”–style row template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "leftExpressions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExpression",
+          "text": "NSExpression"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rightExpressionAttributeType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSAttributeType",
+          "text": "NSAttributeType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSComparisonPredicateModifier",
+          "text": "Modifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operators"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/init(leftexpressions:rightexpressionattributetype:modifier:operators:options:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressions:modifier:operators:options:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a “pop-up-pop-up-pop-up”–style row template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "leftExpressions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExpression",
+          "text": "NSExpression"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rightExpressions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExpression",
+          "text": "NSExpression"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSComparisonPredicateModifier",
+          "text": "Modifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operators"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressions:modifier:operators:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithLeftExpressions:rightExpressions:modifier:operators:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(leftExpressions:rightExpressions:modifier:operators:options:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/init(leftexpressions:rightexpressions:modifier:operators:options:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/leftExpressions": {
+      "abstract": [
+        {
+          "text": "Returns the left hand expressions for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leftExpressions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExpression",
+          "text": "NSExpression"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/leftExpressions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leftExpressions"
+        }
+      ],
+      "role": "symbol",
+      "title": "leftExpressions",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)": {
+      "abstract": [
+        {
+          "text": "Returns a positive number if the receiver can represent a given predicate, and ",
+          "type": "text"
+        },
+        {
+          "code": "0",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it cannot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchForPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "match(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/match(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/modifier": {
+      "abstract": [
+        {
+          "text": "Returns the comparison predicate modifier for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSComparisonPredicate",
+          "text": "NSComparisonPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSComparisonPredicateModifier",
+          "text": "Modifier"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/modifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "modifier",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/modifier"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/operators": {
+      "abstract": [
+        {
+          "text": "Returns the array of comparison predicate operators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "operators"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/operators",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "operators"
+        }
+      ],
+      "role": "symbol",
+      "title": "operators",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/operators"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/options": {
+      "abstract": [
+        {
+          "text": "Returns the comparison predicate options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "options"
+        }
+      ],
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/options"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)": {
+      "abstract": [
+        {
+          "text": "Returns the predicate represented by the receiver’s views’ values and the given sub-predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSubpredicates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predicateWithSubpredicates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predicate(withSubpredicates:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/predicate(withsubpredicates:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressionAttributeType": {
+      "abstract": [
+        {
+          "text": "Returns the attribute type of the receiver’s right expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightExpressionAttributeType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSAttributeType",
+          "text": "NSAttributeType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressionAttributeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightExpressionAttributeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightExpressionAttributeType",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/rightexpressionattributetype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressions": {
+      "abstract": [
+        {
+          "text": "Returns the right hand expressions for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightExpressions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExpression",
+          "text": "NSExpression"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightExpressions"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightExpressions",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of the views according to the given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPredicate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPredicate(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/setpredicate(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews": {
+      "abstract": [
+        {
+          "text": "Returns the views that display this template’s predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "templateViews"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "templateViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "templateViews",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/templateviews"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templates(withAttributeKeyPaths:in:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of predicate templates for the given attribute key paths for a given entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "templates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAttributeKeyPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEntityDescription",
+          "text": "NSEntityDescription"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicateEditorRowTemplate",
+          "text": "NSPredicateEditorRowTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templates(withAttributeKeyPaths:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "templatesWithAttributeKeyPaths:inEntityDescription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "templates(withAttributeKeyPaths:in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate/templates(withattributekeypaths:in:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Row-Templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor/rowTemplates"
+      ],
+      "title": "Managing Row Templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Template",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressions:modifier:operators:options:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(compoundTypes:)"
+      ],
+      "title": "Initializing a Template"
+    },
+    {
+      "anchor": "Core-Data-Integration",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templates(withAttributeKeyPaths:in:)"
+      ],
+      "title": "Core Data Integration"
+    },
+    {
+      "anchor": "Primitive-Methods",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)"
+      ],
+      "title": "Primitive Methods"
+    },
+    {
+      "anchor": "Information-About-a-Row-Template",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/leftExpressions",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressions",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/compoundTypes",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/modifier",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/operators",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/options",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressionAttributeType"
+      ],
+      "title": "Information About a Row Template"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPredicateEditorRowTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditorRowTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditorRowTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Template",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressions:modifier:operators:options:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/init(compoundTypes:)"
+              ],
+              "title": "Initializing a Template"
+            },
+            {
+              "anchor": "Core-Data-Integration",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templates(withAttributeKeyPaths:in:)"
+              ],
+              "title": "Core Data Integration"
+            },
+            {
+              "anchor": "Primitive-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)"
+              ],
+              "title": "Primitive Methods"
+            },
+            {
+              "anchor": "Information-About-a-Row-Template",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/leftExpressions",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressions",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/compoundTypes",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/modifier",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/operators",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/options",
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressionAttributeType"
+              ],
+              "title": "Information About a Row Template"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Row-Templates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditor/rowTemplates"
+              ],
+              "title": "Managing Row Templates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSPredicateEditorRowTemplate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1predicate(withSubpredicates:)/title",
+          "value": "predicateWithSubpredicates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1predicate(withSubpredicates:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "predicateWithSubpredicates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1leftExpressions/title",
+          "value": "leftExpressions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1leftExpressions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leftExpressions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1init(leftExpressions:rightExpressions:modifier:operators:options:)/title",
+          "value": "initWithLeftExpressions:rightExpressions:modifier:operators:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1init(leftExpressions:rightExpressions:modifier:operators:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithLeftExpressions:rightExpressions:modifier:operators:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1compoundTypes/title",
+          "value": "compoundTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1compoundTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "compoundTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1rightExpressions/title",
+          "value": "rightExpressions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1rightExpressions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rightExpressions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl~1objectValue/title",
+          "value": "objectValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSControl~1objectValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "objectValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1displayableSubpredicates(of:)/title",
+          "value": "displayableSubpredicatesOfPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1displayableSubpredicates(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayableSubpredicatesOfPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1templateViews/title",
+          "value": "templateViews"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1templateViews/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "templateViews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1operators/title",
+          "value": "operators"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1operators/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "operators"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate/title",
+          "value": "NSPredicateEditorRowTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditorRowTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditorRowTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1rightExpressionAttributeType/title",
+          "value": "rightExpressionAttributeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1rightExpressionAttributeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rightExpressionAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/title",
+          "value": "NSPredicateEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPredicateEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1setPredicate(_:)/title",
+          "value": "setPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1setPredicate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1options/title",
+          "value": "options"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1match(for:)/title",
+          "value": "matchForPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1match(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchForPredicate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor~1rowTemplates/title",
+          "value": "rowTemplates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditor~1rowTemplates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rowTemplates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)/title",
+          "value": "initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1templates(withAttributeKeyPaths:in:)/title",
+          "value": "templatesWithAttributeKeyPaths:inEntityDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1templates(withAttributeKeyPaths:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "templatesWithAttributeKeyPaths:inEntityDescription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1modifier/title",
+          "value": "modifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1modifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1init(compoundTypes:)/title",
+          "value": "initWithCompoundTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPredicateEditorRowTemplate~1init(compoundTypes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCompoundTypes:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nspredicateeditorrowtemplate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nspredicateeditorrowtemplate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

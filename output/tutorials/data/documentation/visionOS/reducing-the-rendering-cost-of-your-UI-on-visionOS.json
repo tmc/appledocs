@@ -1,0 +1,1713 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize your 2D user interface rendering on visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reducing the rendering cost of your UI on visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide an enjoyable experience and maintain a sense of immersion on Apple Vision Pro by minimizing visual choppiness and interaction latency. Performance bottlenecks that prevent timely rendering and responsive feedback interfere with the spatial experience overall and can cause disorientation or discomfort if they persist over an extended period of time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app’s processing and its views have an impact on the work the system does and its ability to meet rendering deadlines. To address bottlenecks in your SwiftUI or UIKit interfaces, first analyze your apps performance, then implement some of the following strategies to reduce CPU and GPU overhead. For more information on performance analysis, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Minimize-transparency-in-overlapping-views",
+          "level": 3,
+          "text": "Minimize transparency in overlapping views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have overlapping UI windows, avoid adding translucency to them. In SwiftUI, avoid setting the value of your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/opacity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below 1. In UIKit, avoid setting the value of your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/alpha",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below 1. Subviews inherit ",
+              "type": "text"
+            },
+            {
+              "code": "alpha",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "rendering-overdraw",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 2
+            },
+            {
+              "content": [],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 4,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a view with transparent pixels overlaps another view, the system performs extra work to composite those views together. The GPU always renders foreground content, but when foreground content is transparent the GPU also renders the UI behind it. When the foreground content is fully opaque, the GPU doesn’t do this rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Translucent UI Meshes metric in the Core Animation section of the RealityKit Metrics instrument timeline helps you identify translucent UI content your app uses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "translucent-ui-meshes-metric",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other visual effects that involve ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "overdraw",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the need to draw pixels multiple times to produce a final result, also increase rendering work. In the Shared Space, overdraw can result from interactions with the content from other apps, so minimizing translucent content might have a greater impact. For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows#visionOS",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > Windows",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > Windows",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Visual effects can also cause offscreen passes. To reduce offscreen passes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS#Reduce-redraw-and-offscreen-rendering",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-the-size-of-static-UI-views",
+          "level": 3,
+          "text": "Reduce the size of static UI views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To lower the GPU overhead of static UI content, reduce the size of UI elements in your view hierarchy. Making your UI content appear larger in a space requires rendering more pixels which requires more rendering work. People still have control over re-sizing content, so use sizes that are large enough for people to be comfortable interacting with, but not so large that they require unnecessary demand from the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify areas in your app where rendering your static UI content creates a lot of overhead for the GPU, check the RealityKit Metrics instrument for 3D Render GPU bottlenecks. Content you display in 2D windows still renders in a space with a 3D mesh. If you expect people to frequently launch multiple windows, account for the rendering cost of this in your design and profile your app with multiple windows open. For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/spatial-layout",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > Spatial layout",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > Spatial layout",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-the-impact-of-dynamic-content-scaling",
+          "level": 3,
+          "text": "Consider the impact of dynamic content scaling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can provide sharper visuals from any angle and distance by altering the resolution of text or vector-based UI content based on where people are looking. Doing so requires drawing content more frequently and at potentially higher scales. SwiftUI and UIKit views enable this by default. To opt in with your custom Core Animation or Core Graphics rendering, enable the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/wantsDynamicContentScaling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Consider the performance and memory trade-offs and profile your app with this feature on and off to determine if the cost is worth the quality improvement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on dynamic content scaling, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the section on Dynamic content scaling in the video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10095/?time=793",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-redraw-and-offscreen-rendering",
+          "level": 3,
+          "text": "Reduce redraw and offscreen rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The performance cost of numerous redraws and offscreen render passes adds up. Offscreen passes can also contribute to additional overdraw. Some complex renderers require offscreen passes but you can avoid them in many cases. Learn more about offscreen render passes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/customizing-render-pass-setup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To reduce the number of redraw and offscreen render passes your app performs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lower the update rates of animations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pause or stop animations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce the number of different views your app uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid layouts that require redrawing overlapping layers when redrawing a different layer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use more efficient alternatives than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIVisualEffectView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For example, use background colors in your SwiftUI and UIKit apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to other Apple platforms, app updates done in response to input events, timed animations, or other sources initiate UI redraw work in the render server. On visionOS, dynamic content scaling can cause redraw to be frequent in the absence of these updates. This makes it more important to reduce updates and animation timers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce the cost of redraws and render passes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid large layers that might require redrawing a large number of pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimize your use of vector-based media content during active scrolling and animated interactions. Animating large vector-based media content is often expensive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce the resolution, type, and number of images in your content that scrolls or animates during interactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The number of offscreen render passes can negatively impact performance. Visual effects, like shadows, masking, rounded rectangles, blurs, and vibrancy increase the number of offscreen passes the system requires to render your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify frequent or expensive UI redraws, check the RealityKit Metrics instrument for Core Animation Encoding (CPU), Core Animation GPU (GPU), Core Animation Server Update (CPU), and Core Animation Client Commit (CPU) bottlenecks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Minimize view layouts and updates in your SwiftUI, UIKit, or custom Core Animation and Core Graphics rendering when you see a bottleneck related to UI redraw to make your app more efficient for the system to render.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "offscreen-prepares-render-passes-metrics",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review the Offscreen Prepares and Render Passes metrics in the Core Animation Render section of the RealityKit Metrics Instrument to identify the number of potential offscreen render passes and total render passes the render server does on behalf of your app. The section includes metrics on render passes for both offscreen visual effects and for each region of UI content to redraw.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about these offscreen passes, watch the video ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/videos/play/tech-talks/10857",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-expensive-updates-on-the-main-thread",
+          "level": 3,
+          "text": "Avoid expensive updates on the main thread",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid visible hitches and delays while people scroll and resize, reduce time consuming layout and view creations that occur on the app’s main thread. The SwiftUI Instrument template includes the View Body, View Properties, Core Animation Commits, Time Profiler, and Hangs instruments. Use the data these instruments collect to debug expensive commits and updates on your app’s main thread. The Core Animation Commits and Hangs instruments can help you locate areas of expensive work and updates on the app’s main thread that cause rendering delays:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "core-animation-commits-and-hangs-instruments",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about analyzing Hangs with Instruments, watch ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10248",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The View Body and View Properties instruments provide metrics on the number of view body creations and property updates that occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "view-properties-and-view-body-instruments",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For debugging purposes, you can add a call to the internal method ",
+              "type": "text"
+            },
+            {
+              "code": "Self._printChanges()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the body of the view to log information about the property that caused the view to update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    let _ = Self._printChanges()",
+            "    // View code ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+            "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+            "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+            "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2023/10149",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10160",
+            "doc://com.apple.documentation/videos/play/wwdc2021/10022"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "01208FB9-CF1A-40A4-BE43-1B2F111BB2EE": {
+      "alt": null,
+      "identifier": "01208FB9-CF1A-40A4-BE43-1B2F111BB2EE",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/119/01208FB9-CF1A-40A4-BE43-1B2F111BB2EE/4888_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/119/01208FB9-CF1A-40A4-BE43-1B2F111BB2EE/4888_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/119/01208FB9-CF1A-40A4-BE43-1B2F111BB2EE/4888_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "2839256F-8B72-4467-9861-77FE433AC696": {
+      "alt": null,
+      "identifier": "2839256F-8B72-4467-9861-77FE433AC696",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/2839256F-8B72-4467-9861-77FE433AC696/8313_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/2839256F-8B72-4467-9861-77FE433AC696/8313_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/2839256F-8B72-4467-9861-77FE433AC696/8313_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "575870C5-E0BB-487A-9C32-F0E70EBAADBB": {
+      "alt": null,
+      "identifier": "575870C5-E0BB-487A-9C32-F0E70EBAADBB",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/575870C5-E0BB-487A-9C32-F0E70EBAADBB/8206_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/575870C5-E0BB-487A-9C32-F0E70EBAADBB/8206_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/575870C5-E0BB-487A-9C32-F0E70EBAADBB/8206_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "9DD99CCF-1898-406D-A2F6-D5348D5BDA91": {
+      "alt": null,
+      "identifier": "9DD99CCF-1898-406D-A2F6-D5348D5BDA91",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/8/9DD99CCF-1898-406D-A2F6-D5348D5BDA91/4670_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/8/9DD99CCF-1898-406D-A2F6-D5348D5BDA91/4670_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/8/9DD99CCF-1898-406D-A2F6-D5348D5BDA91/4670_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "D23E4B9B-766E-4E07-BA87-CD6EFD92BB77": {
+      "alt": null,
+      "identifier": "D23E4B9B-766E-4E07-BA87-CD6EFD92BB77",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/D23E4B9B-766E-4E07-BA87-CD6EFD92BB77/8217_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/D23E4B9B-766E-4E07-BA87-CD6EFD92BB77/8217_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/D23E4B9B-766E-4E07-BA87-CD6EFD92BB77/8217_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "components-windows-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-windows-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/954d0938deaa82c77e2697bea81040da/components-windows-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cdddbeeb4c914a11ab4a384a96de036c/components-windows-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "core-animation-commits-and-hangs-instruments": {
+      "alt": "A screenshot that contains part of an Instruments trace document. It displays a vertical stack of timelines for the View Body, View Properties, Core Animation Commits, Time Profiler, and Hangs instruments. The Core Animation instrument is highlighted with an overlay and includes four blocks that represent Core Animation commit times. The first block starting from the left is orange, the next block is red, and the final two blocks are green. Below the timeline is an an outline view containing a Summary information for the Core Animation Commits instrument. The Hangs instrument is also highlighted with an overlay and includes a single block labeled Brief Unresponsiveness. Below the timeline is an an outline view containing a Summary information for the Hangs instrument.",
+      "identifier": "core-animation-commits-and-hangs-instruments",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/873da8f3bd40380b133d056257ec2103/core-animation-commits-and-hangs-instruments@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6fc7872799f9c00f161d66cb8483e90b/core-animation-commits-and-hangs-instruments~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/spatial-layout": {
+      "abstract": [
+        {
+          "text": "Spatial layout techniques help you take advantage of the infinite canvas of Apple Vision Pro and present your content in engaging, comfortable ways.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/spatial-layout",
+      "images": [
+        {
+          "identifier": "spatial-layout.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-spatial-layout-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Spatial layout",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/spatial-layout"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows#visionOS": {
+      "abstract": [
+        {
+          "text": "A window presents UI views and components in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows#visionOS",
+      "images": [
+        {
+          "identifier": "components-windows-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/windows"
+    },
+    "doc://com.apple.documentation/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/Metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer/wantsDynamicContentScaling": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsDynamicContentScaling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/wantsDynamicContentScaling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wantsDynamicContentScaling",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer/wantsDynamicContentScaling"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/opacity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the transparency of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/opacity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacity(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/opacity(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/alpha": {
+      "abstract": [
+        {
+          "text": "The view’s alpha value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/alpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alpha",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/alpha"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIVisualEffectView": {
+      "abstract": [
+        {
+          "text": "An object that implements some complex visual effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVisualEffectView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIVisualEffectView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIVisualEffectView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIVisualEffectView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS#Reduce-redraw-and-offscreen-rendering": {
+      "abstract": [
+        {
+          "text": "Optimize your 2D user interface rendering on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS#Reduce-redraw-and-offscreen-rendering",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of your UI on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS"
+    },
+    "doc://com.apple.documentation/videos/play/tech-talks/10857": {
+      "abstract": [
+        {
+          "text": "When you implement complex view hierarchies in your app, you may run into animation hitches. Demystify how your views are turned into pixels during the render phase, and learn how to use Instruments to uncover issues in this part of the render loop. Discover how to eliminate offscreen passes and leverage Xcode optimization opportunities in order to provide a great experience when using your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/tech-talks/10857",
+      "images": [
+        {
+          "identifier": "9DD99CCF-1898-406D-A2F6-D5348D5BDA91",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Demystify and eliminate hitches in the render phase",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/tech-talks/10857"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2021/10022": {
+      "abstract": [
+        {
+          "text": "Peek behind the curtain into the core tenets of SwiftUI philosophy: Identity, Lifetime, and Dependencies. Find out about common patterns, learn the principles that drive the framework, and discover how you can use them to guarantee correctness and performance for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2021/10022",
+      "images": [
+        {
+          "identifier": "01208FB9-CF1A-40A4-BE43-1B2F111BB2EE",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Demystify SwiftUI",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10022"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10149": {
+      "abstract": [
+        {
+          "text": "Simplify your SwiftUI data models with Observation. We’ll share how the Observable macro can help you simplify models and improve your app’s performance. Get to know Observation, learn the fundamentals of the macro, and find out how to migrate from ObservableObject to Observable.\n",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10149",
+      "images": [
+        {
+          "identifier": "575870C5-E0BB-487A-9C32-F0E70EBAADBB",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Discover Observation in SwiftUI",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10149"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10160": {
+      "abstract": [
+        {
+          "text": "Learn how you can build a mental model for performance in SwiftUI and write faster, more efficient code. We’ll share some of the common causes behind performance issues and help you triage hangs and hitches in SwiftUI to create more responsive views in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10160",
+      "images": [
+        {
+          "identifier": "D23E4B9B-766E-4E07-BA87-CD6EFD92BB77",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Demystify SwiftUI performance",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10160"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10248": {
+      "abstract": [
+        {
+          "text": "User interface elements often mimic real-world interactions, including real-time responses. Apps with a noticeable delay in user interaction — a hang — can break that illusion and create frustration. We’ll show you how to use Instruments to analyze, understand, and fix hangs in your apps on all Apple platforms. Discover how you can efficiently navigate an Instruments trace document, interpret trace data, and record additional profiling data to better understand your specific hang.\n\nIf you aren’t familiar with using Instruments, we recommend first watching \"Getting Started with Instruments.\" And to learn about other tools that can help you discover hangs in your app, check out \"Track down hangs with Xcode and on-device detection.\"",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10248",
+      "images": [
+        {
+          "identifier": "2839256F-8B72-4467-9861-77FE433AC696",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Analyze hangs with Instruments",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10248"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Use the RealityKit Trace template in Instruments to evaluate and improve the performance of your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/analyzing-the-performance-of-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app": {
+      "abstract": [
+        {
+          "text": "Identify your app’s performance and power goals and create a plan to measure and assess them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a performance plan for your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-performance-plan-for-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content": {
+      "abstract": [
+        {
+          "text": "Deliver text and vector images at multiple resolutions",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from custom Core Animation layers in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing sharp layer-based content in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/drawing-sharp-layer-based-content"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s 3D augmented reality content to render efficiently on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of RealityKit content on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-realitykit-content-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline": {
+      "abstract": [
+        {
+          "text": "Compare how visionOS handles events and manages its rendering loop differently from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the visionOS render pipeline",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-visionos-render-pipeline"
+    },
+    "foundations-spatial-layout-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-spatial-layout-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c13626ae8d05db2c2152c492257a60a/foundations-spatial-layout-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3bad240445e1393002d49a94e7ac273/foundations-spatial-layout-thumbnail@2x.png"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10095/?time=793": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10095/?time=793",
+      "title": "Explore rendering for spatial computing",
+      "titleInlineContent": [
+        {
+          "text": "Explore rendering for spatial computing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10095/?time=793"
+    },
+    "offscreen-prepares-render-passes-metrics": {
+      "alt": "An Instruments window shows profile data from the RealityKit Trace template. The top of the window displays the RealityKit Metrics instrument timeline which includes a graphs of Offscreen Prepares and Render Passes. The detail view at the bottom of the window displays a summary of the average, minimum, and maximum number for each of these metrics.",
+      "identifier": "offscreen-prepares-render-passes-metrics",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74a0b812b098c3fcac0f04d4398fdea3/offscreen-prepares-render-passes-metrics@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/503497e8aaf79d15820ce8ca70b7cb8e/offscreen-prepares-render-passes-metrics~dark@2x.png"
+        }
+      ]
+    },
+    "rendering-overdraw": {
+      "alt": "An illustration that demonstrates how transparency in a UI can lead to overdraw. A tan rectangle with rounded corners overlaps blue and red rectangles in the background.",
+      "identifier": "rendering-overdraw",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc7174e907fa4f32225da09fa7ad903f/rendering-overdraw.png"
+        }
+      ]
+    },
+    "spatial-layout.svg": {
+      "alt": null,
+      "identifier": "spatial-layout.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "Design-Spec",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5ab0c95285fec5f89d7c5eb7fa8b6a30/spatial-layout.svg"
+        }
+      ]
+    },
+    "translucent-ui-meshes-metric": {
+      "alt": "An Instrument window shows profile data from the RealityKit Trace template. The top of the window displays the RealityKit Metrics instrument timeline with a graph of Translucent UI Meshes. The detail view at the bottom of the window displays a summary of the average, minimum, and maximum number of meshes that include transparency.",
+      "identifier": "translucent-ui-meshes-metric",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1941c8f9cc272bb7fa65a8cf9e77a623/translucent-ui-meshes-metric@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2141e5e730451b3b246192cdce003511/translucent-ui-meshes-metric~dark@2x.png"
+        }
+      ]
+    },
+    "view-properties-and-view-body-instruments": {
+      "alt": "A screenshot that contains part of an Instruments trace document. It displays a vertical stack of timelines for View Body, View Properties, Core Animation Commits, and Time Profiler instruments. The View Properties instrument is highlighted with an overlay and includes a graph visualizing Updates metrics. Below the timeline is an an outline view containing a Summary information for the View Properties instrument. The View Body instrument is also highlighted with an overlay and includes graphs visualizing metrics for RealityKit_SwiftUI, StopwatchSupport, SwiftUI, and you app. Below the timeline is an an outline view containing a Summary information for the View Body instrument.",
+      "identifier": "view-properties-and-view-body-instruments",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51c7b3489b5244ce39252b2f6be29fe7/view-properties-and-view-body-instruments@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/324dd16cc0f48a3be5b1e6834a957922/view-properties-and-view-body-instruments~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIVisualEffectView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIVisualEffectView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1alpha/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFloat",
+              "text": "CGFloat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "alpha"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer~1wantsDynamicContentScaling/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "wantsDynamicContentScaling"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1475 @@
+{
+  "abstract": [
+    {
+      "text": "Apply behaviors and physical effects to the objects and characters in a RealityKit",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "scene with the Entity Component System (ECS).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ecs-systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing systems for entities in a scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use RealityKit’s Entity Component System (ECS) to define and apply",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "logic for entities in a scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Systems are especially useful for implementing behavior that affects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple entities in your scene, like the flocking behavior for a swarm",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of entities representing birds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a traditional object-oriented approach, you implement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an entity’s behavior by writing code on the entity class,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which runs on every instance of that class on every update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That approach can be inefficient for scene with many entities,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because RealityKit calls each entity’s update method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on every rendering engine tick.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That is especially true if the logic for one entity depends on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state contained in other entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With systems, RealityKit calls only one update method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as often as defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "updatingSystemWhen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext/entities(matching:updatingSystemWhen:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rather than calling an update method every scene update for each entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A system iterates through all relevant entities every scene update",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and makes updates to their state as needed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here’s how to implement your own systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-system-class",
+          "level": 3,
+          "text": "Create a system class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a system by a creating a class that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol and implements two methods: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/init(scene:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Perform the setup for your system in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/init(scene:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or add an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "empty implementation if your system doesn’t need any setup. Add the logic needed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to run your system in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls every frame automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MySystem: System {",
+            "    required init(scene: Scene) { ",
+            "        // Perform required initialization or setup.",
+            "    }",
+            "",
+            "    func update(context: SceneUpdateContext) {",
+            "        // RealityKit automatically calls this on",
+            "        // every update for every scene.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t do any unnecessary work in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "update",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "as it is called very frequently.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "method takes a long time to return, it can negatively",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "impact your app’s frame rate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Retrieve-entities-with-an-entity-query",
+          "level": 3,
+          "text": "Retrieve entities with an entity query",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To efficiently retrieve entities from a scene, use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which you can use to fetch all entities, or just a subset of entities relevant to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your system. While some systems operate on every entity in the scene, most only operate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a defined subset, often based on the entities’ components. A physics simulation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system, for example, only needs to operate on entities that participate in the scene’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "physics simulation and a rendering system only needs to operate on entities that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are visible. To retrieve a subset of your scene’s entities, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/QueryPredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with your criteria and pass the predicate into the initializer when creating your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create your query as a static property of your system unless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your query criteria changes between update calls.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the criteria changes between update calls, create the query in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your update method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the entity query with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext/entities(matching:updatingSystemWhen:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to iterate over all the entities that your system depends on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyComponent: Component {",
+            "    // Optionally, put any needed state here.",
+            "}",
+            "",
+            "class MySystem: System {",
+            "",
+            "    // Define a query to return all entities with a MyComponent.",
+            "    private static let query = EntityQuery(where: .has(MyComponent.self))",
+            "",
+            "    // Initializer is required. Use an empty implementation if there's no setup needed.",
+            "    required init(scene: Scene) { }",
+            "",
+            "    // Iterate through all entities containing a MyComponent.",
+            "    func update(context: SceneUpdateContext) {",
+            "        for entity in context.entities(",
+            "            matching: Self.query,",
+            "            updatingSystemWhen: .rendering",
+            "        ) {",
+            "            // Make per-update changes to each entity here.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-and-add-components-in-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Create and add components in Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use a Reality Composer Pro package in your project, you can create new components within the editor by selecting an entity, clicking the Add Component button, and then selecting the New Component option. This creates a Swift template for the new component, which you can then edit in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a custom component onto an entity, define the custom component in a file in your Reality Composer Pro package. Select the entity you want to add the custom component to, click the Add Component button, then select the name of your custom component. This entity then responds and behaves according to the same systems that you wrote to query for the custom component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-system-dependencies",
+          "level": 3,
+          "text": "Specify system dependencies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a system relies on another system to function, or if you need to specify the update",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "order for multiple systems, declare a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your system. To tell RealityKit that a dependency must update before your system,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency/before(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enumeration case, passing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other system as a parameter. For dependencies that must update after your system,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency/after(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class SystemB: RealityKit.System {",
+            "    static var dependencies: [SystemDependency] { ",
+            "        [.after(SystemA.self),        // Run SystemB after SystemA.",
+            "         .before(SystemC.self)]       // Run SystemB before SystemC.",
+            "     }",
+            "    // ... ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Register-the-system",
+          "level": 3,
+          "text": "Register the system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances manually.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit creates them for you, but only if you tell RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about your system by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/registerSystem()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method before displaying your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once you’ve registered your system, RealityKit automatically creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an instance on your system for every active scene,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then repeatedly calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method every scene update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MySystem.registerSystem()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An object that retrieves entities from a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/realitykit/entityquery"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/QueryPredicate": {
+      "abstract": [
+        {
+          "text": "An object that defines the criteria for an entity query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueryPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/QueryPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueryPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueryPredicate",
+      "type": "topic",
+      "url": "/documentation/realitykit/querypredicate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the scene to update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneUpdateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneUpdateContext",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneupdatecontext"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext/entities(matching:updatingSystemWhen:)": {
+      "abstract": [
+        {
+          "text": "Returns all entities which pass the query predicate of the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11EntityQueryV",
+          "text": "EntityQuery"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "updatingSystemWhen"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation21SystemUpdateConditionV",
+          "text": "SystemUpdateCondition"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11QueryResultV",
+          "text": "QueryResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext/entities(matching:updatingSystemWhen:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entities(matching:updatingSystemWhen:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneupdatecontext/entities(matching:updatingsystemwhen:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System": {
+      "abstract": [
+        {
+          "text": "An object that affects multiple entities in every update of a RealityKit",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "role": "symbol",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/realitykit/system"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies": {
+      "abstract": [
+        {
+          "text": "An array of dependencies for this system.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dependencies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation16SystemDependencyO",
+          "text": "SystemDependency"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dependencies",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/dependencies"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/init(scene:)": {
+      "abstract": [
+        {
+          "text": "Creates a new system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation5SceneC",
+          "text": "Scene"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/init(scene:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(scene:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/init(scene:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/registerSystem()": {
+      "abstract": [
+        {
+          "text": "Registers a system with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerSystem"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/registerSystem()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerSystem()",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/registersystem()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)": {
+      "abstract": [
+        {
+          "text": "Updates entities up to once every scene update.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18SceneUpdateContextV",
+          "text": "SceneUpdateContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "update(context:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/update(context:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency/after(_:)": {
+      "abstract": [
+        {
+          "text": "An update order that requests RealityKit update this system after it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "updates another specified system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6SystemP",
+          "text": "System"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency/after(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SystemDependency.after(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/systemdependency/after(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency/before(_:)": {
+      "abstract": [
+        {
+          "text": "An update order that requests RealityKit update this system before it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "updates another specified system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6SystemP",
+          "text": "System"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency/before(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SystemDependency.before(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/systemdependency/before(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SystemUpdateCondition": {
+      "abstract": [
+        {
+          "text": "A condition which causes a system to update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemUpdateCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemUpdateCondition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemUpdateCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemUpdateCondition",
+      "type": "topic",
+      "url": "/documentation/realitykit/systemupdatecondition"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ecs-systems": {
+      "abstract": [
+        {
+          "text": "Apply behaviors and physical effects to the entities in a RealityKit scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ecs-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Systems",
+      "type": "topic",
+      "url": "/documentation/realitykit/ecs-systems"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "System-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/System",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SystemUpdateCondition",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext"
+      ],
+      "title": "System configuration"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/implementing-systems-for-entities-in-a-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

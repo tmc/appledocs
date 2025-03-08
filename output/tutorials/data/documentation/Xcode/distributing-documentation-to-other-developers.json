@@ -1,0 +1,1220 @@
+{
+  "abstract": [
+    {
+      "text": "Share your documentation directly with Xcode users or host it on a web server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/writing-documentation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/distributing-documentation-to-other-developers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing documentation to other developers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As soon as you create a project in Xcode, DocC is ready to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generate structured documentation for the symbols in your project. Whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you only have documentation comments in your source files, or you craft a full",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "learning experience that includes articles and tutorials, Xcode provides a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "convenient way to share the documentation in your project with other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "developers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To share your documentation, you create a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "documentation archive",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "self-contained bundle that has everything you need, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compiled documentation from in-source comments, articles, tutorials, and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A single-page web app that renders the documentation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Distributing your documentation involves the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Export your documentation, either from Xcode’s documentation viewer, or by",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command-line tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share your documentation, either directly with Xcode users who open it in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the documentation viewer, or by hosting it on a website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Generate-a-publishable-archive-of-your-documentation",
+          "level": 3,
+          "text": "Generate a publishable archive of your documentation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a documentation archive, you export the documentation from the documentation viewer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or use the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild docbuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool. Using ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you to integrate with a continuous integration (CI) workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export a documentation archive from Xcode’s documentation viewer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hold the pointer over your compiled documentation catalog in the Workspace",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Documentation section to display the More button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the More button and choose the Export menu item. Alternatively, invoke",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the context menu on the documentation catalog item to access the Export menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a location for the documentation archive, and click Export.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-documentation-to-other-developers-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The documentation archive that Xcode exports uses a ",
+              "type": "text"
+            },
+            {
+              "code": ".doccarchive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export the documentation archive from the command line, run ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild docbuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal and copy the resulting ",
+              "type": "text"
+            },
+            {
+              "code": ".doccarchive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "derived data directory. Depending on your project’s configuration, you may need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to pass additional command-line options. For additional information, consult",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to build a documentation archive, use a command similar to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild docbuild -scheme SlothCreator -derivedDataPath ~/Desktop/SlothCreatorBuild"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although ",
+                  "type": "text"
+                },
+                {
+                  "code": "-derivedDataPath",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " isn’t a required option, including it makes",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "it easier for an automated script to identify the build output and find the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "resulting ",
+                  "type": "text"
+                },
+                {
+                  "code": ".doccarchive",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " bundle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As part of the build process, ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " produces many files in the derived",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data path. One way to locate the documentation archive in the build output is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use the ",
+              "type": "text"
+            },
+            {
+              "code": "find",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. For example, use the following to locate the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation archive that the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command above produces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "find ~/Desktop/SlothCreatorBuild -type d -name '*.doccarchive`"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Send-a-documentation-archive-directly-to-developers",
+          "level": 3,
+          "text": "Send a documentation archive directly to developers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a documentation archive is a self-contained bundle, you can easily",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "share it with other developers. For example, you can send it by email just like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a regular document, include it with a binary distribution of your product,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or make it downloadable from a website. When the recipient opens the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation archive, Xcode adds it to the Imported Documentation section of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the documentation viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-documentation-to-other-developers-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove an imported documentation archive, hold the pointer over the item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to display the More button, and then choose Remove.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Host-a-documentation-archive-on-your-website",
+          "level": 3,
+          "text": "Host a documentation archive on your website",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode exports a documentation archive, it includes a single-page web app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the bundle. This web app renders the documentation content as HTML, letting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you host the documentation archive on a web server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For reference documentation and articles, the web app uses a URL path that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "begins with ",
+              "type": "text"
+            },
+            {
+              "code": "/documentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For tutorials, the URL path begins with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "/tutorials",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, if a project contains a protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the name ",
+              "type": "text"
+            },
+            {
+              "code": "SlothGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the URL to view the ",
+              "type": "text"
+            },
+            {
+              "code": "SlothGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation might resemble the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://www.example.com/documentation/SlothCreator/SlothGenerator"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Host-a-documentation-archive-with-a-file-server",
+          "level": 4,
+          "text": "Host a documentation archive with a file server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can host documentation archives you create with Xcode 14.3 and later using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a regular file server. By default, the server hosts the documentation at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "root of the website, like the SlothCreator example above. To host the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation at a specific subpath, configure a custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#DocC-Archive-Hosting-Base-Path",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build the documentation archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Host-a-documentation-archive-using-custom-routing",
+          "level": 4,
+          "text": "Host a documentation archive using custom routing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file server is the recommended solution to host your documentation. But, if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need more control over how the server hosts your content, you can configure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the request routing of your web server so it responds to documentation requests",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the data and assets within the documentation archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The following sections use Apache as an example. Other web server",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "installations have similar mechanisms. Consult your server’s documentation",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for details about performing similar configurations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To host a documentation archive on your website, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the documentation archive to the directory that your web server uses to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "serve files. In this example, the documentation archive is",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SlothCreator.doccarchive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a rule on the server to rewrite incoming URLs that begin with",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/documentation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/tutorial",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SlothCreator.doccarchive/index.html",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add another rule for incoming requests to support bundled resources in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "documentation archive, such as CSS files and image assets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example ",
+              "type": "text"
+            },
+            {
+              "code": ".htaccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file defines rules suitable for use with Apache:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "# Enable custom routing.",
+            "RewriteEngine On",
+            "",
+            "# Route documentation and tutorial pages.",
+            "RewriteRule ^(documentation|tutorials)\\/.*$ SlothCreator.doccarchive/index.html [L]",
+            "",
+            "# Route files and data for the documentation archive.",
+            "#",
+            "# If the file path doesn't exist in the website's root ...",
+            "RewriteCond %{REQUEST_FILENAME} !-f",
+            "RewriteCond %{REQUEST_FILENAME} !-d",
+            "",
+            "# ... route the request to that file path with the documentation archive.",
+            "RewriteRule .* SlothCreator.doccarchive/$0 [L]"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With these rules in place, the web server provides access to the contents of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the documentation archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring your web server to host a documentation archive, keep it up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to date by using a continuous integration workflow that builds the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "documentation archive using ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild docbuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and copies the resulting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".doccarchive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your web server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-documentation-to-other-developers-1": {
+      "alt": "A screenshot of the Xcode documentation viewer that shows a context menu with the Export menu item in a selected state.",
+      "identifier": "distributing-documentation-to-other-developers-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9d3e272f4b845ad6f3f1e062acacd3b3/distributing-documentation-to-other-developers-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09a1c44b9f593cb54523af7fdf406b7b/distributing-documentation-to-other-developers-1~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-documentation-to-other-developers-2": {
+      "alt": "A screenshot of the Xcode documentation viewer that shows a documentation archive for a SlothCreator project in a selected state in the Imported Documentation section.",
+      "identifier": "distributing-documentation-to-other-developers-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6be1f1854054fa26972a5aaf4b509773/distributing-documentation-to-other-developers-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/630b6b24004a8320273bbb908a98d51d/distributing-documentation-to-other-developers-2~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#DocC-Archive-Hosting-Base-Path": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#DocC-Archive-Hosting-Base-Path",
+      "kind": "section",
+      "title": "DocC Archive Hosting Base Path",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference#DocC-Archive-Hosting-Base-Path"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-documentation": {
+      "abstract": [
+        {
+          "text": "Produce rich and engaging developer documentation for your apps, frameworks, and packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-documentation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing documentation",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-documentation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

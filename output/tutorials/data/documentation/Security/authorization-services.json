@@ -1,0 +1,2421 @@
+{
+  "abstract": [
+    {
+      "text": "Access restricted areas of the operating system, and control access to particular features of your macOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/authorization-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Authorization Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Security.Authorization",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API is a programming interface to the Security Server and its policy database. This API facilitates access control to restricted areas of the operating system and allows you to restrict a user’s access to particular features in your macOS app. Use authorization services in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Software that restricts access to its own tools",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications that call system tools",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Software installers that install privileged tools or require access to restricted areas of the operating system",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown in the image below, the Security Server is a daemon running in the operating system that provides a trusted implementation of various security protocols, including authorization computation. In turn, the Security Server relies on the Security Agent to interface with users when authentication is needed. Thus an app can verify credentials (usernames and passwords) without ever accessing them directly. This authorization process also allows the means of authentication to change in the future (such as adding Touch ID) without your having to modify your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2891901",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For a simplified, class-based version of this API, consider using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SecurityFoundation/SFAuthorization",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class instead. When you need a user interface that enables display and control of the current authorization state for a particular set of rights, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Authorization Services API is not supported within an App Sandbox because the API allows privilege escalation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SecurityFoundation/SFAuthorization": {
+      "abstract": [
+        {
+          "text": "A class that allows you to restrict a user’s access to particular features in your Mac app or daemon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAuthorization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SecurityFoundation/SFAuthorization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFAuthorization",
+      "type": "topic",
+      "url": "/documentation/SecurityFoundation/SFAuthorization"
+    },
+    "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationView": {
+      "abstract": [
+        {
+          "text": "The class responsible for displaying a lock icon that can be used to indicate that a user interface has restricted access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAuthorizationView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SecurityInterface/SFAuthorizationView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFAuthorizationView",
+      "type": "topic",
+      "url": "/documentation/SecurityInterface/SFAuthorizationView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationAsyncCallback": {
+      "abstract": [
+        {
+          "text": "A block used as a callback for the asynchronous version of copying authorization rights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationAsyncCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationAsyncCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationAsyncCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationAsyncCallback",
+      "type": "topic",
+      "url": "/documentation/security/authorizationasynccallback"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves supporting data such as the user name and other information gathered during evaluation of authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationString",
+          "text": "AuthorizationString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AuthorizationItemSet",
+          "text": "AuthorizationItemSet"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCopyInfo(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyinfo(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference": {
+      "abstract": [
+        {
+          "text": "Retrieves the authorization reference passed by the AuthorizationExecuteWithPrivileges function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyPrivilegedReference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCopyPrivilegedReference",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyprivilegedreference"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Authorizes and preauthorizes rights synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRights"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationEnvironment",
+          "text": "AuthorizationEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRights"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCopyRights(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyrights(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCopyRightsAsync(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Authorizes and preauthorizes rights asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRightsAsync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationEnvironment",
+          "text": "AuthorizationEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationAsyncCallback",
+          "text": "AuthorizationAsyncCallback"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCopyRightsAsync(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCopyRightsAsync"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCopyRightsAsync(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcopyrightsasync(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new authorization reference and provides an option to authorize or preauthorize rights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRights",
+          "text": "AuthorizationRights"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationEnvironment",
+          "text": "AuthorizationEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCreate(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcreate(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCreateFromExternalForm(_:_:)": {
+      "abstract": [
+        {
+          "text": "Internalizes the external representation of an authorization reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCreateFromExternalForm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AuthorizationExternalForm",
+          "text": "AuthorizationExternalForm"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCreateFromExternalForm(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCreateFromExternalForm"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCreateFromExternalForm(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcreatefromexternalform(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationEnvironment": {
+      "abstract": [
+        {
+          "text": "An authorization item set designated to hold environment information relevant to authorization decisions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationEnvironment",
+      "type": "topic",
+      "url": "/documentation/security/authorizationenvironment"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges": {
+      "abstract": [
+        {
+          "text": "Runs an executable tool with root privileges.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationExecuteWithPrivileges"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationExecuteWithPrivileges",
+      "type": "topic",
+      "url": "/documentation/security/authorizationexecutewithprivileges"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationExternalForm": {
+      "abstract": [
+        {
+          "text": "The external representation of an authorization reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationExternalForm"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationExternalForm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationExternalForm"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationExternalForm",
+      "type": "topic",
+      "url": "/documentation/security/authorizationexternalform"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFlags": {
+      "abstract": [
+        {
+          "text": "The flags used to specify authorization options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationFlags",
+      "type": "topic",
+      "url": "/documentation/security/authorizationflags"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFree(_:_:)": {
+      "abstract": [
+        {
+          "text": "Frees the memory associated with an authorization reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFree"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AuthorizationFlags",
+          "text": "AuthorizationFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFree(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFree"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationFree(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationfree(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationFreeItemSet(_:)": {
+      "abstract": [
+        {
+          "text": "Frees the memory associated with a set of authorization items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFreeItemSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AuthorizationItemSet",
+          "text": "AuthorizationItemSet"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationFreeItemSet(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationFreeItemSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationFreeItemSet(_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationfreeitemset(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationItem": {
+      "abstract": [
+        {
+          "text": "A structure containing information about an authorization right or the authorization environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationItem",
+      "type": "topic",
+      "url": "/documentation/security/authorizationitem"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationItemSet": {
+      "abstract": [
+        {
+          "text": "A structure containing a set of authorization items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationItemSet"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationItemSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationItemSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationItemSet",
+      "type": "topic",
+      "url": "/documentation/security/authorizationitemset"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationMakeExternalForm(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an external representation of an authorization reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationMakeExternalForm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AuthorizationExternalForm",
+          "text": "AuthorizationExternalForm"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationMakeExternalForm(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationMakeExternalForm"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationMakeExternalForm(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationmakeexternalform(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRef": {
+      "abstract": [
+        {
+          "text": "A pointer to an opaque authorization reference structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRef",
+      "type": "topic",
+      "url": "/documentation/security/authorizationref"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRightGet(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a right definition as a dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightGet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRightGet(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightGet"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRightGet(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationrightget(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRightRemove(_:_:)": {
+      "abstract": [
+        {
+          "text": "Removes a right from the policy database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightRemove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRightRemove(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightRemove"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRightRemove(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationrightremove(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates or updates a right entry in the policy database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFBundleRef",
+          "text": "CFBundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRightSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRightSet(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/authorizationrightset(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationRights": {
+      "abstract": [
+        {
+          "text": "An authorization item set designated to represent a set of rights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRights"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationRights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationRights"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationRights",
+      "type": "topic",
+      "url": "/documentation/security/authorizationrights"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationString": {
+      "abstract": [
+        {
+          "text": "A zero-terminated string in UTF-8 encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationString"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationString",
+      "type": "topic",
+      "url": "/documentation/security/authorizationstring"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-name-tags": {
+      "abstract": [
+        {
+          "text": "Use name tags to define authorization security items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-name-tags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Name Tags",
+      "type": "topic",
+      "url": "/documentation/security/authorization-name-tags"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-rights-flags": {
+      "abstract": [
+        {
+          "text": "Recognize the values the Security Server sets in an authorization item’s flag field.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-rights-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Rights Flags",
+      "type": "topic",
+      "url": "/documentation/security/authorization-rights-flags"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the authorization services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/authorization-services-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/kAuthorizationEmptyEnvironment": {
+      "abstract": [
+        {
+          "text": "A constant you use in functions with an environment parameter if you have no environment data to provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationEmptyEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kAuthorizationEmptyEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationEmptyEnvironment",
+      "type": "topic",
+      "url": "/documentation/security/kauthorizationemptyenvironment"
+    },
+    "doc://com.apple.security/documentation/Security/kAuthorizationExternalFormLength": {
+      "abstract": [
+        {
+          "text": "The number of bytes in an external form structure’s array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationExternalFormLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kAuthorizationExternalFormLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationExternalFormLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAuthorizationExternalFormLength",
+      "type": "topic",
+      "url": "/documentation/security/kauthorizationexternalformlength"
+    },
+    "doc://com.apple.security/documentation/Security/policy-database-constants": {
+      "abstract": [
+        {
+          "text": "Use these constants to set rights and rules in the policy database.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/policy-database-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Policy Database Constants",
+      "type": "topic",
+      "url": "/documentation/security/policy-database-constants"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AuthenticationAndAuthorizationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011200": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AuthenticationAndAuthorizationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011200",
+      "title": "Authentication, Authorization, and Permissions Guide",
+      "titleInlineContent": [
+        {
+          "text": "Authentication, Authorization, and Permissions Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AuthenticationAndAuthorizationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011200"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995",
+      "title": "Authorization Services Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Authorization Services Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995"
+    },
+    "media-2891901": {
+      "alt": "Diagram showing your app sitting above the Security framework, which in turn sits above the Security Server and the Security Agent.",
+      "identifier": "media-2891901",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2658244ce3851ece58fb5cf60b914d8d/media-2891901@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AuthenticationAndAuthorizationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011200",
+        "https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Authorization-References",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationFree(_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+        "doc://com.apple.security/documentation/Security/AuthorizationRef"
+      ],
+      "title": "Authorization References"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use authorization items (alone or in sets) to represent rights and environment information.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Authorization-Items",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/AuthorizationItem",
+        "doc://com.apple.security/documentation/Security/AuthorizationItemSet",
+        "doc://com.apple.security/documentation/Security/AuthorizationRights",
+        "doc://com.apple.security/documentation/Security/AuthorizationEnvironment",
+        "doc://com.apple.security/documentation/Security/authorization-name-tags",
+        "doc://com.apple.security/documentation/Security/AuthorizationFreeItemSet(_:)"
+      ],
+      "title": "Authorization Items"
+    },
+    {
+      "anchor": "Rights-and-Credentials",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationCopyRightsAsync(_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationAsyncCallback",
+        "doc://com.apple.security/documentation/Security/AuthorizationString",
+        "doc://com.apple.security/documentation/Security/authorization-rights-flags"
+      ],
+      "title": "Rights and Credentials"
+    },
+    {
+      "anchor": "Import-and-Export",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/AuthorizationMakeExternalForm(_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationCreateFromExternalForm(_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationExternalForm",
+        "doc://com.apple.security/documentation/Security/kAuthorizationExternalFormLength"
+      ],
+      "title": "Import and Export"
+    },
+    {
+      "anchor": "The-Policy-Database",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/AuthorizationRightGet(_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/AuthorizationRightRemove(_:_:)",
+        "doc://com.apple.security/documentation/Security/policy-database-constants"
+      ],
+      "title": "The Policy Database"
+    },
+    {
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/authorization-services-result-codes"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Authorization-References",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationCreate(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationFree(_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationFlags",
+                "doc://com.apple.security/documentation/Security/AuthorizationRef",
+                "doc://com.apple.security/documentation/Security/kAuthorizationEmptyEnvironment"
+              ],
+              "title": "Authorization References"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use authorization items (alone or in sets) to represent rights and environment information.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Authorization-Items",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationItem",
+                "doc://com.apple.security/documentation/Security/AuthorizationItemSet",
+                "doc://com.apple.security/documentation/Security/AuthorizationRights",
+                "doc://com.apple.security/documentation/Security/AuthorizationEnvironment",
+                "doc://com.apple.security/documentation/Security/authorization-name-tags",
+                "doc://com.apple.security/documentation/Security/AuthorizationFreeItemSet(_:)"
+              ],
+              "title": "Authorization Items"
+            },
+            {
+              "anchor": "Rights-and-Credentials",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationCopyInfo(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationCopyRights(_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationCopyRightsAsync(_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationAsyncCallback",
+                "doc://com.apple.security/documentation/Security/AuthorizationString",
+                "doc://com.apple.security/documentation/Security/authorization-rights-flags"
+              ],
+              "title": "Rights and Credentials"
+            },
+            {
+              "anchor": "Import-and-Export",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationMakeExternalForm(_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationCreateFromExternalForm(_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationExternalForm",
+                "doc://com.apple.security/documentation/Security/kAuthorizationExternalFormLength"
+              ],
+              "title": "Import and Export"
+            },
+            {
+              "anchor": "The-Policy-Database",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationRightGet(_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationRightSet(_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/AuthorizationRightRemove(_:_:)",
+                "doc://com.apple.security/documentation/Security/policy-database-constants"
+              ],
+              "title": "The Policy Database"
+            },
+            {
+              "anchor": "Executing-with-Root-Privileges",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/AuthorizationExecuteWithPrivileges",
+                "doc://com.apple.security/documentation/Security/AuthorizationCopyPrivilegedReference"
+              ],
+              "title": "Executing with Root Privileges"
+            },
+            {
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/authorization-services-result-codes"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AuthenticationAndAuthorizationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011200",
+                "https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCreateFromExternalForm(_:_:)/title",
+          "value": "AuthorizationCreateFromExternalForm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCreateFromExternalForm(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCreateFromExternalForm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFreeItemSet(_:)/title",
+          "value": "AuthorizationFreeItemSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFreeItemSet(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFreeItemSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/title",
+          "value": "AuthorizationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItem/title",
+          "value": "AuthorizationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightRemove(_:_:)/title",
+          "value": "AuthorizationRightRemove"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightRemove(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRightRemove"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationAsyncCallback/title",
+          "value": "AuthorizationAsyncCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationAsyncCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationAsyncCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationAsyncCallback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationAsyncCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRightsAsync(_:_:_:_:_:)/title",
+          "value": "AuthorizationCopyRightsAsync"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRightsAsync(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyRightsAsync"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRights/title",
+          "value": "AuthorizationRights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRights/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightGet(_:_:)/title",
+          "value": "AuthorizationRightGet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightGet(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRightGet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItemSet/title",
+          "value": "AuthorizationItemSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItemSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationItemSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationItemSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationItemSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationString/title",
+          "value": "AuthorizationString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationString/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFree(_:_:)/title",
+          "value": "AuthorizationFree"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFree(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFree"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationExternalForm/title",
+          "value": "AuthorizationExternalForm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationExternalForm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationExternalForm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationExternalForm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationExternalForm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyInfo(_:_:_:)/title",
+          "value": "AuthorizationCopyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyInfo(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRights(_:_:_:_:_:)/title",
+          "value": "AuthorizationCopyRights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCopyRights(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCopyRights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCreate(_:_:_:_:)/title",
+          "value": "AuthorizationCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationCreate(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/title",
+          "value": "AuthorizationFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kAuthorizationExternalFormLength/title",
+          "value": "kAuthorizationExternalFormLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kAuthorizationExternalFormLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAuthorizationExternalFormLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SecurityInterface~1SFAuthorizationView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFAuthorizationView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SecurityFoundation~1SFAuthorization/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFAuthorization"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightSet(_:_:_:_:_:_:)/title",
+          "value": "AuthorizationRightSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationRightSet(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationRightSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationEnvironment/title",
+          "value": "AuthorizationEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationMakeExternalForm(_:_:)/title",
+          "value": "AuthorizationMakeExternalForm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1AuthorizationMakeExternalForm(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AuthorizationMakeExternalForm"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorization-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/authorization-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1255 @@
+{
+  "abstract": [
+    {
+      "text": "An interface that WebKit uses to request custom resources from your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)WKURLSchemeTask",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKURLSchemeTask"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKURLSchemeTask"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "WKURLSchemeTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol defines an interface that WebKit uses to request custom resources. You don’t adopt this interface in your own objects. Instead, WebKit creates objects that adopt this interface and delivers them to your custom scheme handlers — that is, objects that adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You use the objects that WebKit provides to get information about the requested resources and load them. You also use those objects to report your progress back to WebKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When WebKit needs a custom scheme, it places an appropriate URL request in the task’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Upon receiving the request, determine the size of the resource and call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-2u23r",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with an appropriate URL response object. Providing a response mirrors the behavior that a web server performs when it receives a request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you load some portion of the resource data, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-8t5f8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to send it to WebKit. You may call that method multiple times to deliver data incrementally, or call it once with all of the data. After you finish delivering all of the data, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFinish()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If an error occurs at any point during the load process, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFailWithError(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to report it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/documentreadingoptionkey/3182829-readaccessurl": {
+      "abstract": [
+        {
+          "text": "The local files WebKit can access when loading content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "readAccessURL"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAttributedString.DocumentReadingOptionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/documentreadingoptionkey/3182829-readaccessurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readAccessURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/documentreadingoptionkey/3182829-readaccessurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/NSReadAccessURLDocumentOption": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSReadAccessURLDocumentOption"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/NSReadAccessURLDocumentOption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSReadAccessURLDocumentOption",
+      "type": "topic",
+      "url": "/documentation/webkit/nsreadaccessurldocumentoption"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore": {
+      "abstract": [
+        {
+          "text": "An object that manages the HTTP cookies associated with a particular web view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKHTTPCookieStore"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKHTTPCookieStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKHTTPCookieStore",
+      "type": "topic",
+      "url": "/documentation/webkit/wkhttpcookiestore"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeHandler": {
+      "abstract": [
+        {
+          "text": "A protocol for loading resources with URL schemes that WebKit doesn’t handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKURLSchemeHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKURLSchemeHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKURLSchemeHandler",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemehandler"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask": {
+      "abstract": [
+        {
+          "text": "An interface that WebKit uses to request custom resources from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKURLSchemeTask"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKURLSchemeTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKURLSchemeTask",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemetask"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFailWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Completes the task and reports the specified error back to WebKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFailWithError"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFailWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didFailWithError:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "didFailWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemetask/didfailwitherror(_:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFinish()": {
+      "abstract": [
+        {
+          "text": "Signals the successful completion of the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFinish"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFinish()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didFinish"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "didFinish()",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemetask/didfinish()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-2u23r": {
+      "abstract": [
+        {
+          "text": "Returns a URL response to WebKit with information about the requested resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSURLResponse",
+          "text": "URLResponse"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-2u23r",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveResponse:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "didReceive(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemetask/didreceive(_:)-2u23r"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-8t5f8": {
+      "abstract": [
+        {
+          "text": "Sends some or all of the resource data to WebKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-8t5f8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveData:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "didReceive(_:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemetask/didreceive(_:)-8t5f8"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/request": {
+      "abstract": [
+        {
+          "text": "Information about the resource to load.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "request"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "request",
+      "type": "topic",
+      "url": "/documentation/webkit/wkurlschemetask/request"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataRecord": {
+      "abstract": [
+        {
+          "text": "A record of the data that a particular website stores persistently.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebsiteDataRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKWebsiteDataRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKWebsiteDataRecord",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebsitedatarecord"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataStore": {
+      "abstract": [
+        {
+          "text": "An object that manages cookies, disk and memory caches, and other types of data for a web view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebsiteDataStore"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKWebsiteDataStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKWebsiteDataStore",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebsitedatastore"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-Data-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataStore",
+        "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataRecord",
+        "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore",
+        "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeHandler",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring/documentreadingoptionkey/3182829-readaccessurl"
+      ],
+      "title": "Web Data Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-URL-of-the-Requested-Resource",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/request"
+      ],
+      "title": "Getting the URL of the Requested Resource"
+    },
+    {
+      "anchor": "Reporting-Progress-Back-to-WebKit",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-2u23r",
+        "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-8t5f8",
+        "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFinish()"
+      ],
+      "title": "Reporting Progress Back to WebKit"
+    },
+    {
+      "anchor": "Reporting-an-Error-to-WebKit",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFailWithError(_:)"
+      ],
+      "title": "Reporting an Error to WebKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKURLSchemeTask"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.webkit/documentation/WebKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-URL-of-the-Requested-Resource",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/request"
+              ],
+              "title": "Getting the URL of the Requested Resource"
+            },
+            {
+              "anchor": "Reporting-Progress-Back-to-WebKit",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-2u23r",
+                "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didReceive(_:)-8t5f8",
+                "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFinish()"
+              ],
+              "title": "Reporting Progress Back to WebKit"
+            },
+            {
+              "anchor": "Reporting-an-Error-to-WebKit",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeTask/didFailWithError(_:)"
+              ],
+              "title": "Reporting an Error to WebKit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Web-Data-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataStore",
+                "doc://com.apple.webkit/documentation/WebKit/WKWebsiteDataRecord",
+                "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore",
+                "doc://com.apple.webkit/documentation/WebKit/WKURLSchemeHandler",
+                "doc://com.apple.webkit/documentation/WebKit/NSReadAccessURLDocumentOption"
+              ],
+              "title": "Web Data Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKURLSchemeTask"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didFinish()/title",
+          "value": "didFinish"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didFinish()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinish"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask/title",
+          "value": "WKURLSchemeTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1request/title",
+          "value": "request"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1request/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didReceive(_:)-8t5f8/title",
+          "value": "didReceiveData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didReceive(_:)-8t5f8/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebsiteDataRecord/title",
+          "value": "WKWebsiteDataRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebsiteDataRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebsiteDataRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebsiteDataRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebsiteDataRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebsiteDataStore/title",
+          "value": "WKWebsiteDataStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebsiteDataStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebsiteDataStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebsiteDataStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebsiteDataStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeHandler/title",
+          "value": "WKURLSchemeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKURLSchemeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didFailWithError(_:)/title",
+          "value": "didFailWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didFailWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFailWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKHTTPCookieStore/title",
+          "value": "WKHTTPCookieStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKHTTPCookieStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKHTTPCookieStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKHTTPCookieStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKHTTPCookieStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didReceive(_:)-2u23r/title",
+          "value": "didReceiveResponse:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKURLSchemeTask~1didReceive(_:)-2u23r/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveResponse:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/wkurlschemetask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/wkurlschemetask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

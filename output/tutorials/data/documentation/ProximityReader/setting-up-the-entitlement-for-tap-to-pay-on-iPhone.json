@@ -1,0 +1,920 @@
+{
+  "abstract": [
+    {
+      "text": "Request and configure the required entitlement to support Tap to Pay on iPhone.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up Tap to Pay on iPhone"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tap to Pay on iPhone lets merchants accept contactless payments using an app on their iPhone,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without having to connect external hardware. Your app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to read the payment method someone presents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate with ProximityReader and use Tap to Pay on iPhone, you need to request the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/tap-to-pay-on-iphone/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To access the request form, you need to have an organization-level Apple Developer account and be logged in as the Account Holder. Apple reviews each application using predefined criteria. If your request meets the criteria, Apple adds the entitlement to your developer account using managed capabilities. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you receive the entitlement, you need to configure your Xcode project to use it, which involves several steps. You create or update an App ID, generate a provisioning profile, and add the entitlement to the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for your target. Your project’s code signing settings might also require minor changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "TestFlight beta testing and App Store submissions require an entitlement that allows distribution. If you’ve already completed your testing with the nondistribution entitlement, respond to the original email and rerequest the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/tap-to-pay-on-iphone/",
+                  "isActive": true,
+                  "overridingTitle": "Tap to Pay on iPhone Entitlement",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Tap to Pay on iPhone Entitlement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-the-Tap-to-Pay-on-iPhone-capability-to-your-App-ID",
+          "level": 3,
+          "text": "Add the Tap to Pay on iPhone capability to your App ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to update your App ID to include the necessary capability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an App ID for your app if you don’t already have one. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " account and select Certificates, IDs & Profiles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Identifiers in the menu on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app from the list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Additional Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the Tap to Pay on iPhone capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Save button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new provisioning profile for the updated App ID. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Download-the-new-provisioning-profile",
+          "level": 3,
+          "text": "Download the new provisioning profile",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can skip these steps if you enable Xcode to automatically manage the code signing. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/help/account/manage-your-team/automatic-signing-controls/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to use the new provisioning profile to code sign your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your project in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click All in the scope bar, and then deselect “Automatically manage signing”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Provisioning Profile pop-up menu and choose Download Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your ProximityReader provisioning profile from the left column and click Select Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-an-entitlements-file",
+          "level": 3,
+          "text": "Add an entitlements file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, you need to create a file to specify the entitlements necessary for your app to use Tap to Pay on iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode might create a ",
+                  "type": "text"
+                },
+                {
+                  "code": ".entitlements",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file for you. In that case, just add ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.developer.proximity-reader.payment.acceptance",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as a Boolean value to that file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the entitlements file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your project in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File from Template, select Property List from the Resource section, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "your_project.entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the filename, replacing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "your_project",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the name of your project, and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project editor, click the Build Settings tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click All and Combined in the scope bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the search box to find the Code Signing Entitlements setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the full path to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file from step 3 as the setting’s value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the file in Xcode and add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.proximity-reader.payment.acceptance",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a Boolean value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the contents of an app’s ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with the Tap to Pay on iPhone capability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>com.apple.developer.proximity-reader.payment.acceptance</key>",
+            "<true/>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-support-for-tap-to-pay-PageImage-card.png": {
+      "alt": null,
+      "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e00a45db446b415a6f963fde477927bb/adding-support-for-tap-to-pay-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d72a97caaff209593b35adaa4b804377/adding-support-for-tap-to-pay-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader": {
+      "abstract": [
+        {
+          "text": "An object you use to configure Tap to Pay on iPhone on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a contactless payment or loyalty card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your app to use Tap to Pay on iPhone to read contactless payment cards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+      "images": [
+        {
+          "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Adding support for Tap to Pay on iPhone to your app",
+      "type": "topic",
+      "url": "/documentation/proximityreader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/account/": {
+      "identifier": "https://developer.apple.com/account/",
+      "title": "Apple Developer",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/"
+    },
+    "https://developer.apple.com/contact/request/tap-to-pay-on-iphone/": {
+      "identifier": "https://developer.apple.com/contact/request/tap-to-pay-on-iphone/",
+      "title": "Tap to Pay on iPhone Entitlement",
+      "titleInlineContent": [
+        {
+          "text": "Tap to Pay on iPhone Entitlement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/tap-to-pay-on-iphone/"
+    },
+    "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id": {
+      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id",
+      "title": "Register an App ID",
+      "titleInlineContent": [
+        {
+          "text": "Register an App ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-id"
+    },
+    "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile": {
+      "identifier": "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile",
+      "title": "Create a development provisioning profile",
+      "titleInlineContent": [
+        {
+          "text": "Create a development provisioning profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile"
+    },
+    "https://developer.apple.com/help/account/manage-your-team/automatic-signing-controls/": {
+      "identifier": "https://developer.apple.com/help/account/manage-your-team/automatic-signing-controls/",
+      "title": "Automatic Signing Controls",
+      "titleInlineContent": [
+        {
+          "text": "Automatic Signing Controls",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-your-team/automatic-signing-controls/"
+    },
+    "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities": {
+      "identifier": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities",
+      "title": "Provisioning with capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Provisioning with capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/provisioning-with-managed-capabilities"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Payment-card-reader",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession"
+      ],
+      "title": "Payment card reader"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Payment-card-reader",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+              ],
+              "title": "Payment card reader"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader/setting-up-the-entitlement-for-tap-to-pay-on-iphone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/proximityreader/setting-up-the-entitlement-for-tap-to-pay-on-iphone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

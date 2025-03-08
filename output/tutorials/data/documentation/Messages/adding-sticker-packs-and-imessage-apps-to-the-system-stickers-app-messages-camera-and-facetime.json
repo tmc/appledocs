@@ -1,0 +1,2763 @@
+{
+  "abstract": [
+    {
+      "text": "Enable your Sticker pack or iMessage app in the media context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Sticker packs and iMessage apps to the system Stickers app, Messages camera, and FaceTime"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 12 and later, Sticker packs and iMessage apps can appear in multiple contexts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Sticker pack or iMessage app appears in the list of iMessage apps that appears when you press the plus button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/messages",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": " context",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The sticker pack or iMessage app appears in the Stickers app throughout iOS, and in effect in FaceTime and the Messages camera.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": " context",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can access stickers throughout iOS through the emoji keyboard. To access effects in the Messages camera or FaceTime, a person taps the effects button. The system then displays all the iMessage apps and Sticker packs that support the media context. A person can launch an app, and use it to add images or stickers to the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iMessage apps only appear in the ",
+              "type": "text"
+            },
+            {
+              "code": "messages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " context. To enable support for the ",
+              "type": "text"
+            },
+            {
+              "code": "media",
+              "type": "codeVoice"
+            },
+            {
+              "text": " context, set the ",
+              "type": "text"
+            },
+            {
+              "code": "MSSupportedPresentationContexts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. If you indicate support for both ",
+              "type": "text"
+            },
+            {
+              "code": "messages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "media",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your Stickers only present in the ",
+              "type": "text"
+            },
+            {
+              "code": "media",
+              "type": "codeVoice"
+            },
+            {
+              "text": " context including in Messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Sticker pack or iMessage app’s context limits its available features. For example, In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/messages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " context, a person can peel off stickers and attach them to any bubbles in the current conversation. Your app can also programatically send stickers, images, text, or interactive messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " context, your app appears in effects in Messages and FaceTime. Therefore, the system limits your app to features that make sense over a photo or video. For instance, a person can’t play an interactive game while taking a photo; however, they can add stickers or images to the picture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-supported-contexts",
+          "level": 3,
+          "text": "Specify the supported contexts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify the supported contexts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for your Sticker pack or iMessage app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MSSupportedPresentationContexts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, using an Array type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add String values for the supported contexts. For the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/messages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " context, add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MSMessagesAppPresentationContextMessages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value. For ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MSMessagesAppPresentationContextMedia",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must specify one of the contexts, but if you specify both contexts, they only present in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on setting I",
+              "type": "text"
+            },
+            {
+              "code": "nfo.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/9.3/#/dev3f399a2a6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Work-with-the-media-context",
+          "level": 3,
+          "text": "Work with the media context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " context supports only a subset of the features provided by the Messages framework. People can peel stickers from a sticker browser view, and place them in the Messages camera or FaceTime. They can reposition, resize, rotate, or remove stickers from the viewfinder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iMessage apps can also insert stickers or images into the viewfinder using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-7fpdd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insertAttachment(_:withAlternateFilename:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. However, if the attachment isn’t an image supported by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSSticker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insertAttachment(_:withAlternateFilename:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method fails with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageErrorCode/apiUnavailableInPresentationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you can’t insert interactive messages or text into the media context. You also can’t send items automatically. Therefore, the following methods from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class aren’t available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-3g248",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insertText(_:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/sendAttachment(_:withAlternateFilename:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/send(_:completionHandler:)-9krz",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/send(_:completionHandler:)-4kje0",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/sendText(_:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call these methods, they fail with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageErrorCode/apiUnavailableInPresentationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, because you can’t send or receive interactive messages, the system never calls the following methods in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/willSelect(_:conversation:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didSelect(_:conversation:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didReceive(_:conversation:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didStartSending(_:conversation:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didCancelSending(_:conversation:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " context is already inside the Messages camera or FaceTime; therefore, you can’t display another camera inside the current viewfinder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-the-current-context",
+          "level": 3,
+          "text": "Detect the current context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/presentationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine your iMessage app’s current context. Enable only the features that make sense in that context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if presentationContext == .messages {",
+            "    // The system is presenting your iMessage app inside the Messages app.",
+            "    // You have full access to the Messages framework.",
+            "    // You can insert or send stickers, text, attachments, or interactive messages.",
+            "} else if presentationContext == .media {",
+            "    // The system is presenting your iMessage app in effects.",
+            "    // You can only insert stickers and images.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation": {
+      "abstract": [
+        {
+          "text": "An object that represents a conversation in the Messages app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSConversation"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSConversation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSConversation",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-3g248": {
+      "abstract": [
+        {
+          "text": "Inserts a message object into the Messages app’s input field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-3g248",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertMessage:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/insert(_:completionhandler:)-3g248"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-7fpdd": {
+      "abstract": [
+        {
+          "text": "Inserts a sticker into the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSSticker",
+          "text": "MSSticker"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insert(_:completionHandler:)-7fpdd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertSticker:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insert(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/insert(_:completionhandler:)-7fpdd"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/insertAttachment(_:withAlternateFilename:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Inserts an attachment into the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAlternateFilename"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insertAttachment(_:withAlternateFilename:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertAttachment:withAlternateFilename:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertAttachment(_:withAlternateFilename:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/insertattachment(_:withalternatefilename:completionhandler:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/insertText(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Inserts text into the Messages app’s input field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/insertText(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertText:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertText(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/inserttext(_:completionhandler:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage": {
+      "abstract": [
+        {
+          "text": "The message that the user selected in the conversation transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedMessage",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/selectedmessage"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/send(_:completionHandler:)-4kje0": {
+      "abstract": [
+        {
+          "text": "Sends a sticker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSSticker",
+          "text": "MSSticker"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/send(_:completionHandler:)-4kje0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendSticker:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "send(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/send(_:completionhandler:)-4kje0"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/send(_:completionHandler:)-9krz": {
+      "abstract": [
+        {
+          "text": "Sends a message object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/send(_:completionHandler:)-9krz",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendMessage:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "send(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/send(_:completionhandler:)-9krz"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/sendAttachment(_:withAlternateFilename:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends the media file specified by the given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAlternateFilename"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/sendAttachment(_:withAlternateFilename:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendAttachment:withAlternateFilename:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendAttachment(_:withAlternateFilename:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/sendattachment(_:withalternatefilename:completionhandler:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSConversation/sendText(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends a text message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/sendText(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendText:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendText(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/messages/msconversation/sendtext(_:completionhandler:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageErrorCode/apiUnavailableInPresentationContext": {
+      "abstract": [
+        {
+          "text": "The API is unavailable in the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apiUnavailableInPresentationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageErrorCode/apiUnavailableInPresentationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageErrorCodeAPIUnavailableInPresentationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageErrorCode.apiUnavailableInPresentationContext",
+      "type": "topic",
+      "url": "/documentation/messages/msmessageerrorcode/apiunavailableinpresentationcontext"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the iMessage app appears inside the Stickers app throughout iOS including in Messages, FaceTime, the emoji keyboard, and Markup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "media"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/media",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationContextMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppPresentationContext.media",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapppresentationcontext/media"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/messages": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the iMessage app appears in Messages in the list of iMessage apps that appears when you press the plus button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messages"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppPresentationContext/messages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppPresentationContextMessages"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppPresentationContext.messages",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesapppresentationcontext/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController": {
+      "abstract": [
+        {
+          "text": "The principal view controller for iMessage apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessagesAppViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessagesAppViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didCancelSending(_:conversation:)": {
+      "abstract": [
+        {
+          "text": "Invoked when the user deletes a message object from the Messages app’s input field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didCancelSending"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "conversation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSConversation",
+          "text": "MSConversation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didCancelSending(_:conversation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didCancelSendingMessage:conversation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didCancelSending(_:conversation:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/didcancelsending(_:conversation:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didReceive(_:conversation:)": {
+      "abstract": [
+        {
+          "text": "Invoked when the iMessage app receives a new message object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "conversation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSConversation",
+          "text": "MSConversation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didReceive(_:conversation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveMessage:conversation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceive(_:conversation:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/didreceive(_:conversation:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didSelect(_:conversation:)": {
+      "abstract": [
+        {
+          "text": "Invoked in response to the user selecting a message object in the transcript, after the system updates the conversation’s ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "conversation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSConversation",
+          "text": "MSConversation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didSelect(_:conversation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didSelectMessage:conversation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didSelect(_:conversation:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/didselect(_:conversation:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didStartSending(_:conversation:)": {
+      "abstract": [
+        {
+          "text": "Invoked when the user sends a message object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didStartSending"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "conversation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSConversation",
+          "text": "MSConversation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/didStartSending(_:conversation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didStartSendingMessage:conversation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didStartSending(_:conversation:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/didstartsending(_:conversation:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/presentationContext": {
+      "abstract": [
+        {
+          "text": "The context describing where your iMessage app is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MSMessagesAppPresentationContext",
+          "text": "MSMessagesAppPresentationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/presentationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationContext",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/presentationcontext"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/willSelect(_:conversation:)": {
+      "abstract": [
+        {
+          "text": "Invoked in response to the user selecting a message object in the transcript, before the system updates the conversation’s ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.messages/documentation/Messages/MSConversation/selectedMessage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willSelect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessage",
+          "text": "MSMessage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "conversation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSConversation",
+          "text": "MSConversation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessagesAppViewController/willSelect(_:conversation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willSelectMessage:conversation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willSelect(_:conversation:)",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagesappviewcontroller/willselect(_:conversation:)"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSSticker": {
+      "abstract": [
+        {
+          "text": "A sticker that can be sent as a new message or attached to an existing balloon in the Messages app’s  transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSSticker"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSSticker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSSticker"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSSticker",
+      "type": "topic",
+      "url": "/documentation/messages/mssticker"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView": {
+      "abstract": [
+        {
+          "text": "A browser view that displays a dynamically generated list of stickers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserView"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserView",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserview"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides dynamic content to the standard sticker browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerbrowserviewcontroller"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerSize": {
+      "abstract": [
+        {
+          "text": "The size of the stickers in the browser view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerSize"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerSize",
+      "type": "topic",
+      "url": "/documentation/messages/msstickersize"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSStickerView": {
+      "abstract": [
+        {
+          "text": "A view for displaying a sticker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSStickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSStickerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSStickerView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSStickerView",
+      "type": "topic",
+      "url": "/documentation/messages/msstickerview"
+    },
+    "doc://com.apple.messages/documentation/Messages/adding-your-sticker-packs-to-messages": {
+      "abstract": [
+        {
+          "text": "Drag and drop your sticker pack into the Stickers asset catalog to let people access your stickers from Messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/adding-your-sticker-packs-to-messages",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding your sticker packs to Messages",
+      "type": "topic",
+      "url": "/documentation/messages/adding-your-sticker-packs-to-messages"
+    },
+    "https://help.apple.com/xcode/mac/9.3/#/dev3f399a2a6": {
+      "identifier": "https://help.apple.com/xcode/mac/9.3/#/dev3f399a2a6",
+      "title": "Edit property lists",
+      "titleInlineContent": [
+        {
+          "text": "Edit property lists",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/9.3/#/dev3f399a2a6"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-sticker-packs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/adding-your-sticker-packs-to-messages",
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+        "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+        "doc://com.apple.messages/documentation/Messages/MSStickerView",
+        "doc://com.apple.messages/documentation/Messages/MSStickerSize"
+      ],
+      "title": "Custom sticker packs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-sticker-packs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/adding-your-sticker-packs-to-messages",
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserViewController",
+                "doc://com.apple.messages/documentation/Messages/MSStickerBrowserView",
+                "doc://com.apple.messages/documentation/Messages/MSStickerView",
+                "doc://com.apple.messages/documentation/Messages/MSStickerSize"
+              ],
+              "title": "Custom sticker packs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/title",
+          "value": "MSStickerBrowserView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1sendText(_:completionHandler:)/title",
+          "value": "sendText:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1sendText(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendText:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation/title",
+          "value": "MSConversation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSConversation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSConversation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1sendAttachment(_:withAlternateFilename:completionHandler:)/title",
+          "value": "sendAttachment:withAlternateFilename:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1sendAttachment(_:withAlternateFilename:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendAttachment:withAlternateFilename:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1willSelect(_:conversation:)/title",
+          "value": "willSelectMessage:conversation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1willSelect(_:conversation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willSelectMessage:conversation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerView/title",
+          "value": "MSStickerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1selectedMessage/title",
+          "value": "selectedMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1selectedMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageErrorCode~1apiUnavailableInPresentationContext/title",
+          "value": "MSMessageErrorCodeAPIUnavailableInPresentationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageErrorCode~1apiUnavailableInPresentationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageErrorCodeAPIUnavailableInPresentationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1presentationContext/title",
+          "value": "presentationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1presentationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insertAttachment(_:withAlternateFilename:completionHandler:)/title",
+          "value": "insertAttachment:withAlternateFilename:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insertAttachment(_:withAlternateFilename:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertAttachment:withAlternateFilename:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1send(_:completionHandler:)-9krz/title",
+          "value": "sendMessage:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1send(_:completionHandler:)-9krz/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendMessage:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationContext~1media/title",
+          "value": "MSMessagesAppPresentationContextMedia"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationContext~1media/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationContextMedia"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerSize/title",
+          "value": "MSStickerSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerSize/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didReceive(_:conversation:)/title",
+          "value": "didReceiveMessage:conversation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didReceive(_:conversation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveMessage:conversation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/title",
+          "value": "MSMessagesAppViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didSelect(_:conversation:)/title",
+          "value": "didSelectMessage:conversation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didSelect(_:conversation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didSelectMessage:conversation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didStartSending(_:conversation:)/title",
+          "value": "didStartSendingMessage:conversation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didStartSending(_:conversation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didStartSendingMessage:conversation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insertText(_:completionHandler:)/title",
+          "value": "insertText:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insertText(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertText:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/title",
+          "value": "MSStickerBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSStickerBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSStickerBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSticker/title",
+          "value": "MSSticker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSticker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSticker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSticker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSticker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationContext~1messages/title",
+          "value": "MSMessagesAppPresentationContextMessages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppPresentationContext~1messages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessagesAppPresentationContextMessages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1send(_:completionHandler:)-4kje0/title",
+          "value": "sendSticker:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1send(_:completionHandler:)-4kje0/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendSticker:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didCancelSending(_:conversation:)/title",
+          "value": "didCancelSendingMessage:conversation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessagesAppViewController~1didCancelSending(_:conversation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didCancelSendingMessage:conversation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insert(_:completionHandler:)-3g248/title",
+          "value": "insertMessage:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insert(_:completionHandler:)-3g248/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertMessage:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insert(_:completionHandler:)-7fpdd/title",
+          "value": "insertSticker:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSConversation~1insert(_:completionHandler:)-7fpdd/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertSticker:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/adding-sticker-packs-and-imessage-apps-to-the-system-stickers-app-messages-camera-and-facetime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

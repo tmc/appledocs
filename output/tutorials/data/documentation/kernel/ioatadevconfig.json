@@ -1,0 +1,864 @@
+{
+  "abstract": [
+    {
+      "text": "used for configuring and communicating the desired transfer modes of a device. A disk driver would typically use this object in conjunction with the 512-bytes of identification data from the drive and the IOATABusInfo object for the bus it is connected to. This object will determine the best matching transfer speeds available. the device driver will then send a series of Set Features commands to configure the drive and this object to the bus through the IOATADevice nub in order to configure the optimum transfer mode. The driver for the disk drive may choose to populate this object with whatever transfer mode desired, in the event that a different mode is required.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/ata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1490657,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOATADevConfig",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOATADevConfig"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOATADevConfig"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "usually use the initWithBestSelection to make a best mode match. The Mode accessors use bit significance to indicate a selected mode or supported modes(s) ie, 00000001b indicates Mode-0, 00000010b indicates mode 1, etc. Selected mode is indicated by a single set bit. No bit set indicates no mode in that class is selected. ie, a bus will support multiple possible modes, but will only have one mode selected at that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataoperationtype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataoperationtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATAOperationType",
+      "type": "topic",
+      "url": "/documentation/kernel/ataoperationtype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atarequestidentifier": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atarequestidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATARequestIdentifier",
+      "type": "topic",
+      "url": "/documentation/kernel/atarequestidentifier"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabusinfo": {
+      "abstract": [
+        {
+          "text": "used to indicate the capabilities of the bus the device is connected to, PIO and DMA modes supported, etc.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabusinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATABusInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabusinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATACompletionFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacompletionfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig": {
+      "abstract": [
+        {
+          "text": "used for configuring and communicating the desired transfer modes of a device. A disk driver would typically use this object in conjunction with the 512-bytes of identification data from the drive and the IOATABusInfo object for the bus it is connected to. This object will determine the best matching transfer speeds available. the device driver will then send a series of Set Features commands to configure the drive and this object to the bus through the IOATADevice nub in order to configure the optimum transfer mode. The driver for the disk drive may choose to populate this object with whatever transfer mode desired, in the event that a different mode is required.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATADevConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589965-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589965-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589965-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589966-sdrivesupports48bitlba": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sDriveSupports48BitLBA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589966-sdrivesupports48bitlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sDriveSupports48BitLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589966-sdrivesupports48bitlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589967-getpiocycletime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPIOCycleTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589967-getpiocycletime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPIOCycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589967-getpiocycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589968-bitsigtonumeric": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitSigToNumeric"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589968-bitsigtonumeric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bitSigToNumeric",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589968-bitsigtonumeric"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589969-setdmamode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDMAMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589969-setdmamode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDMAMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589969-setdmamode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589970-setultramode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUltraMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589970-setultramode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUltraMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589970-setultramode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589971-setdmacycletime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDMACycleTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589971-setdmacycletime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDMACycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589971-setdmacycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589972-assignfromdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "assignFromData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589972-assignfromdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assignFromData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589972-assignfromdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589973-getpiomode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPIOMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589973-getpiomode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPIOMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589973-getpiomode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589974-atadevconfig": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "atadevconfig"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589974-atadevconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "atadevconfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589974-atadevconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589975-initwithbestselection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithBestSelection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589975-initwithbestselection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithBestSelection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589975-initwithbestselection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589976-setpacketconfig": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPacketConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589976-setpacketconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPacketConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589976-setpacketconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589977-getpacketconfig": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPacketConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589977-getpacketconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPacketConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589977-getpacketconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589978-getdmamode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDMAMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589978-getdmamode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDMAMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589978-getdmamode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589979-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589979-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589979-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589980-getdmacycletime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDMACycleTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589980-getdmacycletime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDMACycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589980-getdmacycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589981-setpiomode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPIOMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589981-setpiomode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPIOMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589981-setpiomode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589982-sdriveextendedlbasize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sDriveExtendedLBASize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589982-sdriveextendedlbasize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sDriveExtendedLBASize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589982-sdriveextendedlbasize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589983-getultramode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUltraMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589983-getultramode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUltraMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589983-getultramode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589984-setpiocycletime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPIOCycleTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589984-setpiocycletime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPIOCycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1589984-setpiocycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811729-atadevconfig": {
+      "abstract": [
+        {
+          "text": "static creator function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811729-atadevconfig",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "atadevconfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811729-atadevconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811736-bitsigtonumeric": {
+      "abstract": [
+        {
+          "text": "converts a bit-significant field to a numerical value. Note that a bit field of 0x00 has no defined result.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811736-bitsigtonumeric",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "bitSigToNumeric",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811736-bitsigtonumeric"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811744-getdmacycletime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811744-getdmacycletime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDMACycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811744-getdmacycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811750-getdmamode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811750-getdmamode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDMAMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811750-getdmamode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811758-getpacketconfig": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811758-getpacketconfig",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPacketConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811758-getpacketconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811768-getpiocycletime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811768-getpiocycletime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPIOCycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811768-getpiocycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811774-getpiomode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811774-getpiomode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPIOMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811774-getpiomode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811781-getultramode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811781-getultramode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getUltraMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811781-getultramode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811790-initwithbestselection": {
+      "abstract": [
+        {
+          "text": "Handy initializer: pass the 512-byte result of the Identify Device or Identify Packet Device in endian-order for your platform (byte-swapped on PPC) and the IOATABusInfo object for the bus. The object will initialize all fields and select the best transfer modes that match on bus and device. If the return value was 0 (success or noErr), then a matching mode is supported. Examine the PIO and UDMA/DMA fields and to generate the apropriate SET FEATURES parameters for your drive and send this initialised object to the IOATAController when requesting a speed configuration. failure means no supported transfer modes matched between bus and device info.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811790-initwithbestselection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithBestSelection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811790-initwithbestselection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811797-setdmacycletime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811797-setdmacycletime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDMACycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811797-setdmacycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811803-setdmamode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811803-setdmamode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDMAMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811803-setdmamode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811808-setpacketconfig": {
+      "abstract": [
+        {
+          "text": "For ATAPI devices, if the device asserts interrupt after the Packet Command when it is ready to accept the packet, set this value to true (mostly older devices). If the device accepts the packet only by asserting DRQ bit in status, then set this value false. Tells the bus controller whether to wait for packet acceptance or set pending interrupt.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811808-setpacketconfig",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPacketConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811808-setpacketconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811814-setpiocycletime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811814-setpiocycletime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPIOCycleTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811814-setpiocycletime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811821-setpiomode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811821-setpiomode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPIOMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811821-setpiomode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811827-setultramode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811827-setultramode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setUltraMode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/1811827-setultramode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba": {
+      "abstract": [
+        {
+          "text": "If 48-bit LBAs are supported, IOExtendedLBA is used to represent a 48-bit LBA. The driver examines the ATA identify data to determine if 48-bit addressing is supported.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ataoperationtype",
+        "doc://com.apple.documentation/documentation/kernel/atarequestidentifier",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioatabusinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction"
+      ],
+      "title": "Base Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818847",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811729-atadevconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811736-bitsigtonumeric",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811744-getdmacycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811750-getdmamode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811758-getpacketconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811768-getpiocycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811774-getpiomode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811781-getultramode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811790-initwithbestselection",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811797-setdmacycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811803-setdmamode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811808-setpacketconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811814-setpiocycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811821-setpiomode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1811827-setultramode"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818863",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818866",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2857705",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589972-assignfromdata",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589968-bitsigtonumeric",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589980-getdmacycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589978-getdmamode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589965-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589967-getpiocycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589973-getpiomode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589977-getpacketconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589983-getultramode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589979-init",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589975-initwithbestselection",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589971-setdmacycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589969-setdmamode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589984-setpiocycletime",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589981-setpiomode",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589976-setpacketconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589970-setultramode"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857706",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589974-atadevconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589982-sdriveextendedlbasize",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig/1589966-sdrivesupports48bitlba"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioatadevconfig"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

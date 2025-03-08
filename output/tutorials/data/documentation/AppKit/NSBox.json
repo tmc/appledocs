@@ -1,0 +1,2948 @@
+{
+  "abstract": [
+    {
+      "text": "A stylized rectangular box with an optional title.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSBox"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSBox",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSBox"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSBox"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSBox"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use box objects to visually group the contents of your window. For example, you might use boxes to group related views. Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to configure the appearance of the box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is a view that draws a line around its rectangular bounds and that displays a title on or near the line (or might display neither line nor title). You can adjust the style of the line (bezel, grooved, or plain) as well as the placement and font of the title. An ",
+              "type": "text"
+            },
+            {
+              "code": "NSBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also has a content view to which other views can be added; it thus offers a way for an application to group related views. You could create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that alters or augments its appearance or that modifies its grouping behavior. For example, you might add color to the lines or background, add a new line style, or have the views in the group automatically snap to an invisible grid when added.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Methods-to-Override",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method (inherited from ",
+              "type": "text"
+            },
+            {
+              "code": "NSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") if you want to customize the appearance of your ",
+              "type": "text"
+            },
+            {
+              "code": "NSBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. Depending on the visual effect you’re trying to achieve, you may have to invoke ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s implementation first. For example, if you are compositing a small image in a corner of the box, you would invoke the superclass implementation first. If you’re adding a new style of line, you would provide a way to store a request for this line type (such as a boolean instance variable and related accessor methods). Then, in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", if a request for this line type exists, you would draw the entire view yourself (that is, without calling ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Otherwise, you would invoke the superclass implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you wish to change grouping behavior or other behavioral characteristics of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, consider overriding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/contentView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/sizeToFit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addSubview(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (inherited from ",
+              "type": "text"
+            },
+            {
+              "code": "NSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 4,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are drawing the custom ",
+              "type": "text"
+            },
+            {
+              "code": "NSBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entirely by yourself, and you want it to look exactly like the superclass object (except for your changes), it may take some effort and time to get the details right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelementprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimatablepropertycontainer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/appkit/nsappearancecustomization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox": {
+      "abstract": [
+        {
+          "text": "A stylized rectangular box with an optional title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBox"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBox",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/BoxType-swift.enum": {
+      "abstract": [
+        {
+          "text": "These constants and data type identifies box types, which, in conjunction with a box’s border type, define the appearance of the box.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BoxType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/BoxType-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BoxType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBox.BoxType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/boxtype-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/TitlePosition-swift.enum": {
+      "abstract": [
+        {
+          "text": "Specify the location of a box’s title with respect to its border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TitlePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/TitlePosition-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TitlePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSBox.TitlePosition",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/titleposition-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/borderColor": {
+      "abstract": [
+        {
+          "text": "The color of the receiver’s border when the receiver is a custom box with a simple line border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "borderColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/borderColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "borderColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "borderColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/bordercolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/borderRect": {
+      "abstract": [
+        {
+          "text": "The rectangle in which the receiver’s border is drawn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "borderRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/borderRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "borderRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "borderRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/borderrect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/borderType": {
+      "abstract": [
+        {
+          "text": "The receiver’s border type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "borderType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSBorderType",
+          "text": "NSBorderType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/borderType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "borderType"
+        }
+      ],
+      "role": "symbol",
+      "title": "borderType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/bordertype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/borderWidth": {
+      "abstract": [
+        {
+          "text": "The width of the receiver’s border when the receiver is a custom box with a simple line border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "borderWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/borderWidth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "borderWidth"
+        }
+      ],
+      "role": "symbol",
+      "title": "borderWidth",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/borderwidth"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/boxType-swift.property": {
+      "abstract": [
+        {
+          "text": "The receiver’s box type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boxType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBox",
+          "text": "NSBox"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSBoxType",
+          "text": "BoxType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/boxType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boxType"
+        }
+      ],
+      "role": "symbol",
+      "title": "boxType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/boxtype-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/contentView": {
+      "abstract": [
+        {
+          "text": "The receiver’s content view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/contentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/contentview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/contentViewMargins": {
+      "abstract": [
+        {
+          "text": "The distances between the border and the content view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentViewMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/contentViewMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentViewMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentViewMargins",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/contentviewmargins"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/cornerRadius": {
+      "abstract": [
+        {
+          "text": "The radius of the receiver’s corners when the receiver is a custom box with a simple line border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/cornerRadius",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cornerRadius"
+        }
+      ],
+      "role": "symbol",
+      "title": "cornerRadius",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/cornerradius"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/fillColor": {
+      "abstract": [
+        {
+          "text": "The color of the receiver’s background when the receiver is a custom box with a simple line border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/fillColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "fillColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/fillcolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/isTransparent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is transparent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTransparent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/isTransparent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transparent"
+        }
+      ],
+      "role": "symbol",
+      "title": "isTransparent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/istransparent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)": {
+      "abstract": [
+        {
+          "text": "Places the receiver so its content view lies on the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFrameFromContentFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFrameFromContentFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFrameFromContentFrame(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/setframefromcontentframe(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/setTitleWithMnemonic:": {
+      "abstract": [
+        {
+          "text": "Sets the title of the receiver with a character denoted as an access key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTitleWithMnemonic:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/setTitleWithMnemonic:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTitleWithMnemonic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTitleWithMnemonic:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/settitlewithmnemonic:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/sizeToFit()": {
+      "abstract": [
+        {
+          "text": "Resizes and moves the receiver’s content view so it just encloses its subviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeToFit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/sizeToFit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sizeToFit"
+        }
+      ],
+      "role": "symbol",
+      "title": "sizeToFit()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/sizetofit()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/title": {
+      "abstract": [
+        {
+          "text": "The receiver’s title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "title"
+        }
+      ],
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/title"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/titleCell": {
+      "abstract": [
+        {
+          "text": "The cell used to display the receiver’s title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleCell"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/titleCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/titlecell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/titleFont": {
+      "abstract": [
+        {
+          "text": "The font object used to draw the receiver’s title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleFont"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/titleFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleFont",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/titlefont"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/titlePosition-swift.property": {
+      "abstract": [
+        {
+          "text": "A constant representing the title position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titlePosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBox",
+          "text": "NSBox"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTitlePosition",
+          "text": "TitlePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/titlePosition-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titlePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "titlePosition",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/titleposition-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSBox/titleRect": {
+      "abstract": [
+        {
+          "text": "The rectangle in which the receiver’s title is drawn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSBox/titleRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nsbox/titlerect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdraggingdestination"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/addSubview(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a view to the view’s subviews so it’s displayed above its siblings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addSubview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addSubview(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addSubview:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addSubview(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/addsubview(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to draw the view’s image within the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/draw(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/draw(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView": {
+      "abstract": [
+        {
+          "text": "A view that adds translucency and vibrancy effects to the views in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSVisualEffectView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSVisualEffectView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSVisualEffectView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsvisualeffectview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+        "doc://com.apple.appkit/documentation/AppKit/NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Visual-Adornments",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView"
+      ],
+      "title": "Visual Adornments"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-Boxes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/borderRect",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/boxType-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/borderType",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/isTransparent",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/title",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/titleFont",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/titlePosition-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/titleCell",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/titleRect"
+      ],
+      "title": "Configuring Boxes"
+    },
+    {
+      "anchor": "Customizing",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/borderColor",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/borderWidth",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/cornerRadius",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/fillColor"
+      ],
+      "title": "Customizing"
+    },
+    {
+      "anchor": "Managing-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/contentView",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/contentViewMargins"
+      ],
+      "title": "Managing Content"
+    },
+    {
+      "anchor": "Sizing",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/sizeToFit()"
+      ],
+      "title": "Sizing"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/TitlePosition-swift.enum",
+        "doc://com.apple.appkit/documentation/AppKit/NSBox/BoxType-swift.enum"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSBox"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-Boxes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/borderRect",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/boxType-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/borderType",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/isTransparent",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/title",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/titleFont",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/titlePosition-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/setTitleWithMnemonic:",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/titleCell",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/titleRect"
+              ],
+              "title": "Configuring Boxes"
+            },
+            {
+              "anchor": "Customizing",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/borderColor",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/borderWidth",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/cornerRadius",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/fillColor"
+              ],
+              "title": "Customizing"
+            },
+            {
+              "anchor": "Managing-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/contentView",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/contentViewMargins"
+              ],
+              "title": "Managing Content"
+            },
+            {
+              "anchor": "Sizing",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/setFrameFromContentFrame(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/sizeToFit()"
+              ],
+              "title": "Sizing"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/TitlePosition-swift.enum",
+                "doc://com.apple.appkit/documentation/AppKit/NSBox/BoxType-swift.enum"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Visual-Adornments",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSVisualEffectView"
+              ],
+              "title": "Visual Adornments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSBox"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSView",
+                    "text": "NSView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1BoxType-swift.enum/title",
+          "value": "NSBoxType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1BoxType-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBoxType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1BoxType-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBoxType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1setFrameFromContentFrame(_:)/title",
+          "value": "setFrameFromContentFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1setFrameFromContentFrame(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFrameFromContentFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titleCell/title",
+          "value": "titleCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titleCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titleFont/title",
+          "value": "titleFont"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titleFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox/title",
+          "value": "NSBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderRect/title",
+          "value": "borderRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "borderRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/title",
+          "value": "NSAnimatablePropertyContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1sizeToFit()/title",
+          "value": "sizeToFit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1sizeToFit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sizeToFit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titleRect/title",
+          "value": "titleRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titleRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1cornerRadius/title",
+          "value": "cornerRadius"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1cornerRadius/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cornerRadius"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSVisualEffectView/title",
+          "value": "NSVisualEffectView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSVisualEffectView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVisualEffectView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSVisualEffectView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSVisualEffectView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1contentView/title",
+          "value": "contentView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1contentView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1addSubview(_:)/title",
+          "value": "addSubview:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1addSubview(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addSubview:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1draw(_:)/title",
+          "value": "drawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1draw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderType/title",
+          "value": "borderType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "borderType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1fillColor/title",
+          "value": "fillColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1fillColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fillColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1title/title",
+          "value": "title"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1title/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "title"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titlePosition-swift.property/title",
+          "value": "titlePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1titlePosition-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titlePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1isTransparent/title",
+          "value": "transparent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1isTransparent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transparent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1boxType-swift.property/title",
+          "value": "boxType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1boxType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boxType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1contentViewMargins/title",
+          "value": "contentViewMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1contentViewMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentViewMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1TitlePosition-swift.enum/title",
+          "value": "NSTitlePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1TitlePosition-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTitlePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1TitlePosition-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTitlePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElementProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderWidth/title",
+          "value": "borderWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderWidth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "borderWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/title",
+          "value": "NSDraggingDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDraggingDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/title",
+          "value": "NSAppearanceCustomization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAppearanceCustomization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderColor/title",
+          "value": "borderColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSBox~1borderColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "borderColor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

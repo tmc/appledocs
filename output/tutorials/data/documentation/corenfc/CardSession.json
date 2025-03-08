@@ -1,0 +1,2050 @@
+{
+  "abstract": [
+    {
+      "text": "An ISO 7816 card emulation session.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corenfc/documentation/CoreNFC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7CoreNFC11CardSessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CardSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core NFC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CardSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CardSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CardSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.iso.org/standard/84943.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol communication with an NFC reader, receiving and responding to Application Protocol Data Units (APDUs) in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports host card emulation (HCE) transactions for in-store payments, car keys, closed-loop transit, corporate badges, hotel keys, merchant loyalty/rewards and event tickets in the European Economic Area (EEA).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a card session to perform card emulation when in the presence of an NFC reader. You do this by managing the session as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the system is eligible to use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Check ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NFCReaderSession.readingAvailable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CardSession.isSupported",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ensure that the device supports card sessions with NFC. Also check ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CardSession.isEligible",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to verify that the system supports card session use in the current environment. Don’t continue unless all of these values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a card session with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/init()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and begin iterating over events from the session’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/eventStream-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Starting the session acquires necessary system resources and posts ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/sessionStarted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the event stream when the app acquires the NFC resource. After this, the session sends the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDetected",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " event when the device detects the RF field of an NFC reader.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start card emulation by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/startEmulation()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when your app is ready to handle APDUs from the reader. You typically do this after receiving the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDetected",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", but you can start emulation regardless of whether a reader is present. After you start emulation, the reader (if present) can communicate with the card, and emulation triggers the system modal UI to display over the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At this point, begin receiving and processing APDUs from the event stream. Process the APDU ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU/payload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in each event, generate a response, and send it with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU/respond(response:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you don’t respond in a timely manner to every event, the reader might treat it as a timeout condition and fail with an error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/alertMessage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to provide updates to the person using the app as the communication continues.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the reader disconnects, possibly because of the device moving away from the reader, handle the event ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDeselected",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stop card emulation by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/stopEmulation(status:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This shuts down the RF interface and cuts off the RF connection with a reader if one exists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invalidate the session with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/invalidate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which cleans up system resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a simple interaction with a card session. It attempts to acquire both a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If both of these succeed, it uses a ",
+              "type": "text"
+            },
+            {
+              "code": "for-await-in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop to process events from the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/eventStream-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as it receives them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import CoreNFC",
+            "",
+            "func CardSessionSample() {",
+            "    /// A place-holder function for APDU processing. In a real app,",
+            "    /// process the received data and return a response as Data.",
+            "    let ProcessAPDU: (_: Data) -> Data = { capdu in return Data() }",
+            "    ",
+            "    Task() {",
+            "        // Proceed only if the current device and system are able and",
+            "        // eligible to use CardSession.",
+            "        guard NFCReaderSession.readingAvailable,",
+            "              CardSession.isSupported,",
+            "              await CardSession.isEligible else {",
+            "            return",
+            "        }",
+            "    ",
+            "        // Hold a presentment intent assertion reference to prevent the",
+            "        // default contactless app from launching. In a real app, monitor",
+            "        // presentmentIntent.isValid to ensure the assertion remains active.",
+            "        var presentmentIntent: NFCPresentmentIntentAssertion?",
+            "",
+            "        let cardSession: CardSession",
+            "        do {",
+            "            presentmentIntent = try await NFCPresentmentIntentAssertion.acquire()",
+            "            cardSession = try await CardSession()",
+            "        } catch {",
+            "            /// Handle failure to acquire NFC presentment intent assertion or",
+            "            /// card session.",
+            "            return",
+            "        }",
+            "        ",
+            "        // Iterate over events as the card session produces them.",
+            "        for try await event in cardSession.eventStream {",
+            "            switch event {",
+            "            case .sessionStarted:",
+            "                cardSession.alertMessage = String(localized: \"Communicating with card reader.\")",
+            "                break",
+            "                ",
+            "            case .readerDetected:",
+            "                /// Start card emulation on first detection of an external reader.",
+            "                try await cardSession.startEmulation()",
+            "                ",
+            "            case .readerDeselected:",
+            "                /// Stop emulation on first notification of RF link loss.",
+            "                await cardSession.stopEmulation(status: .success)",
+            "                ",
+            "            case .received(let cardAPDU):",
+            "                do {",
+            "                    /// Call handler to process received input and produce a response.",
+            "                    let responseAPDU = ProcessAPDU(cardAPDU.payload)",
+            "                    ",
+            "                    try await cardAPDU.respond(response: responseAPDU)",
+            "                } catch {",
+            "                    /// Handle the error from respond(response:). If the error is",
+            "                    /// CardSession.Error.transmissionError, then retry by calling",
+            "                    /// CardSession.APDU.respond(response:) again.",
+            "                }",
+            "                ",
+            "            case .sessionInvalidated(reason: _):",
+            "                cardSession.alertMessage = String(localized: \"Ending communication with card reader.\")",
+            "                /// Handle the reason for session invalidation.",
+            "                break",
+            "            }",
+            "        }",
+            "        ",
+            "        presentmentIntent = nil /// Release presentment intent assertion.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handling-emulation-duration",
+          "level": 3,
+          "text": "Handling emulation duration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Card emulation is valid for up to 60 seconds from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/startEmulation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call. Once the session timeout occurs, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/eventStream-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " posts the event ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/sessionInvalidated(reason:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "reason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error/maxSessionDurationReached",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". At this point, the session becomes invalidated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-entitlements",
+          "level": 3,
+          "text": "Using entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must have the following entitlements to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean value that indicates this app can use card sessions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string array of ISO 7816 identifier strings that your app listens for when receiving the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SELECT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command from the reader. These strings can be fully-qualified Application Identifier (AID) strings, Registered Application Provider Identifier (RID) strings, or prefix strings. Any prefix strings must be at least as long as the RID.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.iso7816.select-identifier-prefixes",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app lacks a required entitlement, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/init()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " raises ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To avoid this, check the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEligible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties before attempting to create a card session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, your app may have the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.default-contactless-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that a person can use the iOS settings app to set this app as a default NFC contactless app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information and to apply for these entitlements, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/hce-payment-transactions-in-payment-apps/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use of this entitlement is managed by Apple. It is subject to the terms and conditions agreed to as part of the application process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Testing-requirements",
+          "level": 3,
+          "text": "Testing requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test HCE-based contactless transactions, you’ll need to test with an iPhone and NFC hardware. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requires the presence of an NFC reader, which isn’t supported in Simulator, to perform an ISO 7816 card emulation session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about CardSession requirements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/hce-payment-transactions-in-payment-apps/",
+              "isActive": true,
+              "overridingTitle": "HCE-based contactless transactions for banking and wallet apps in the European Economic Area",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "HCE-based contactless transactions for banking and wallet apps in the European Economic Area",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corenfc/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/corenfc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession": {
+      "abstract": [
+        {
+          "text": "An ISO 7816 card emulation session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CardSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CardSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardSession",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU": {
+      "abstract": [
+        {
+          "text": "An Application Programming Data Unit (APDU) received from the NFC card reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "APDU"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "APDU"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardSession.APDU",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/apdu"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU/payload": {
+      "abstract": [
+        {
+          "text": "The APDU data received from the NFC reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "payload"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU/payload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "payload",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/apdu/payload"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU/respond(response:)": {
+      "abstract": [
+        {
+          "text": "Respond to the session after receiving and processing an APDU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "respond"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU/respond(response:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "respond(response:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/apdu/respond(response:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/EmulationUIStatus": {
+      "abstract": [
+        {
+          "text": "The final status to show in the user interface when ending card emulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmulationUIStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/EmulationUIStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmulationUIStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardSession.EmulationUIStatus",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/emulationuistatus"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems with a card session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardSession.Error",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/error"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error/maxSessionDurationReached": {
+      "abstract": [
+        {
+          "text": "The session is no longer valid because it reached its maximum duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxSessionDurationReached"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error/maxSessionDurationReached",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CardSession.Error.maxSessionDurationReached",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/error/maxsessiondurationreached"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event": {
+      "abstract": [
+        {
+          "text": "A type that enumerates events produced by a card session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardSession.Event",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/event"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDeselected": {
+      "abstract": [
+        {
+          "text": "The session lost the RF link or the currently-selected Application Identifier (AID) became deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readerDeselected"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDeselected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CardSession.Event.readerDeselected",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/event/readerdeselected"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDetected": {
+      "abstract": [
+        {
+          "text": "The session detected the RF field of an external NFC reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readerDetected"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/readerDetected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CardSession.Event.readerDetected",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/event/readerdetected"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/sessionInvalidated(reason:)": {
+      "abstract": [
+        {
+          "text": "The session became invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionInvalidated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC11CardSessionC",
+          "text": "CardSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC11CardSessionC5ErrorO",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/sessionInvalidated(reason:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CardSession.Event.sessionInvalidated(reason:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/event/sessioninvalidated(reason:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/sessionStarted": {
+      "abstract": [
+        {
+          "text": "The card session successfully started.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionStarted"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event/sessionStarted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CardSession.Event.sessionStarted",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/event/sessionstarted"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/EventStream-swift.class": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of events produced by a card session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventStream"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/EventStream-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "CardSession.EventStream",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/eventstream-swift.class"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/alertMessage": {
+      "abstract": [
+        {
+          "text": "A message to show on the alert action sheet after card emulation starts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alertMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/alertMessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alertMessage",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/alertmessage"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/eventStream-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of events from the card session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventStream"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC11CardSessionC",
+          "text": "CardSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC11CardSessionC11EventStreamC",
+          "text": "EventStream"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/eventStream-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eventStream",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/eventstream-swift.property"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/init()": {
+      "abstract": [
+        {
+          "text": "Creates a contactless card session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/init()"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates the current card emulation session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/invalidate()"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEligible": {
+      "abstract": [
+        {
+          "text": "A property that indicates whether the current system supports card session functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEligible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEligible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEligible",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/iseligible"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEmulationInProgress": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether emulation is currently active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEmulationInProgress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEmulationInProgress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEmulationInProgress",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/isemulationinprogress"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isSupported": {
+      "abstract": [
+        {
+          "text": "A property that indicates whether the current device supports card session functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/issupported"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/startEmulation()": {
+      "abstract": [
+        {
+          "text": "Start the card emulation and present a modal user interface to the person using the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startEmulation"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/startEmulation()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startEmulation()",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/startemulation()"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/stopEmulation(status:)": {
+      "abstract": [
+        {
+          "text": "Stop card emulation and display a status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopEmulation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC11CardSessionC",
+          "text": "CardSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreNFC11CardSessionC17EmulationUIStatusO",
+          "text": "EmulationUIStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/stopEmulation(status:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopEmulation(status:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/cardsession/stopemulation(status:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion": {
+      "abstract": [
+        {
+          "text": "An object that signals your app’s intention to make exclusive use of the device’s contactless features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCPresentmentIntentAssertion"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCPresentmentIntentAssertion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCPresentmentIntentAssertion",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcpresentmentintentassertion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app can use the card session API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.nfc.hce",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.default-contactless-app": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app can be a default app for contactless NFC with the card session API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.default-contactless-app",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.nfc.hce.default-contactless-app",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.default-contactless-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.iso7816.select-identifier-prefixes": {
+      "abstract": [
+        {
+          "text": "An array of identifier strings the app handles with the card session API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.iso7816.select-identifier-prefixes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.nfc.hce.iso7816.select-identifier-prefixes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.iso7816.select-identifier-prefixes"
+    },
+    "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Unconditionally prints a given message and stops execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fatalError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " = String(), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#file"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fatalError(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/Swift/fatalError(_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/hce-payment-transactions-in-payment-apps/": {
+      "identifier": "https://developer.apple.com/support/hce-payment-transactions-in-payment-apps/",
+      "title": "HCE-based contactless transactions for banking and wallet apps in the European Economic Area",
+      "titleInlineContent": [
+        {
+          "text": "HCE-based contactless transactions for banking and wallet apps in the European Economic Area",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/hce-payment-transactions-in-payment-apps/"
+    },
+    "https://www.iso.org/standard/84943.html": {
+      "identifier": "https://www.iso.org/standard/84943.html",
+      "title": "ISO 7816-4",
+      "titleInlineContent": [
+        {
+          "text": "ISO 7816-4",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.iso.org/standard/84943.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Card-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCPresentmentIntentAssertion"
+      ],
+      "title": "Card sessions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-card-session",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/init()",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error"
+      ],
+      "title": "Creating a card session"
+    },
+    {
+      "anchor": "Determining-card-session-availability",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isSupported",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEligible"
+      ],
+      "title": "Determining card session availability"
+    },
+    {
+      "anchor": "Managing-card-emulation",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/startEmulation()",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Error",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/stopEmulation(status:)",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/EmulationUIStatus",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/isEmulationInProgress"
+      ],
+      "title": "Managing card emulation"
+    },
+    {
+      "anchor": "Handling-card-events",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/eventStream-swift.property",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/EventStream-swift.class",
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/Event"
+      ],
+      "title": "Handling card events"
+    },
+    {
+      "anchor": "Updating-the-user-interface",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/alertMessage"
+      ],
+      "title": "Updating the user interface"
+    },
+    {
+      "anchor": "Ending-a-card-session",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/invalidate()"
+      ],
+      "title": "Ending a card session"
+    },
+    {
+      "anchor": "Entitlements",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.iso7816.select-identifier-prefixes",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.nfc.hce.default-contactless-app"
+      ],
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/CardSession/APDU"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corenfc/cardsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

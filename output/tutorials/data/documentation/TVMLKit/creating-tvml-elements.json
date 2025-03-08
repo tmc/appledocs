@@ -1,0 +1,1243 @@
+{
+  "abstract": [
+    {
+      "text": "Avoid rewriting complex and often used elements by creating a simplified custom element.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvmlkit/documentation/TVMLKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvmlkit/documentation/TVMLKit/creating-tvml-elements"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TVMLKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating TVML Elements"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The TVML template elements ensure structure and consistency between documents. However, there are times when applying the same modification to a particular element across a single or multiple documents becomes unwiedly. One such example is when you need to update an element that contains copyright information. By creating a new element that incorporates these changes, you can avoid having to apply the same modifications to each instance of the element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Your-Customization-Class",
+          "level": 3,
+          "text": "Create Your Customization Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your element customization class is where you register any new elements and add the customization code. To start, create a new class that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and import the UIKit and TVMLKit frameworks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import UIKit",
+            "import TVMLKit",
+            "",
+            "class CustomElements: NSObject, TVInterfaceCreating {",
+            "   ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Register-Your-New-Element",
+          "level": 3,
+          "text": "Register Your New Element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can use a new element in your TVML code, register the element using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory/registerViewElementClass(_:elementName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory/registerViewElementClass(_:elementName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your class’s ",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function and assign a name to the new element. The JavaScript environment can now recognize the registered element. The following code creates the new TVML element, ",
+              "type": "text"
+            },
+            {
+              "code": "<copyright/>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override init() {",
+            "    super.init()",
+            "    TVElementFactory.registerViewElementClass(TVTextElement.self, elementName: \"copyright\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must register all elements before initializing the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Customize-Your-New-Element",
+          "level": 3,
+          "text": "Customize Your New Element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After registering the new element name, you need to customize the element. Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating/makeView(element:existingView:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function in your custom class. The system automatically calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating/makeView(element:existingView:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for every element in your TVML document. Check for the new element’s name and add the customization code. If the current element is not your new element, you must return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeView(element: TVViewElement, existingView: UIView?) -> UIView? {",
+            "    if element.name == \"copyright\" {",
+            "        let label = UILabel()",
+            "        label.font = UIFont.boldSystemFont(ofSize: 16)",
+            "        label.textColor = .black",
+            "        label.textAlignment = NSTextAlignment.center",
+            "        label.text = \"Copyright information\"",
+            "        return label",
+            "    }",
+            "    return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-the-Shared-Interface",
+          "level": 3,
+          "text": "Access the Shared Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable your class to communicate with your JavaScript code, associate the class with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceFactory/shared()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interface. Before setting the application controller, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceFactory/extendedInterfaceCreator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to an instance of the class inside of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TVInterfaceFactory.shared().extendedInterfaceCreator = CustomElements()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When complete, use the new element in your TVML code like any other element; for example, ",
+              "type": "text"
+            },
+            {
+              "code": "<copyright/>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit": {
+      "abstract": [
+        {
+          "text": "Create client-server apps by incorporating JavaScript and TVML files in your binary app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit",
+      "type": "topic",
+      "url": "/documentation/tvmlkit"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationController": {
+      "abstract": [
+        {
+          "text": "An object that bridges the UI, navigation stack, storage, and event handling from JavaScript.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVApplicationController"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVApplicationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVApplicationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVApplicationController",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvapplicationcontroller"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory": {
+      "abstract": [
+        {
+          "text": "An object used to register new elements to extend the Apple TV Markup Language (TVML).",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVElementFactory"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVElementFactory"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVElementFactory",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvelementfactory"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory/registerViewElementClass(_:elementName:)": {
+      "abstract": [
+        {
+          "text": "Registers a view element for the specified element name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerViewElementClass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "elementName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory/registerViewElementClass(_:elementName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerViewElementClass:forElementName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerViewElementClass(_:elementName:)",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvelementfactory/registerviewelementclass(_:elementname:)"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVImageElement": {
+      "abstract": [
+        {
+          "text": "A representation of a read-only DOM node containing the attributes that describe an image element.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVImageElement"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVImageElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVImageElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVImageElement",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvimageelement"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods used to create views and view controllers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVInterfaceCreating"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVInterfaceCreating"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVInterfaceCreating",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvinterfacecreating"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating/makeView(element:existingView:)": {
+      "abstract": [
+        {
+          "text": "Returns a view for a view element.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "element"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TVViewElement",
+          "text": "TVViewElement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "existingView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceCreating/makeView(element:existingView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewForElement:existingView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeView(element:existingView:)",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvinterfacecreating/makeview(element:existingview:)"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceFactory/extendedInterfaceCreator": {
+      "abstract": [
+        {
+          "text": "The interface that is being extended.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedInterfaceCreator"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)TVInterfaceCreating",
+          "text": "TVInterfaceCreating"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceFactory/extendedInterfaceCreator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedInterfaceCreator"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendedInterfaceCreator",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvinterfacefactory/extendedinterfacecreator"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceFactory/shared()": {
+      "abstract": [
+        {
+          "text": "Returns the singleton instance of the interface factory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVInterfaceFactory/shared()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedInterfaceFactory"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvinterfacefactory/shared()"
+    },
+    "doc://com.apple.tvmlkit/documentation/TVMLKit/TVTextElement": {
+      "abstract": [
+        {
+          "text": "The textual content for the DOM element.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVTextElement"
+        }
+      ],
+      "identifier": "doc://com.apple.tvmlkit/documentation/TVMLKit/TVTextElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVTextElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVTextElement",
+      "type": "topic",
+      "url": "/documentation/tvmlkit/tvtextelement"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory",
+        "doc://com.apple.tvmlkit/documentation/TVMLKit/TVImageElement",
+        "doc://com.apple.tvmlkit/documentation/TVMLKit/TVTextElement"
+      ],
+      "title": "Custom Elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-Elements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.tvmlkit/documentation/TVMLKit/TVElementFactory",
+                "doc://com.apple.tvmlkit/documentation/TVMLKit/TVImageElement",
+                "doc://com.apple.tvmlkit/documentation/TVMLKit/TVTextElement"
+              ],
+              "title": "Custom Elements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationController/title",
+          "value": "TVApplicationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVApplicationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVApplicationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVApplicationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVTextElement/title",
+          "value": "TVTextElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVTextElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVTextElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTextElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVElementFactory/title",
+          "value": "TVElementFactory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVElementFactory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVElementFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVElementFactory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVElementFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVElementFactory~1registerViewElementClass(_:elementName:)/title",
+          "value": "registerViewElementClass:forElementName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVElementFactory~1registerViewElementClass(_:elementName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerViewElementClass:forElementName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceCreating/title",
+          "value": "TVInterfaceCreating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceCreating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVInterfaceCreating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceCreating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVInterfaceCreating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishLaunchingWithOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "launchOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVImageElement/title",
+          "value": "TVImageElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVImageElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVImageElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVImageElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVImageElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceCreating~1makeView(element:existingView:)/title",
+          "value": "viewForElement:existingView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceCreating~1makeView(element:existingView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewForElement:existingView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceFactory~1shared()/title",
+          "value": "sharedInterfaceFactory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceFactory~1shared()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedInterfaceFactory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceFactory~1extendedInterfaceCreator/title",
+          "value": "extendedInterfaceCreator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvmlkit~1documentation~1TVMLKit~1TVInterfaceFactory~1extendedInterfaceCreator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedInterfaceCreator"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvmlkit/creating-tvml-elements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvmlkit/creating-tvml-elements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

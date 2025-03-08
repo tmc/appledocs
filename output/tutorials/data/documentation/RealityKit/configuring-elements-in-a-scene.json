@@ -1,0 +1,1149 @@
+{
+  "abstract": [
+    {
+      "text": "Define the appearance and behavior of objects in a scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring elements in a scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure Reality Composer assets in a number of different ways. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assign them unique names, change their appearance, or configure them to simulate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "real-world physics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Name-the-assets-and-scenes",
+          "level": 3,
+          "text": "Name the assets and scenes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer allows you to assign a name to your scenes, as well as to objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within a scene. You can use the names in your code to retrieve specific scenes or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assets, and Xcode uses the assigned names during code generation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer creates a unique, default name for any newly created scene. Change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the default value to something descriptive to make your code easier to understand.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Tap the scene background to deselect any selected objects, and change the scene’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name using the top-most text field in the inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also assign names to a scene’s objects to help differentiate them. To assign",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or change an object’s name, tap the object to select it, then type the name into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name field at the top of the Properties inspector. Xcode automatically generates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessor properties for all named assets. Unique object names aren’t required, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects with the same name in the same scene are automatically grouped into a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array property during code generation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Code generation fails if you use a scene name more than once in the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "same target. If you’re using multiple reality files in the same Xcode target, make",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "sure your scene names are unique across all reality files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Style-an-asset-to-match-your-scenes-look",
+          "level": 3,
+          "text": "Style an asset to match your scene’s look",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select a built-in Reality Composer asset, the Properties inspector displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a section called Look, where you change the asset’s overall appearance. In this section,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’ll find either a parameter called Material, for simple shape primitives, or a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter called Style, for modeled assets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Material parameter defines the overall surface appearance of the selected object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You choose from many predefined physically based rendering (PBR) materials. Some",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of these materials, like Glossy Paint, Matte Paint, and Car Paint, allow you to select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a color using the Material Color parameter, while others, like Gold and Rubber, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a predefined color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-elements-in-a-scene-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Style parameter lets you choose from many predefined appearances. Many assets,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, let you choose between Realistic, Stylized, or Iconic. The realistic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "style is designed to be a very natural-looking object, often even including scratches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or smudges to make the item fit in with its real-world surroundings. The stylized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option creates an object that has fewer real-world details, and the iconic style",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates an even less realistic object that makes no attempt to look like it belongs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-elements-in-a-scene-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Modify-procedural-asset-parameters-in-scene-view",
+          "level": 3,
+          "text": "Modify procedural asset parameters in scene view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use Reality Composer’s built-in assets, you can visually modify some of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the configurable parameters in the scene using Reality Composer’s Modify mode. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in this mode, the manipulator changes to display blue disc-shaped handles that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can use to alter the appearance of the selected asset. The number and effect of these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handles varies with the type of asset. The handles on a cube, for example, allow",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you to drag different handles to change the cube’s proportions, by separately modifying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its height, width, and depth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-elements-in-a-scene-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To switch to Modify mode on the Mac, select the object you want to edit, choose the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Modify button in the toolbar, and select Modify from the Arrange menu or the contextual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "menu. On iOS devices, select the object you want to edit, then choose the Modify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button in the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-physics-and-gravity-in-a-scene",
+          "level": 3,
+          "text": "Use physics and gravity in a scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer scenes can simulate real-world physics behavior, such as gravity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and object collisions. Objects in a scene that participate in the physics simulation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can interact with each other or with detected real-world surfaces, such as tables,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "walls, and floors. By default, Reality Composer scenes have physics and gravity enabled,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but objects you add to a scene do not participate in the physics simulation unless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you specifically configure them to do so.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable physics for an object, select it to bring up its Properties inspector.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The bottom-most section in the inspector is labeled “Physics.” For a newly added",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object, this section contains a single checkbox labeled “Participates.” Select this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "checkbox to add this object to the physics simulation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-elements-in-a-scene-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable the Participates checkbox, three new options appear in the Physics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section of the Properties inspector:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Motion Type.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Defines how physics work for the selected object. Two options are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Fixed",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Dynamic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". When an object’s motion type is set to Fixed, other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects in the scene can collide with it, but it stays in the same place, unaffected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by those collisions. When an object’s Motion Type is set to Dynamic, it participates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fully in the physics simulation. If, for example, a dynamic object is not resting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a surface, the scene’s gravity makes it fall until it lands on a surface or another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object. When you apply forces to a dynamic object, or a dynamic object collides with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "another object, it moves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Material.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Defines how the object behaves when colliding with other objects, basing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its behavior on real-world substances like concrete and rubber. The physics material",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "determines how heavy an object is based on its size. It also determines how the object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reacts when it collides with another object or a detected surface. A rubber object,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, bounces higher than a lead object of the same size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An object’s Material parameter in the Physics section of the inspector is",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "completely distinct from the Material parameter in the Look section. The physics",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "material defines the properties of the object that are important to the physics simulation,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "such as the mass and elasticity (or “bounciness”) of the object, while the look material",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "defines how the object is rendered. It is entirely possible to create an asset that",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "looks like one material and behaves like a completely different material.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Collision Shape.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Used when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " performs physics simulations on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object. Because physics calculations for complex shapes are computationally expensive,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit uses a simplified shape like a box or sphere instead of the object’s actual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shape when doing physics calculations. You can select Automatic to let RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose a collision shape, or you can manually select the shape that will give the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behavior you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "configuring-elements-in-a-scene-1": {
+      "alt": "Screenshot showing the Look section of the Properties inspector using Material",
+      "identifier": "configuring-elements-in-a-scene-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcc51c9dd2f303a2d05500edc2d1dad7/configuring-elements-in-a-scene-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04d68810124bd0a7526088a19b144c79/configuring-elements-in-a-scene-1~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-elements-in-a-scene-2": {
+      "alt": "Screenshot showing the Look section of the Properties inspector using Style",
+      "identifier": "configuring-elements-in-a-scene-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b2b51d72b6f083be85c204cae761d1a/configuring-elements-in-a-scene-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c2a95f5ea90b7d0b4c92d6c3fe88111/configuring-elements-in-a-scene-2~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-elements-in-a-scene-3": {
+      "alt": "Screenshot showing a Reality Composer window with a selected object in Modify mode.",
+      "identifier": "configuring-elements-in-a-scene-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7b0c66f04172be6117f8ec33dfbdf98/configuring-elements-in-a-scene-3.png"
+        }
+      ]
+    },
+    "configuring-elements-in-a-scene-4": {
+      "alt": "Screenshot showing Physics portion of Reality Composer’s Properties inspector",
+      "identifier": "configuring-elements-in-a-scene-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2421d4d49655e9f17233b17abe448131/configuring-elements-in-a-scene-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da8c0af13bc9c485bfd84491dbe6c5c9/configuring-elements-in-a-scene-4~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene": {
+      "abstract": [
+        {
+          "text": "Add assets to your scene from Reality Composer’s library, or import custom assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding elements to a 3D scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-elements-to-a-3d-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene": {
+      "abstract": [
+        {
+          "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding procedural assets to a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Manipulate objects to complete your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Arranging elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/arranging-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps": {
+      "abstract": [
+        {
+          "text": "Incorporate assistive technologies in your augmented reality app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Accessibility of RealityKit Apps",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code": {
+      "abstract": [
+        {
+          "text": "Load Reality Composer files that aren’t part of your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files manually without generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code": {
+      "abstract": [
+        {
+          "text": "Leverage automatically generated code to load scenes from Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files using generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-using-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code": {
+      "abstract": [
+        {
+          "text": "Make programmatic changes to your scenes at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Reality Composer scenes from code",
+      "type": "topic",
+      "url": "/documentation/realitykit/manipulating-reality-composer-scenes-from-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"
+      ],
+      "title": "Scene creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/configuring-elements-in-a-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

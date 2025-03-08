@@ -1,0 +1,484 @@
+{
+  "abstract": [
+    {
+      "text": "Improve your web extension in Safari with a non-persistent background page and new tab-override customization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/adopting-new-safari-web-extension-apis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting New Safari Web Extension APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 sessions ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10027/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "; and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10104/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Safari and choose Develop > Allow Unsigned Extensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project settings in Xcode, select the Sea Creator (macOS) target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Signing Certificate, choose Sign to Run Locally. (Leave Team set to None.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat steps 3 and 4 for the Sea Creator Extension (macOS) target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, to run on a device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project settings in Xcode, select the Sea Creator (iOS) target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a development team.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat the above steps for the Sea Creator Extension (iOS) target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "dbeff6e414b9/AdoptingNewSafariWebExtensionAPIs.zip": {
+      "checksum": "dbeff6e414b9400ec54c3b8c323078253bbcc0652367fd260d9dd62715a3168e6b40ed18601e6da72115d59fedf8f12c510b124eed98953d290467c97ad759b7",
+      "identifier": "dbeff6e414b9/AdoptingNewSafariWebExtensionAPIs.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/dbeff6e414b9/AdoptingNewSafariWebExtensionAPIs.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility": {
+      "abstract": [
+        {
+          "text": "Review your Safari web extension implementation plan, manifest keys, and JavaScript API usage for compatibility with other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing your Safari web extension’s browser compatibility",
+      "type": "topic",
+      "url": "/documentation/safariservices/assessing-your-safari-web-extension-s-browser-compatibility"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Support Dark Mode, reduce memory and power usage, and ensure feature compatibility to improve your web extension experience in Safari and web apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing your web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/optimizing-your-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms": {
+      "abstract": [
+        {
+          "text": "Let users install your extension on one device and then use and manage the extension on all their other iOS and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing Safari web extensions across devices and platforms",
+      "type": "topic",
+      "url": "/documentation/safariservices/syncing-safari-web-extensions-across-devices-and-platforms"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Use developer resources to investigate and resolve common problems with Safari web extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+    },
+    "https://developer.apple.com/wwdc21/10027/": {
+      "identifier": "https://developer.apple.com/wwdc21/10027/",
+      "title": "10027: Explore Safari Web Extension Improvements",
+      "titleInlineContent": [
+        {
+          "text": "10027: Explore Safari Web Extension Improvements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10027/"
+    },
+    "https://developer.apple.com/wwdc21/10104/": {
+      "identifier": "https://developer.apple.com/wwdc21/10104/",
+      "title": "10104: Meet Safari Web Extensions on iOS",
+      "titleInlineContent": [
+        {
+          "text": "10104: Meet Safari Web Extensions on iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10104/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "dbeff6e414b9/AdoptingNewSafariWebExtensionAPIs.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extension-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+        "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+        "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+        "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+      ],
+      "title": "Extension improvements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extension-improvements",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/optimizing-your-web-extension-for-safari",
+                "doc://com.apple.safariservices/documentation/SafariServices/syncing-safari-web-extensions-across-devices-and-platforms",
+                "doc://com.apple.safariservices/documentation/SafariServices/assessing-your-safari-web-extension-s-browser-compatibility",
+                "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension"
+              ],
+              "title": "Extension improvements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/adopting-new-safari-web-extension-apis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/adopting-new-safari-web-extension-apis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

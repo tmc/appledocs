@@ -1,0 +1,464 @@
+{
+  "abstract": [
+    {
+      "text": "The time zone currently used by the system.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+        "doc://com.apple.documentation/documentation/foundation/timezone",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1387231,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTimeZone(cpy)systemTimeZone",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class var "
+      },
+      {
+        "kind": "identifier",
+        "text": "system"
+      },
+      {
+        "kind": "text",
+        "text": ": TimeZone"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSTimeZone"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "system"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "system"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timezone",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation8TimeZoneV",
+              "text": "TimeZone"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the current system time zone cannot be determined, the GMT time zone is used instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class property, its value is cached by the app and doesn't update if the user subsequently changes the system time zone. In order for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " property to reflect the new time zone, you must first call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to clear the cached value. Then, the next time you access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " property, it returns the current system time zone, and caches that value. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you access the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class property, assign its value to a variable, and clear the cached value for the property by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the object stored in the variable doesn't update to reflect the new system time zone. Contrast this behavior with that of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property, which returns a proxy object that always reflects the current system time zone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTimeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone": {
+      "abstract": [
+        {
+          "text": "Clears any time zone value cached for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetSystemTimeZone"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetSystemTimeZone()",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387189-resetsystemtimezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local": {
+      "abstract": [
+        {
+          "text": "An object that tracks the current system time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "local"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "local",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387209-local"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system": {
+      "abstract": [
+        {
+          "text": "The time zone currently used by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "system"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387231-system",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "system",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387231-system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default": {
+      "abstract": [
+        {
+          "text": "The default time zone for the current app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimezone/1387244-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timezone": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/timezone"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387209-local",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387189-resetsystemtimezone",
+        "doc://com.apple.documentation/documentation/foundation/nstimezone/1387244-default"
+      ],
+      "title": "Working with System Time Zones"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstimezone/1387231-systemtimezone"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nstimezone/1387231-system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

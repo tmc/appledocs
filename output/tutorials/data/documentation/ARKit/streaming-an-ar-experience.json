@@ -1,0 +1,2351 @@
+{
+  "abstract": [
+    {
+      "text": "Control an AR experience remotely by transferring sensor and user input over the network.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Streaming an AR experience"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app, AR Stream, shares the augmented camera feed with a peer device, and enables it to take control by interacting with the remote AR experience. For example, a user shares their screen depicting their physical environment with a computer technician who assists the user with troubleshooting a hardware issue. As the user views a broken device resting on a table from different angles, the remote technician interacts with the experience by augmenting the user’s camera feed with textual annotations that describe the necessary steps to repair the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ar-streaming-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the remote user to see the user’s physical environment, AR Stream shares device sensor information across the network. By compressing camera frames with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app provides the peer with good visibility of the user’s view by displaying the remote experience at a high frame rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR Stream also sends mathematical details about the user’s real-world pose to the remote user to process the peer’s touch input. The sample app sends the session’s inverse view and inverse projection matrices to the remote device so it can calculate a location in the user’s environment where the remote user taps. To indicate when the remote user taps the screen, AR Stream places a helpful virtual indicator at the tap location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-a-camera-feed-and-monitor-the-session",
+          "level": 2,
+          "text": "Display a camera feed and monitor the session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR Stream displays the device’s camera feed by configuring a window with a view controller that displays an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (see the sample project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file). By default,",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " runs a session with a world-tracking configuration ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To receive notifications of the view’s session events, the project’s view controller (see ",
+              "type": "text"
+            },
+            {
+              "code": "ViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the sample project) assigns itself as the session delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.session.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Capture-frames",
+          "level": 2,
+          "text": "Capture frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show the user’s physical environment to the remote user, AR Stream uses ReplayKit to open a screen-recording session with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ReplayKit/RPScreenRecorder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RPScreenRecorder.shared().startCapture {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The screen recording captures the contents of the app’s main window, which includes any augmentations that RealityKit may add to the camera feed. In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ReplayKit/RPScreenRecorder/startCapture(handler:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " closure, the sample project passes the captured screen (",
+              "type": "text"
+            },
+            {
+              "code": "sampleBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to the ",
+              "type": "text"
+            },
+            {
+              "code": "compressAndSend",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function for eventual transmission over the network. The sample project also passes in the session’s current frame to conform the screen captures to the camera-image size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if type == .video {",
+            "    guard let currentFrame = arView.session.currentFrame else { return }",
+            "    videoProcessor.compressAndSend(sampleBuffer, arFrame: currentFrame) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " provides a  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/snapshot(saveToHDR:completion:)-66jzu",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to capture the contents of the view, ReplayKit’s screen recording is more conducive to real-time capture.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Compress-and-send-frames-to-the-peer",
+          "level": 2,
+          "text": "Compress and send frames to the peer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project’s ",
+              "type": "text"
+            },
+            {
+              "code": "VideoProcessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class implements the ",
+              "type": "text"
+            },
+            {
+              "code": "compressAndSend",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, which uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTCompressionSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to compress the captured video frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VTCompressionSessionEncodeFrame(compressionSession,",
+            "    imageBuffer: imageBuffer,",
+            "    presentationTimeStamp: presentationTimeStamp,",
+            "    duration: .invalid,",
+            "    frameProperties: nil,",
+            "    infoFlagsOut: nil) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure timely compression for the real-time streaming use case of the app, the video processor enables the compression session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_RealTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VTSessionSetProperty(compressionSession, key: kVTCompressionPropertyKey_RealTime,",
+            "    value: kCFBooleanTrue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTCompressionSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " finishes encoding a frame, the app creates a ",
+              "type": "text"
+            },
+            {
+              "code": "VideoFrameData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance using the compressed frame and the inverse view and projection matrices from the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let videoFrameData = VideoFrameData(sampleBuffer: sampleBuffer, arFrame: arFrame)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project serializes and encodes the ",
+              "type": "text"
+            },
+            {
+              "code": "VideoFrameData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as JSON data, and passes the data to its ",
+              "type": "text"
+            },
+            {
+              "code": "sendHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let data = try JSONEncoder().encode(videoFrameData)",
+            "    // Invoke the caller's handler to send the data.",
+            "    sendHandler(data)",
+            "} catch {",
+            "    fatalError(\"Failed to encode videoFrameData as JSON with error: \"",
+            "        + error.localizedDescription)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The screen-recording closure defines the send handler to contain code that uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to transmit the video data over the local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "multipeerSession.sendToAllPeers(data, reliably: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-and-decompress-peer-frames",
+          "level": 2,
+          "text": "Receive and decompress peer frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app receives ",
+              "type": "text"
+            },
+            {
+              "code": "VideoFrameData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from another device, it decodes the JSON data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func receivedData(_ data: Data, from peer: MCPeerID) {",
+            "    // Try to decode the received data and handle it appropriately.",
+            "    if let videoFrameData = try? JSONDecoder().decode(VideoFrameData.self,",
+            "        from: data) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To house the transmitted video frame, AR Stream reconstructs a sample buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sampleBuffer = videoFrameData.makeSampleBuffer()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can display only uncompressed data, so the video processor decompresses the video frame using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " within its ",
+              "type": "text"
+            },
+            {
+              "code": "decompress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VTDecompressionSessionDecodeFrame(decompressionSession,",
+            "    sampleBuffer: sampleBuffer,",
+            "    flags: [],",
+            "    infoFlagsOut: nil) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR Stream draws the video frame to the screen using its renderer object (see ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the sample project). The renderer enqueues the frame data for imminent display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Update the PipView aspect ratio to match the camera-image dimensions.",
+            "let width = CGFloat(CVPixelBufferGetWidth(imageBuffer))",
+            "let height = CGFloat(CVPixelBufferGetHeight(imageBuffer))",
+            "overlayViewController?.setPipViewConstraints(width: width, height: height)",
+            "",
+            "overlayViewController?.renderer.enqueueFrame(",
+            "    pixelBuffer: imageBuffer,",
+            "    presentationTimeStamp: presentationTimeStamp,",
+            "    inverseProjectionMatrix: videoFrameData.inverseProjectionMatrix,",
+            "    inverseViewMatrix: videoFrameData.inverseViewMatrix)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-remote-users-camera-feed",
+          "level": 2,
+          "text": "Display the remote user’s camera feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR Stream defines an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, ",
+              "type": "text"
+            },
+            {
+              "code": "OverlayViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that displays the remote user’s camera feed on top of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by placing a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "picture-in-picture",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (PiP) view at the bottom left of the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ar-streaming-pip-view",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project’s ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configures the PiP view in a secondary window. Because ReplayKit’s screen recording captures only the main window, the PiP view displays only the remote user’s camera feed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "overlayWindow = UIWindow(windowScene: windowScene)",
+            "",
+            "let storyBoard = UIStoryboard(name: \"Main\", bundle: nil)",
+            "let overlayViewController = storyBoard.instantiateViewController(",
+            "    identifier: \"OverlayViewController\")",
+            "overlayWindow.rootViewController = overlayViewController",
+            "overlayWindow.makeKeyAndVisible()",
+            "",
+            "// Make sure the overlayWindow is always above the main window.",
+            "overlayWindow.windowLevel = window.windowLevel + 1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Send-gestures-to-the-peer",
+          "level": 2,
+          "text": "Send gestures to the peer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the remote user taps the PiP view, the project responds by recording the tap location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "func tapped(_ sender: UITapGestureRecognizer) {",
+            "    guard let view = sender.view else { return }",
+            "    let location = sender.location(in: view)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project uses the inverse matrices that the user sends to enable the remote user to interact with the user’s AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let inverseProjectionMatrix = renderer.lastDrawnInverseProjectionMatrix,",
+            "    let inverseViewMatrix = renderer.lastDrawnInverseViewMatrix else {",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project converts the tap location and inverse matrices into a ray cast that describes the location and direction in the user’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " world coordinate system (see the ",
+              "type": "text"
+            },
+            {
+              "code": "makeRay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in the sample project).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let rayQuery = makeRay(from: location,",
+            "    viewportSize: view.frame.size,",
+            "    inverseProjectionMatrix: simd_float4x4(inverseProjectionMatrix),",
+            "    inverseViewMatrix: simd_float4x4(inverseViewMatrix))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample project encodes the ray cast as JSON data and sends it to the connected peer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let data = try JSONEncoder().encode(rayQuery)",
+            "multipeerSession?.sendToAllPeers(data, reliably: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-peer-gestures",
+          "level": 2,
+          "text": "Handle peer gestures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "ViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "receivedData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function receives a ",
+              "type": "text"
+            },
+            {
+              "code": "Ray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object when the remote user taps the PiP view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "} else if let rayQuery = try? JSONDecoder().decode(Ray.self, from: data) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hand the remote user’s tap gesture to ARKit as if the user is tapping the screen, the sample project uses the ",
+              "type": "text"
+            },
+            {
+              "code": "Ray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "trackedRaycast = arView.session.trackedRaycast(",
+            "    ARRaycastQuery(",
+            "        origin: rayQuery.origin,",
+            "        direction: rayQuery.direction,",
+            "        allowing: .estimatedPlane,",
+            "        alignment: .any)",
+            "    ) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the tracked ray cast intersects with a surface in the user’s environment, the app records the resulting location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let result = raycastResults.first {",
+            "    marker.transform.matrix = result.worldTransform"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-virtual-content",
+          "level": 2,
+          "text": "Display virtual content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the remote user to interact with the user’s AR experience, the app places a virtual ball at the location in the environment where the remote user taps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ar-streaming-virtual-content",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "AR Stream displays a virtual ball for simplicity. An app may require different virtual content, such as an arrow that points to a precise spot, or virtual text that explains the importance of a location. For an example app that displays text at a real-world location, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project creates this visual marker using a ball-shaped ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let marker: AnchorEntity = {",
+            "    let entity = AnchorEntity()",
+            "    entity.addChild(ModelEntity(mesh: .generateSphere(radius: 0.05)))",
+            "    entity.isEnabled = false",
+            "    return entity",
+            "}()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At app launch, the marker is invisible by default as the project readies the marker for display by adding it to the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.scene.addAnchor(marker)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app receives a ",
+              "type": "text"
+            },
+            {
+              "code": "Ray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the remote user and adjusts the marker’s position, the project displays the marker by enabling it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "marker.isEnabled = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "0711c38245c2/StreamingAnARExperience.zip": {
+      "checksum": "0711c38245c2566b53df0fdf12c032df184e9a08dbf406ab57a4df4f7da12417e4402c8890539565d5e0891220ab3b9d06c3d332901db2e2809d65bacbbbb1ce",
+      "identifier": "0711c38245c2/StreamingAnARExperience.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0711c38245c2/StreamingAnARExperience.zip"
+    },
+    "ar-streaming-hero": {
+      "alt": "An illustration of a user's device viewing an AR experience in front of a real-world computer tower on a table. The screen displays the tower through the device’s camera feed, which the app augments with explanatory text that the remote technician creates.",
+      "identifier": "ar-streaming-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0bb1908e2ec930a83a07e11d1f863f6/ar-streaming-hero.png"
+        }
+      ]
+    },
+    "ar-streaming-pip-view": {
+      "alt": "A screenshot of the app at launch that displays the camera feed of the user’s AR experience at full size. At the bottom left, the app overlays a smaller view — or PiP view — that represents the camera feed of the remote user’s experience.",
+      "identifier": "ar-streaming-pip-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10a488f59f21fe469045f05871130c14/ar-streaming-pip-view.jpg"
+        }
+      ]
+    },
+    "ar-streaming-virtual-content": {
+      "alt": "A screenshot of the app that displays the camera feed of the user’s AR experience at full size. A purple virtual ball rests on a real desk in the remote user’s PiP view to indicate where the user tapped the remote user’s PiP view.",
+      "identifier": "ar-streaming-virtual-content",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8268b999db44dca704b0c092567df256/ar-streaming-virtual-content.jpg"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame": {
+      "abstract": [
+        {
+          "text": "A video image captured as part of a session with position-tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for another user in multiuser augmented reality experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARParticipantAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARParticipantAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARParticipantAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arparticipantanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData": {
+      "abstract": [
+        {
+          "text": "An object that holds information that a user has collected about the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollaborationData"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollaborationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession.CollaborationData",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/collaborationdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast": {
+      "abstract": [
+        {
+          "text": "A raycast query that ARKit repeats in succession to give you refined results over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARTrackedRaycast"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackedRaycast"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARTrackedRaycast",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackedraycast"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session": {
+      "abstract": [
+        {
+          "text": "Enable nearby devices to share an AR experience by using a peer-to-peer multiuser strategy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a collaborative session",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-collaborative-session"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience": {
+      "abstract": [
+        {
+          "text": "Enable nearby devices to share an AR experience by using a host-guest multiuser strategy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a multiuser AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-multiuser-ar-experience"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "Annotate an AR experience with virtual sticky notes that you display onscreen over real and virtual objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-screen-annotations-for-objects-in-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating screen annotations for objects in an AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-screen-annotations-for-objects-in-an-ar-experience"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView/snapshot(saveToHDR:completion:)-66jzu": {
+      "abstract": [
+        {
+          "text": "Takes a screenshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "saveToHDR"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@RealityKit@objc(cs)ARView",
+          "text": "ARView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC5Imagea",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/snapshot(saveToHDR:completion:)-66jzu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "snapshot(saveToHDR:completion:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView/snapshot(saveToHDR:completion:)-66jzu"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelEntity"
+    },
+    "doc://com.apple.documentation/documentation/ReplayKit/RPScreenRecorder": {
+      "abstract": [
+        {
+          "text": "The shared recorder object that provides the ability to record audio and video of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPScreenRecorder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ReplayKit/RPScreenRecorder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RPScreenRecorder",
+      "type": "topic",
+      "url": "/documentation/ReplayKit/RPScreenRecorder"
+    },
+    "doc://com.apple.documentation/documentation/ReplayKit/RPScreenRecorder/startCapture(handler:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts screen and audio capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startCapture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "captureHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@RPSampleBufferType",
+          "text": "RPSampleBufferType"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ReplayKit/RPScreenRecorder/startCapture(handler:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startCapture(handler:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/ReplayKit/RPScreenRecorder/startCapture(handler:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTCompressionSession": {
+      "abstract": [
+        {
+          "text": "A reference to a VideoToolbox compression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTCompressionSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTCompressionSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTCompressionSession",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTCompressionSession"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSession": {
+      "abstract": [
+        {
+          "text": "A reference to a decompression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTDecompressionSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTDecompressionSession",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTDecompressionSession"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_RealTime": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether it’s recommended that the video encoder perform compression in real time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCompressionPropertyKey_RealTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/kVTCompressionPropertyKey_RealTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTCompressionPropertyKey_RealTime",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/kVTCompressionPropertyKey_RealTime"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "0711c38245c2/StreamingAnARExperience.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shared-Experiences",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session",
+        "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+        "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData"
+      ],
+      "title": "Shared Experiences"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shared-Experiences",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session",
+                "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+                "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData"
+              ],
+              "title": "Shared Experiences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/title",
+          "value": "ARParticipantAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARParticipantAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARParticipantAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/title",
+          "value": "ARCollaborationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCollaborationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCollaborationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ReplayKit~1RPScreenRecorder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RPScreenRecorder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ReplayKit~1RPScreenRecorder~1startCapture(handler:completionHandler:)/title",
+          "value": "startCaptureWithHandler:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ReplayKit~1RPScreenRecorder~1startCapture(handler:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "startCaptureWithHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#*$@S@opaqueCMSampleBuffer#$@E@RPSampleBufferType#*$objc(cs)NSError)",
+              "text": "void (^)(struct opaqueCMSampleBuffer *, enum RPSampleBufferType, NSError *)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "captureHandler"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#*$objc(cs)NSError)",
+              "text": "void (^)(NSError *)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSession/title",
+          "value": "VTDecompressionSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OpaqueVTDecompressionSession",
+              "text": "OpaqueVTDecompressionSession"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTDecompressionSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTCompressionSession/title",
+          "value": "VTCompressionSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTCompressionSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OpaqueVTCompressionSession",
+              "text": "OpaqueVTCompressionSession"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTCompressionSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/title",
+          "value": "ARTrackedRaycast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackedRaycast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackedRaycast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1kVTCompressionPropertyKey_RealTime/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTCompressionPropertyKey_RealTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/streaming-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/streaming-an-ar-experience"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

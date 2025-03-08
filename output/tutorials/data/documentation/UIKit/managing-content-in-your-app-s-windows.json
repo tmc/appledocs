@@ -1,0 +1,993 @@
+{
+  "abstract": [
+    {
+      "text": "Build your app’s user interface from view controllers, and change the currently visible view controller when you want to display new content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/managing-content-in-your-app-s-windows"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing content in your app’s windows"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each scene in your app’s UI contains a window object and one or more view objects. The window serves as an invisible container for the rest of your UI, acts as a top-level container for your views, and routes events to them. The views provide the actual content that users see onscreen, drawing text, images, and other types of custom content. Windows are long-lived objects, and you dismiss them only when tearing down your scene’s entire UI. By contrast, you might change the views in that window frequently, particularly when you want to display new content or information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376045",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage your views effectively and to make it easy to add and remove them from a window, UIKit provides view controllers. A view controller manages a single set of views for your app, and it keeps the information in those views up-to-date. Each window has a root view controller, which you use to specify the window’s initial set of views. When you want to change that set of views, you tell UIKit to present or dismiss additional view controllers. UIKit handles the transition from one set of views to another, and manages your app’s entire interface through your view controller objects. As a result, view controllers play an important role in implementing your UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-view-controllers-for-each-unique-page-of-content",
+          "level": 3,
+          "text": "Define view controllers for each unique page of content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing the UI for a new app, first divide that UI into distinct pages of content. Each page represents a unique way to display your app’s custom information. For example, one page might display rows of data in a table, another might display images in a grid, and another might display a set of text fields for capturing data. Only the structure and overall appearance of each page is important; the specific data you display from each page isn’t. In fact, many apps use the same type of page in multiple places, filling each copy with different sets of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3375401",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each distinct page, define a view controller to represent that page and manage its corresponding views. Defining a view controller always involves subclassing and adding custom behavior. Every view controller needs to do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill its views with data, and update those views when data changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Report data changes back to your data model objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adjust the size, position, and visibility of views to match the current environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Facilitate transitions to other pages of content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-the-navigation-model-for-your-content",
+          "level": 3,
+          "text": "Choose the navigation model for your content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simple apps might display only one screen’s worth of content, but most apps have multiple screen’s worth of content to display. To make navigating between those view controllers easy, UIKit provides container view controllers that implement common navigation models.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A container view controller is a special type of view controller that manages other view controllers, which are known as its child view controllers. The container’s job is to position the root view of each child view controller within the bounds of its own view. Containers may present only one child at a time, or multiple children simultaneously. Containers may also animate their children’s views on and off screen, to provide visual feedback about the type of navigation in effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use the UIKit container view controllers to implement the common navigation models:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " manages a stack of child view controllers in a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "navigation interface",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Pushing a new view controller onto the stack replaces the previous view controller. Popping a view controller reveals the view controller underneath.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " manages two child view controllers side-by-side (when space is available) in a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "split-view interface",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". (When space is constrained, the system displays those view controllers in a navigation interface.) This type of interface is also known as a primary-detail interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " displays a row of buttons along the bottom of a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "tab-bar interface",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Selecting a button displays the child view controller associated with that button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " manages an ordered sequence of child view controllers, presenting only one or two at a time, in a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "paged interface",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The user navigates between those view controllers by swiping or tapping.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3376044",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can combine multiple UIKit container view controllers to create new navigation models. For example, it’s common to place a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the left pane (or primary pane) of a split-view interface. You can also create new container view controllers of your own, allowing you to create entirely new navigation models that are unique to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to container view controllers, you can replace the contents of the current view controller with a new view controller at any time. Presenting a new view controller covers the previous view controller wholly or partially. Typically, you present new view controllers only as a temporary interruption to the current flow or when your app’s UI is very simple. Don’t use them for more complex navigation schemes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to create your own container view controllers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-a-root-view-controller-to-each-window",
+          "level": 3,
+          "text": "Assign a root view controller to each window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The root view controller defines the initial navigation model of your window. For a scene-based app, the root view controller is the initial view controller of your scene’s storyboard file. If you create your windows programmatically, assign a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindow/rootViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the window before showing the window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3375400",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the root view controller is a container, you must also configure any child view controllers displayed by that container. Most container view controllers provide minimal UI of their own; the children provide the rest of the content. For example, the only visible content provided by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the separator line between its left and right child view controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages navigation between pages of content, where a subview controller manages each page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipageviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISplitViewController": {
+      "abstract": [
+        {
+          "text": "A container view controller that implements a hierarchical interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISplitViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISplitViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISplitViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisplitviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController": {
+      "abstract": [
+        {
+          "text": "A container view controller that manages a multiselection interface, where the selection determines which child view controller to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindow/rootViewController": {
+      "abstract": [
+        {
+          "text": "The root view controller for the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindow/rootViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rootViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "rootViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindow/rootviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller": {
+      "abstract": [
+        {
+          "text": "Create a composite interface by combining content from one or more view controllers with other custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-container-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a custom container view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-container-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller": {
+      "abstract": [
+        {
+          "text": "Build a view controller in storyboards, configure it with custom views, and fill those views with your app’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying and managing views with a view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-and-managing-views-with-a-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls": {
+      "abstract": [
+        {
+          "text": "Customize your app’s user interface with views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "UIKit Catalog: Creating and customizing views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-catalog-creating-and-customizing-views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "media-3375400": {
+      "alt": "An illustration of the view controllers involved in a typical split view controller interface. ",
+      "identifier": "media-3375400",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c335bb4111a652669f3e7a30a29f68b/media-3375400@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f5a2c5ef55744be0c602d3be040ecfc/media-3375400~dark@2x.png"
+        }
+      ]
+    },
+    "media-3375401": {
+      "alt": "An illustration showing three interfaces. One contains a table, the second contains a grid of cells, and the third contains a data-entry interface.",
+      "identifier": "media-3375401",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/91519a26358845f62ced5ed78db7d193/media-3375401@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f33d9f99e2550bef926e617d9064a3c7/media-3375401~dark@2x.png"
+        }
+      ]
+    },
+    "media-3376044": {
+      "alt": "An illustration of the standard UIKit container interface types, including split-view controller, navigation controller, tab-bar controller, and page-view controller.",
+      "identifier": "media-3376044",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9eec8ab6e799d24b485c52182d413d4d/media-3376044@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37998aea8cc45caa25b7384f47c461a5/media-3376044~dark@2x.png"
+        }
+      ]
+    },
+    "media-3376045": {
+      "alt": "An architectural diagram showing a window containing several views. A view controller manages the views, and the window has a reference to the view controller.",
+      "identifier": "media-3376045",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96d13b7bb97f01ef1a919279d08580e2/media-3376045@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5b4b34498021dbef58709dd0922dbd70/media-3376045~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/title",
+          "value": "UISplitViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISplitViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISplitViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindow~1rootViewController/title",
+          "value": "rootViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindow~1rootViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rootViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/title",
+          "value": "UIPageViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/title",
+          "value": "UITabBarController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/managing-content-in-your-app-s-windows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/managing-content-in-your-app-s-windows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

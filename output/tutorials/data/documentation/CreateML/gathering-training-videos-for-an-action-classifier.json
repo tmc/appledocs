@@ -1,0 +1,579 @@
+{
+  "abstract": [
+    {
+      "text": "Collect quality example videos that effectively train action classifiers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Gathering Training Videos for an Action Classifier"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a robust action classifier by collecting high-quality videos that clearly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "show a person performing each action you want the classifier to recognize. In addition,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gather videos of unrelated actions the classifier might witness. Use these to create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "negative class",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of irrelevant actions, so the classifier distinguishes between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these two types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about how to create an action classifier, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collect-Videos-for-Each-Action",
+          "level": 3,
+          "text": "Collect Videos for Each Action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Action classifiers learn from example videos of a human performing an action. Create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ML uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to locate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key body parts, called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "landmarks",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", in each video frame. Action classifiers learn",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how to recognize a human body’s movements by tracking these landmarks frame by frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Keep the landmarks clearly visible by applying the following guidelines as you record",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example videos, or when assessing videos from other sources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keep the camera still.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Record one person at a time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capture the person’s entire body.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the environment has sufficient lighting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the person’s clothing isn’t loose or flowing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the person’s clothing sufficiently contrasts with the environment’s background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove foreground objects that might obscure the person as they perform the action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the person performs multiple instances of a single action in a recording, minimize",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the time between repetitions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically want an action classifier to work with any human that uses your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Teach your model to account for natural variations by including videos of variations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the action you want the classifier to recognize, such as how the person holds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their head or places their arms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want your app to recognize actions more generally or from various camera angles,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add more example videos that capture the action from multiple directions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collect-Videos-for-a-Negative-Class",
+          "level": 3,
+          "text": "Collect Videos for a Negative Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A negative class is a category of one or more actions that aren’t important to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action classifier. Negative classes help the classifier distinguish between the actions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want it to recognize and potential nonactions it might encounter in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a negative class by gathering example videos of all unrelated nonactions the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classifier might observe. For example, a negative class for an exercise-action classifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might include examples of individuals walking in and out frame. Including this negative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class ensures that the action classifier is less likely to confuse walking for an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exercise, such as a lunge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make additional negative classes for nonactions that take different spans of time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or for static versus dynamic nonactions. For example, the exercise classifier might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have another negative class of static actions that include examples of individuals",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "standing still or sitting in a chair.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source": {
+      "abstract": [
+        {
+          "text": "Arrange your training videos in multiple folders with labels that describe actions,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or in a single folder with an annotation file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an Action Classifier Data Source",
+      "type": "topic",
+      "url": "/documentation/createml/building-an-action-classifier-data-source"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to recognize a person’s body movements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an Action Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-action-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Action-Classifier-Data-Sources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source"
+      ],
+      "title": "Action Classifier Data Sources"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/gathering-training-videos-for-an-action-classifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

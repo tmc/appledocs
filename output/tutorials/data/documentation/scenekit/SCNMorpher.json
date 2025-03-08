@@ -1,0 +1,1845 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages smooth transitions between a node’s base geometry and one or more target geometries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNMorpher",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNMorpher"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNMorpher"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNMorpher"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2929789",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You control these transitions by associating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with a node using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/morpher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The morpher maintains an array of target geometries and a set of weights associated with each. When all weights are zero, the surface takes the form of the base geometry (from the node’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/geometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property). When you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to increase a weight to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the surface takes the form of the geometry at the corresponding index in the morpher’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/targets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array. If you use a variety of weight values for several targets, the surface takes a form that proportionally interpolates between the target geometries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also animate weights implicitly or explicitly using keypath animations. For example, the following code creates a morph animation that transitions one target weight back and forth repeatedly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@\"morpher.weights[0]\"];",
+            "animation.fromValue = @0.0;",
+            "animation.toValue = @1.0;",
+            "animation.autoreverses = YES;",
+            "animation.repeatCount = INFINITY;",
+            "animation.duration = 5;",
+            "[node addAnimation:animation forKey:nil];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A morpher and its target geometries may be loaded from a scene file or created programmatically. The base geometry and all target geometries must be topologically identical—that is, they must contain the same number and structural arrangement of vertices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable": {
+      "abstract": [
+        {
+          "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimatable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher": {
+      "abstract": [
+        {
+          "text": "An object that manages smooth transitions between a node’s base geometry and one or more target geometries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMorpher"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMorpher"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMorpher",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/calculationMode": {
+      "abstract": [
+        {
+          "text": "The interpolation formula for blending between target geometries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNMorpherCalculationMode",
+          "text": "SCNMorpherCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/calculationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "calculationMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/calculationmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetAt:)": {
+      "abstract": [
+        {
+          "text": "Specifies a weight value at a specified target index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTargetAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWeight:forTargetAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWeight(_:forTargetAt:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/setweight(_:fortargetat:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetNamed:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTargetNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWeight:forTargetNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWeight(_:forTargetNamed:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/setweight(_:fortargetnamed:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/targets": {
+      "abstract": [
+        {
+          "text": "The array of target geometries to morph between.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometry",
+          "text": "SCNGeometry"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/targets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targets"
+        }
+      ],
+      "role": "symbol",
+      "title": "targets",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/targets"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/unifiesNormals": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unifiesNormals"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/unifiesNormals",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unifiesNormals"
+        }
+      ],
+      "role": "symbol",
+      "title": "unifiesNormals",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/unifiesnormals"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetAt:)": {
+      "abstract": [
+        {
+          "text": "Returns the weight value for the specified target index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTargetAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "weightForTargetAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "weight(forTargetAt:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/weight(fortargetat:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetNamed:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTargetNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "weightForTargetNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "weight(forTargetNamed:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/weight(fortargetnamed:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weights": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weights"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "weights"
+        }
+      ],
+      "role": "symbol",
+      "title": "weights",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorpher/weights"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpherCalculationMode": {
+      "abstract": [
+        {
+          "text": "The interpolation formulas for blending between target geometries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMorpherCalculationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpherCalculationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMorpherCalculationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMorpherCalculationMode",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmorphercalculationmode"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/geometry": {
+      "abstract": [
+        {
+          "text": "The geometry attached to the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNGeometry",
+          "text": "SCNGeometry"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/geometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/geometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/morpher": {
+      "abstract": [
+        {
+          "text": "The morpher object responsible for blending the node’s geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "morpher"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNMorpher",
+          "text": "SCNMorpher"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNode/morpher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "morpher"
+        }
+      ],
+      "role": "symbol",
+      "title": "morpher",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnode/morpher"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner": {
+      "abstract": [
+        {
+          "text": "An object that manages the relationship between skeletal animations and the nodes and geometries they animate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSkinner"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSkinner"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSkinner",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnskinner"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/animation": {
+      "abstract": [
+        {
+          "text": "Create declarative animations that move elements of a scene in predetermined ways, or manage animations imported with external authoring tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/animation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation",
+      "type": "topic",
+      "url": "/documentation/scenekit/animation"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/constraints": {
+      "abstract": [
+        {
+          "text": "Automatically adjust the position or orientation of a node based on specified rules.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/constraints",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Constraints",
+      "type": "topic",
+      "url": "/documentation/scenekit/constraints"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-2929789": {
+      "alt": null,
+      "identifier": "media-2929789",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68916ebf85cf5b3fb1d8c3a2d75abf89/media-2929789@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation-and-Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/animation",
+        "doc://com.apple.scenekit/documentation/SceneKit/constraints",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner"
+      ],
+      "title": "Animation and Constraints"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Specifying-Morph-Targets",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/targets"
+      ],
+      "title": "Specifying Morph Targets"
+    },
+    {
+      "anchor": "Blending-between-Morph-Targets",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetAt:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetAt:)"
+      ],
+      "title": "Blending between Morph Targets"
+    },
+    {
+      "anchor": "Changing-Interpolation-Mode",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/calculationMode"
+      ],
+      "title": "Changing Interpolation Mode"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpherCalculationMode"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/unifiesNormals",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weights"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetNamed:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetNamed:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNMorpher"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Specifying-Morph-Targets",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/targets"
+              ],
+              "title": "Specifying Morph Targets"
+            },
+            {
+              "anchor": "Blending-between-Morph-Targets",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetAt:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetAt:)"
+              ],
+              "title": "Blending between Morph Targets"
+            },
+            {
+              "anchor": "Changing-Interpolation-Mode",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/calculationMode"
+              ],
+              "title": "Changing Interpolation Mode"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpherCalculationMode"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/unifiesNormals",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weights"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/setWeight(_:forTargetNamed:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNMorpher/weight(forTargetNamed:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animation-and-Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/animation",
+                "doc://com.apple.scenekit/documentation/SceneKit/constraints",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSkinner"
+              ],
+              "title": "Animation and Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNMorpher"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1targets/title",
+          "value": "targets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1targets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "targets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1unifiesNormals/title",
+          "value": "unifiesNormals"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1unifiesNormals/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unifiesNormals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1weights/title",
+          "value": "weights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1weights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "weights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1weight(forTargetNamed:)/title",
+          "value": "weightForTargetNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1weight(forTargetNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "weightForTargetNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpherCalculationMode/title",
+          "value": "SCNMorpherCalculationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpherCalculationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpherCalculationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpherCalculationMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpherCalculationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1weight(forTargetAt:)/title",
+          "value": "weightForTargetAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1weight(forTargetAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "weightForTargetAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/title",
+          "value": "SCNMorpher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMorpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1setWeight(_:forTargetAt:)/title",
+          "value": "setWeight:forTargetAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1setWeight(_:forTargetAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWeight:forTargetAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1geometry/title",
+          "value": "geometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1geometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1setWeight(_:forTargetNamed:)/title",
+          "value": "setWeight:forTargetNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1setWeight(_:forTargetNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWeight:forTargetNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner/title",
+          "value": "SCNSkinner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSkinner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSkinner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1morpher/title",
+          "value": "morpher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNode~1morpher/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "morpher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1calculationMode/title",
+          "value": "calculationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMorpher~1calculationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "calculationMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnmorpher"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnmorpher"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1417 @@
+{
+  "abstract": [
+    {
+      "text": "A type that applies a custom appearance to all labels within a view.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI10LabelStyleP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LabelStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LabelStyle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "LabelStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LabelStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the current label style for a view hierarchy, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A type conforming to this protocol inherits ",
+              "type": "text"
+            },
+            {
+              "code": "@preconcurrency @MainActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isolation from the protocol if the conformance is included in the type’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "base declaration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyCustomType: Transition {",
+            "    // `@preconcurrency @MainActor` isolation by default",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Isolation to the main actor is the default, but it’s not required. Declare",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the conformance in an extension to opt out of main actor isolation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyCustomType: Transition {",
+            "    // `nonisolated` by default",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultLabelStyle": {
+      "abstract": [
+        {
+          "text": "The default label style in the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultLabelStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultLabelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultLabelStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/defaultlabelstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/IconOnlyLabelStyle": {
+      "abstract": [
+        {
+          "text": "A label style that only displays the icon of the label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IconOnlyLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/IconOnlyLabelStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IconOnlyLabelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "IconOnlyLabelStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/icononlylabelstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle": {
+      "abstract": [
+        {
+          "text": "A type that applies a custom appearance to all labels within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LabelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LabelStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/Body": {
+      "abstract": [
+        {
+          "text": "A view that represents the body of a label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/Body",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/body"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/Configuration": {
+      "abstract": [
+        {
+          "text": "The properties of a label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LabelStyle.Configuration",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/configuration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/automatic": {
+      "abstract": [
+        {
+          "text": "A label style that resolves its appearance automatically based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "current context.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "DefaultLabelStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17DefaultLabelStyleV",
+          "text": "DefaultLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/automatic"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/iconOnly": {
+      "abstract": [
+        {
+          "text": "A label style that only displays the icon of the label.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "IconOnlyLabelStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iconOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18IconOnlyLabelStyleV",
+          "text": "IconOnlyLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/iconOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iconOnly",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/icononly"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/makeBody(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that represents the body of a label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBody"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10LabelStyleP13Configurationa",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10LabelStyleP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/makeBody(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeBody(configuration:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/makebody(configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/titleAndIcon": {
+      "abstract": [
+        {
+          "text": "A label style that shows both the title and icon of the label using a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "system-standard layout.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "TitleAndIconLabelStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleAndIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22TitleAndIconLabelStyleV",
+          "text": "TitleAndIconLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/titleAndIcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "titleAndIcon",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/titleandicon"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/titleOnly": {
+      "abstract": [
+        {
+          "text": "A label style that only displays the title of the label.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "TitleOnlyLabelStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19TitleOnlyLabelStyleV",
+          "text": "TitleOnlyLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/titleOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "titleOnly",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyle/titleonly"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LabelStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LabelStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LabelStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/labelstyleconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditorStyle": {
+      "abstract": [
+        {
+          "text": "A specification for the appearance and interaction of a text editor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextEditorStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditorStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextEditorStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextEditorStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/texteditorstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditorStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a text editor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextEditorStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditorStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextEditorStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextEditorStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/texteditorstyleconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFieldStyle": {
+      "abstract": [
+        {
+          "text": "A specification for the appearance and interaction of a text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextFieldStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFieldStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextFieldStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextFieldStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/textfieldstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleAndIconLabelStyle": {
+      "abstract": [
+        {
+          "text": "A label style that shows both the title and icon of the label using a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "system-standard layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TitleAndIconLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleAndIconLabelStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TitleAndIconLabelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TitleAndIconLabelStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/titleandiconlabelstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleOnlyLabelStyle": {
+      "abstract": [
+        {
+          "text": "A label style that only displays the title of the label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TitleOnlyLabelStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleOnlyLabelStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TitleOnlyLabelStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TitleOnlyLabelStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/titleonlylabelstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for labels within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labelStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/labelstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textEditorStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for text editors within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textEditorStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15TextEditorStyleP",
+          "text": "TextEditorStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textEditorStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textEditorStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/texteditorstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textFieldStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for text fields within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textFieldStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textFieldStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textFieldStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/textfieldstyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultLabelStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/IconOnlyLabelStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleAndIconLabelStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleOnlyLabelStyle"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styling-views-that-display-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyleConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textFieldStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFieldStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/textEditorStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditorStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextEditorStyleConfiguration"
+      ],
+      "title": "Styling views that display text"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-built-in-label-styles",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/automatic",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/iconOnly",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/titleAndIcon",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/titleOnly"
+      ],
+      "title": "Getting built-in label styles"
+    },
+    {
+      "anchor": "Creating-custom-label-styles",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/makeBody(configuration:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/Configuration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LabelStyle/Body"
+      ],
+      "title": "Creating custom label styles"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultLabelStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/IconOnlyLabelStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleAndIconLabelStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TitleOnlyLabelStyle"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/labelstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

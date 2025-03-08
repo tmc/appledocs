@@ -1,0 +1,1463 @@
+{
+  "abstract": [
+    {
+      "text": "The extended file attributes synced by the File Provider extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileprovider/documentation/FileProvider",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/extendedAttributes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSFileProviderItem(py)extendedAttributes",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "extendedAttributes"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": " : "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation4DataV",
+        "text": "Data"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "extendedAttributes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "extendedAttributes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "extendedAttributes"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DataV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DataV",
+              "text": "Data"
+            },
+            {
+              "kind": "text",
+              "text": "] { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The extended file attributes are part of the item’s metadata. The system sets extended attributes on dataless files, and preserves them on files that it renders dataless. The system decides which attributes to sync. To sync an attribute, it calls the ",
+              "type": "text"
+            },
+            {
+              "code": "xattr_name_with_flags(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method and passes the ",
+              "type": "text"
+            },
+            {
+              "code": "XATTR_FLAG_SYNCABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag. Some older attributes are also synced.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system caps the syncable extended attributes to about 32KiB  total for each item. If the extended attributes exceed this limit, the system automatically makes some of the attributes nonsyncable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system also decides which nonsyncable attributes it preserves on the local copy when a remote item changes. For example, it preserves attributes created by calling ",
+              "type": "text"
+            },
+            {
+              "code": "xattr_name_with_flags(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and passing ",
+              "type": "text"
+            },
+            {
+              "code": "XATTR_FLAG_CONTENT_DEPENDENT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as long as the remote change didn’t modify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion/contentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for the item’s version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This dictionary doesn’t list extended attributes that are already covered by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields/lastUsedDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields/tagData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Similarly, the dictionary doesn’t include the 32 bits of Finder info stored in an extended attribute named ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.FinderInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", because this information exists in other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, the resource fork is content and isn’t included in the extended attributes dictionary. If your extension detects remote changes to the resource fork, report these changes by modifying the item version’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion/contentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFavoriteRankUnranked": {
+      "abstract": [
+        {
+          "text": "A value that indicates that the item is not ranked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderFavoriteRankUnranked"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFavoriteRankUnranked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderFavoriteRankUnranked"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderFavoriteRankUnranked",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderfavoriterankunranked"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFileSystemFlags": {
+      "abstract": [
+        {
+          "text": "Flags that define an item’s on-disk properties and its appearance in the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderFileSystemFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFileSystemFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderFileSystemFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderFileSystemFlags",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileproviderfilesystemflags"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields": {
+      "abstract": [
+        {
+          "text": "Fields that specify which of the item’s properties have changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemFields"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemFields",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemfields"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields/lastUsedDate": {
+      "abstract": [
+        {
+          "text": "The date the item was last used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastUsedDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderItemFields",
+          "text": "NSFileProviderItemFields"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields/lastUsedDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemLastUsedDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastUsedDate",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemfields/lastuseddate"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields/tagData": {
+      "abstract": [
+        {
+          "text": "The tags for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderItemFields",
+          "text": "NSFileProviderItemFields"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemFields/tagData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemTagData"
+        }
+      ],
+      "role": "symbol",
+      "title": "tagData",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemfields/tagdata"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the properties of an item managed by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFileProviderItemProtocol",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/extendedAttributes": {
+      "abstract": [
+        {
+          "text": "The extended file attributes synced by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/extendedAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendedAttributes",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/extendedattributes"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/favoriteRank": {
+      "abstract": [
+        {
+          "text": "A 64-bit, unsigned integer indicating the order of the favorite item in the Favorites list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "favoriteRank"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/favoriteRank",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "favoriteRank"
+        }
+      ],
+      "role": "symbol",
+      "title": "favoriteRank",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/favoriterank"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/fileSystemFlags": {
+      "abstract": [
+        {
+          "text": "Flags that define an item’s on-disk properties and its appearance in the user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSystemFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSFileProviderFileSystemFlags",
+          "text": "NSFileProviderFileSystemFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/fileSystemFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileSystemFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileSystemFlags",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/filesystemflags"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/tagData": {
+      "abstract": [
+        {
+          "text": "An abstract data blob representing the tags associated with the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/tagData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tagData"
+        }
+      ],
+      "role": "symbol",
+      "title": "tagData",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/tagdata"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/typeAndCreator": {
+      "abstract": [
+        {
+          "text": "The file type and creator codes for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeAndCreator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSFileProviderTypeAndCreator",
+          "text": "NSFileProviderTypeAndCreator"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/typeAndCreator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "typeAndCreator"
+        }
+      ],
+      "role": "symbol",
+      "title": "typeAndCreator",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/typeandcreator"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/userInfo": {
+      "abstract": [
+        {
+          "text": "A property list that contains additional data about the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemprotocol/userinfo"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion/contentVersion": {
+      "abstract": [
+        {
+          "text": "An opaque object used to track versions of the item’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemVersion/contentVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentVersion",
+      "type": "topic",
+      "url": "/documentation/fileprovider/nsfileprovideritemversion/contentversion"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation4DataV": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DataV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/fileSystemFlags",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFileSystemFlags",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/tagData",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/userInfo",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/favoriteRank",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFavoriteRankUnranked",
+        "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/typeAndCreator"
+      ],
+      "title": "Managing Metadata"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "extendedAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.fileprovider/documentation/FileProvider",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-Metadata",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/fileSystemFlags",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFileSystemFlags",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/tagData",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/userInfo",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/favoriteRank",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderFavoriteRankUnranked",
+                "doc://com.apple.fileprovider/documentation/FileProvider/NSFileProviderItemProtocol/typeAndCreator"
+              ],
+              "title": "Managing Metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+                    "text": "NSDictionary<NSString *,NSData *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "extendedAttributes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1typeAndCreator/title",
+          "value": "typeAndCreator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1typeAndCreator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "typeAndCreator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1fileSystemFlags/title",
+          "value": "fileSystemFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1fileSystemFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fileSystemFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1tagData/title",
+          "value": "tagData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1tagData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tagData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields~1lastUsedDate/title",
+          "value": "NSFileProviderItemLastUsedDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields~1lastUsedDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemLastUsedDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFavoriteRankUnranked/title",
+          "value": "NSFileProviderFavoriteRankUnranked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFavoriteRankUnranked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderFavoriteRankUnranked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1favoriteRank/title",
+          "value": "favoriteRank"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1favoriteRank/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "favoriteRank"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1extendedAttributes/title",
+          "value": "extendedAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemProtocol~1extendedAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields~1tagData/title",
+          "value": "NSFileProviderItemTagData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields~1tagData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemTagData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemVersion~1contentVersion/title",
+          "value": "contentVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemVersion~1contentVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields/title",
+          "value": "NSFileProviderItemFields"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemFields"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderItemFields/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItemFields"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFileSystemFlags/title",
+          "value": "NSFileProviderFileSystemFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFileSystemFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderFileSystemFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileprovider~1documentation~1FileProvider~1NSFileProviderFileSystemFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderFileSystemFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider/nsfileprovideritemprotocol/extendedattributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider/nsfileprovideritemprotocol/extendedattributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

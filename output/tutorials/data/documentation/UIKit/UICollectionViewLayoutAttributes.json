@@ -1,0 +1,2438 @@
+{
+  "abstract": [
+    {
+      "text": "A layout object that manages the layout-related attributes for a given item in a collection view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewLayoutAttributes",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewLayoutAttributes"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewLayoutAttributes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionViewLayoutAttributes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layout objects create instances of this class when asked to do so by the collection view. In turn, the collection view uses the layout information to position cells and supplementary views inside its bounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-notes",
+          "level": 3,
+          "text": "Subclassing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, you use this class as-is. If you want to supplement the base layout attributes with custom layout attributes, you can subclass and define whatever properties you want to store the additional layout data. Because layout attribute objects may be copied by the collection view, make sure your subclass conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol by implementing any methods appropriate for copying your custom attributes to new instances of your subclass. In addition to defining your subclass, your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects need to implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView/apply(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method so that they can apply any custom attributes at layout time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you subclass and implement any custom layout attributes, you must also override the inherited ",
+              "type": "text"
+            },
+            {
+              "code": "isEqual:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to compare the values of your properties. In iOS 7 and later, the collection view doesn’t apply layout attributes if those attributes have not changed. It determines whether the attributes have changed by comparing the old and new attribute objects using the ",
+              "type": "text"
+            },
+            {
+              "code": "isEqual:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. Because the default implementation of this method checks only the existing properties of this class, you must implement your own version of the method to compare any additional properties. If your custom properties are all equal, call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and return the resulting value at the end of your implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView": {
+      "abstract": [
+        {
+          "text": "A view that defines the behavior for all cells and supplementary views presented by a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionReusableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionReusableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionReusableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionreusableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView/apply(_:)": {
+      "abstract": [
+        {
+          "text": "Applies the specified layout attributes to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewLayoutAttributes",
+          "text": "UICollectionViewLayoutAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionReusableView/apply(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applyLayoutAttributes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "apply(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionreusableview/apply(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ElementCategory": {
+      "abstract": [
+        {
+          "text": "Constants specifying the type of view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ElementCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ElementCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ElementCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionView.ElementCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/elementcategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout": {
+      "abstract": [
+        {
+          "text": "A layout object that organizes items into a grid with optional header and footer views for each section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFlowLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext": {
+      "abstract": [
+        {
+          "text": "A set of properties for determining whether to recompute the size of items or their position in the layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutInvalidationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutInvalidationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFlowLayoutInvalidationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayoutinvalidationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout": {
+      "abstract": [
+        {
+          "text": "An abstract base class for generating layout information for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes": {
+      "abstract": [
+        {
+          "text": "A layout object that manages the layout-related attributes for a given item in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayoutAttributes",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/alpha": {
+      "abstract": [
+        {
+          "text": "The transparency of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/alpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "alpha",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/alpha"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/bounds": {
+      "abstract": [
+        {
+          "text": "The bounds of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/bounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "bounds",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/bounds"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/center": {
+      "abstract": [
+        {
+          "text": "The center point of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/center",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "center"
+        }
+      ],
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/center"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/frame": {
+      "abstract": [
+        {
+          "text": "The frame rectangle of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "frame",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/frame"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/indexPath": {
+      "abstract": [
+        {
+          "text": "The index path of the item in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/indexPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexPath",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/indexpath"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forCellWith:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a layout attributes object that represents a cell with the specified index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCellWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forCellWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForCellWithIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forCellWith:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/init(forcellwith:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forDecorationViewOfKind:with:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a layout attributes object that represents the specified decoration view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDecorationViewOfKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forDecorationViewOfKind:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForDecorationViewOfKind:withIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forDecorationViewOfKind:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/init(fordecorationviewofkind:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forSupplementaryViewOfKind:with:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a layout attributes object that represents the specified supplementary view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSupplementaryViewOfKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forSupplementaryViewOfKind:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutAttributesForSupplementaryViewOfKind:withIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(forSupplementaryViewOfKind:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/init(forsupplementaryviewofkind:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/isHidden": {
+      "abstract": [
+        {
+          "text": "Determines whether the item is currently displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/ishidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementCategory": {
+      "abstract": [
+        {
+          "text": "The type of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "representedElementCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionView",
+          "text": "UICollectionView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICollectionElementCategory",
+          "text": "ElementCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "representedElementCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "representedElementCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/representedelementcategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementKind": {
+      "abstract": [
+        {
+          "text": "The layout-specific identifier for the target view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "representedElementKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "representedElementKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "representedElementKind",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/representedelementkind"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/size": {
+      "abstract": [
+        {
+          "text": "The size of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "size"
+        }
+      ],
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/size"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform": {
+      "abstract": [
+        {
+          "text": "The affine transform of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/transform"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform3D": {
+      "abstract": [
+        {
+          "text": "The 3D transform of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform3D"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CATransform3D",
+          "text": "CATransform3D"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform3D",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/transform3d"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/zIndex": {
+      "abstract": [
+        {
+          "text": "Specifies the item’s position on the z axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/zIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "zIndex",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes/zindex"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout": {
+      "abstract": [
+        {
+          "text": "A special type of layout object that lets you implement behaviors when changing from one layout to another in your collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewTransitionLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewTransitionLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewTransitionLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewtransitionlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that can make a custom object eligible to participate in UIKit Dynamics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts": {
+      "abstract": [
+        {
+          "text": "Customize a view layout by changing the size of cells in the flow or implementing a mosaic style.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing collection view layouts",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-collection-view-layouts"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Manual-layouts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext"
+      ],
+      "title": "Manual layouts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-layout-attributes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forCellWith:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forSupplementaryViewOfKind:with:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forDecorationViewOfKind:with:)"
+      ],
+      "title": "Creating layout attributes"
+    },
+    {
+      "anchor": "Identifying-the-referenced-item",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/indexPath",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementKind",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementCategory",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ElementCategory"
+      ],
+      "title": "Identifying the referenced item"
+    },
+    {
+      "anchor": "Accessing-the-layout-attributes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/frame",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/bounds",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/center",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/size",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform3D",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/alpha",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/zIndex",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/isHidden"
+      ],
+      "title": "Accessing the layout attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UICollectionViewLayoutAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-layout-attributes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forCellWith:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forSupplementaryViewOfKind:with:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/init(forDecorationViewOfKind:with:)"
+              ],
+              "title": "Creating layout attributes"
+            },
+            {
+              "anchor": "Identifying-the-referenced-item",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/indexPath",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementKind",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/representedElementCategory",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ElementCategory"
+              ],
+              "title": "Identifying the referenced item"
+            },
+            {
+              "anchor": "Accessing-the-layout-attributes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/frame",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/bounds",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/center",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/size",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform3D",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/transform",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/alpha",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/zIndex",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes/isHidden"
+              ],
+              "title": "Accessing the layout attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Manual-layouts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext"
+              ],
+              "title": "Manual layouts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UICollectionViewLayoutAttributes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1transform3D/title",
+          "value": "transform3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1transform3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1init(forDecorationViewOfKind:with:)/title",
+          "value": "layoutAttributesForDecorationViewOfKind:withIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1init(forDecorationViewOfKind:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForDecorationViewOfKind:withIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1bounds/title",
+          "value": "bounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1bounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView~1apply(_:)/title",
+          "value": "applyLayoutAttributes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView~1apply(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applyLayoutAttributes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1init(forCellWith:)/title",
+          "value": "layoutAttributesForCellWithIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1init(forCellWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForCellWithIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1zIndex/title",
+          "value": "zIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1zIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/title",
+          "value": "UICollectionViewFlowLayoutInvalidationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1representedElementKind/title",
+          "value": "representedElementKind"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1representedElementKind/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "representedElementKind"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewTransitionLayout/title",
+          "value": "UICollectionViewTransitionLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewTransitionLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewTransitionLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewTransitionLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewTransitionLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/title",
+          "value": "UICollectionViewLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout/title",
+          "value": "UICollectionViewFlowLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1center/title",
+          "value": "center"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1center/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "center"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1size/title",
+          "value": "size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1alpha/title",
+          "value": "alpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1alpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alpha"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1representedElementCategory/title",
+          "value": "representedElementCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1representedElementCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "representedElementCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/title",
+          "value": "UIDynamicItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1indexPath/title",
+          "value": "indexPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1indexPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indexPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1init(forSupplementaryViewOfKind:with:)/title",
+          "value": "layoutAttributesForSupplementaryViewOfKind:withIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1init(forSupplementaryViewOfKind:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "layoutAttributesForSupplementaryViewOfKind:withIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1ElementCategory/title",
+          "value": "UICollectionElementCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1ElementCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionElementCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1ElementCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionElementCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/title",
+          "value": "UICollectionViewLayoutAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView/title",
+          "value": "UICollectionReusableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionReusableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionReusableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionReusableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1frame/title",
+          "value": "frame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes~1frame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frame"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewlayoutattributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewlayoutattributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2283 @@
+{
+  "abstract": [
+    {
+      "text": "A simple lighting and shading system for use in shader-based OpenGL rendering.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.glkit/documentation/GLKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GLKBaseEffect",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GLKBaseEffect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GLKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GLKBaseEffect"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "5.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "5.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.8",
+        "message": "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GLKBaseEffect"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides shaders that mimic many of the behaviors provided by the OpenGL ES 1.1 lighting and shading model, including materials, lighting and texturing. The base effect allows up to three lights and two textures to be applied to a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At initialization time, your application first creates a compatible OpenGL or OpenGL ES context and makes it current. Then, it allocates and initializes a new effect object, configures its properties, and calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/prepareToDraw()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Binding an effect causes a shader to be compiled and bound to the current context. The base effect also requires vertex data to be supplied by your application. To supply vertex data, create one or more vertex array objects. For each attribute required by the shader, the vertex array object should enable the attribute and point to data stored in a vertex buffer object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At rendering time, your application calls the effect’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/prepareToDraw()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to prepare the effect. Then, it binds a vertex array object and submits one or more drawing commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lighting calculations for the base effect are done in eye-space coordinates.  The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light0",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties hold the position and spot direction of the base effect’s lights. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains the model view matrix assigned to the scene. When a light is assigned a new position or spot direction, those values are immediately modified by the current model view matrix. Thus, it is important to sequence changes to the model view matrix and changes to the lights to achieve the desired light positioning.  Light positions that need to be transformed in a manner similar to scene geometry should be set after the model view matrix is updated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing",
+          "level": 3,
+          "text": "Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although this class can be subclassed, there are no methods your subclass can use to directly override the underlying shader generation. Instead, your subclass should implement its functionality by changing the values of existing properties declared by the base class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.glkit/documentation/GLKit": {
+      "abstract": [
+        {
+          "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GLKit",
+      "type": "topic",
+      "url": "/documentation/glkit"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect": {
+      "abstract": [
+        {
+          "text": "A simple lighting and shading system for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKBaseEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/colorMaterialEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether or not to use the color vertex attribute when calculating the light’s interaction with the material.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorMaterialEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLboolean",
+          "text": "GLboolean"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/colorMaterialEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorMaterialEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorMaterialEnabled",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/colormaterialenabled"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/constantColor": {
+      "abstract": [
+        {
+          "text": "A constant color, used when per-vertex color data is not provided.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/constantColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "constantColor",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/constantcolor"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/fog": {
+      "abstract": [
+        {
+          "text": "The fog properties to apply to the scene.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyFog",
+          "text": "GLKEffectPropertyFog"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/fog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fog"
+        }
+      ],
+      "role": "symbol",
+      "title": "fog",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/fog"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/label": {
+      "abstract": [
+        {
+          "text": "A string used to name your effect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "label"
+        }
+      ],
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/label"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light0": {
+      "abstract": [
+        {
+          "text": "The lighting properties for the first light in the scene.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "light0"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyLight",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "light0"
+        }
+      ],
+      "role": "symbol",
+      "title": "light0",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/light0"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light1": {
+      "abstract": [
+        {
+          "text": "The lighting properties for the second light in the scene.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "light1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyLight",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "light1"
+        }
+      ],
+      "role": "symbol",
+      "title": "light1",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/light1"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light2": {
+      "abstract": [
+        {
+          "text": "The lighting properties for the third light in the scene.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "light2"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyLight",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "light2"
+        }
+      ],
+      "role": "symbol",
+      "title": "light2",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/light2"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor": {
+      "abstract": [
+        {
+          "text": "The ambient color applied to all primitives rendered by the effect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightModelAmbientColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightModelAmbientColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightModelAmbientColor",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/lightmodelambientcolor"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelTwoSided": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether lighting is calculated for both sides of a primitive.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightModelTwoSided"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLboolean",
+          "text": "GLboolean"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelTwoSided",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightModelTwoSided"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightModelTwoSided",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/lightmodeltwosided"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightingType": {
+      "abstract": [
+        {
+          "text": "The strategy the effect uses to calculate light values at each fragment. See ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKLightingType",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightingType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GLKLightingType",
+          "text": "GLKLightingType"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightingType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightingType",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/lightingtype"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/material": {
+      "abstract": [
+        {
+          "text": "The material properties used when calculating the light values for a rendered primitive.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "material"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyMaterial",
+          "text": "GLKEffectPropertyMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "material"
+        }
+      ],
+      "role": "symbol",
+      "title": "material",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/material"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/prepareToDraw()": {
+      "abstract": [
+        {
+          "text": "Prepares an effect for rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareToDraw"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/prepareToDraw()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareToDraw"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareToDraw()",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/preparetodraw()"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d0": {
+      "abstract": [
+        {
+          "text": "The properties for the first texture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture2d0"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyTexture",
+          "text": "GLKEffectPropertyTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "texture2d0"
+        }
+      ],
+      "role": "symbol",
+      "title": "texture2d0",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/texture2d0"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d1": {
+      "abstract": [
+        {
+          "text": "The properties for the second texture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture2d1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyTexture",
+          "text": "GLKEffectPropertyTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "texture2d1"
+        }
+      ],
+      "role": "symbol",
+      "title": "texture2d1",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/texture2d1"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/textureOrder": {
+      "abstract": [
+        {
+          "text": "The order in which textures are applied to rendered primitives.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyTexture",
+          "text": "GLKEffectPropertyTexture"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/textureOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureOrder",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/textureorder"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/transform": {
+      "abstract": [
+        {
+          "text": "The modelview, projection and texture transformations applied to the vertex data when the effect is bound.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyTransform",
+          "text": "GLKEffectPropertyTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/transform"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/useConstantColor": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether or not to use the constant color.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useConstantColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLboolean",
+          "text": "GLboolean"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/useConstantColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useConstantColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "useConstantColor",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect/useconstantcolor"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyPrvPtr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyPrvPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyPrvPtr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyPrvPtr"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyPrvPtr",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertyprvptr"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKLightingType": {
+      "abstract": [
+        {
+          "text": "A constant that describes how lighting is calculated by an effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKLightingType"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKLightingType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKLightingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKLightingType",
+      "type": "topic",
+      "url": "/documentation/glkit/glklightingtype"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect": {
+      "abstract": [
+        {
+          "text": "A standard interface for objects that provide shader-based OpenGL rendering effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKNamedEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKNamedEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKNamedEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glknamedeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect": {
+      "abstract": [
+        {
+          "text": "A lighting and shading system that supports reflection mapping for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKReflectionMapEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKReflectionMapEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKReflectionMapEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkreflectionmapeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect": {
+      "abstract": [
+        {
+          "text": "A simple skybox visual effect for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKSkyboxEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKSkyboxEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKSkyboxEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkskyboxeffect"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shader-Based-Rendering-Effects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+        "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+      ],
+      "title": "Shader-Based Rendering Effects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Naming-the-Effect",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/label"
+      ],
+      "title": "Naming the Effect"
+    },
+    {
+      "anchor": "Configuring-the-Modelview-Transform",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/transform"
+      ],
+      "title": "Configuring the Modelview Transform"
+    },
+    {
+      "anchor": "Configuring-Lights",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightingType",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelTwoSided",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/material",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light0",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light1",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light2"
+      ],
+      "title": "Configuring Lights"
+    },
+    {
+      "anchor": "Configuring-Textures",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d0",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d1",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/textureOrder"
+      ],
+      "title": "Configuring Textures"
+    },
+    {
+      "anchor": "Configuring-Fog",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/fog"
+      ],
+      "title": "Configuring Fog"
+    },
+    {
+      "anchor": "Configuring-Color-Information",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/colorMaterialEnabled",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/useConstantColor",
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/constantColor"
+      ],
+      "title": "Configuring Color Information"
+    },
+    {
+      "anchor": "Preparing-the-Effect-for-Drawing",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/prepareToDraw()"
+      ],
+      "title": "Preparing the Effect for Drawing"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyPrvPtr"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GLKBaseEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.glkit/documentation/GLKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Naming-the-Effect",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/label"
+              ],
+              "title": "Naming the Effect"
+            },
+            {
+              "anchor": "Configuring-the-Modelview-Transform",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/transform"
+              ],
+              "title": "Configuring the Modelview Transform"
+            },
+            {
+              "anchor": "Configuring-Lights",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightingType",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelTwoSided",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/material",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light0",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light1",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/light2"
+              ],
+              "title": "Configuring Lights"
+            },
+            {
+              "anchor": "Configuring-Textures",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d0",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/texture2d1",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/textureOrder"
+              ],
+              "title": "Configuring Textures"
+            },
+            {
+              "anchor": "Configuring-Fog",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/fog"
+              ],
+              "title": "Configuring Fog"
+            },
+            {
+              "anchor": "Configuring-Color-Information",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/colorMaterialEnabled",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/useConstantColor",
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/constantColor"
+              ],
+              "title": "Configuring Color Information"
+            },
+            {
+              "anchor": "Preparing-the-Effect-for-Drawing",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect/prepareToDraw()"
+              ],
+              "title": "Preparing the Effect for Drawing"
+            },
+            {
+              "anchor": "Type-Aliases",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyPrvPtr"
+              ],
+              "title": "Type Aliases"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shader-Based-Rendering-Effects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKNamedEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKReflectionMapEffect",
+                "doc://com.apple.glkit/documentation/GLKit/GLKSkyboxEffect"
+              ],
+              "title": "Shader-Based Rendering Effects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GLKBaseEffect"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/title",
+          "value": "GLKNamedEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKNamedEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKNamedEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1lightingType/title",
+          "value": "lightingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1lightingType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1lightModelTwoSided/title",
+          "value": "lightModelTwoSided"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1lightModelTwoSided/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightModelTwoSided"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1label/title",
+          "value": "label"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1label/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "label"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1textureOrder/title",
+          "value": "textureOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1textureOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textureOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/title",
+          "value": "GLKSkyboxEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSkyboxEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKSkyboxEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKSkyboxEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1useConstantColor/title",
+          "value": "useConstantColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1useConstantColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "useConstantColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1light0/title",
+          "value": "light0"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1light0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "light0"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1fog/title",
+          "value": "fog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1fog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/title",
+          "value": "GLKReflectionMapEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKReflectionMapEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKReflectionMapEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKReflectionMapEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1material/title",
+          "value": "material"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1material/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "material"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1prepareToDraw()/title",
+          "value": "prepareToDraw"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1prepareToDraw()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareToDraw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1light1/title",
+          "value": "light1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1light1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "light1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1constantColor/title",
+          "value": "constantColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1constantColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constantColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1texture2d1/title",
+          "value": "texture2d1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1texture2d1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "texture2d1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1lightModelAmbientColor/title",
+          "value": "lightModelAmbientColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1lightModelAmbientColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightModelAmbientColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKLightingType/title",
+          "value": "GLKLightingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKLightingType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKLightingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKLightingType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKLightingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1light2/title",
+          "value": "light2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1light2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "light2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/title",
+          "value": "GLKBaseEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1texture2d0/title",
+          "value": "texture2d0"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1texture2d0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "texture2d0"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyPrvPtr/title",
+          "value": "GLKEffectPropertyPrvPtr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyPrvPtr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyPrvPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyPrvPtr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyPrvPtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1colorMaterialEnabled/title",
+          "value": "colorMaterialEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect~1colorMaterialEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorMaterialEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/glkit/glkbaseeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/glkit/glkbaseeffect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

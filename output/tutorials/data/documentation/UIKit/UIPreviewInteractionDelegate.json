@@ -1,0 +1,1884 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods for communicating the progress of a preview interaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIPreviewInteractionDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIPreviewInteractionDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIPreviewInteractionDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIPreviewInteractionDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A preview interaction abstracts a 3D Touch interaction into a state machine and communicates its progress through the state machine though a delegate. You’re responsible for implementing the appropriate UI behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an object that conforms to this protocol and assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use this delegate object to respond to the state changes that occur within the preview interaction as the user performs 3D Touch interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-preview-interaction-state-changes",
+          "level": 3,
+          "text": "Control preview interaction state changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The methods on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allow you to control whether a preview interaction is allowed to begin, and to observe its progress through the phases of a preview interaction. This allows you to provide a custom user experience while maintaining coherence with the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A preview interaction consists of two main phases: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "preview",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "commit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The following image is a visualization of the underlying state machine associated with a preview interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2825116",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionShouldBegin(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is called as the user begins to press on a view that has a preview interaction associated with it. Implement this method and return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prevent the preview interaction from continuing. Returning ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or not implementing this optional method, will allow the preview interaction to continue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a preview interaction begins, it enters the first phase — also called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "preview",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " —_ _through which it progresses as the user presses harder on the view. During this phase, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is called repeatedly, reporting the progress through the transition as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a value from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Implement this method and use the ",
+              "type": "text"
+            },
+            {
+              "code": "transitionProgress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to update the UI, providing visual feedback to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "code": "ended",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter changes from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the preview interaction transitions to the second phase — ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "commit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". There are no further calls to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The progress through the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "commit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " phase is reported to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdateCommitTransition:ended:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. Implement this method and use the ",
+              "type": "text"
+            },
+            {
+              "code": "transitionP``rogress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to update the UI appropriately. The preview interaction is said to be completed when the ",
+              "type": "text"
+            },
+            {
+              "code": "ended",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is true, at which point you should complete any UI changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At any point before the preview interaction is completed, it can be canceled, either when the user lifts their finger from the screen, or when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction/cancel()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is called on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. When this happens, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionDidCancel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method is called. You should use this method to cancel any UI transitions currently in progress.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preview-interaction-user-interface-updates",
+          "level": 3,
+          "text": "Preview interaction user interface updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " abstracts 3D Touch interactions away from touch force, allowing you to provide your own user interface updates for an interaction pattern that’s well understood by people. The preview interaction sits between view controller previewing (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "peek",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pop",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") and the force values in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", in that you’re required to provide your own user interface updates but don’t need to handle raw touch force values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important that during the preview and commit phases, you update the UI in such a way that a person is aware that the interaction is taking place. For example, pressing a table row in the Mail app first progressively blurs the other rows (the preview phase), and then shows a popover of the email as the commit phase begins. Throughout the commit phase, the popover grows, before finally transitioning to the email detail view at the end of the commit phase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide any user experience you want to accompany the preview and commit phases, but be sure to follow the appropriate section on 3D Touch in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Consider using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewPropertyAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to implement the UI changes that track the progress through the preview and commit phases of the preview interaction. This class allows you to build an animation and then scrub through that animation, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewAnimating/fractionComplete",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This maps perfectly to the ",
+              "type": "text"
+            },
+            {
+              "code": "transitionProgress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property provided in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdateCommitTransition:ended:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, allowing you to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewPropertyAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to update the UI in response to a person’s touch force.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "abstract": [
+        {
+          "text": "The basic type for floating-point scalar values in Core Graphics and related frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the styles you can apply to peek quick actions and peek quick action groups, and defines a read-only accessor for the user-visible title of a peek quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewActionItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewactionitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction": {
+      "abstract": [
+        {
+          "text": "A class that registers a view to provide a custom user experience in response to 3D Touch interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels the current preview interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction/cancel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteraction/cancel()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction/delegate": {
+      "abstract": [
+        {
+          "text": "An object that acts as the delegate of the preview interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIPreviewInteractionDelegate",
+          "text": "UIPreviewInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteraction/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods for communicating the progress of a preview interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdateCommitTransition:ended:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate of the preview interaction’s progress through the commit phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPreviewInteraction",
+          "text": "UIPreviewInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateCommitTransition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ended"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdateCommitTransition:ended:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewInteraction:didUpdateCommitTransition:ended:"
+        }
+      ],
+      "role": "symbol",
+      "title": "previewInteraction(_:didUpdateCommitTransition:ended:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatecommittransition:ended:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate of the progress through the preview phase of the preview interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPreviewInteraction",
+          "text": "UIPreviewInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdatePreviewTransition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ended"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewInteraction:didUpdatePreviewTransition:ended:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "previewInteraction(_:didUpdatePreviewTransition:ended:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatepreviewtransition:ended:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionDidCancel(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate that the specified preview interaction was canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewInteractionDidCancel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPreviewInteraction",
+          "text": "UIPreviewInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionDidCancel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewInteractionDidCancel:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "previewInteractionDidCancel(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteractiondelegate/previewinteractiondidcancel(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionShouldBegin(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether a preview interaction is allowed to begin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewInteractionShouldBegin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPreviewInteraction",
+          "text": "UIPreviewInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionShouldBegin(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewInteractionShouldBegin:"
+        }
+      ],
+      "role": "symbol",
+      "title": "previewInteractionShouldBegin(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteractiondelegate/previewinteractionshouldbegin(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewAnimating/fractionComplete": {
+      "abstract": [
+        {
+          "text": "The completion percentage of the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fractionComplete"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewAnimating/fractionComplete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fractionComplete"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "fractionComplete",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewanimating/fractioncomplete"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewPropertyAnimator": {
+      "abstract": [
+        {
+          "text": "A class that animates changes to views and allows the dynamic modification of those animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewPropertyAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewPropertyAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewPropertyAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewPropertyAnimator",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewpropertyanimator"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "https://developer.apple.com/ios/human-interface-guidelines/": {
+      "identifier": "https://developer.apple.com/ios/human-interface-guidelines/",
+      "title": "iOS Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "iOS Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/ios/human-interface-guidelines/"
+    },
+    "media-2825116": {
+      "alt": "Flow diagram showing the four underlying states of a preview interaction: preview, commit, complete and canceled. Delegate methods communicate the transitions between these states.",
+      "identifier": "media-2825116",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/243a01439bb1546ab30a297552eda2dd/media-2825116@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "3D-Touch-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem"
+      ],
+      "title": "3D Touch interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-preview-interactions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionShouldBegin(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdateCommitTransition:ended:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionDidCancel(_:)"
+      ],
+      "title": "Managing preview interactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIPreviewInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-preview-interactions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionShouldBegin(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdatePreviewTransition:ended:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteraction(_:didUpdateCommitTransition:ended:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate/previewInteractionDidCancel(_:)"
+              ],
+              "title": "Managing preview interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "3D-Touch-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem"
+              ],
+              "title": "3D Touch interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIPreviewInteractionDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteractionDidCancel(_:)/title",
+          "value": "previewInteractionDidCancel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteractionDidCancel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewInteractionDidCancel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewAnimating~1fractionComplete/title",
+          "value": "fractionComplete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewAnimating~1fractionComplete/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fractionComplete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteraction(_:didUpdateCommitTransition:ended:)/title",
+          "value": "previewInteraction:didUpdateCommitTransition:ended:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteraction(_:didUpdateCommitTransition:ended:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewInteraction:didUpdateCommitTransition:ended:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewPropertyAnimator/title",
+          "value": "UIViewPropertyAnimator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewPropertyAnimator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewPropertyAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewPropertyAnimator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewPropertyAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction~1cancel()/title",
+          "value": "cancelInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction~1cancel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteraction(_:didUpdatePreviewTransition:ended:)/title",
+          "value": "previewInteraction:didUpdatePreviewTransition:ended:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteraction(_:didUpdatePreviewTransition:ended:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewInteraction:didUpdatePreviewTransition:ended:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction/title",
+          "value": "UIPreviewInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteractionShouldBegin(_:)/title",
+          "value": "previewInteractionShouldBegin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate~1previewInteractionShouldBegin(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "previewInteractionShouldBegin:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionItem/title",
+          "value": "UIPreviewActionItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate/title",
+          "value": "UIPreviewInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uipreviewinteractiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uipreviewinteractiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

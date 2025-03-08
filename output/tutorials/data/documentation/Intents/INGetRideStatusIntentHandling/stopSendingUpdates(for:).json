@@ -1,0 +1,971 @@
+{
+  "abstract": [
+    {
+      "text": "Stops the delivery of status updates for the specified ride.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents",
+        "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/stopSendingUpdates(for:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)INGetRideStatusIntentHandling(im)stopSendingUpdatesForGetRideStatus:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "stopSendingUpdates"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "for"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)INGetRideStatusIntent",
+        "text": "INGetRideStatusIntent"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "stopSendingUpdatesForGetRideStatus:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "stopSendingUpdates(for:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopSendingUpdates"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "for"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "intent"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INGetRideStatusIntent",
+              "text": "INGetRideStatusIntent"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The intent object for which to return updates. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent/identifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of the intent to distinguish this request from others.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "intent"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.sirikit/documentation/SiriKit/providing-live-status-updates"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SiriKit asks you to stop delivering updates when the user no longer has any active rides. You define when a ride becomes inactive by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponse/rideStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your response object to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when crafting your response. You can clear this property after ride completion or wait until after you have received payment and handled any feedback from the user. Until you do, continue to provide observer updates at regular intervals.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your implementation of this method should remove any references to the previously registered observer object and cancel any timers or repeating tasks that you used to generate updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent": {
+      "abstract": [
+        {
+          "text": "A request for the current status of a previously booked ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetRideStatusIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for fetching the status of the user’s current ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetRideStatusIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetRideStatusIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/startSendingUpdates(for:to:)": {
+      "abstract": [
+        {
+          "text": "Start delivering regular updates about the specified ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSendingUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetRideStatusIntent",
+          "text": "INGetRideStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)INGetRideStatusIntentResponseObserver",
+          "text": "INGetRideStatusIntentResponseObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/startSendingUpdates(for:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startSendingUpdatesForGetRideStatus:toObserver:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "startSendingUpdates(for:to:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintenthandling/startsendingupdates(for:to:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/stopSendingUpdates(for:)": {
+      "abstract": [
+        {
+          "text": "Stops the delivery of status updates for the specified ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopSendingUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetRideStatusIntent",
+          "text": "INGetRideStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/stopSendingUpdates(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopSendingUpdatesForGetRideStatus:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "stopSendingUpdates(for:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintenthandling/stopsendingupdates(for:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponse/rideStatus": {
+      "abstract": [
+        {
+          "text": "The current status of the ride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rideStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INRideStatus",
+          "text": "INRideStatus"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentResponse/rideStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rideStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "rideStatus",
+      "type": "topic",
+      "url": "/documentation/intents/ingetridestatusintentresponse/ridestatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntent/identifier": {
+      "abstract": [
+        {
+          "text": "The unique identifier for this intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/intents/inintent/identifier"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/providing-live-status-updates": {
+      "abstract": [
+        {
+          "text": "Provide regular updates to Maps about the status of a booked ride.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/providing-live-status-updates",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Live Status Updates",
+      "type": "topic",
+      "url": "/documentation/sirikit/providing-live-status-updates"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-Ride-Status-Updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/startSendingUpdates(for:to:)"
+      ],
+      "title": "Providing Ride Status Updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "stopSendingUpdatesForGetRideStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopSendingUpdatesForGetRideStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents",
+                "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Providing-Ride-Status-Updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntentHandling/startSendingUpdates(for:to:)"
+              ],
+              "title": "Providing Ride Status Updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "stopSendingUpdatesForGetRideStatus:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetRideStatusIntent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)INGetRideStatusIntent",
+                    "text": "INGetRideStatusIntent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "intent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The intent object for which to return updates. Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntent/identifier",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " property of the intent to distinguish this request from others.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "intent"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponse~1rideStatus/title",
+          "value": "rideStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentResponse~1rideStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rideStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntent/title",
+          "value": "INGetRideStatusIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling~1startSendingUpdates(for:to:)/title",
+          "value": "startSendingUpdatesForGetRideStatus:toObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling~1startSendingUpdates(for:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSendingUpdatesForGetRideStatus:toObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling/title",
+          "value": "INGetRideStatusIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetRideStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling~1stopSendingUpdates(for:)/title",
+          "value": "stopSendingUpdatesForGetRideStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetRideStatusIntentHandling~1stopSendingUpdates(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopSendingUpdatesForGetRideStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntent~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/ingetridestatusintenthandling/stopsendingupdates(for:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/ingetridestatusintenthandling/stopsendingupdates(for:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

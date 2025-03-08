@@ -1,0 +1,1771 @@
+{
+  "abstract": [
+    {
+      "text": "The superclass for all basic randomization classes in GameplayKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKRandomSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKRandomSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKRandomSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKRandomSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKRandomSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The randomization services provided in GameplayKit are suitable for reliably creating deterministic, pseudorandom gameplay mechanics, but are not cryptographically robust. For cryptography, obfuscation, or cipher uses, use the Security framework, described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases you do not use this class directly; instead, use one of the subclasses listed below. On its own, a random source provides little control over the range or distribution of generated random numbers; to specify such options, use a random source in conjunction with one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomDistribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or one of its subclasses, the resulting random source is both ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "independent",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "deterministic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "—that is, the sequence of numbers generated by one instance has no effect on the sequence generated by another instance, and that sequence can be replicated when necessary. For details on replicating sequences, see each of the random source classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your choice of random source class determines the algorithm used for random number generation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class uses an algorithm similar to that employed in arc4random family of C functions. (However, instances of this class are independent from calls to the arc4random functions.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class uses an algorithm that is faster, but less random, than the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class. (Specifically, the low bits of generated numbers repeat more often than the high bits.) Use this source when performance is more important than robust unpredictability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class uses an algorithm that is slower, but more random, than the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class. Use this source when it’s important that your use of random numbers not show repeating patterns and performance is of less concern.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit": {
+      "abstract": [
+        {
+          "text": "Architect and organize your game logic. Incorporate common gameplay behaviors such as random number generation, artificial intelligence, pathfinding, and agent behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameplayKit",
+      "type": "topic",
+      "url": "/documentation/gameplaykit"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource": {
+      "abstract": [
+        {
+          "text": "A basic random number generator implementing the ARC4 algorithm, which is suitable for most gameplay mechanics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKARC4RandomSource"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKARC4RandomSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKARC4RandomSource",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkarc4randomsource"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGaussianDistribution": {
+      "abstract": [
+        {
+          "text": "A generator for random numbers that follow a ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gaussian distribution",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " (also known as a ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "normal distribution",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ") across multiple samplings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGaussianDistribution"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGaussianDistribution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGaussianDistribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGaussianDistribution",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkgaussiandistribution"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource": {
+      "abstract": [
+        {
+          "text": "A basic random number generator implementing the linear congruential generator algorithm, which is faster but less random than the default random source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLinearCongruentialRandomSource"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLinearCongruentialRandomSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLinearCongruentialRandomSource",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gklinearcongruentialrandomsource"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource": {
+      "abstract": [
+        {
+          "text": "A basic random number generator implementing the Mersenne Twister algorithm, which is more random, but slower than the default random source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMersenneTwisterRandomSource"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMersenneTwisterRandomSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMersenneTwisterRandomSource",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkmersennetwisterrandomsource"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandom": {
+      "abstract": [
+        {
+          "text": "The common interface for all randomization classes in (or usable with) GameplayKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKRandom"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKRandom"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKRandom",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandom"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomDistribution": {
+      "abstract": [
+        {
+          "text": "A generator for random numbers that fall within a specific range and that exhibit a specific distribution over multiple samplings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKRandomDistribution"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomDistribution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKRandomDistribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKRandomDistribution",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandomdistribution"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource": {
+      "abstract": [
+        {
+          "text": "The superclass for all basic randomization classes in GameplayKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKRandomSource"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKRandomSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKRandomSource",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandomsource"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)": {
+      "abstract": [
+        {
+          "text": "Returns an array whose contents are the same as those of the specified array, but in a random order determined by the random source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayByShufflingObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "arrayByShufflingObjectsInArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "arrayByShufflingObjects(in:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandomsource/arraybyshufflingobjects(in:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init()": {
+      "abstract": [
+        {
+          "text": "Initializes a new random source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandomsource/init()"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init(coder:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandomsource/init(coder:)"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/sharedRandom()": {
+      "abstract": [
+        {
+          "text": "Returns a shared instance that shares a system-wide random source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedRandom"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKRandomSource",
+          "text": "GKRandomSource"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/sharedRandom()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedRandom"
+        }
+      ],
+      "role": "symbol",
+      "title": "sharedRandom()",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkrandomsource/sharedrandom()"
+    },
+    "doc://com.apple.gameplaykit/documentation/GameplayKit/GKShuffledDistribution": {
+      "abstract": [
+        {
+          "text": "A generator for random numbers that are uniformly distributed across many samplings, but where short sequences of similar values are unlikely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKShuffledDistribution"
+        }
+      ],
+      "identifier": "doc://com.apple.gameplaykit/documentation/GameplayKit/GKShuffledDistribution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKShuffledDistribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKShuffledDistribution",
+      "type": "topic",
+      "url": "/documentation/gameplaykit/gkshuffleddistribution"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172",
+      "title": "Cryptographic Services Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cryptographic Services Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandom",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Randomization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandom",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomDistribution",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGaussianDistribution",
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKShuffledDistribution"
+      ],
+      "title": "Randomization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Independent-Random-Source",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init()"
+      ],
+      "title": "Creating an Independent Random Source"
+    },
+    {
+      "anchor": "Randomly-Shuffling-an-Array",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)"
+      ],
+      "title": "Randomly Shuffling an Array"
+    },
+    {
+      "anchor": "Using-a-Shared-Random-Source",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/sharedRandom()"
+      ],
+      "title": "Using a Shared Random Source"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init(coder:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKRandomSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Independent-Random-Source",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init()"
+              ],
+              "title": "Creating an Independent Random Source"
+            },
+            {
+              "anchor": "Randomly-Shuffling-an-Array",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)"
+              ],
+              "title": "Randomly Shuffling an Array"
+            },
+            {
+              "anchor": "Using-a-Shared-Random-Source",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/sharedRandom()"
+              ],
+              "title": "Using a Shared Random Source"
+            },
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomSource/init(coder:)"
+              ],
+              "title": "Initializers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandom",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Randomization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandom",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKARC4RandomSource",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKLinearCongruentialRandomSource",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKMersenneTwisterRandomSource",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKRandomDistribution",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKGaussianDistribution",
+                "doc://com.apple.gameplaykit/documentation/GameplayKit/GKShuffledDistribution"
+              ],
+              "title": "Randomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKRandomSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1arrayByShufflingObjects(in:)/title",
+          "value": "arrayByShufflingObjectsInArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1arrayByShufflingObjects(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "arrayByShufflingObjectsInArray:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKARC4RandomSource/title",
+          "value": "GKARC4RandomSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKARC4RandomSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKARC4RandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKARC4RandomSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKARC4RandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMersenneTwisterRandomSource/title",
+          "value": "GKMersenneTwisterRandomSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMersenneTwisterRandomSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMersenneTwisterRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKMersenneTwisterRandomSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMersenneTwisterRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandom/title",
+          "value": "GKRandom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandom/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandom/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKLinearCongruentialRandomSource/title",
+          "value": "GKLinearCongruentialRandomSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKLinearCongruentialRandomSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLinearCongruentialRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKLinearCongruentialRandomSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLinearCongruentialRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1sharedRandom()/title",
+          "value": "sharedRandom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1sharedRandom()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedRandom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource/title",
+          "value": "GKRandomSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandomSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKGaussianDistribution/title",
+          "value": "GKGaussianDistribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKGaussianDistribution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGaussianDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKGaussianDistribution/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGaussianDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomDistribution/title",
+          "value": "GKRandomDistribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomDistribution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandomDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomDistribution/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKRandomDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKShuffledDistribution/title",
+          "value": "GKShuffledDistribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKShuffledDistribution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKShuffledDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKShuffledDistribution/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKShuffledDistribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gameplaykit~1documentation~1GameplayKit~1GKRandomSource~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkrandomsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gameplaykit/gkrandomsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

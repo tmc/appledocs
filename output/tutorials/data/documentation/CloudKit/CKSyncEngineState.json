@@ -1,0 +1,842 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the sync engine’s state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKSyncEngineState",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "CKSyncEngineState"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKSyncEngineState"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKSyncEngineState"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKSyncEngineState"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reliably and consistently sync your app’s data, a sync engine keeps a record of several important pieces of data, such as server changes tokens (for databases and record zones), subscription identifiers, the most recent ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/userRecordID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and so on. This class automatically manages that state on behalf of your app, but there are certain elements you can modify. For example, you control the list of pending changes to send to the iCloud servers and manipulate that list using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. If there aren’t any scheduled sync operations when you invoke these methods, the engine automatically schedules one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An engine’s state changes periodically and, when it does, the sync engine dispatches an event of type  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your delegate. The event contains an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateSerialization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and, on receipt of such an event, it’s your responsibility to persist the serialized state to disk so that it’s available across app launches. On the next initialization of the sync engine, you provide the most recently persisted state as part of the engine’s configuration. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/initWithDatabase:stateSerialization:delegate:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/database": {
+      "abstract": [
+        {
+          "text": "The associated database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "database"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/database",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/state": {
+      "abstract": [
+        {
+          "text": "The sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/state",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9/state"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/initWithDatabase:stateSerialization:delegate:": {
+      "abstract": [
+        {
+          "text": "Creates a configuration for the specified database and serialized state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithDatabase:stateSerialization:delegate:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineConfiguration/initWithDatabase:stateSerialization:delegate:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDatabase:stateSerialization:delegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithDatabase:stateSerialization:delegate:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengineconfiguration/initwithdatabase:stateserialization:delegate:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingDatabaseChange": {
+      "abstract": [
+        {
+          "text": "An object that describes an unsent database modification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEnginePendingDatabaseChange"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingDatabaseChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEnginePendingDatabaseChange",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginependingdatabasechange"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange": {
+      "abstract": [
+        {
+          "text": "Describes an unsent record modification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEnginePendingRecordZoneChange"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEnginePendingRecordZoneChange",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginependingrecordzonechange"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingZoneDelete": {
+      "abstract": [
+        {
+          "text": "An object that describes an unsent record zone deletion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEnginePendingZoneDelete"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingZoneDelete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEnginePendingZoneDelete",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginependingzonedelete"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingZoneSave": {
+      "abstract": [
+        {
+          "text": "An object that describes an unsent record zone modification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEnginePendingZoneSave"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingZoneSave",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEnginePendingZoneSave",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginependingzonesave"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState": {
+      "abstract": [
+        {
+          "text": "An object that manages the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineState"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineState",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:": {
+      "abstract": [
+        {
+          "text": "Adds the specified database changes to the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPendingDatabaseChanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPendingDatabaseChanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPendingDatabaseChanges:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/addpendingdatabasechanges:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:": {
+      "abstract": [
+        {
+          "text": "Adds the specified record zone changes to the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addPendingRecordZoneChanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addPendingRecordZoneChanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addPendingRecordZoneChanges:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/addpendingrecordzonechanges:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/hasPendingUntrackedChanges": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether there are pending changes that the sync engine is unaware of.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "hasPendingUntrackedChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/hasPendingUntrackedChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasPendingUntrackedChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/haspendinguntrackedchanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/pendingDatabaseChanges": {
+      "abstract": [
+        {
+          "text": "The database changes that the sync engine has yet to send to the iCloud servers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "pendingDatabaseChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/pendingDatabaseChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pendingDatabaseChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/pendingdatabasechanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/pendingRecordZoneChanges": {
+      "abstract": [
+        {
+          "text": "The record zone changes that the sync engine has yet to send to the iCloud servers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "pendingRecordZoneChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/pendingRecordZoneChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pendingRecordZoneChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/pendingrecordzonechanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/removePendingDatabaseChanges:": {
+      "abstract": [
+        {
+          "text": "Removes the specified database changes from the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePendingDatabaseChanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/removePendingDatabaseChanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removePendingDatabaseChanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removePendingDatabaseChanges:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/removependingdatabasechanges:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/removePendingRecordZoneChanges:": {
+      "abstract": [
+        {
+          "text": "Removes the specified record zone changes from the state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePendingRecordZoneChanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/removePendingRecordZoneChanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removePendingRecordZoneChanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removePendingRecordZoneChanges:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/removependingrecordzonechanges:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/zoneIDsWithUnfetchedServerChanges": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "zoneIDsWithUnfetchedServerChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/zoneIDsWithUnfetchedServerChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zoneIDsWithUnfetchedServerChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestate/zoneidswithunfetchedserverchanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateSerialization": {
+      "abstract": [
+        {
+          "text": "An opaque object that contains the serialized representation of a sync engine’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineStateSerialization"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateSerialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineStateSerialization",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestateserialization"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides information about an update to the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineStateUpdateEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineStateUpdateEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineStateUpdateEvent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginestateupdateevent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/userRecordID": {
+      "abstract": [
+        {
+          "text": "The user record ID for the corresponding user record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userRecordID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/userRecordID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userRecordID"
+        }
+      ],
+      "role": "symbol",
+      "title": "userRecordID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckuseridentity/userrecordid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-the-engines-attributes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9/state"
+      ],
+      "title": "Accessing the engine’s attributes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-pending-changes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/hasPendingUntrackedChanges",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/pendingDatabaseChanges",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/pendingRecordZoneChanges"
+      ],
+      "title": "Accessing pending changes"
+    },
+    {
+      "anchor": "Modifying-pending-changes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/removePendingDatabaseChanges:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingZoneDelete",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingZoneSave",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingDatabaseChange",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/removePendingRecordZoneChanges:",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange"
+      ],
+      "title": "Modifying pending changes"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineState/zoneIDsWithUnfetchedServerChanges"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity~1userRecordID/title",
+          "value": "userRecordID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity~1userRecordID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userRecordID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/cksyncenginestate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "abstract": [
+    {
+      "text": "A scene that presents an interface for viewing and modifying an app’s",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI8SettingsV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Settings"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Settings"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Settings"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Settings"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a settings scene to have SwiftUI manage views with controls for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s settings when you declare your app using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration for multiple platforms, compile the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "settings scene only in macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "        }",
+            "        #if os(macOS)",
+            "        Settings {",
+            "            SettingsView()",
+            "        }",
+            "        #endif",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Passing a view as the argument to a settings scene in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declaration causes SwiftUI to enable the app’s Settings menu item.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI manages displaying and removing the settings view when the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selects the Settings item from the application menu or the equivalent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "keyboard shortcut:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-AppBehavior-Settings-AppMenu.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The contents of your settings view are controls that modify bindings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values that SwiftUI manages using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct GeneralSettingsView: View {",
+            "    @AppStorage(\"showPreview\") private var showPreview = true",
+            "    @AppStorage(\"fontSize\") private var fontSize = 12.0",
+            "",
+            "    var body: some View {",
+            "        Form {",
+            "            Toggle(\"Show Previews\", isOn: $showPreview)",
+            "            Slider(value: $fontSize, in: 9...96) {",
+            "                Text(\"Font Size (\\(fontSize, specifier: \"%.0f\") pts)\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define your settings in a single view, or you can use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to group settings into different collections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SettingsView: View {",
+            "    var body: some View {",
+            "        TabView {",
+            "            Tab(\"General\", systemImage: \"gear\") {",
+            "                GeneralSettingsView()",
+            "            }",
+            "            Tab(\"Advanced\", systemImage: \"star\") {",
+            "                AdvancedSettingsView()",
+            "            }",
+            "        }",
+            "        .scenePadding()",
+            "        .frame(maxWidth: 350, minHeight: 100)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-AppBehavior-Settings.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-AppBehavior-Settings-AppMenu.png": {
+      "alt": "A screenshot of the MyApp application menu, showing the active",
+      "identifier": "SwiftUI-AppBehavior-Settings-AppMenu.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6816987b7f2629737c2e5427ab99ad8d/SwiftUI-AppBehavior-Settings-AppMenu@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/12f407556747d9d48e1715e2c9b16a24/SwiftUI-AppBehavior-Settings-AppMenu~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-AppBehavior-Settings.png": {
+      "alt": "A screenshot showing a tabbed application settings view containing a",
+      "identifier": "SwiftUI-AppBehavior-Settings.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01f778a442e362d593a8937912132520/SwiftUI-AppBehavior-Settings@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3162e15f6f1af4fe710739a245405d31/SwiftUI-AppBehavior-Settings~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that reflects a value from ",
+          "type": "text"
+        },
+        {
+          "code": "UserDefaults",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "invalidates a view on a change in value in that user default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStorage",
+      "type": "topic",
+      "url": "/documentation/swiftui/appstorage"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View": {
+      "abstract": [
+        {
+          "text": "Define views and assemble them into a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring a custom view",
+      "type": "topic",
+      "url": "/documentation/swiftui/declaring-a-custom-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openSettings": {
+      "abstract": [
+        {
+          "text": "A Settings presentation action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18OpenSettingsActionV",
+          "text": "OpenSettingsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openSettings",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/opensettings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenSettingsAction": {
+      "abstract": [
+        {
+          "text": "An action that presents the settings scene for an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenSettingsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenSettingsAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenSettingsAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpenSettingsAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/opensettingsaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene": {
+      "abstract": [
+        {
+          "text": "A part of an app’s user interface with a life cycle managed by the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings": {
+      "abstract": [
+        {
+          "text": "A scene that presents an interface for viewing and modifying an app’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Settings"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "Settings",
+      "type": "topic",
+      "url": "/documentation/swiftui/settings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings/init(content:)": {
+      "abstract": [
+        {
+          "text": "Creates a scene that presents an interface for viewing and modifying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an app’s preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings/init(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/settings/init(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SettingsLink": {
+      "abstract": [
+        {
+          "text": "A view that opens the Settings scene defined by an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SettingsLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/settingslink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView": {
+      "abstract": [
+        {
+          "text": "A view that switches between multiple child views using interactive user",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabView",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-a-settings-window",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SettingsLink",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenSettingsAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openSettings"
+      ],
+      "title": "Managing a settings window"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-settings-scene",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings/init(content:)"
+      ],
+      "title": "Creating a settings scene"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/settings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1249 @@
+{
+  "abstract": [
+    {
+      "text": "See the objects and functions you use to control the node tree’s composition.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/accessing-and-modifying-the-node-tree"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing and Modifying the Node Tree"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create the node tree by creating parent-child relationships between nodes. Each node maintains an ordered list of children, referenced by reading the node’s ",
+              "type": "text"
+            },
+            {
+              "code": "children",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. The order of the children in the tree affects many aspects of scene processing, including hit testing and rendering, so it’s important to organize the node tree appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/addChild(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adds a node to the end of the receiver’s list of child nodes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/insertChild(_:at:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inserts a child into a specific position in the receiver’s list of child nodes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removes the receiving node from its parent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need to directly traverse the node tree, you use the properties in the following table to uncover the tree’s structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/children",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The array of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects that are the receiving node’s children.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/parent",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the node is a child of another node, this property holds the parent. Otherwise, it holds ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/scene",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the node is included anywhere in a scene, this property returns the scene node that is the root of the tree. Otherwise it holds ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/addChild(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a node to the end of the receiver’s list of child nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/addChild(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addChild:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addChild(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/addchild(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/children": {
+      "abstract": [
+        {
+          "text": "The node’s children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/children",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "children"
+        }
+      ],
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/children"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/inParentHierarchy(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the node is a descendant of the target node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inParentHierarchy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/inParentHierarchy(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inParentHierarchy:"
+        }
+      ],
+      "role": "symbol",
+      "title": "inParentHierarchy(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/inparenthierarchy(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/insertChild(_:at:)": {
+      "abstract": [
+        {
+          "text": "Inserts a node into a specific position in the receiver’s list of child nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertChild"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/insertChild(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertChild:atIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertChild(_:at:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/insertchild(_:at:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isEqual(to:)": {
+      "abstract": [
+        {
+          "text": "Compares the parameter node to the receiving node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isEqual(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isEqualToNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/isequal(to:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/move(toParent:)": {
+      "abstract": [
+        {
+          "text": "Moves the node to a new parent node in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toParent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/move(toParent:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveToParent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "move(toParent:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/move(toparent:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/parent": {
+      "abstract": [
+        {
+          "text": "The node’s parent node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/parent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parent"
+        }
+      ],
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/parent"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllChildren()": {
+      "abstract": [
+        {
+          "text": "Removes all of the node’s children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllChildren"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllChildren()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllChildren"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllChildren()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/removeallchildren()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeChildren(in:)": {
+      "abstract": [
+        {
+          "text": "Removes a list of children from the receiving node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeChildren"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeChildren(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeChildrenInArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeChildren(in:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/removechildren(in:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()": {
+      "abstract": [
+        {
+          "text": "Removes the receiving node from its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeFromParent"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeFromParent()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/removefromparent()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/scene": {
+      "abstract": [
+        {
+          "text": "The scene node that contains this node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/scene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Modifying-the-Node-Tree",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/addChild(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/insertChild(_:at:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isEqual(to:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/move(toParent:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllChildren()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeChildren(in:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/inParentHierarchy(_:)"
+      ],
+      "title": "Modifying the Node Tree"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Modifying-the-Node-Tree",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/addChild(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/insertChild(_:at:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isEqual(to:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/move(toParent:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeFromParent()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeAllChildren()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/removeChildren(in:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/inParentHierarchy(_:)"
+              ],
+              "title": "Modifying the Node Tree"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeChildren(in:)/title",
+          "value": "removeChildrenInArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeChildren(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeChildrenInArray:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeAllChildren()/title",
+          "value": "removeAllChildren"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeAllChildren()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllChildren"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1move(toParent:)/title",
+          "value": "moveToParent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1move(toParent:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveToParent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1addChild(_:)/title",
+          "value": "addChild:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1addChild(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addChild:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1isEqual(to:)/title",
+          "value": "isEqualToNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1isEqual(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isEqualToNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1children/title",
+          "value": "children"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1children/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "children"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1insertChild(_:at:)/title",
+          "value": "insertChild:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1insertChild(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertChild:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeFromParent()/title",
+          "value": "removeFromParent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1removeFromParent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeFromParent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1scene/title",
+          "value": "scene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1scene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1inParentHierarchy(_:)/title",
+          "value": "inParentHierarchy:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1inParentHierarchy(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "inParentHierarchy:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1parent/title",
+          "value": "parent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1parent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/accessing-and-modifying-the-node-tree"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/accessing-and-modifying-the-node-tree"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

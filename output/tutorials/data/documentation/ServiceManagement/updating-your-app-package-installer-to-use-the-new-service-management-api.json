@@ -1,0 +1,1016 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about the Service Management API with a GUI-less agent app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-your-app-package-installer-to-use-the-new-service-management-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Service Management"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Updating your app package installer to use the new Service Management API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to structure your app package installer and use the new Service Management APIs. The sample project places the helper executable’s ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property lists in the helper executable’s bundle, rather than relying on shared locations like ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/LaunchDaemons",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The advantages of this approach include containing your ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property lists in a fully codesigned app bundle that neither the system nor a third party can modify without breaking the code signature. Users can also see which app is providing the launch daemons or launch agents by choosing System Settings > General > Login Items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project contains three targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which builds a sample ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " helper executable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SMAppServiceSampleCode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which builds a GUI-less app that contains the sample launch agent binary property list and an executable to register the agent at install time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SMAppServiceSamplePackage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which builds the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServiceSample.pkg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " installer you use to install the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " helper executable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to demonstrating the new package structure, this sample demonstrates the APIs for registering helper executables. To register a launch agent, the sample creates an agent object, ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService.agent(plistName:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then calls ",
+              "type": "text"
+            },
+            {
+              "code": "register()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let service = SMAppService.agent(plistName: \"com.xpc.example.agent.plist\")",
+            "",
+            "do {",
+            "\ttry service.register()",
+            "\tprint(\"Successfully registered \\(service)\")",
+            "} catch {",
+            "\tprint(\"Unable to register \\(error)\")",
+            "\texit(1)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To unregister a launch agent, the sample creates an agent object, ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService.agent(plistName:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then calls ",
+              "type": "text"
+            },
+            {
+              "code": "unregister()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let service = SMAppService.agent(plistName: \"com.xpc.example.agent.plist\")",
+            "",
+            "do {",
+            "\ttry service.unregister()",
+            "\tprint(\"Successfully unregistered \\(service)\")",
+            "} catch {",
+            "\tprint(\"Unable to unregister \\(error)\")",
+            "\texit(1)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the authorization state of a launch agent, the sample creates an agent object, ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService.agent(plistName:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then calls ",
+              "type": "text"
+            },
+            {
+              "code": "status()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine the helper executable’s authorization state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let service = SMAppService.agent(plistName: \"com.xpc.example.agent.plist\")",
+            "",
+            "print(\"\\(service) has status \\(service.status)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the Team ID for the sample app and package targets, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServiceSampleCode.xcodeproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServiceSampleCode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target from the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Signing & Capabilities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose your team from the Team pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServiceSamplePackage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the project editor and repeat step 4.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Build-the-sample-app-service",
+          "level": 3,
+          "text": "Build the sample app service",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Terminal and change to the directory into which you downloaded the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UpdatingYourAppPackageInstallerToUseTheNewServiceManagementAPI",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " source code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -target SMAppServiceSamplePackage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode builds the ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppServiceSamplePackage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " installer package, and the process concludes with Xcode printing ",
+              "type": "text"
+            },
+            {
+              "code": "** BUILD SUCCEEDED **",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When building your own projects, follow the packaging steps in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "generatePackage.zsh",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " script to generate a correctly configured installer package.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Install-the-login-item-and-launch-agent",
+          "level": 3,
+          "text": "Install the login item and launch agent",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Terminal, navigate to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "build/Release",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory using the command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cd build/Release",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the build directory in Finder with the command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "open .",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Finder window contains all the products that the Xcode build process creates, including a package installer named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServiceSample",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Double-click the installer icon to run it, and follow the instructions to approve the installation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServiceSampleCode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " login item and its supporting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " helper executable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Run-the-sample-launch-agent",
+          "level": 3,
+          "text": "Run the sample launch agent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The installer adds a new login item in System Settings and installs the sample launch agent ",
+              "type": "text"
+            },
+            {
+              "code": "SampleLaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the directory ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Application Support/YOURDEVELOPERNAME",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Run the ",
+              "type": "text"
+            },
+            {
+              "code": "SampleLaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executable from the Terminal by invoking the command line app inside the app bundle with an additional command argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "/Library/Application Support/YOURDEVELOPERNAME/SMAppServiceSampleCode.app/Contents/MacOS/SMAppServiceSampleCode COMMAND",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppServiceSampleCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app supports the following commands:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "register",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Registers the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unregister",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Unregisters the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "status",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Checks the authorization status of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "test",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Sends an XPC message to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SampleLaunchAgent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and displays the reply.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output from the app resembles the following, for each of the app’s commands:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% /Library/Application Support/YOURDEVELOPERNAME/SMAppServiceSampleCode.app/Contents/MacOS/SMAppServiceSampleCode register",
+            "Successfully registered LaunchAgent(com.xpc.example.agent.plist)",
+            "",
+            "% /Library/Application Support/YOURDEVELOPERNAME/SMAppServiceSampleCode.app/Contents/MacOS/SMAppServiceSampleCode status",
+            "LaunchAgent(com.xpc.example.agent.plist) has status SMAppServiceStatus(rawValue: 1)",
+            "",
+            "% /Library/Application Support/YOURDEVELOPERNAME/SMAppServiceSampleCode.app/Contents/MacOS/SMAppServiceSampleCode test    ",
+            "Received \"Hello World\"",
+            "",
+            "% /Library/Application Support/YOURDEVELOPERNAME/SMAppServiceSampleCode.app/Contents/MacOS/SMAppServiceSampleCode unregister",
+            "Successfully unregistered LaunchAgent(com.xpc.example.agent.plist)"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running the app before registering the service, or after unregistering the service, results in an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% /Library/Application Support/YOURDEVELOPERNAME/SMAppServiceSampleCode.app/Contents/MacOS/SMAppServiceSampleCode test",
+            "Unable to create xpc_session <OS_xpc_rich_error: Can Retry: 0. Description:\"Underlying connection was invalidated. Reason: failed at lookup with error 3 - No such process\">"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Uninstall-the-login-item-and-launch-agent",
+          "level": 3,
+          "text": "Uninstall the login item and launch agent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To uninstall the sample app’s login item from System Settings, as well as the ",
+              "type": "text"
+            },
+            {
+              "code": "SampleLaunchAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "sudo rm -rf  /Library/Application Support/YOURDEVELOPERNAME",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The login item may remain visible in the System Settings > General > Login Items for some time. This is expected because the system removes deleted items as part of its maintenance processes overnight. To remove all third-party login items and reset the System Settings > General > Login Items to its installation defaults, use the ",
+              "type": "text"
+            },
+            {
+              "code": "sfltool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":  ",
+              "type": "text"
+            },
+            {
+              "code": "sudo sfltool resetbtm",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "2527b6fa1f54/UpdatingYourAppPackageInstallerToUseTheNewServiceManagementAPI.zip": {
+      "checksum": "2527b6fa1f54c16425f10248e88c2d8b89b90096ac9719bfe11d1c93a7f66cc1e8e4f60d1ccb42f5519913447b5bcd62b7b9f12c9ec7bcab6ccc098f5d3c68d9",
+      "identifier": "2527b6fa1f54/UpdatingYourAppPackageInstallerToUseTheNewServiceManagementAPI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2527b6fa1f54/UpdatingYourAppPackageInstallerToUseTheNewServiceManagementAPI.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement": {
+      "abstract": [
+        {
+          "text": "Manage startup items, launch agents, and launch daemons from within an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Service Management",
+      "type": "topic",
+      "url": "/documentation/servicemanagement"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-helper-executables-from-earlier-versions-of-macos": {
+      "abstract": [
+        {
+          "text": "Simplify your app’s helper executables and support new authorization controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-helper-executables-from-earlier-versions-of-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating helper executables from earlier versions of macOS",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/updating-helper-executables-from-earlier-versions-of-macos"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2527b6fa1f54/UpdatingYourAppPackageInstallerToUseTheNewServiceManagementAPI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-helper-executables-from-earlier-versions-of-macos"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/updating-helper-executables-from-earlier-versions-of-macos"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/servicemanagement/updating-your-app-package-installer-to-use-the-new-service-management-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/servicemanagement/updating-your-app-package-installer-to-use-the-new-service-management-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

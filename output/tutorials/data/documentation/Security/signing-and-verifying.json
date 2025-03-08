@@ -1,0 +1,1340 @@
+{
+  "abstract": [
+    {
+      "text": "Create and evaluate digital signatures to establish the validity of code or data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/signing-and-verifying"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Signing and Verifying"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a cryptographic signature on a block of data by first creating a hash of the data and then encrypting this digest with your private key. A recipient uses your public key to decrypt the signature, while independently re-creating the hash of the original data. If the decrypted hash and the computed one match, the recipient can be sure the data is from the owner of the private key that corresponds to the public key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Often, you sign a block of data as a side effect of performing some other operation. For example, as a final step in distributing your app, Xcode signs the code on your behalf using one of your cryptographic identities (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). When you want to sign or verify a block of data in your app, you use functions provided by the certificate, key, and trust services API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-Your-Private-Key",
+          "level": 3,
+          "text": "Get Your Private Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by getting your private key, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/getting-an-existing-key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", either from the keychain or from an identity (which itself probably resides in the keychain). Then, select one of the signing algorithms. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let privateKey: SecKey = <# a key #>",
+                    "let algorithm: SecKeyAlgorithm = .rsaSignatureMessagePKCS1v15SHA512"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecKeyRef privateKey = <# a key #>;  // E.g., from the keychain",
+                    "SecKeyAlgorithm algorithm = kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA512;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This algorithm indicates that the signing function should first create an SHA-512 digest of the input data and then use RSA encryption with PKCS#1 padding. But you can choose different options, along a number of dimensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Digest vs. message.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " If you already have a digest of the data, you can use one of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Digest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " algorithms. For example, the above algorithm might become ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecKeyAlgorithm/rsaSignatureDigestPKCS1v15SHA512",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you do this, be sure that the actual hashing matches the named hashing algorithm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Digital signature algorithm type.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " If you have elliptic curve keys instead of RSA, you can use an Elliptic Curve Digital Signature Algorithm (ECDSA). For example, the above algorithm might become ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/SecKeyAlgorithm/ecdsaSignatureMessageX962SHA512",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a key and an algorithm selected, you can test the compatibility of these with the signing operation using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyIsAlgorithmSupported(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard SecKeyIsAlgorithmSupported(privateKey, .sign, algorithm) else {",
+                    "    throw <# an error #>",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "BOOL canSign = SecKeyIsAlgorithmSupported(privateKey,",
+                    "                                          kSecKeyOperationTypeSign,",
+                    "                                          algorithm);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function might return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example, if the key’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanSign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute is set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This situation might happen if you used a public key instead of a private one (despite the variable name). Similarly, if you attempt to use an RSA key with one of the ECDSA algorithms, the check fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you can create the signature with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateSignature(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var error: Unmanaged<CFError>?",
+                    "guard let signature = SecKeyCreateSignature(privateKey,",
+                    "                                            algorithm,",
+                    "                                            data as CFData,",
+                    "                                            &error) as Data? else {",
+                    "                                                throw error!.takeRetainedValue() as Error",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSData* data2sign = <# some data #>;",
+                    "NSData* signature = nil;",
+                    "if (canSign) {",
+                    "    CFErrorRef error = NULL;",
+                    "    signature = (NSData*)CFBridgingRelease(       // ARC takes ownership",
+                    "                     SecKeyCreateSignature(privateKey,",
+                    "                                           algorithm,",
+                    "                                           (__bridge CFDataRef)data2sign,",
+                    "                                           &error));",
+                    "    if (!signature) {",
+                    "        NSError *err = CFBridgingRelease(error);  // ARC takes ownership",
+                    "        // Handle the error. . .",
+                    "    }",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If something goes wrong, the function returns a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signature and populates the error reference with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that explains the failure. In Objective-C, you transfer management of the error object, if it exists, to Automatic Reference Counting (ARC). In Swift, you transfer control of this unmanaged object’s memory to the system with a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and recast as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transmit-the-Data",
+          "level": 3,
+          "text": "Transmit the Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you successfully generate a signature, you transmit the data and signature to any interested party. Using your public key, the recipient then verifies the signature by performing a set of operations that resemble the signing process. As the receiver, you first retrieve the public key, possibly from a certificate, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/getting-an-existing-key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then, using the same algorithm as was used for signing, you test that the key and algorithm are mutually compatible with the verification operation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard SecKeyIsAlgorithmSupported(publicKey, .verify, algorithm) else {",
+                    "    throw <# an error #>",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecKeyRef publicKey = <# a key #>;  // E.g., from a cert",
+                    "BOOL canVerify = SecKeyIsAlgorithmSupported(publicKey,",
+                    "                                            kSecKeyOperationTypeVerify,",
+                    "                                            algorithm);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyIsAlgorithmSupported(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you use the wrong kind of key for the operation or algorithm. You then conduct the verification with a call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyVerifySignature(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var error: Unmanaged<CFError>?",
+                    "guard SecKeyVerifySignature(publicKey,",
+                    "                            algorithm,",
+                    "                            data as CFData,",
+                    "                            signature as CFData,",
+                    "                            &error) else {",
+                    "                                throw error!.takeRetainedValue() as Error",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "BOOL result = NO;",
+                    "if (canVerify) {",
+                    "    CFErrorRef error = NULL;",
+                    "    result = SecKeyVerifySignature(publicKey,",
+                    "                                   algorithm,",
+                    "                                   (__bridge CFDataRef)data2sign,",
+                    "                                   (__bridge CFDataRef)signature,",
+                    "                                   &error);",
+                    "    if (!result) {",
+                    "        NSError *err = CFBridgingRelease(error);  // ARC takes ownership",
+                    "        // Handle the error. . .",
+                    "    }",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the call succeeds and the signature and data are intact, the return value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the function returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", either the data or signature has been altered, the public key doesn’t match the private key, or some other error has occurred. Handle the error and transfer error object ownership to the system as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/Error": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()": {
+      "abstract": [
+        {
+          "text": "Gets the value of this unmanaged reference as a managed reference and consumes an unbalanced retain of it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "takeRetainedValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "takeRetainedValue()",
+      "type": "topic",
+      "url": "/documentation/Swift/Unmanaged/takeRetainedValue()"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "article",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyAlgorithm/ecdsaSignatureMessageX962SHA512": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ecdsaSignatureMessageX962SHA512"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyAlgorithm/ecdsaSignatureMessageX962SHA512",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecKeyAlgorithmECDSASignatureMessageX962SHA512"
+        }
+      ],
+      "role": "symbol",
+      "title": "ecdsaSignatureMessageX962SHA512",
+      "type": "topic",
+      "url": "/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha512"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyAlgorithm/rsaSignatureDigestPKCS1v15SHA512": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rsaSignatureDigestPKCS1v15SHA512"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyAlgorithm/rsaSignatureDigestPKCS1v15SHA512",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA512"
+        }
+      ],
+      "role": "symbol",
+      "title": "rsaSignatureDigestPKCS1v15SHA512",
+      "type": "topic",
+      "url": "/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha512"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateSignature(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates the cryptographic signature for a block of data using a private key and specified algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateSignature"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateSignature(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateSignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCreateSignature(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreatesignature(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyIsAlgorithmSupported(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean indicating whether a key is suitable for an operation using a certain algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyIsAlgorithmSupported"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeyOperationType",
+          "text": "SecKeyOperationType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyIsAlgorithmSupported(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyIsAlgorithmSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyIsAlgorithmSupported(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeyisalgorithmsupported(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyVerifySignature(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Verifies the cryptographic signature of a block of data using a public key and specified algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyVerifySignature"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyAlgorithm",
+          "text": "SecKeyAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyVerifySignature(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyVerifySignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyVerifySignature(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeyverifysignature(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/getting-an-existing-key": {
+      "abstract": [
+        {
+          "text": "Learn how to obtain an existing cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/getting-an-existing-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting an Existing Key",
+      "type": "topic",
+      "url": "/documentation/security/getting-an-existing-key"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrCanSign": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean that indicates whether the cryptographic key can be used for digital signing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanSign"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrCanSign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrCanSign"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrCanSign",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrcansign"
+    },
+    "doc://com.apple.security/documentation/Security/keys": {
+      "abstract": [
+        {
+          "text": "Generate, store, and use cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys",
+      "type": "topic",
+      "url": "/documentation/security/keys"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929",
+      "title": "Code Signing Guide",
+      "titleInlineContent": [
+        {
+          "text": "Code Signing Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanSign/title",
+          "value": "kSecAttrCanSign"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrCanSign/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrCanSign"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateSignature(_:_:_:_:)/title",
+          "value": "SecKeyCreateSignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateSignature(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCreateSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyVerifySignature(_:_:_:_:_:)/title",
+          "value": "SecKeyVerifySignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyVerifySignature(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyVerifySignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyIsAlgorithmSupported(_:_:_:)/title",
+          "value": "SecKeyIsAlgorithmSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyIsAlgorithmSupported(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyIsAlgorithmSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyAlgorithm~1ecdsaSignatureMessageX962SHA512/title",
+          "value": "kSecKeyAlgorithmECDSASignatureMessageX962SHA512"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyAlgorithm~1ecdsaSignatureMessageX962SHA512/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecKeyAlgorithmECDSASignatureMessageX962SHA512"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyAlgorithm~1rsaSignatureDigestPKCS1v15SHA512/title",
+          "value": "kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA512"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyAlgorithm~1rsaSignatureDigestPKCS1v15SHA512/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA512"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/signing-and-verifying"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/signing-and-verifying"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

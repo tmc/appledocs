@@ -1,0 +1,3804 @@
+{
+  "abstract": [
+    {
+      "text": "An object for setting the Now Playing information for media that your app plays.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPNowPlayingInfoCenter",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPNowPlayingInfoCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MPNowPlayingInfoCenter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12.2",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MPNowPlayingInfoCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app also provides Now Playing information containing information about the current track, use this object to update that information at appropriate times. This object contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary describing the playing item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Siri can provide suggestions in search, News, Safari, and other apps using on-device information that you contribute through the Now Playing APIs. Users can control Siri on-device learning through Siri and Search settings for your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays Now Playing information on the device’s Lock Screen and in the media controls in Control Center. If the user directs playback of your media to Apple TV using AirPlay, the Now Playing information appears on the television screen. If the user connects a device to an iPod accessory, such as in a car, the accessory may display Now Playing information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To ensure that your app interacts successfully with the widest possible range of accessories, provide values for as many information properties as you can in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " dictionary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The information you can specify includes all of the Now Playing metadata properties (see the Accessing Now Playing metadata properties topic group below), and the following subset of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTitle",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTrackCount",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTrackNumber",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyArtist",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyArtwork",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyComposer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyDiscCount",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyDiscNumber",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyGenre",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyMediaType",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyPersistentID",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyPlaybackDuration",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyTitle",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t have direct control over what information the system displays, or its formatting. You set the values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary and the system or the connected accessory handles displaying the information in a consistent manner for all apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can ensure that your app interacts well with other apps providing Now Playing information by following the best practices in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In iOS 17.2 and later, the Journal app encourages people to reflect and write about their day-to-day experiences, including media they listened to or watched. If your app donates media information to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and you choose not to opt-out, the media played may appear as a suggestion in the Journal app, or other apps that use the Journaling Suggestions framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem": {
+      "abstract": [
+        {
+          "text": "A collection of properties that represents a single item in the media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItem",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitem"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTitle": {
+      "abstract": [
+        {
+          "text": "The title of an album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyAlbumTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyAlbumTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyAlbumTitle",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertyalbumtitle"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTrackCount": {
+      "abstract": [
+        {
+          "text": "The number of tracks for the album that contains the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyAlbumTrackCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTrackCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyAlbumTrackCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyAlbumTrackCount",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertyalbumtrackcount"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTrackNumber": {
+      "abstract": [
+        {
+          "text": "The track number of the media item, for a media item that is part of an album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyAlbumTrackNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyAlbumTrackNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyAlbumTrackNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyAlbumTrackNumber",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertyalbumtracknumber"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyArtist": {
+      "abstract": [
+        {
+          "text": "The performing artists for a media item — which may vary from the primary artist for the album that a media item belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyArtist"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyArtist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyArtist"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyArtist",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertyartist"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyArtwork": {
+      "abstract": [
+        {
+          "text": "The artwork image for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyArtwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyArtwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyArtwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyArtwork",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertyartwork"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyComposer": {
+      "abstract": [
+        {
+          "text": "The musical composer for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyComposer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyComposer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyComposer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyComposer",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertycomposer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyDiscCount": {
+      "abstract": [
+        {
+          "text": "The number of discs for the album that contains the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyDiscCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyDiscCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyDiscCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyDiscCount",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertydisccount"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyDiscNumber": {
+      "abstract": [
+        {
+          "text": "The disc number of the media item, for a media item that is part of a multidisc album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyDiscNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyDiscNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyDiscNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyDiscNumber",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertydiscnumber"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyGenre": {
+      "abstract": [
+        {
+          "text": "The music or film genre of the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyGenre"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyGenre",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyGenre"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyGenre",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertygenre"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyMediaType": {
+      "abstract": [
+        {
+          "text": "The media type of the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyMediaType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyMediaType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyMediaType",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertymediatype"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyPersistentID": {
+      "abstract": [
+        {
+          "text": "The key for the persistent identifier for the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyPersistentID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyPersistentID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyPersistentID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyPersistentID",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertypersistentid"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyPlaybackDuration": {
+      "abstract": [
+        {
+          "text": "The playback duration of the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyPlaybackDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyPlaybackDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyPlaybackDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyPlaybackDuration",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertyplaybackduration"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyTitle": {
+      "abstract": [
+        {
+          "text": "The title or name of the media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemPropertyTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemPropertyTitle",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitempropertytitle"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter": {
+      "abstract": [
+        {
+          "text": "An object for setting the Now Playing information for media that your app plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoCenter",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocenter"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/default()": {
+      "abstract": [
+        {
+          "text": "Returns the singleton Now Playing info center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPNowPlayingInfoCenter",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/default()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "default()",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocenter/default()"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo": {
+      "abstract": [
+        {
+          "text": "The current Now Playing information for the default Now Playing info center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nowPlayingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nowPlayingInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "nowPlayingInfo",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocenter/nowplayinginfo"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/playbackState": {
+      "abstract": [
+        {
+          "text": "The current playback state of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playbackState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MPNowPlayingPlaybackState",
+          "text": "MPNowPlayingPlaybackState"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/playbackState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playbackState"
+        }
+      ],
+      "role": "symbol",
+      "title": "playbackState",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocenter/playbackstate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCollectionIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the collection the Now Playing item belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCollectionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCollectionIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCollectionIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoCollectionIdentifier",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocollectionidentifier"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption": {
+      "abstract": [
+        {
+          "text": "A set of interfaces for setting the language option for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOption"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoLanguageOption",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfolanguageoption"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup": {
+      "abstract": [
+        {
+          "text": "A grouped set of language options where only a single language option can be active at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOptionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOptionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoLanguageOptionGroup",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoMediaType": {
+      "abstract": [
+        {
+          "text": "The type of media currently playing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoMediaType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoMediaType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoMediaType",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfomediatype"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAdTimeRanges": {
+      "abstract": [
+        {
+          "text": "A list of ad breaks in the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyAdTimeRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAdTimeRanges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyAdTimeRanges"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyAdTimeRanges",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyadtimeranges"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAssetURL": {
+      "abstract": [
+        {
+          "text": "The URL pointing to the Now Playing item’s underlying asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyAssetURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAssetURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyAssetURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyAssetURL",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyasseturl"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAvailableLanguageOptions": {
+      "abstract": [
+        {
+          "text": "The available language option groups for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyAvailableLanguageOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAvailableLanguageOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyAvailableLanguageOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyAvailableLanguageOptions",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyavailablelanguageoptions"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterCount": {
+      "abstract": [
+        {
+          "text": "The total number of chapters in the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyChapterCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyChapterCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyChapterCount",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertychaptercount"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterNumber": {
+      "abstract": [
+        {
+          "text": "The number corresponding to the currently playing chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyChapterNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyChapterNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyChapterNumber",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertychapternumber"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCreditsStartTime": {
+      "abstract": [
+        {
+          "text": "The start time for the credits, in seconds, without ads, for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyCreditsStartTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCreditsStartTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyCreditsStartTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyCreditsStartTime",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertycreditsstarttime"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentLanguageOptions": {
+      "abstract": [
+        {
+          "text": "The currently active language options for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyCurrentLanguageOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentLanguageOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyCurrentLanguageOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyCurrentLanguageOptions",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertycurrentlanguageoptions"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentPlaybackDate": {
+      "abstract": [
+        {
+          "text": "The date associated with the current elapsed playback time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyCurrentPlaybackDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentPlaybackDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyCurrentPlaybackDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyCurrentPlaybackDate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertycurrentplaybackdate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyDefaultPlaybackRate": {
+      "abstract": [
+        {
+          "text": "The default playback rate for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyDefaultPlaybackRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyDefaultPlaybackRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyDefaultPlaybackRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyDefaultPlaybackRate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertydefaultplaybackrate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyElapsedPlaybackTime": {
+      "abstract": [
+        {
+          "text": "The elapsed time of the Now Playing item, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyElapsedPlaybackTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyElapsedPlaybackTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyElapsedPlaybackTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyElapsedPlaybackTime",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyelapsedplaybacktime"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExcludeFromSuggestions": {
+      "abstract": [
+        {
+          "text": "A number that denotes whether to exclude the Now Playing item from content suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyExcludeFromSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExcludeFromSuggestions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyExcludeFromSuggestions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyExcludeFromSuggestions",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyexcludefromsuggestions"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalContentIdentifier": {
+      "abstract": [
+        {
+          "text": "The opaque identifier that uniquely identifies the Now Playing item, even through app relaunches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyExternalContentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalContentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyExternalContentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyExternalContentIdentifier",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyexternalcontentidentifier"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalUserProfileIdentifier": {
+      "abstract": [
+        {
+          "text": "The opaque identifier that uniquely identifies the profile the Now Playing item plays from, even through app relaunches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyExternalUserProfileIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalUserProfileIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyExternalUserProfileIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyExternalUserProfileIdentifier",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyexternaluserprofileidentifier"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode": {
+      "abstract": [
+        {
+          "text": "The International Standard Recording Code (ISRC) of the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyinternationalstandardrecordingcode"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyIsLiveStream": {
+      "abstract": [
+        {
+          "text": "A number that denotes whether the Now Playing item is a live stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyIsLiveStream"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyIsLiveStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyIsLiveStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyIsLiveStream",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyislivestream"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyMediaType": {
+      "abstract": [
+        {
+          "text": "The media type of the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyMediaType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyMediaType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyMediaType",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertymediatype"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackProgress": {
+      "abstract": [
+        {
+          "text": "The current progress of the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackProgress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackProgress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackProgress"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyPlaybackProgress",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyplaybackprogress"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueCount": {
+      "abstract": [
+        {
+          "text": "The total number of items in the app’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackQueueCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackQueueCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyPlaybackQueueCount",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyplaybackqueuecount"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueIndex": {
+      "abstract": [
+        {
+          "text": "The index of the Now Playing item in the app’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackQueueIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackQueueIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyPlaybackQueueIndex",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyplaybackqueueindex"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackRate": {
+      "abstract": [
+        {
+          "text": "The playback rate of the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyPlaybackRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyPlaybackRate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyplaybackrate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyServiceIdentifier": {
+      "abstract": [
+        {
+          "text": "The service provider associated with the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyServiceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyServiceIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyServiceIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyServiceIdentifier",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfopropertyserviceidentifier"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingPlaybackState": {
+      "abstract": [
+        {
+          "text": "The playback state of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingPlaybackState"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingPlaybackState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingPlaybackState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingPlaybackState",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayingplaybackstate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession": {
+      "abstract": [
+        {
+          "text": "An object that manages Now Playing information and remote commands for multiple players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingSession",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayingsession"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app": {
+      "abstract": [
+        {
+          "text": "Ensure your app is eligible to become the Now Playing app by adopting best practices for providing Now Playing info and registering for remote command center actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Becoming a now playable app",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/becoming-a-now-playable-app"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants": {
+      "abstract": [
+        {
+          "text": "The constants for defining language characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Language option characteristic constants",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/language-option-characteristic-constants"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Now-Playing-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants"
+      ],
+      "title": "Now Playing information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-the-default-Now-Playing-info-center",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/default()",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoMediaType"
+      ],
+      "title": "Working with the default Now Playing info center"
+    },
+    {
+      "anchor": "Setting-the-playback-state-in-macOS",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/playbackState",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingPlaybackState"
+      ],
+      "title": "Setting the playback state in macOS"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Provide specific details about the currently playing item.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-Now-Playing-metadata-properties",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCollectionIdentifier",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAdTimeRanges",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAvailableLanguageOptions",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAssetURL",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterCount",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterNumber",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCreditsStartTime",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentLanguageOptions",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentPlaybackDate",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyDefaultPlaybackRate",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyElapsedPlaybackTime",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExcludeFromSuggestions",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalContentIdentifier",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalUserProfileIdentifier",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyIsLiveStream",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyMediaType",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackProgress",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackRate",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueCount",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueIndex",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyServiceIdentifier"
+      ],
+      "title": "Accessing Now Playing metadata properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12.2",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MPNowPlayingInfoCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-the-default-Now-Playing-info-center",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/default()",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoMediaType"
+              ],
+              "title": "Working with the default Now Playing info center"
+            },
+            {
+              "anchor": "Setting-the-playback-state-in-macOS",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter/playbackState",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingPlaybackState"
+              ],
+              "title": "Setting the playback state in macOS"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Provide specific details about the currently playing item.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Accessing-Now-Playing-metadata-properties",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCollectionIdentifier",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAdTimeRanges",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAvailableLanguageOptions",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyAssetURL",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterCount",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyChapterNumber",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCreditsStartTime",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentLanguageOptions",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyCurrentPlaybackDate",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyDefaultPlaybackRate",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyElapsedPlaybackTime",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExcludeFromSuggestions",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalContentIdentifier",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyExternalUserProfileIdentifier",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyIsLiveStream",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyMediaType",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackProgress",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackRate",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueCount",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyPlaybackQueueIndex",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoPropertyServiceIdentifier"
+              ],
+              "title": "Accessing Now Playing metadata properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Now-Playing-information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants"
+              ],
+              "title": "Now Playing information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MPNowPlayingInfoCenter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyAlbumTrackNumber/title",
+          "value": "MPMediaItemPropertyAlbumTrackNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyAlbumTrackNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyAlbumTrackNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyChapterNumber/title",
+          "value": "MPNowPlayingInfoPropertyChapterNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyChapterNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyChapterNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyArtist/title",
+          "value": "MPMediaItemPropertyArtist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyArtist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyArtist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyElapsedPlaybackTime/title",
+          "value": "MPNowPlayingInfoPropertyElapsedPlaybackTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyElapsedPlaybackTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyElapsedPlaybackTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackQueueCount/title",
+          "value": "MPNowPlayingInfoPropertyPlaybackQueueCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackQueueCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyPlaybackQueueCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyChapterCount/title",
+          "value": "MPNowPlayingInfoPropertyChapterCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyChapterCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyChapterCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyServiceIdentifier/title",
+          "value": "MPNowPlayingInfoPropertyServiceIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyServiceIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyServiceIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/title",
+          "value": "MPNowPlayingInfoLanguageOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyPlaybackDuration/title",
+          "value": "MPMediaItemPropertyPlaybackDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyPlaybackDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyPlaybackDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyArtwork/title",
+          "value": "MPMediaItemPropertyArtwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyArtwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyArtwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/title",
+          "value": "MPNowPlayingInfoLanguageOptionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOptionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOptionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyTitle/title",
+          "value": "MPMediaItemPropertyTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1default()/title",
+          "value": "defaultCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1default()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyExternalContentIdentifier/title",
+          "value": "MPNowPlayingInfoPropertyExternalContentIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyExternalContentIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyExternalContentIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyGenre/title",
+          "value": "MPMediaItemPropertyGenre"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyGenre/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyGenre"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackProgress/title",
+          "value": "MPNowPlayingInfoPropertyPlaybackProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackProgress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyPlaybackProgress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyAdTimeRanges/title",
+          "value": "MPNowPlayingInfoPropertyAdTimeRanges"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyAdTimeRanges/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyAdTimeRanges"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackQueueIndex/title",
+          "value": "MPNowPlayingInfoPropertyPlaybackQueueIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackQueueIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyPlaybackQueueIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1nowPlayingInfo/title",
+          "value": "nowPlayingInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1nowPlayingInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nowPlayingInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackRate/title",
+          "value": "MPNowPlayingInfoPropertyPlaybackRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyPlaybackRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyPlaybackRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyIsLiveStream/title",
+          "value": "MPNowPlayingInfoPropertyIsLiveStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyIsLiveStream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyIsLiveStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1playbackState/title",
+          "value": "playbackState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter~1playbackState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playbackState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyDiscCount/title",
+          "value": "MPMediaItemPropertyDiscCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyDiscCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyDiscCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyCurrentPlaybackDate/title",
+          "value": "MPNowPlayingInfoPropertyCurrentPlaybackDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyCurrentPlaybackDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyCurrentPlaybackDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyAlbumTrackCount/title",
+          "value": "MPMediaItemPropertyAlbumTrackCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyAlbumTrackCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyAlbumTrackCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingPlaybackState/title",
+          "value": "MPNowPlayingPlaybackState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingPlaybackState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingPlaybackState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingPlaybackState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingPlaybackState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyAlbumTitle/title",
+          "value": "MPMediaItemPropertyAlbumTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyAlbumTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyAlbumTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyExcludeFromSuggestions/title",
+          "value": "MPNowPlayingInfoPropertyExcludeFromSuggestions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyExcludeFromSuggestions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyExcludeFromSuggestions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyInternationalStandardRecordingCode/title",
+          "value": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyInternationalStandardRecordingCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyAvailableLanguageOptions/title",
+          "value": "MPNowPlayingInfoPropertyAvailableLanguageOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyAvailableLanguageOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyAvailableLanguageOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyCreditsStartTime/title",
+          "value": "MPNowPlayingInfoPropertyCreditsStartTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyCreditsStartTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyCreditsStartTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/title",
+          "value": "MPNowPlayingInfoCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyMediaType/title",
+          "value": "MPNowPlayingInfoPropertyMediaType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyMediaType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyMediaType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/title",
+          "value": "MPNowPlayingSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyMediaType/title",
+          "value": "MPMediaItemPropertyMediaType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyMediaType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyMediaType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyAssetURL/title",
+          "value": "MPNowPlayingInfoPropertyAssetURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyAssetURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyAssetURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyDiscNumber/title",
+          "value": "MPMediaItemPropertyDiscNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyDiscNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyDiscNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyDefaultPlaybackRate/title",
+          "value": "MPNowPlayingInfoPropertyDefaultPlaybackRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyDefaultPlaybackRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyDefaultPlaybackRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoMediaType/title",
+          "value": "MPNowPlayingInfoMediaType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoMediaType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoMediaType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoMediaType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoMediaType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyComposer/title",
+          "value": "MPMediaItemPropertyComposer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyComposer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyComposer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyCurrentLanguageOptions/title",
+          "value": "MPNowPlayingInfoPropertyCurrentLanguageOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyCurrentLanguageOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyCurrentLanguageOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItem/title",
+          "value": "MPMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCollectionIdentifier/title",
+          "value": "MPNowPlayingInfoCollectionIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCollectionIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCollectionIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyPersistentID/title",
+          "value": "MPMediaItemPropertyPersistentID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemPropertyPersistentID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemPropertyPersistentID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyExternalUserProfileIdentifier/title",
+          "value": "MPNowPlayingInfoPropertyExternalUserProfileIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyExternalUserProfileIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyExternalUserProfileIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpnowplayinginfocenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpnowplayinginfocenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

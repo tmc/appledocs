@@ -1,0 +1,3397 @@
+{
+  "abstract": [
+    {
+      "text": "A tagger that analyzes natural language text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NLTagger",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NLTagger"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Natural Language"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NLTagger"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NLTagger"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-parts-of-speech"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports many different languages and scripts. Use it to segment natural language text into paragraph, sentence, or word units and to tag each unit with information like part of speech, lexical class, lemma, script, and language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a linguistic tagger, you specify what kind of information you’re interested in by passing one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the natural language text you want to analyze, and the linguistic tagger processes it according to the specified tag schemes. You can then enumerate over the tags in a specified range, using the methods described in Enumerating linguistic tags, to get the information requested for a given scheme and unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t use an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " simultaneously from multiple threads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLGazetteer": {
+      "abstract": [
+        {
+          "text": "A collection of terms and their labels, which take precedence over a word tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLGazetteer"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLGazetteer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLGazetteer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLGazetteer",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlgazetteer"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag": {
+      "abstract": [
+        {
+          "text": "A token type, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTag"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTag",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltag"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme": {
+      "abstract": [
+        {
+          "text": "Constants for the tag schemes specified when initializing a linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTagScheme"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTagScheme",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagscheme"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger": {
+      "abstract": [
+        {
+          "text": "A tagger that analyzes natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTagger"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTagger",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/AssetsResult": {
+      "abstract": [
+        {
+          "text": "The response to an asset request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssetsResult"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/AssetsResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AssetsResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTagger.AssetsResult",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/assetsresult"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/Options": {
+      "abstract": [
+        {
+          "text": "Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/Options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTagger.Options",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/options"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/availableTagSchemes(for:language:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the tag schemes available for a particular unit (like word or sentence) and language on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableTagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/availableTagSchemes(for:language:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableTagSchemesForUnit:language:"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableTagSchemes(for:language:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/availabletagschemes(for:language:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/dominantLanguage": {
+      "abstract": [
+        {
+          "text": "The dominant language of the string set for the linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/dominantLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dominantLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "dominantLanguage",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/dominantlanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)": {
+      "abstract": [
+        {
+          "text": "Enumerates a block over the tagger’s string, given a range, token unit, and tag scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLTagger",
+          "text": "NLTagger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTaggerOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTag",
+          "text": "NLTag"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTags(in:unit:scheme:options:using:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/enumeratetags(in:unit:scheme:options:using:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/enumerateTagsInRange:unit:scheme:options:usingBlock:": {
+      "abstract": [
+        {
+          "text": "Enumerates a block over the tagger’s string, given a range, token unit, and tag scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTagsInRange:unit:scheme:options:usingBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/enumerateTagsInRange:unit:scheme:options:usingBlock:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumerateTagsInRange:unit:scheme:options:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumerateTagsInRange:unit:scheme:options:usingBlock:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/enumeratetagsinrange:unit:scheme:options:usingblock:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/gazetteers(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the gazetteers attached to a tag scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gazetteers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLGazetteer",
+          "text": "NLGazetteer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/gazetteers(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gazetteersForTagScheme:"
+        }
+      ],
+      "role": "symbol",
+      "title": "gazetteers(for:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/gazetteers(for:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/init(tagSchemes:)": {
+      "abstract": [
+        {
+          "text": "Creates a linguistic tagger instance using the specified tag schemes and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/init(tagSchemes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTagSchemes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(tagSchemes:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/init(tagschemes:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/models(forTagScheme:)": {
+      "abstract": [
+        {
+          "text": "Returns the models that apply to the given tag scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "models"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLModel",
+          "text": "NLModel"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/models(forTagScheme:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modelsForTagScheme:"
+        }
+      ],
+      "role": "symbol",
+      "title": "models(forTagScheme:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/models(fortagscheme:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/requestAssets(for:tagScheme:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the Natural Language framework to load any missing assets for a tag scheme onto the device for the given language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAssets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLTagger",
+          "text": "NLTagger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTaggerAssetsResult",
+          "text": "AssetsResult"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/requestAssets(for:tagScheme:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAssetsForLanguage:tagScheme:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAssets(for:tagScheme:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/requestassets(for:tagscheme:completionhandler:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setGazetteers(_:for:)": {
+      "abstract": [
+        {
+          "text": "Attaches gazetteers to a tag scheme, typically one gazetteer per language or one language-independent gazetteer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setGazetteers"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLGazetteer",
+          "text": "NLGazetteer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setGazetteers(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setGazetteers:forTagScheme:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setGazetteers(_:for:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/setgazetteers(_:for:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setLanguage(_:range:)": {
+      "abstract": [
+        {
+          "text": "Sets the language for a range of text within the tagger’s string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setLanguage(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLanguage(_:range:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/setlanguage(_:range:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setLanguage:range:": {
+      "abstract": [
+        {
+          "text": "Sets the language for a range of text within the tagger’s string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLanguage:range:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setLanguage:range:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setLanguage:range:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setLanguage:range:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/setlanguage:range:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setModels(_:forTagScheme:)": {
+      "abstract": [
+        {
+          "text": "Assigns models for a tag scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setModels"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLModel",
+          "text": "NLModel"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setModels(_:forTagScheme:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setModels:forTagScheme:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setModels(_:forTagScheme:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/setmodels(_:fortagscheme:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setOrthography(_:range:)": {
+      "abstract": [
+        {
+          "text": "Sets the orthography for the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrthography"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOrthography",
+          "text": "NSOrthography"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setOrthography(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrthography(_:range:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/setorthography(_:range:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setOrthography:range:": {
+      "abstract": [
+        {
+          "text": "Sets the orthography for the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrthography:range:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setOrthography:range:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOrthography:range:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setOrthography:range:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/setorthography:range:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/string": {
+      "abstract": [
+        {
+          "text": "The string being analyzed by the linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/string",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "string"
+        }
+      ],
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/string"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tag(at:unit:scheme:)": {
+      "abstract": [
+        {
+          "text": "Finds a tag for a given linguistic unit, for a single scheme, at the specified character position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTag",
+          "text": "NLTag"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tag(at:unit:scheme:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tag(at:unit:scheme:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tag(at:unit:scheme:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagAtIndex:unit:scheme:tokenRange:": {
+      "abstract": [
+        {
+          "text": "Finds a tag for a given linguistic unit, for a single scheme, at the specified character position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagAtIndex:unit:scheme:tokenRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagAtIndex:unit:scheme:tokenRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tagAtIndex:unit:scheme:tokenRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tagAtIndex:unit:scheme:tokenRange:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tagatindex:unit:scheme:tokenrange:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagHypotheses(at:unit:scheme:maximumCount:)": {
+      "abstract": [
+        {
+          "text": "Finds multiple possible tags for a given linguistic unit, for a single scheme, at the specified character position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagHypotheses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagHypotheses(at:unit:scheme:maximumCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tagHypotheses(at:unit:scheme:maximumCount:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/taghypotheses(at:unit:scheme:maximumcount:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:": {
+      "abstract": [
+        {
+          "text": "Finds multiple possible tags for a given linguistic unit, for a single scheme, at the specified character position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/taghypothesesatindex:unit:scheme:maximumcount:tokenrange:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagSchemes": {
+      "abstract": [
+        {
+          "text": "The tag schemes configured for this linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagSchemes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagSchemes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tagSchemes"
+        }
+      ],
+      "role": "symbol",
+      "title": "tagSchemes",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tagschemes"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tags(in:unit:scheme:options:)": {
+      "abstract": [
+        {
+          "text": "Finds an array of linguistic tags and token ranges for a given string range and linguistic unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLTagger",
+          "text": "NLTagger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTaggerOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") -> [("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTag",
+          "text": "NLTag"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">)]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tags(in:unit:scheme:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(in:unit:scheme:options:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tags(in:unit:scheme:options:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagsInRange:unit:scheme:options:tokenRanges:": {
+      "abstract": [
+        {
+          "text": "Finds an array of linguistic tags and token ranges for a given string range and linguistic unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tagsInRange:unit:scheme:options:tokenRanges:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagsInRange:unit:scheme:options:tokenRanges:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tagsInRange:unit:scheme:options:tokenRanges:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tagsInRange:unit:scheme:options:tokenRanges:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tagsinrange:unit:scheme:options:tokenranges:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRange(at:unit:)": {
+      "abstract": [
+        {
+          "text": "Returns the range of the linguistic unit containing the specified character index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRange(at:unit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenRange(at:unit:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tokenrange(at:unit:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRange(for:unit:)": {
+      "abstract": [
+        {
+          "text": "Finds the entire range of all tokens of the specified linguistic unit contained completely or partially within the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRange(for:unit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenRange(for:unit:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tokenrange(for:unit:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRangeAtIndex:unit:": {
+      "abstract": [
+        {
+          "text": "Returns the range of the linguistic unit containing the specified character index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRangeAtIndex:unit:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRangeAtIndex:unit:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenRangeAtIndex:unit:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenRangeAtIndex:unit:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tokenrangeatindex:unit:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRangeForRange:unit:": {
+      "abstract": [
+        {
+          "text": "Finds the entire range of all tokens of the specified linguistic unit contained completely or partially within the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRangeForRange:unit:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRangeForRange:unit:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenRangeForRange:unit:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenRangeForRange:unit:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger/tokenrangeforrange:unit:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit": {
+      "abstract": [
+        {
+          "text": "Constants representing linguistic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTokenUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTokenUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTokenUnit",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenunit"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to tag individual words in natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a word tagger model",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/creating-a-word-tagger-model"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-parts-of-speech": {
+      "abstract": [
+        {
+          "text": "Classify nouns, verbs, adjectives, and other parts of speech in a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-parts-of-speech",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying parts of speech",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/identifying-parts-of-speech"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations": {
+      "abstract": [
+        {
+          "text": "Use a linguistic tagger to perform named entity recognition on a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying people, places, and organizations",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/identifying-people-places-and-organizations"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Linguistic-tags",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-parts-of-speech",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations"
+      ],
+      "title": "Linguistic tags"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-tagger",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/init(tagSchemes:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/string"
+      ],
+      "title": "Creating a tagger"
+    },
+    {
+      "anchor": "Getting-the-tag-schemes",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/availableTagSchemes(for:language:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/requestAssets(for:tagScheme:completionHandler:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/AssetsResult",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagSchemes",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme"
+      ],
+      "title": "Getting the tag schemes"
+    },
+    {
+      "anchor": "Determining-the-dominant-language-and-orthography",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/dominantLanguage",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setLanguage(_:range:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setOrthography(_:range:)"
+      ],
+      "title": "Determining the dominant language and orthography"
+    },
+    {
+      "anchor": "Enumerating-linguistic-tags",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/enumerateTags(in:unit:scheme:options:using:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/Options",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag"
+      ],
+      "title": "Enumerating linguistic tags"
+    },
+    {
+      "anchor": "Getting-linguistic-tags",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tags(in:unit:scheme:options:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tag(at:unit:scheme:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagHypotheses(at:unit:scheme:maximumCount:)"
+      ],
+      "title": "Getting linguistic tags"
+    },
+    {
+      "anchor": "Determining-the-range-of-a-unit-token",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRange(at:unit:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRange(for:unit:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit"
+      ],
+      "title": "Determining the range of a unit token"
+    },
+    {
+      "anchor": "Using-models-with-a-tagger",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setModels(_:forTagScheme:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/models(forTagScheme:)"
+      ],
+      "title": "Using models with a tagger"
+    },
+    {
+      "anchor": "Using-gazetteers-with-a-tagger",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setGazetteers(_:for:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/gazetteers(for:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLGazetteer"
+      ],
+      "title": "Using gazetteers with a tagger"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NLTagger"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-tagger",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/init(tagSchemes:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/string"
+              ],
+              "title": "Creating a tagger"
+            },
+            {
+              "anchor": "Getting-the-tag-schemes",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/availableTagSchemes(for:language:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/requestAssets(for:tagScheme:completionHandler:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/AssetsResult",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagSchemes",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme"
+              ],
+              "title": "Getting the tag schemes"
+            },
+            {
+              "anchor": "Determining-the-dominant-language-and-orthography",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/dominantLanguage",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setLanguage:range:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setOrthography:range:"
+              ],
+              "title": "Determining the dominant language and orthography"
+            },
+            {
+              "anchor": "Enumerating-linguistic-tags",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/enumerateTagsInRange:unit:scheme:options:usingBlock:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/Options",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag"
+              ],
+              "title": "Enumerating linguistic tags"
+            },
+            {
+              "anchor": "Getting-linguistic-tags",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagsInRange:unit:scheme:options:tokenRanges:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagAtIndex:unit:scheme:tokenRange:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:"
+              ],
+              "title": "Getting linguistic tags"
+            },
+            {
+              "anchor": "Determining-the-range-of-a-unit-token",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRangeAtIndex:unit:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/tokenRangeForRange:unit:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit"
+              ],
+              "title": "Determining the range of a unit token"
+            },
+            {
+              "anchor": "Using-models-with-a-tagger",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setModels(_:forTagScheme:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/models(forTagScheme:)"
+              ],
+              "title": "Using models with a tagger"
+            },
+            {
+              "anchor": "Using-gazetteers-with-a-tagger",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/setGazetteers(_:for:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger/gazetteers(for:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLGazetteer"
+              ],
+              "title": "Using gazetteers with a tagger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Linguistic-tags",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-parts-of-speech",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations"
+              ],
+              "title": "Linguistic tags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NLTagger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1AssetsResult/title",
+          "value": "NLTaggerAssetsResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1AssetsResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTaggerAssetsResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1AssetsResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTaggerAssetsResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger/title",
+          "value": "NLTagger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagScheme/title",
+          "value": "NLTagScheme"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagScheme/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagScheme"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagScheme/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagScheme"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1setGazetteers(_:for:)/title",
+          "value": "setGazetteers:forTagScheme:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1setGazetteers(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setGazetteers:forTagScheme:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTag/title",
+          "value": "NLTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenUnit/title",
+          "value": "NLTokenUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1requestAssets(for:tagScheme:completionHandler:)/title",
+          "value": "requestAssetsForLanguage:tagScheme:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1requestAssets(for:tagScheme:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAssetsForLanguage:tagScheme:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1dominantLanguage/title",
+          "value": "dominantLanguage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1dominantLanguage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dominantLanguage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1models(forTagScheme:)/title",
+          "value": "modelsForTagScheme:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1models(forTagScheme:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "modelsForTagScheme:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLGazetteer/title",
+          "value": "NLGazetteer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLGazetteer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLGazetteer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLGazetteer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLGazetteer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1string/title",
+          "value": "string"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1string/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1tagSchemes/title",
+          "value": "tagSchemes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1tagSchemes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tagSchemes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1gazetteers(for:)/title",
+          "value": "gazetteersForTagScheme:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1gazetteers(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "gazetteersForTagScheme:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1availableTagSchemes(for:language:)/title",
+          "value": "availableTagSchemesForUnit:language:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1availableTagSchemes(for:language:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableTagSchemesForUnit:language:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1Options/title",
+          "value": "NLTaggerOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1Options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTaggerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1Options/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTaggerOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1setModels(_:forTagScheme:)/title",
+          "value": "setModels:forTagScheme:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1setModels(_:forTagScheme:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setModels:forTagScheme:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1init(tagSchemes:)/title",
+          "value": "initWithTagSchemes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger~1init(tagSchemes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTagSchemes:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/naturallanguage/nltagger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/naturallanguage/nltagger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

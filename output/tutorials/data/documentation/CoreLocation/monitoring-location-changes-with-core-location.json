@@ -1,0 +1,397 @@
+{
+  "abstract": [
+    {
+      "text": "Define boundaries and act on user location updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Monitoring location changes with Core Location"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10212: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10212/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and WWDC23 session 10147: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10147/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, ensure that you’re using Xcode 16 or later and iOS 18 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "60d004152b62/MonitoringLocationChangesWithCoreLocation.zip": {
+      "checksum": "60d004152b62a56287bcee2009d758d5ce57ab95f6238e0cb649d309733d5cade94abe2ea67699291e5f0fb502de8fd4c8370ff029478ecb350e1497a623302a",
+      "identifier": "60d004152b62/MonitoringLocationChangesWithCoreLocation.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/60d004152b62/MonitoringLocationChangesWithCoreLocation.zip"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3": {
+      "abstract": [
+        {
+          "text": "An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLBackgroundActivitySession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbackgroundactivitysession-3mzv3"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location information the framework delivers with each update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationUpdate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationupdate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/adopting-live-updates-in-core-location": {
+      "abstract": [
+        {
+          "text": "Simplify location delivery using asynchronous events in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/adopting-live-updates-in-core-location",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting live updates in Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation/adopting-live-updates-in-core-location"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/configuring-your-app-to-use-location-services": {
+      "abstract": [
+        {
+          "text": "Prepare your app to start collecting location data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/configuring-your-app-to-use-location-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app to use location services",
+      "type": "topic",
+      "url": "/documentation/corelocation/configuring-your-app-to-use-location-services"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps": {
+      "abstract": [
+        {
+          "text": "Enable background events by adding lifecycle event support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting live updates in SwiftUI and Mac Catalyst apps",
+      "type": "topic",
+      "url": "/documentation/corelocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc23/10147/": {
+      "identifier": "https://developer.apple.com/wwdc23/10147/",
+      "title": "Meet Core Location Monitor",
+      "titleInlineContent": [
+        {
+          "text": "Meet Core Location Monitor",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10147/"
+    },
+    "https://developer.apple.com/wwdc24/10212/": {
+      "identifier": "https://developer.apple.com/wwdc24/10212/",
+      "title": "What’s new in location authorization",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in location authorization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10212/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "60d004152b62/MonitoringLocationChangesWithCoreLocation.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/configuring-your-app-to-use-location-services",
+        "doc://com.apple.corelocation/documentation/CoreLocation/supporting-live-updates-in-swiftui-and-mac-catalyst-apps",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate",
+        "doc://com.apple.corelocation/documentation/CoreLocation/adopting-live-updates-in-core-location"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/monitoring-location-changes-with-core-location"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

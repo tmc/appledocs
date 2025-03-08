@@ -1,0 +1,872 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a string variation suitable for the specified presentation width. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+        "doc://com.apple.documentation/documentation/foundation/nsstring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413104,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSString(im)variantFittingPresentationWidth:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "variantFittingPresentationWidth"
+      },
+      {
+        "kind": "text",
+        "text": "(Int) -> String"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSString"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "variantFittingPresentationWidth(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "variantFittingPresentationWidth"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "width"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The desired width of the string variation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "width"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A string variation, or the original string if no variations exist for the specified width.  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this method to provide adaptive strings for the user's device—that is, text that avoids truncation and maximizes available space. For example, an app running on an iPad Pro in Landscape orientation might welcome a user with the message “Greetings and Salutations!”, whereas the same app running on an iPhone SE in Portrait orientation might instead show an abbreviated welcome message, like “Hello!”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don't call this method when setting user-visible text for standard UIKit controls, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". UIKit provides built-in support for adaptive strings, and automatically selects the string width variant appropriate for the current screen size according to the behavior described below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method on a string with one or more width variations. You define width variations for a localized string in a Stringsdict file using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSStringVariableWidthRuleType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key, and then retrieve a string with variations using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider the ",
+              "type": "text"
+            },
+            {
+              "code": "stringsdict.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the first listing and the corresponding code in the second listing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\"><key>hello</key>",
+            "<dict>",
+            "    <key>NSStringVariableWidthRuleType</key>",
+            "    <dict>",
+            "        <key>1</key>",
+            "        <string>Hi!</string>",
+            "        <key>20</key>",
+            "        <string>Hello!</string>",
+            "        <key>70</key>",
+            "        <string>Greetings and Salutations!</string>",
+            "    </dict>",
+            "</dict>"
+          ],
+          "metadata": {
+            "anchor": "2954757",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let adaptiveString = NSLocalizedString(\"hello\")",
+            "",
+            "print(adaptiveString.variantFittingPresentationWidth(10)) // Prints \"Hi!\"",
+            "print(adaptiveString.variantFittingPresentationWidth(25)) // Prints \"Hello!\"",
+            "print(adaptiveString.variantFittingPresentationWidth(70)) // Prints \"Greetings and Salutations!\""
+          ],
+          "metadata": {
+            "anchor": "2954756",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2955277",
+          "level": 3,
+          "text": "Understanding How Width Variants Are Selected",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method selects a variation for a specified width according to the following behavior:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If no variations exist for the string, the original string is returned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a variation exists for the specified width, that string is returned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If no variation is found with a width less than the specified value, the variation with the smallest width is returned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, the variation with the next smallest width value is returned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "2956936",
+          "level": 3,
+          "text": "Specifying Width Values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Smaller width values correspond to shorter strings, whereas larger values correspond to longer strings. By default, width values do not have an associated unit. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, width contexts are measured by the number of em units that fit across the app window. This value depends on several factors, including the size and orientation of the device, the user's preferred content size category, whether the Zoom accessibility feature is enabled, and whether the app is displayed in a multitasking context, such as in Split View or Slide Over.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/String": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/swift/string"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocalizedstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalizedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth": {
+      "abstract": [
+        {
+          "text": "Returns a string variation suitable for the specified presentation width. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "variantFittingPresentationWidth"
+        },
+        {
+          "kind": "text",
+          "text": "(Int) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "variantFittingPresentationWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth#2954756": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth#2954756",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth#2954756"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth#2954757": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth#2954757",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsstring/1413104-variantfittingpresentationwidth#2954757"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1524729-boundingrect": {
+      "abstract": [
+        {
+          "text": "Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSStringDrawingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.Key : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": NSStringDrawingContext?) -> CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1524729-boundingrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingRect(with:options:attributes:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1524729-boundingrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1529855-draw": {
+      "abstract": [
+        {
+          "text": "Draws the attributed string inside the specified bounding rectangle. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.Key : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1529855-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:withAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1529855-draw"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1530195-draw": {
+      "abstract": [
+        {
+          "text": "Draws the attributed string in the specified bounding rectangle using the provided options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSStringDrawingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.Key : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": NSStringDrawingContext?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1530195-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(with:options:attributes:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1530195-draw"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1531844-size": {
+      "abstract": [
+        {
+          "text": "Returns the bounding box size the receiver occupies when drawn with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.Key : Any]?) -> CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1531844-size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size(withAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1531844-size"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1533109-draw": {
+      "abstract": [
+        {
+          "text": "Draws the receiver with the font and other display characteristics of the given attributes, at the specified point in the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSAttributedString.Key : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1533109-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(at:withAttributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1533109-draw"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classes Bridged to Swift Standard Library Value Types",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/uikit/nsstringdrawingoptions": {
+      "abstract": [
+        {
+          "text": "Constants that specify the rendering options for drawing a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStringDrawingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/uikit/nsstringdrawingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString.DrawingOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/nsstringdrawingoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILabel": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uilabel"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1533109-draw",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1529855-draw",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1530195-draw",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1524729-boundingrect",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1531844-size",
+        "doc://com.apple.documentation/documentation/uikit/nsstringdrawingoptions"
+      ],
+      "title": "Sizing and Drawing Strings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsstring/1413104-variantfittingpresentationwidth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsstring/1413104-variantfittingpresentationwidth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

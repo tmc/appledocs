@@ -1,0 +1,1028 @@
+{
+  "abstract": [
+    {
+      "text": "Learn the order in which the system executes your code at app launch time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About the app launch sequence"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Launching an app involves a complex sequence of steps, most of which the system handles automatically. During the launch sequence, UIKit calls methods in your app delegate so you can prepare your app for user interaction and perform any tasks specific to your app’s requirements. The following illustrates the individual steps of this launch sequence, from the time the app launches to when the sequence completes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004330",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user or the system launches your app, or the system prewarms your app. For more information about prewarming, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence#Prepare-your-app-for-prewarming",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system executes the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function that Xcode provides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " function calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which creates an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and of your app delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit loads the default storyboard you specify in your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, or in the target’s Custom iOS Target Properties tab of Xcode’s project editor; apps that don’t use a default storyboard skip this step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:willFinishLaunchingWithOptions:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method in your app delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit performs state restoration, which results in the execution of additional methods in your app delegate and app’s view controllers. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit calls your app delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the launch sequence completes, the system uses your app or scene delegates to display your app’s user interface and to manage its life cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-app-for-prewarming",
+          "level": 3,
+          "text": "Prepare your app for prewarming",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15 and later, the system may, depending on device conditions, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "prewarm",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " your app — launch nonrunning application processes to reduce the amount of time the user waits before the app is usable. Prewarming executes an app’s launch sequence up until, but not including, when ",
+              "type": "text"
+            },
+            {
+              "code": "main()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This provides the system with an opportunity to build and cache any low-level structures it requires in anticipation of a full launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information about the low-level structures the system requires during app launch, see the WWDC session video ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2017/413",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the system prewarms your app, its launch sequence remains in a paused state until the app launches and the sequence resumes, or the system removes the prewarmed app from memory to reclaim resources. The system can prewarm your app after a device reboot, and periodically as system conditions allow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app executes code before the call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", such as in static initializers like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418815-load",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", don’t make assumptions about what services and resources are available. For example, keychain items may be unavailable because their data protection policies require an unlocked device and prewarming happens even when the device is in a locked state. If your code is dependent upon access to a specific service or resource, migrate that code to a later part of the launch sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prewarming an app results in an indeterminate amount of time between when the prewarming phase completes and when the user, or system, fully launches the app. Because of this, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to accurately measure user-driven launch and resume times instead of manually signposting various points of the launch sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/MetricKit"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418815-load": {
+      "abstract": [
+        {
+          "text": "Invoked whenever a class or category is added to the Objective-C runtime; implement this method to perform class-specific behavior upon loading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418815-load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418815-load"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:didFinishLaunchingWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:willFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process has begun but that state restoration hasn’t occured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:willFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:willFinishLaunchingWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:willFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:willfinishlaunchingwithoptions:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7": {
+      "abstract": [
+        {
+          "text": "Creates the application object and the application delegate and sets up the event cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationMain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationMain"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationMain(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationmain(_:_:_:_:)-1yub7"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence#Prepare-your-app-for-prewarming": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-app-launch-sequence#Prepare-your-app-for-prewarming",
+      "kind": "section",
+      "title": "Prepare your app for prewarming",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-app-launch-sequence#Prepare-your-app-for-prewarming"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process": {
+      "abstract": [
+        {
+          "text": "Learn how to customize the UIKit state restoration process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process",
+      "kind": "article",
+      "role": "article",
+      "title": "About the UI restoration process",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-ui-restoration-process"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/performing-one-time-setup-for-your-app": {
+      "abstract": [
+        {
+          "text": "Ensure proper configuration of your app environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/performing-one-time-setup-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing one-time setup for your app",
+      "type": "topic",
+      "url": "/documentation/uikit/performing-one-time-setup-for-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches": {
+      "abstract": [
+        {
+          "text": "Return your app to its previous state after the system terminates it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preserving your app’s UI across launches",
+      "type": "topic",
+      "url": "/documentation/uikit/preserving-your-app-s-ui-across-launches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app": {
+      "abstract": [
+        {
+          "text": "Initialize your app’s data structures, prepare your app to run, and respond to any launch-time requests from the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Responding to the launch of your app",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-the-launch-of-your-app"
+    },
+    "https://developer.apple.com/videos/play/wwdc2017/413": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2017/413",
+      "title": "App Startup Time: Past, Present, and Future",
+      "titleInlineContent": [
+        {
+          "text": "App Startup Time: Past, Present, and Future",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2017/413"
+    },
+    "media-3004330": {
+      "alt": "A diagram that depicts an app’s launch sequence. On the left is a box with the title Launch Time that contains a label for each step in the launch sequence, and a down arrow between each one that represents the direction of flow. From top-to-bottom, the labels are main(), UIApplicationMain(), Load the main UI file, First initialization, Restore UI state, and Final initialization. On the right is a box with the title Your code that contains three labels. From top-to-bottom, the labels are application:willFinishLaunchingWithOptions:, Various methods, and application:didFinishLaunchingWithOptions:. There is an arrow pointing right between the First initialization label in the Launch Time box and the application:willFinishLaunchingWithOptions: label in the Your code box. There’s a bidirectional arrow between the Restore UI state label in the Launch Time box and the Various methods label in the Your code box. And there’s an arrow pointing right between the Final initialization label in the Launch Time box and the application:willFinishLaunchingWithOptions: label in the Your code box.",
+      "identifier": "media-3004330",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b20b2622e501455c43cc50b07d3990e4/media-3004330@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d74ffe353eaea7dea285e54f84685f4/media-3004330~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Launch-time",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/performing-one-time-setup-for-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches"
+      ],
+      "title": "Launch time"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Launch-time",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/performing-one-time-setup-for-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches"
+              ],
+              "title": "Launch time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:didFinishLaunchingWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11418815-load/title",
+          "value": "load"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationMain(_:_:_:_:)-1yub7/title",
+          "value": "UIApplicationMain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationMain(_:_:_:_:)-1yub7/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationMain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:willFinishLaunchingWithOptions:)/title",
+          "value": "application:willFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:willFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:willFinishLaunchingWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/about-the-app-launch-sequence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/about-the-app-launch-sequence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

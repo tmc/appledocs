@@ -1,0 +1,1412 @@
+{
+  "abstract": [
+    {
+      "text": "A reference to a function in a Metal shader library, along with its",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "bound uniform argument values.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI6ShaderV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Shader"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Shader"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Shader"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Shader"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shader values can be used as filter effects on views, see the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/colorEffect(_:isEnabled:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/distortionEffect(_:maxSampleOffset:isEnabled:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layerEffect(_:maxSampleOffset:isEnabled:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shaders also conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, letting their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MSL shader function provide per-pixel color to fill any shape or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text view. For a shader function to act as a fill pattern it must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have a function signature matching:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[ stitchable ]] half4 name(float2 position, args...)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where ",
+              "type": "text"
+            },
+            {
+              "code": "position",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the user-space coordinates of the pixel applied",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the shader, and ",
+              "type": "text"
+            },
+            {
+              "code": "args...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should be compatible with the uniform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arguments bound to ",
+              "type": "text"
+            },
+            {
+              "code": "shader",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The function should return the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "premultiplied color value in the color space of the destination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(typically extended sRGB).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader": {
+      "abstract": [
+        {
+          "text": "A reference to a function in a Metal shader library, along with its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bound uniform argument values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shader"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shader"
+        }
+      ],
+      "role": "symbol",
+      "title": "Shader",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/Argument": {
+      "abstract": [
+        {
+          "text": "A single uniform argument value to a shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Argument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/Argument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Argument"
+        }
+      ],
+      "role": "symbol",
+      "title": "Shader.Argument",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/argument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/UsageType": {
+      "abstract": [
+        {
+          "text": "The different ways in which a ",
+          "type": "text"
+        },
+        {
+          "code": "Shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " may be used to render.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UsageType"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/UsageType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UsageType"
+        }
+      ],
+      "role": "symbol",
+      "title": "Shader.UsageType",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/usagetype"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/arguments": {
+      "abstract": [
+        {
+          "text": "The uniform argument values passed to the shader function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV8ArgumentV",
+          "text": "Argument"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/arguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arguments",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/arguments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/compile(as:)": {
+      "abstract": [
+        {
+          "text": "Attempts to asynchronously compile a shader function, to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "minimize the chance of stalling when it is first used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV9UsageTypeV",
+          "text": "UsageType"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/compile(as:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compile(as:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/compile(as:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/dithersColor": {
+      "abstract": [
+        {
+          "text": "For shader functions that return color values, whether the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returned color has dither noise added to it, or is simply",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rounded to the output bit-depth. For shaders generating smooth",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gradients, dithering is usually necessary to prevent visible",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "banding in the result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dithersColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/dithersColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dithersColor",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/ditherscolor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/function": {
+      "abstract": [
+        {
+          "text": "The shader function called by the shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ShaderFunctionV",
+          "text": "ShaderFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/function",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "function",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/function"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/init(function:arguments:)": {
+      "abstract": [
+        {
+          "text": "Creates a new shader from a function and the uniform argument",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "values to bind to the function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ShaderFunctionV",
+          "text": "ShaderFunction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV8ArgumentV",
+          "text": "Argument"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/init(function:arguments:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(function:arguments:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/shader/init(function:arguments:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShaderFunction": {
+      "abstract": [
+        {
+          "text": "A reference to a function in a Metal shader library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShaderFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShaderFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderFunction",
+      "type": "topic",
+      "url": "/documentation/swiftui/shaderfunction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShaderLibrary": {
+      "abstract": [
+        {
+          "text": "A Metal shader library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShaderLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShaderLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderLibrary",
+      "type": "topic",
+      "url": "/documentation/swiftui/shaderlibrary"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle": {
+      "abstract": [
+        {
+          "text": "A color or pattern to use when rendering a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/colorEffect(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Returns a new view that applies ",
+          "type": "text"
+        },
+        {
+          "code": "shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as a filter",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "effect on the color of each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/colorEffect(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorEffect(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/coloreffect(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/distortionEffect(_:maxSampleOffset:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Returns a new view that applies ",
+          "type": "text"
+        },
+        {
+          "code": "shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "geometric distortion effect on the location of each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distortionEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxSampleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/distortionEffect(_:maxSampleOffset:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distortionEffect(_:maxSampleOffset:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/distortioneffect(_:maxsampleoffset:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layerEffect(_:maxSampleOffset:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Returns a new view that applies ",
+          "type": "text"
+        },
+        {
+          "code": "shader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as a filter",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the raster layer created from ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI6ShaderV",
+          "text": "Shader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxSampleOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layerEffect(_:maxSampleOffset:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layerEffect(_:maxSampleOffset:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/layereffect(_:maxsampleoffset:isenabled:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-Metal-shaders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/colorEffect(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/distortionEffect(_:maxSampleOffset:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/layerEffect(_:maxSampleOffset:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ShaderFunction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ShaderLibrary"
+      ],
+      "title": "Accessing Metal shaders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-shader",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/init(function:arguments:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/Argument"
+      ],
+      "title": "Creating a shader"
+    },
+    {
+      "anchor": "Getting-the-shader-function",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/function",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/arguments"
+      ],
+      "title": "Getting the shader function"
+    },
+    {
+      "anchor": "Configuring-the-shader",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/dithersColor"
+      ],
+      "title": "Configuring the shader"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/UsageType"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shader/compile(as:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/shader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

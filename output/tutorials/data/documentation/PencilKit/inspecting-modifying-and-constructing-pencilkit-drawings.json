@@ -1,0 +1,460 @@
+{
+  "abstract": [
+    {
+      "text": "Score users’ ability to match PencilKit drawings generated from text, by accessing the strokes and points inside PencilKit drawings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pencilkit/documentation/PencilKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pencilkit/documentation/PencilKit/inspecting-modifying-and-constructing-pencilkit-drawings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PencilKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Inspecting, Modifying, and Constructing PencilKit Drawings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC20 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10148/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project must be run on a physical device with Apple Pencil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9ab4eccb5c46/InspectingModifyingAndConstructingPencilKitDrawings.zip": {
+      "checksum": "9ab4eccb5c46da77f06a6331fbf77a9de0f17a8c2ee3f89f1ddd1d5094cf11430241fc84f2c0b3a080d26b2bae39b2be3170fa8efe47af97d5245ddff9d5b8bd",
+      "identifier": "9ab4eccb5c46/InspectingModifyingAndConstructingPencilKitDrawings.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9ab4eccb5c46/InspectingModifyingAndConstructingPencilKitDrawings.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit": {
+      "abstract": [
+        {
+          "text": "Capture touch and Apple Pencil input as a drawing, and display that content from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView": {
+      "abstract": [
+        {
+          "text": "A view that captures Apple Pencil input and displays the rendered results in an iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKCanvasView",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure representing the drawing information captured by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDrawing"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDrawing"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDrawing",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkdrawing-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents an ink that specifies its type, color, and width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInk"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInk"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInk",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkink-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents the paths, boundaries, and other properties of a stroke drawn on a canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStroke"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStroke"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStroke",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstroke-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePath-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that captures the components of a stroke and provides methods to find and interpolate points along the stroke’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokePath"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePath-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokePath"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokePath",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokepath-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePoint-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents the properties of a specific point along a stroke’s path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStrokePoint"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePoint-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStrokePoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStrokePoint",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstrokepoint-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/customizing-scribble-with-interactions": {
+      "abstract": [
+        {
+          "text": "Enable writing on a non-text-input view by adding interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/customizing-scribble-with-interactions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Scribble with Interactions",
+      "type": "topic",
+      "url": "/documentation/pencilkit/customizing-scribble-with-interactions"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/drawing-with-pencilkit": {
+      "abstract": [
+        {
+          "text": "Add expressive, low-latency drawing to your app using PencilKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/drawing-with-pencilkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Drawing with PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit/drawing-with-pencilkit"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10148/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10148/",
+      "title": "10148: Inspect, Modify, and Construct PencilKit Drawings",
+      "titleInlineContent": [
+        {
+          "text": "10148: Inspect, Modify, and Construct PencilKit Drawings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10148/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9ab4eccb5c46/InspectingModifyingAndConstructingPencilKitDrawings.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Canvas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/drawing-with-pencilkit",
+        "doc://com.apple.pencilkit/documentation/PencilKit/customizing-scribble-with-interactions",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePath-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKStrokePoint-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct"
+      ],
+      "title": "Canvas"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/title",
+          "value": "PKCanvasView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pencilkit/inspecting-modifying-and-constructing-pencilkit-drawings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

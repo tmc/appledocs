@@ -1,0 +1,847 @@
+{
+  "abstract": [
+    {
+      "text": "The audio engine’s optional singleton main mixer node.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/mainMixerNode"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioEngine(py)mainMixerNode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "mainMixerNode"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)AVAudioMixerNode",
+        "text": "AVAudioMixerNode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "mainMixerNode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "mainMixerNode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "mainMixerNode"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVAudioMixerNode",
+              "text": "AVAudioMixerNode"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The audio engine constructs a singleton main mixer and connects it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/outputNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when first accessing this property. You can then connect additional audio nodes to the mixer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the client never sets the connection format between the ",
+              "type": "text"
+            },
+            {
+              "code": "mainMixerNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "outputNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the engine always updates the format to track the format of the ",
+              "type": "text"
+            },
+            {
+              "code": "outputNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on startup or restart, even after an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngineConfigurationChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Otherwise, it’s the client’s responsibility to update the connection format after an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngineConfigurationChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the mixer’s output format (sample rate and channel count) tracks the format of the output node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/inputNode": {
+      "abstract": [
+        {
+          "text": "The audio engine’s singleton input audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioInputNode",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/inputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine/inputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/mainMixerNode": {
+      "abstract": [
+        {
+          "text": "The audio engine’s optional singleton main mixer node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainMixerNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioMixerNode",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/mainMixerNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mainMixerNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "mainMixerNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine/mainmixernode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/outputNode": {
+      "abstract": [
+        {
+          "text": "The audio engine’s singleton output audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioOutputNode",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/outputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine/outputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngineConfigurationChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification the framework posts when the audio engine configuration changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngineConfigurationChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngineConfigurationChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioEngineConfigurationChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengineconfigurationchangenotification"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode": {
+      "abstract": [
+        {
+          "text": "An object that takes any number of inputs and converts them into a single output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioMixerNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiomixernode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-Input-Output-and-Main-Mixer-Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/inputNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/outputNode"
+      ],
+      "title": "Getting the Input, Output, and Main Mixer Nodes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "mainMixerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mainMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Input-Output-and-Main-Mixer-Nodes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/inputNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine/outputNode"
+              ],
+              "title": "Getting the Input, Output, and Main Mixer Nodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVAudioMixerNode",
+                    "text": "AVAudioMixerNode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "mainMixerNode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1outputNode/title",
+          "value": "outputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1outputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/title",
+          "value": "AVAudioMixerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1inputNode/title",
+          "value": "inputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1inputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1mainMixerNode/title",
+          "value": "mainMixerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine~1mainMixerNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mainMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/title",
+          "value": "AVAudioEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioengine/mainmixernode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioengine/mainmixernode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

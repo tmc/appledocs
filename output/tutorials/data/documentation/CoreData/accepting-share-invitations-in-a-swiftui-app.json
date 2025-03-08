@@ -1,0 +1,1564 @@
+{
+  "abstract": [
+    {
+      "text": "Adapt your app to use UIKit’s application and scene delegates so it can process CloudKit share invitations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/accepting-share-invitations-in-a-swiftui-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accepting Share Invitations in a SwiftUI App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user accepts an invitation to participate in a CloudKit share, the system passes that share’s metadata to your app’s scene delegate for processing. To receive this metadata in a SwiftUI app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a scene delegate — an object that conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — that’s responsible for passing the accepted share metadata to your app’s persistent container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an application delegate — an object that conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — that configures new scenes to use your custom scene delegate class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modify your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure to use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to initialize and manage an application delegate at runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-a-Scene-Delegate-to-Process-Share-Invitations",
+          "level": 3,
+          "text": "Add a Scene Delegate to Process Share Invitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to the user accepting a CloudKit share invitation, the system routes that action, for processing, to the delegate of the app’s active scene. SwiftUI apps don’t contain a scene delegate by default, but you can add one, and use it to implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:userDidAcceptCloudKitShareWith:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Your implementation is responsible for passing the provided share metadata to your app’s persistent container for processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the scene delegate, right-click your project in Xcode’s Project navigator and select New File. Choose the Swift File template and name the file ",
+              "type": "text"
+            },
+            {
+              "code": "SceneDelegate.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Open the new file in Xcode’s source editor and define the ",
+              "type": "text"
+            },
+            {
+              "code": "SceneDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class as a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Within this class, add your implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:userDidAcceptCloudKitShareWith:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class SceneDelegate: UIResponder, UIWindowSceneDelegate {",
+            "    func windowScene(_ windowScene: UIWindowScene,",
+            "        userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {",
+            "        ",
+            "        let stack = CoreDataStack.shared",
+            "",
+            "        // Get references to the app's persistent container ",
+            "        // and shared persistent store.",
+            "        let container = stack.persistentContainer",
+            "        let store = stack.sharedPersistentStore",
+            "",
+            "        // Tell the container to accept the specified share, adding",
+            "        // the shared objects to the shared persistent store.",
+            "       container.acceptShareInvitations(from: [cloudKitShareMetadata],",
+            "                                        into: store,",
+            "                                        completion: nil)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above uses a ",
+              "type": "text"
+            },
+            {
+              "code": "CoreDataStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that manages the initialization of the persistent container, and the private and shared persistent stores. For a reference implementation, see the sample code project ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/synchronizing-a-local-store-to-the-cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-Application-Delegate-to-Configure-New-Scenes",
+          "level": 3,
+          "text": "Add an Application Delegate to Configure New Scenes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before an app connects a new scene, the system asks the application delegate to provide the configuration for the new scene, including the class to use as its own delegate. By providing this configuration, your app can use your custom delegate implementation and correctly process accepted CloudKit share invitations. Because SwiftUI apps don’t include an application delegate, you need to add one to your app’s target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Right-click your project in Xcode’s Project navigator and select New File. Choose the Swift File template and name the file ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Open the new file in Xcode’s source editor and add the following code, which configures each new scene to use the custom ",
+              "type": "text"
+            },
+            {
+              "code": "SceneDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class from the previous section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class AppDelegate: UIResponder, UIApplicationDelegate {",
+            "    func application(_ application: UIApplication, configurationForConnecting",
+            "        connectingSceneSession: UISceneSession,",
+            "        options: UIScene.ConnectionOptions) -> UISceneConfiguration {",
+            "",
+            "        // Create a scene configuration object for the",
+            "        // specified session role.",
+            "        let config = UISceneConfiguration(name: nil,",
+            "            sessionRole: connectingSceneSession.role)",
+            "",
+            "        // Set the configuration's delegate class to the",
+            "        // scene delegate that implements the share",
+            "        // acceptance method.",
+            "        config.delegateClass = SceneDelegate.self",
+            "",
+            "        return config",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on scene configuration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Modify-Your-App-to-Utilize-the-Application-Delegate",
+          "level": 3,
+          "text": "Modify Your App to Utilize the Application Delegate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add the scene and application delegates to your app’s target, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper to instruct your app’s top-level object — the structure that adopts SwiftUI’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol — to initialize and manage an instance of the application delegate at runtime, as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct SharingExample: App {",
+            "    // Instruct SwiftUI to use the custom AppDelegate class ",
+            "    // as the app's application delegate.",
+            "    @UIApplicationDelegateAdaptor var appDelegate: AppDelegate",
+            "",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "                .environment(\\.managedObjectContext,",
+            "                    CoreDataStack.shared.persistentContainer.viewContext)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this change in place, whenever the user accepts a CloudKit share invitation, SwiftUI notifies the active scene’s delegate where you can process the accepted invitation accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer": {
+      "abstract": [
+        {
+          "text": "A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentCloudKitContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentCloudKitContainer",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/acceptShareInvitationsFromMetadata:intoPersistentStore:completion:": {
+      "abstract": [
+        {
+          "text": "Accepts one or more invitations to participate in sharing using the specified metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptShareInvitationsFromMetadata:intoPersistentStore:completion:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/acceptShareInvitationsFromMetadata:intoPersistentStore:completion:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "acceptShareInvitationsFromMetadata:intoPersistentStore:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "acceptShareInvitationsFromMetadata:intoPersistentStore:completion:",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer/acceptshareinvitationsfrommetadata:intopersistentstore:completion:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:": {
+      "abstract": [
+        {
+          "text": "Fetches all participants that match the specified critieria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer/fetchparticipantsmatchinglookupinfos:intopersistentstore:completion:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesInPersistentStore:error:": {
+      "abstract": [
+        {
+          "text": "Returns an array that contains all share records in the specified persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchSharesInPersistentStore:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesInPersistentStore:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchSharesInPersistentStore:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchSharesInPersistentStore:error:",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer/fetchsharesinpersistentstore:error:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesMatchingObjectIDs:error:": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that contains the share records that CloudKit associates with specified managed object IDs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchSharesMatchingObjectIDs:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesMatchingObjectIDs:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchSharesMatchingObjectIDs:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchSharesMatchingObjectIDs:error:",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer/fetchsharesmatchingobjectids:error:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/persistUpdatedShare:inPersistentStore:completion:": {
+      "abstract": [
+        {
+          "text": "Saves the share record and schedules it for export to iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistUpdatedShare:inPersistentStore:completion:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/persistUpdatedShare:inPersistentStore:completion:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "persistUpdatedShare:inPersistentStore:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "persistUpdatedShare:inPersistentStore:completion:",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer/persistupdatedshare:inpersistentstore:completion:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/shareManagedObjects:toShare:completion:": {
+      "abstract": [
+        {
+          "text": "Associates the specified managed objects with a new or existing share record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "shareManagedObjects:toShare:completion:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/shareManagedObjects:toShare:completion:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shareManagedObjects:toShare:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shareManagedObjects:toShare:completion:",
+      "type": "topic",
+      "url": "/documentation/coredata/nspersistentcloudkitcontainer/sharemanagedobjects:toshare:completion:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/synchronizing-a-local-store-to-the-cloud": {
+      "abstract": [
+        {
+          "text": "Share data between a user’s devices and other iCloud users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/synchronizing-a-local-store-to-the-cloud",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing a local store to the cloud",
+      "type": "topic",
+      "url": "/documentation/coredata/synchronizing-a-local-store-to-the-cloud"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/App"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create a UIKit app delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegateAdaptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "DelegateType"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DelegateType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DelegateType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIApplicationDelegate",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIApplicationDelegateAdaptor"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods to manage shared behaviors for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the configuration data for UIKit to use when creating a new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationForConnecting"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connectingSceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:configurationForConnecting:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponder"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Additional methods that you use to manage app-specific tasks occurring in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UISceneDelegate",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWindowSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWindowSceneDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:userDidAcceptCloudKitShareWith:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the window scene now has access to shared information in CloudKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "windowScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userDidAcceptCloudKitShareWith"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "cloudKitShareMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKShareMetadata",
+          "text": "CKShareMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:userDidAcceptCloudKitShareWith:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowScene(_:userDidAcceptCloudKitShareWith:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWindowSceneDelegate/windowScene(_:userDidAcceptCloudKitShareWith:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sharing-Objects",
+      "generated": true,
+      "identifiers": [],
+      "title": "Sharing Objects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sharing-Objects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/acceptShareInvitationsFromMetadata:intoPersistentStore:completion:",
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:",
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesInPersistentStore:error:",
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesMatchingObjectIDs:error:",
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/persistUpdatedShare:inPersistentStore:completion:",
+                "doc://com.apple.coredata/documentation/CoreData/NSPersistentCloudKitContainer/shareManagedObjects:toShare:completion:"
+              ],
+              "title": "Sharing Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWindowSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UISceneDelegate",
+              "text": "UISceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/title",
+          "value": "application:configurationForConnectingSceneSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+              "text": "UISceneConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationForConnectingSceneSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneSession",
+              "text": "UISceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectingSceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+              "text": "UISceneConnectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWindowSceneDelegate~1windowScene(_:userDidAcceptCloudKitShareWith:)/title",
+          "value": "windowScene:userDidAcceptCloudKitShareWithMetadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWindowSceneDelegate~1windowScene(_:userDidAcceptCloudKitShareWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "windowScene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIWindowScene",
+              "text": "UIWindowScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "windowScene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "userDidAcceptCloudKitShareWithMetadata:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CKShareMetadata",
+              "text": "CKShareMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cloudKitShareMetadata"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainer/title",
+          "value": "NSPersistentCloudKitContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPersistentCloudKitContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentCloudKitContainer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/accepting-share-invitations-in-a-swiftui-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/accepting-share-invitations-in-a-swiftui-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

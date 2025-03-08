@@ -1,0 +1,1853 @@
+{
+  "abstract": [
+    {
+      "text": "Provide your users a convenient connection to the Game Center dashboard.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding an access point to your game"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "access point",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to your game that provides a way for players to manage their profile, and view leaderboards, achievements, and challenges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The access point initially shows player highlights, like how many achievements they’ve earned and where they stand in leaderboards. Then the access point collapses into the player’s avatar and remains on your game’s screen. When the player taps or clicks the avatar, GameKit displays the dashboard so players can drill down into the details of their Game Center data, including more highlights and statistics. You can choose where to display the access point, and select the highlights to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3729929",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also display the dashboard on its own, or a particular section of the dashboard. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center#Access-point",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-access-point",
+          "level": 3,
+          "text": "Configure the access point",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can place the access point in a corner of the screen and choose whether to show highlights when the access point first appears, such as the number of achievements or the player’s rank on the default leaderboard. Start by obtaining the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t want the access point to appear on the main window, set it to another window using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/parentWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For example, set the parent window to your title screen or main menu. For volumetric games on visionOS, you need to set the parent window for the access point to appear. For immersive games on visionOS, it appears below the HUD and in front of the person by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/location-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to set the corner in which the access point appears. The default location is the upper-left corner (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/topLeading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). For volumetric and immersive games on visionOS, if you don’t set the parent window, GameKit ignores the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/location-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game#Configure-the-access-point-on-visionOS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Place the access point on the upper-left corner.",
+            "GKAccessPoint.shared.location = .topLeading"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For right-to-left languages, such as Arabic and Hebrew, the system flips the location. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/topLeading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies the upper-right corner and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/bottomLeading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies the bottom-left corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display highlights when the access point appears, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/showHighlights",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GKAccessPoint.shared.showHighlights = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re done configuring the access point, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isActive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GKAccessPoint.shared.isActive = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hide the access point when displaying game intros or settings. To give your players a consistent experience, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center/overview/access-point/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adapt-your-game-to-the-access-point",
+          "level": 3,
+          "text": "Adapt your game to the access point",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can observe access point properties to adjust your game when the access point either changes sizes or just before it presents the dashboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3680165",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adjust your graphics when the access point size changes (for example, while it displays highlights), observe the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/frameInScreenCoordinates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Be sure to convert the screen coordinates of the access point to your view’s coordinates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Observe when the access point changes its size.",
+            "let observation = GKAccessPoint.shared.observe(",
+            "           \\.frameInScreenCoordinates",
+            "    ) { [weak self] _,_ in",
+            "    let screenFrame = GKAccessPoint.shared.frameInScreenCoordinates",
+            "    let accessPointFrame = myView.convert(screenFrame, from: nil)",
+            "    // Adjust your layout.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make changes to your game before the player interacts with the dashboard, observe the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isPresentingGameCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For example, you should pause animations when the player clicks or taps the access point to display the dashboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Observe when the access point displays the dashboard.",
+            "let observation = GKAccessPoint.shared.observe(",
+            "           \\.isPresentingGameCenter",
+            "    ) { [weak self] _,_ in",
+            "    self.paused = GKAccessPoint.shared.isPresentingGameCenter",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-the-focus-and-display-the-dashboard-programmatically",
+          "level": 3,
+          "text": "Change the focus and display the dashboard programmatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you handle the input from an Apple TV remote and game controller yourself, you need to programmatically change the focus to the access point and display the dashboard when the player taps or clicks it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/frameInScreenCoordinates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to change the focus when the player navigates the area behind the access point:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Track and update focus.",
+            "func trackController(position: CGPoint) {",
+            "  let screenFrame = GKAccessPoint.shared.frameInScreenCoordinates",
+            "  let accessFrame = myView.convert(screenFrame, from: nil)",
+            "  // If the point is in the access point, turn on feedback.",
+            "  accessPointElement.focusFeedback = CGRectContainsPoint(accessFrame, position)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/trigger(state:handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to show the dashboard when the player selects the access point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-access-point-on-visionOS",
+          "level": 3,
+          "text": "Configure the access point on visionOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The location of the access point and dashboard varies depending on the type of visionOS game. To change the default behavior below, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/location-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/parentWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties before you set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isActive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, if you don’t set the parent window of volumetric games, the access point doesn’t appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access point behavior",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compatible",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Appears over the main or parent window in the specified location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Native",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Appears outside of the main or parent window in the specified location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Volumetric",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the parent window is non-",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", appears outside of it in the specified location. If the parent window is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (the default value), it doesn’t appear.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Immersive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the parent window is non-",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", appears outside of it in the specified location. If the parent window is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (the default value), it appears below the HUD in front of the person and tracks their head position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For all types of visionOS games, when the person displays the dashboard using the access point, it appears in a separate floating container app that the person can position in the space. However, if you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to present the dashboard (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), it appears anchored to the window, scene, or view relative to where you present the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint": {
+      "abstract": [
+        {
+          "text": "An object that allows players to view and manage their Game Center information from within your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAccessPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAccessPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAccessPoint",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/bottomLeading": {
+      "abstract": [
+        {
+          "text": "The lower-left corner of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bottomLeading"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/bottomLeading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAccessPointLocationBottomLeading"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAccessPoint.Location.bottomLeading",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/location-swift.enum/bottomleading"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/topLeading": {
+      "abstract": [
+        {
+          "text": "The upper-left corner of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "topLeading"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/Location-swift.enum/topLeading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAccessPointLocationTopLeading"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAccessPoint.Location.topLeading",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/location-swift.enum/topleading"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/frameInScreenCoordinates": {
+      "abstract": [
+        {
+          "text": "The frame of the access point in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameInScreenCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/frameInScreenCoordinates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameInScreenCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameInScreenCoordinates",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/frameinscreencoordinates"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether to display the access point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/isactive"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isPresentingGameCenter": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the game is presenting the Game Center dashboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPresentingGameCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/isPresentingGameCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPresentingGameCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPresentingGameCenter",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/ispresentinggamecenter"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/location-swift.property": {
+      "abstract": [
+        {
+          "text": "The corner of the screen to display the access point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKAccessPoint",
+          "text": "GKAccessPoint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKAccessPointLocation",
+          "text": "Location"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/location-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "location"
+        }
+      ],
+      "role": "symbol",
+      "title": "location",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/location-swift.property"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/parentWindow": {
+      "abstract": [
+        {
+          "text": "The window that contains the access point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindow",
+          "text": "UIWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/parentWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parentWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "parentWindow",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/parentwindow"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/shared": {
+      "abstract": [
+        {
+          "text": "The shared access point object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKAccessPoint",
+          "text": "GKAccessPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/shared"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/showHighlights": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to display highlights for achievements and current ranks for leaderboards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showHighlights"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/showHighlights",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showHighlights"
+        }
+      ],
+      "role": "symbol",
+      "title": "showHighlights",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/showhighlights"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/trigger(state:handler:)": {
+      "abstract": [
+        {
+          "text": "Displays the Game Center dashboard in the specified state as if the player taps or presses the access point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKGameCenterViewControllerState",
+          "text": "GKGameCenterViewControllerState"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint/trigger(state:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "triggerAccessPointWithState:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "trigger(state:handler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint/trigger(state:handler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKDialogController": {
+      "abstract": [
+        {
+          "text": "An object that provides the ability to present the dashboard in macOS games.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKDialogController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKDialogController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKDialogController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKDialogController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkdialogcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController": {
+      "abstract": [
+        {
+          "text": "The dashboard that allows players to access their Game Center data in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGameCenterViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamecenterviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner": {
+      "abstract": [
+        {
+          "text": "A Game Center-style banner that displays a message to the local player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKNotificationBanner"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKNotificationBanner"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKNotificationBanner",
+      "type": "topic",
+      "url": "/documentation/gamekit/gknotificationbanner"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKViewController": {
+      "abstract": [
+        {
+          "text": "The abstract base protocol adopted by GameKit view controller classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game#Configure-the-access-point-on-visionOS": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game#Configure-the-access-point-on-visionOS",
+      "kind": "section",
+      "title": "Configure the access point on visionOS",
+      "type": "topic",
+      "url": "/documentation/gamekit/adding-an-access-point-to-your-game#Configure-the-access-point-on-visionOS"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard": {
+      "abstract": [
+        {
+          "text": "Provide an interface for players to navigate to their Game Center data from your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying the Game Center dashboard",
+      "type": "topic",
+      "url": "/documentation/gamekit/displaying-the-game-center-dashboard"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/game-center#Access-point": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center#Access-point",
+      "title": "Human Interface Guidelines > Technologies > Game Center > Access point",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Technologies > Game Center > Access point",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/game-center#Access-point"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/game-center/overview/access-point/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center/overview/access-point/",
+      "title": "Access Point",
+      "titleInlineContent": [
+        {
+          "text": "Access Point",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/game-center/overview/access-point/"
+    },
+    "media-3680165": {
+      "alt": "Image of an iPhone screen in landscape layout, showing a player’s dashboard after the player clicks or taps the access point. The dashboard shows three sections, including icons and text, for navigating to the player’s profile, achievements, and leaderboards.",
+      "identifier": "media-3680165",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d9b06cab64bffc6a1b78ffe862593e3/media-3680165@2x.png"
+        }
+      ]
+    },
+    "media-3729929": {
+      "alt": "Image of an iPhone screen in landscape layout, showing a game called The Coast. In the upper left corner of the screen, the access point appears as a small icon and two lines of text documenting the player’s completed achievements.",
+      "identifier": "media-3729929",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/067f62fec291874a8a29c06e09a9f0dc/media-3729929@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Game-Center-interfaces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard",
+        "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKDialogController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner"
+      ],
+      "title": "Game Center interfaces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Game-Center-interfaces",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard",
+                "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKDialogController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner"
+              ],
+              "title": "Game Center interfaces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1shared/title",
+          "value": "shared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1Location-swift.enum~1topLeading/title",
+          "value": "GKAccessPointLocationTopLeading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1Location-swift.enum~1topLeading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAccessPointLocationTopLeading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint/title",
+          "value": "GKAccessPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAccessPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAccessPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1frameInScreenCoordinates/title",
+          "value": "frameInScreenCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1frameInScreenCoordinates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameInScreenCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKViewController/title",
+          "value": "GKViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKNotificationBanner/title",
+          "value": "GKNotificationBanner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKNotificationBanner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKNotificationBanner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKNotificationBanner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKNotificationBanner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/title",
+          "value": "GKGameCenterViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1isPresentingGameCenter/title",
+          "value": "isPresentingGameCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1isPresentingGameCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isPresentingGameCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKDialogController/title",
+          "value": "GKDialogController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKDialogController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDialogController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKDialogController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDialogController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1Location-swift.enum~1bottomLeading/title",
+          "value": "GKAccessPointLocationBottomLeading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1Location-swift.enum~1bottomLeading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAccessPointLocationBottomLeading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1location-swift.property/title",
+          "value": "location"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1location-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "location"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1trigger(state:handler:)/title",
+          "value": "triggerAccessPointWithState:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1trigger(state:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "triggerAccessPointWithState:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1showHighlights/title",
+          "value": "showHighlights"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1showHighlights/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showHighlights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1parentWindow/title",
+          "value": "parentWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint~1parentWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parentWindow"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/adding-an-access-point-to-your-game"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/adding-an-access-point-to-your-game"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

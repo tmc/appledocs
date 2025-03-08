@@ -1,0 +1,2487 @@
+{
+  "abstract": [
+    {
+      "text": "A container for index data describing how vertices connect to define a three-dimensional object, or geometry.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SCNGeometryElement",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNGeometryElement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNGeometryElement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SCNGeometryElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use geometry elements together with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to define custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects or to inspect the data that composes an existing geometry. You create a custom geometry using a three-step process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create one or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects, each of which defines per-vertex information such as position, surface normal, or texture coordinates for all vertices in the geometry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create at least one ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object, containing an array of indices identifying vertices in the geometry sources and describing the drawing primitive that SceneKit uses to connect the vertices when rendering the geometry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance from the geometry sources and geometry elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When SceneKit renders a geometry, each geometry element corresponds to a drawing command sent to the GPU. Because different rendering states require separate drawing commands, you can define a geometry using multiple geometry elements. For example, the teapot geometry shown below has four geometry elements, so you can assign up to four ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in order to render each element with a different appearance. But because each drawing command incurs a CPU time overhead when rendering, minimizing the number of elements in a custom geometry can improve rendering performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2929778",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry": {
+      "abstract": [
+        {
+          "text": "A three-dimensional shape (also called a model or mesh) that can be displayed in a scene, with attached materials that define its appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement": {
+      "abstract": [
+        {
+          "text": "A container for index data describing how vertices connect to define a three-dimensional object, or geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometryElement"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometryElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometryElement",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/bytesPerIndex": {
+      "abstract": [
+        {
+          "text": "The number of bytes that represent each index value in the element’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/bytesPerIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bytesPerIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "bytesPerIndex",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/bytesperindex"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/data": {
+      "abstract": [
+        {
+          "text": "The data describing the geometry element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/data"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/geometryElementWithMDLSubmesh:": {
+      "abstract": [
+        {
+          "text": "Creates a geometry element from the specified Model I/O submesh object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometryElementWithMDLSubmesh:"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/geometryElementWithMDLSubmesh:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryElementWithMDLSubmesh:"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometryElementWithMDLSubmesh:",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/geometryelementwithmdlsubmesh:"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/hasInterleavedIndicesChannels": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasInterleavedIndicesChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/hasInterleavedIndicesChannels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interleavedIndicesChannels"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasInterleavedIndicesChannels",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/hasinterleavedindiceschannels"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/indicesChannelCount": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indicesChannelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/indicesChannelCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indicesChannelCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "indicesChannelCount",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/indiceschannelcount"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:bytesPerIndex:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNGeometryPrimitiveType",
+          "text": "SCNGeometryPrimitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:bytesPerIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(buffer:primitiveType:primitiveCount:bytesPerIndex:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/init(buffer:primitivetype:primitivecount:bytesperindex:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNGeometryPrimitiveType",
+          "text": "SCNGeometryPrimitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indicesChannelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interleavedIndicesChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/init(buffer:primitivetype:primitivecount:indiceschannelcount:interleavedindiceschannels:bytesperindex:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:bytesPerIndex:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry element from the specified data and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNGeometryPrimitiveType",
+          "text": "SCNGeometryPrimitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:bytesPerIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:primitiveType:primitiveCount:bytesPerIndex:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/init(data:primitivetype:primitivecount:bytesperindex:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNGeometryPrimitiveType",
+          "text": "SCNGeometryPrimitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indicesChannelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interleavedIndicesChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/init(data:primitivetype:primitivecount:indiceschannelcount:interleavedindiceschannels:bytesperindex:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(indices:primitiveType:)": {
+      "abstract": [
+        {
+          "text": "Creates a geometry element from the specified array of index values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "IndexType"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "indices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "IndexType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNGeometryPrimitiveType",
+          "text": "SCNGeometryPrimitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(indices:primitiveType:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(indices:primitiveType:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/init(indices:primitivetype:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/maximumPointScreenSpaceRadius": {
+      "abstract": [
+        {
+          "text": "The largest radius, measured in screen points, at which to render any point in the geometry element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumPointScreenSpaceRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/maximumPointScreenSpaceRadius",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumPointScreenSpaceRadius"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumPointScreenSpaceRadius",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/maximumpointscreenspaceradius"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/minimumPointScreenSpaceRadius": {
+      "abstract": [
+        {
+          "text": "The smallest radius, measured in screen points, at which to render any point in the geometry element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumPointScreenSpaceRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/minimumPointScreenSpaceRadius",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumPointScreenSpaceRadius"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumPointScreenSpaceRadius",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/minimumpointscreenspaceradius"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/pointSize": {
+      "abstract": [
+        {
+          "text": "The width of each point in the geometry element, as measured in the geometry’s local 3D coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/pointSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pointSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "pointSize",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/pointsize"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveCount": {
+      "abstract": [
+        {
+          "text": "The number of primitives in the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primitiveCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primitiveCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "primitiveCount",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/primitivecount"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveRange": {
+      "abstract": [
+        {
+          "text": "The range of primitives from the geometry element to render.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primitiveRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primitiveRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "primitiveRange",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/primitiverange"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveType": {
+      "abstract": [
+        {
+          "text": "The drawing primitive that connects vertices when rendering the geometry element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primitiveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCNGeometryPrimitiveType",
+          "text": "SCNGeometryPrimitiveType"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primitiveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "primitiveType",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryelement/primitivetype"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryPrimitiveType": {
+      "abstract": [
+        {
+          "text": "The drawing primitive that connects vertices when rendering a geometry element, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveType",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property to specify how SceneKit interprets the geometry element’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometryPrimitiveType"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryPrimitiveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometryPrimitiveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometryPrimitiveType",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometryprimitivetype"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource": {
+      "abstract": [
+        {
+          "text": "A container for vertex data forming part of the definition for a three-dimensional object, or geometry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNGeometrySource"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNGeometrySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNGeometrySource",
+      "type": "topic",
+      "url": "/documentation/scenekit/scngeometrysource"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial": {
+      "abstract": [
+        {
+          "text": "A set of shading attributes that define the appearance of a geometry’s surface when rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNMaterial",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterial"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types": {
+      "abstract": [
+        {
+          "text": "Basic shapes—such as spheres, boxes, and planes—and features for generating 3D objects from 2D text and Bézier curves.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Built-in Geometry Types",
+      "type": "topic",
+      "url": "/documentation/scenekit/built-in-geometry-types"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-2929778": {
+      "alt": null,
+      "identifier": "media-2929778",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4cd3b44ccbea79bf52cb77c6d99edcff/media-2929778@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Geometry",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+        "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types"
+      ],
+      "title": "Geometry"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Geometry-Element",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(indices:primitiveType:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:bytesPerIndex:)"
+      ],
+      "title": "Creating a Geometry Element"
+    },
+    {
+      "anchor": "Working-with-Indexes",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/data",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/bytesPerIndex",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveType",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryPrimitiveType",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveCount",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveRange"
+      ],
+      "title": "Working with Indexes"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use these properties to display a geometry as a collection of points, rather than as a solid surface or wireframe.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Rendering-Point-Clouds",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/pointSize",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/minimumPointScreenSpaceRadius",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/maximumPointScreenSpaceRadius"
+      ],
+      "title": "Rendering Point Clouds"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:bytesPerIndex:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/hasInterleavedIndicesChannels",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/indicesChannelCount"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNGeometryElement"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Geometry-Element",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:bytesPerIndex:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/geometryElementWithMDLSubmesh:"
+              ],
+              "title": "Creating a Geometry Element"
+            },
+            {
+              "anchor": "Working-with-Indexes",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/data",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/bytesPerIndex",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveType",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryPrimitiveType",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveCount",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/primitiveRange"
+              ],
+              "title": "Working with Indexes"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use these properties to display a geometry as a collection of points, rather than as a solid surface or wireframe.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Rendering-Point-Clouds",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/pointSize",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/minimumPointScreenSpaceRadius",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/maximumPointScreenSpaceRadius"
+              ],
+              "title": "Rendering Point Clouds"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/hasInterleavedIndicesChannels",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/indicesChannelCount"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Type-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:bytesPerIndex:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement/init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)"
+              ],
+              "title": "Type Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Geometry",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource",
+                "doc://com.apple.scenekit/documentation/SceneKit/built-in-geometry-types"
+              ],
+              "title": "Geometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNGeometryElement"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(data:primitiveType:primitiveCount:bytesPerIndex:)/title",
+          "value": "geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(data:primitiveType:primitiveCount:bytesPerIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryPrimitiveType/title",
+          "value": "SCNGeometryPrimitiveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryPrimitiveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryPrimitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryPrimitiveType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryPrimitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1primitiveCount/title",
+          "value": "primitiveCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1primitiveCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primitiveCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/title",
+          "value": "SCNGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1indicesChannelCount/title",
+          "value": "indicesChannelCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1indicesChannelCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indicesChannelCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1pointSize/title",
+          "value": "pointSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1pointSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pointSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/title",
+          "value": "SCNMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)/title",
+          "value": "geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(buffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1primitiveType/title",
+          "value": "primitiveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1primitiveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primitiveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1hasInterleavedIndicesChannels/title",
+          "value": "interleavedIndicesChannels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1hasInterleavedIndicesChannels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interleavedIndicesChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(buffer:primitiveType:primitiveCount:bytesPerIndex:)/title",
+          "value": "geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(buffer:primitiveType:primitiveCount:bytesPerIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)/title",
+          "value": "geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1init(data:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1minimumPointScreenSpaceRadius/title",
+          "value": "minimumPointScreenSpaceRadius"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1minimumPointScreenSpaceRadius/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumPointScreenSpaceRadius"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource/title",
+          "value": "SCNGeometrySource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometrySource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometrySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1bytesPerIndex/title",
+          "value": "bytesPerIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1bytesPerIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bytesPerIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1maximumPointScreenSpaceRadius/title",
+          "value": "maximumPointScreenSpaceRadius"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1maximumPointScreenSpaceRadius/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumPointScreenSpaceRadius"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1primitiveRange/title",
+          "value": "primitiveRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement~1primitiveRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primitiveRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement/title",
+          "value": "SCNGeometryElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNGeometryElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNGeometryElement"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scngeometryelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scngeometryelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

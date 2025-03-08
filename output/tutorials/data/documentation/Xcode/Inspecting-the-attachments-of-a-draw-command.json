@@ -1,0 +1,1492 @@
+{
+  "abstract": [
+    {
+      "text": "Discover attachment issues by inspecting individual pixels and samples.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting the attachments of a draw command"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger allows you to view the contents of render attachments with the Attachments viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can inspect individual pixels (or samples) and debug them with the shader debugger.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-your-attachments",
+          "level": 3,
+          "text": "Inspect your attachments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Attachments viewer contains several controls you can use to interact with and display your attachments.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each visible attachment has its own viewer and title bar, which contains attachment-specific controls.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The control bar at the bottom of the Attachments viewer contains controls that operate on all of the attachments simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-attachments-hero.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Flip-your-attachments",
+          "level": 3,
+          "text": "Flip your attachments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your renderer is using a different coordinate system and your attachment is upside down or flipped horizontally, you can flip it to the correct orientation in the Attachments viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the attachment actions button, then choose Flip Horizontally or Flip Vertically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-flip.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-visible-attachments",
+          "level": 3,
+          "text": "Configure visible attachments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure visible attachments using the preview controls on the left of the control bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To hide or show an attachment, move your pointer over the attachment preview and click to toggle its visibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode updates the previews for the hidden attachments too, so you can see at a glance whether they contain anything interesting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-attachments-visible.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Toggle-overlay-visibility",
+          "level": 3,
+          "text": "Toggle overlay visibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hide overlays, such as the fluorescent green outline, click the attachment and then click a selected overlay to deselect it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-outline-disable.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-attachment-rendering",
+          "level": 3,
+          "text": "Configure attachment rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically configures the color properties based on your encoder and attachment, but you can configure them manually by clicking the Colors button in the attachment-specific controls. Follow these guidelines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the same color space that you use for rendering.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Xcode automatically configures it to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/colorspace",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property that your app sets on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If you don’t set this property, configure the color space in the Attachments viewer to the one that the device display uses.",
+                      "type": "text"
+                    },
+                    {
+                      "text": "\n",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, use sRGB if you’re debugging an iPhone workload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using a display that supports extended dynamic range, you can enable the Extended Dynamic Range Content option to render the attachment with extended range.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When this option is enabled, Xcode draws hatching on any pixels containing values above your display EDR headroom.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Lower the brightness of your display to increase the available headroom.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode shows additional controls to manually configure rendering if you select Default (No color-match) as the color space.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can then configure the range of visible colors, channel swizzling, and whether the alpha is premultiplied.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-colors.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-attachment-properties",
+          "level": 3,
+          "text": "View attachment properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can view properties for an attachment, such as texture width and height, by clicking the Info button in the attachment-specific controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-properties.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-attachment-issues",
+          "level": 3,
+          "text": "View attachment issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Issues button in the attachment-specific controls becomes active if your attachment contains any pixels (or samples) with values that are infinite, are not-a-number, or exceed the current EDR headroom of your display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if you accidently divide by ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your fragment shader, Xcode draws hatching on any incorrect pixels (or samples).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can click the Issues button to see more information, and then click the Jump button to focus on a pixel (or sample) causing the issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-issues.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-pixel-values",
+          "level": 3,
+          "text": "Inspect pixel values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Move the pointer over a pixel or sample to inspect its value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-inspect-pixel.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-select-and-compare-pixel-values",
+          "level": 3,
+          "text": "Inspect, select, and compare pixel values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Move the pointer over a pixel (or sample if your render pass does multisample antialiasing) to inspect its value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, you can select the pixel by clicking it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can click and hold so that Xcode selects the pixel, zooms in, and immediately opens the value inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also select a pixel using the coordinate input controls on the right of the control bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Type in the coordinates for the pixel you want, such as ",
+              "type": "text"
+            },
+            {
+              "code": "X: 100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Y: 100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on your texture configuration, Xcode may show additional controls, such as the sample index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-selection.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the selected pixel is inside a debuggable region, the coordinates are highlighted in green (see “Debug a pixel” below).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the selected pixel is outside of such a region, Xcode highlights it using your system accent color instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Jump button in the control bar to zoom in to the selected pixel or sample.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode automatically focuses when you click the stepper to the right of each text field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-selection-jump.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also move the pointer over a different pixel (or sample) to compare the values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the selected pixel is to the left of the pixel beneath the pointer, the values of the selected pixel appear on the left of the inspector.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If it’s to the right, the values appear on the right.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode highlights the coordinates for the selected pixel in the inspector to show which values correspond to which pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you open multiple Attachment viewers or Texture viewers, you can compare pixels across different textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on configuring editors within your Xcode workspace, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-the-xcode-project-window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-compare.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-a-pixel",
+          "level": 3,
+          "text": "Debug a pixel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode outlines any regions affected by the current draw command with a fluorescent green overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you notice pixels (or samples) with unexpected values inside these regions, select them and then click the Debug button on the right of the control bar to begin debugging the fragment shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode automatically opens your fragment shader source code with detailed thread execution history for the pixel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on debugging shaders, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-av-debug-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining pipeline statistics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with pipeline statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the geometry of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-geometry-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/colorspace": {
+      "abstract": [
+        {
+          "text": "The color space of the rendered content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorspace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/colorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorspace",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer/colorspace"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-the-xcode-project-window": {
+      "abstract": [
+        {
+          "text": "Configure the appearance of Xcode project windows by showing and hiding editors, inspectors, and navigation content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-the-xcode-project-window",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the Xcode project window",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-the-xcode-project-window"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-av-attachments-hero.png": {
+      "alt": "A screenshot of the Attachments viewer.",
+      "identifier": "gputools-metal-debugger-av-attachments-hero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a8ceca76629280d4fbc77bc2bc2f1ec/gputools-metal-debugger-av-attachments-hero.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/588b92c9ec3e839b49b555eec427c17b/gputools-metal-debugger-av-attachments-hero@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fad6fe892da6fbf53ad4b74c67fc3cdf/gputools-metal-debugger-av-attachments-hero~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04cd2a80f072bd52426745f9bfc749d7/gputools-metal-debugger-av-attachments-hero~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-attachments-visible.png": {
+      "alt": "A screenshot of the control to show and hide attachments.",
+      "identifier": "gputools-metal-debugger-av-attachments-visible.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a39e635cda73187ac1dda8392fa78265/gputools-metal-debugger-av-attachments-visible.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a0620cfd26dcd7a793c60156c2e95c2/gputools-metal-debugger-av-attachments-visible@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/096d097c17eabf79a4aebac8d0f884fe/gputools-metal-debugger-av-attachments-visible~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f6b161cfbb6c4e26ecfb8c986ecb6c5/gputools-metal-debugger-av-attachments-visible~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-colors.png": {
+      "alt": "A screenshot of the Texture Image Color Options popover. It consists of controls for color space, tone mapping, and color sizzling.",
+      "identifier": "gputools-metal-debugger-av-colors.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc9489ca6a54d53280ea61d2c2d0c0db/gputools-metal-debugger-av-colors.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56d386690aed71e9fc0d068abea525f7/gputools-metal-debugger-av-colors@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25c084e1bf147d07b73c401cb71a2038/gputools-metal-debugger-av-colors~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31035ac793bcf1554370729ac0d1c205/gputools-metal-debugger-av-colors~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-compare.png": {
+      "alt": "A screenshot of the value inspector comparing the pixel values beneath the pointer and at the selection. The pointer is hovering over pixel 1221, 1030, and the selection is at pixel 1229, 1030.",
+      "identifier": "gputools-metal-debugger-av-compare.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24a2ea0b33c823f0be69ccab0c71f44b/gputools-metal-debugger-av-compare.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8aabff67717d10db2bdad23b235c5a66/gputools-metal-debugger-av-compare@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/17bbc0a1361ad7d373bdf56e0d3c7b67/gputools-metal-debugger-av-compare~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e8ca7b09292d8f4d0e2f47989fd37d2/gputools-metal-debugger-av-compare~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-debug-2.png": {
+      "alt": "A screenshot of the Attachments viewer. The Debug button in the control bar is highlighted.",
+      "identifier": "gputools-metal-debugger-av-debug-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0aa954828346f583a9313c0a5fa8be6/gputools-metal-debugger-av-debug-2.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94d65b40fa4bf636285adbd4e78f3699/gputools-metal-debugger-av-debug-2@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8b99da2cb59449a71935c4f62f587e3/gputools-metal-debugger-av-debug-2~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06a08ec6dd64cb8fd65b28c6fe2b63a1/gputools-metal-debugger-av-debug-2~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-flip.png": {
+      "alt": "A screenshot of the actions menu for an attachment. The Flip Horizontally menu item is highlighted.",
+      "identifier": "gputools-metal-debugger-av-flip.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/007f89286f3d6db70ed967847589b373/gputools-metal-debugger-av-flip.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/953c6850a97d2ba36668d3176a012e3b/gputools-metal-debugger-av-flip@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31ac52be4ea2445c6a87ea4a64d5b0d0/gputools-metal-debugger-av-flip~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/776e9a30d50a5364893d109f57cc4a38/gputools-metal-debugger-av-flip~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-inspect-pixel.png": {
+      "alt": "A screenshot of the value inspector when the pointer is hovering over a pixel.",
+      "identifier": "gputools-metal-debugger-av-inspect-pixel.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af4497146fe21ebf82b41438ff73759b/gputools-metal-debugger-av-inspect-pixel.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e851563aeb33dfb72f91d1d485baf7d3/gputools-metal-debugger-av-inspect-pixel@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c140dd2b41e04bf80aab22d21c29d0f4/gputools-metal-debugger-av-inspect-pixel~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45c8e51343f022d04692c0feb4a41a94/gputools-metal-debugger-av-inspect-pixel~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-issues.png": {
+      "alt": "A screenshot of the Issues popover showing that there are pixels exceeding the display EDR headroom. A button appears next to the message for jumping to one such pixel.",
+      "identifier": "gputools-metal-debugger-av-issues.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1c50f0becb9a4049351527d42951ffe/gputools-metal-debugger-av-issues.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f768ba5ee6f58d9c61519bc12d4bb0f/gputools-metal-debugger-av-issues@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef708269eb6970c45b7eed7afed0a98f/gputools-metal-debugger-av-issues~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42363b3e3a17eaf5903fae1d3fe242df/gputools-metal-debugger-av-issues~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-outline-disable.png": {
+      "alt": "A screenshot of the context menu for an attachment. The outline overlay option is enabled and highlighted.",
+      "identifier": "gputools-metal-debugger-av-outline-disable.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/768a70c638589e6e974bee8d924a4bd2/gputools-metal-debugger-av-outline-disable.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/399d002bc3aa4e109f5c615e2fc584fe/gputools-metal-debugger-av-outline-disable@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9e4164548f3f46d7615097c4460a2c0b/gputools-metal-debugger-av-outline-disable~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3394868c08bb59fc1e0f1036b98d2a1/gputools-metal-debugger-av-outline-disable~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-properties.png": {
+      "alt": "A screenshot of the Texture Image Properties popover.",
+      "identifier": "gputools-metal-debugger-av-properties.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/305a238eda887df809f89ca8f77eb55a/gputools-metal-debugger-av-properties.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f62eb3df2478b1d20c147ec13106f32/gputools-metal-debugger-av-properties@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70d5b707978d2ffc2ffd33ecfc099943/gputools-metal-debugger-av-properties~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82c177d8cd03ac9943e3da3395fa3099/gputools-metal-debugger-av-properties~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-selection-jump.png": {
+      "alt": "A screenshot of the control bar highlighting the Jump button.",
+      "identifier": "gputools-metal-debugger-av-selection-jump.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/612eba4f17f4579ef9c3a3df8dcd37cf/gputools-metal-debugger-av-selection-jump.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1602e8352aa88fd5b382e6d3cd9f035/gputools-metal-debugger-av-selection-jump@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90b2459fc643f728926d88cb47b87cbf/gputools-metal-debugger-av-selection-jump~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0472e1548f62ea006da3a06a434a052/gputools-metal-debugger-av-selection-jump~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-av-selection.png": {
+      "alt": "A screenshot of the control bar highlighting the coordinate input controls.",
+      "identifier": "gputools-metal-debugger-av-selection.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/400d7b17c433a474b9cd5ae09cba35c1/gputools-metal-debugger-av-selection.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65094c24c991cd75d62168e2a1a1b22f/gputools-metal-debugger-av-selection@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c9997df5abfed90de6262d1494a3f49/gputools-metal-debugger-av-selection~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f57d4feca83bf695059e504b43c42137/gputools-metal-debugger-av-selection~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-command-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+      ],
+      "title": "Metal command analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1colorspace/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGColorSpaceRef",
+              "text": "CGColorSpaceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorspace"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CALayer",
+              "text": "CALayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

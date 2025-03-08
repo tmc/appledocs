@@ -1,0 +1,965 @@
+{
+  "abstract": [
+    {
+      "text": "Interpret the error details to troubleshoot API requests and perform programmatic error handling.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Parsing the Error Response Code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your API request results in an error, you receive an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains an array of errors. The ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " helps you identify which part of your request may contain an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The error data (",
+              "type": "text"
+            },
+            {
+              "code": "ErrorResponse.Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") fully describes an error through its properties, including ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and others. However, for programmatic error handling, use only the ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Parse-the-Error-Code",
+          "level": 3,
+          "text": "Parse the Error Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is a stable, machine-readable value indicating the exact type of error. The ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is hierarchical, with dots separating the information about the error from general to specific. The more information the system has about the error, the more levels the error code includes. For example, the error code ",
+              "type": "text"
+            },
+            {
+              "code": "ENTITY_ERROR.ATTRIBUTE.INVALID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has three levels, and tells you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ENTITY_ERROR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": On the most general level, a problem occurred with the request entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ATTRIBUTE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": On a more specific level, a problem occurred with one of the resource attributes in the entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "INVALID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": On a very specific level, the resource attribute contains an invalid value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In many cases, the most general level of information provides all you need to know about the error. In that case, a prefix match on ",
+              "type": "text"
+            },
+            {
+              "code": "ENTITY_ERROR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can detect and respond to any entity error. If you need to handle invalid attributes specifically, you can inspect the full code value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Examine the error code using prefix matching rather than exact string comparison. Exact string comparison may not work if the error code includes additional levels of detail.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Relate-Error-Codes-to-the-Parts-of-the-Request",
+          "level": 3,
+          "text": "Relate Error Codes to the Parts of the Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can analyze the parts of your request in order to trace the correlating error information. Requests consist of a method, path, and parameters or a request entity, as shown in the ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request annotated below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3040420",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Likewise, the parts of a ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request are annotated below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3074413",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s an error in a request, the response returns an HTTP status code in the 400 range. The ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " helps you identify which part of your request may contain an error: the method, path, parameter, or entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Errors-with-the-Method",
+          "level": 3,
+          "text": "Identify Errors with the Method",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Responses that indicate the request’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "method",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains an error include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "405",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "METHOD_NOT_ALLOWED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The method and path combination is not valid in the API. For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PATCH https://api.enterprise.developer.apple.com/v1/certificates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not valid because ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PATCH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not supported for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "certificates",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "403",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FORBIDDEN_ERROR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The method and path combination is valid, but not allowed due to business rules; for example, because the caller’s role permissions don’t allow access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Identify-Errors-with-the-Path",
+          "level": 3,
+          "text": "Identify Errors with the Path",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Responses that indicate the request’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "path",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains an error include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "404 PATH_ERROR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The path is not valid. For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET https://api.enterprise.developer.apple.com/v1/bananas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not a valid path in this API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "404 NOT_FOUND",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The resource does not exist. For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET https://api.enterprise.developer.apple.com/v1/apps/9999999999",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is requesting an app with an ID that does not exist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Identify-Errors-with-the-Parameters",
+          "level": 3,
+          "text": "Identify Errors with the Parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Responses that indicate one of the request’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "parameters",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contain an error include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "400 PARAMETER_ERROR.ILLEGAL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The parameter is not valid in this API. For example, in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GET https://api.enterprise.developer.apple.com/v1/users?foo=1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "foo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "” is not a valid parameter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "400",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PARAMETER_ERROR.INVALID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The parameter is allowed but has an invalid ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "400",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PARAMETER_ERROR.REQUIRED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A required parameter is missing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Identify-Errors-with-the-Request-Entity",
+          "level": 3,
+          "text": "Identify Errors with the Request Entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Responses that indicate the request’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "entity",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains an error include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "400 ENTITY_INVALID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The request entity is the wrong type and is not valid JSON.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "409 ENTITY_ERROR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The request entity is valid and in the right format, but the data in it is unacceptable; for example, it contains an invalid email address, or a duplicate locale.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "422 ENTITY_UNPROCESSABLE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ":",
+                      "type": "text"
+                    },
+                    {
+                      "code": " ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "The request entity is JSON but it is not the right format; for example, it contains misspelled keys for “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "” or “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/errorresponse"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code": {
+      "abstract": [
+        {
+          "text": "Learn how the status code helps you determine if an Enterprise Program  API request succeeded or why it failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HTTP Status Code",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/about-the-http-status-code"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors": {
+      "abstract": [
+        {
+          "text": "Learn how the Enterprise Program API returns errors and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Interpreting and Handling Errors",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/interpreting-and-handling-errors"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors": {
+      "abstract": [
+        {
+          "text": "Locate the specific source of the error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Pinpointing the Location of Errors",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/pinpointing-the-location-of-errors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3040420": {
+      "alt": "An annotated GET request.",
+      "identifier": "media-3040420",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2202ca8fd35433677f793fc5d2e946f2/media-3040420@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/26dcf3b6172b83778cde20fe345ca095/media-3040420~dark@2x.png"
+        }
+      ]
+    },
+    "media-3074413": {
+      "alt": "An annotated POST request.",
+      "identifier": "media-3074413",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1be9cf8b321a4afd2daddc907a772786/media-3074413@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3aba6d178da8232967823bf2a797612c/media-3074413~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors"
+      ],
+      "title": "Handling Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/parsing-the-error-response-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

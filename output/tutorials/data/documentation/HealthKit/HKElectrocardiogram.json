@@ -1,0 +1,1993 @@
+{
+  "abstract": [
+    {
+      "text": "A sample for electrocardiogram data.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKElectrocardiogram",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKElectrocardiogram"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKElectrocardiogram"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKElectrocardiogram"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a collection of voltage values representing waveforms from one or more leads. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample provides high-level details about the ECG reading, such as the sampling frequency or classification. HealthKit provides read-only access to electrocardiogram (ECG) data saved by Apple Watch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can query for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " samples using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the electrocardiogram sample type.",
+            "let ecgType = HKObjectType.electrocardiogramType()",
+            "",
+            "",
+            "// Query for electrocardiogram samples",
+            "let ecgQuery = HKSampleQuery(sampleType: ecgType,",
+            "                             predicate: nil,",
+            "                             limit: HKObjectQueryNoLimit,",
+            "                             sortDescriptors: nil) { (query, samples, error) in",
+            "    if let error = error {",
+            "        // Handle the error here.",
+            "        fatalError(\"*** An error occurred \\(error.localizedDescription) ***\")",
+            "    }",
+            "    ",
+            "    guard let ecgSamples = samples as? [HKElectrocardiogram] else {",
+            "        fatalError(\"*** Unable to convert \\(String(describing: samples)) to [HKElectrocardiogram] ***\")",
+            "    }",
+            "    ",
+            "    for sample in ecgSamples {",
+            "        // Handle the samples here.",
+            "        ",
+            "    }",
+            "}",
+            "",
+            "// Execute the query.",
+            "healthStore.execute(ecgQuery)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After retrieving an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample, you can access the voltage measurements associated with the sample use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " query.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a query for the voltage measurements",
+            "let voltageQuery = HKElectrocardiogramQuery(ecgSample) { (query, result) in",
+            "    switch(result) {",
+            "    ",
+            "    case .measurement(let measurement):",
+            "        if let voltageQuantity = measurement.quantity(for: .appleWatchSimilarToLeadI) {",
+            "            // Do something with the voltage quantity here.",
+            "",
+            "        }",
+            "    ",
+            "    case .done:",
+            "        // No more voltage measurements. Finish processing the existing measurements.",
+            "",
+            "    case .error(let error):",
+            "        // Handle the error here.",
+            "",
+            "    }",
+            "}",
+            "",
+            "// Execute the query.",
+            "healthStore.execute(voltageQuery)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAppleECGAlgorithmVersion": {
+      "abstract": [
+        {
+          "text": "Version numbers for the algorithm Apple Watch uses to generate an ECG reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAppleECGAlgorithmVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAppleECGAlgorithmVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAppleECGAlgorithmVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAppleECGAlgorithmVersion",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkappleecgalgorithmversion"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram": {
+      "abstract": [
+        {
+          "text": "A sample for electrocardiogram data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogram"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogram"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Classification-swift.enum": {
+      "abstract": [
+        {
+          "text": "Classifications returned by Apple Watch’s ECG algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Classification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Classification-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Classification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram.Classification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/classification-swift.enum"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Lead": {
+      "abstract": [
+        {
+          "text": "The lead used to record a voltage measurement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Lead"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Lead",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Lead"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram.Lead",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/lead"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/SymptomsStatus-swift.enum": {
+      "abstract": [
+        {
+          "text": "Values indicating whether the user entered a symptom when they recorded the ECG.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymptomsStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/SymptomsStatus-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymptomsStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram.SymptomsStatus",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement": {
+      "abstract": [
+        {
+          "text": "The voltage for all leads at a single point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoltageMeasurement"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VoltageMeasurement"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogram.VoltageMeasurement",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/voltagemeasurement"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/averageHeartRate": {
+      "abstract": [
+        {
+          "text": "The user’s average heart rate during the ECG.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "averageHeartRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/averageHeartRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "averageHeartRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "averageHeartRate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/averageheartrate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/classification-swift.property": {
+      "abstract": [
+        {
+          "text": "The ECG’s classification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKElectrocardiogram",
+          "text": "HKElectrocardiogram"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKElectrocardiogramClassification",
+          "text": "Classification"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/classification-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classification"
+        }
+      ],
+      "role": "symbol",
+      "title": "classification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/classification-swift.property"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/numberOfVoltageMeasurements": {
+      "abstract": [
+        {
+          "text": "The number of voltage measurements associated with this sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfVoltageMeasurements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/numberOfVoltageMeasurements",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfVoltageMeasurements"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfVoltageMeasurements",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/samplingFrequency": {
+      "abstract": [
+        {
+          "text": "The frequency at which the Apple Watch sampled the voltage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "samplingFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/samplingFrequency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "samplingFrequency"
+        }
+      ],
+      "role": "symbol",
+      "title": "samplingFrequency",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/samplingfrequency"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/symptomsStatus-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the user entered a symptom when they recorded the ECG.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symptomsStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKElectrocardiogram",
+          "text": "HKElectrocardiogram"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKElectrocardiogramSymptomsStatus",
+          "text": "SymptomsStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/symptomsStatus-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "symptomsStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "symptomsStatus",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.property"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQuery": {
+      "abstract": [
+        {
+          "text": "A query that returns the underlying voltage measurements for an electrocardiogram sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogramQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogramQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKElectrocardiogramQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKElectrocardiogramQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkelectrocardiogramquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKMetadataKeyAppleECGAlgorithmVersion": {
+      "abstract": [
+        {
+          "text": "A key for metadata indicating the version number of the algorithm Apple Watch uses to generate an ECG reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKMetadataKeyAppleECGAlgorithmVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKMetadataKeyAppleECGAlgorithmVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKMetadataKeyAppleECGAlgorithmVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKMetadataKeyAppleECGAlgorithmVersion",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverageHeartRate": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s average heart rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathAverageHeartRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverageHeartRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathAverageHeartRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathAverageHeartRate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathaverageheartrate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGClassification": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s classification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathECGClassification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGClassification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathECGClassification"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathECGClassification",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathecgclassification"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGSymptomsStatus": {
+      "abstract": [
+        {
+          "text": "The key path for the sample’s symptom status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathECGSymptomsStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGSymptomsStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKPredicateKeyPathECGSymptomsStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKPredicateKeyPathECGSymptomsStatus",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkpredicatekeypathecgsymptomsstatus"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample": {
+      "abstract": [
+        {
+          "text": "A HealthKit sample represents a piece of data associated with a start and end time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery": {
+      "abstract": [
+        {
+          "text": "A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSampleQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSampleQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSampleQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplequery"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSample"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Electrocardiograms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement"
+      ],
+      "title": "Electrocardiograms"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Overview-Information",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/classification-swift.property",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Classification-swift.enum",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/averageHeartRate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/symptomsStatus-swift.property",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/SymptomsStatus-swift.enum"
+      ],
+      "title": "Accessing Overview Information"
+    },
+    {
+      "anchor": "Accessing-Voltage-Measurements",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/numberOfVoltageMeasurements",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/samplingFrequency",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Lead"
+      ],
+      "title": "Accessing Voltage Measurements"
+    },
+    {
+      "anchor": "Specifying-Metadata",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKMetadataKeyAppleECGAlgorithmVersion",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAppleECGAlgorithmVersion"
+      ],
+      "title": "Specifying Metadata"
+    },
+    {
+      "anchor": "Specifying-Predicate-Key-Paths",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGClassification",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGSymptomsStatus",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverageHeartRate"
+      ],
+      "title": "Specifying Predicate Key Paths"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKElectrocardiogram"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Overview-Information",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/classification-swift.property",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Classification-swift.enum",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/averageHeartRate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/symptomsStatus-swift.property",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/SymptomsStatus-swift.enum"
+              ],
+              "title": "Accessing Overview Information"
+            },
+            {
+              "anchor": "Accessing-Voltage-Measurements",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/numberOfVoltageMeasurements",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/samplingFrequency",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/Lead"
+              ],
+              "title": "Accessing Voltage Measurements"
+            },
+            {
+              "anchor": "Specifying-Metadata",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKMetadataKeyAppleECGAlgorithmVersion",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKAppleECGAlgorithmVersion"
+              ],
+              "title": "Specifying Metadata"
+            },
+            {
+              "anchor": "Specifying-Predicate-Key-Paths",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGClassification",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathECGSymptomsStatus",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKPredicateKeyPathAverageHeartRate"
+              ],
+              "title": "Specifying Predicate Key Paths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKSample"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Electrocardiograms",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKElectrocardiogram/VoltageMeasurement"
+              ],
+              "title": "Electrocardiograms"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKElectrocardiogram"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)HKSample",
+                    "text": "HKSample"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathAverageHeartRate/title",
+          "value": "HKPredicateKeyPathAverageHeartRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathAverageHeartRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathAverageHeartRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathECGSymptomsStatus/title",
+          "value": "HKPredicateKeyPathECGSymptomsStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathECGSymptomsStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathECGSymptomsStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogramQuery/title",
+          "value": "HKElectrocardiogramQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogramQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogramQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1numberOfVoltageMeasurements/title",
+          "value": "numberOfVoltageMeasurements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1numberOfVoltageMeasurements/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfVoltageMeasurements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1VoltageMeasurement/title",
+          "value": "HKElectrocardiogramVoltageMeasurement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1VoltageMeasurement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramVoltageMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1VoltageMeasurement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramVoltageMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1Classification-swift.enum/title",
+          "value": "HKElectrocardiogramClassification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1Classification-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1Classification-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1averageHeartRate/title",
+          "value": "averageHeartRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1averageHeartRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "averageHeartRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1SymptomsStatus-swift.enum/title",
+          "value": "HKElectrocardiogramSymptomsStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1SymptomsStatus-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramSymptomsStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1SymptomsStatus-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramSymptomsStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1classification-swift.property/title",
+          "value": "classification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1classification-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "classification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathECGClassification/title",
+          "value": "HKPredicateKeyPathECGClassification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKPredicateKeyPathECGClassification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKPredicateKeyPathECGClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery/title",
+          "value": "HKSampleQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSampleQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSampleQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAppleECGAlgorithmVersion/title",
+          "value": "HKAppleECGAlgorithmVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAppleECGAlgorithmVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAppleECGAlgorithmVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAppleECGAlgorithmVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAppleECGAlgorithmVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1samplingFrequency/title",
+          "value": "samplingFrequency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1samplingFrequency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "samplingFrequency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram/title",
+          "value": "HKElectrocardiogram"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogram"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/title",
+          "value": "HKSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1symptomsStatus-swift.property/title",
+          "value": "symptomsStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1symptomsStatus-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "symptomsStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKMetadataKeyAppleECGAlgorithmVersion/title",
+          "value": "HKMetadataKeyAppleECGAlgorithmVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKMetadataKeyAppleECGAlgorithmVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKMetadataKeyAppleECGAlgorithmVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1Lead/title",
+          "value": "HKElectrocardiogramLead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1Lead/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramLead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKElectrocardiogram~1Lead/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKElectrocardiogramLead"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkelectrocardiogram"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkelectrocardiogram"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

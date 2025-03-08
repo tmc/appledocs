@@ -1,0 +1,3227 @@
+{
+  "abstract": [
+    {
+      "text": "Migrate your notarization workflows to ",
+      "type": "text"
+    },
+    {
+      "code": "notarytool",
+      "type": "codeVoice"
+    },
+    {
+      "text": " from the deprecated ",
+      "type": "text"
+    },
+    {
+      "code": "altool",
+      "type": "codeVoice"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3147: Migrating to the latest notarization tool"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10261/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Apple introduced ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a new tool for interacting with the Apple notary service.  When it comes to notarization, this tool is faster and more reliable than the previous ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  If you’re still notarizing with ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it’s time to switch to ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple has deprecated ",
+                  "type": "text"
+                },
+                {
+                  "code": "altool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the purposes of notarization and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/news/?id=y5mjxqmn",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".  However, ",
+                  "type": "text"
+                },
+                {
+                  "code": "altool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is still a good way to perform other tasks, like submitting an app to the App Store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To migrate your workflows to ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the new tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Migrate the credentials you use to authenticate with the notary service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test your new credentials.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adopt ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "notarytool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for each notarization operation you use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in parallel.  Feel free to leave your current notarization workflow in place while you experiment with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Then, when you’re happy with the new workflow, cut over to ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Just make sure you do this before the above-mentioned deadline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not migrating from ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—that is, you’re setting up notarization for the first time—ignore this technote and instead start with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+              "isActive": true,
+              "overridingTitle": "Notarizing macOS software before distribution",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Notarizing macOS software before distribution",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and then move on to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/customizing-the-notarization-workflow",
+              "isActive": true,
+              "overridingTitle": "Customizing the Notarization Workflow",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Customizing the Notarization Workflow",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".  Or, if you want to notarize from a non-Apple platform, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/notaryapi",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-new-tool",
+          "level": 2,
+          "text": "Get the new tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have Xcode 13 or later then you already have ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Just run it with ",
+              "type": "text"
+            },
+            {
+              "code": "xcrun",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool",
+            "OVERVIEW: Manage submissions to the Apple notary service",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "xcrun",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can’t find the tool, make sure you have Xcode 13 or later selected:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcode-select --print-path",
+            "/Applications/Xcode.app/Contents/Developer"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If not, select it using the ",
+              "type": "text"
+            },
+            {
+              "code": "--switch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% sudo xcode-select --switch ~/MyXcodeInstalls/Xcode13.app"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to keep an older version of Xcode selected but use ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the newer one, set the ",
+              "type": "text"
+            },
+            {
+              "code": "DEVELOPER_DIR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment variable when you invoke ",
+              "type": "text"
+            },
+            {
+              "code": "xcrun",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% DEVELOPER_DIR=~/MyXcodeInstalls/Xcode13.app/Contents/Developer xcrun notarytool",
+            "OVERVIEW: Manage submissions to the Apple notary service",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your version of macOS does not support Xcode 13, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool#Enable-notarization-on-an-older-version-of-macOS",
+              "isActive": true,
+              "overridingTitle": "Enable notarization on an older version of macOS",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Enable notarization on an older version of macOS",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Migrate-your-credentials",
+          "level": 2,
+          "text": "Migrate your credentials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports the same credentials as ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": an app-specific password or an App Store Connect API key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "App-specific-password",
+          "level": 3,
+          "text": "App-specific password",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re currently authenticating with an app-specific password, your ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " commands might start like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun altool --username APPLE_ID --team-id TEAM_ID --password PASSWORD …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All the examples here use long-format options, so ",
+                  "type": "text"
+                },
+                {
+                  "code": "--username",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "code": "-u",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".  If you’re currently using short-format options, run ",
+                  "type": "text"
+                },
+                {
+                  "code": "altool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "--help",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " option to see the mapping.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APPLE_ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your Apple ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "TEAM_ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your Team ID.  You might be using the older ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--asc-provider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--asc-public-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " options for this.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PASSWORD",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your app-specific password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The equivalent for ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool … --apple-id APPLE_ID --team-id TEAM_ID --password PASSWORD …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here ",
+              "type": "text"
+            },
+            {
+              "code": "APPLE_ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "TEAM_ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "PASSWORD",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are as above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Apple ID only belongs to one team then you don’t need to supply a Team ID.  However, it’s best practice to include it regardless.  That way, joining another team at some point in the future won’t break your notarization workflow.  To find your Team ID, go to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the Apple Developer website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the same app-specific password for both ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  You might also choose to create a new app-specific password for ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  To do that, follow the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT204397",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "@keychain",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " prefix to tell ",
+                  "type": "text"
+                },
+                {
+                  "code": "altool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to get the password from a keychain item, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool#Save-credentials-in-the-keychain",
+                  "isActive": true,
+                  "overridingTitle": "Save credentials in the keychain",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Save credentials in the keychain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "App-Store-Connect-API-key",
+          "level": 3,
+          "text": "App Store Connect API key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re currently authenticating with an App Store Connect API key, your ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " commands might start like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun altool --username APPLE_ID --apiIssuer ISSUER_UUID --apiKey API_KEY …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APPLE_ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your Apple ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ISSUER_UUID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your App Store Connect API key issuer, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "c055ca8c-e5a8-4836-b61d-aa5794eeb3f4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "API_KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your App Store Connect API key ID, for example, T9GPZ92M7K.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the key ID to search for the key’s ",
+              "type": "text"
+            },
+            {
+              "code": ".p8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.  For example, it might find a key file at ",
+              "type": "text"
+            },
+            {
+              "code": "~/.appstoreconnect/private_keys/AuthKey_T9GPZ92M7K.p8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For details on the search path used by ",
+                  "type": "text"
+                },
+                {
+                  "code": "altool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", see its man page.  If you’re unfamiliar with man pages, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+                  "isActive": true,
+                  "overridingTitle": "Reading UNIX Manual Pages",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Reading UNIX Manual Pages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The equivalent for ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool … --issuer ISSUER_UUID --key-id API_KEY --key PATH_TO_KEY …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here ",
+              "type": "text"
+            },
+            {
+              "code": "ISSUER_UUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "API_KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are as above, and ",
+              "type": "text"
+            },
+            {
+              "code": "PATH_TO_KEY",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the path to the key’s ",
+              "type": "text"
+            },
+            {
+              "code": ".p8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.  There’s no need to supply your Apple ID because ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " works that out based on the issuer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s fine to use the same App Store Connect API key ",
+              "type": "text"
+            },
+            {
+              "code": ".p8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for both ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  If you previously stored your key in ",
+              "type": "text"
+            },
+            {
+              "code": "~/.appstoreconnect/private_keys/AuthKey_API_KEY.p8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", just pass that path to the ",
+              "type": "text"
+            },
+            {
+              "code": "--key",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-credentials",
+          "level": 2,
+          "text": "Test your credentials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The best way to test your credentials is to get a history of recent activity.  In ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you might use a command like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun altool OLD_CREDENTIALS --notarization-history 0"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this command, ",
+              "type": "text"
+            },
+            {
+              "code": "OLD_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is your existing ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test out your ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " credentials, pass them to the ",
+              "type": "text"
+            },
+            {
+              "code": "history",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool history NEW_CREDENTIALS"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "NEW_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the new credentials you worked out in the previous section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each tool maintains its own separate history.  If this is the first time you’ve used ",
+                  "type": "text"
+                },
+                {
+                  "code": "notarytool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", your history will be empty.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Convert-your-notarization-operations",
+          "level": 2,
+          "text": "Convert your notarization operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have your credentials sorted out, it’s time to replace each invocation of ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the equivalent one for ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  The common notarization operations are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Submit a file to the notary service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check on the status of a previous submission",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch the notary log",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get a history of recent activity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember that ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only replaces the notarization aspects of ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  If you use ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for other tasks, like submitting an app to the App Store, continue to use it for that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Submit-a-file",
+          "level": 3,
+          "text": "Submit a file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your command to submit a file to the notary service might look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun altool OLD_CREDENTIALS --notarize-app --file PATH_TO_FILE --primary-bundle-id BUNDLE_ID"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, ",
+              "type": "text"
+            },
+            {
+              "code": "OLD_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is your existing ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " credentials, ",
+              "type": "text"
+            },
+            {
+              "code": "PATH_TO_FILE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the path of the file you want to notarize, and ",
+              "type": "text"
+            },
+            {
+              "code": "BUNDLE_ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the bundle ID of the main product in this file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do the same with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "code": "submit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool submit NEW_CREDENTIALS PATH_TO_FILE"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here ",
+              "type": "text"
+            },
+            {
+              "code": "PATH_TO_FILE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is as above.  Replace ",
+              "type": "text"
+            },
+            {
+              "code": "NEW_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the credentials from earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "There’s no replacement for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "--primary-bundle-id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " option.  The notary service never interpreted that value; it was effectively a comment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a nice bonus, consider adding the ",
+              "type": "text"
+            },
+            {
+              "code": "--wait",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option.  With that, ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " won’t return until the notarization is complete and, when it does return, it will output the submission’s status.  If you were previously polling the status to check for completion, add the ",
+              "type": "text"
+            },
+            {
+              "code": "--wait",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option and remove that logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-status",
+          "level": 3,
+          "text": "Check status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your command to check the status of a submission might look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun altool OLD_CREDENTIALS --notarization-info SUBMISSION_ID"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, ",
+              "type": "text"
+            },
+            {
+              "code": "OLD_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is your existing ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " credentials and ",
+              "type": "text"
+            },
+            {
+              "code": "SUBMISSION_ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the submission ID you got when you submitted the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do the same with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "code": "info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool info NEW_CREDENTIALS SUBMISSION_ID"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here ",
+              "type": "text"
+            },
+            {
+              "code": "SUBMISSION_ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is as above.  Replace ",
+              "type": "text"
+            },
+            {
+              "code": "NEW_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the credentials from earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you currently poll the status to check whether a submission is complete, adopt the ",
+                  "type": "text"
+                },
+                {
+                  "code": "--wait",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " option, as discussed in the previous section.  Once you do that, you may not need to use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "info",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command at all.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The submissions IDs returned by ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " live in a different namespace than those returned by ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  You can’t check on the status of an ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " submission with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or vice versa.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetch-the-notary-log",
+          "level": 3,
+          "text": "Fetch the notary log",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After processing your submission the notary service generates a log.  This JSON file holds information about your submission, including errors and warnings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always check the notary log, even if notarization succeeds, because it might contain warnings that you can fix prior to your next submission.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fetching the notary log with ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a little convoluted.  You first get the status of the request.  If the request is finished, that status includes a ",
+              "type": "text"
+            },
+            {
+              "code": "LogFileURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.  To get the log, fetch that URL with your preferred HTTP tool, for example, Safari or ",
+              "type": "text"
+            },
+            {
+              "code": "curl",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Things are much easier with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  To fetch the notary log, use the ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool log NEW_CREDENTIALS SUBMISSION_ID"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "SUBMISSION_ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the submission ID you got when you submitted the file and ",
+              "type": "text"
+            },
+            {
+              "code": "NEW_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the credentials from earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-history",
+          "level": 3,
+          "text": "Get history",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your command to view a list of recent notarization requests might look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun altool OLD_CREDENTIALS --notarization-history 0"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do the same with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "code": "history",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool history NEW_CREDENTIALS"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace ",
+              "type": "text"
+            },
+            {
+              "code": "NEW_CREDENTIALS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the credentials from earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Going-further",
+          "level": 2,
+          "text": "Going further",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The new tool has a number of other features to make your life easier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-help",
+          "level": 3,
+          "text": "Getting help",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get a list of commands, run ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with no arguments:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool",
+            "OVERVIEW: Manage submissions to the Apple notary service",
+            "",
+            "SUBCOMMANDS:",
+            "…",
+            "  submit                  Submit an archive to the Notary service",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get help on a specific command, run that command with the ",
+              "type": "text"
+            },
+            {
+              "code": "--help",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool submit --help",
+            "OVERVIEW: Submit an archive to the Notary service",
+            "",
+            "USAGE: notarytool submit [<options>] <file-path>",
+            "",
+            "ARGUMENTS:",
+            "  <file-path>             Path to the archive",
+            "",
+            "OPTIONS:",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For comprehensive help, see the ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page.  If you’re unfamiliar with man pages, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "overridingTitle": "Reading UNIX Manual Pages",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Reading UNIX Manual Pages",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-credentials-in-the-keychain",
+          "level": 3,
+          "text": "Save credentials in the keychain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you might have used the ",
+              "type": "text"
+            },
+            {
+              "code": "--store-password-in-keychain-item",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to save an app-specific password in the keychain and then referenced it using the ",
+              "type": "text"
+            },
+            {
+              "code": "@keychain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix.   ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports the same workflow, with a slightly different syntax.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start, use the ",
+              "type": "text"
+            },
+            {
+              "code": "store-credentials",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand to save your app-specific password to the keychain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool store-credentials PROFILE --apple-id APPLE_ID --team-id TEAM_ID",
+            "…",
+            "App-specific password for APPLE_ID: ",
+            "…",
+            "Credentials saved to Keychain.",
+            "To use them, specify `--keychain-profile \"PROFILE\"`"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "PROFILE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a name that you assign to these credentials.  You might use a value like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MyNotarizationPassword",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APPLE_ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your Apple ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "TEAM_ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is your Team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The command prompts you to enter your app-specific password.  Once you do that, it checks that the password is valid and, if so, stores the credentials in your keychain with the specified profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use these credentials in subsequent commands, supply the profile name using the ",
+              "type": "text"
+            },
+            {
+              "code": "--keychain-profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option.  For example, to get a notarization history:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun notarytool history --keychain-profile PROFILE"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Unless you specify a file-based keychain with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "--keychain",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " option, ",
+                  "type": "text"
+                },
+                {
+                  "code": "notarytool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " uses the data protection keychain.  To see stored credentials in that case, run Keychain Access, select iCloud Keychain on the left—or Local Items, if iCloud Keychain is not enabled—and look for items named ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.gke.notary.tool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".  If you’re unfamiliar with the terms ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "file-based keychain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "data protection keychain",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ", see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains",
+                  "isActive": true,
+                  "overridingTitle": "TN3137: On Mac keychain APIs and implementations",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "TN3137: On Mac keychain APIs and implementations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the example above assumes you’re authenticating with an app-specific password, this technique also works with an App Store Connect API key.  See the ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " help for the details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Notarizing-on-a-limited-system",
+          "level": 3,
+          "text": "Notarizing on a limited system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The standard way to get ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is to install Xcode.  If you don’t want to install a full copy of Xcode on your system, get ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by installing the Command Line Tools package.  This installs the same ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the associated Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways to install the package:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the target system, run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcrun",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--install",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Download it from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/download/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page.  To get a list of available packages, switch to the More tab at the top right and search for ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Command Line Tools",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On some systems even the Command Line Tools package is too big.  In that case, it’s fine to extract ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from either Xcode or the Command Line Tools package and copy it to your system.  On a system that has one of these installed, use ",
+              "type": "text"
+            },
+            {
+              "code": "xcrun",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to find ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and then copy it to wherever you want:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun --find notarytool",
+            "/Applications/Xcode.app/Contents/Developer/usr/bin/notarytool",
+            "% cp /Applications/Xcode.app/Contents/Developer/usr/bin/notarytool …whereever…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-notarization-on-an-older-version-of-macOS",
+          "level": 3,
+          "text": "Enable notarization on an older version of macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first version of Xcode to include ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is Xcode 13.  It requires macOS 11.3.  It is, however, possible to notarize on earlier systems, all the way back to macOS 10.15.  To do this, copy ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from a system with Xcode or the Command Line Tools package installed, as described in the previous section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple engineered ",
+                  "type": "text"
+                },
+                {
+                  "code": "notarytool",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to work back to macOS 10.15 regardless of the minimum system version of the product in which it’s contained.  This is a special case and does not apply to any other component within Xcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Learn-about-completed-submissions",
+          "level": 3,
+          "text": "Learn about completed submissions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you notarize using ",
+              "type": "text"
+            },
+            {
+              "code": "altool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the notary service sends you an email when it’s done processing your submission.  It doesn’t do this when you notarize with ",
+              "type": "text"
+            },
+            {
+              "code": "notarytool",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  If you were previously relying on this email to trigger events in your workflow, consider one of the following ",
+              "type": "text"
+            },
+            {
+              "code": "submit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--wait",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which waits for your submission to complete",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--webhook",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which notifies you when your submission is complete",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-05",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Fixed a broken link.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-08-01",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Fixed a bug in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--notarization-history",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " examples.  Made other minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-05-30",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Updated to include the announced end date for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "altool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-04-11",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/customizing-the-notarization-workflow": {
+      "abstract": [
+        {
+          "text": "Notarize your app from the command line to handle special distribution cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/customizing-the-notarization-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the notarization workflow",
+      "type": "topic",
+      "url": "/documentation/Security/customizing-the-notarization-workflow"
+    },
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains": {
+      "abstract": [
+        {
+          "text": "Learn how the keychain on macOS differs from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3137: On Mac keychain APIs and implementations",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3137-on-mac-keychains"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool#Enable-notarization-on-an-older-version-of-macOS": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool#Enable-notarization-on-an-older-version-of-macOS",
+      "kind": "section",
+      "title": "Enable notarization on an older version of macOS",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3147-migrating-to-the-latest-notarization-tool#Enable-notarization-on-an-older-version-of-macOS"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool#Save-credentials-in-the-keychain": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3147-migrating-to-the-latest-notarization-tool#Save-credentials-in-the-keychain",
+      "kind": "section",
+      "title": "Save credentials in the keychain",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3147-migrating-to-the-latest-notarization-tool#Save-credentials-in-the-keychain"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/account": {
+      "identifier": "https://developer.apple.com/account",
+      "title": "Account page",
+      "titleInlineContent": [
+        {
+          "text": "Account page",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account"
+    },
+    "https://developer.apple.com/documentation/notaryapi": {
+      "identifier": "https://developer.apple.com/documentation/notaryapi",
+      "title": "Notary API",
+      "titleInlineContent": [
+        {
+          "text": "Notary API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/notaryapi"
+    },
+    "https://developer.apple.com/download/": {
+      "identifier": "https://developer.apple.com/download/",
+      "title": "Developer > Downloads",
+      "titleInlineContent": [
+        {
+          "text": "Developer > Downloads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/"
+    },
+    "https://developer.apple.com/news/?id=y5mjxqmn": {
+      "identifier": "https://developer.apple.com/news/?id=y5mjxqmn",
+      "title": "announced that it will stop working for notarization on 2023-11-01",
+      "titleInlineContent": [
+        {
+          "text": "announced that it will stop working for notarization on 2023-11-01",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/news/?id=y5mjxqmn"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10261/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10261/",
+      "title": "WWDC 2021",
+      "titleInlineContent": [
+        {
+          "text": "WWDC 2021",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10261/"
+    },
+    "https://support.apple.com/en-us/HT204397": {
+      "identifier": "https://support.apple.com/en-us/HT204397",
+      "title": "Using app-specific passwords",
+      "titleInlineContent": [
+        {
+          "text": "Using app-specific passwords",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT204397"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

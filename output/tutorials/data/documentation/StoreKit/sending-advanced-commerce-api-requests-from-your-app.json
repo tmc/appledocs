@@ -1,0 +1,1170 @@
+{
+  "abstract": [
+    {
+      "text": "Send Advanced Commerce API requests from your app that you authorize with a JSON Web Signature (JWS) you generate on your server.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/sending-advanced-commerce-api-requests-from-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending Advanced Commerce API requests from your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can make certain ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requests through StoreKit in your app, while you make other requests directly from your server.  In both cases, you authorize the calls with signatures you generate on your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following Advanced Commerce API requests are available in your app using StoreKit APIs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/OneTimeChargeCreateRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionCreateRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionModifyInAppRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionReactivateInAppRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make Advanced Commerce requests from your app, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Collect the request data according to the API you’re invoking.  On your server, create your ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "base64-encoded request data",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " by combining the request data into a UTF-8 JSON string and base64-encoding the string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On your server, create a JWS compact serialization that includes your base64-encoded request data in the JWS payload, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests#Include-custom-claims-for-Advanced-Commerce-API-in-app-requests",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wrap the JWS in a JSON object, and convert it into a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " buffer to create the Advanced Commerce request data object, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "advancedCommerceRequestData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "advancedCommerceRequestData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the value of a purchase option in your product purchase call.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on authorizing server-based calls, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/authorizing-server-calls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-base64-encoded-request-data",
+          "level": 2,
+          "text": "Create the base64-encoded request data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place the Advanced Commerce request data in a UTF-8 JSON string and base64-encode the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following JSON represents a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/OneTimeChargeCreateRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the purchase of a one-time charge product:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"operation\": \"CREATE_ONE_TIME_CHARGE\",",
+            "    \"version\": \"1\",                     ",
+            "    \"requestInfo\": {",
+            "        \"appAccountToken\": \"3152947d-8f63-41c2-9a91-e92e45f145e9\",",
+            "        \"requestReferenceId\": \"f55df048-4cd8-4261-b404-b6f813ff70e5\"",
+            "    },",
+            "    \"currency\": \"USD\",",
+            "    \"taxCode\": \"C003-00-2\", ",
+            "    \"storefront\": \"USA\",",
+            "    \"item\": {",
+            "        \"SKU\": \"BOOK_SHERLOCK_HOMLES\",",
+            "        \"displayName\": \"Sherlock Holmes\", ",
+            "        \"description\": \"The Sherlock Holmes, 5th Edition\",",
+            "        \"price\": 4990",
+            "    }",
+            "}"
+          ],
+          "syntax": "JSON",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result of base64-encoding the example JSON request is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ewogICJvcGVyYXRpb24iOiAiQ1JFQVRFX09ORV9USU1FX0NIQVJHRSIsCiAgInZlcnNpb24iOiAiMSIsCiAgInJlcXVlc3RJbmZvIjogewogICAgImFwcEFjY291bnRUb2tlbiI6ICIzMTUyOTQ3ZC04ZjYzLTQxYzItOWE5MS1lOTJlNDVmMTQ1ZTkiLAogICAgInJlcXVlc3RSZWZlcmVuY2VJZCI6ICJmNTVkZjA0OC00Y2Q4LTQyNjEtYjQwNC1iNmY4MTNmZjcwZTUiCiAgfSwKICAiY3VycmVuY3kiOiAiVVNEIiwKICAidGF4Q29kZSI6ICJDMDAzLTAwLTIiLAogICJzdG9yZWZyb250IjogIlVTQSIsCiAgIml0ZW0iOiB7CiAgICAiU0tVIjogIkJPT0tfU0hFUkxPQ0tfSE9NTEVTIiwKICAgICJkaXNwbGF5TmFtZSI6ICJTaGVybG9jayBIb2xtZXMiLAogICAgImRlc2NyaXB0aW9uIjogIlRoZSBTaGVybG9jayBIb2xtZXMsIDV0aCBFZGl0aW9uIiwKICAgICJwcmljZSI6IDQ5OTAKICB9Cn0K ",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This value, calculated using your own data, is your ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "base64-encoded request data",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-the-JWS-using-your-request-data",
+          "level": 2,
+          "text": "Generate the JWS using your request data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow the signing instructions for Advanced Commerce API in-app requests in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The Advanced Commerce API requires a custom claim, ",
+              "type": "text"
+            },
+            {
+              "code": "request",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Provide the base64-encoded request data from the previous step as the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "request",
+              "type": "codeVoice"
+            },
+            {
+              "text": " claim in the JWS payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result after following the instructions is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "JWS compact serialization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Wrap-the-JWS-and-convert-it-into-data",
+          "level": 2,
+          "text": "Wrap the JWS and convert it into data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Wrap the JWS to create a ",
+              "type": "text"
+            },
+            {
+              "code": "signatureInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " JSON string that contains a ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.  You can complete this step on your server or in your app. Create the ",
+              "type": "text"
+            },
+            {
+              "code": "signatureInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " JSON string as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"signatureInfo\": {",
+            "        \"token\": \"<your JWS compact serialization>\"",
+            "    }",
+            "}"
+          ],
+          "syntax": "JSON",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to your JWS compact serialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, convert the ",
+              "type": "text"
+            },
+            {
+              "code": "signatureInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " JSON string into a ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " buffer, as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let jsonString =\"<# your signatureInfo UTF-8 JSON string>\"",
+            "let advancedCommerceRequestData = Data(jsonString.utf8)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result is the Advanced Commerce request data object, referred to as ",
+              "type": "text"
+            },
+            {
+              "code": "advancedCommerceRequestData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the code snippets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Securely send the ",
+              "type": "text"
+            },
+            {
+              "code": "advancedCommerceRequestData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Call-the-StoreKit-purchase-API-using-the-signed-request-data",
+          "level": 2,
+          "text": "Call the StoreKit purchase API using the signed request data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To complete the Advanced Commerce request in the app, call a StoreKit purchase method and provide the signed request, in the Advanced Commerce request data form, as a purchase option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example sets up the purchase request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let purchaseResult = try await product.purchase(",
+            "    options: [ ",
+            "        Product.PurchaseOption.custom( ",
+            "            key: “advancedCommerceData”, ",
+            "            value: advancedCommerceRequestData",
+            "        )",
+            "    ]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the custom key ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"advancedCommerceData\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for all Advanced Commerce in-app requests. For more information about the custom purchase option, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the value attribute, provide your Advanced Commerce request data, which you created using your JWS compact serialization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information about the product purchase method, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AdvancedCommerceAPI": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases through the App Store for exceptionally large catalogs of custom one-time purchases, subscriptions, and subscriptions with optional add-ons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Advanced Commerce API",
+      "type": "topic",
+      "url": "/documentation/AdvancedCommerceAPI"
+    },
+    "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/OneTimeChargeCreateRequest": {
+      "abstract": [
+        {
+          "text": "The metadata your app provides when a customer purchases a one-time-charge product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OneTimeChargeCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/OneTimeChargeCreateRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OneTimeChargeCreateRequest",
+      "type": "topic",
+      "url": "/documentation/AdvancedCommerceAPI/OneTimeChargeCreateRequest"
+    },
+    "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionCreateRequest": {
+      "abstract": [
+        {
+          "text": "The metadata your app provides when a customer purchases an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionCreateRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SubscriptionCreateRequest",
+      "type": "topic",
+      "url": "/documentation/AdvancedCommerceAPI/SubscriptionCreateRequest"
+    },
+    "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionModifyInAppRequest": {
+      "abstract": [
+        {
+          "text": "The request data your app provides to make changes to an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionModifyInAppRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionModifyInAppRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SubscriptionModifyInAppRequest",
+      "type": "topic",
+      "url": "/documentation/AdvancedCommerceAPI/SubscriptionModifyInAppRequest"
+    },
+    "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionReactivateInAppRequest": {
+      "abstract": [
+        {
+          "text": "The request your app provides to reactivate a subscription that has automatic renewal turned off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionReactivateInAppRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/SubscriptionReactivateInAppRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SubscriptionReactivateInAppRequest",
+      "type": "topic",
+      "url": "/documentation/AdvancedCommerceAPI/SubscriptionReactivateInAppRequest"
+    },
+    "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/authorizing-server-calls": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) to authorize Advanced Commerce requests from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdvancedCommerceAPI/authorizing-server-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing API requests from your server",
+      "type": "topic",
+      "url": "/documentation/AdvancedCommerceAPI/authorizing-server-calls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AdvancedCommerceProduct": {
+      "abstract": [
+        {
+          "text": "A product configured as a generic SKU in App Store Connect for use with the Advanced Commerce API.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdvancedCommerceProduct"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AdvancedCommerceProduct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdvancedCommerceProduct"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdvancedCommerceProduct",
+      "type": "topic",
+      "url": "/documentation/storekit/advancedcommerceproduct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh": {
+      "abstract": [
+        {
+          "text": "Adds data for a custom key to a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseOption/custom(key:value:)-80cvh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(key:value:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchaseoption/custom(key:value:)-80cvh"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)": {
+      "abstract": [
+        {
+          "text": "Initiates a purchase for the product with the App Store and displays the confirmation sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseResultO",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "purchase(options:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchase(options:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests": {
+      "abstract": [
+        {
+          "text": "Create signed JSON Web Signature (JWS) strings on your server to authorize your API requests in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JWS to sign App Store requests",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-jws-to-sign-app-store-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests#Include-custom-claims-for-Advanced-Commerce-API-in-app-requests": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests#Include-custom-claims-for-Advanced-Commerce-API-in-app-requests",
+      "kind": "section",
+      "title": "Include custom claims for Advanced Commerce API in-app requests",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-jws-to-sign-app-store-requests#Include-custom-claims-for-Advanced-Commerce-API-in-app-requests"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Advanced-Commerce-API-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/AdvancedCommerceProduct",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests"
+      ],
+      "title": "Advanced Commerce API interactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Advanced-Commerce-API-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/generating-jws-to-sign-app-store-requests"
+              ],
+              "title": "Advanced Commerce API interactions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/sending-advanced-commerce-api-requests-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/sending-advanced-commerce-api-requests-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

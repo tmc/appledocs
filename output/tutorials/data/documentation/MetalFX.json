@@ -1,0 +1,702 @@
+{
+  "abstract": [
+    {
+      "text": "Boost your Metal app’s performance by upscaling lower-resolution content to save GPU time.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metalfx/documentation/MetalFX"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "MetalFX",
+    "modules": [
+      {
+        "name": "MetalFX"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "MetalFX"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MetalFX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework integrates with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to upscale a relatively low-resolution image to a higher output resolution in less time than it takes to render directly to the output resolution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4085441",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the GPU time savings to further enhance your app or game’s experience. For example, add more effects or scene details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "MetalFX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " gives you two different ways to upscale your input renderings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Temporal antialiased upscaling",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Spatial upscaling",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you can provide pixel color, depth, and motion information, add an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to your render pipeline. Otherwise, add an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScaler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, which only requires a pixel color input texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the scaling effects take time to initialize, make an instance of either effect at launch or when a display changes resolutions. Once you’ve created an effect instance, you can use it repeatedly, typically once per frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX": {
+      "abstract": [
+        {
+          "text": "Boost your Metal app’s performance by upscaling lower-resolution content to save GPU time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetalFX",
+      "type": "topic",
+      "url": "/documentation/metalfx"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScaler": {
+      "abstract": [
+        {
+          "text": "An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXSpatialScaler"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScaler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXSpatialScaler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXSpatialScaler",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxspatialscaler"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode": {
+      "abstract": [
+        {
+          "text": "The color space modes for the input and output textures you use with a spatial scaling effect instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXSpatialScalerColorProcessingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXSpatialScalerColorProcessingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXSpatialScalerColorProcessingMode",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxspatialscalercolorprocessingmode"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerDescriptor": {
+      "abstract": [
+        {
+          "text": "A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXSpatialScalerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXSpatialScalerDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXSpatialScalerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxspatialscalerdescriptor"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler": {
+      "abstract": [
+        {
+          "text": "An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input textures over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScaler"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScaler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXTemporalScaler",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscaler"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor": {
+      "abstract": [
+        {
+          "text": "A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScalerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFXTemporalScalerDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFXTemporalScalerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalfx/mtlfxtemporalscalerdescriptor"
+    },
+    "doc://com.apple.metalfx/documentation/MetalFX/applying-temporal-antialiasing-and-upscaling-using-metalfx": {
+      "abstract": [
+        {
+          "text": "Reduce render workloads while increasing image detail with MetalFX.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metalfx/documentation/MetalFX/applying-temporal-antialiasing-and-upscaling-using-metalfx",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying temporal antialiasing and upscaling using MetalFX",
+      "type": "topic",
+      "url": "/documentation/metalfx/applying-temporal-antialiasing-and-upscaling-using-metalfx"
+    },
+    "media-4085441": {
+      "alt": "A timeline diagram that compares a traditional rendering timespan and compares it to a MetalFX upscaling timespan. The MetalFX upscaling method, which renders at a lower resolution and then upscales to the final resolution with MetalFX, takes about half the time traditional rendering, which renders directly to the higher, final resolution.",
+      "identifier": "media-4085441",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0d41d9865689f453bc27b90af756121/media-4085441@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5051cc53a0eb97780f4ed47c0724a2e2/media-4085441~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Temporal-scaling",
+      "identifiers": [
+        "doc://com.apple.metalfx/documentation/MetalFX/applying-temporal-antialiasing-and-upscaling-using-metalfx",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor"
+      ],
+      "title": "Temporal scaling"
+    },
+    {
+      "anchor": "Spatial-scaling",
+      "identifiers": [
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScaler",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerDescriptor",
+        "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode"
+      ],
+      "title": "Spatial scaling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Temporal-scaling",
+              "identifiers": [
+                "doc://com.apple.metalfx/documentation/MetalFX/applying-temporal-antialiasing-and-upscaling-using-metalfx",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScaler",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXTemporalScalerDescriptor"
+              ],
+              "title": "Temporal scaling"
+            },
+            {
+              "anchor": "Spatial-scaling",
+              "identifiers": [
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScaler",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerDescriptor",
+                "doc://com.apple.metalfx/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode"
+              ],
+              "title": "Spatial scaling"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/title",
+          "value": "MTLFXTemporalScaler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScaler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScaler/title",
+          "value": "MTLFXSpatialScaler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScaler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXSpatialScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScaler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXSpatialScaler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScalerColorProcessingMode/title",
+          "value": "MTLFXSpatialScalerColorProcessingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScalerColorProcessingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXSpatialScalerColorProcessingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScalerColorProcessingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXSpatialScalerColorProcessingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor/title",
+          "value": "MTLFXTemporalScalerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScalerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXTemporalScalerDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXTemporalScalerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScalerDescriptor/title",
+          "value": "MTLFXSpatialScalerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScalerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXSpatialScalerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metalfx~1documentation~1MetalFX~1MTLFXSpatialScalerDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFXSpatialScalerDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metalfx"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metalfx"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

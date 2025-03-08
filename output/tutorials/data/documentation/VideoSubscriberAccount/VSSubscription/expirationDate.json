@@ -1,0 +1,999 @@
+{
+  "abstract": [
+    {
+      "text": "The date when the user’s subscription expires.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/expirationDate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)VSSubscription(py)expirationDate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "expirationDate"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation4DateV",
+        "text": "Date"
+      },
+      {
+        "kind": "text",
+        "text": "!"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Video Subscriber Account"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "expirationDate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "renamed": "__VSUserAccount",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "renamed": "__VSUserAccount",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "renamed": "__VSUserAccount",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "2.0",
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "renamed": "__VSUserAccount",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "expirationDate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "expirationDate"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DateV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": "! { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property defines the exact time when the subscription becomes inactive. When the current subscription becomes inactive, the system behaves as though the user isn’t a subscriber, similar to calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter/setCurrentSubscription(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this property when a subscriber decides not to renew their subscription by setting an expiration date that corresponds to the final billing cycle end date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use this property when a subscription only grants access to time-limited content, such as a single season of games for a sports league.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default is ",
+              "type": "text"
+            },
+            {
+              "code": "distantFuture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount": {
+      "abstract": [
+        {
+          "text": "Support TV provider and Apple TV app functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Subscriber Account",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription": {
+      "abstract": [
+        {
+          "text": "An object that describes a subscriber’s access to content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VSSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VSSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "VSSubscription",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscription"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/accessLevel": {
+      "abstract": [
+        {
+          "text": "The subscriber’s level of access to your catalog of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VSSubscriptionAccessLevel",
+          "text": "VSSubscriptionAccessLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/accessLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessLevel",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscription/accesslevel"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/billingIdentifier": {
+      "abstract": [
+        {
+          "text": "The subscriber’s billing group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "billingIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/billingIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "billingIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "billingIdentifier",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscription/billingidentifier"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/expirationDate": {
+      "abstract": [
+        {
+          "text": "The date when the user’s subscription expires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/expirationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "expirationDate",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscription/expirationdate"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/tierIdentifiers": {
+      "abstract": [
+        {
+          "text": "A list of content from your catalog that the subscriber can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tierIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/tierIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tierIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "tierIdentifiers",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscription/tieridentifiers"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionAccessLevel": {
+      "abstract": [
+        {
+          "text": "Constants representing a subscriber’s level of access to your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VSSubscriptionAccessLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionAccessLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VSSubscriptionAccessLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "VSSubscriptionAccessLevel",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscriptionaccesslevel"
+    },
+    "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter/setCurrentSubscription(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the subscription information for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCurrentSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VSSubscription",
+          "text": "VSSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionRegistrationCenter/setCurrentSubscription(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setCurrentSubscription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setCurrentSubscription(_:)",
+      "type": "topic",
+      "url": "/documentation/videosubscriberaccount/vssubscriptionregistrationcenter/setcurrentsubscription(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSDate": {
+      "abstract": [
+        {
+          "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDate"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSDate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation4DateV": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DateV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-Subscription-Details",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/accessLevel",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionAccessLevel",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/billingIdentifier",
+        "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/tierIdentifiers"
+      ],
+      "title": "Setting Subscription Details"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "2.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "expirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setting-Subscription-Details",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/accessLevel",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscriptionAccessLevel",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/billingIdentifier",
+                "doc://com.apple.videosubscriberaccount/documentation/VideoSubscriberAccount/VSSubscription/tierIdentifiers"
+              ],
+              "title": "Setting Subscription Details"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSDate",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSDate",
+                    "text": "NSDate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "expirationDate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSDate/abstract",
+          "value": [
+            {
+              "text": "A representation of a specific point in time, independent of any calendar or time zone.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1billingIdentifier/title",
+          "value": "billingIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1billingIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "billingIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1expirationDate/title",
+          "value": "expirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1expirationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter~1setCurrentSubscription(_:)/title",
+          "value": "setCurrentSubscription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionRegistrationCenter~1setCurrentSubscription(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setCurrentSubscription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription/title",
+          "value": "VSSubscription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1accessLevel/title",
+          "value": "accessLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1accessLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1tierIdentifiers/title",
+          "value": "tierIdentifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscription~1tierIdentifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tierIdentifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionAccessLevel/title",
+          "value": "VSSubscriptionAccessLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionAccessLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscriptionAccessLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videosubscriberaccount~1documentation~1VideoSubscriberAccount~1VSSubscriptionAccessLevel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VSSubscriptionAccessLevel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videosubscriberaccount/vssubscription/expirationdate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videosubscriberaccount/vssubscription/expirationdate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

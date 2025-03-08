@@ -1,0 +1,2159 @@
+{
+  "abstract": [
+    {
+      "text": "An anchor that identifies a geographic location using latitude, longitude, and altitude data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARGeoAnchor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARGeoAnchor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARGeoAnchor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARGeoAnchor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "geographic anchor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (also known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "location anchor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") identifies a specific area in the world that the app can refer to in an AR experience. As a user moves around the scene, the session updates a location anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " based on the anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/coordinate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the device’s compass heading.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit aligns location anchors to an East-North-Up orientation, with its x- and z-axes matching the longitude and latitude directions. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/WorldAlignment-swift.enum/gravityAndHeading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit sets the anchor’s vertical position to the altitude you pass in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:altitude:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you initialize a location anchor using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead, ARKit sets the anchor’s altitude to ground level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Location anchors are available only in geotracking sessions, and geotracking is available in specific areas; for more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Communicate-Data-Usage",
+          "level": 3,
+          "text": "Communicate Data Usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Location anchors consume data from Apple Maps called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "localization imagery",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). As the user moves, the framework downloads localization imagery to refine the user’s precise geographic position. The amount of data the session requires depends on the user’s movement and distance they travel. To make the user aware of potential fees, you can notify the user of their data usage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-Location-Anchor-Availability",
+          "level": 3,
+          "text": "Manage Location Anchor Availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app creates a location anchor, it’s invisible to the user until the framework ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "populates",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the anchor in the scene. When an anchor populates successfully, the session passes the anchor into the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ARKit fails to populate a location anchor, the session calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didRemove:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to notify your delegate. A location anchor may fail to populate when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The network is unavailable. If you create a location anchor without providing an altitude, ARKit defaults the altitude to ground level, and may query the server to check the topography at the anchor’s geographic coordinate. If the network is unavailable, ask the user to restore a connection by disabling Airplane Mode, enabling WiFi, or moving to a location that provides service. If the network is available but slow, an altitude query response may be delayed. Consider pausing a navigation or presenting visual feedback for the anchor’s tentative placement, such as by displaying a status indicator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The location anchor is too far from the user. If users can create location anchors in your app, let them know to position the coordinates of each anchor within 0.05 degrees (~5 kilometers) of themselves and their device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The server prevents the location anchor’s position, such as in a large body of water.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform": {
+      "abstract": [
+        {
+          "text": "A matrix encoding the position, orientation, and scale of the anchor relative to the world coordinate space of the AR session the anchor is placed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying": {
+      "abstract": [
+        {
+          "text": "Support for custom anchor subclasses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchorCopying"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchorCopying"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchorCopying",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchorcopying"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/WorldAlignment-swift.enum/gravityAndHeading": {
+      "abstract": [
+        {
+          "text": "The coordinate system’s y-axis is parallel to gravity, its x- and z-axes are oriented to compass heading, and its origin is the initial position of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gravityAndHeading"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/WorldAlignment-swift.enum/gravityAndHeading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldAlignmentGravityAndHeading"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARConfiguration.WorldAlignment.gravityAndHeading",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/worldalignment-swift.enum/gravityandheading"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor that identifies a geographic location using latitude, longitude, and altitude data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/AltitudeSource-swift.enum": {
+      "abstract": [
+        {
+          "text": "Options for setting a location anchor’s altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AltitudeSource"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/AltitudeSource-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AltitudeSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoAnchor.AltitudeSource",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/altitudesource-swift.enum"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitude-89k4x": {
+      "abstract": [
+        {
+          "text": "Vertical distance, in meters, between this anchor and sea level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitude-89k4x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "altitude",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/altitude-89k4x"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitude-9kges": {
+      "abstract": [
+        {
+          "text": "Vertical distance, in meters, between this anchor and sea level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "altitude"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitude-9kges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "altitude",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/altitude-9kges"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitudeSource-swift.property": {
+      "abstract": [
+        {
+          "text": "A record of the source from which an altitude came.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "altitudeSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeoAnchor",
+          "text": "ARGeoAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARAltitudeSource",
+          "text": "AltitudeSource"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitudeSource-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "altitudeSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "altitudeSource",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/altitudesource-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/coordinate": {
+      "abstract": [
+        {
+          "text": "The lattitude and longitude of the anchor’s geographic location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/coordinate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        }
+      ],
+      "role": "symbol",
+      "title": "coordinate",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/coordinate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)": {
+      "abstract": [
+        {
+          "text": "Initializes a location anchor with the given coordinate and altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coordinate:altitude:)",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/init(coordinate:altitude:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-8sbh4": {
+      "abstract": [
+        {
+          "text": "Initializes a named location anchor with the given coordinates and altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-8sbh4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:coordinate:altitude:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:coordinate:altitude:)",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/init(name:coordinate:altitude:)-8sbh4"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-csze": {
+      "abstract": [
+        {
+          "text": "Initializes a named location anchor with the given coordinates and altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-csze",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:coordinate:altitude:)",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/init(name:coordinate:altitude:)-csze"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:": {
+      "abstract": [
+        {
+          "text": "Initializes a new location anchor with the given coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithCoordinate:",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/initwithcoordinate:"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:altitude:": {
+      "abstract": [
+        {
+          "text": "Initializes a location anchor with the given coordinate and altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:altitude:"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:altitude:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:altitude:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithCoordinate:altitude:",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/initwithcoordinate:altitude:"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithName:coordinate:": {
+      "abstract": [
+        {
+          "text": "Initializes a named location anchor with the given coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithName:coordinate:"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithName:coordinate:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:coordinate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithName:coordinate:",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/initwithname:coordinate:"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks locations with GPS, map data, and a device’s compass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more anchors have been added to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didAddAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didadd:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didRemove:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more anchors have been removed from the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didRemove:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didRemoveAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didremove:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackable": {
+      "abstract": [
+        {
+          "text": "An interface for objects that track the location of real-world objects or locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARTrackable"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackable"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARTrackable",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackable"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/tracking-geographic-locations-in-ar": {
+      "abstract": [
+        {
+          "text": "Track specific geographic areas of interest and render them in an AR experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-geographic-locations-in-ar",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking geographic locations in AR",
+      "type": "topic",
+      "url": "/documentation/arkit/tracking-geographic-locations-in-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAnchor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackable",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Geotracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/tracking-geographic-locations-in-ar"
+      ],
+      "title": "Geotracking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Geo-Anchor",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-8sbh4",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-csze"
+      ],
+      "title": "Creating a Geo Anchor"
+    },
+    {
+      "anchor": "Accessing-Latitude-and-Longitude",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/coordinate"
+      ],
+      "title": "Accessing Latitude and Longitude"
+    },
+    {
+      "anchor": "Defining-Altitude",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitude-89k4x",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitudeSource-swift.property",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/AltitudeSource-swift.enum"
+      ],
+      "title": "Defining Altitude"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARGeoAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Geo-Anchor",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithCoordinate:altitude:",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/initWithName:coordinate:",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(name:coordinate:altitude:)-8sbh4"
+              ],
+              "title": "Creating a Geo Anchor"
+            },
+            {
+              "anchor": "Accessing-Latitude-and-Longitude",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/coordinate"
+              ],
+              "title": "Accessing Latitude and Longitude"
+            },
+            {
+              "anchor": "Defining-Altitude",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitude-9kges",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/altitudeSource-swift.property",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/AltitudeSource-swift.enum"
+              ],
+              "title": "Defining Altitude"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARAnchor"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARTrackable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Geotracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/tracking-geographic-locations-in-ar"
+              ],
+              "title": "Geotracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARGeoAnchor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ARAnchor",
+                    "text": "ARAnchor"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/title",
+          "value": "ARGeoTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/title",
+          "value": "session:didAddAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didAddAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1AltitudeSource-swift.enum/title",
+          "value": "ARAltitudeSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1AltitudeSource-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAltitudeSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1AltitudeSource-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAltitudeSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1coordinate/title",
+          "value": "coordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1coordinate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "coordinate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1altitudeSource-swift.property/title",
+          "value": "altitudeSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1altitudeSource-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "altitudeSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/title",
+          "value": "ARTrackable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/title",
+          "value": "ARAnchorCopying"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchorCopying"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchorCopying"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didRemove:)/title",
+          "value": "session:didRemoveAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didRemove:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didRemoveAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1WorldAlignment-swift.enum~1gravityAndHeading/title",
+          "value": "ARWorldAlignmentGravityAndHeading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1WorldAlignment-swift.enum~1gravityAndHeading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldAlignmentGravityAndHeading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1init(name:coordinate:altitude:)-8sbh4/title",
+          "value": "initWithName:coordinate:altitude:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor~1init(name:coordinate:altitude:)-8sbh4/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:coordinate:altitude:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor/title",
+          "value": "ARGeoAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/argeoanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/argeoanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

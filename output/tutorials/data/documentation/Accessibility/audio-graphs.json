@@ -1,0 +1,1184 @@
+{
+  "abstract": [
+    {
+      "text": "Define an accessible representation of your chart for VoiceOver to generate an audio",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "graph.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/vision"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/audio-graphs"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio graphs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Charts and graphs help users quickly identify important features and trends in data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the audio graphs API to provide all the information that VoiceOver needs to construct",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an audible representation of the data in your charts and graphs, making the data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessible to people who are blind or have low vision.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "audio_graphs-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "audio graph",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " turns the data in your chart into an audible representation by encoding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the data on each axis as audio. Typically, the audio graph represents the x-axis",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as time, and the y-axis as pitch. For example, an audible representation of a scatter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plot that shows a linear downward trend might be a series of individual tones descending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in pitch over time. An audible representation of a stock chart might be a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "continuous tone with a pitch that modulates up or down with the stock price (y-axis)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as the audio plays over time (x-axis).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10122: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10122",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC21",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-card-vision.png": {
+      "alt": "An illustration that shows a person with low vision walking with the assistance of a guide dog while using an iPhone and AirPods.",
+      "identifier": "accessibility-card-vision.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11631c0b01fa73cc082557dc6067840e/accessibility-card-vision@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/624a8a2e8a195d6785905c00a619d3ac/accessibility-card-vision~dark@2x.png"
+        }
+      ]
+    },
+    "audio_graphs-1": {
+      "alt": "An illustration of an audio graph that shows data points modulating in pitch along the y-axis as a slider moves in time along the x-axis.",
+      "identifier": "audio_graphs-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff287c418eb62bd9916511190687db82/audio_graphs-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/285227692d1547a9288da6466665fc37/audio_graphs-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXCategoricalDataAxisDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that represents an axis of categorical data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXCategoricalDataAxisDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXCategoricalDataAxisDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXCategoricalDataAxisDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXCategoricalDataAxisDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessibility/axcategoricaldataaxisdescriptor"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXChart": {
+      "abstract": [
+        {
+          "text": "A protocol that declares the minimum interface necessary for an accessibility element",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to act as a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXChart"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXChart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXChart"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXChart",
+      "type": "topic",
+      "url": "/documentation/accessibility/axchart"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXChartDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that contains all the semantic information about an accessible chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXChartDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXChartDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXChartDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXChartDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessibility/axchartdescriptor"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXDataAxisDescriptor": {
+      "abstract": [
+        {
+          "text": "The basic interface for a data axis in a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXDataAxisDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXDataAxisDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXDataAxisDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXDataAxisDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessibility/axdataaxisdescriptor"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXDataPoint": {
+      "abstract": [
+        {
+          "text": "An object that represents a single data point in a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXDataPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXDataPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXDataPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXDataPoint",
+      "type": "topic",
+      "url": "/documentation/accessibility/axdatapoint"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXDataSeriesDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that represents a series of data points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXDataSeriesDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXDataSeriesDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXDataSeriesDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXDataSeriesDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessibility/axdataseriesdescriptor"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXLiveAudioGraph": {
+      "abstract": [
+        {
+          "text": "An object that represents an audio graph for a live-updating, continuous data series",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for VoiceOver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXLiveAudioGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXLiveAudioGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXLiveAudioGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXLiveAudioGraph",
+      "type": "topic",
+      "url": "/documentation/accessibility/axliveaudiograph"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a localized description of the color to use in accessibility attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXNameFromColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXNameFromColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXNameFromColor(_:)",
+      "type": "topic",
+      "url": "/documentation/accessibility/axnamefromcolor(_:)"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AXNumericDataAxisDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that represents an axis of numerical data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXNumericDataAxisDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AXNumericDataAxisDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AXNumericDataAxisDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AXNumericDataAxisDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessibility/axnumericdataaxisdescriptor"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/AX_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AX_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/AX_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AX_EXTERN",
+      "type": "topic",
+      "url": "/documentation/accessibility/ax_extern"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api": {
+      "abstract": [
+        {
+          "text": "Browse API in the Accessibility framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility API",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility-api"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays": {
+      "abstract": [
+        {
+          "text": "Display a graphical representation of images, icons, data, and more on a two-dimensional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "braille display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Braille displays",
+      "type": "topic",
+      "url": "/documentation/accessibility/braille-displays"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content": {
+      "abstract": [
+        {
+          "text": "Customize your apps to deliver accessibility information to your users in measured",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "portions as they need it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Customized accessibility content",
+      "type": "topic",
+      "url": "/documentation/accessibility/customized-accessibility-content"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/hearing-device-support": {
+      "abstract": [
+        {
+          "text": "Access information about paired hearing aid devices and streaming status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/hearing-device-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hearing device support",
+      "type": "topic",
+      "url": "/documentation/accessibility/hearing-device-support"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/representing-chart-data-as-an-audio-graph": {
+      "abstract": [
+        {
+          "text": "Define accessible representations of your chart’s components for VoiceOver to construct",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an audible representation of the data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/representing-chart-data-as-an-audio-graph",
+      "kind": "article",
+      "role": "article",
+      "title": "Representing chart data as an audio graph",
+      "type": "topic",
+      "url": "/documentation/accessibility/representing-chart-data-as-an-audio-graph"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/vision": {
+      "abstract": [
+        {
+          "text": "A person may be blind or color blind, or have a vision challenge that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "makes focusing difficult.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/vision",
+      "images": [
+        {
+          "identifier": "accessibility-card-vision.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/accessibility/vision"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc21/10122": {
+      "identifier": "https://developer.apple.com/wwdc21/10122",
+      "title": "Bring accessibility to charts in your app",
+      "titleInlineContent": [
+        {
+          "text": "Bring accessibility to charts in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10122"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content",
+        "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+        "doc://com.apple.Accessibility/documentation/Accessibility/hearing-device-support",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)"
+      ],
+      "title": "Features"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/representing-chart-data-as-an-audio-graph"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Chart-representation",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXChart",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXChartDescriptor"
+      ],
+      "title": "Chart representation"
+    },
+    {
+      "anchor": "Axis-representation",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXDataAxisDescriptor",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXCategoricalDataAxisDescriptor",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXNumericDataAxisDescriptor"
+      ],
+      "title": "Axis representation"
+    },
+    {
+      "anchor": "Data-representation",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXDataPoint",
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXDataSeriesDescriptor"
+      ],
+      "title": "Data representation"
+    },
+    {
+      "anchor": "Live-audio-graphs",
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/AXLiveAudioGraph"
+      ],
+      "title": "Live audio graphs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/representing-chart-data-as-an-audio-graph"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Chart-representation",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXChart",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXChartDescriptor"
+              ],
+              "title": "Chart representation"
+            },
+            {
+              "anchor": "Axis-representation",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXDataAxisDescriptor",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXCategoricalDataAxisDescriptor",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXNumericDataAxisDescriptor"
+              ],
+              "title": "Axis representation"
+            },
+            {
+              "anchor": "Data-representation",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXDataPoint",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXDataSeriesDescriptor"
+              ],
+              "title": "Data representation"
+            },
+            {
+              "anchor": "Live-audio-graphs",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXLiveAudioGraph"
+              ],
+              "title": "Live audio graphs"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/AX_EXTERN"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Features",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/customized-accessibility-content",
+                "doc://com.apple.Accessibility/documentation/Accessibility/braille-displays",
+                "doc://com.apple.Accessibility/documentation/Accessibility/hearing-device-support",
+                "doc://com.apple.Accessibility/documentation/Accessibility/AXNameFromColor(_:)"
+              ],
+              "title": "Features"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNumericDataAxisDescriptor/title",
+          "value": "AXNumericDataAxisDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNumericDataAxisDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXNumericDataAxisDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNumericDataAxisDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXNumericDataAxisDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataSeriesDescriptor/title",
+          "value": "AXDataSeriesDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataSeriesDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXDataSeriesDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataSeriesDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXDataSeriesDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXChart/title",
+          "value": "AXChart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXChart/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXChart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXChart/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXChart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXCategoricalDataAxisDescriptor/title",
+          "value": "AXCategoricalDataAxisDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXCategoricalDataAxisDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXCategoricalDataAxisDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXCategoricalDataAxisDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXCategoricalDataAxisDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataPoint/title",
+          "value": "AXDataPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXDataPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXDataPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataAxisDescriptor/title",
+          "value": "AXDataAxisDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataAxisDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXDataAxisDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXDataAxisDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXDataAxisDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXChartDescriptor/title",
+          "value": "AXChartDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXChartDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXChartDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXChartDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXChartDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNameFromColor(_:)/title",
+          "value": "AXNameFromColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXNameFromColor(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXNameFromColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXLiveAudioGraph/title",
+          "value": "AXLiveAudioGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXLiveAudioGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXLiveAudioGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.Accessibility~1documentation~1Accessibility~1AXLiveAudioGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AXLiveAudioGraph"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/audio-graphs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/audio-graphs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

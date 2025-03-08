@@ -1,0 +1,1436 @@
+{
+  "abstract": [
+    {
+      "text": "An object that provides a constraint-based layout manager.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CAConstraintLayoutManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CAConstraintLayoutManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CAConstraintLayoutManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CAConstraintLayoutManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAConstraintLayoutManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the shared instance of this object by assigning it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/layoutManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of any layer objects to which you have added constraints. During a layout update, Core Animation uses the layout manager to update the size and position of the sublayers based on the registered set of constraints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Constraints let you define a set of geometric relationships between a layer and its sibling layers or between a layer and its superlayer. These relationships are expressed using constraint objects, which are instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. When creating constraints, you can reference a layer by name using that object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/name",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You can also use the special name ",
+              "type": "text"
+            },
+            {
+              "code": "superlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to refer to the layer’s superlayer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a layer containing two constrained sublayers: ",
+              "type": "text"
+            },
+            {
+              "code": "leftLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "rightLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A series of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are created so that the sublayers match their superlayer’s height and are half of its width. ",
+              "type": "text"
+            },
+            {
+              "code": "leftConstraint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintAttribute/minX",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute and ",
+              "type": "text"
+            },
+            {
+              "code": "rightConstraint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintAttribute/maxX",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The end result is that the two sublayers are always laid out so that ",
+              "type": "text"
+            },
+            {
+              "code": "leftLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fills the left half of ",
+              "type": "text"
+            },
+            {
+              "code": "layer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "rightLayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fills the right half of layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let layer = CALayer()",
+            "let heightConstraint = CAConstraint(attribute: .height,",
+            "                                    relativeTo: \"superlayer\",",
+            "                                    attribute: .height)",
+            "    ",
+            "let widthConstraint = CAConstraint(attribute: .width,",
+            "                                   relativeTo: \"superlayer\",",
+            "                                   attribute: .width,",
+            "                                   scale: 0.5,",
+            "                                   offset: 0)",
+            "     ",
+            "let leftConstraint = CAConstraint(attribute: .minX,",
+            "                                  relativeTo: \"superlayer\",",
+            "                                  attribute: .minX)",
+            "     ",
+            "let rightConstraint = CAConstraint(attribute: .maxX,",
+            "                                   relativeTo: \"superlayer\",",
+            "                                   attribute: .maxX)",
+            "    ",
+            "let bottomConstraint = CAConstraint(attribute: .minY,",
+            "                                    relativeTo: \"superlayer\",",
+            "                                    attribute: .minY)   ",
+            "     ",
+            "let leftLayer = CALayer()",
+            "leftLayer.frame = CGRect(x: 0, y: 0, width: 20, height: 20)",
+            "layer.addSublayer(leftLayer)",
+            "leftLayer.constraints = [heightConstraint, widthConstraint, ",
+            "                         leftConstraint, bottomConstraint]",
+            "leftLayer.backgroundColor = NSColor.red.cgColor",
+            "  ",
+            "let rightLayer = CALayer()",
+            "layer.addSublayer(rightLayer)",
+            "rightLayer.constraints = [heightConstraint, widthConstraint, ",
+            "                          rightConstraint, bottomConstraint]",
+            "rightLayer.backgroundColor = NSColor.blue.cgColor",
+            "    ",
+            "layer.layoutManager = CAConstraintLayoutManager()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "It is possible to specify a set of constraints that will cause layout to fail. For example, layout may fail if your constraints contain a circular dependency. When that happens, the behavior of the layout manager is undefined.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class is not meant to be subclassed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction": {
+      "abstract": [
+        {
+          "text": "An interface that allows instances to respond to actions triggered by a Core Animation layer change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAction"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caaction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraint": {
+      "abstract": [
+        {
+          "text": "A representation of a single layout constraint between two layers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAConstraint",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caconstraint"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintAttribute/maxX": {
+      "abstract": [
+        {
+          "text": "The right edge of a layer’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxX"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintAttribute/maxX",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAConstraintMaxX"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAConstraintAttribute.maxX",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caconstraintattribute/maxx"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintAttribute/minX": {
+      "abstract": [
+        {
+          "text": "The left edge of a layer’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minX"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintAttribute/minX",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCAConstraintMinX"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAConstraintAttribute.minX",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caconstraintattribute/minx"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager": {
+      "abstract": [
+        {
+          "text": "An object that provides a constraint-based layout manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAConstraintLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAConstraintLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAConstraintLayoutManager",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caconstraintlayoutmanager"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager/layoutManager": {
+      "abstract": [
+        {
+          "text": "Returns the shared layout manager object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager/layoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManager",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caconstraintlayoutmanager/layoutmanager"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/layoutManager": {
+      "abstract": [
+        {
+          "text": "The object responsible for laying out the layer’s sublayers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CALayoutManager",
+          "text": "CALayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/layoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManager",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer/layoutmanager"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/name": {
+      "abstract": [
+        {
+          "text": "The name of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer/name"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond to layer-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CALayerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CALayerDelegate",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayerdelegate"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayoutManager": {
+      "abstract": [
+        {
+          "text": "Methods that allow an object to manage the layout of a layer and its sublayers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CALayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CALayoutManager",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayoutmanager"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayoutManager",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Layer-Basics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayerDelegate",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraint",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayoutManager",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction"
+      ],
+      "title": "Layer Basics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CAConstraintLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAConstraintLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAConstraintLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-layout-manager",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraintLayoutManager/layoutManager"
+              ],
+              "title": "Creating the layout manager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayoutManager"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Layer-Basics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayerDelegate",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAConstraint",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayoutManager",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAAction"
+              ],
+              "title": "Layer Basics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CAConstraintLayoutManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAction/title",
+          "value": "CAAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintAttribute~1maxX/title",
+          "value": "kCAConstraintMaxX"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintAttribute~1maxX/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAConstraintMaxX"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer~1layoutManager/title",
+          "value": "layoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer~1layoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/title",
+          "value": "CALayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayoutManager/title",
+          "value": "CALayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintLayoutManager/title",
+          "value": "CAConstraintLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAConstraintLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAConstraintLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayerDelegate/title",
+          "value": "CALayerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraint/title",
+          "value": "CAConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintAttribute~1minX/title",
+          "value": "kCAConstraintMinX"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAConstraintAttribute~1minX/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCAConstraintMinX"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/caconstraintlayoutmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/caconstraintlayoutmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2556 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1667082,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CFBundle"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFBundle allows you to use a folder hierarchy called a bundle to organize and locate many types of application resources including images, sounds, localized strings, and executable code. In macOS, bundles can also be used by CFM applications to load and execute functions from Mach-O frameworks. You can use bundles to support multiple languages or execute your application on multiple operating environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a bundle object using one of the ",
+              "type": "text"
+            },
+            {
+              "code": "CFBundleCreate...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions. CFBundle provides several functions for finding resources within a bundle. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537117-cfbundlecopyresourceurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns the location of a resource of the specified name and type, and in the specified subdirectory. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537130-cfbundlecopyresourceurlforlocali",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to restrict the search to a specific localization name. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537121-cfbundlecopyresourceurlsoftype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the locations of all resources of a specified type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFBundle provides functions for getting bundle information, such as its identifier and information dictionary. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537105-cfbundlegetidentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get the identifier of a bundle, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537165-cfbundlegetinfodictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get its information dictionary. The principal intended purpose for locating bundles by identifier is so that code (in frameworks, plugins, etc.) can find its own bundle. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also obtain locations of subdirectories in a bundle represented as CFURL objects. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537086-cfbundlecopyexecutableurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns the location of the application’s executable. The functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537117-cfbundlecopyresourceurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537159-cfbundlecopysharedframeworksurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537092-cfbundlecopyprivateframeworksurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537131-cfbundlecopysharedsupporturl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537106-cfbundlecopybuiltinpluginsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " return the location of a bundle’s subdirectory containing resources, shared frameworks, private frameworks, shared support files, and plug-ins respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other functions are used to manage localizations. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537103-cfbundlecopylocalizedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537084-cfbundlecopylocalizationsforurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions return a localized string from a bundle’s strings file. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537153-cfbundlecopylocalizationsforpref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns the localizations that CFBundle would prefer, given the specified bundle and user preference localizations. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike some other Core Foundation opaque types with similar Cocoa Foundation names (such as CFString and ",
+              "type": "text"
+            },
+            {
+              "code": "NSString",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects cannot be cast (“toll-free bridged”) to CFBundle objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike ",
+              "type": "text"
+            },
+            {
+              "code": "NSBundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which does not support unloading (because the Objective C runtime does not support the unloading of Objective C code), you can unload CFBundle objects. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537143-cfbundlegetfunctionpointerfornam",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and related calls automatically load a bundle if it is not already loaded. When the last reference to the CFBundle object is released and it is finally deallocated, then the code will be unloaded if it is still loaded and if the executable is of a type that supports unloading. If you keep this in mind, and if you make sure that everything that uses the bundle keeps a retain on the CFBundle object, then you can just use the bundle naturally and never have to worry about when it is loaded and unloaded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the other hand, if you want to manually manage when the bundle is loaded and unloaded, then you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537116-cfbundleloadexecutable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537149-cfbundleunloadexecutable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—although this technique is not recommended. These functions force immediate loading and unloading of the executable (if it has not already been loaded/unloaded, and in the case of unloading if the executable is of a type that supports unloading). If you do this, then the code calling ",
+              "type": "text"
+            },
+            {
+              "code": "CFBundleUnloadExecutable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is responsible for making sure that there are no remaining references to anything in the bundle's code before it is unloaded. In the previous approach, by contrast, this responsibility can be distributed to the individual code sections that use the bundle, by making sure that each one keeps its own retain on the CFBundle object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One further point about CFBundle reference counting: if you are taking the first approach, but do not actually wish the bundle’s code to be unloaded (as is often the case), or if you are taking the second approach of manually managing the unloading yourself, then in many cases you do not actually have to worry about releasing a CFBundle object. CFBundle instances are uniqued, so there is only one CFBundle object for a given bundle, and rarely are there so many bundles being considered at once that the memory usage for CFBundle objects would be significant. There are cases in which a process could create CFBundle objects for potentially an unlimited number of bundles, and such processes would wish to balance retains and releases carefully, but such cases are likely to be rare.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that it is best to compile any unloadable bundles with the flag ",
+              "type": "text"
+            },
+            {
+              "code": "-fno-constant-cfstrings",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696005",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696005": {
+      "identifier": "devLink-1696005",
+      "title": "Bundle Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537082-cfbundlegetallbundles": {
+      "abstract": [
+        {
+          "text": "Returns an array containing all of the bundles currently open in the application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetAllBundles"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537082-cfbundlegetallbundles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetAllBundles()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537082-cfbundlegetallbundles"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537084-cfbundlecopylocalizationsforurl": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the localizations for a bundle or executable at a particular location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyLocalizationsForURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537084-cfbundlecopylocalizationsforurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyLocalizationsForURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537084-cfbundlecopylocalizationsforurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537085-cfbundlegetmainbundle": {
+      "abstract": [
+        {
+          "text": "Returns an application’s main bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetMainBundle"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFBundle!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537085-cfbundlegetmainbundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetMainBundle()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537085-cfbundlegetmainbundle"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537086-cfbundlecopyexecutableurl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s main executable code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyExecutableURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537086-cfbundlecopyexecutableurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyExecutableURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537086-cfbundlecopyexecutableurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537089-cfbundlegetpackageinfo": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s package type and creator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetPackageInfo"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, UnsafeMutablePointer<UInt32>!, UnsafeMutablePointer<UInt32>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537089-cfbundlegetpackageinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetPackageInfo(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537089-cfbundlegetpackageinfo"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537092-cfbundlecopyprivateframeworksurl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s private Frameworks directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyPrivateFrameworksURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537092-cfbundlecopyprivateframeworksurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyPrivateFrameworksURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537092-cfbundlecopyprivateframeworksurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537098-cfbundlecopyauxiliaryexecutableu": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s auxiliary executable code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyAuxiliaryExecutableURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537098-cfbundlecopyauxiliaryexecutableu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyAuxiliaryExecutableURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537098-cfbundlecopyauxiliaryexecutableu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537099-cfbundleopenbundleresourcemap": {
+      "abstract": [
+        {
+          "text": "Opens the non-localized and localized resource files (if any) for a bundle in a single resource map. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleOpenBundleResourceMap"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFBundleRefNum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537099-cfbundleopenbundleresourcemap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleOpenBundleResourceMap(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537099-cfbundleopenbundleresourcemap"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537100-cfbundlegetplugin": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetPlugIn"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFPlugIn!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537100-cfbundlegetplugin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetPlugIn(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537100-cfbundlegetplugin"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537102-cfbundlegetvalueforinfodictionar": {
+      "abstract": [
+        {
+          "text": "Returns a value (localized if possible) from a bundle’s information dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetValueForInfoDictionaryKey"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!) -> CFTypeRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537102-cfbundlegetvalueforinfodictionar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetValueForInfoDictionaryKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537102-cfbundlegetvalueforinfodictionar"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537103-cfbundlecopylocalizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string from a bundle’s strings file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyLocalizedString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!, CFString!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537103-cfbundlecopylocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyLocalizedString(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537103-cfbundlecopylocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537105-cfbundlegetidentifier": {
+      "abstract": [
+        {
+          "text": "Returns the bundle identifier from a bundle’s information property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537105-cfbundlegetidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537105-cfbundlegetidentifier"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537106-cfbundlecopybuiltinpluginsurl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s built in plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyBuiltInPlugInsURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537106-cfbundlecopybuiltinpluginsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyBuiltInPlugInsURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537106-cfbundlecopybuiltinpluginsurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537108-cfbundlecopyexecutablearchitectu": {
+      "abstract": [
+        {
+          "text": "Returns an array of CFNumbers representing the architectures a given URL provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyExecutableArchitecturesForURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537108-cfbundlecopyexecutablearchitectu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyExecutableArchitecturesForURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537108-cfbundlecopyexecutablearchitectu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537109-cfbundlegetfunctionpointersforna": {
+      "abstract": [
+        {
+          "text": "Constructs a function table containing pointers to all of the functions found in a bundle’s main executable code. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetFunctionPointersForNames"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFArray!, UnsafeMutablePointer<UnsafeMutableRawPointer?>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537109-cfbundlegetfunctionpointersforna",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetFunctionPointersForNames(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537109-cfbundlegetfunctionpointersforna"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537113-cfbundlecopyresourcesdirectoryur": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s Resources directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourcesDirectoryURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537113-cfbundlecopyresourcesdirectoryur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourcesDirectoryURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537113-cfbundlecopyresourcesdirectoryur"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537114-cfbundleloadexecutableandreturne": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given bundle is loaded, attempting to load it if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleLoadExecutableAndReturnError"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537114-cfbundleloadexecutableandreturne",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleLoadExecutableAndReturnError(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537114-cfbundleloadexecutableandreturne"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537116-cfbundleloadexecutable": {
+      "abstract": [
+        {
+          "text": "Loads a bundle’s main executable code into memory and dynamically links it into the running application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleLoadExecutable"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537116-cfbundleloadexecutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleLoadExecutable(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537116-cfbundleloadexecutable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537117-cfbundlecopyresourceurl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a resource contained in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourceURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!, CFString!, CFString!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537117-cfbundlecopyresourceurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourceURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537117-cfbundlecopyresourceurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537118-cfbundlecopysupportfilesdirector": {
+      "abstract": [
+        {
+          "text": "Returns the location of the bundle’s support files directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopySupportFilesDirectoryURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537118-cfbundlecopysupportfilesdirector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopySupportFilesDirectoryURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537118-cfbundlecopysupportfilesdirector"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537120-cfbundlegetdatapointerforname": {
+      "abstract": [
+        {
+          "text": "Returns a data pointer to a symbol of the given name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetDataPointerForName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!) -> UnsafeMutableRawPointer!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537120-cfbundlegetdatapointerforname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetDataPointerForName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537120-cfbundlegetdatapointerforname"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537121-cfbundlecopyresourceurlsoftype": {
+      "abstract": [
+        {
+          "text": "Assembles an array of URLs specifying all of the resources of the specified type found in a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourceURLsOfType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!, CFString!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537121-cfbundlecopyresourceurlsoftype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourceURLsOfType(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537121-cfbundlecopyresourceurlsoftype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537123-cfbundleopenbundleresourcefiles": {
+      "abstract": [
+        {
+          "text": "Opens the non-localized and localized resource files (if any) for a bundle in separate resource maps.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleOpenBundleResourceFiles"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, UnsafeMutablePointer<CFBundleRefNum>!, UnsafeMutablePointer<CFBundleRefNum>!) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537123-cfbundleopenbundleresourcefiles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleOpenBundleResourceFiles(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537123-cfbundleopenbundleresourcefiles"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537125-cfbundlecreatebundlesfromdirecto": {
+      "abstract": [
+        {
+          "text": "Searches a directory and constructs an array of CFBundle objects from all valid bundles in the specified directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCreateBundlesFromDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!, CFString!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537125-cfbundlecreatebundlesfromdirecto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCreateBundlesFromDirectory(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537125-cfbundlecreatebundlesfromdirecto"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537126-cfbundlegettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the CFBundle opaque type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537126-cfbundlegettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537126-cfbundlegettypeid"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537128-cfbundlepreflightexecutable": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given bundle is loaded or appears to be loadable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundlePreflightExecutable"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537128-cfbundlepreflightexecutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundlePreflightExecutable(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537128-cfbundlepreflightexecutable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537130-cfbundlecopyresourceurlforlocali": {
+      "abstract": [
+        {
+          "text": "Returns the location of a localized resource in a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourceURLForLocalization"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!, CFString!, CFString!, CFString!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537130-cfbundlecopyresourceurlforlocali",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourceURLForLocalization(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537130-cfbundlecopyresourceurlforlocali"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537131-cfbundlecopysharedsupporturl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s shared support files directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopySharedSupportURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537131-cfbundlecopysharedsupporturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopySharedSupportURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537131-cfbundlecopysharedsupporturl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537133-cfbundleclosebundleresourcemap": {
+      "abstract": [
+        {
+          "text": "Closes an open resource map for a bundle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCloseBundleResourceMap"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFBundleRefNum)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537133-cfbundleclosebundleresourcemap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCloseBundleResourceMap(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537133-cfbundleclosebundleresourcemap"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537134-cfbundlecopyinfodictionaryforurl": {
+      "abstract": [
+        {
+          "text": "Returns the information dictionary for a given URL location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyInfoDictionaryForURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537134-cfbundlecopyinfodictionaryforurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyInfoDictionaryForURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537134-cfbundlecopyinfodictionaryforurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537135-cfbundlecopyinfodictionaryindire": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s information dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyInfoDictionaryInDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537135-cfbundlecopyinfodictionaryindire",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyInfoDictionaryInDirectory(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537135-cfbundlecopyinfodictionaryindire"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537138-cfbundlecopyresourceurlindirecto": {
+      "abstract": [
+        {
+          "text": "Returns the location of a resource contained in the specified bundle directory without requiring the creation of a CFBundle object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourceURLInDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!, CFString!, CFString!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537138-cfbundlecopyresourceurlindirecto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourceURLInDirectory(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537138-cfbundlecopyresourceurlindirecto"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537139-cfbundlegetbundlewithidentifier": {
+      "abstract": [
+        {
+          "text": "Locate a bundle given its program-defined identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetBundleWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString!) -> CFBundle!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537139-cfbundlegetbundlewithidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetBundleWithIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537139-cfbundlegetbundlewithidentifier"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537140-cfbundlecopyresourceurlsoftypein": {
+      "abstract": [
+        {
+          "text": "Returns an array of CFURL objects describing the locations of all resources in a bundle of the specified type without needing to create a CFBundle object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourceURLsOfTypeInDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!, CFString!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537140-cfbundlecopyresourceurlsoftypein",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourceURLsOfTypeInDirectory(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537140-cfbundlecopyresourceurlsoftypein"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537142-cfbundlecopybundleurl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyBundleURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537142-cfbundlecopybundleurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyBundleURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537142-cfbundlecopybundleurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537143-cfbundlegetfunctionpointerfornam": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to a function in a bundle’s executable code using the function name as the search key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetFunctionPointerForName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!) -> UnsafeMutableRawPointer!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537143-cfbundlegetfunctionpointerfornam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetFunctionPointerForName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537143-cfbundlegetfunctionpointerfornam"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537144-cfbundlecopyexecutablearchitectu": {
+      "abstract": [
+        {
+          "text": "Returns an array of CFNumbers representing the architectures a given bundle provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyExecutableArchitectures"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537144-cfbundlecopyexecutablearchitectu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyExecutableArchitectures(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537144-cfbundlecopyexecutablearchitectu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537145-cfbundlegetdevelopmentregion": {
+      "abstract": [
+        {
+          "text": "Returns the bundle’s development region from the bundle’s information property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetDevelopmentRegion"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537145-cfbundlegetdevelopmentregion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetDevelopmentRegion(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537145-cfbundlegetdevelopmentregion"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537148-cfbundlegetlocalinfodictionary": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s localized information dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetLocalInfoDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537148-cfbundlegetlocalinfodictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetLocalInfoDictionary(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537148-cfbundlegetlocalinfodictionary"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537149-cfbundleunloadexecutable": {
+      "abstract": [
+        {
+          "text": "Unloads the main executable for the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleUnloadExecutable"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537149-cfbundleunloadexecutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleUnloadExecutable(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537149-cfbundleunloadexecutable"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537150-cfbundlegetdatapointersfornames": {
+      "abstract": [
+        {
+          "text": "Returns a C array of data pointer to symbols of the given names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetDataPointersForNames"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFArray!, UnsafeMutablePointer<UnsafeMutableRawPointer?>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537150-cfbundlegetdatapointersfornames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetDataPointersForNames(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537150-cfbundlegetdatapointersfornames"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537151-cfbundleisexecutableloaded": {
+      "abstract": [
+        {
+          "text": "Obtains information about the load status for a bundle’s main executable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleIsExecutableLoaded"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537151-cfbundleisexecutableloaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIsExecutableLoaded(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537151-cfbundleisexecutableloaded"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537153-cfbundlecopylocalizationsforpref": {
+      "abstract": [
+        {
+          "text": "Given an array of possible localizations and preferred locations, returns the one or more of them that CFBundle would use, without reference to the current application context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyLocalizationsForPreferences"
+        },
+        {
+          "kind": "text",
+          "text": "(CFArray!, CFArray!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537153-cfbundlecopylocalizationsforpref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyLocalizationsForPreferences(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537153-cfbundlecopylocalizationsforpref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537154-cfbundlecreate": {
+      "abstract": [
+        {
+          "text": "Creates a CFBundle object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!) -> CFBundle!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537154-cfbundlecreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCreate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537154-cfbundlecreate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537156-cfbundlegetpackageinfoindirector": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s package type and creator without having to create a CFBundle object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetPackageInfoInDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, UnsafeMutablePointer<UInt32>!, UnsafeMutablePointer<UInt32>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537156-cfbundlegetpackageinfoindirector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetPackageInfoInDirectory(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537156-cfbundlegetpackageinfoindirector"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537157-cfbundlecopybundlelocalizations": {
+      "abstract": [
+        {
+          "text": "Returns an array containing a bundle’s localizations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyBundleLocalizations"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537157-cfbundlecopybundlelocalizations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyBundleLocalizations(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537157-cfbundlecopybundlelocalizations"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537159-cfbundlecopysharedframeworksurl": {
+      "abstract": [
+        {
+          "text": "Returns the location of a bundle’s shared frameworks directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopySharedFrameworksURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFURL!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537159-cfbundlecopysharedframeworksurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopySharedFrameworksURL(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537159-cfbundlecopysharedframeworksurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537160-cfbundlegetversionnumber": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s version number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetVersionNumber"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537160-cfbundlegetversionnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetVersionNumber(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537160-cfbundlegetversionnumber"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537162-cfbundlecopyresourceurlsoftypefo": {
+      "abstract": [
+        {
+          "text": "Returns an array containing copies of the URL locations for a specified bundle, resource, and localization name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyResourceURLsOfTypeForLocalization"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!, CFString!, CFString!, CFString!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537162-cfbundlecopyresourceurlsoftypefo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyResourceURLsOfTypeForLocalization(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537162-cfbundlecopyresourceurlsoftypefo"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537164-cfbundlecopypreferredlocalizatio": {
+      "abstract": [
+        {
+          "text": "Given an array of possible localizations, returns the one or more of them that CFBundle would use in the current application context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleCopyPreferredLocalizationsFromArray"
+        },
+        {
+          "kind": "text",
+          "text": "(CFArray!) -> CFArray!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537164-cfbundlecopypreferredlocalizatio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleCopyPreferredLocalizationsFromArray(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537164-cfbundlecopypreferredlocalizatio"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1537165-cfbundlegetinfodictionary": {
+      "abstract": [
+        {
+          "text": "Returns a bundle’s information dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleGetInfoDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(CFBundle!) -> CFDictionary!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1537165-cfbundlegetinfodictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleGetInfoDictionary(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1537165-cfbundlegetinfodictionary"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAllocator",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocator-s29"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray-s28"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfattributedstring-s1s"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag-s1l"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBinaryHeap",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbinaryheap-s11"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbitvector-s0t"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBoolean",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfboolean-s0p"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle": {
+      "abstract": [
+        {
+          "text": "A reference to a CFBundle object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle-s0a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle/1537096-architecture_types": {
+      "abstract": [
+        {
+          "text": "Constants that identify executable architecture types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle/1537096-architecture_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Architecture Types",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle/1537096-architecture_types"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle/information_property_list_keys": {
+      "abstract": [
+        {
+          "text": "Standard keys found in a bundle’s information property list file. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle/information_property_list_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Information Property List Keys",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle/information_property_list_keys"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundlerefnum": {
+      "abstract": [
+        {
+          "text": "Type that identifies a distinct reference number for a resource map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFBundleRefNum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundlerefnum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleRefNum",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundlerefnum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCalendar",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar-s01"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcharacterset-rvm"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata-rv9"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdate-rv5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDateFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdateformatter-rv6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3": {
+      "abstract": [
+        {
+          "text": "The CFFileDescriptor provides an opaque type to monitor file descriptors for read and write activity via CFRunLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFFileDescriptor",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cffiledescriptor-ru3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFLocale",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cflocale-rsj"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMachPort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmachport-rsc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMessagePort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmessageport-rs2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray-rrk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableattributedstring-rqp"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebag-rqn"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebitvector-rqf"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablecharacterset-rq3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledata-rps"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledictionary-rpl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableset-rpe"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablestring-rn7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnotificationcenter-rkv"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnull-rkr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumber",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber-rjd"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumberformatter-rjs"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugIn",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugin-rip"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugInInstance",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugininstance-rja"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPropertyList",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfpropertylist-rif"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream-ri6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopObserver",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopobserver-ri3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopSource",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopsource-rhr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer-rhk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset-rgt"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSocket",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsocket-rg7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring-rfh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8": {
+      "abstract": [
+        {
+          "text": "CFStringTokenizer allows you to tokenize strings into words, sentences or paragraphs in a language-neutral way. It supports languages such as Japanese and Chinese that do not delimit words by spaces, as well as de-compounding German compounds. You can obtain Latin transcription for tokens. It also provides language identification API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringtokenizer-rf8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTimeZone",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftimezone-rec"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftree-rds": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftree-rds"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftype": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftype",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl-rd7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUserNotification",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfusernotification-rd5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUUID",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfuuid-rci"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream-rc8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLNode",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlnode-rbu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLParser",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlparser-rc1"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmltree-rbh"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+        "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+        "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+        "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+        "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+        "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+        "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+        "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+        "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+        "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+        "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+        "doc://com.apple.documentation/documentation/corefoundation/cftype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+        "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh"
+      ],
+      "title": "Opaque Types"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1696005"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1667114",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537154-cfbundlecreate",
+        "doc://com.apple.documentation/documentation/corefoundation/1537125-cfbundlecreatebundlesfromdirecto",
+        "doc://com.apple.documentation/documentation/corefoundation/1537082-cfbundlegetallbundles",
+        "doc://com.apple.documentation/documentation/corefoundation/1537139-cfbundlegetbundlewithidentifier",
+        "doc://com.apple.documentation/documentation/corefoundation/1537085-cfbundlegetmainbundle"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Accessing Bundles"
+    },
+    {
+      "anchor": "1667191",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537151-cfbundleisexecutableloaded",
+        "doc://com.apple.documentation/documentation/corefoundation/1537128-cfbundlepreflightexecutable",
+        "doc://com.apple.documentation/documentation/corefoundation/1537116-cfbundleloadexecutable",
+        "doc://com.apple.documentation/documentation/corefoundation/1537114-cfbundleloadexecutableandreturne",
+        "doc://com.apple.documentation/documentation/corefoundation/1537149-cfbundleunloadexecutable"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading and Unloading a Bundle"
+    },
+    {
+      "anchor": "1667256",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537098-cfbundlecopyauxiliaryexecutableu",
+        "doc://com.apple.documentation/documentation/corefoundation/1537106-cfbundlecopybuiltinpluginsurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537086-cfbundlecopyexecutableurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537092-cfbundlecopyprivateframeworksurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537113-cfbundlecopyresourcesdirectoryur",
+        "doc://com.apple.documentation/documentation/corefoundation/1537159-cfbundlecopysharedframeworksurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537131-cfbundlecopysharedsupporturl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537118-cfbundlecopysupportfilesdirector"
+      ],
+      "kind": "taskGroup",
+      "title": "Finding Locations in a Bundle"
+    },
+    {
+      "anchor": "1667409",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537133-cfbundleclosebundleresourcemap",
+        "doc://com.apple.documentation/documentation/corefoundation/1537117-cfbundlecopyresourceurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537138-cfbundlecopyresourceurlindirecto",
+        "doc://com.apple.documentation/documentation/corefoundation/1537121-cfbundlecopyresourceurlsoftype",
+        "doc://com.apple.documentation/documentation/corefoundation/1537140-cfbundlecopyresourceurlsoftypein",
+        "doc://com.apple.documentation/documentation/corefoundation/1537130-cfbundlecopyresourceurlforlocali",
+        "doc://com.apple.documentation/documentation/corefoundation/1537162-cfbundlecopyresourceurlsoftypefo",
+        "doc://com.apple.documentation/documentation/corefoundation/1537123-cfbundleopenbundleresourcefiles",
+        "doc://com.apple.documentation/documentation/corefoundation/1537099-cfbundleopenbundleresourcemap"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating Bundle Resources"
+    },
+    {
+      "anchor": "1667564",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537157-cfbundlecopybundlelocalizations",
+        "doc://com.apple.documentation/documentation/corefoundation/1537103-cfbundlecopylocalizedstring",
+        "doc://com.apple.documentation/documentation/corefoundation/1537153-cfbundlecopylocalizationsforpref",
+        "doc://com.apple.documentation/documentation/corefoundation/1537084-cfbundlecopylocalizationsforurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537164-cfbundlecopypreferredlocalizatio"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Localizations"
+    },
+    {
+      "anchor": "1667693",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537120-cfbundlegetdatapointerforname",
+        "doc://com.apple.documentation/documentation/corefoundation/1537150-cfbundlegetdatapointersfornames",
+        "doc://com.apple.documentation/documentation/corefoundation/1537143-cfbundlegetfunctionpointerfornam",
+        "doc://com.apple.documentation/documentation/corefoundation/1537109-cfbundlegetfunctionpointersforna",
+        "doc://com.apple.documentation/documentation/corefoundation/1537100-cfbundlegetplugin"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Executable Code"
+    },
+    {
+      "anchor": "1667801",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537142-cfbundlecopybundleurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537145-cfbundlegetdevelopmentregion",
+        "doc://com.apple.documentation/documentation/corefoundation/1537105-cfbundlegetidentifier",
+        "doc://com.apple.documentation/documentation/corefoundation/1537165-cfbundlegetinfodictionary",
+        "doc://com.apple.documentation/documentation/corefoundation/1537148-cfbundlegetlocalinfodictionary",
+        "doc://com.apple.documentation/documentation/corefoundation/1537102-cfbundlegetvalueforinfodictionar",
+        "doc://com.apple.documentation/documentation/corefoundation/1537135-cfbundlecopyinfodictionaryindire",
+        "doc://com.apple.documentation/documentation/corefoundation/1537134-cfbundlecopyinfodictionaryforurl",
+        "doc://com.apple.documentation/documentation/corefoundation/1537089-cfbundlegetpackageinfo",
+        "doc://com.apple.documentation/documentation/corefoundation/1537156-cfbundlegetpackageinfoindirector",
+        "doc://com.apple.documentation/documentation/corefoundation/1537144-cfbundlecopyexecutablearchitectu",
+        "doc://com.apple.documentation/documentation/corefoundation/1537108-cfbundlecopyexecutablearchitectu",
+        "doc://com.apple.documentation/documentation/corefoundation/1537160-cfbundlegetversionnumber"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Bundle Properties"
+    },
+    {
+      "anchor": "1668132",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1537126-cfbundlegettypeid"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the CFBundle Type ID"
+    },
+    {
+      "anchor": "1668192",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundlerefnum",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1668275",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle/information_property_list_keys",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle/1537096-architecture_types"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfbundle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfbundle-s0a"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

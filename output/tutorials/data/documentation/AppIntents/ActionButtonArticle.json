@@ -1,0 +1,3761 @@
+{
+  "abstract": [
+    {
+      "text": "Use App Intents to register actions for your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ActionButton"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/ActionButtonArticle"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to the Action button on Apple Watch Ultra"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch Ultra, people can specify the action that the system triggers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when they press the Action button. By default, the watch provides actions for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starting workouts, starting dives, starting a backtrack navigation session,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting a waypoint, turning on the flashlight, and running a shortcut from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Shortcuts app. To add your dive or workout app to the list of apps that appear",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when someone chooses Settings > Action Button, use App Intents to register",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actions for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For workout apps, you can implement the following protocols:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Starts a workout session when someone first presses the Action button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Runs a custom action when someone presses the Action button during your app’s active workout session. Donating an intent sets the Action button’s next action. Your app can have only one next action at a time; however, donating a new intent changes the next action.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Pauses the current workout session when someone simultaneously presses the Action button and the side button during a workout session.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Resumes the current workout session when someone simultaneously presses the Action button and the side button while a workout session is in a paused state.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For dive apps, you can implement the following protocols:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Starts a dive session when someone first presses the Action button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Runs a custom action when someone presses the Action button during your app’s active dive session. The system also triggers the next action if someone simultaneously presses the Action button and the side button. Donating an intent sets the Action button’s next action. Your app can have only one next action at a time; however, donating a new intent changes the next action.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When creating intents for the Action button, don’t implement them",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntentsExtension",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Always implement the intents",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "directly in your watchOS app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Start-a-new-workout-session",
+          "level": 3,
+          "text": "Start a new workout session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating either an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that defines the types of workouts that your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports. If your app supports only a single workout, you can create an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration with a single case. Also define the display representation for each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type of workout that your app supports. Apple Watch Ultra shows the case",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "description’s title and subtitle below the First Press settings when someone",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sets your app as the workout app in Settings > Action Button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum WorkoutEnum: String, AppEnum {",
+            "    ",
+            "    // List the types of workout your app supports.",
+            "    case running",
+            "",
+            "    static var typeDisplayRepresentation: TypeDisplayRepresentation = \"Workout\"",
+            "",
+            "    // Define the display representation for each of the workouts your app supports.",
+            "    static var caseDisplayRepresentations: [WorkoutEnum: DisplayRepresentation] =",
+            "    [.running: DisplayRepresentation(title: \"Running\", subtitle: \"outside run\")]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create a structure that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. Your implementation needs to define the intent’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a list of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/suggestedWorkouts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a parameter that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/workoutStyle-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyStartWorkoutIntent: StartWorkoutIntent {",
+            "",
+            "    // Define the intent's title.",
+            "    static var title: LocalizedStringResource = \"Start Workout\"",
+            "    ",
+            "    // Define a list of start workout intents that appear below the First Press settings when someone sets your app as the workout app in Settings > Action Button.",
+            "",
+            "    static var suggestedWorkouts: [MyStartWorkoutIntent] = [MyStartWorkoutIntent()]",
+            "",
+            "    // Define a parameter that specifies the type of workout that this intent starts.",
+            "    @Parameter(title: \"Type of Workout\")",
+            "    var workoutStyle: WorkoutEnum",
+            "",
+            "    // Define an init method that sets the default workout type.",
+            "    init() {",
+            "        workoutStyle = .workout",
+            "    }",
+            "",
+            "    // Add the display representation, and the perform method here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Define your implementation’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "workoutStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property using the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Parameter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property wrapper.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can dynamically change the list of suggested workouts by changing the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/suggestedWorkouts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/invalidateSuggestedWorkouts()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tells the system to reread the suggested workouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, set the display strings for the intent by defining the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "displayRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " just after the intent’s initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var displayRepresentation: DisplayRepresentation {",
+            "    WorkoutEnum.caseDisplayRepresentations[workoutStyle] ??",
+            "    DisplayRepresentation(title: \"Unknown\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, implement your intent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system calls this method when anything triggers the intent. In your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementation, you have 30 seconds to start a workout session and return",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a successful value. If you don’t start a workout session in that time, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system displays an error message, but the app remains in the foreground. People",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can start a workout session directly from the app, but without a session, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app goes to the background the next time they drop their wrist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the method that the system calls when it triggers the intent.",
+            "func perform() async throws -> some IntentResult {",
+            "    logger.debug(\"*** Performing a Start Intent. ***\")",
+            "    ",
+            "    // Start a workout session inside the perform method.",
+            "    let workoutManager = MyWorkoutManager.shared",
+            "    try await workoutManager.startWorkout(type: workoutStyle)",
+            "    ",
+            "    // Schedule a task to request authorization and then set up the data source and start collecting data from the workout.",
+            "    Task {",
+            "        await workoutManager.requestAuthorization()",
+            "        ",
+            "        do {",
+            "            try await workoutManager.startCollectingData()",
+            "        } catch {",
+            "            fatalError(\"*** An error occurred while setting up the data source: \\(error.localizedDescription) ***\")",
+            "        }",
+            "    }",
+            "    ",
+            "    // Return a successful result.",
+            "    return .result()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The start workout intent becomes available as soon as someone downloads your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. This means they can set up the Action button and run your start workout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "intent without ever launching your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, if you update your app and change the data types that the workout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session uses, someone can launch the updated workout from the Action button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without launching your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that your app requests authorization for the current set of HealthKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data types it intends to use during its workout sessions, you need to schedule",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an authorization request from within your intent’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Because someone using your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t have access to its user interface until after the ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns, you need to schedule the request authorization using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app has never requested authorization for any HealthKit data",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "types, the system just launches your app when someone presses the Action",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "button. It doesn’t call your intent’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before authorizing the HealthKit data, create and start your workout session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startWorkout(type: WorkoutEnum) throws {",
+            "    logger.debug(\"*** Start a workout of type \\(type.rawValue) ***\")",
+            "    ",
+            "    logger.debug(\"==> Creating the workout configuration.\")",
+            "    let configuration = HKWorkoutConfiguration()",
+            "    configuration.activityType = .running",
+            "    configuration.locationType = .outdoor",
+            "    ",
+            "    self.configuration = configuration",
+            "    ",
+            "    logger.debug(\"==> Creating the workout session.\")",
+            "    let session = try HKWorkoutSession(healthStore: store, configuration: configuration)",
+            "    ",
+            "    session.delegate = self",
+            "    self.session = session",
+            "    workoutType = type",
+            "    ",
+            "    logger.debug(\"==> Starting the session.\")",
+            "    session.startActivity(with: Date())",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code example above creates a workout configuration for an outdoor run. It",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then uses the configuration to create the workout session, assigns a workout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session delegate to receive state change and errors from the workout, and starts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the app hasn’t created a data source for the workout session, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session doesn’t generate any data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, request authorization for all the HealthKit data types that your workout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sessions use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func requestAuthorization1() async {",
+            "    logger.debug(\"*** Requesting Authorization ***\")",
+            "    ",
+            "    // The quantity type to write to the health store.",
+            "    let typesToShare: Set = [",
+            "        HKQuantityType.workoutType()",
+            "    ]",
+            "",
+            "    // The quantity types to read from the health store.",
+            "    let typesToRead: Set = [",
+            "        HKQuantityType(.heartRate),",
+            "        HKQuantityType(.activeEnergyBurned),",
+            "        HKQuantityType(.distanceWalkingRunning)",
+            "    ]",
+            "    ",
+            "    guard HKHealthStore.isHealthDataAvailable() else {",
+            "        logger.debug(\"*** HealthKit is not supported on this device. ***\")",
+            "        return",
+            "    }",
+            "    ",
+            "    do {",
+            "        try await store.requestAuthorization(toShare: typesToShare, read: typesToRead)",
+            "    } catch {",
+            "        fatalError(\"*** An error occurred while requesting authorization to read and save data: \\(error.localizedDescription) ***\")",
+            "    }",
+            "",
+            "    enabled = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This authorization request can take an arbitrarily long amount of time. Any time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you request authorization for new data, the system displays an authorization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sheet, and waits until someone either authorizes the data or dismisses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sheet. However, if someone has already authorized the requested data types, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system returns immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the authorization request finishes, set up the data source, assign",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a delegate to receive data from the workout builder, and begin collecting data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the workout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startCollectingData() async throws {",
+            "    precondition(enabled == true)",
+            "    guard let configuration else { fatalError(\"*** You need to create a workout configuration before calling this method. ***\") }",
+            "    guard let session else { fatalError(\"*** You need to create a session before calling this method. ***\") }",
+            "    ",
+            "    logger.debug(\"==> Setting the session's data source.\")",
+            "    let builder = session.associatedWorkoutBuilder()",
+            "    builder.dataSource = HKLiveWorkoutDataSource(healthStore: store,",
+            "                                                 workoutConfiguration: configuration)",
+            "    ",
+            "    builder.delegate = self",
+            "    ",
+            "    logger.debug(\"==> Begin collecting data.\")",
+            "    try await builder.beginCollection(at: Date())",
+            "    ",
+            "    self.builder = builder",
+            "",
+            "    logger.debug(\"==> Donate the mark lap intent as the Action button's next action.\")",
+            "    try await MyStartWorkoutIntent().donate(result: .result(actionButtonIntent: MyMarkLapIntent()))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the code example above, the last line donates the ",
+              "type": "text"
+            },
+            {
+              "code": "MyMarkLapIntent()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "next action for the Action button. Donating the next action is described in more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "detail below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After implementing your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", build and run your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app to load it onto the test device or Simulator. Then, on the test device,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose Settings > Action Button. Tap Action and choose Workout, then tap App and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Setting-A-Workout-Action",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device starts a new workout session when you press the Action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system always launches your app before running the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method for your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "structures.  By default, these intents set their",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/openAppWhenRun",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". To ensure",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "these intents run as expected, don’t change the property’s value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Support-multiple-workout-types",
+          "level": 3,
+          "text": "Support multiple workout types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can provide a list of suggested workout types, letting people associate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a particular workout type with the Action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To suggest multiple workout types, start by defining the different types of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "workouts that your app supports in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum WorkoutEnum: String, AppEnum {",
+            "",
+            "    // List the types of workout your app supports.",
+            "    case walking",
+            "    case running",
+            "    case swimming",
+            "    case cycling",
+            "",
+            "    static var typeDisplayRepresentation: TypeDisplayRepresentation = \"Workout\"",
+            "",
+            "    // Set the display representation here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then set a display representation for each case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var caseDisplayRepresentations: [WorkoutEnum: DisplayRepresentation] =",
+            "[.walking: DisplayRepresentation(title: \"Walking\", subtitle: \"outside walk\"),",
+            " .running: DisplayRepresentation(title: \"Running\", subtitle: \"outside run\"),",
+            " .swimming: DisplayRepresentation(title: \"Swimming\", subtitle: \"lap swim\"),",
+            " .cycling: DisplayRepresentation(title: \"Cycling\", subtitle: \"outside cycling\")",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation, define the set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of suggested workouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static var suggestedWorkouts: [MyStartWorkoutIntent] =",
+            "[MyStartWorkoutIntent(style: .walking),",
+            " MyStartWorkoutIntent(style: .running),",
+            " MyStartWorkoutIntent(style: .swimming),",
+            " MyStartWorkoutIntent(style: .cycling)]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, check the intent’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/workoutStyle-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and create the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "corresponding workout session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func perform() async throws -> some IntentResult {",
+            "",
+            "    let workoutManager = MyWorkoutManager.shared",
+            "    await workoutManager.requestAuthorization()",
+            "    await workoutManager.startWorkout(type: workoutStyle)",
+            "    return .result()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a configuration for the specified type of workout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func startWorkout(type: WorkoutEnum) throws {",
+            "    logger.debug(\"*** Should be starting a workout of type \\(type.rawValue) ***\")",
+            "    ",
+            "    logger.debug(\"==> Creating the workout configuration.\")",
+            "    let configuration = HKWorkoutConfiguration()",
+            "    ",
+            "    switch type {",
+            "    case .walking:",
+            "        configuration.activityType = .walking",
+            "    case .running:",
+            "        configuration.activityType = .running",
+            "    case .swimming:",
+            "        configuration.activityType = .swimming",
+            "    case .cycling:",
+            "        configuration.activityType = .cycling",
+            "    }",
+            "    configuration.activityType = type.activityType()",
+            "    ",
+            "    if type == .swimming {",
+            "        configuration.locationType = .indoor",
+            "        configuration.swimmingLocationType = .pool",
+            "        configuration.lapLength = HKQuantity(unit: HKUnit.yard(), doubleValue: 25.0)",
+            "    } else {",
+            "        configuration.locationType = .outdoor",
+            "    }",
+            "    ",
+            "    self.configuration = configuration",
+            "    ",
+            "    logger.debug(\"==> Creating the workout session.\")",
+            "    let session = try HKWorkoutSession(healthStore: store, configuration: configuration)",
+            "    ",
+            "    session.delegate = self",
+            "    self.session = session",
+            "    workoutType = type",
+            "    ",
+            "    logger.debug(\"==> Starting the session.\")",
+            "    session.startActivity(with: Date())",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And, finally, request authorization for all the data types that your workout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sessions use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The quantity types to read from the health store.",
+            "let typesToRead: Set = [",
+            "    HKQuantityType(.heartRate),",
+            "    HKQuantityType(.activeEnergyBurned),",
+            "    HKQuantityType(.distanceCycling),",
+            "    HKQuantityType(.distanceSwimming),",
+            "    HKQuantityType(.distanceWalkingRunning)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build and run your app again. When you open the Action button settings, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify a particular workout for the First Press > Workout setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Specifying-The-Workout-Type",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And pressing the Action button launches the selected type of workout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Donate-the-next-action",
+          "level": 3,
+          "text": "Donate the next action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch Ultra runs the next action when someone presses the Action button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while a workout or dive session is already running. This means the first time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "someone presses the Action button, the system starts your session. If they press",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Action button any other time during the session, it triggers the next",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the next action, implement a structure that adopts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MarkLapIntent: AppIntent {",
+            "    static var title: LocalizedStringResource = \"Mark Lap\"",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        logger.debug(\"*** Perform a mark lap intent. ***\")",
+            "        await MyWorkoutManager.shared.markLap(at: Date())",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This intent needs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a localized description of the action, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, which the system calls when it triggers the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, donate the app intent as the current session’s next action. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your start workout intent’s ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, you can donate the next",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action for the new session by returning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, in most cases you want to donate a next action regardless of whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user presses the Action button or launches the session from within your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To ensure that your app donates the correct intent, simply return ",
+              "type": "text"
+            },
+            {
+              "code": ".result()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your start intent, and then donate the next intent as soon as the session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Previous code examples show how to donate the ",
+              "type": "text"
+            },
+            {
+              "code": "MyMarkLapIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "startCollectingData()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. The app then calls this method when starting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a workout from the Action button or from the app’s user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "logger.debug(\"==> Donate the mark lap intent as the Action button's next action.\")",
+            "try await MyStartWorkoutIntent().donate(result: .result(actionButtonIntent: MyMarkLapIntent()))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can donate as many action intents as you need; however, your app can use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only the most recently donated intent as the next action. Donating a new intent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes the next action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pause-and-resume-a-workout",
+          "level": 3,
+          "text": "Pause and resume a workout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch Ultra supports pausing and resuming a current workout session by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simultaneously pressing both the Action button and the side button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement the pause action, create a structure that adopts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyPauseWorkoutIntent: PauseWorkoutIntent {",
+            "    static var title: LocalizedStringResource = \"Pause Workout\"",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        logger.debug(\"*** Performing a pause intent. ***\")",
+            "        await MyWorkoutManager.shared.pauseWorkout()",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This intent needs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a localized description of the action, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, which the system calls when it triggers the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, to implement the resume action, create a structure that adopts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyResumeWorkoutIntent: ResumeWorkoutIntent {",
+            "    static var title: LocalizedStringResource = \"Resume Workout\"",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        logger.debug(\"*** Performing a resume intent. ***\")",
+            "        await MyWorkoutManager.shared.resumeWorkout()",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app doesn’t implement structures that adopt these protocols, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ignores simultaneous presses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-a-new-dive-session",
+          "level": 3,
+          "text": "Start a new dive session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dive sessions work similarly to workout sessions. To start a dive session,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement a structure that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Typically, people start the dive session just before entering the water. Your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app can then donate App Intents that help them use your app while in the water.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, while in the water they can’t use the touch screen, but the Action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button and Digital Crown function normally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyStartDiveSessionIntent: StartDiveIntent {",
+            "",
+            "    static var title: LocalizedStringResource = \"Starting a dive session.\"",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        logger.debug(\"*** Starting a dive session. ***\")",
+            "",
+            "        await DiveManager.shared.start()",
+            "        return .result(actionButtonIntent: MyCollectSubmergedDataIntent())",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This intent needs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a localized description of the action, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, which the system calls when it triggers the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read live depth, water pressure, and water temperature data, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMotion/accessing-submersion-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Before you can access live dive data, your app needs to include an",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "entitlement to access submersion data. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/submerged-depth-pressure-api/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike workout sessions, the start dive intent supports only a single type of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session. You can donate next actions for your dive session; however, you can’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create intents to pause or resume the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Passing-data-to-the-intents",
+          "level": 3,
+          "text": "Passing data to the intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previous examples use singleton objects to share data between the different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parts of your app; however, App Intents support dependency injection, letting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you define the data in your main app, and access it in your intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your intents, create a property that uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppDependency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property wrapper.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyStartWorkoutIntent: StartWorkoutIntent {",
+            "  @Dependency var workoutManager: MyWorkoutManager",
+            "",
+            "  // Add remaining code here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, as early as possible when your app launches, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppDependencyManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to define the dependency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AppDependencyManager.shared.add { MyWorkoutManager() }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set the dependency in your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/applicationDidFinishLaunching()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. Or, if your app uses SwiftUI life cycles, add an ",
+              "type": "text"
+            },
+            {
+              "code": "init()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, and set it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One of the main advantages of dependency injection is that you can easily",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replace your main data object with a mock object during testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can only use dependency injection to pass data objects from your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "main app to its intents. If you need to pass the data to other parts of your",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "app, you need to use a different approach.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Debug-intents",
+          "level": 3,
+          "text": "Debug intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see console output and respond to breakpoints in Xcode, use the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "steps to debug your intents:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run your app in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the test device or Simulator, send your app to the background. For",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "example, press Shift-Command-H in Simulator to send your app to the background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure you set the actions you want to test by choosing Settings > Action",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press the Action button to test the primary and next actions. On a test",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "device, you can also test the pause and resume actions for workout sessions by",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "pressing the Action button and the side button simultaneously.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any logging from your intents appears in Xcode’s console. The system also pauses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "execution for any breakpoints you set in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Setting-A-Workout-Action": {
+      "alt": "A screenshot from Apple Watch Ultra showing the Action button settings, with",
+      "identifier": "Setting-A-Workout-Action",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a95aeca8e27eb34e1a3f946125986df9/Setting-A-Workout-Action@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f08f6447ca1c59f3e084f5e9f5ad3ed8/Setting-A-Workout-Action~dark@2x.png"
+        }
+      ]
+    },
+    "Specifying-The-Workout-Type": {
+      "alt": "A screenshot from Apple Watch Ultra showing the Action button’s First Press",
+      "identifier": "Specifying-The-Workout-Type",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7894190ae7b19168716e416cad6aa30e/Specifying-The-Workout-Type@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/814fb43ae5569205cecc563d8cd1c777/Specifying-The-Workout-Type~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ActionButton": {
+      "abstract": [
+        {
+          "text": "Enable people to run your App Shortcuts with the Action button on iPhone or to start your app’s workout or dive sessions using the Action button on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ActionButton",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Action button on iPhone and Apple Watch",
+      "type": "topic",
+      "url": "/documentation/appintents/actionbutton"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppDependency": {
+      "abstract": [
+        {
+          "text": "A property wrapper that resolves a registered dependency at runtime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppDependency"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppDependency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppDependency"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppDependency",
+      "type": "topic",
+      "url": "/documentation/appintents/appdependency"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppDependencyManager": {
+      "abstract": [
+        {
+          "text": "An object that manages the registration and initialization of an app intent’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dependencies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppDependencyManager"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppDependencyManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppDependencyManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppDependencyManager",
+      "type": "topic",
+      "url": "/documentation/appintents/appdependencymanager"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/appentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum": {
+      "abstract": [
+        {
+          "text": "An interface to express that a custom type has a predefined, static set of valid values to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/appenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Parameter": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Parameter"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/Parameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Parameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntent.Parameter",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/parameter"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/openAppWhenRun": {
+      "abstract": [
+        {
+          "text": "A boolean property that tells the system to consider the app intent even",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "if its app is not in the foreground.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 5,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openAppWhenRun"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/openAppWhenRun",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "openAppWhenRun",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/openappwhenrun"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 6,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/perform()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title": {
+      "abstract": [
+        {
+          "text": "A short, localized, human-readable string that describes the app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a verb and a noun in title case.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation23LocalizedStringResourceV",
+          "text": "LocalizedStringResource"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntent/title",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/appintents/appintent/title"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AppIntentsExtension": {
+      "abstract": [
+        {
+          "text": "An interface for managing an extension’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentsExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AppIntentsExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentsExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentsExtension",
+      "type": "topic",
+      "url": "/documentation/appintents/appintentsextension"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ConfirmationActionName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfirmationActionName"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ConfirmationActionName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConfirmationActionName"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConfirmationActionName",
+      "type": "topic",
+      "url": "/documentation/appintents/confirmationactionname"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:)": {
+      "abstract": [
+        {
+          "text": "Indicates the Intent finished performing with an ",
+          "type": "text"
+        },
+        {
+          "code": "AppIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to continue with",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "actionButtonIntent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Intent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/IntentResult/result(actionButtonIntent:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result(actionButtonIntent:)",
+      "type": "topic",
+      "url": "/documentation/appintents/intentresult/result(actionbuttonintent:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets someone pause your app’s current workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PauseWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PauseWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PauseWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/pauseworkoutintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets someone resume your app’s paused workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResumeWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResumeWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResumeWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/resumeworkoutintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets people start a dive session when they press the Action",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "button on Apple Watch Ultra.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartDiveIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StartDiveIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "StartDiveIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/startdiveintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent for starting a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartWorkoutIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StartWorkoutIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "StartWorkoutIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/startworkoutintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/invalidateSuggestedWorkouts()": {
+      "abstract": [
+        {
+          "text": "Tells the system when the list of suggested workouts changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateSuggestedWorkouts"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/invalidateSuggestedWorkouts()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidateSuggestedWorkouts()",
+      "type": "topic",
+      "url": "/documentation/appintents/startworkoutintent/invalidatesuggestedworkouts()"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/suggestedWorkouts": {
+      "abstract": [
+        {
+          "text": "A list of the supported workout styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedWorkouts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/suggestedWorkouts",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "suggestedWorkouts",
+      "type": "topic",
+      "url": "/documentation/appintents/startworkoutintent/suggestedworkouts"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/workoutStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The workout style for the intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents18StartWorkoutIntentP0D5StyleQa",
+          "text": "WorkoutStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent/workoutStyle-swift.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "workoutStyle",
+      "type": "topic",
+      "url": "/documentation/appintents/startworkoutintent/workoutstyle-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/CoreMotion/accessing-submersion-data": {
+      "abstract": [
+        {
+          "text": "Use a water-submersion manager to receive water pressure, temperature, and depth data on Apple Watch Ultra.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMotion/accessing-submersion-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing submersion data",
+      "type": "topic",
+      "url": "/documentation/CoreMotion/accessing-submersion-data"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/App"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/applicationDidFinishLaunching()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidFinishLaunching"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/applicationDidFinishLaunching()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidFinishLaunching()",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplicationDelegate/applicationDidFinishLaunching()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/submerged-depth-pressure-api/": {
+      "identifier": "https://developer.apple.com/contact/request/submerged-depth-pressure-api/",
+      "title": "Express interest in the Submerged Depth and Pressure API",
+      "titleInlineContent": [
+        {
+          "text": "Express",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interest in the Submerged Depth and Pressure",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/submerged-depth-pressure-api/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-the-Action-button",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/StartWorkoutIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/PauseWorkoutIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ResumeWorkoutIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/StartDiveIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/ConfirmationActionName"
+      ],
+      "title": "Responding to the Action button"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1applicationDidFinishLaunching()/title",
+          "value": "applicationDidFinishLaunching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1applicationDidFinishLaunching()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidFinishLaunching"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/actionbuttonarticle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

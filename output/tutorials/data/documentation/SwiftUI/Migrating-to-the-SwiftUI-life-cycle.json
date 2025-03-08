@@ -1,0 +1,2076 @@
+{
+  "abstract": [
+    {
+      "text": "Use a scene-based life cycle in SwiftUI while keeping your existing codebase.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating to the SwiftUI life cycle"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take advantage of the declarative syntax in SwiftUI and its compatibility with spatial frameworks by moving your app to the SwiftUI life cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Moving to the SwiftUI life cycle requires several steps, including changing your app’s entry point, configuring the launch of your app, and monitoring life-cycle changes with the methods that SwiftUI provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-your-apps-entry-point",
+          "level": 3,
+          "text": "Change your app’s entry point",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework defines the ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file as the entry point of your app with the annotation ",
+              "type": "text"
+            },
+            {
+              "code": "@main",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on ",
+              "type": "text"
+            },
+            {
+              "code": "@main",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section in The Swift Programming Language.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To indicate the entry of a SwiftUI app, you’ll need to create a new file that defines your app’s structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File > Swift file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name the file ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<YourAppName>App.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "import SwiftUI",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " at the top of the file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Annotate the app structure with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@main",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to indicate the entry point of the SwiftUI app, as shown in the code snippet below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Remove the ",
+                  "type": "text"
+                },
+                {
+                  "code": "@main",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "@UIApplicationMain",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute in your app delegate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use following code to create the SwiftUI app structure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about this structure, follow the tutorial in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tutorials/swiftui-concepts/exploring-the-structure-of-a-swiftui-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "@main",
+            "struct MyExampleApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-app-delegate-methods",
+          "level": 3,
+          "text": "Support app delegate methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To continue using methods in your app delegate, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To tell SwiftUI about a delegate that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, place this property wrapper inside your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyExampleApp: App {",
+            "    @UIApplicationDelegateAdaptor private var appDelegate: MyAppDelegate",
+            "    var body: some Scene { ... }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example marks a custom app delegate named ",
+              "type": "text"
+            },
+            {
+              "code": "MyAppDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the delegate adaptor. Be sure to implement any necessary delegate methods in that type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For AppKit support, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSApplicationDelegateAdaptor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For WatchKit support, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKApplicationDelegateAdaptor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-launch-of-your-app",
+          "level": 3,
+          "text": "Configure the launch of your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re migrating an app that contains storyboards to SwiftUI, make sure to remove them when they’re no longer needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Main.storyboard",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose your app’s target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile",
+                      "isActive": true,
+                      "overridingTitle": "Main storyboard file base name",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "Main storyboard file base name",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile",
+                      "isActive": true,
+                      "overridingTitle": "Storyboard Name",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "Storyboard Name",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+                      "isActive": true,
+                      "overridingTitle": "Application Scene Manifest",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "Application Scene Manifest",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations",
+                      "isActive": true,
+                      "overridingTitle": "Scene Configuration",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "Scene Configuration",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication",
+                      "isActive": true,
+                      "overridingTitle": "WindowApplicationSessionRole",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "WindowApplicationSessionRole",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Item 0 (Default Configuration)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This figure shows the structure of the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file before removing these keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Migrating-to-the-SwiftUI-life-cycle-info_plist",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scene delegate continues to be called after removing the keys from the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, so you can still handle other scene-based life cycle changes in this file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you were previously launching your app in your scene delegate, remove the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method from your scene delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you didn’t previously support scenes in your app and rely on your app delegate to respond to the launch of your app, ensure you’re no longer setting a root view controller in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Monitor-life-cycle-changes",
+          "level": 3,
+          "text": "Monitor life cycle changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You will no longer be able to monitor life-cycle changes in your app delegate due to the scene-based nature of SwiftUI (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Prefer to handle these changes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the life cycle enumeration that SwiftUI provides to monitor the phases of a scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Observe the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to initiate actions when the phase changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.scenePhase) private var scenePhase"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interpret the value differently based on where you read it from.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you read the phase from inside a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, the value reflects the phase of the scene that contains the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you read the phase from within an ",
+              "type": "text"
+            },
+            {
+              "code": "App",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, the value reflects an aggregation of the phases of all of the scenes in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle scene-based events with a scene delegate, provide your scene delegate to your SwiftUI app inside your app delegate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see the “Scene delegates” section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on handling scene-based life cycle events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/managing-your-app-s-life-cycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": "A screenshot of a Mac, iPad, and iPhone all running the Backyard Birds app.",
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "Migrating-to-the-SwiftUI-life-cycle-info_plist": {
+      "alt": "A screenshot of the Info.plist file in Xcode, with all of the keys expanded.",
+      "identifier": "Migrating-to-the-SwiftUI-life-cycle-info_plist",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e9649de38316b3d418b3be2dcf02132/Migrating-to-the-SwiftUI-life-cycle-info_plist@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d41afa424766f63c99d9951e56df91ec/Migrating-to-the-SwiftUI-life-cycle-info_plist~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/swiftui/backyard-birds-sample"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/swiftui/environment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create an AppKit app delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplicationDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSApplicationDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsapplicationdelegateadaptor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene": {
+      "abstract": [
+        {
+          "text": "A part of an app’s user interface with a life cycle managed by the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase": {
+      "abstract": [
+        {
+          "text": "An indication of a scene’s operational state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScenePhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenephase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create a UIKit app delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiapplicationdelegateadaptor"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper that is used in ",
+          "type": "text"
+        },
+        {
+          "code": "App",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to provide a delegate from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "WatchKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegateAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegateAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkapplicationdelegateadaptor"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest": {
+      "abstract": [
+        {
+          "text": "The information about the app’s scene-based life-cycle support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSceneManifest",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations": {
+      "abstract": [
+        {
+          "text": "The default configuration details the system uses to create new scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISceneConfigurations",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication": {
+      "abstract": [
+        {
+          "text": "Configurations for scenes you use to display content on the device’s main screen and respond to user interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWindowSceneSessionRoleApplication",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile": {
+      "abstract": [
+        {
+          "text": "The name of the storyboard file containing the scene’s initial user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISceneStoryboardFile",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile": {
+      "abstract": [
+        {
+          "text": "The name of the app’s main storyboard file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIMainStoryboardFile",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIMainStoryboardFile"
+    },
+    "doc://com.apple.documentation/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods to manage shared behaviors for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the addition of a scene to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willConnectTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:willConnectTo:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "abstract": [
+        {
+          "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/UIKit/managing-your-app-s-life-cycle"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app": {
+      "abstract": [
+        {
+          "text": "Create a single codebase and app target for Mac, iPad, and iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Food Truck: Building a SwiftUI multiplatform app",
+      "type": "topic",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "https://developer.apple.com/tutorials/swiftui-concepts/exploring-the-structure-of-a-swiftui-app": {
+      "identifier": "https://developer.apple.com/tutorials/swiftui-concepts/exploring-the-structure-of-a-swiftui-app",
+      "title": "Exploring the structure of a SwiftUI app",
+      "titleInlineContent": [
+        {
+          "text": "Exploring the structure of a SwiftUI app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tutorials/swiftui-concepts/exploring-the-structure-of-a-swiftui-app"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#main": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#main",
+      "title": "Attributes",
+      "titleInlineContent": [
+        {
+          "text": "Attributes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#main"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-an-app",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/destination-video",
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Backyard-birds-sample",
+        "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app",
+        "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App"
+      ],
+      "title": "Creating an app"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/title",
+          "value": "scene:willConnectToSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willConnectToSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneSession",
+              "text": "UISceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+              "text": "UISceneConnectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishLaunchingWithOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "launchOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/migrating-to-the-swiftui-life-cycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

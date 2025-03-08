@@ -1,0 +1,1627 @@
+{
+  "abstract": [
+    {
+      "text": "A thread of execution.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/thread"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410700,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSThread",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "Thread"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "Thread"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Thread"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this class when you want to have an Objective-C method run in its own thread of execution. Threads are especially useful when you need to perform a lengthy task, but don’t want it to block the execution of the rest of the application. In particular, you can use threads to avoid blocking the main thread of the application, which handles user interface and event-related actions. Threads can also be used to divide a large job into several smaller jobs, which can lead to performance increases on multi-core computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class supports semantics similar to those of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for monitoring the runtime condition of a thread. You can use these semantics to cancel the execution of a thread or determine if the thread is still executing or has finished its task. Canceling a thread requires support from your thread code; see the description for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1679134",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418421-main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to implement your thread’s main entry point. If you override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418421-main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you do not need to invoke the inherited behavior by calling ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsassertionhandlerkey": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAssertionHandlerKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandlerkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAssertionHandlerKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsassertionhandlerkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscondition": {
+      "abstract": [
+        {
+          "text": "A condition variable whose semantics follow those used for POSIX-style conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscondition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCondition",
+      "type": "topic",
+      "url": "/documentation/foundation/nscondition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconditionlock": {
+      "abstract": [
+        {
+          "text": "A lock that can be associated with specific, user-defined conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSConditionLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconditionlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConditionLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconditionlock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistributedlock": {
+      "abstract": [
+        {
+          "text": "A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDistributedLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistributedlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistributedLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistributedlock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslock": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the operation of multiple threads of execution within the same application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nslock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocking": {
+      "abstract": [
+        {
+          "text": "The elementary methods adopted by classes that define lock objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocking"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocking",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocking"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object posts this notification when it receives the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " message, before the thread exits. Observer methods invoked to receive this notification execute in the exiting thread, before it exits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSThreadWillExit"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSThreadWillExit",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded": {
+      "abstract": [
+        {
+          "text": "Not implemented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDidBecomeSingleThreaded"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDidBecomeSingleThreaded",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded": {
+      "abstract": [
+        {
+          "text": "Posted when the first thread is detached from the current thread. The ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class posts this notification at most once—the first time a thread is detached using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418166-start",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method. Subsequent invocations of those methods do not post this notification. Observers of this notification have their notification method invoked in the main thread, not the new thread. The observer notification methods always execute before the new thread begins executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWillBecomeMultiThreaded"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWillBecomeMultiThreaded",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrecursivelock": {
+      "abstract": [
+        {
+          "text": "A lock that may be acquired multiple times by the same thread without causing a deadlock.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRecursiveLock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrecursivelock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRecursiveLock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrecursivelock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Operation",
+      "type": "topic",
+      "url": "/documentation/foundation/operation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/qualityofservice": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the nature and importance of work to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "QualityOfService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/qualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/qualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread": {
+      "abstract": [
+        {
+          "text": "A thread of execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Thread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Thread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1407523-setthreadpriority": {
+      "abstract": [
+        {
+          "text": "Sets the current thread’s priority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setThreadPriority"
+        },
+        {
+          "kind": "text",
+          "text": "(Double) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1407523-setthreadpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setThreadPriority(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1407523-setthreadpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1408455-ismainthread": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is the main thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMainThread"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1408455-ismainthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMainThread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1408455-ismainthread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1409297-isfinished": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver has finished execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFinished"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409297-isfinished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isFinished",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1409297-isfinished"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit": {
+      "abstract": [
+        {
+          "text": "Terminates the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "exit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exit()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1409404-exit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1409426-qualityofservice": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "qualityOfService"
+        },
+        {
+          "kind": "text",
+          "text": ": QualityOfService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409426-qualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "qualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1409426-qualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1409565-callstackreturnaddresses": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the call stack return addresses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "callStackReturnAddresses"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSNumber]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1409565-callstackreturnaddresses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callStackReturnAddresses",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1409565-callstackreturnaddresses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1410679-current": {
+      "abstract": [
+        {
+          "text": "Returns the thread object representing the current thread of execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": Thread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1410679-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1410679-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1410702-ismultithreaded": {
+      "abstract": [
+        {
+          "text": "Returns whether the application is multithreaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultiThreaded"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1410702-ismultithreaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMultiThreaded()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1410702-ismultithreaded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1411240-isexecuting": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExecuting"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1411240-isexecuting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExecuting",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1411240-isexecuting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel": {
+      "abstract": [
+        {
+          "text": "Changes the cancelled state of the receiver to indicate that it should exit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1411303-cancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1411433-threaddictionary": {
+      "abstract": [
+        {
+          "text": "The thread object's dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "threadDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1411433-threaddictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "threadDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1411433-threaddictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1411927-threadpriority": {
+      "abstract": [
+        {
+          "text": "The receiver’s priority",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "threadPriority"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1411927-threadpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "threadPriority",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1411927-threadpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1412704-ismainthread": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the current thread is the main thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMainThread"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1412704-ismainthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isMainThread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1412704-ismainthread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep": {
+      "abstract": [
+        {
+          "text": "Sleeps the thread for a given time interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleep(forTimeInterval:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1413673-sleep"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1414122-name": {
+      "abstract": [
+        {
+          "text": "The name of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1414122-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1414122-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1414773-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with the given arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1414773-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(target:selector:object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1414773-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1414782-main": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing the main thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": ": Thread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1414782-main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1414782-main"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1414836-callstacksymbols": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the call stack symbols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "callStackSymbols"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1414836-callstacksymbols",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callStackSymbols",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1414836-callstacksymbols"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1415190-stacksize": {
+      "abstract": [
+        {
+          "text": "The stack size of the receiver, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "stackSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415190-stacksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stackSize",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1415190-stacksize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector": {
+      "abstract": [
+        {
+          "text": "Detaches a new thread and uses the specified selector as the thread entry point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachNewThreadSelector"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachNewThreadSelector(_:toTarget:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1415633-detachnewthreadselector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the time specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleep(until:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1415959-sleep"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1416464-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized ",
+          "type": "text"
+        },
+        {
+          "code": "NSThread",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1416464-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1416464-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1417366-iscancelled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is cancelled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCancelled"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1417366-iscancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCancelled",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1417366-iscancelled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1417675-threadpriority": {
+      "abstract": [
+        {
+          "text": "Returns the current thread’s priority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "threadPriority"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1417675-threadpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "threadPriority()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1417675-threadpriority"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1418166-start": {
+      "abstract": [
+        {
+          "text": "Starts the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418166-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1418166-start"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/1418421-main": {
+      "abstract": [
+        {
+          "text": "The main entry point routine for the thread. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/1418421-main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main()",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/1418421-main"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/2088561-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/2088561-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(block:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/2088561-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread/2088563-detachnewthread": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachNewThread"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread/2088563-detachnewthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachNewThread(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/thread/2088563-detachnewthread"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslocking",
+        "doc://com.apple.documentation/documentation/foundation/nslock",
+        "doc://com.apple.documentation/documentation/foundation/nsrecursivelock",
+        "doc://com.apple.documentation/documentation/foundation/nsdistributedlock",
+        "doc://com.apple.documentation/documentation/foundation/nsconditionlock",
+        "doc://com.apple.documentation/documentation/foundation/nscondition"
+      ],
+      "title": "Threads and Locking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1667734",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1416464-init",
+        "doc://com.apple.documentation/documentation/foundation/thread/1414773-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing an NSThread Object"
+    },
+    {
+      "anchor": "1667815",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1415633-detachnewthreadselector",
+        "doc://com.apple.documentation/documentation/foundation/thread/1418166-start",
+        "doc://com.apple.documentation/documentation/foundation/thread/1418421-main"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting a Thread"
+    },
+    {
+      "anchor": "1667921",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1415959-sleep",
+        "doc://com.apple.documentation/documentation/foundation/thread/1413673-sleep",
+        "doc://com.apple.documentation/documentation/foundation/thread/1409404-exit",
+        "doc://com.apple.documentation/documentation/foundation/thread/1411303-cancel"
+      ],
+      "kind": "taskGroup",
+      "title": "Stopping a Thread"
+    },
+    {
+      "anchor": "1668056",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1411240-isexecuting",
+        "doc://com.apple.documentation/documentation/foundation/thread/1409297-isfinished",
+        "doc://com.apple.documentation/documentation/foundation/thread/1417366-iscancelled"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining the Thread’s Execution State"
+    },
+    {
+      "anchor": "1668172",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1412704-ismainthread",
+        "doc://com.apple.documentation/documentation/foundation/thread/1408455-ismainthread",
+        "doc://com.apple.documentation/documentation/foundation/thread/1414782-main"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with the Main Thread"
+    },
+    {
+      "anchor": "1668267",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1410702-ismultithreaded",
+        "doc://com.apple.documentation/documentation/foundation/thread/1410679-current",
+        "doc://com.apple.documentation/documentation/foundation/thread/1409565-callstackreturnaddresses",
+        "doc://com.apple.documentation/documentation/foundation/thread/1414836-callstacksymbols"
+      ],
+      "kind": "taskGroup",
+      "title": "Querying the Environment"
+    },
+    {
+      "anchor": "1668358",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1411433-threaddictionary",
+        "doc://com.apple.documentation/documentation/foundation/nsassertionhandlerkey",
+        "doc://com.apple.documentation/documentation/foundation/thread/1414122-name",
+        "doc://com.apple.documentation/documentation/foundation/thread/1415190-stacksize"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Thread Properties"
+    },
+    {
+      "anchor": "2855574",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/1409426-qualityofservice",
+        "doc://com.apple.documentation/documentation/foundation/qualityofservice",
+        "doc://com.apple.documentation/documentation/foundation/thread/1417675-threadpriority",
+        "doc://com.apple.documentation/documentation/foundation/thread/1411927-threadpriority",
+        "doc://com.apple.documentation/documentation/foundation/thread/1407523-setthreadpriority"
+      ],
+      "kind": "taskGroup",
+      "title": "Prioritizing Thread Work"
+    },
+    {
+      "anchor": "1668514",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1412246-nsdidbecomesinglethreaded",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1408204-nsthreadwillexit",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417567-nswillbecomemultithreaded"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "2855573",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/2088561-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2855575",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/thread/2088563-detachnewthread"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsthread"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/thread"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

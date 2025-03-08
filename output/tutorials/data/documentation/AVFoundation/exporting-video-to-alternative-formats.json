@@ -1,0 +1,583 @@
+{
+  "abstract": [
+    {
+      "text": "Convert an existing movie file to a different format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/exporting-video-to-alternative-formats"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Exporting video to alternative formats"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert an existing movie file to a format that makes it compatible with other devices, you need to generate a new movie file based on the contents of the existing file. Though you can’t change the format of the saved video, you can create a new file in the desired format by following the steps outlined in this article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app can save a movie directly from video capture, it’s more efficient to change the default format during capture by following the steps in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/recording-movies-in-alternative-formats",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Export-a-new-video-to-the-desired-format",
+          "level": 3,
+          "text": "Export a new video to the desired format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export a video to a different format, begin with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " movie file and perform these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose an export preset from the list of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/export-presets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose an export file type from the list of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVFileType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " presets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " can convert the movie from the input format to the output format you want.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and configure an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance, and then use it to perform the export.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example defines a method and then uses it to perform these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func export(video: AVAsset,",
+            "            withPreset preset: String = AVAssetExportPresetHighestQuality,",
+            "            toFileType outputFileType: AVFileType = .mov,",
+            "            atURL outputURL: URL) async {",
+            "    ",
+            "    // Check the compatibility of the preset to export the video to the output file type.",
+            "    guard await AVAssetExportSession.compatibility(ofExportPreset: preset,",
+            "                                                   with: video,",
+            "                                                   outputFileType: outputFileType) else {",
+            "        print(\"The preset can't export the video to the output file type.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    // Create and configure the export session.",
+            "    guard let exportSession = AVAssetExportSession(asset: video,",
+            "                                                   presetName: preset) else {",
+            "        print(\"Failed to create export session.\")",
+            "        return",
+            "    }",
+            "    exportSession.outputFileType = outputFileType",
+            "    exportSession.outputURL = outputURL",
+            "    ",
+            "    // Convert the video to the output file type and export it to the output URL.",
+            "    await exportSession.export()",
+            "}",
+            "",
+            "let video = // Your source AVAsset video. //",
+            "let outputURL = // The destination URL for your exported video. //",
+            "",
+            "// Use a preset that encodes to H.264 to convert a video to the .mov file type,",
+            "// and asynchronously perform the export.",
+            "Task {",
+            "    await export(video: video,",
+            "                 withPreset: AVAssetExportPresetHighestQuality,",
+            "                 toFileType: .mov,",
+            "                 atURL: outputURL)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset": {
+      "abstract": [
+        {
+          "text": "An object that models timed audiovisual media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession": {
+      "abstract": [
+        {
+          "text": "An object that exports assets in a format that you specify using an export preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetExportSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetexportsession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVFileType": {
+      "abstract": [
+        {
+          "text": "The uniform type identifiers for various file formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVFileType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVFileType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVFileType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVFileType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avfiletype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/export-presets": {
+      "abstract": [
+        {
+          "text": "Configure an export session to output media in standard sizes and formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/export-presets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Export Presets",
+      "type": "topic",
+      "url": "/documentation/avfoundation/export-presets"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing": {
+      "abstract": [
+        {
+          "text": "Read images from video, export to alternative formats, and perform sample-level reading and writing of media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media reading and writing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-reading-and-writing"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/recording-movies-in-alternative-formats": {
+      "abstract": [
+        {
+          "text": "Change the default format for capturing movie files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/recording-movies-in-alternative-formats",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording movies in alternative formats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/recording-movies-in-alternative-formats"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-export",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession"
+      ],
+      "title": "Media export"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-export",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetExportSession"
+              ],
+              "title": "Media export"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVFileType/title",
+          "value": "AVFileType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVFileType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVFileType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVFileType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVFileType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/title",
+          "value": "AVAssetExportSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetExportSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/title",
+          "value": "AVAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/exporting-video-to-alternative-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/exporting-video-to-alternative-formats"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

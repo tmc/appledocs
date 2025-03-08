@@ -1,0 +1,1524 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your widgets for backward compatibility.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating widgets from SiriKit Intents to App Intents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17 and macOS 14, you use App Intents to create configurable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widgets. If you have an existing configurable widgets that uses SiriKit Intents,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can add App Intents while continuing to support older operating system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the minimum version your app supports is iOS 17, macOS 14, or watchOS 10, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "App Intents for your widget configurations. See",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about converting custom intents to App Intents, watch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Tech Talks session video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/10168",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-SiriKit-Intents-to-App-Intents",
+          "level": 3,
+          "text": "Convert SiriKit Intents to App Intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides automatic conversion from SiriKit Intents to App Intents. Follow",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these steps to convert an existing intent to an app intent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project Navigator, select the Intent Definition File that contains the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "intent you wish to convert.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the Editor > Convert to App Intent… menu item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select one or more intent definition files from the list of intent definition",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "files, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select one or more intents from the list of available intents, and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a location to save the new files in your project, and the targets in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "which to include the converted intents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode generates source files for new types that conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/CustomIntentMigratedAppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sets the ",
+              "type": "text"
+            },
+            {
+              "code": "intentClassName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the name of the SiriKit Intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-widget-configuration",
+          "level": 3,
+          "text": "Update the widget configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the widget’s ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, add code that does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instead of using an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IntentConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", create an",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instead of passing an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type to the app configuration’s initializer,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "pass the newly converted intent type created as described in the steps above. This new intent",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "type conforms to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instead of passing an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IntentTimelineProvider",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", pass a type that conforms to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To continue supporting versions earlier than iOS 17, macOS 14, and watchOS 10,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "factor the creation of the widget’s configuration to a type-erased method that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method calls, as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyWidget: Widget {",
+            "",
+            "    // Helper method to create the appropriate configuration depending",
+            "    // on the operating system version.",
+            "    func makeWidgetConfiguration() -> some WidgetConfiguration {",
+            "        if #available(iOS 17.0, macOS 14.0, watchOS 10.0, *) {",
+            "            return AppIntentConfiguration(kind: kind, intent: MyAppIntent.self, provider: MyAppIntentProvider()) { entry in",
+            "                MyAppIntentWidgetEntryView(entry: entry)",
+            "            }",
+            "        } else {",
+            "            return IntentConfiguration(kind: kind, intent: MyIntent.self, provider: MyIntentProvider()) { entry in",
+            "                MyIntentWidgetEntryView(entry: entry)",
+            "            }",
+            "        }",
+            "    }",
+            "",
+            "    var body: some WidgetConfiguration {",
+            "        makeWidgetConfiguration()",
+            "            .configurationDisplayName(\"My Widget\")",
+            "            .description(\"This is an example widget.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create app intent types, and switch to using ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system migrates the user’s widgets configured with SiriKit Intents. The system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifies the name of the custom ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the widget’s stored",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifies the new app intent that conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CustomIntentMigratedAppIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in which the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "intentClassName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " matches the name of the custom ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maps the parameters from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " configuration to the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CustomIntentMigratedAppIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", matching the parameter name and type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates an instance of the new app intent with the mapped parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uses the new app intent for the widget’s configuration instead of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INIntent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the name or type of the parameters don’t match, the system omits",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the parameter from the app intent, and the user’s configuration is lost. For",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "example, if the ",
+                  "type": "text"
+                },
+                {
+                  "code": "INIntent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is an ",
+                  "type": "text"
+                },
+                {
+                  "code": "INPerson",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", use ",
+                  "type": "text"
+                },
+                {
+                  "code": "IntentPerson",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the app intent type. If the parameter’s type is an enum or custom object, the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "new type must conform to ",
+                  "type": "text"
+                },
+                {
+                  "code": "AppEnum",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "TransientAppEntity",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", respectively.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-an-app-intent-timeline-provider",
+          "level": 3,
+          "text": "Implement an app intent timeline provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate timeline entries that use app intents, create a timeline provider",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The functionality of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentTimelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the same as an ",
+              "type": "text"
+            },
+            {
+              "code": "IntentTimelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "difference is the associated ",
+              "type": "text"
+            },
+            {
+              "code": "Intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. For an ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntentTimelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "Intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "WidgetConfigurationIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; for an ",
+              "type": "text"
+            },
+            {
+              "code": "IntentTimelineProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it’s an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "INIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app supports older operating system versions, minimize code",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "duplication by factoring common code out into a separate type used by",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "both providers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing the timeline entries that the timeline providers generate,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consider these two approaches:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use separate timeline entry types for each provider: one that includes the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app intent, and another that includes a SiriKit intent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a single timeline entry type that includes both an app intent and a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "SiriKit intent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first approach involves maintaining separate types, possibly duplicating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties in both types, but it’s simpler conceptually. The second approach",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reduces any duplication, but requires optional types for the intent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-content-based-on-an-app-intent",
+          "level": 3,
+          "text": "Display content based on an app intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit displays a widget’s content by calling the widget configuration’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure. If you have separate types for your timeline entries, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to provide a separate content closure for each type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you share the same timeline entry type across both intent provider types, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can use a single content closure with logic conditional to the intent in the entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "definition to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget": {
+      "abstract": [
+        {
+          "text": "Give people the option to customize their widgets by adding a custom app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a configurable widget",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-a-configurable-widget"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about user-configured widgets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetInfo",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetinfo"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/CustomIntentMigratedAppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for replacing a custom SiriKit intent that allows existing shortcuts and donations to continue working.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomIntentMigratedAppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/CustomIntentMigratedAppIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomIntentMigratedAppIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/CustomIntentMigratedAppIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent": {
+      "abstract": [
+        {
+          "text": "An interface for configuring a WidgetKit widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/WidgetConfigurationIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetConfigurationIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/WidgetConfigurationIntent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/10168": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/10168",
+      "title": "Migrate custom intents to App Intents",
+      "titleInlineContent": [
+        {
+          "text": "Migrate custom intents to App Intents",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/10168"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configurable-widgets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation"
+      ],
+      "title": "Configurable widgets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configurable-widgets",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget"
+              ],
+              "title": "Configurable widgets"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/migrating-from-sirikit-intents-to-app-intents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/migrating-from-sirikit-intents-to-app-intents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

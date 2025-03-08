@@ -1,0 +1,682 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the GPU usage for executing shaders by using occupancy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Finding-your-Metal-apps-GPU-occupancy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Finding your Metal app’s GPU occupancy"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A GPU has a maximum number of threads that it can execute at the same time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Occupancy",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a measurement of how much of this capacity the GPU is using.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "GPUs create new threads when they have commands with more threads to dispatch and enough internal resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It’s generally better to have higher occupancy when the app is making efficient use of the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Measures the percentage of the GPU’s total thread capacity it’s using to execute compute commands.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Compute occupancy",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Measures the percentage of the GPU’s total thread capacity it’s using to execute vertex threads.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Vertex occupancy",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Measures the percentage of the GPU’s total thread capacity it’s using to execute fragment threads.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Fragment occupancy",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sum of these percentages is the total percentage of the GPU’s capacity in use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can get shader occupancy counters in Instruments and in the Metal debugger’s Performance timeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-whether-your-app-has-low-GPU-occupancy",
+          "level": 3,
+          "text": "Determine whether your app has low GPU occupancy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app may have low occupancy when the overall occupancy measurements aren’t approaching 100%.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each shader has a maximum theoretical occupancy, depending on the amount of internal resources it consumes on the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can get this information for each shader in the Performance timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Neither high nor low occupancy is automatically an indicator of a problem.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, a low vertex shader occupancy may be OK if your fragment shaders are running concurrently with high occupancy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ultimately, you need to correlate occupancy measurements with measurements from other counters or other Metal tools to determine a problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When overall occupancy is low, it likely means one of the following is true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your shaders have exhausted some internal resources, such as thread, threadgroup, or imageblock memory, preventing the GPU from creating more threads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your shaders are simple enough that threads finish executing faster than the GPU can create new ones.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is rendering to a small area inside the render targets, or dispatching very small compute grids, such that the GPU runs out of threads to create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the Performance timeline, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-impact-on-your-app",
+          "level": 3,
+          "text": "Determine the impact on your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re seeing overall low occupancy, your next step is to determine whether it’s negatively impacting your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If an examination of the limiter counters also shows low values, the GPU is executing very little work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When overall occupancy is high, the GPU is executing many threads to hide instruction latency.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "High occupancy is generally good because you want to use the GPU to its full potential.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, it’s also possible that your shaders aren’t using the GPU efficiently.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Optimizing them can make more of the GPU’s capacity available for other GPU commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In rare cases, when overall occupancy is very high, the GPU may execute its workload poorly because threads are competing for space in the GPU’s memory caches (also known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "cache thrashing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In that case, you may need to scale back the amount of work you’re sending to the GPU or change how it accesses (reads or writes) memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you might try the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce the number of memory accesses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce how much memory you access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the temporal or spatial access patterns you use when accessing memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The memory read or write limiter counters may provide more insight into whether your app has a problem. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Reducing-shader-bottlenecks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, use the other counters to determine how effectively you’re using the GPU and where it spends the most time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": "Metal logo",
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline": {
+      "abstract": [
+        {
+          "text": "Locate performance issues using the Performance timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using a visual timeline",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-a-visual-timeline"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-the-performance-of-your-metal-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Measuring-the-GPUs-use-of-memory-bandwidth": {
+      "abstract": [
+        {
+          "text": "Check whether your Metal app correctly reads and writes to memory by measuring the GPU’s memory bandwidth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Measuring-the-GPUs-use-of-memory-bandwidth",
+      "kind": "article",
+      "role": "article",
+      "title": "Measuring the GPU’s use of memory bandwidth",
+      "type": "topic",
+      "url": "/documentation/xcode/measuring-the-gpus-use-of-memory-bandwidth"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-developer-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Reducing-shader-bottlenecks": {
+      "abstract": [
+        {
+          "text": "Identify and minimize congestion points in a GPU’s subsystems by checking its limiter and utilization counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Reducing-shader-bottlenecks",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing shader bottlenecks",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-shader-bottlenecks"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Counters",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Reducing-shader-bottlenecks",
+        "doc://com.apple.Xcode/documentation/Xcode/Measuring-the-GPUs-use-of-memory-bandwidth"
+      ],
+      "title": "Counters"
+    }
+  ]
+}

@@ -1,0 +1,1867 @@
+{
+  "abstract": [
+    {
+      "text": "Create new data tables by manipulating an existing data table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/data-table-derivation-operations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Data Table Derivation Operations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these methods to preprocess your data programmatically in Create ML before training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a model. For example, you can create a data table by merging two data tables, fill",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in missing values, and then discarding duplicate rows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of these methods create new data tables, leaving the original data table unmodified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable": {
+      "abstract": [
+        {
+          "text": "A table of data for training or evaluating a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator": {
+      "abstract": [
+        {
+          "text": "A collection of column operations you can use with a data table’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "group",
+          "type": "codeVoice"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Aggregator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Aggregator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/JoinType": {
+      "abstract": [
+        {
+          "text": "Join types available for ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " join operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JoinType"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/JoinType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JoinType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable.JoinType",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/jointype"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/PackType": {
+      "abstract": [
+        {
+          "text": "The storage operations for combining multiple columns into one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PackType"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/PackType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PackType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable.PackType",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/packtype"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/condense(columnNamed:to:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table where duplicate row values in the given column",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are condensed into a new sequence-type column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "condense"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/condense(columnNamed:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "condense(columnNamed:to:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/condense(columnnamed:to:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/dropDuplicates()": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by removing all duplicate rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dropDuplicates"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/dropDuplicates()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dropDuplicates()",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/dropduplicates()"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/dropMissing()": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by removing any row missing one or more",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dropMissing"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/dropMissing()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dropMissing()",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/dropmissing()"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/exclude(_:of:)": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by excluding the rows that contain any of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given values in the given column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclude"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/exclude(_:of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exclude(_:of:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/exclude(_:of:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/expand(columnNamed:to:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table where duplicate row values in the given column",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "are condensed into a new sequence-type column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/expand(columnNamed:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expand(columnNamed:to:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/expand(columnnamed:to:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/fillMissing(columnNamed:with:)": {
+      "abstract": [
+        {
+          "text": "Creates a modified copy of the table by filling in the missing values in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the named column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillMissing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataValueO",
+          "text": "MLDataValue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/fillMissing(columnNamed:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fillMissing(columnNamed:with:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/fillmissing(columnnamed:with:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/group(columnsNamed:aggregators:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table with the given columns and adds a new column",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for each of the given aggregators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnsNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "aggregators"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/group(columnsNamed:aggregators:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "group(columnsNamed:aggregators:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/group(columnsnamed:aggregators:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/intersect(_:of:)": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by including the rows that contain any of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given values in the given column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/intersect(_:of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersect(_:of:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/intersect(_:of:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/join(with:on:type:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table by merging two data tables by the given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "join"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV8JoinTypeO",
+          "text": "JoinType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/join(with:on:type:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "join(with:on:type:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/join(with:on:type:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/pack(columnsNamed:to:type:filling:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table with an additional column that contains the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "combined values of the given columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnsNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV8PackTypeO",
+          "text": "PackType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataValueO",
+          "text": "MLDataValue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/pack(columnsNamed:to:type:filling:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pack(columnsNamed:to:type:filling:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/pack(columnsnamed:to:type:filling:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/prefix(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table given a number of initial rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/prefix(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefix(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/prefix(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSample(by:seed:)": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by randomly selecting the given proportion",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "randomSample"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "seed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSample(by:seed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "randomSample(by:seed:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/randomsample(by:seed:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)": {
+      "abstract": [
+        {
+          "text": "Creates two mutually exclusive, randomly divided subsets of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "randomSplit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "seed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "randomSplit(by:seed:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/randomsplit(by:seed:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/sort(columnNamed:byIncreasingOrder:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table by sorting the table by the given column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sort"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "byIncreasingOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/sort(columnNamed:byIncreasingOrder:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(columnNamed:byIncreasingOrder:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/sort(columnnamed:byincreasingorder:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-10r4l": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by masking the rows with the given untyped",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLUntypedColumnV",
+          "text": "MLUntypedColumn"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-10r4l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/subscript(_:)-10r4l"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-2wkan": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table given a sequence of column names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-2wkan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/subscript(_:)-2wkan"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-3opgl": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table by masking the rows with the given column",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of Booleans.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLDataColumnV",
+          "text": "MLDataColumn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-3opgl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/subscript(_:)-3opgl"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-5le8a": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table given a range expression of rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-5le8a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/subscript(_:)-5le8a"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-7h4j3": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table given a range of rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-7h4j3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/subscript(_:)-7h4j3"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/suffix(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a subset of the table given a number of final rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suffix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/suffix(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suffix(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/suffix(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/unpack(columnNamed:valueTypes:indexSubset:keySubset:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table with additional columns that contain the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "unpacked collections in the given column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unpack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "valueTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataValueO",
+          "text": "MLDataValue"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataValueO0D4TypeO",
+          "text": "ValueType"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "indexSubset"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keySubset"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/unpack(columnNamed:valueTypes:indexSubset:keySubset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unpack(columnNamed:valueTypes:indexSubset:keySubset:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/unpack(columnnamed:valuetypes:indexsubset:keysubset:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Aggregating-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/group(columnsNamed:aggregators:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator"
+      ],
+      "title": "Aggregating Rows"
+    },
+    {
+      "anchor": "Sorting-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/sort(columnNamed:byIncreasingOrder:)"
+      ],
+      "title": "Sorting Rows"
+    },
+    {
+      "anchor": "Splitting-a-Data-Table",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)"
+      ],
+      "title": "Splitting a Data Table"
+    },
+    {
+      "anchor": "Merging-Data-Tables",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/join(with:on:type:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/JoinType"
+      ],
+      "title": "Merging Data Tables"
+    },
+    {
+      "anchor": "Filling-in-Missing-Values",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/fillMissing(columnNamed:with:)"
+      ],
+      "title": "Filling in Missing Values"
+    },
+    {
+      "anchor": "Masking-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-3opgl",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-10r4l"
+      ],
+      "title": "Masking Rows"
+    },
+    {
+      "anchor": "Discarding-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/dropMissing()",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/dropDuplicates()",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/exclude(_:of:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSample(by:seed:)"
+      ],
+      "title": "Discarding Rows"
+    },
+    {
+      "anchor": "Selecting-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-7h4j3",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-5le8a",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/prefix(_:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/suffix(_:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/intersect(_:of:)"
+      ],
+      "title": "Selecting Rows"
+    },
+    {
+      "anchor": "Selecting-Columns",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-2wkan"
+      ],
+      "title": "Selecting Columns"
+    },
+    {
+      "anchor": "Compacting-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/condense(columnNamed:to:)"
+      ],
+      "title": "Compacting Rows"
+    },
+    {
+      "anchor": "Expanding-Rows",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/expand(columnNamed:to:)"
+      ],
+      "title": "Expanding Rows"
+    },
+    {
+      "anchor": "Compacting-Columns",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/pack(columnsNamed:to:type:filling:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/PackType"
+      ],
+      "title": "Compacting Columns"
+    },
+    {
+      "anchor": "Expanding-Columns",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/unpack(columnNamed:valueTypes:indexSubset:keySubset:)"
+      ],
+      "title": "Expanding Columns"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/data-table-derivation-operations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

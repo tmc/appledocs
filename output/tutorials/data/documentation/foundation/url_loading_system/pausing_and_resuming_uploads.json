@@ -1,0 +1,695 @@
+{
+  "abstract": [
+    {
+      "text": "Pause and resume an upload without starting over, even when the connection is interrupted.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+  },
+  "kind": "article",
+  "legacy_identifier": 4251017,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Pausing and resuming uploads"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app or a person using it might need to cancel an in-progress upload and resume it later. By supporting resumable uploads, you save both the user’s time and network bandwidth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "New in iOS 17 and aligned OS versions, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports resumable uploads according to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4251013",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This protocol is currently being developed in the HTTP Working Group at the IETF. To take advantage of resumable uploads, the server you’re connecting to must also support this protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this technique to manually pause and resume an upload, or even resume an upload that failed due to a temporary loss of connectivity. In both cases, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " needs information on how to resume the upload, which is stored in a ",
+              "type": "text"
+            },
+            {
+              "code": "resumeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4251026",
+          "level": 3,
+          "text": "Pause an upload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can effectively pause a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask/1411634-cancel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This method cancels the task and passes a ",
+              "type": "text"
+            },
+            {
+              "code": "resumeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to its completion handler. If ",
+              "type": "text"
+            },
+            {
+              "code": "resumeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can use this token later to resume the upload. The listing below shows how to cancel an upload task and store ",
+              "type": "text"
+            },
+            {
+              "code": "resumeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", if it exists, in a property: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uploadTask.cancel { resumeData in",
+            "    guard let resumeData else { ",
+            "      // The upload can't be resumed; remove the upload from the UI if necessary.",
+            "      return",
+            "    }",
+            "    self.resumeData = resumeData",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4251025",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can’t resume all uploads. The server must support the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4251019",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " from the HTTP Working Group at the IETF. Also, uploads that use a background configuration handle resumption automatically, so manual resuming is only needed for non-background uploads.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4251020",
+          "level": 3,
+          "text": "Recover a failed upload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s only a momentary network interruption, but the server is still reachable, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically tries to resume the upload for you. No extra code is needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For broader losses of connectivity, you can resume a failed upload by checking for resume data in the task’s error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the upload fails, the session calls your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. If ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", look in its ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary for the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionuploadtaskresumedata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the key exists, save the value associated with it to use later when you try to resume the upload. If the key doesn’t exist, you can’t resume the upload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can conveniently access resume data using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror/4211399-uploadtaskresumedata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also catch the error from asynchronous ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " upload methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/3919875-upload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The listing below shows an implementation of this error handling that checks the error for resume data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let (data, response) = try await session.upload(for: request, fromFile: fileURL)",
+            "} catch let error as URLError {",
+            "    guard let resumeData = error.uploadTaskResumeData else {",
+            "        // The upload can't be resumed.",
+            "        return",
+            "    }",
+            "    self.resumeData = resumeData",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4251018",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4251021",
+          "level": 3,
+          "text": "Resume uploading",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it’s appropriate to resume the upload, create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/4198043-uploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in the ",
+              "type": "text"
+            },
+            {
+              "code": "resumeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object you stored earlier. Then, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the task to resume the upload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let resumeData = self.resumeData else {",
+            "    // Inform the user that the upload can't be resumed.",
+            "    return",
+            "}",
+            "",
+            "let uploadTask = session.uploadTask(withResumeData: resumeData)",
+            "uploadTask.resume()",
+            "self.uploadTask = uploadTask"
+          ],
+          "metadata": {
+            "anchor": "4251024",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionuploadtaskresumedata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionuploadtaskresumedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionUploadTaskResumeData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionuploadtaskresumedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads": {
+      "abstract": [
+        {
+          "text": "Pause and resume an upload without starting over, even when the connection is interrupted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming uploads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251018": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251018",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251018"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251024": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251024",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251024"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251025": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251025",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads#4251025"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website": {
+      "abstract": [
+        {
+          "text": "Post data from your app to servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading data to a website",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data": {
+      "abstract": [
+        {
+          "text": "Send a stream of data to a server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading streams of data",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlerror": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLError",
+      "type": "topic",
+      "url": "/documentation/foundation/urlerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlerror/4211399-uploadtaskresumedata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror/4211399-uploadtaskresumedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTaskResumeData",
+      "type": "topic",
+      "url": "/documentation/foundation/urlerror/4211399-uploadtaskresumedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/3919875-upload": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/3919875-upload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "upload(for:fromFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/3919875-upload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/4198043-uploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/4198043-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(withResumeData:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/4198043-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask/1411634-cancel": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondownloadtask/1411634-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel(byProducingResumeData:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondownloadtask/1411634-cancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:didCompleteWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1411610-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionUploadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-4251013": {
+      "identifier": "link-4251013",
+      "kind": "article",
+      "role": "link",
+      "title": "latest resumable upload protocol draft",
+      "type": "topic",
+      "url": "https://www.ietf.org/archive/id/draft-ietf-httpbis-resumable-upload-01.txt"
+    },
+    "link-4251019": {
+      "identifier": "link-4251019",
+      "kind": "article",
+      "role": "link",
+      "title": "latest resumable upload protocol draft",
+      "type": "topic",
+      "url": "https://www.ietf.org/archive/id/draft-ietf-httpbis-resumable-upload-01.txt"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data"
+      ],
+      "title": "Uploading"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

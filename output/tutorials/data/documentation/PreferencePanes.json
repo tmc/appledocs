@@ -1,0 +1,779 @@
+{
+  "abstract": [
+    {
+      "text": "Integrate your app’s custom preferences into the System Preferences app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.preferencepanes/documentation/PreferencePanes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "PreferencePanes",
+    "modules": [
+      {
+        "name": "Preference Panes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.1",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Preference Panes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Preference Panes framework to integrate your custom system-level preferences into the System Preferences app. You use this framework to implement a preference pane bundle, which contains the custom interface you want to display to the user. You then install your bundle in the appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "Library/PreferencePanes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory on the user’s system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "System Preferences works with your bundle’s custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage the presentation of your custom interface to the user. System Preferences loads the view provided by your bundle and delivers lifecycle events to your preference pane object. Use that object to respond to interactions with the controls and views of your interface and to save any settings changes to the user’s defaults database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use preference pane bundles only for settings that must be managed separately from your app. For example, use it to manage settings that are shared between multiple apps in the same suite. Manage app-specific preferences using a custom preferences interface.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507018-nspreferencepanecancelunselect": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the preference pane should not be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneCancelUnselect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507018-nspreferencepanecancelunselect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneCancelUnselect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1507018-nspreferencepanecancelunselect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507050-nspreferencepanedounselect": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the preference pane may be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneDoUnselect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507050-nspreferencepanedounselect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneDoUnselect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1507050-nspreferencepanedounselect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638126-nspreferenceprefpaneisavailable": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the system preferences app is available to display your preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePrefPaneIsAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638126-nspreferenceprefpaneisavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePrefPaneIsAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1638126-nspreferenceprefpaneisavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638128-nspreferencepaneupdatehelpmenu": {
+      "abstract": [
+        {
+          "text": "Notifies observers that your help menu content changed. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneUpdateHelpMenu"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638128-nspreferencepaneupdatehelpmenu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneUpdateHelpMenu",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1638128-nspreferencepaneupdatehelpmenu"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638130-nspreferencepaneswitchtopane": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the user selected a new preference pane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneSwitchToPane"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638130-nspreferencepaneswitchtopane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneSwitchToPane",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1638130-nspreferencepaneswitchtopane"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes": {
+      "abstract": [
+        {
+          "text": "Integrate your app’s custom preferences into the System Preferences app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Preference Panes",
+      "type": "topic",
+      "url": "/documentation/preferencepanes"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuAnchorKey": {
+      "abstract": [
+        {
+          "text": "The help book anchor to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrefPaneHelpMenuAnchorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuAnchorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrefPaneHelpMenuAnchorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrefPaneHelpMenuAnchorKey",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nsprefpanehelpmenuanchorkey"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuInfoPListKey": {
+      "abstract": [
+        {
+          "text": "The global help menu items associated with a preference pane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrefPaneHelpMenuInfoPListKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuInfoPListKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrefPaneHelpMenuInfoPListKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrefPaneHelpMenuInfoPListKey",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nsprefpanehelpmenuinfoplistkey"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuTitleKey": {
+      "abstract": [
+        {
+          "text": "The title of a help menu item in a preference pane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrefPaneHelpMenuTitleKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuTitleKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrefPaneHelpMenuTitleKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrefPaneHelpMenuTitleKey",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nsprefpanehelpmenutitlekey"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane": {
+      "abstract": [
+        {
+          "text": "The interface for providing preference panes to System Preferences or other apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePane"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePane"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPreferencePane",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneCancelUnselectNotification": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the preference pane should not be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneCancelUnselectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneCancelUnselectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneCancelUnselectNotification",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepanecancelunselectnotification"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneDoUnselectNotification": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the preference pane may be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneDoUnselectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneDoUnselectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneDoUnselectNotification",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepanedounselectnotification"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneSwitchToPaneNotification": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the user selected a new preference pane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneSwitchToPaneNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneSwitchToPaneNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneSwitchToPaneNotification",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepaneswitchtopanenotification"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUpdateHelpMenuNotification": {
+      "abstract": [
+        {
+          "text": "Notifies observers that your help menu content changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneUpdateHelpMenuNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUpdateHelpMenuNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePaneUpdateHelpMenuNotification",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepaneupdatehelpmenunotification"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePrefPaneIsAvailableNotification": {
+      "abstract": [
+        {
+          "text": "Notifies observers that the system preferences app is available to display your preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePrefPaneIsAvailableNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePrefPaneIsAvailableNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPreferencePrefPaneIsAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferenceprefpaneisavailablenotification"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/preferencepanes-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/preferencepanes-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PreferencePanes Constants",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/preferencepanes-constants"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Preference-Pane-Interface",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane"
+      ],
+      "title": "Preference Pane Interface"
+    },
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638126-nspreferenceprefpaneisavailable",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507050-nspreferencepanedounselect",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507018-nspreferencepanecancelunselect",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638130-nspreferencepaneswitchtopane",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638128-nspreferencepaneupdatehelpmenu"
+      ],
+      "title": "Notifications"
+    },
+    {
+      "anchor": "Help-Menu-Keys",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuInfoPListKey",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuTitleKey",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuAnchorKey"
+      ],
+      "title": "Help Menu Keys"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/preferencepanes-constants"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Preference-Pane-Interface",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane"
+              ],
+              "title": "Preference Pane Interface"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638126-nspreferenceprefpaneisavailable",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePrefPaneIsAvailableNotification",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507050-nspreferencepanedounselect",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneDoUnselectNotification",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1507018-nspreferencepanecancelunselect",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneCancelUnselectNotification",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638130-nspreferencepaneswitchtopane",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneSwitchToPaneNotification",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1638128-nspreferencepaneupdatehelpmenu",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUpdateHelpMenuNotification"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Help-Menu-Keys",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuInfoPListKey",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuTitleKey",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPrefPaneHelpMenuAnchorKey"
+              ],
+              "title": "Help Menu Keys"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/preferencepanes-constants"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPrefPaneHelpMenuInfoPListKey/title",
+          "value": "NSPrefPaneHelpMenuInfoPListKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPrefPaneHelpMenuInfoPListKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrefPaneHelpMenuInfoPListKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPrefPaneHelpMenuTitleKey/title",
+          "value": "NSPrefPaneHelpMenuTitleKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPrefPaneHelpMenuTitleKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrefPaneHelpMenuTitleKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane/title",
+          "value": "NSPreferencePane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPrefPaneHelpMenuAnchorKey/title",
+          "value": "NSPrefPaneHelpMenuAnchorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPrefPaneHelpMenuAnchorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrefPaneHelpMenuAnchorKey"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/preferencepanes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/preferencepanes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

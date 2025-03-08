@@ -1,0 +1,567 @@
+{
+  "abstract": [
+    {
+      "text": "Releases SBP2's reference to the command buffers.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1813085,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOFireWireSBP2ORB"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "releaseCommandBuffers"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual IOReturn releaseCommandBuffers("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " void ); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns KIOReturnSuccess if the page table was cleared successfully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a page table with one of the variants of setCommandBuffers. SBP2 holds on to a reference to the buffers until this method is called. This means that if a command completed and you manipulated the memory descriptor or released the buffers without calling this method you could leave FW in an inconsistent state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable": {
+      "abstract": [
+        {
+          "text": "Allocates memory for the page table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocatePageTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable": {
+      "abstract": [
+        {
+          "text": "Frees up memory allocated for the page table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deallocatePageTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor": {
+      "abstract": [
+        {
+          "text": "Returns the memory descriptor representing the command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags": {
+      "abstract": [
+        {
+          "text": "Sets configuration flags for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration": {
+      "abstract": [
+        {
+          "text": "Gets the command generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout": {
+      "abstract": [
+        {
+          "text": "Gets the timeout of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813023-getlogin": {
+      "abstract": [
+        {
+          "text": "Gets the login associated with this ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813023-getlogin",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813023-getlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize": {
+      "abstract": [
+        {
+          "text": "Gets max payload size for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress": {
+      "abstract": [
+        {
+          "text": "Returns the FireWire address of this ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getORBAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon": {
+      "abstract": [
+        {
+          "text": "Returns the refCon set with setRefCon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64": {
+      "abstract": [
+        {
+          "text": "Returns the 64 bit refCon set with setRefCon64.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRefCon64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813072-release": {
+      "abstract": [
+        {
+          "text": "Primary implementation of the release mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813072-release",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813072-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers": {
+      "abstract": [
+        {
+          "text": "Releases SBP2's reference to the command buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "releaseCommandBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints": {
+      "abstract": [
+        {
+          "text": "Configures page table generation parameters",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setBufferConstraints",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock": {
+      "abstract": [
+        {
+          "text": "Sets the command block portion of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBlock(IOMemoryDescriptor *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock": {
+      "abstract": [
+        {
+          "text": "Sets the command block portion of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBlock(void *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffersAsRanges(IOMemoryDescriptor *, UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffersAsRanges(IOVirtualRange *, UInt32, IODirection, task_t, UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of 64 bit ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffersAsRanges64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags": {
+      "abstract": [
+        {
+          "text": "Sets configuration flags for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration": {
+      "abstract": [
+        {
+          "text": "Sets the command generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout": {
+      "abstract": [
+        {
+          "text": "Sets the timeout of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize": {
+      "abstract": [
+        {
+          "text": "Sets max payload size for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon": {
+      "abstract": [
+        {
+          "text": "Sets the ORB refCon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64": {
+      "abstract": [
+        {
+          "text": "Sets the ORB refCon as a 64 bit value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRefCon64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813023-getlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813072-release",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

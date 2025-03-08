@@ -1,0 +1,1922 @@
+{
+  "abstract": [
+    {
+      "text": "Review predefined environment variables you use in custom build scripts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Environment-Variable-Reference"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Environment variable reference"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With custom workflows, you can tailor Xcode Cloud to your needs. When you create a custom workflow, you configure the temporary build environment Xcode Cloud uses, start conditions, actions, and other settings. However, you may need to perform custom tasks, for example, installing a third-party tool or uploading a build’s artifacts to your server. To achieve this, Xcode Cloud supports running custom shell scripts, referred to as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom build scripts",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud includes a set of predefined environment variables that you can use to write flexible custom build scripts with advanced control flows. For example, access the ",
+              "type": "text"
+            },
+            {
+              "code": "CI_XCODEBUILD_ACTION",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable in your script to determine which action is running and use this information to run a specific command. You can also use the absence of a variable to change your custom build script’s control flow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In addition to predefined environment variables, you can set custom environment variables in a workflow’s Environment section and access them in your custom build scripts or test actions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using custom build scripts and accessing environment variables, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Variables-that-are-always-available",
+          "level": 3,
+          "text": "Variables that are always available",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following environment variables are available every time Xcode Cloud starts a build, no matter which actions or start conditions you configure for a workflow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean value that evaluates to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TRUE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " when the custom build script runs in Xcode Cloud. Use it to only run the build script when Xcode Cloud builds your project or workspace. See also ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_XCODE_CLOUD",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string that uniquely identifies the current build, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "12345678-ABCD-DEFG-1234-012345ABCDEF",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_BUILD_ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of the current build, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "42",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_BUILD_NUMBER",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A URL to the Xcode Cloud build in App Store Connect.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_BUILD_URL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The bundle ID of the product, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "com.example.appname",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_BUNDLE_ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Git commit hash that Xcode Cloud uses for the current build.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_COMMIT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to the directory that contains your project’s derived data.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_DERIVED_DATA_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The location of the source code in the temporary build environment cloned from the primary repository specified in the workflow, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "/Volumes/workspace/repository",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PRIMARY_REPOSITORY_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the workflow’s product.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PRODUCT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string that uniquely identifies the product, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "12345678-ABCD-DEFG-1234-012345ABCDEF",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Use it to distinguish between products in the same project or workspace.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PRODUCT_ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The platform (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "iOS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "macOS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "tvOS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "watchOS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") for the current action.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PRODUCT_PLATFORM",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to the Xcode project or workspace in the temporary build environment.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PROJECT_FILE_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The start condition that started the build. Available values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "manual",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "manual_rebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "push",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "pr_open",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "pr_update",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "schedule",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_START_CONDITION",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ID of your Apple Development team, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ABCDE12345",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TEAM_ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the workflow, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Default Workflow",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Use this variable to run commands only for a specific workflow.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_WORKFLOW",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string that uniquely identifies the workflow, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "12345678-ABCD-DEFG-1234-012345ABCDEF",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_WORKFLOW_ID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The location of the workspace used for cloning source code and storing artifacts, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "/Volumes/workspace",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_WORKSPACE_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean value that evaluates to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "TRUE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " when the custom build script runs in Xcode Cloud. Use it to only run the script content when Xcode Cloud builds your project or workspace.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_XCODE_CLOUD",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the Xcode project or workspace.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_XCODE_PROJECT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The scheme that the current action uses.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_XCODE_SCHEME",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command that Xcode Cloud is about to perform. Possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "analyze",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "archive",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "build",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "build-for-testing",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "test-without-building",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_XCODEBUILD_ACTION",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The exit code of the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command. This variable is available after Xcode Cloud runs an action’s corresponding ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command. An exit code of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " indicates that the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command succeeded.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_XCODEBUILD_EXIT_CODE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud builds your project using temporary build environments that use an HTTP proxy and makes the standard ",
+                  "type": "text"
+                },
+                {
+                  "code": "HTTP_PROXY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "HTTPS_PROXY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " environment variables available. Many tools respect those variables and use them to change their settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Variables-for-specific-start-conditions",
+          "level": 3,
+          "text": "Variables for specific start conditions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The availability of the following environment variables depends on the workflow’s start condition you configure. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "CI_PULL_REQUEST_NUMBER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is only available if the Pull Request Change start condition started the build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Variable-for-branch-changes",
+          "level": 4,
+          "text": "Variable for branch changes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the source branch that Xcode Cloud checked out for the current build, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "main",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_BRANCH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Variable-for-tag-changes",
+          "level": 4,
+          "text": "Variable for tag changes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the tag that Xcode Cloud checked out for the current build, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "release-1.1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TAG",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Variable-for-branch-changes-and-tag-changes",
+          "level": 4,
+          "text": "Variable for branch changes and tag changes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The canonical Git reference that contains the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_COMMIT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "refs/heads/bug-fix",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for a build from the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "bug-fix",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " branch and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "refs/tags/release-1.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " from the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "release-1.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_GIT_REF",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Variables-for-pull-request-changes",
+          "level": 4,
+          "text": "Variables for pull request changes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The URL to the pull request’s website.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_HTML_URL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pull request’s number, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "42",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_NUMBER",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pull request’s source branch, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "feature/feature-12345",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_SOURCE_BRANCH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Git commit hash of a pull request’s source. It’s the same value as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_COMMIT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_SOURCE_COMMIT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The full name of a pull request’s source repository, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "example/fork-of-example-framework",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If the pull request involves only one repository, the variable’s value is the same as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_PULL_REQUEST_TARGET_REPO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_SOURCE_REPO",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pull request’s target branch, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "main",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_TARGET_BRANCH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The most recent Git commit hash of the pull request’s target branch. The CI service tests your changes against the merge of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_PULL_REQUEST_TARGET_COMMIT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_PULL_REQUEST_SOURCE_COMMIT",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_TARGET_COMMIT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The full name of the pull request’s target repository, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "example/original-repository-of-example-framework",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If the pull request involves only one repository, the variable’s value is the same as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "CI_PULL_REQUEST_SOURCE_REPO",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_PULL_REQUEST_TARGET_REPO",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Variables-for-specific-actions",
+          "level": 3,
+          "text": "Variables for specific actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The availability of the following environment variables depends on the action Xcode Cloud performs. For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "CI_ARCHIVE_PATH",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is only available when Xcode Cloud performs an archive action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Variables-for-test-actions",
+          "level": 4,
+          "text": "Variables for test actions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to the test action’s result bundle (",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".xcresult",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ").",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_RESULT_BUNDLE_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The device type of the simulated device you choose as the test action’s destination, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "iPhone 11",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TEST_DESTINATION_DEVICE_TYPE",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The OS version of the simulated device you choose as the test action’s destination, for example, ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "iOS 13.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TEST_DESTINATION_RUNTIME",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string that uniquely identifies the simulated device you choose as the test action’s destination.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TEST_DESTINATION_UDID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of the test plan that the test action uses. This variable is only available if you use test plans.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TEST_PLAN",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to the directory that contains your project’s test products that Xcode Cloud creates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_TEST_PRODUCTS_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud makes all the environment variables for test actions available to the processes that execute your tests, known as ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "test runners",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ". This includes environment variables set by the system as well as any custom environment variables you set in the Environment section of your workflow. When executing your test action, Xcode Cloud adds the prefix ",
+                  "type": "text"
+                },
+                {
+                  "code": "TEST_RUNNER_",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to each variable’s name, which is required by ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcodebuild",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the test runner process to access each variable by its original name. For more information on using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TEST_RUNNER_",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " prefix on your environment variables when running ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcodebuild",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", see the Environment Variables section of ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcodebuild",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "x-man-page://1/xcodebuild",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Variables-for-archive-actions",
+          "level": 4,
+          "text": "Variables for archive actions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to an exported archive that’s code-signed for Ad Hoc distribution.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_AD_HOC_SIGNED_APP_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to an exported archive that’s code-signed for TestFlight distribution and eligible for release on the App Store.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_APP_STORE_SIGNED_APP_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to the exported app archive that Xcode Cloud creates when it runs an archive action.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_ARCHIVE_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to an exported app archive that’s code-signed for development distribution.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_DEVELOPMENT_SIGNED_APP_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path to an exported app archive that’s code-signed using the Developer ID certificate. Use Developer ID signing only for Mac apps distributed outside the Mac App Store. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/developer-id/",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CI_DEVELOPER_ID_SIGNED_APP_PATH",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts": {
+      "abstract": [
+        {
+          "text": "Extend your Xcode Cloud workflows with custom build scripts that perform custom tasks or install additional tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing custom build scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-custom-build-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/developer-id/": {
+      "identifier": "https://developer.apple.com/developer-id/",
+      "title": "Developer ID",
+      "titleInlineContent": [
+        {
+          "text": "Developer ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/developer-id/"
+    },
+    "x-man-page://1/xcodebuild": {
+      "identifier": "x-man-page://1/xcodebuild",
+      "title": "man page",
+      "titleInlineContent": [
+        {
+          "text": "man page",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-man-page://1/xcodebuild"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-build-scripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts"
+      ],
+      "title": "Custom build scripts"
+    }
+  ]
+}

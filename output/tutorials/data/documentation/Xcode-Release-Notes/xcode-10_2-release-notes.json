@@ -1,0 +1,5002 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_2-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Xcode 10.2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 10.2 includes SDKs for iOS 12.2, watchOS 5.2, macOS 10.14.4, and tvOS 12.2.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 10.2 supports on-device debugging for iOS 8 and later, tvOS 9 and later, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS 2 and later. Xcode 10.2 requires a Mac running macOS 10.14.3 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now supports downloading using macOS content caching. For information about",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "macOS content caching, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/mac-help/about-content-caching-on-mac-mchl9388ba1b/mac",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (12926899)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue where uploads to the App Store wouldn’t include symbol information. (46242083)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-Clang-Compiler",
+          "level": 3,
+          "text": "Apple Clang Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-Watomic-implicit-seq-cst",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a new warning, off by default, that warns when C",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_Atomic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "__sync_*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are used with the implicit, sequentially-consistent ordering.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Most codebases use sequential consistency by default, but some demand that developers",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "use explicit ordering everywhere. This warning is for the latter group. (28172966)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A new diagnostic identifies framework headers that use quote includes instead of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "framework style includes. The warning is off by default but you can enable it by",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "passing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-Wquoted-include-in-framework-header",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (37077034)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-Wmemset-transposed-args",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a new warning that diagnoses calls to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "memset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "have the second and third arguments transposed. For example, the following call is",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "diagnosed with the new warning: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "memset(buf, sizeof(buf), 0)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (42360478)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The constructors for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::pair",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now marked ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "noexcept",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " conditionally on whether",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the corresponding constructors of its members are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "noexcept",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This is a conforming",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "extension that has potential performance benefits in case an operation can be made",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "faster for types that don’t throw exceptions on construction. (29537079)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The warning for using a non-const callable predicate in a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::map",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::set",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "now shows the point of instantiation of the faulty container instead of an unrelated",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "implementation detail. (41370747)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<experimental/any>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<experimental/optional>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " headers are deprecated in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "favor of their C++17 counterparts: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<any>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<optional>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". They will be removed",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in a future release of Xcode, and you shouldn’t rely on their presence. (46903112)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The usage of inlining macros to control the visibility of symbols in libc++ headers",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "has been removed in favor of a better solution. This should result in code size and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "performance improvements in code that includes libc++ headers, and a dramatic improvement",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the debugging experience when using libc++. (47259325)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Public headers in a framework might mistakenly ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#import",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#include",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " private",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "headers, which causes layering violations and potential module cycles. There’s a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "new diagnostic that reports such violations. It’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OFF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " by default in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is controlled by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-Wframework-include-private-from-public",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "  flag. (38712182)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The use of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@import",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in framework headers prevent headers being used without modules.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "A new diagnostic detects the use of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@import",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in framework headers when you pass",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-fmodules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag. The diagnostic is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OFF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " by default in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and is controlled",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-Watimport-in-framework-header",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag. (39192894)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Previously, omitting the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword when declaring a module for a framework",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "didn’t affect compilation but silently did the wrong thing. A new diagnostic,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-Wincomplete-framework-module-declaration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and a new fix-it suggests adding",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the appropriate keyword. This warning is on by default when you pass the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-fmodules",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " flag to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (39193062)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a data race condition that occurred when checking whether a future has been",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "attached to a promise in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::async",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The issue was resolved for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::async",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "returning a non-void future, however the issue remains for calls that return",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::future<void>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (42548261)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Linking is successful even if Incremental LTO is enabled using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-flto=thin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " when",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you invoke ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clang",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the command line to compile and link in a single",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "invocation. (47297739)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inverted character classes in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "std::regex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[\\S]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", are now handled",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "correctly. (43060054)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dsymutil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " no longer exhausts system memory on large projects. (41422573)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Asset-Catalog",
+          "level": 3,
+          "text": "Asset Catalog",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that affected app compatibility with iOS 9.0, 9.1, and 9.2 when",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "distributing an app for local or enterprise distribution. App asset catalogs built",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "using Xcode 10 with a deployment target of iOS 9.0, 9.1 or 9.2 produced content",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "incompatible with the runtimes of those iOS versions when distributed using",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "local or enterprise distribution. Rebuilding the app with Xcode 10.2 resolves",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "this issue. (46893768, 44535967)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image slicing mode is improved in Dark Mode. (39388416)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-System",
+          "level": 3,
+          "text": "Build System",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implicit Dependencies now supports finding dependencies in Other Linker Flags for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "linked frameworks and libraries specified with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-weak_framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-reexport_framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-lazy_framework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-weak-l",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-reexport-l",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-lazy-l",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-l",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (7879587)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re building a framework containing Swift code and using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "lipo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to create",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a binary that supports both device and simulator platforms, you must also combine",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the generated ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Framework-Swift.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " headers for each platform to create a header that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "supports both device and simulator platforms. (48635615)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For example, if you’ve built:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "iOS/Framework.framework",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "iOS Simulator/Framework.framework",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Take:",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "iOS/Framework.framework/Headers/Framework-Swift.h",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "iOS Simulator/Framework.framework/Framework-Swift.h",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Create a new:",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "iOS + iOS Simulator/Framework.framework/Headers/Framework-Swift.h",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The contents of the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Framework-Swift.h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " should be:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "#if TARGET_OS_SIMULATOR",
+                    "<contents of original iOS Simulator/Framework.framework/Framework-Swift.h>",
+                    "#else",
+                    "<contents of original iOS/Framework.framework/Framework-Swift.h>",
+                    "#endif"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "External targets are properly ordered when used as a target dependency. (44775299)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that caused Xcode to process PNG and JPEG files as TIFF files",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "when the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "COMBINE_HIDPI_IMAGES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "APPLY_RULES_IN_COPY_FILES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " settings were",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "enabled. (44623214)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OTHER_INPUT_FILE_FLAGS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " build setting—which propagates custom flags for source",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "files—is now available to custom rule scripts when using the new build",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "system. (46067251)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A recursive inclusion cycle in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".xcconfig",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files no longer crashes the build system. (42023748)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Per-file flags defined for Core Data model files in a target build phase are now",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "passed to the Core Data compiler. (42919919)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Clang-Static-Analyzer",
+          "level": 3,
+          "text": "Clang Static Analyzer",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The static analyzer now warns when a C++ object is used after its contents are",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "moved unless the object is reset to a known state before it’s used. (41349073)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The static analyzer now checks for violations of IOKit and libkern reference counting",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "rules. These violations can lead to leaks and use-after-free issues. (46359592)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Debugging",
+          "level": 3,
+          "text": "Debugging",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIStackView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties are now presented",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the view debugger object inspector. (36351873)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can now automatically capture a memory graph if a memory resource exception",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is encountered while debugging. You can enable memory graph captures in the Diagnostics",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "tab of the scheme’s run settings. (45285932)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS and watchOS, Xcode shows the memory limit for running apps in the Memory",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Report as you approach the limit. Use Instruments and Xcode Memory Debugging to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "optimize your app to have the smallest possible memory footprint. (40556954)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view debugger presents a more compact 3D layout. (43523921)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The speed of showing disassembly in the Assistant Editor is improved. (31633031)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Documentation-Viewer",
+          "level": 3,
+          "text": "Documentation Viewer",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Documentation for symbols can be filtered by SDK availability, introduced version,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and deprecation. Documentation can also be filtered to show only articles or sample",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "code. For example, you can filter the documentation to show all of the sample code",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in a framework like UIKit. (45236860)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Instruments",
+          "level": 3,
+          "text": "Instruments",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instruments may crash when you profile Swift code in a watchOS app. (47368181)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Interface-Builder",
+          "level": 3,
+          "text": "Interface Builder",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-clicking in a storyboard no longer zooms. Instead, zoom using a pinch gesture",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on the trackpad or hold Option and scroll. (29139870)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interface Builder for Apple TV supports user interface elements exposed by the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/TVUIKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework. (35868606)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when checking the “Bind to” checkbox in the Bindings",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "inspector after reopening a storyboard. (33348238)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The rotate button in the Interface Builder preview is visible in Dark Mode. (42396497)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Actions in Swift files are now correctly parsed by Interface Builder when annotated",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@objc @IBAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (25465675)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Images with an alignment rectangle specified in the asset catalog correctly render",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the Interface Builder canvas. (46595020)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved the intrinsic size of images in 2x and 3x slots in the Interface Builder",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "canvas if the file name inside the asset catalog doesn’t end in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@2x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@3x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (44759471)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changes to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " made using the inspector",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "are now reliably reflected in the canvas without a delay. (30196881)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ibtool --export-string-file",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " includes localizer hints that are specified on controls",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with instances of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSCell",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (24421623)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that caused images to display as question marks in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "storyboards. (42475635)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Images rendered in the Interface Builder canvas render with the scale factor matching",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the chosen device. (18703159)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Images marked with the template rendering mode in the asset catalog correctly render",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the Interface Builder canvas. (29049562)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Linking",
+          "level": 3,
+          "text": "Linking",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift libraries are now found in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dyld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " cache when the main project isn’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "written in Swift. (48385698)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that caused linker errors to display in the issue navigator",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "as “Linker command failed with exit code 1” rather than displaying the actual",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "error message. (39141740)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "LLDB-Debugger",
+          "level": 3,
+          "text": "LLDB Debugger",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", … shorthands in LLDB expression evaluation inside",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "closures. (20719448)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "C variable length arrays are now supported in LLDB. (39606394)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The LLDB debugger has a new command alias, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "v",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", for the “frame variable” command",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to print variables in the current stack frame. Because it bypasses the expression",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "evaluator, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "v",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " can be a lot faster and should be preferred over ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "p",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "po",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (40066460)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The debugger now resolves the type of generic variables that are bound to private",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "types. (38231646)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "po",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in Swift while debugging a watchOS app now returns correct",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "results. (47162433)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generic variables in inlined generic contexts are now correctly supported by the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "debugger. (28859432)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data formatters for Swift dictionaries and sets are more reliable. (43045289)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Opening a project that uses any deprecated localization identifiers now produces",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a warning for each one used. Selecting one of these warnings presents an assistant",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for migrating files in the associated legacy “lproj” directories to “lproj” directories",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "named for the equivalent modern identifier. If necessary, this process also updates",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the project’s development region to a modern identifier. Migrated projects are compatible",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with older versions of Xcode. (9777671)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now export and import localizations for a project’s development",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "region. (41878212)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now more carefully distinguishes between legacy localization identifiers",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "such as “English” and modern localization identifiers such as “en” and represents",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "them both in both project files and the user interface. (45469882)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enabling Base Internationalization is recommended for all projects, and any projects",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that don’t currently use Base Internationalization are offered an upgrade even if",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "they only have a single localization. The upgraded projects are backward-compatible",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with previous releases of Xcode. (15160454)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now add localizations to a project that doesn’t have any localizable files,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and you aren’t prompted for files to copy to the new localization. (42771349)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Playgrounds",
+          "level": 3,
+          "text": "Playgrounds",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Playgrounds now perform memory safety checks at runtime. Code that violates exclusive",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "access to memory traps with the diagnostic message: “Simultaneous accesses to […],",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "but modification requires exclusive access.” (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://bugs.swift.org/browse/SR-8126",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") (33820622)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/MemorySafety.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://docs.swift.org/swift-book",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that prevented playgrounds from executing. (47226381)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when editing playgrounds that use auxiliary sources. (42097728)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when editing snippets that contain placeholders. (43242401)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that could prevent changes in Interface Builder documents from being",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "reflected in a playground without closing the workspace window. (46830864)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Refactoring",
+          "level": 3,
+          "text": "Refactoring",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The rename refactoring now correctly renames functions that take a single parameter",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with an external argument label, and that have a call site that passes the corresponding",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "argument as a trailing closure. (42162571)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using Refactoring > Rename to rename a document now updates the app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "file to match. (41327509)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved the performance and responsiveness of interactions with simulated devices. (47864185)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that prevented booting a simulated device on a Mac with a large",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "number of simulated devices. (47712686)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved a failure that occurred when dragging multiple contact, photo, or video",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "items onto a simulated device window at the same time. (46736098)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pasteboard synchronization between macOS and simulated iOS devices is more reliable. (46817121)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You’re now only prompted once to authorize microphone access to all simulator devices. (45715977)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Performance and responsiveness when interacting with simulated iPhone XR devices",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "has been improved. (44657262)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Source-Control",
+          "level": 3,
+          "text": "Source Control",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode uses SSH configuration output to determine which SSH key pair should be used",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for authenticating a given remote repository. (47302670)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now supports the use of SSH private keys in the OpenSSH format in addition",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to the PEM format for connecting to Git servers. (40867126)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that caused keychain lookups for an SSH key passphrase to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "fail. (47578552)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Source-Editor",
+          "level": 3,
+          "text": "Source Editor",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The “Fold Methods & Functions” editor menu item folds computed properties in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Swift. (43428274)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion offers ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "get",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "set",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "didSet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "willSet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as possible",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "completions inside computed property declarations. (20957182)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the context of an optional enumeration type, code completion suggests the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "enumeration’s cases in addition to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional/none",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional/some(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (23549753)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code completion doesn’t suggest duplicated delegate method names when overriding",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITableViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods. (21161476)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fix-its that reference different files won’t apply to the current file. (31371021)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text being dragged is shown as a transparent image. (31890166)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The source editor now uses the system accent color for placeholders. (32307338)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The editor won’t fill in a placeholder when typing a newline character directly",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "before the placeholder. (32853933)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash in Swap with Mark if the line containing the mark had been",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "edited. (41874263)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved typing and scrolling performance in the editor when the folding ribbon",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is turned on. (42941556)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed the consistency of line wrapping. (44520372)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that occurred when showing three assistant editors. (45230485)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that occurred when entering a newline with multiple cursors. (45601228)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved the speed of scrolling a source file with folded code when line wrapping",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is turned off. (45712602)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved the display of warnings and issues when using dark themes. (44925116)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find and Replace using a pattern token replaces the matched text with the replacement",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "text instead of the regular expression of the pattern token. (35439088)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved issue that caused a text find to also perform the same find in background",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "windows. (38269600)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Jump to Definition now navigates to the definition of a symbol when the cursor",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is at the end of that symbol. (33203746)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Highlighting many instances of the same symbol is faster. (40698496)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash in Redo with whitespace trimming enabled. (41519769)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that caused source code colors to flash during a build. (42749446)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Jump to Definition displays the file name when listing items from generated system",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "headers. (43581521)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed crash when that occurred when editing code during the code folding",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "animation. (44555624)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved a crash that occurred when using Behaviors > File > Unlock > Run script. (44826462)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/swift-5-release-notes-for-xcode-10_2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Testing",
+          "level": 3,
+          "text": "Testing",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " supports merging multiple coverage reports—and their associated archives—together",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "into an aggregate report and archive. When merging reports together, the aggregate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "report may be inaccurate for source files that changed in between the time that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the original reports were generated. If there were no source changes, the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "aggregate report and archive will be accurate. For more information, see the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " manual page. (38050969)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now supports diffing Xcode coverage reports, which can be used to calculate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "coverage changes over time. For example, to diff the coverage reports ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "before.xccovreport",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "after.xccovreport",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", invoke ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as follows: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xccov diff --json before.xccovreport after.xccovreport",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For more information about the format of the diff, see the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xccov",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " manual page. (43439165)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Static library and framework targets now appear in the coverage report as top-level",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "entries, with line coverage values that are aggregated across all targets that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "include the static library or framework. This also resolves an issue where the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "source files for a static library or framework target would be included in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "coverage report even if the target itself was excluded from code coverage in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the scheme. (22578123)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift initializers appear in the coverage report with no name. (47467864)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recording doesn’t work from Clones when Parallelization is on. (43699252)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The wrong test host app is chosen for a test target when there are multiple test",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "host targets with the same ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PRODUCT_NAME",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (46475115)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Profiling tests don’t behave correctly when test parallelization is enabled. (44836817)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Disable parallel testing while profiling by navigating to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Product > Scheme > Edit Scheme > Test > Info, selecting Options next to your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "test target, and disabling “Execute in parallel”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that caused methods in a Swift source file to be named “Definition",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "at ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ":",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "” in the coverage report. (46432533)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCUIScreen",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now properly implements ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isEqual:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hash",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (32179407)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When clicking the source editor gem for a test method or class that’s present in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "more than one test target, or for a test method that’s inherited by",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "subclasses, Xcode now shows a menu that allows choosing an individual target or",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "class (or all) to run the selected tests in. (45975871)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that could prevent expanding a file in the coverage report",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "view. (44458167)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a test bundle can’t be loaded during testing for some reason—such as a runtime",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "linking failure—Xcode now reports a descriptive error message that describes the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "cause of the failure. This failure is present in the test activity log and appears",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if you’re using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The error is also present in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "structured logs contained in the result bundle. (45242409)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If testing fails due to the test runner crashing on launch, Xcode attempts to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "generate a rich error message that describes the failure. This failure is present",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the test activity log and appears in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stdout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if you’re using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The error is also present in the structured logs contained in the result",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "bundle. (29148418)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is terminated by a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SIGINT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signal while tests are running, a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "valid result bundle is written to disk and contains the results from the tests",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that completed before the termination. Similarly, if you cancel running tests",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in Xcode, a valid result bundle is generated that contains the results of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "already-completed tests. (45022325)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Second instances of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or Xcode don’t delete simulator clones created",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "during parallel distributed testing. (40738122)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test targets that don’t specify a test host app and use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xctest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "tool to run tests now honor customized language and region settings in a scheme’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Test action. (43139603)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue that could cause incorrect code coverage for a file included",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in multiple targets. (40409346)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Crash reports collected during testing no longer omit important fields such as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the termination reason and description. (44405884)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Headers that aren’t explicitly included in a target’s Headers Build Phase no",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "longer appear in the target’s entry in the coverage report. This resolves an",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "issue where unwanted headers could appear in the coverage report for a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "target—such as from a linked framework or library. If you notice that a coverage",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "report is missing headers, make sure they’re included in the corresponding",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "target’s Headers Build Phase. (36187447)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Projects with multiple test targets that each contain a test class that inherits",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from a shared ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass no longer",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "show nonexistent runtime (“rT”) tests for test methods from other targets. (46042417)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/swift-5-release-notes-for-xcode-10_2": {
+      "abstract": [
+        {
+          "text": "Update your code to use new language features and test your apps against changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/swift-5-release-notes-for-xcode-10_2",
+      "kind": "article",
+      "role": "article",
+      "title": "Swift 5 Release Notes for Xcode 10.2",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/swift-5-release-notes-for-xcode-10_2"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode 10 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-10-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-10_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10.2.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-10_2_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-10_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSCell": {
+      "abstract": [
+        {
+          "text": "A mechanism for displaying text or images in a view object without the overhead of a full [`NSView`](doc://com.apple.appkit/documentation/AppKit/NSView) subclass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCell"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSCell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCell",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSCell"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSImageView": {
+      "abstract": [
+        {
+          "text": "A display of image data in a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImageView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImageView"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Optional/none": {
+      "abstract": [
+        {
+          "text": "The absence of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional/none",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Optional.none",
+      "type": "topic",
+      "url": "/documentation/Swift/Optional/none"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Optional/some(_:)": {
+      "abstract": [
+        {
+          "text": "The presence of a value, stored as `Wrapped`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional/some(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Optional.some(_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Optional/some(_:)"
+    },
+    "doc://com.apple.documentation/documentation/TVUIKit": {
+      "abstract": [
+        {
+          "text": "Show common user interface elements from Apple TV in your native app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVUIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVUIKit",
+      "type": "topic",
+      "url": "/documentation/TVUIKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIStackView": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for laying out a collection of views in either a column or a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIStackView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIStackView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIStackView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITableViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITableViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITableViewController"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase": {
+      "abstract": [
+        {
+          "text": "The primary class for defining test cases, test methods, and performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTestCase",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCUIScreen": {
+      "abstract": [
+        {
+          "text": "A physical screen attached to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCUIScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCUIScreen",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCUIScreen"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://bugs.swift.org/browse/SR-8126": {
+      "identifier": "https://bugs.swift.org/browse/SR-8126",
+      "title": "SR-8126",
+      "titleInlineContent": [
+        {
+          "text": "SR-8126",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bugs.swift.org/browse/SR-8126"
+    },
+    "https://docs.swift.org/swift-book": {
+      "identifier": "https://docs.swift.org/swift-book",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book"
+    },
+    "https://docs.swift.org/swift-book/LanguageGuide/MemorySafety.html": {
+      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/MemorySafety.html",
+      "title": "Memory Safety",
+      "titleInlineContent": [
+        {
+          "text": "Memory Safety",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/LanguageGuide/MemorySafety.html"
+    },
+    "https://support.apple.com/guide/mac-help/about-content-caching-on-mac-mchl9388ba1b/mac": {
+      "identifier": "https://support.apple.com/guide/mac-help/about-content-caching-on-mac-mchl9388ba1b/mac",
+      "title": "About content caching on Mac",
+      "titleInlineContent": [
+        {
+          "text": "About content caching on Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/mac-help/about-content-caching-on-mac-mchl9388ba1b/mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-10",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-10-release-notes"
+      ],
+      "title": "Xcode 10"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Release-Notes",
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/swift-5-release-notes-for-xcode-10_2"
+      ],
+      "title": "Release Notes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSCell/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCell"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIStackView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCUIScreen/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCUIScreen"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITableViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)XCTest",
+              "text": "XCTest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImageView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

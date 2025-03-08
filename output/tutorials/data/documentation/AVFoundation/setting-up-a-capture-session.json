@@ -1,0 +1,2132 @@
+{
+  "abstract": [
+    {
+      "text": "Configure input devices, output media, preview views, and basic settings before capturing photos or video.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/setting-up-a-capture-session"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up a Capture Session"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the basis for all media capture in iOS and macOS. It manages your app’s exclusive access to the OS capture infrastructure and capture devices, as well as the flow of data from input devices to media outputs. How you configure connections between inputs and outputs defines the capabilities of your capture session. For example, the diagram below shows a capture session that can capture both photos and movies and provides a camera preview, using the iPhone back camera and microphone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2970419",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-Inputs-and-Outputs-to-the-Session",
+          "level": 3,
+          "text": "Connect Inputs and Outputs to the Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All capture sessions need at least one capture input and capture output. Capture inputs (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses) are media sources—typically recording devices like the cameras and microphone built into an iOS device or Mac. Capture outputs (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses) use data provided by capture inputs to produce media, like image and movie files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a camera for video input (to capture photos or movies), select an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and add it to the session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "captureSession.beginConfiguration()",
+            "let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,",
+            "                                          for: .video, position: .unspecified)",
+            "guard",
+            "    let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),",
+            "    captureSession.canAddInput(videoDeviceInput)",
+            "    else { return }",
+            "captureSession.addInput(videoDeviceInput)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "iOS offers several other ways to select a camera device. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, add outputs for the kinds of media you plan to capture from the camera you’ve selected. For example, to enable capturing photos, add an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let photoOutput = AVCapturePhotoOutput()",
+            "guard captureSession.canAddOutput(photoOutput) else { return }",
+            "captureSession.sessionPreset = .photo",
+            "captureSession.addOutput(photoOutput)",
+            "captureSession.commitConfiguration()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A session can have multiple inputs and outputs. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To record both video and audio in a movie, add inputs for both camera and microphone devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To capture both photos and movies from the same camera, add both ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to your session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/beginConfiguration()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before changing a session’s inputs or outputs, and call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/commitConfiguration()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " after making changes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Display-a-Camera-Preview",
+          "level": 3,
+          "text": "Display a Camera Preview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to let the user see input from the camera before choosing to snap a photo or start video recording, as in the viewfinder of a traditional camera. You can provide such a preview by connecting an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your capture session, which displays a live video feed from the camera whenever the session is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a Core Animation layer, so you can display and style it in your interface as you would any other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass. The simplest way to add a preview layer to a UIKit app is to define a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/layerClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class PreviewView: UIView {",
+            "    override class var layerClass: AnyClass {",
+            "        return AVCaptureVideoPreviewLayer.self",
+            "    }",
+            "    ",
+            "    /// Convenience wrapper to get layer as its statically known type.",
+            "    var videoPreviewLayer: AVCaptureVideoPreviewLayer {",
+            "        return layer as! AVCaptureVideoPreviewLayer",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, to use the preview layer with a capture session, set the layer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer/session",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.previewView.videoPreviewLayer.session = self.captureSession"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app supports multiple interface orientations, use the preview layer’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer/connection",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the capture session to set a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " matching that of your UI.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Run-the-Capture-Session",
+          "level": 3,
+          "text": "Run the Capture Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve configured inputs, outputs, and previews, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/startRunning()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to let data flow from inputs to outputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With some capture outputs, running the session is all you need to begin media capture. For example, if your session contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you start receiving delivering video frames as soon as the session is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With other capture outputs, you first start the session running, then use the capture output class itself to initiate capture. In a photography app, for example, running the session enables a viewfinder-style preview, but you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to snap a picture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "building-a-camera-app-PageImage-card.png": {
+      "alt": "An illustration of a DLSR camera.",
+      "identifier": "building-a-camera-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/960411afd1a832784abd2a9293ada4c4/building-a-camera-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d739ff6cce86d4349988da7f8417e7d/building-a-camera-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection": {
+      "abstract": [
+        {
+          "text": "An object that represents a connection from a capture input to a capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureConnection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation": {
+      "abstract": [
+        {
+          "text": "An orientation that tells the connection how to rotate a video flowing through it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureVideoOrientation",
+          "text": "AVCaptureVideoOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection/videoOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoOrientation",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureconnection/videoorientation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput": {
+      "abstract": [
+        {
+          "text": "An object that provides media input from a capture device to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDeviceInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedeviceinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for objects that provide input data to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and audio to a QuickTime movie file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMovieFileOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMovieFileOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureMovieFileOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturemoviefileoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession": {
+      "abstract": [
+        {
+          "text": "A capture session that supports simultaneous capture from multiple inputs of the same media type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMultiCamSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureMultiCamSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureMultiCamSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturemulticamsession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for objects that provide media output destinations for a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcaptureoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)": {
+      "abstract": [
+        {
+          "text": "Initiates a photo capture using the specified settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturePhoto"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCapturePhotoSettings",
+          "text": "AVCapturePhotoSettings"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVCapturePhotoCaptureDelegate",
+          "text": "AVCapturePhotoCaptureDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturePhotoWithSettings:delegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturePhoto(with:delegate:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession": {
+      "abstract": [
+        {
+          "text": "An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureSession",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/beginConfiguration()": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of changes to a running capture session’s configuration to perform in a single atomic update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/beginConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/beginconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/commitConfiguration()": {
+      "abstract": [
+        {
+          "text": "Commits one or more changes to a running capture session’s configuration in a single atomic update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commitConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/commitConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commitConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "commitConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/commitconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/startRunning()": {
+      "abstract": [
+        {
+          "text": "Starts the flow of data through the capture pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startRunning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession/startRunning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "startRunning()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturesession/startrunning()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and provides access to video frames for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideodataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that displays video from a camera device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoPreviewLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoPreviewLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureVideoPreviewLayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideopreviewlayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer/connection": {
+      "abstract": [
+        {
+          "text": "An object that describes the connection from the layer to a particular input port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureConnection",
+          "text": "AVCaptureConnection"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer/connection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connection"
+        }
+      ],
+      "role": "symbol",
+      "title": "connection",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideopreviewlayer/connection"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer/session": {
+      "abstract": [
+        {
+          "text": "A capture session with visual output to preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureSession",
+          "text": "AVCaptureSession"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoPreviewLayer/session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session"
+        }
+      ],
+      "role": "symbol",
+      "title": "session",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideopreviewlayer/session"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app": {
+      "abstract": [
+        {
+          "text": "Capture photos and record video using the front and rear iPhone and iPad cameras.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app",
+      "images": [
+        {
+          "identifier": "building-a-camera-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCam: Building a camera app",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcam-building-a-camera-app"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces": {
+      "abstract": [
+        {
+          "text": "Identify machine readable codes or faces by using the camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCamBarcode: Detecting Barcodes and Faces",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcambarcode-detecting-barcodes-and-faces"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras": {
+      "abstract": [
+        {
+          "text": "Simultaneously record the output from the front and back cameras into a single movie file by using a multi-camera capture session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVMultiCamPiP: Capturing from Multiple Cameras",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmulticampip-capturing-from-multiple-cameras"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup": {
+      "abstract": [
+        {
+          "text": "Configure built-in cameras and microphones, and external capture devices, for media capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capture setup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-setup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device": {
+      "abstract": [
+        {
+          "text": "Select the front or back camera, or use advanced features like the TrueDepth camera or dual camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/choosing-a-capture-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Capture Device",
+      "type": "topic",
+      "url": "/documentation/avfoundation/choosing-a-capture-device"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Operate the camera in Split View, Slide Over, Picture in Picture, and Stage Manager modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the camera while multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/layerClass": {
+      "abstract": [
+        {
+          "text": "Returns the class used to create the layer for instances of this class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/layerClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layerClass",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/layerClass"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2970419": {
+      "alt": "Block diagram of detailed capture session architecture example: separate AVCaptureDeviceInput objects for camera and microphone connect, through AVCaptureConnection objects managed by AVCaptureSession, to AVCapturePhotoOutput, AVCaptureMovieFileOutput, and AVCaptureVideoPreviewLayer.",
+      "identifier": "media-2970419",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b143e0c97baf50234869f35d89f9af0/media-2970419.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e23e8340d74e845fe9cb1ab651f54073/media-2970419@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Capture-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection"
+      ],
+      "title": "Capture sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Capture-sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AVKit/accessing-the-camera-while-multitasking-on-ipad",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avcam-building-a-camera-app",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avmulticampip-capturing-from-multiple-cameras",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avcambarcode-detecting-barcodes-and-faces",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureSession",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureMultiCamSession",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureInput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureConnection"
+              ],
+              "title": "Capture sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/title",
+          "value": "AVCaptureMovieFileOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMovieFileOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMovieFileOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/title",
+          "value": "AVCaptureDeviceInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection/title",
+          "value": "AVCaptureConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1beginConfiguration()/title",
+          "value": "beginConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1beginConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer/title",
+          "value": "AVCaptureVideoPreviewLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoPreviewLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoPreviewLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer~1session/title",
+          "value": "session"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer~1session/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "session"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/title",
+          "value": "AVCaptureVideoDataOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput/title",
+          "value": "AVCaptureInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureOutput/title",
+          "value": "AVCaptureOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1layerClass/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Class",
+              "text": "Class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "layerClass"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/title",
+          "value": "capturePhotoWithSettings:delegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput~1capturePhoto(with:delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "capturePhotoWithSettings:delegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMultiCamSession/title",
+          "value": "AVCaptureMultiCamSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMultiCamSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMultiCamSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureMultiCamSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureMultiCamSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1startRunning()/title",
+          "value": "startRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1startRunning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoOrientation/title",
+          "value": "videoOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureConnection~1videoOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/title",
+          "value": "AVCaptureSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1commitConfiguration()/title",
+          "value": "commitConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureSession~1commitConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commitConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer~1connection/title",
+          "value": "connection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoPreviewLayer~1connection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "connection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/setting-up-a-capture-session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/setting-up-a-capture-session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

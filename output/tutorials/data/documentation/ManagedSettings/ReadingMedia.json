@@ -1,0 +1,779 @@
+{
+  "abstract": [
+    {
+      "text": "Read the media rating on a device and determine what media to display on your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ManagedSettings"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Confirming the Effective TV and Movie Ratings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parental control app sets the media rating that establishes the parameters of the content the user can view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app reads the rating to determine what media to display, so you don’t need to incorporate monitoring with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or authorize your app through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FamilyControls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-the-Media-Setting",
+          "level": 3,
+          "text": "Read the Media Setting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the media setting, first create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to get the current movie rating settings on a device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let store = ManagedSettingsStore()",
+            "// Access the ManagedSettingsStore.",
+            "",
+            "switch(store.effectiveMaximumMovieRating) {",
+            "case 1000: ",
+            "// Show all content.",
+            "case 300:",
+            "// Show content up through PG-13.",
+            "// And so on.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code example identifies the maximum movie rating the user can view on their device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This number can range from ",
+              "type": "text"
+            },
+            {
+              "code": "0-1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A device that has no predetermined settings prints ",
+              "type": "text"
+            },
+            {
+              "code": "1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to mean all media can be viewed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The number ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that the user can’t view any movies.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about what each rating means for your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/MediaSettings/maximumMovieRating-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because your app only reads media settings, you don’t need to request ",
+                  "type": "text"
+                },
+                {
+                  "code": "Family Controls",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " authorization from the user or monitor device activity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the example above shows how to view the maximum movie ratings, the example can translate to checking the effective maximum TV show ratings as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows how to get the current TV show rating on a device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let store = ManagedSettingsStore()",
+            "// Access the ManagedSettingsStore.",
+            "",
+            "switch(store.effectiveMaximumTVRating) {",
+            "case 1000: ",
+            "// Show all content.",
+            "case 300:",
+            "// Show content up through TV-G.",
+            "// And so on.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Both ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumMovieRating",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumTVShowRating",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " are ",
+                  "type": "text"
+                },
+                {
+                  "code": "@Published",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and can change at any time. Keep track of the changes to these properties in your media app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Monitor-the-Effective-Rating",
+          "level": 3,
+          "text": "Monitor the Effective Rating",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parental controls app can change the effective rating at any time. To reflect the changes, make sure to incorporate them into your media app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use publishers to subscribe to updates on changes to a rating. Managed Settings uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to publish to media changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows how to subscribe for changes to ",
+              "type": "text"
+            },
+            {
+              "code": "$effectiveMaximumMovieRating",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let maximumMovieRating = store.effectiveMaximumMovieRating",
+            "// Read the effective media setting.",
+            "",
+            "// Subscribe for changes.",
+            "self.movieRatingCancellable = store.$effectiveMaximumMovieRating.sink { effectiveMaximumMovieRating in",
+            "// Handle the change to effectiveMaximumMovieRating.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement in your app to subscribe for TV and Movie rating changes. For more information on how to set up entitlements, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings": {
+      "abstract": [
+        {
+          "text": "Access and change settings with your app while maintaining user privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ConnectionWithFrameworks": {
+      "abstract": [
+        {
+          "text": "Empower parents and guardians to configure constraints on other devices while preserving the family’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ConnectionWithFrameworks",
+      "kind": "article",
+      "role": "article",
+      "title": "Manage Settings on Devices in a Family Sharing Group",
+      "type": "topic",
+      "url": "/documentation/managedsettings/connectionwithframeworks"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore": {
+      "abstract": [
+        {
+          "text": "A data store that applies settings to the current user or device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedSettingsStore"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedSettingsStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedSettingsStore",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating": {
+      "abstract": [
+        {
+          "text": "The movie rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$effectiveMaximumMovieRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$effectiveMaximumMovieRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/$effectivemaximummovierating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating": {
+      "abstract": [
+        {
+          "text": "The television show rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$effectiveMaximumTVShowRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$effectiveMaximumTVShowRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/$effectivemaximumtvshowrating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumMovieRating": {
+      "abstract": [
+        {
+          "text": "The movie rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveMaximumMovieRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumMovieRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "effectiveMaximumMovieRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/effectivemaximummovierating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumTVShowRating": {
+      "abstract": [
+        {
+          "text": "The TV rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveMaximumTVShowRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumTVShowRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "effectiveMaximumTVShowRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/effectivemaximumtvshowrating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/MediaSettings/maximumMovieRating-swift.property": {
+      "abstract": [
+        {
+          "text": "The maximum movie rating the user may view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumMovieRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/MediaSettings/maximumMovieRating-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumMovieRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/mediasettings/maximummovierating-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can request or revoke authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Family Controls",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.family-controls"
+    },
+    "doc://com.apple.documentation/documentation/DeviceActivity": {
+      "abstract": [
+        {
+          "text": "Monitor device activity with your app extension while maintaining user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceActivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceActivity",
+      "type": "topic",
+      "url": "/documentation/DeviceActivity"
+    },
+    "doc://com.apple.documentation/documentation/FamilyControls": {
+      "abstract": [
+        {
+          "text": "Authorize your app to provide parental controls on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FamilyControls",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FamilyControls",
+      "type": "topic",
+      "url": "/documentation/FamilyControls"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ConnectionWithFrameworks"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

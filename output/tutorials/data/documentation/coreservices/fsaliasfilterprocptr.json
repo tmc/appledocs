@@ -1,0 +1,379 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to an alias filtering callback function that filters out possible targets identified by the ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444389-fsmatchaliasbulk",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " function.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/alias_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/fsaliasfilterprocptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1444366,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@FSAliasFilterProcPtr",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "FSAliasFilterProcPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Boolean",
+              "text": "Boolean"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "FSAliasFilterProcPtr"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSRef",
+              "text": "FSRef"
+            },
+            {
+              "kind": "text",
+              "text": " *ref, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Boolean",
+              "text": "Boolean"
+            },
+            {
+              "kind": "text",
+              "text": " *quitFlag, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Ptr",
+              "text": "Ptr"
+            },
+            {
+              "kind": "text",
+              "text": " myDataPtr);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a file system object. When your function is called, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ref",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter points to the possible match.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ref"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On output, set this Boolean flag to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you want to terminate the search.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "quitFlag"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to any customized data that your application passed when it called ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1444389-fsmatchaliasbulk",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This parameter allows your filter function to access any data that your application has set up on its own.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "myDataPtr"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your function should return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that the possible match is to be discarded, or ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that the possible match is to be added to the list of possible targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can write your own filter function to examine possible targets identified by the ",
+              "type": "text"
+            },
+            {
+              "code": "FSMatchAliasBulk",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. The ",
+              "type": "text"
+            },
+            {
+              "code": "FSMatchAliasBulk",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls your filter function each time it identifies a possible match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444389-fsmatchaliasbulk": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444389-fsmatchaliasbulk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMatchAliasBulk",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444389-fsmatchaliasbulk"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/alias_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/alias_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alias Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/alias_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsaliasfilterprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an alias filtering callback function that filters out possible targets identified by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/1444389-fsmatchaliasbulk",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsaliasfilterprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSAliasFilterProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsaliasfilterprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsref"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/fsaliasfilterprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

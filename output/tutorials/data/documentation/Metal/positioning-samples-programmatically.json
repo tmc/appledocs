@@ -1,0 +1,858 @@
+{
+  "abstract": [
+    {
+      "text": "Configure the position of samples when rendering to a multisampled render target.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Positioning Samples Programmatically"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you perform a render pass that uses multisample antialiasing (MSAA) operations, the GPU samples and resolves subpixels using a specific visual pattern. On GPUs that support programmable sample positions, you can change this pattern. Programmable sample positions unlock additional rendering techniques because you can configure them into custom patterns that you reuse or reposition in each render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-Support-for-Programmable-Sample-Positions",
+          "level": 3,
+          "text": "Verify Support for Programmable Sample Positions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all GPUs support programmable sample positions. Check for support by reading the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/areProgrammableSamplePositionsSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on a device object. If this property’s value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the device object uses fixed sample positions that you can’t query or modify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the number of sample positions that the device object supports may vary. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsTextureSampleCount(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to determine if a given number of samples is usable on that device object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-the-Default-Sample-Positions",
+          "level": 3,
+          "text": "Get the Default Sample Positions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Programmable sample positions are set on a 4-bit subpixel grid (16 x 16 subpixels). Floating-point values are in the ",
+              "type": "text"
+            },
+            {
+              "code": "[0.0,1.0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " range along each axis, with the origin ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defined at the top-left corner.  You can set values from ",
+              "type": "text"
+            },
+            {
+              "code": "0/16",
+              "type": "codeVoice"
+            },
+            {
+              "text": " up to ",
+              "type": "text"
+            },
+            {
+              "code": "15/16",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", inclusive, in ",
+              "type": "text"
+            },
+            {
+              "code": "1/16",
+              "type": "codeVoice"
+            },
+            {
+              "text": " increments along each axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3342527",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal uses the same default sample positions on all GPUs that support programmable sample positions. Get the default sample positions for a given sample count by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/getDefaultSamplePositions:count:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, as shown in the code below. Programmable sample positions are defined as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplePosition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLSamplePosition samplePositions[4];",
+            "[_device getDefaultSamplePositions:samplePositions count:4];"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following table and grid show the position index, values, and placement for the default one-sample position. The complete set of default sample positions is described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/getDefaultSamplePositions:count:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Position index",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Position values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0.5, 0.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3342528",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-Sample-Positions-in-a-Render-Pass",
+          "level": 3,
+          "text": "Set the Sample Positions in a Render Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the sample positions in a render pass, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/setSamplePositions:count:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as shown below, passing in the array of sample positions you want to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static const MTLSamplePosition samplePositions[4] = {",
+            "    0.25, 0.25,",
+            "    0.75, 0.25,",
+            "    0.75, 0.75,",
+            "    0.25, 0.75,",
+            "};",
+            "[renderPassDescriptor setSamplePositions:samplePositions count:4];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following grid shows the programmable sample positions in the ",
+              "type": "text"
+            },
+            {
+              "code": "samplePositions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3342526",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/areProgrammableSamplePositionsSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the GPU supports programmable sample positions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "areProgrammableSamplePositionsSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/areProgrammableSamplePositionsSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "programmableSamplePositionsSupported"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "areProgrammableSamplePositionsSupported",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/areprogrammablesamplepositionssupported"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/getDefaultSamplePositions:count:": {
+      "abstract": [
+        {
+          "text": "Retrieves the default sample positions for a specific sample count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDefaultSamplePositions:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/getDefaultSamplePositions:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getDefaultSamplePositions:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getDefaultSamplePositions:count:",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/getdefaultsamplepositions:count:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsTextureSampleCount(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the GPU can sample a texture with a specific number of sample points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsTextureSampleCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsTextureSampleCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsTextureSampleCount:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "supportsTextureSampleCount(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/supportstexturesamplecount(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor": {
+      "abstract": [
+        {
+          "text": "A group of render targets that hold the results of a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/setSamplePositions:count:": {
+      "abstract": [
+        {
+          "text": "Sets the programmable sample positions for a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplePositions:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/setSamplePositions:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplePositions:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSamplePositions:count:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor/setsamplepositions:count:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplePosition": {
+      "abstract": [
+        {
+          "text": "A subpixel sample position for use in multisample antialiasing (MSAA).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSamplePosition"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplePosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSamplePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSamplePosition",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsampleposition"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass": {
+      "abstract": [
+        {
+          "text": "Inform Metal when your app uses programmable sample positions for its depth render targets or copies MSAA depth data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing Data a Pass Makes with Custom Sample Positions for a Subsequent Pass",
+      "type": "topic",
+      "url": "/documentation/metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+    },
+    "media-3342526": {
+      "alt": "Coordinate system diagram showing the subpixel grid on which programmable sample positions are set.",
+      "identifier": "media-3342526",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/880c249cfff2fe84866e541e71a8dc90/media-3342526@2x.png"
+        }
+      ]
+    },
+    "media-3342527": {
+      "alt": "Coordinate system diagram showing the subpixel grid on which programmable sample positions are set. Example positions are set at the top-left corner (0, 0), top-right corner (1,0), bottom-right corner (1,1), bottom-left corner (0,1), and center (0.5,0.5).",
+      "identifier": "media-3342527",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7db887d0d8133b2a601258d3215ec9e4/media-3342527@2x.png"
+        }
+      ]
+    },
+    "media-3342528": {
+      "alt": "Coordinate system diagram showing the subpixel grid on which the default one-sample position is set.",
+      "identifier": "media-3342528",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b82e8ada6eb98fc644df94e8d27c8eb1/media-3342528@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Advanced-Multisampling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+      ],
+      "title": "Advanced Multisampling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Advanced-Multisampling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+              ],
+              "title": "Advanced Multisampling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/title",
+          "value": "MTLRenderPassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsTextureSampleCount(_:)/title",
+          "value": "supportsTextureSampleCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsTextureSampleCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsTextureSampleCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1areProgrammableSamplePositionsSupported/title",
+          "value": "programmableSamplePositionsSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1areProgrammableSamplePositionsSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "programmableSamplePositionsSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplePosition/title",
+          "value": "MTLSamplePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplePosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplePosition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplePosition"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/positioning-samples-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/positioning-samples-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

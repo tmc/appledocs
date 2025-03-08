@@ -1,0 +1,1039 @@
+{
+  "abstract": [
+    {
+      "text": "Make it easier for teachers to find and assign your content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/creating-bookmarks-and-assignments-from-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating bookmarks and assignments from your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you adopt ClassKit and declare your app’s assignable content, teachers can use Apple’s Schoolwork app to assign your content to students. They do this by creating a new Assignment in Schoolwork.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3119327",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From the New Assignment view, the teacher taps Add Activities to choose items to add to the Assignment. The popover that appears has an App Activities option that provides access to the content in apps like yours. The popover also has options for adding other supporting material to the assignment, like files, links, photos, or videos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3016828",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can make it easier for teachers to find your app’s content in Schoolwork by letting them bookmark it as they encounter the content in your app. The bookmarks they create from within your app appear under the Bookmarks entry in the Add Activity popover shown above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable bookmarks, you provide a ClassKit context (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to an activity view controller as described below. When you do this, Schoolwork offers a bookmark creation action extension in the activity view. Inside the same activity view, Schoolwork also offers a share extension that provides a shortcut to Assignment creation. This allows teachers to create assignments without leaving your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Associate-action-buttons-with-content",
+          "level": 3,
+          "text": "Associate action buttons with content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a point from which to launch an activity view in your app, add one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIBarButtonItem/SystemItem/action",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " buttons to your interface. Users know that tapping an action button typically reveals a modal activity view with share and action extensions that are relevant to the current task, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/views/activity-views/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add action buttons to your app’s UI in places that correspond to activities that a teacher might want to assign right away or to bookmark for later assignment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3021754",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When deciding where to place action buttons in your UI, choose locations that clearly correspond to an assignable task. For example, in a play reader like the Great Plays sample app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/incorporating-classkit-into-an-educational-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), users would expect an action button that appears with a play’s table of contents, as shown in the figure above, to apply to the play as a whole. On the other hand, an action button that appears as part of a quiz should apply specifically to that quiz.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-and-present-an-activity-view",
+          "level": 3,
+          "text": "Initialize and present an activity view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each action button you add to your UI, add a corresponding method that’s called when the user taps the button. Use this method to initialize and present an instance of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Initialize the activity view with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " corresponding to the assignable task the user would expect, given the state of your app at the time. For example, if the user taps the action button on the table of contents shown in the previous section, provide the play context as the activity item:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " let activityView = UIActivityViewController(activityItems: [playContext, self],",
+            "                                                        applicationActivities: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then present the activity view. On iPad, you present an activity view as a popover, typically originating from the tapped action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " activityView.modalPresentationStyle = .popover",
+            " activityView.popoverPresentationController?.permittedArrowDirections = .any",
+            " activityView.popoverPresentationController?.barButtonItem = actionButtonItem",
+            " activityView.excludedActivityTypes = [ UIActivity.ActivityType.message, UIActivity.ActivityType.mail]",
+            " self.present(activityView, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-activity-view-metadata",
+          "level": 3,
+          "text": "Update activity view metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide context to the user about the information in the activity view, add the meta data describing the information they’re sharing by conforming your view controller to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import LinkPresentation",
+            "",
+            "class ActsTableViewController: UITableViewController, UIActivityItemSource "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPLinkMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the activity view for the icon and title. This provides context to the user for the shared information. In the below example, the Hamlet Play title and icon indicate the context of the information shared with Schoolwork.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {",
+            "        guard let image = UIImage(named: \"IconImage\") else {return nil}",
+            "        let imageProvider = NSItemProvider(object: image)",
+            "        let metadata = LPLinkMetadata()",
+            "        metadata.iconProvider = imageProvider",
+            "        if let title = play?.title {",
+            "            metadata.title = \"\\(title) Play\"",
+            "        }",
+            "        return metadata",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system recognizes ClassKit context activity items as relevant to the Schoolwork app and offers the two extensions Schoolwork provides in the activity view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4305224",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user taps the first of these extensions, titled Schoolwork, Schoolwork initiates the New Assignment view with the given context right inside your app. The context is already populated in the Assignment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4305226",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user taps the second share extension icon, titled Save to Schoolwork, Schoolwork creates a bookmark of the corresponding context without any additional UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4305228",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The teacher can later find the bookmarked content in Schoolwork.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContext",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content": {
+      "abstract": [
+        {
+          "text": "Assemble a hierarchy of contexts and declare your app’s assignable content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/advertising-your-app-s-assignable-content",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advertising your app’s assignable content",
+      "type": "topic",
+      "url": "/documentation/classkit/advertising-your-app-s-assignable-content"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/incorporating-classkit-into-an-educational-app": {
+      "abstract": [
+        {
+          "text": "Walk through the process of setting up assignments and recording student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/incorporating-classkit-into-an-educational-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating ClassKit into an Educational App",
+      "type": "topic",
+      "url": "/documentation/classkit/incorporating-classkit-into-an-educational-app"
+    },
+    "doc://com.apple.documentation/documentation/LinkPresentation/LPLinkMetadata": {
+      "abstract": [
+        {
+          "text": "An object that contains metadata about a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LPLinkMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LinkPresentation/LPLinkMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LPLinkMetadata",
+      "type": "topic",
+      "url": "/documentation/LinkPresentation/LPLinkMetadata"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityItemSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that an activity view controller uses to retrieve the data items to act on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemSource",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemSource"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata to display in the preview header of the share sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerLinkMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "activityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LPLinkMetadata",
+          "text": "LPLinkMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activityViewControllerLinkMetadata(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIBarButtonItem/SystemItem/action": {
+      "abstract": [
+        {
+          "text": "The system action button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIBarButtonItem/SystemItem/action",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBarButtonItem.SystemItem.action",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIBarButtonItem/SystemItem/action"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/views/activity-views/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/views/activity-views/",
+      "title": "Activity Views",
+      "titleInlineContent": [
+        {
+          "text": "Activity Views",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/views/activity-views/"
+    },
+    "media-3016828": {
+      "alt": "Screenshot showing the popover that appears when you tap the Add Activities button in a Create new Assignment view.",
+      "identifier": "media-3016828",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03c991d2438f1db4c00f33bc0db7bfb1/media-3016828@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3278d832e2d4baebe2793099280dc2be/media-3016828~dark@2x.png"
+        }
+      ]
+    },
+    "media-3021754": {
+      "alt": "Screenshot showing an action button that appears in the navigation bar in the Great Plays sample app.",
+      "identifier": "media-3021754",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e764a4625e9d435042806818f68e780c/media-3021754@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/262376ab6eba7ab0d6d10d9921e05eb7/media-3021754~dark@2x.png"
+        }
+      ]
+    },
+    "media-3119327": {
+      "alt": "Screenshot showing the New Assignment view in the Schoolwork app, highlighting the button you tap to open the view, and the button within the view that you tap to add activities.",
+      "identifier": "media-3119327",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3714bcb1ab602692f6e0d3a13480fea8/media-3119327@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3293f75f8498830de083c15c22ecb308/media-3119327~dark@2x.png"
+        }
+      ]
+    },
+    "media-4305224": {
+      "alt": "Screenshot showing the activity view that appears when you tap the action button in the Great Plays sample code app, highlighting the two extensions provided by Schoolwork.",
+      "identifier": "media-4305224",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49022f08c77d3ed4fcd561f3feee96dc/media-4305224@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2fa211b3e96cdbd5a0e04e6f917717f8/media-4305224~dark@2x.png"
+        }
+      ]
+    },
+    "media-4305226": {
+      "alt": "Screenshot showing the New Assignment view that appears inside your app when the user taps the Schoolwork icon in the activity view.",
+      "identifier": "media-4305226",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c430d642a080cabcf4c925e41a46868/media-4305226@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/88e2015d87ce56088422e406d2de86c5/media-4305226~dark@2x.png"
+        }
+      ]
+    },
+    "media-4305228": {
+      "alt": "Screenshot showing Add to Bookmarks view that appears in your app when the users taps on Save To Schoolwork icon in an activity view.",
+      "identifier": "media-4305228",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecabdae1458ac36dbc602810840b6b11/media-4305228@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9a119fb0f60ced9eb89d0af7a48f913/media-4305228~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIBarButtonItem~1SystemItem~1action/title",
+          "value": "UIBarButtonSystemItemAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIBarButtonItem~1SystemItem~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonSystemItemAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LinkPresentation~1LPLinkMetadata/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LPLinkMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerLinkMetadata(_:)/title",
+          "value": "activityViewControllerLinkMetadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerLinkMetadata(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)LPLinkMetadata",
+              "text": "LPLinkMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewControllerLinkMetadata:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "activityViewController"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/title",
+          "value": "CLSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityItemSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/creating-bookmarks-and-assignments-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/creating-bookmarks-and-assignments-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

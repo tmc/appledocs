@@ -1,0 +1,1282 @@
+{
+  "abstract": [
+    {
+      "text": "A lightweight code requirement that you use to evaluate the executable for a launching process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:27LightweightCodeRequirements06LaunchB11RequirementV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LaunchCodeRequirement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "LightweightCodeRequirements"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LaunchCodeRequirement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LaunchCodeRequirement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LaunchCodeRequirement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set a ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchCodeRequirement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for a launching process and the executable doesn’t satisfy the requirement,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the operating system doesn’t run the process and creates a crash report instead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects can only be built using constraints that conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Note that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are applied to processes. If a launch requests execution of ‘#!’ script, the launch constraint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "will be applied to the interpreter. For example a script with the following ‘#!’ will apply a launch constraint to bash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#! /bin/bash"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "if the ‘#!’ is instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " #! /usr/bin/env python"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the launch constraint is applied to env.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements": {
+      "abstract": [
+        {
+          "text": "Test the identity of executable code on disk and in running processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "LightweightCodeRequirements",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement": {
+      "abstract": [
+        {
+          "text": "A lightweight code requirement that you use to evaluate the executable for a launching process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LaunchCodeRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LaunchCodeRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "LaunchCodeRequirement",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/equatable-implementations"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/allOf(requirement:)": {
+      "abstract": [
+        {
+          "text": "Create a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that requires matching all of the provided constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allOf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16LaunchConstraintP",
+          "text": "LaunchConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements06LaunchB11RequirementV",
+          "text": "LaunchCodeRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/allOf(requirement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allOf(requirement:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/allof(requirement:)"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/anyOf(requirement:)": {
+      "abstract": [
+        {
+          "text": "Create a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that requires matching any of the provided constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anyOf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16LaunchConstraintP",
+          "text": "LaunchConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements06LaunchB11RequirementV",
+          "text": "LaunchCodeRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/anyOf(requirement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anyOf(requirement:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/anyof(requirement:)"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/encode(to:)": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/encode(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/encode(to:)"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(_:)-5fh0u": {
+      "abstract": [
+        {
+          "text": "Convert a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/ProcessCodeRequirement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " if possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements07ProcessB11RequirementV",
+          "text": "ProcessCodeRequirement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(_:)-5fh0u",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/init(_:)-5fh0u"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(_:)-6hixy": {
+      "abstract": [
+        {
+          "text": "Convert a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/OnDiskCodeRequirement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " if possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements06OnDiskB11RequirementV",
+          "text": "OnDiskCodeRequirement"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(_:)-6hixy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/init(_:)-6hixy"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(from:)": {
+      "abstract": [
+        {
+          "text": "Create a new instance by decoding from the given decoder",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchcoderequirement/init(from:)"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraint": {
+      "abstract": [
+        {
+          "text": "A protocol to which a lightweight code requirement constraint conforms if you can use it in launch code requirements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LaunchConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LaunchConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "LaunchConstraint",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchconstraint"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraintBuilder": {
+      "abstract": [
+        {
+          "text": "A custom parameter attribute that constructs launch constraints from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LaunchConstraintBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraintBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LaunchConstraintBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "LaunchConstraintBuilder",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/launchconstraintbuilder"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/OnDiskCodeRequirement": {
+      "abstract": [
+        {
+          "text": "A lightweight code requirement that you use to evaluate a code file on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OnDiskCodeRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/OnDiskCodeRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OnDiskCodeRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "OnDiskCodeRequirement",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/ondiskcoderequirement"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/ProcessCodeRequirement": {
+      "abstract": [
+        {
+          "text": "A lightweight code requirement that you use to evaluate a running process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProcessCodeRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/ProcessCodeRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProcessCodeRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProcessCodeRequirement",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/processcoderequirement"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/SecCodeCheckValidityWithProcessRequirement(code:flags:requirement:)": {
+      "abstract": [
+        {
+          "text": "Checks whether the code associated with a running process satisfies a lightweight code requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCheckValidityWithProcessRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements07ProcessB11RequirementV",
+          "text": "ProcessCodeRequirement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16ValidationResultV",
+          "text": "ValidationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/SecCodeCheckValidityWithProcessRequirement(code:flags:requirement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecCodeCheckValidityWithProcessRequirement(code:flags:requirement:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/seccodecheckvaliditywithprocessrequirement(code:flags:requirement:)"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/allOf(requirement:)-4gf5f": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that requires a launching process’s executable to satisfy all of the provided constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allOf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16LaunchConstraintP",
+          "text": "LaunchConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16LaunchConstraintP",
+          "text": "LaunchConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/allOf(requirement:)-4gf5f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allOf(requirement:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/allof(requirement:)-4gf5f"
+    },
+    "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/anyOf(requirement:)-6nicx": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that requires a launching process’s executable to satisfy any of the provided constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anyOf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16LaunchConstraintP",
+          "text": "LaunchConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:27LightweightCodeRequirements16LaunchConstraintP",
+          "text": "LaunchConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/anyOf(requirement:)-6nicx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anyOf(requirement:)",
+      "type": "topic",
+      "url": "/documentation/lightweightcoderequirements/anyof(requirement:)-6nicx"
+    },
+    "doc://com.apple.documentation/documentation/foundation/process/4322522-launchrequirement": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchRequirement"
+        },
+        {
+          "kind": "text",
+          "text": ": LaunchCodeRequirement?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/process/4322522-launchrequirement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchRequirement",
+      "type": "topic",
+      "url": "/documentation/foundation/process/4322522-launchrequirement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Checking-code-requirements-for-launching-processes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/SecCodeCheckValidityWithProcessRequirement(code:flags:requirement:)",
+        "doc://com.apple.documentation/documentation/foundation/process/4322522-launchrequirement",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/allOf(requirement:)-4gf5f",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/anyOf(requirement:)-6nicx",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraint",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchConstraintBuilder"
+      ],
+      "title": "Checking code requirements for launching processes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(_:)-5fh0u",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(_:)-6hixy",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/init(from:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/encode(to:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/allOf(requirement:)",
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/anyOf(requirement:)"
+      ],
+      "title": "Type Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.LightweightCodeRequirements/documentation/LightweightCodeRequirements/LaunchCodeRequirement/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/lightweightcoderequirements/launchcoderequirement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

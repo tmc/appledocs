@@ -1,0 +1,1408 @@
+{
+  "abstract": [
+    {
+      "text": "Compensate eligible active subscribers for service interruptions by extending a subscription’s renewal date.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Extending the renewal date for auto-renewable subscriptions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your service experiences a temporary outage, canceled event, or interruption to a live streamed event, you may choose to compensate your customers by extending the renewal date of their paid, active subscription. The App Store Server API provides two endpoints for requesting such extensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for an individual subscription",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for all subscriptions based on a product identifier, optionally limited to a list of storefronts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can move the renewal date for active auto-renewable subscriptions up to 90 days into the future if your service experiences an unexpected outage. To give you flexibility to resolve service issues or outages, you can extend the renewal date twice within a year (365 days) per customer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "After the subscription renewal extension goes into effect, there’s no way to reverse it. The extension period doesn’t count toward the one year of paid service when the App Store calculates the developer’s commission rate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a successful renewal date extension, Apple sends an email to notify the customer of their updated subscription renewal date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-eligible-subscriptions",
+          "level": 3,
+          "text": "Determine eligible subscriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only active auto-renewable subscriptions with at least one previously paid period are eligible to have a renewal date extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following types of subscriptions aren’t eligible for renewal date extensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscriptions in a free offer period",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inactive subscriptions in a billing retry state",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscriptions in a billing grace period state with an expiration date in the past",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscriptions that have already received two renewal date extensions within the past 365 days",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expired subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store attempts to extend the renewal dates for eligible subscriptions only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system extends eligible purchased subscriptions that support Family Sharing, it automatically extends the family members’ subscriptions as well. However, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint doesn’t support requests to extend a family member’s subscription directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extend-renewal-dates-for-one-or-many-subscribers",
+          "level": 3,
+          "text": "Extend renewal dates for one or many subscribers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request a renewal date extension for all eligible subscribers, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. You indicate the subscription by its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/productId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This endpoint is convenient for applying the renewal date extension to a large number of subscriptions with just one call. If a server outage affects some regions and not others, you can limit the request by storefront by including the optional ",
+              "type": "text"
+            },
+            {
+              "code": "storefrontCountryCodes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the request body, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request a renewal date extension for a single subscriber, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. You identify the subscription with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use this endpoint to retry a renewal date extension that fails with the other endpoint, as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions#Retry-attempts-that-fail",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section below describes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-in-progress-and-summary-notifications",
+          "level": 3,
+          "text": "Receive in-progress and summary notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requests to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint can take hours or days to complete, depending on the number of subscribers. The App Store server sends real-time notifications as it processes your request. The notifications inform you as each renewal date extension succeeds or fails, as well as when your request is complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive notifications, support ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your server. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the notifications and their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subtype",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RENEWAL_EXTENDED",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(none)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store extended the subscription renewal date for a specific subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RENEWAL_EXTENSION",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "FAILURE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription-renewal-date extension failed for a specific subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RENEWAL_EXTENSION",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SUMMARY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request is complete.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the contents of a notification payload, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For requests to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sends a ",
+              "type": "text"
+            },
+            {
+              "code": "RENEWAL_EXTENDED",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification when the request succeeds. The endpoint returns more information in its response body, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-whether-a-request-is-complete",
+          "level": 3,
+          "text": "Check whether a request is complete",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check whether your request to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is complete, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Complete requests include the final count of successful and failed renewal date extensions. If you don’t need this status on demand, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for status information instead, as the previous section describes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retry-attempts-that-fail",
+          "level": 3,
+          "text": "Retry attempts that fail",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store server sends real-time notifications as it processes your request to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The notifications inform you each time an attempt to extend the renewal date succeeds or fails. You can retry the failed attempts by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint with the failed subscription’s transaction identifier. Follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on your server. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look for notifications with a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RENEWAL_EXTENSION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FAILURE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The notification identifies a specific subscription that failed to receive a subscription-renewal-date extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the subscription’s transaction identifier in the notification’s payload, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Specifically, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "originalTransactionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which you get from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/data",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object in the payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "originalTransactionID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateRequest": {
+      "abstract": [
+        {
+          "text": "The request body that contains subscription-renewal-extension data for an individual subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtendRenewalDateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extendrenewaldaterequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates whether an individual renewal-date extension succeeded, and related details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtendRenewalDateResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtendRenewalDateResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extendrenewaldateresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_": {
+      "abstract": [
+        {
+          "text": "Checks whether a renewal date extension request completed, and provides the final count of successful or failed extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/subscriptions/extend/mass/{productId}/{requestIdentifier}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Status of Subscription Renewal Date Extensions",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-subscriptions-extend-mass-_productid_-_requestidentifier_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest": {
+      "abstract": [
+        {
+          "text": "The request body that contains subscription-renewal-extension data to apply for all eligible active subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MassExtendRenewalDateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/massextendrenewaldaterequest"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates the server successfully received the subscription-renewal-date extension request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MassExtendRenewalDateResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/massextendrenewaldateresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateStatusResponse": {
+      "abstract": [
+        {
+          "text": "A response that indicates the current status of a request to extend the subscription renewal date to all eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateStatusResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateStatusResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MassExtendRenewalDateStatusResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MassExtendRenewalDateStatusResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/massextendrenewaldatestatusresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-": {
+      "abstract": [
+        {
+          "text": "Uses a subscription’s product identifier to extend the renewal date for all of its eligible active subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/subscriptions/extend/mass/"
+        }
+      ],
+      "role": "symbol",
+      "title": "Extend Subscription Renewal Dates for All Active Subscribers",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/post-v1-subscriptions-extend-mass-"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_": {
+      "abstract": [
+        {
+          "text": "Extends the renewal date of a customer’s active subscription using the original transaction identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PUT /v1/subscriptions/extend/{originalTransactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Extend a Subscription Renewal Date",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/put-v1-subscriptions-extend-_originaltransactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions#Retry-attempts-that-fail": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extending-the-renewal-date-for-auto-renewable-subscriptions#Retry-attempts-that-fail",
+      "kind": "section",
+      "title": "Retry attempts that fail",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extending-the-renewal-date-for-auto-renewable-subscriptions#Retry-attempts-that-fail"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "originalTransactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/originaltransactionid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/productId": {
+      "abstract": [
+        {
+          "text": "The unique identifier of the product, which you create in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "productId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/productId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productId"
+        }
+      ],
+      "role": "symbol",
+      "title": "productId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/productid"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransaction": {
+      "abstract": [
+        {
+          "text": "Transaction information signed by the App Store, in JSON Web Signature (JWS) Compact Serialization format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JWSTransaction",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/JWSTransaction"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JWSTransactionDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/JWSTransactionDecodedPayload"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/data": {
+      "abstract": [
+        {
+          "text": "The payload data that contains app metadata and the signed renewal and transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/data"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains the version 2 notification data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBodyV2DecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responseBodyV2DecodedPayload",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/responseBodyV2DecodedPayload"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype": {
+      "abstract": [
+        {
+          "text": "A string that provides details about select notification types in version 2.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtype"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/subtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtype",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/subtype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscription-renewal-date-extension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-subscriptions-extend-mass-_productId_-_requestIdentifier_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateRequest",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/ExtendRenewalDateResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateRequest",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/MassExtendRenewalDateStatusResponse"
+      ],
+      "title": "Subscription-renewal-date extension"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/extending-the-renewal-date-for-auto-renewable-subscriptions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

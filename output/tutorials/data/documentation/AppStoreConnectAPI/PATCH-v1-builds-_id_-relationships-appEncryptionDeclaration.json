@@ -1,0 +1,467 @@
+{
+  "abstract": [
+    {
+      "text": "Assign an app encryption declaration to a build.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to update the relationship to an app encryption declaration instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_-relationships-appEncryptionDeclaration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:patch:v1-builds-{}-relationships-appEncryptionDeclaration",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PATCH /v1/builds/{id}/relationships/appEncryptionDeclaration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Assign the App Encryption Declaration for a Build"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "PATCH"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/builds/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/relationships/appEncryptionDeclaration"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque resource ID that uniquely identifies the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BuildAppEncryptionDeclarationLinkageRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:app_store_connect_api:BuildAppEncryptionDeclarationLinkageRequest",
+          "text": "BuildAppEncryptionDeclarationLinkageRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "No Content",
+          "status": 204,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided resource data is not valid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Conflict",
+          "status": 409,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 422,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BuildAppEncryptionDeclarationLinkageRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to attach an app encryption declaration to a build.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BuildAppEncryptionDeclarationLinkageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/BuildAppEncryptionDeclarationLinkageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BuildAppEncryptionDeclarationLinkageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "BuildAppEncryptionDeclarationLinkageRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkagerequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_": {
+      "abstract": [
+        {
+          "text": "Expire a build or change its encryption exemption setting.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/builds/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-builds-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_-relationships-appEncryptionDeclaration": {
+      "abstract": [
+        {
+          "text": "Assign an app encryption declaration to a build.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_-relationships-appEncryptionDeclaration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/builds/{id}/relationships/appEncryptionDeclaration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Assign the App Encryption Declaration for a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-builds-_id_-relationships-appencryptiondeclaration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Modifying-Builds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-builds-_id_"
+      ],
+      "title": "Modifying Builds"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/patch-v1-builds-_id_-relationships-appencryptiondeclaration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

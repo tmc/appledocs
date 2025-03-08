@@ -1,0 +1,2382 @@
+{
+  "abstract": [
+    {
+      "text": "Create a Bluetooth low energy central and peripheral device, and allow them to discover each other and exchange data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/transferring-data-between-bluetooth-low-energy-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Bluetooth"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Transferring Data Between Bluetooth Low Energy Devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to transfer data between two iOS devices, with one acting as a Bluetooth central and the other as a peripheral, by using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCharacteristic",
+              "isActive": true,
+              "overridingTitle": "CBCharacteristic",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBCharacteristic",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on the peripheral side that changes its value. The value change is automatically picked up on the central side. The sample also shows how the central side can write data to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCharacteristic",
+              "isActive": true,
+              "overridingTitle": "CBCharacteristic",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBCharacteristic",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on the peripheral side.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to handle flow control in this scenario. It also covers a rudimentary way to use the Received Signal Strength Indicator (RSSI) value to determine whether data transfer is feasible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the sample on two devices that support Bluetooth LE.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On one device, tap the “Central” button. This device will be the central mode device. The device will begin scanning for a peripheral device that is advertising the Transfer Service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the other device, tap the “Peripheral” button. This device will be the peripheral mode device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the peripheral mode device, tap the advertise on/off switch, to enable peripheral mode advertising of the data in the text field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bring the two devices close to each other.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Discover-Bluetooth-Peripherals-and-Connect-to-Them",
+          "level": 3,
+          "text": "Discover Bluetooth Peripherals and Connect to Them",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device running in central mode creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager",
+              "isActive": true,
+              "overridingTitle": "CBCentralManager",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBCentralManager",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", assigning the ",
+              "type": "text"
+            },
+            {
+              "code": "CentralViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the manager’s delegate. It calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager/scanForPeripherals(withServices:options:)",
+              "isActive": true,
+              "overridingTitle": "scanForPeripherals",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "scanForPeripherals",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to discover other Bluetooth devices, passing in the UUID of the service it’s searching for.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "centralManager.scanForPeripherals(withServices: [TransferService.serviceUUID],",
+            "                                   options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the central manager discovers a peripheral with a matching service UUID, it calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManagerDelegate/centralManager(_:didDiscover:advertisementData:rssi:)",
+              "isActive": true,
+              "overridingTitle": "centralManager(_:didDiscover:advertisementData:rssi:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "centralManager(_:didDiscover:advertisementData:rssi:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The sample’s implementation of this method uses the ",
+              "type": "text"
+            },
+            {
+              "code": "rssi",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (Received Signal Strength Indicator) parameter to determine whether the signal is strong enough to transfer data. RSSI values are provided as negative numbers, with a theortetical maximum of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sample proceeds with transfer if the ",
+              "type": "text"
+            },
+            {
+              "code": "rssi",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is greater than or equal to ",
+              "type": "text"
+            },
+            {
+              "code": "-50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the peripheral’s signal is strong enough, the method saves the peripheral as the property ",
+              "type": "text"
+            },
+            {
+              "code": "discoveredPeripheral",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager/connect(_:options:)",
+              "isActive": true,
+              "overridingTitle": "connect",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "connect",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to connect to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,",
+            "                    advertisementData: [String: Any], rssi RSSI: NSNumber) {",
+            "    ",
+            "    // Reject if the signal strength is too low to attempt data transfer.",
+            "    // Change the minimum RSSI value depending on your app’s use case.",
+            "    guard RSSI.intValue >= -50",
+            "        else {",
+            "            os_log(\"Discovered perhiperal not in expected range, at %d\", RSSI.intValue)",
+            "            return",
+            "    }",
+            "    ",
+            "    os_log(\"Discovered %s at %d\", String(describing: peripheral.name), RSSI.intValue)",
+            "    ",
+            "    // Device is in range - have we already seen it?",
+            "    if discoveredPeripheral != peripheral {",
+            "        ",
+            "        // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it.",
+            "        discoveredPeripheral = peripheral",
+            "        ",
+            "        // And finally, connect to the peripheral.",
+            "        os_log(\"Connecting to perhiperal %@\", peripheral)",
+            "        centralManager.connect(peripheral, options: nil)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "When-the-Peripheral-Receives-a-Connection-Send-the-Data",
+          "level": 3,
+          "text": "When the Peripheral Receives a Connection, Send the Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device running in peripheral mode creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager",
+              "isActive": true,
+              "overridingTitle": "CBPeripheralManager",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBPeripheralManager",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and assigns its ",
+              "type": "text"
+            },
+            {
+              "code": "PeripheralViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the manager’s delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)",
+              "isActive": true,
+              "overridingTitle": "peripheralManagerDidUpdateState",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "peripheralManagerDidUpdateState",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method indicates that Bluetooth has powered on, the sample calls a private ",
+              "type": "text"
+            },
+            {
+              "code": "setupPeripheral()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBMutableCharacteristic",
+              "isActive": true,
+              "overridingTitle": "CBMutableCharacteristic",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBMutableCharacteristic",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " called ",
+              "type": "text"
+            },
+            {
+              "code": "transferCharacteristic",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It then creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBMutableService",
+              "isActive": true,
+              "overridingTitle": "CBMutableService",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBMutableService",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " from the characteristic and adds the service to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager",
+              "isActive": true,
+              "overridingTitle": "CBPeripheralManager",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CBPeripheralManager",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func setupPeripheral() {",
+            "    ",
+            "    // Build our service.",
+            "    ",
+            "    // Start with the CBMutableCharacteristic.",
+            "    let transferCharacteristic = CBMutableCharacteristic(type: TransferService.characteristicUUID,",
+            "                                                     properties: [.notify, .writeWithoutResponse],",
+            "                                                     value: nil,",
+            "                                                     permissions: [.readable, .writeable])",
+            "    ",
+            "    // Create a service from the characteristic.",
+            "    let transferService = CBMutableService(type: TransferService.serviceUUID, primary: true)",
+            "    ",
+            "    // Add the characteristic to the service.",
+            "    transferService.characteristics = [transferCharacteristic]",
+            "    ",
+            "    // And add it to the peripheral manager.",
+            "    peripheralManager.add(transferService)",
+            "    ",
+            "    // Save the characteristic for later.",
+            "    self.transferCharacteristic = transferCharacteristic",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user interface provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISwitch",
+              "isActive": true,
+              "overridingTitle": "UISwitch",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UISwitch",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that starts or stops advertising of the peripheral’s service UUID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func switchChanged(_ sender: Any) {",
+            "    // All we advertise is our service's UUID.",
+            "    if advertisingSwitch.isOn {",
+            "        peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [TransferService.serviceUUID]])",
+            "    } else {",
+            "        peripheralManager.stopAdvertising()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the central device discovers and connects to the peripheral, the peripheral side sends the data from the text field to the central. ",
+              "type": "text"
+            },
+            {
+              "code": "PeripheralViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sends the data in chunks — each sized to the maximum value the central can receive — by setting the value of its ",
+              "type": "text"
+            },
+            {
+              "code": "transferCharacteristic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the latest chunk. When finished, it sends the value ",
+              "type": "text"
+            },
+            {
+              "code": "EOM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (for “end of message”).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "When-the-Central-Receives-the-Data-Update-the-User-Interface",
+          "level": 3,
+          "text": "When the Central Receives the Data, Update the User Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Back on the central device, a call to the central manager delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverCharacteristicsFor:error:)",
+              "isActive": true,
+              "overridingTitle": "peripheral(_:didDiscoverCharacteristicsFor:Error:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "peripheral(_:didDiscoverCharacteristicsFor:Error:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " tells the app that it has discovered the peripheral’s transfer characteristic. The sample’s implementation of this method calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheral/setNotifyValue(_:for:)",
+              "isActive": true,
+              "overridingTitle": "setNotifyValue(_:for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "setNotifyValue(_:for:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to start receiving updates to the characteristic’s value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the value does update — meaning text is available — the central manager calls the delegate method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didUpdateValueFor:error:)-1xyna",
+              "isActive": true,
+              "overridingTitle": "peripheral(_:didUpdateValueFor:error)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "peripheral(_:didUpdateValueFor:error)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". The sample looks to see if the data is a chunk or an end-of-message marker. If the data is a chunk, the code appends the chunk to an internal buffer containing the peripheral’s message. If the data is an end-of-message marker, it converts the buffer to a string and sets it as the contents of the text field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {",
+            "    // Deal with errors (if any)",
+            "    if let error = error {",
+            "        os_log(\"Error discovering characteristics: %s\", error.localizedDescription)",
+            "        cleanup()",
+            "        return",
+            "    }",
+            "    ",
+            "    guard let characteristicData = characteristic.value,",
+            "        let stringFromData = String(data: characteristicData, encoding: .utf8) else { return }",
+            "    ",
+            "    os_log(\"Received %d bytes: %s\", characteristicData.count, stringFromData)",
+            "    ",
+            "    // Have we received the end-of-message token?",
+            "    if stringFromData == \"EOM\" {",
+            "        // End-of-message case: show the data.",
+            "        // Dispatch the text view update to the main queue for updating the UI, because",
+            "        // we don't know which thread this method will be called back on.",
+            "        DispatchQueue.main.async() {",
+            "            self.textView.text = String(data: self.data, encoding: .utf8)",
+            "        }",
+            "        ",
+            "        // Write test data",
+            "        writeData()",
+            "    } else {",
+            "        // Otherwise, just append the data to what we have previously received.",
+            "        data.append(characteristicData)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the transfer is complete, you can press the “Back” button on each device and reassign the central and peripheral roles, to perform the transfer in the opposite direction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "68b84653b34e/TransferringDataBetweenBluetoothLowEnergyDevices.zip": {
+      "checksum": "68b84653b34e4f1e7dade3b053f6d2dc95d7cb357102f5a0b0252d0f20463e0b580a956ee160bc46406e06b54c2ba42f2a474e0d84f194e236a34eda5cdeebfb",
+      "identifier": "68b84653b34e/TransferringDataBetweenBluetoothLowEnergyDevices.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/68b84653b34e/TransferringDataBetweenBluetoothLowEnergyDevices.zip"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/corebluetooth"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager": {
+      "abstract": [
+        {
+          "text": "An object that scans for, discovers, connects to, and manages peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBCentralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBCentralManager",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCentralManager"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager/connect(_:options:)": {
+      "abstract": [
+        {
+          "text": "Establishes a local connection to a peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager/connect(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connect(_:options:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCentralManager/connect(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager/scanForPeripherals(withServices:options:)": {
+      "abstract": [
+        {
+          "text": "Scans for peripherals that are advertising services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scanForPeripherals"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withServices"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "serviceUUIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBUUID",
+          "text": "CBUUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager/scanForPeripherals(withServices:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scanForPeripherals(withServices:options:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCentralManager/scanForPeripherals(withServices:options:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManagerDelegate/centralManager(_:didDiscover:advertisementData:rssi:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate the central manager discovered a peripheral while scanning for devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "centralManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "central"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCentralManager",
+          "text": "CBCentralManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDiscover"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "advertisementData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rssi"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "RSSI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManagerDelegate/centralManager(_:didDiscover:advertisementData:rssi:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "centralManager(_:didDiscover:advertisementData:rssi:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCentralManagerDelegate/centralManager(_:didDiscover:advertisementData:rssi:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCharacteristic": {
+      "abstract": [
+        {
+          "text": "A characteristic of a remote peripheral’s service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBCharacteristic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCharacteristic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBCharacteristic",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCharacteristic"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBMutableCharacteristic": {
+      "abstract": [
+        {
+          "text": "A characteristic of a local peripheral’s service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBMutableCharacteristic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBMutableCharacteristic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBMutableCharacteristic",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBMutableCharacteristic"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBMutableService": {
+      "abstract": [
+        {
+          "text": "A service with writeable property values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBMutableService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBMutableService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBMutableService",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBMutableService"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheral/setNotifyValue(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets notifications or indications for the value of a specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNotifyValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "characteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+          "text": "CBCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheral/setNotifyValue(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNotifyValue(_:for:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheral/setNotifyValue(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverCharacteristicsFor:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the peripheral found characteristics for a service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDiscoverCharacteristicsFor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "service"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBService",
+          "text": "CBService"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverCharacteristicsFor:error:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "peripheral(_:didDiscoverCharacteristicsFor:error:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didDiscoverCharacteristicsFor:error:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didUpdateValueFor:error:)-1xyna": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that retrieving the specified characteristic’s value succeeded, or that the characteristic’s value changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheral",
+          "text": "CBPeripheral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdateValueFor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "characteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+          "text": "CBCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didUpdateValueFor:error:)-1xyna",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "peripheral(_:didUpdateValueFor:error:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralDelegate/peripheral(_:didUpdateValueFor:error:)-1xyna"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager": {
+      "abstract": [
+        {
+          "text": "An object that manages and advertises peripheral services exposed by this app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBPeripheralManager",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralManager"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate the peripheral manager’s state updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheralManagerDidUpdateState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peripheral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBPeripheralManager",
+          "text": "CBPeripheralManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "peripheralManagerDidUpdateState(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeripheralManagerDelegate/peripheralManagerDidUpdateState(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISwitch": {
+      "abstract": [
+        {
+          "text": "A control that offers a binary choice, such as on/off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISwitch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISwitch",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISwitch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "68b84653b34e/TransferringDataBetweenBluetoothLowEnergyDevices.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didUpdateValueFor:error:)-1xyna/title",
+          "value": "peripheral:didUpdateValueForCharacteristic:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didUpdateValueFor:error:)-1xyna/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheral",
+              "text": "CBPeripheral"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didUpdateValueForCharacteristic:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+              "text": "CBCharacteristic"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "characteristic"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager~1scanForPeripherals(withServices:options:)/title",
+          "value": "scanForPeripheralsWithServices:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager~1scanForPeripherals(withServices:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scanForPeripheralsWithServices:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<CBUUID *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "serviceUUIDs"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBCentralManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBManager",
+              "text": "CBManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCharacteristic/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBCharacteristic"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBAttribute",
+              "text": "CBAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate~1peripheralManagerDidUpdateState(_:)/title",
+          "value": "peripheralManagerDidUpdateState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate~1peripheralManagerDidUpdateState(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheralManagerDidUpdateState:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheralManager",
+              "text": "CBPeripheralManager"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISwitch/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIControl",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBMutableCharacteristic/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBMutableCharacteristic"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+              "text": "CBCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverCharacteristicsFor:error:)/title",
+          "value": "peripheral:didDiscoverCharacteristicsForService:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralDelegate~1peripheral(_:didDiscoverCharacteristicsFor:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "peripheral:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheral",
+              "text": "CBPeripheral"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didDiscoverCharacteristicsForService:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBService",
+              "text": "CBService"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "service"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheral~1setNotifyValue(_:for:)/title",
+          "value": "setNotifyValue:forCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheral~1setNotifyValue(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNotifyValue:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "enabled"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forCharacteristic:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBCharacteristic",
+              "text": "CBCharacteristic"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "characteristic"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManagerDelegate~1centralManager(_:didDiscover:advertisementData:rssi:)/title",
+          "value": "centralManager:didDiscoverPeripheral:advertisementData:RSSI:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManagerDelegate~1centralManager(_:didDiscover:advertisementData:rssi:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "centralManager:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBCentralManager",
+              "text": "CBCentralManager"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "central"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didDiscoverPeripheral:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheral",
+              "text": "CBPeripheral"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "advertisementData:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "advertisementData"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RSSI:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNumber",
+              "text": "NSNumber"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "RSSI"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager~1connect(_:options:)/title",
+          "value": "connectPeripheral:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager~1connect(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "connectPeripheral:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBPeripheral",
+              "text": "CBPeripheral"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peripheral"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeripheralManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBManager",
+              "text": "CBManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBMutableService/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBMutableService"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBService",
+              "text": "CBService"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corebluetooth/transferring-data-between-bluetooth-low-energy-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

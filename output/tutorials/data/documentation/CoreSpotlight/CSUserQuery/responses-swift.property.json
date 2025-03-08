@@ -1,0 +1,664 @@
+{
+  "abstract": [
+    {
+      "text": "The matching results and suggestions for the current query string.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/responses-swift.property"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CoreSpotlight",
+    "externalID": "s:So11CSUserQueryC13CoreSpotlightE9responsesAbCE9ResponsesVvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "responses"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CSUserQuery",
+        "text": "CSUserQuery"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV",
+        "text": "Responses"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "responses"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "responses"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CSUserQuery",
+              "text": "CSUserQuery"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Responses-swift.struct",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV",
+              "text": "Responses"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/building-a-search-interface-for-your-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Getting the value of this property starts the query and begins the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delivery of responses. Typically, you get this property as part of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "for..in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop to iterate over the responses, as shown in the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var results: [CSUserQuery.Item] = []",
+            "var suggestions: [CSUserQuery.Suggestion] = []",
+            "let query = CSUserQuery(userQueryString: searchText, userQueryContext: queryContext)",
+            "",
+            "for try await element in query.responses {",
+            "    switch(element) {",
+            "        case .item(let item):",
+            "            self.results.append(item)",
+            "            break",
+            "        case .suggestion(let suggestion):",
+            "            self.suggestions.append(suggestion)",
+            "            break",
+            "        @unknown default:",
+            "            break",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery": {
+      "abstract": [
+        {
+          "text": "A type you use to initiate searches from your interface and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "offer suggested text completions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSUserQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSUserQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSUserQuery",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Item": {
+      "abstract": [
+        {
+          "text": "A search result that the query returns in a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Item"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Item",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Item"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSUserQuery.Item",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/item"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Responses-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that contains the results and suggestions",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a query string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Responses"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Responses-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Responses"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSUserQuery.Responses",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/responses-swift.struct"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Suggestion": {
+      "abstract": [
+        {
+          "text": "A suggested text completion for a query’s search term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Suggestion"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Suggestion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Suggestion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSUserQuery.Suggestion",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/suggestion"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Suggestions-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that contains the suggested completions",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a search string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Suggestions"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Suggestions-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Suggestions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSUserQuery.Suggestions",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/suggestions-swift.struct"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/responses-swift.property": {
+      "abstract": [
+        {
+          "text": "The matching results and suggestions for the current query string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "responses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSUserQuery",
+          "text": "CSUserQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV",
+          "text": "Responses"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/responses-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responses",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/responses-swift.property"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/suggestions-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of suggested completions for the current query text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSUserQuery",
+          "text": "CSUserQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So11CSUserQueryC13CoreSpotlightE11SuggestionsV",
+          "text": "Suggestions"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/suggestions-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suggestions",
+      "type": "topic",
+      "url": "/documentation/corespotlight/csuserquery/suggestions-swift.property"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/building-a-search-interface-for-your-app": {
+      "abstract": [
+        {
+          "text": "Add a search interface to your app to execute Spotlight queries",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and offer suggested text completions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/building-a-search-interface-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a search interface for your app",
+      "type": "topic",
+      "url": "/documentation/corespotlight/building-a-search-interface-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Executing-the-query-automatically",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/suggestions-swift.property",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Responses-swift.struct",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Suggestions-swift.struct",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Item",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSUserQuery/Suggestion"
+      ],
+      "title": "Executing the query automatically"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery/title",
+          "value": "CSUserQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSUserQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSUserQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSUserQuery"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/csuserquery/responses-swift.property"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

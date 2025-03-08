@@ -1,0 +1,795 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a location monitor with the configuration and event handler you provide.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz/requestMonitorWithConfiguration:completion:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CLMonitor(cm)requestMonitorWithConfiguration:completion:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "+ "
+      },
+      {
+        "kind": "identifier",
+        "text": "requestMonitorWithConfiguration:completion:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "requestMonitorWithConfiguration:completion:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "requestMonitorWithConfiguration:completion:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestMonitorWithConfiguration:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitorConfiguration",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLMonitorConfiguration",
+              "text": "CLMonitorConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "config"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLMonitor",
+              "text": "CLMonitor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "monitor"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The configuration that describes the conditions that satisfy this location monitor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "config"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The handler the framework calls with events that satisfy the monitor’s conditions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "completionHandler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the location monitor by adding or removing conditions for monitoring by this instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CLMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When an event occurs, the framework calls the block you pass in on the specified queue and delivers an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitoringEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The event contains the identifier for the condition you’re monitoring, an optional instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containing specifics, the new state, and the event’s timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All interaction directly with the returned ",
+              "type": "text"
+            },
+            {
+              "code": "CLMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " needs to occur on the specified queue. Failing to do so results in undefined behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conditions you add to an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CLMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " persist until you remove them from monitoring. However, Core Location stops monitoring conditions if an event is pending for them, and there isn’t a configured ",
+              "type": "text"
+            },
+            {
+              "code": "CLMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to receive it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework stores conditions in an opaque file at ",
+              "type": "text"
+            },
+            {
+              "code": "~/Library/CoreLocation/BundleId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Alternatively, you can access the conditions in the file at ",
+              "type": "text"
+            },
+            {
+              "code": "~/Library/CoreLocation/",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "process name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "code": "/name.monitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can determine your app’s process name using the ActivityMonitor app or by using the UNIX ",
+              "type": "text"
+            },
+            {
+              "code": "ps -al",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that for containerized apps, this is inside the data container. Apps need to observe when protected data becomes available using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/protectedDataDidBecomeAvailableNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-2r51v",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. Persistence of conditions enables an app to query efficiently for conditions it’s currently monitoring and the most recent event it delivers for each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app can choose to initialize the monitoring state for a condition. By default, the monitoring state is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitoringState/CLMonitoringStateUnknown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An app can only open one instance of ",
+                  "type": "text"
+                },
+                {
+                  "code": "CLMonitor",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with a given name at a time. Attempting to open another instance with the same name returns ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol": {
+      "abstract": [
+        {
+          "text": "The abstract base class for all other monitor conditions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLCondition-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLCondition"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLCondition",
+      "type": "topic",
+      "url": "/documentation/corelocation/clcondition-swift.protocol"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-2r51v": {
+      "abstract": [
+        {
+          "text": "An object that monitors the conditions you add to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-2r51v",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLMonitor",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitor-2r51v"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz": {
+      "abstract": [
+        {
+          "text": "An object that monitors the conditions you add to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLMonitor",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitor-6ynwz"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz/requestMonitorWithConfiguration:completion:": {
+      "abstract": [
+        {
+          "text": "Creates a location monitor with the configuration and event handler you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestMonitorWithConfiguration:completion:"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-6ynwz/requestMonitorWithConfiguration:completion:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestMonitorWithConfiguration:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestMonitorWithConfiguration:completion:",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitor-6ynwz/requestmonitorwithconfiguration:completion:"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitorConfiguration": {
+      "abstract": [
+        {
+          "text": "An object for configuring a location monitor instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLMonitorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitorConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLMonitorConfiguration",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitorconfiguration"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitoringEvent": {
+      "abstract": [
+        {
+          "text": "The object that the framework passes to the monitor’s callback handler upon receiving an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLMonitoringEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitoringEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLMonitoringEvent",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitoringevent"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitoringState/CLMonitoringStateUnknown": {
+      "abstract": [
+        {
+          "text": "The condition is in an unknown state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLMonitoringStateUnknown"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitoringState/CLMonitoringStateUnknown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLMonitoringStateUnknown",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitoringstate/clmonitoringstateunknown"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/protectedDataDidBecomeAvailableNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the protected files become available for your code to access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "protectedDataDidBecomeAvailableNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/protectedDataDidBecomeAvailableNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protectedDataDidBecomeAvailableNotification",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/protectedDataDidBecomeAvailableNotification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-monitor",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitorConfiguration"
+      ],
+      "title": "Creating a monitor"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1protectedDataDidBecomeAvailableNotification/title",
+          "value": "UIApplicationProtectedDataDidBecomeAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1protectedDataDidBecomeAvailableNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplicationProtectedDataDidBecomeAvailable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/clmonitor-6ynwz/requestmonitorwithconfiguration:completion:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

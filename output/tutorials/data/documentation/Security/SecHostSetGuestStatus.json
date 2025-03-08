@@ -1,0 +1,909 @@
+{
+  "abstract": [
+    {
+      "text": "Updates the status and attributes of a particular guest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecHostSetGuestStatus"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecHostSetGuestStatus",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecHostSetGuestStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecHostSetGuestStatus"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecHostSetGuestStatus"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecHostSetGuestStatus"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecGuestRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecGuestRef",
+              "text": "SecGuestRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "guestRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "status"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "attributes"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecCSFlags",
+              "text": "SecCSFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The guest code object of the code on whose behalf this thread is acting.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "guestRef"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A new set of code status flags for the guest (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The host must enforce the restrictions on changes to guest status: the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus/valid",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " bit can only be cleared and the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus/hard",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus/kill",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " flags can only be set. Pass the previous guest status to indicate that no change is desired.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A key-value dictionary of attributes that can be used to identify this particular guest among all of the caller’s guests. If you include this dictionary, it completely replaces earlier-specified attributes. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter if you do not want to change the attributes for this guest. Although you can specify any key-value pairs in this attributes dictionary, the keys in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " are conventionally used for this purpose.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "attributes"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Optional flags; see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for possible values. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "kSecCSDefaultFlags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for standard behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function must be called by a host acting in proxy mode every time the status of a guest changes so that Code Signing Services can update the information cache for that guest. The specified guest must have been created using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecCSFlags": {
+      "abstract": [
+        {
+          "text": "Values that can be used in the ",
+          "type": "text"
+        },
+        {
+          "code": "flags",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to most code signing functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCSFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCSFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCSFlags",
+      "type": "topic",
+      "url": "/documentation/security/seccsflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeStatus": {
+      "abstract": [
+        {
+          "text": "Operational flags attached by code signing services to running code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeStatus",
+      "type": "topic",
+      "url": "/documentation/security/seccodestatus"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeStatus/hard": {
+      "abstract": [
+        {
+          "text": "The code prefers to be denied access to resources if gaining access would invalidate it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCodeStatus",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus/hard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCodeStatusHard"
+        }
+      ],
+      "role": "symbol",
+      "title": "hard",
+      "type": "topic",
+      "url": "/documentation/security/seccodestatus/hard"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeStatus/kill": {
+      "abstract": [
+        {
+          "text": "The code wants to be terminated if it ever loses its validity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kill"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCodeStatus",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus/kill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCodeStatusKill"
+        }
+      ],
+      "role": "symbol",
+      "title": "kill",
+      "type": "topic",
+      "url": "/documentation/security/seccodestatus/kill"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeStatus/valid": {
+      "abstract": [
+        {
+          "text": "The code is dynamically valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "valid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCodeStatus",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus/valid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecCodeStatusValid"
+        }
+      ],
+      "role": "symbol",
+      "title": "valid",
+      "type": "topic",
+      "url": "/documentation/security/seccodestatus/valid"
+    },
+    "doc://com.apple.security/documentation/Security/SecGuestRef": {
+      "abstract": [
+        {
+          "text": "A reference to a guest object, which identifies a particular block of guest code in the context of its code signing host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecGuestRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecGuestRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecGuestRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecGuestRef",
+      "type": "topic",
+      "url": "/documentation/security/secguestref"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostCreateGuest": {
+      "abstract": [
+        {
+          "text": "Creates a new guest and describes its initial properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostCreateGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostCreateGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostcreateguest"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostSetGuestStatus": {
+      "abstract": [
+        {
+          "text": "Updates the status and attributes of a particular guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostSetGuestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostSetGuestStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostSetGuestStatus",
+      "type": "topic",
+      "url": "/documentation/security/sechostsetgueststatus"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the code signing services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-services-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Specify attributes of guest code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Guest Attribute Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/security/guest-attribute-dictionary-keys"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint32_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint32_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint32_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint32_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/title",
+          "value": "SecGuestRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGuestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGuestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDictionaryRef/title",
+          "value": "CFDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/title",
+          "value": "SecCSFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus/title",
+          "value": "SecCodeStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus~1hard/title",
+          "value": "kSecCodeStatusHard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus~1hard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCodeStatusHard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus~1kill/title",
+          "value": "kSecCodeStatusKill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus~1kill/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCodeStatusKill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus~1valid/title",
+          "value": "kSecCodeStatusValid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus~1valid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecCodeStatusValid"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sechostsetgueststatus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

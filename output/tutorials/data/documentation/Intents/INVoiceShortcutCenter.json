@@ -1,0 +1,1653 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve the user’s shortcuts and make shortcut suggestions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INVoiceShortcutCenter",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INVoiceShortcutCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INVoiceShortcutCenter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INVoiceShortcutCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Shortcut Center, your app can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve shortcuts associated with your app that the user added to Siri.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Suggest shortcuts the user may want to add to Siri.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can retrieve or suggest shortcuts, get a reference to the Shortcut Center from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve all shortcuts associated with your app, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getAllVoiceShortcuts(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To retrieve a particular shortcut, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getVoiceShortcut(with:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in the shortcut’s identifier. These methods return shortcuts associated with your app that the user added to Siri using your app or the Settings app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To suggest shortcuts for actions that the user hasn’t performed in your app but may want to add to Siri, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in a list of suggested shortcuts. The user views the suggestions in the Gallery of the Shortcuts app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SiriKit/offering-actions-in-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Suggest shortcuts users may want to add to Siri or combine with other actions in their own shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Offering Actions in the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/SiriKit/offering-actions-in-the-shortcuts-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentDonationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentDonationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentDonationMetadata",
+      "type": "topic",
+      "url": "/documentation/intents/inintentdonationmetadata"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction between the user and your app involving an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "INInteraction",
+      "type": "topic",
+      "url": "/documentation/intents/ininteraction"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShortcut-swift.enum": {
+      "abstract": [
+        {
+          "text": "An action available in your app that the system may suggest to a user or a user may add to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShortcut-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShortcut"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShortcut",
+      "type": "topic",
+      "url": "/documentation/intents/inshortcut-swift.enum"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions": {
+      "abstract": [
+        {
+          "text": "Defined contexts in which an intent or activity might be relevant to a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShortcutAvailabilityOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShortcutAvailabilityOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShortcutAvailabilityOptions",
+      "type": "topic",
+      "url": "/documentation/intents/inshortcutavailabilityoptions"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INShortcutReference": {
+      "abstract": [
+        {
+          "text": "An object representing an action available in your app that the system may suggest to a user or a user may add to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INShortcutReference"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INShortcutReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "INShortcutReference",
+      "type": "topic",
+      "url": "/documentation/intents/inshortcutreference"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut": {
+      "abstract": [
+        {
+          "text": "A shortcut the user added to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcut"
+        }
+      ],
+      "role": "symbol",
+      "title": "INVoiceShortcut",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcut"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter": {
+      "abstract": [
+        {
+          "text": "Retrieve the user’s shortcuts and make shortcut suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcutCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INVoiceShortcutCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "INVoiceShortcutCenter",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcutcenter"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getAllVoiceShortcuts(completion:)": {
+      "abstract": [
+        {
+          "text": "Retrieves all shortcuts added to Siri for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAllVoiceShortcuts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INVoiceShortcut",
+          "text": "INVoiceShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getAllVoiceShortcuts(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getAllVoiceShortcutsWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getAllVoiceShortcuts(completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcutcenter/getallvoiceshortcuts(completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getVoiceShortcut(with:completion:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a shortcut the user added to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getVoiceShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INVoiceShortcut",
+          "text": "INVoiceShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getVoiceShortcut(with:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getVoiceShortcutWithIdentifier:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getVoiceShortcut(with:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcutcenter/getvoiceshortcut(with:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)": {
+      "abstract": [
+        {
+          "text": "Suggests shortcuts the user may want to add to Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setShortcutSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Intents10INShortcutO",
+          "text": "INShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setShortcutSuggestions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setShortcutSuggestions(_:)",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcutcenter/setshortcutsuggestions(_:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/shared": {
+      "abstract": [
+        {
+          "text": "The shared shortcut center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INVoiceShortcutCenter",
+          "text": "INVoiceShortcutCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/intents/invoiceshortcutcenter/shared"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down": {
+      "abstract": [
+        {
+          "text": "Reveal your app’s shortcuts inside the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding Shortcuts for Wind Down",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-shortcuts-for-wind-down"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Add custom intents and parameters to help users interact more quickly and effectively with Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding User Interactivity with Siri Shortcuts and the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts": {
+      "abstract": [
+        {
+          "text": "Remove your donations from Siri.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Deleting Donated Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/deleting-donated-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts": {
+      "abstract": [
+        {
+          "text": "Tell Siri about shortcuts to actions that the user performed in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/donating-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app": {
+      "abstract": [
+        {
+          "text": "Suggest shortcuts users may want to add to Siri or combine with other actions in their own shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Offering Actions in the Shortcuts App",
+      "type": "topic",
+      "url": "/documentation/sirikit/offering-actions-in-the-shortcuts-app"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to use Siri with your app by providing shortcuts to your app’s actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef: Accelerating App Interactions with Shortcuts",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-accelerating-app-interactions-with-shortcuts"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents": {
+      "abstract": [
+        {
+          "text": "Integrating App Intents to provide your appʼs actions to Siri and Shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Soup Chef with App Intents: Migrating custom intents",
+      "type": "topic",
+      "url": "/documentation/sirikit/soup-chef-with-app-intents-migrating-custom-intents"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/watch-and-widget-support": {
+      "abstract": [
+        {
+          "text": "Display relevant shortcuts on the Siri watch face and suggest widgets in Smart Stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/watch-and-widget-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Watch and Widget Support",
+      "type": "topic",
+      "url": "/documentation/sirikit/watch-and-widget-support"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shortcuts-and-Donations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/offering-actions-in-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-user-interactivity-with-siri-shortcuts-and-the-shortcuts-app",
+        "doc://com.apple.sirikit/documentation/SiriKit/donating-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/deleting-donated-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-accelerating-app-interactions-with-shortcuts",
+        "doc://com.apple.sirikit/documentation/SiriKit/soup-chef-with-app-intents-migrating-custom-intents",
+        "doc://com.apple.sirikit/documentation/SiriKit/adding-shortcuts-for-wind-down",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+        "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcut-swift.enum",
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata",
+        "doc://com.apple.sirikit/documentation/SiriKit/watch-and-widget-support"
+      ],
+      "title": "Shortcuts and Donations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Shortcut-Center",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/shared"
+      ],
+      "title": "Getting the Shortcut Center"
+    },
+    {
+      "anchor": "Getting-Shortcuts-Added-to-Siri",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getAllVoiceShortcuts(completion:)",
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getVoiceShortcut(with:completion:)"
+      ],
+      "title": "Getting Shortcuts Added to Siri"
+    },
+    {
+      "anchor": "Setting-Suggested-Shortcuts",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)",
+        "doc://com.apple.sirikit/documentation/Intents/INShortcutReference"
+      ],
+      "title": "Setting Suggested Shortcuts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INVoiceShortcutCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Shortcut-Center",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/shared"
+              ],
+              "title": "Getting the Shortcut Center"
+            },
+            {
+              "anchor": "Getting-Shortcuts-Added-to-Siri",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getAllVoiceShortcuts(completion:)",
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/getVoiceShortcut(with:completion:)"
+              ],
+              "title": "Getting Shortcuts Added to Siri"
+            },
+            {
+              "anchor": "Setting-Suggested-Shortcuts",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)",
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutReference"
+              ],
+              "title": "Setting Suggested Shortcuts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shortcuts-and-Donations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+                "doc://com.apple.sirikit/documentation/Intents/INInteraction",
+                "doc://com.apple.sirikit/documentation/Intents/INVoiceShortcut",
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutAvailabilityOptions",
+                "doc://com.apple.sirikit/documentation/Intents/INShortcutReference",
+                "doc://com.apple.sirikit/documentation/Intents/INIntentDonationMetadata"
+              ],
+              "title": "Shortcuts and Donations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INVoiceShortcutCenter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentDonationMetadata/title",
+          "value": "INIntentDonationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentDonationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentDonationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutReference/title",
+          "value": "INShortcut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcut/title",
+          "value": "INVoiceShortcut"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcut/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcut/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcut"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter/title",
+          "value": "INVoiceShortcutCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVoiceShortcutCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/title",
+          "value": "INInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1shared/title",
+          "value": "sharedCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutAvailabilityOptions/title",
+          "value": "INShortcutAvailabilityOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutAvailabilityOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcutAvailabilityOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INShortcutAvailabilityOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INShortcutAvailabilityOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1getVoiceShortcut(with:completion:)/title",
+          "value": "getVoiceShortcutWithIdentifier:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1getVoiceShortcut(with:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getVoiceShortcutWithIdentifier:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1getAllVoiceShortcuts(completion:)/title",
+          "value": "getAllVoiceShortcutsWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1getAllVoiceShortcuts(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getAllVoiceShortcutsWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1setShortcutSuggestions(_:)/title",
+          "value": "setShortcutSuggestions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVoiceShortcutCenter~1setShortcutSuggestions(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setShortcutSuggestions:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/invoiceshortcutcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/invoiceshortcutcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

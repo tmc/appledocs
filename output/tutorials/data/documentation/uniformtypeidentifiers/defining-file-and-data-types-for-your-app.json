@@ -1,0 +1,1171 @@
+{
+  "abstract": [
+    {
+      "text": "Declare uniform type identifiers to support your app’s proprietary data formats.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Uniform Type Identifiers"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Defining file and data types for your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that save, load, or transfer documents with proprietary data formats can define the file or data type for each format by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declaring your app’s custom type in the project’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating a new identifier for exported types, or using existing identifiers for imported types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Defining each type’s conformance to system-declared types",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Listing any associated file extensions or MIME types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Declare-a-custom-type-for-your-app",
+          "level": 3,
+          "text": "Declare a custom type for your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When defining a type, you need to define it as an exported or imported type; this declaration indicates whether your app is the source of the type or whether it supports using a type defined elsewhere, respectively. If your app uses a type that this framework provides, don’t redeclare it in your app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define an exported type when your app is the canonical source of information for that type. For example, if your app uses its own proprietary document format, declare it as an exported type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define an imported type if your app uses a type that another app defines, or if it’s a proprietary file format the system doesn’t declare. When importing a type from another app, don’t declare your own identifier; instead, use the same type identifier as the original.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-an-identifier-for-your-type",
+          "level": 3,
+          "text": "Choose an identifier for your type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The identifiers you create for your app need to be unique. To ensure uniqueness, start by using a reverse DNS format that begins with ",
+              "type": "text"
+            },
+            {
+              "code": "com.companyName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Although the system supports different type identifier strings with the same specification, the reverse isn’t true. The identifier must contain only alphanumeric characters (",
+              "type": "text"
+            },
+            {
+              "code": "a–z",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": "–",
+              "type": "text"
+            },
+            {
+              "code": "Z",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "–",
+              "type": "text"
+            },
+            {
+              "code": "9",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), hyphens (",
+              "type": "text"
+            },
+            {
+              "code": "-",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and periods (",
+              "type": "text"
+            },
+            {
+              "code": ".",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). For example, you might use ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.greatAppDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.greatApp-document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " string in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t use ",
+                  "type": "text"
+                },
+                {
+                  "code": "public",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "dyn",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as the prefix in your app’s types. The system reserves ",
+                  "type": "text"
+                },
+                {
+                  "code": "public",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for public domain or standard types. The framework reserves the prefix ",
+                  "type": "text"
+                },
+                {
+                  "code": "dyn",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for types that it generates dynamically when no other type is available, and the prefix ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for types that Apple declares.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-the-conformance",
+          "level": 3,
+          "text": "Define the conformance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The type declaration can include a list of type identifiers that the type conforms to. For example, if your app uses a proprietary file format based on ",
+              "type": "text"
+            },
+            {
+              "code": "JSON",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use ",
+              "type": "text"
+            },
+            {
+              "code": "public.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " string in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When defining a document type, make sure that it conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "public.data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.package",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ensure the Finder or Files app can represent it. If your type doesn’t conform to ",
+              "type": "text"
+            },
+            {
+              "code": "public.data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.package",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system can’t tell if a stored item has that type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For document types, conform to ",
+              "type": "text"
+            },
+            {
+              "code": "public.content",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", either directly or by conforming to a type that already conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "public.content",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This conformance allows users to share your type over AirDrop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also add conformance to functional types, such as ",
+              "type": "text"
+            },
+            {
+              "code": "public.database",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "public.spreadsheet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Conform your type to the most specific subtype applicable. Conforming to one or more functional types helps the system determine how best to display your app’s file types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify conformance to a nonpublic type, make sure that you also declare that type in your bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-description-extensions-and-MIME-types",
+          "level": 3,
+          "text": "Define the description, extensions, and MIME types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to declaring the identifier, the type can define a user-readable string describing the type that you can also localize. For example, you might use ",
+              "type": "text"
+            },
+            {
+              "code": "GreatApp Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " string in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to define the file extension or MIME types for your type. For example, add the string ",
+              "type": "text"
+            },
+            {
+              "code": "greatappdoc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "greatapp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into an array, and put it into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary with the key ",
+              "type": "text"
+            },
+            {
+              "code": "public.filename-extension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to support both as file extensions for your type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sample shows the exported example type added to an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>UTExportedTypeDeclarations</key>",
+            "<array>",
+            "    <dict>",
+            "        <key>UTTypeIdentifier</key>",
+            "        <string>com.company.greatApp-document</string>",
+            "        <key>UTTypeConformsTo</key>",
+            "        <array>",
+            "            <string>public.json</string>",
+            "        </array>",
+            "        <key>UTTypeDescription</key>",
+            "        <string>GreatApp Document</string>",
+            "        <key>UTTypeTagSpecification</key>",
+            "        <dict>",
+            "            <key>public.filename-extension</key>",
+            "            <array>",
+            "                <string>greatappdoc</string>",
+            "                <string>greatapp</string>",
+            "            </array>",
+            "        </dict>",
+            "    </dict>",
+            "</array>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-the-keys-for-declaring-a-type",
+          "level": 3,
+          "text": "Specify the keys for declaring a type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the available property keys that you use in type declarations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array of dictionaries",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of exported type declarations for identifiers your app owns.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTImportedTypeDeclarations",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array of dictionaries",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of imported type declarations, typically types another company or organization declares.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier for the declared type. This key is required for type declarations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary defining one or more equivalent type identifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array of strings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The types the identifier conforms to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user-visible description of the type. You can localize this string by including it in an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InfoPlist.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeReferenceURL",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The URL of a reference document describing the type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If both exported and imported declarations for a type exist, the exported declaration takes precedence over the imported declaration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations": {
+      "abstract": [
+        {
+          "text": "The uniform type identifiers owned and exported by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTExportedTypeDeclarations",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo": {
+      "abstract": [
+        {
+          "text": "The Uniform Type Identifier types that this type conforms to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeConformsTo",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription": {
+      "abstract": [
+        {
+          "text": "A description for this type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "The Uniform Type Identifier to assign to this type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeReferenceURL": {
+      "abstract": [
+        {
+          "text": "The webpage for a reference document that describes this type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeReferenceURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeReferenceURL",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeReferenceURL"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification": {
+      "abstract": [
+        {
+          "text": "A dictionary defining one or more equivalent type identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeTagSpecification",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTImportedTypeDeclarations": {
+      "abstract": [
+        {
+          "text": "The uniform type identifiers inherently supported, but not owned, by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTImportedTypeDeclarations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTImportedTypeDeclarations",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTImportedTypeDeclarations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers": {
+      "abstract": [
+        {
+          "text": "Provide uniform type identifiers that describe file types for storage or transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Uniform Type Identifiers",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers": {
+      "abstract": [
+        {
+          "text": "Common types that the system declares.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System-declared uniform type identifiers",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/system-declared-uniform-type-identifiers"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uniformtypeidentifiers/defining-file-and-data-types-for-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uniformtypeidentifiers/defining-file-and-data-types-for-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

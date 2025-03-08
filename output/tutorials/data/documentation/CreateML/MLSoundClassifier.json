@@ -1,0 +1,2702 @@
+{
+  "abstract": [
+    {
+      "text": "A machine learning model you train with audio files to recognize and identify sounds on a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML17MLSoundClassifierV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLSoundClassifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLSoundClassifier"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MLSoundClassifier"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLSoundClassifier"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sound classifier is a machine learning model that identifies and categorizes sounds in an app. Create a sound",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classifier by gathering a dataset of audio files and use them to train a model with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assemble an audio dataset by recording or gathering audio files that best represent the sounds you want your app to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify. Additionally, create a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "negative class",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — a group of related noises the sound classifier might hear but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "aren’t relevant — by collecting or recording example sounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, say you’re creating a sound classifier to identify laughter and applause. In addition to gathering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "audio examples of people laughing and clapping, you can add an additional category for background noise. By adding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recordings from various settings, such as theaters and amphitheaters, your sound classifier can distinguish the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sounds of interest from environmental noises. In other words, the sound classifier won’t predict “Applause” when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there isn’t any. Like any classifier, when you request a prediction, a sound classifier always returns one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "categories it learned from a training dataset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gather at least 10 audio examples of each sound category you want the sound classifier to learn, plus at least one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "negative class for background noise. The audio examples can be in any file format that Core Audio supports,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "M4A",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MP3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AIFF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WAV",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use single-channel audio files with a sample rate of 16 kHz or higher for best results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reduce a sound classifier’s bias — which can adversely affect its performance — by gathering audio files that use a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consistent bit depth and sample rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Train, evaluate, and export your sound classifier by following similar steps to creating any other Create ML model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type. For more information about the Create ML training workflow, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the sound classifier’s Core ML model to an Xcode project and use it to create an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis/SNClassifySoundRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at runtime. Your app uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sound request to identify sounds in an audio file or audio stream by following the steps in the following articles,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "respectively:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier": {
+      "abstract": [
+        {
+          "text": "A machine learning model you train with audio files to recognize and identify sounds on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLSoundClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLSoundClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomPlaygroundDisplayConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomPlaygroundDisplayConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomPlaygroundDisplayConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/customplaygrounddisplayconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/customstringconvertible-implementations"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource": {
+      "abstract": [
+        {
+          "text": "A representation of a sound-classifier dataset located in the file system or in a data table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier.DataSource",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/datasource"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/FeatureExtractionParameters": {
+      "abstract": [
+        {
+          "text": "Parameters that affect the process of extracting sound features from audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FeatureExtractionParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/FeatureExtractionParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FeatureExtractionParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier.FeatureExtractionParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/featureextractionparameters"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/ModelParameters-swift.struct": {
+      "abstract": [
+        {
+          "text": "Parameters that affect the process of training a sound-classifier model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/ModelParameters-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSoundClassifier.ModelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/modelparameters-swift.struct"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/debugDescription": {
+      "abstract": [
+        {
+          "text": "A text representation of the sound classifier that’s suitable for output during debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/debugdescription"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/description": {
+      "abstract": [
+        {
+          "text": "A text representation of the sound classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/description"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/evaluation(on:)-7fmux": {
+      "abstract": [
+        {
+          "text": "Generates metrics by evaluating the sound classifier’s performance on a dataset represented by a data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/evaluation(on:)-7fmux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/evaluation(on:)-7fmux"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/evaluation(on:)-8kplo": {
+      "abstract": [
+        {
+          "text": "Generates metrics by evaluating the sound classifier’s performance on a dataset represented by a dictionary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/evaluation(on:)-8kplo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/evaluation(on:)-8kplo"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/extractFeatures(trainingData:parameters:sessionParameters:)": {
+      "abstract": [
+        {
+          "text": "Begins an asynchronous session that extracts sound features from a data source of sound files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extractFeatures"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV27FeatureExtractionParametersV",
+          "text": "FeatureExtractionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML27MLTrainingSessionParametersV",
+          "text": "MLTrainingSessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML5MLJobC",
+          "text": "MLJob"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/extractFeatures(trainingData:parameters:sessionParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extractFeatures(trainingData:parameters:sessionParameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/extractfeatures(trainingdata:parameters:sessionparameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(checkpoint:)": {
+      "abstract": [
+        {
+          "text": "Creates a sound classifier from a training session checkpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "checkpoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLCheckpointV",
+          "text": "MLCheckpoint"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(checkpoint:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(checkpoint:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/init(checkpoint:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(trainingData:parameters:)-83tih": {
+      "abstract": [
+        {
+          "text": "Creates a sound classifier with a training dataset represented by a dictionary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(trainingData:parameters:)-83tih",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(trainingData:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/init(trainingdata:parameters:)-83tih"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(trainingData:parameters:)-bztx": {
+      "abstract": [
+        {
+          "text": "Creates a sound classifier with a training dataset represented by a data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(trainingData:parameters:)-bztx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(trainingData:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/init(trainingdata:parameters:)-bztx"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/makeTrainingSession(trainingData:parameters:sessionParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates an asynchronous training session for a sound classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTrainingSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML27MLTrainingSessionParametersV",
+          "text": "MLTrainingSessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLTrainingSessionC",
+          "text": "MLTrainingSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/makeTrainingSession(trainingData:parameters:sessionParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeTrainingSession(trainingData:parameters:sessionParameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/maketrainingsession(trainingdata:parameters:sessionparameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/model": {
+      "abstract": [
+        {
+          "text": "The underlying model instance of the sound classifier stored in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/model",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/modelParameters-swift.property": {
+      "abstract": [
+        {
+          "text": "The model configuration parameters the sound classifier used during its training session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/modelParameters-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/modelparameters-swift.property"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/playgroundDescription": {
+      "abstract": [
+        {
+          "text": "A description of the sound classifier in a playground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playgroundDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/playgroundDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playgroundDescription",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/playgrounddescription"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/predictions(from:)": {
+      "abstract": [
+        {
+          "text": "Generates predictions for an array of audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/predictions(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/predictions(from:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/predictions(from:overlapFactor:predictionTimeWindowSize:)": {
+      "abstract": [
+        {
+          "text": "Generates predictions that use an overlap factor and time window size for an array of audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "overlapFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predictionTimeWindowSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/predictions(from:overlapFactor:predictionTimeWindowSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:overlapFactor:predictionTimeWindowSize:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/predictions(from:overlapfactor:predictiontimewindowsize:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/restoreTrainingSession(sessionParameters:)": {
+      "abstract": [
+        {
+          "text": "Creates an asynchronous training session for a sound classifier by restoring an existing training session’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "state from its parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreTrainingSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML27MLTrainingSessionParametersV",
+          "text": "MLTrainingSessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLTrainingSessionC",
+          "text": "MLTrainingSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/restoreTrainingSession(sessionParameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restoreTrainingSession(sessionParameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/restoretrainingsession(sessionparameters:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/resume(_:)": {
+      "abstract": [
+        {
+          "text": "Begins or continues an asynchronous training session for a sound classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLTrainingSessionC",
+          "text": "MLTrainingSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML5MLJobC",
+          "text": "MLJob"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/resume(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/resume(_:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/train(trainingData:parameters:sessionParameters:)-5hdqg": {
+      "abstract": [
+        {
+          "text": "Begins an asynchronous sound classifier training session with a training dataset represented by a data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "train"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML27MLTrainingSessionParametersV",
+          "text": "MLTrainingSessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML5MLJobC",
+          "text": "MLJob"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/train(trainingData:parameters:sessionParameters:)-5hdqg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "train(trainingData:parameters:sessionParameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/train(trainingdata:parameters:sessionparameters:)-5hdqg"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/train(trainingData:parameters:sessionParameters:)-6z4c8": {
+      "abstract": [
+        {
+          "text": "Begins an asynchronous sound classifier training session with a training dataset represented by a dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "train"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML27MLTrainingSessionParametersV",
+          "text": "MLTrainingSessionParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML5MLJobC",
+          "text": "MLJob"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLSoundClassifierV",
+          "text": "MLSoundClassifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/train(trainingData:parameters:sessionParameters:)-6z4c8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "train(trainingData:parameters:sessionParameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/train(trainingdata:parameters:sessionparameters:)-6z4c8"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/trainingMetrics": {
+      "abstract": [
+        {
+          "text": "Measurements of the classifier’s performance on the training data set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trainingMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/trainingMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trainingMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/trainingmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/validationMetrics": {
+      "abstract": [
+        {
+          "text": "Measurements of the image classifier’s performance on the validation dataset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validationMetrics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/validationMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validationMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/validationmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/write(to:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the sound classifier as a model file to a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/write(to:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/write(to:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/write(toFile:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the sound classifier as a model file to a path in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/write(toFile:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlsoundclassifier/write(tofile:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to recognize a person’s body movements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an Action Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-action-classifier-model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify images, and add it to your Core ML app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Image Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-image-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/SoundAnalysis/SNClassifySoundRequest": {
+      "abstract": [
+        {
+          "text": "A request that classifies sound using a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SNClassifySoundRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis/SNClassifySoundRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SNClassifySoundRequest",
+      "type": "topic",
+      "url": "/documentation/SoundAnalysis/SNClassifySoundRequest"
+    },
+    "doc://com.apple.documentation/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file": {
+      "abstract": [
+        {
+          "text": "Identify individual sounds in a file, such as a recording, with an audio file analyzer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Classifying Sounds in an Audio File",
+      "type": "topic",
+      "url": "/documentation/SoundAnalysis/classifying-sounds-in-an-audio-file"
+    },
+    "doc://com.apple.documentation/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream": {
+      "abstract": [
+        {
+          "text": "Identify individual sounds in an audio data stream, such as from a microphone, with an audio stream analyzer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream",
+      "kind": "article",
+      "role": "article",
+      "title": "Classifying Sounds in an Audio Stream",
+      "type": "topic",
+      "url": "/documentation/SoundAnalysis/classifying-sounds-in-an-audio-stream"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type that supplies a custom description for playground logging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomPlaygroundDisplayConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomPlaygroundDisplayConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomPlaygroundDisplayConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s34CustomPlaygroundDisplayConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Training-a-sound-classifier-asynchronously",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/train(trainingData:parameters:sessionParameters:)-5hdqg",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/train(trainingData:parameters:sessionParameters:)-6z4c8",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/makeTrainingSession(trainingData:parameters:sessionParameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/resume(_:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/restoreTrainingSession(sessionParameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/extractFeatures(trainingData:parameters:sessionParameters:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/FeatureExtractionParameters"
+      ],
+      "title": "Training a sound classifier asynchronously"
+    },
+    {
+      "anchor": "Creating-a-sound-classifier-from-a-checkpoint",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(checkpoint:)"
+      ],
+      "title": "Creating a sound classifier from a checkpoint"
+    },
+    {
+      "anchor": "Training-a-sound-classifier-synchronously",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(trainingData:parameters:)-bztx",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/init(trainingData:parameters:)-83tih"
+      ],
+      "title": "Training a sound classifier synchronously"
+    },
+    {
+      "anchor": "Assessing-model-accuracy",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/trainingMetrics",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/validationMetrics"
+      ],
+      "title": "Assessing model accuracy"
+    },
+    {
+      "anchor": "Evaluating-a-sound-classifier",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/evaluation(on:)-7fmux",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/evaluation(on:)-8kplo"
+      ],
+      "title": "Evaluating a sound classifier"
+    },
+    {
+      "anchor": "Testing-a-sound-classifier",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/predictions(from:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/predictions(from:overlapFactor:predictionTimeWindowSize:)"
+      ],
+      "title": "Testing a sound classifier"
+    },
+    {
+      "anchor": "Saving-a-sound-classifier",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/write(to:metadata:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/write(toFile:metadata:)"
+      ],
+      "title": "Saving a sound classifier"
+    },
+    {
+      "anchor": "Inspecting-a-sound-classifier-model",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/model",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/modelParameters-swift.property"
+      ],
+      "title": "Inspecting a sound classifier model"
+    },
+    {
+      "anchor": "Describing-a-sound-classifier",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/description",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/debugDescription",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/playgroundDescription"
+      ],
+      "title": "Describing a sound classifier"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/DataSource",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/ModelParameters-swift.struct"
+      ],
+      "title": "Supporting types"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomPlaygroundDisplayConvertible-Implementations",
+        "doc://com.apple.CreateML/documentation/CreateML/MLSoundClassifier/CustomStringConvertible-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SoundAnalysis~1SNClassifySoundRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SNClassifySoundRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlsoundclassifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

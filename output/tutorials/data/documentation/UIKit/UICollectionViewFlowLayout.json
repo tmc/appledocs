@@ -1,0 +1,2105 @@
+{
+  "abstract": [
+    {
+      "text": "A layout object that organizes items into a grid with optional header and footer views for each section.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewFlowLayout",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewFlowLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewFlowLayout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionViewFlowLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A flow layout is a type of collection view layout. Items in the collection view flow from one row or column (depending on the scrolling direction) to the next, with each row containing as many cells as will fit. Cells can be the same sizes or different sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A flow layout works with the collection view’s delegate object to determine the size of items, headers, and footers in each section and grid. That delegate object must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegateFlowLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Use of the delegate allows you to adjust layout information dynamically. For example, you use a delegate object to specify different sizes for items in the grid. If you don’t provide a delegate, the flow layout uses the default values you set in the properties of this class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Flow layouts lay out their content using a fixed distance in one direction and a scrollable distance in the other. For example, in a vertically scrolling grid, the width of the grid content is constrained to the width of the corresponding collection view while the height of the content adjusts dynamically to match the number of sections and items in the grid. The layout scrolls vertically by default, but you can configure the scrolling direction using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/scrollDirection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each section in a flow layout can have its own custom header and footer. To configure the header or footer for a view, configure the size of the header or footer to be non-zero. Implement the appropriate delegate methods or assign appropriate values to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/headerReferenceSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/footerReferenceSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. If the header or footer size is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the corresponding view isn’t added to the collection view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ScrollDirection": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the direction of scrolling for the layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ScrollDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionView.ScrollDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/scrolldirection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegateFlowLayout": {
+      "abstract": [
+        {
+          "text": "The methods that let you coordinate with a flow layout object to implement a grid-based layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegateFlowLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegateFlowLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegateFlowLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDelegateFlowLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdelegateflowlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout": {
+      "abstract": [
+        {
+          "text": "A layout object that organizes items into a grid with optional header and footer views for each section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFlowLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/SectionInsetReference-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the reference point of the section insets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectionInsetReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/SectionInsetReference-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectionInsetReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFlowLayout.SectionInsetReference",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/automaticSize": {
+      "abstract": [
+        {
+          "text": "A placeholder size for self-sizing cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/automaticSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutAutomaticSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/automaticsize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/estimatedItemSize": {
+      "abstract": [
+        {
+          "text": "The estimated size of cells in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedItemSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/estimatedItemSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "estimatedItemSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedItemSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/estimateditemsize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/footerReferenceSize": {
+      "abstract": [
+        {
+          "text": "The default sizes to use for section footers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "footerReferenceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/footerReferenceSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "footerReferenceSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "footerReferenceSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/footerreferencesize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/headerReferenceSize": {
+      "abstract": [
+        {
+          "text": "The default sizes to use for section headers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerReferenceSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/headerReferenceSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "headerReferenceSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "headerReferenceSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/headerreferencesize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/itemSize": {
+      "abstract": [
+        {
+          "text": "The default size to use for cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/itemSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "itemSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/itemsize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumInteritemSpacing": {
+      "abstract": [
+        {
+          "text": "The minimum spacing to use between items in the same row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumInteritemSpacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumInteritemSpacing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumInteritemSpacing"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumInteritemSpacing",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/minimuminteritemspacing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumLineSpacing": {
+      "abstract": [
+        {
+          "text": "The minimum spacing to use between lines of items in the grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumLineSpacing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumLineSpacing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumLineSpacing"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumLineSpacing",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/minimumlinespacing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/scrollDirection": {
+      "abstract": [
+        {
+          "text": "The scroll direction of the grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scrollDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionView",
+          "text": "UICollectionView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICollectionViewScrollDirection",
+          "text": "ScrollDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/scrollDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scrollDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "scrollDirection",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/scrolldirection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionFootersPinToVisibleBounds": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether footers pin to the bottom of the collection view bounds during scrolling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionFootersPinToVisibleBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionFootersPinToVisibleBounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sectionFootersPinToVisibleBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "sectionFootersPinToVisibleBounds",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/sectionfooterspintovisiblebounds"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionHeadersPinToVisibleBounds": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether headers pin to the top of the collection view bounds during scrolling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionHeadersPinToVisibleBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionHeadersPinToVisibleBounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sectionHeadersPinToVisibleBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "sectionHeadersPinToVisibleBounds",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/sectionheaderspintovisiblebounds"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInset": {
+      "abstract": [
+        {
+          "text": "The margins used to lay out content in a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionInset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sectionInset"
+        }
+      ],
+      "role": "symbol",
+      "title": "sectionInset",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/sectioninset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInsetReference-swift.property": {
+      "abstract": [
+        {
+          "text": "The boundary that section insets are defined in relation to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionInsetReference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewFlowLayout",
+          "text": "UICollectionViewFlowLayout"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UICollectionViewFlowLayoutSectionInsetReference",
+          "text": "SectionInsetReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInsetReference-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sectionInsetReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "sectionInsetReference",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext": {
+      "abstract": [
+        {
+          "text": "A set of properties for determining whether to recompute the size of items or their position in the layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutInvalidationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutInvalidationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFlowLayoutInvalidationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayoutinvalidationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout": {
+      "abstract": [
+        {
+          "text": "An abstract base class for generating layout information for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes": {
+      "abstract": [
+        {
+          "text": "A layout object that manages the layout-related attributes for a given item in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayoutAttributes",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutattributes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout": {
+      "abstract": [
+        {
+          "text": "A special type of layout object that lets you implement behaviors when changing from one layout to another in your collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewTransitionLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewTransitionLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewTransitionLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewtransitionlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts": {
+      "abstract": [
+        {
+          "text": "Customize a view layout by changing the size of cells in the flow or implementing a mosaic style.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing collection view layouts",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-collection-view-layouts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/flow-layout-supplementary-views": {
+      "abstract": [
+        {
+          "text": "Constants that specify the types of supplementary views that can be presented using a flow layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/flow-layout-supplementary-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Flow layout supplementary views",
+      "type": "topic",
+      "url": "/documentation/uikit/flow-layout-supplementary-views"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Manual-layouts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext"
+      ],
+      "title": "Manual layouts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-flow-layout",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegateFlowLayout"
+      ],
+      "title": "Configuring the flow layout"
+    },
+    {
+      "anchor": "Configuring-the-scroll-direction",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/scrollDirection",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ScrollDirection"
+      ],
+      "title": "Configuring the scroll direction"
+    },
+    {
+      "anchor": "Configuring-item-spacing",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumLineSpacing",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumInteritemSpacing",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/itemSize",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/estimatedItemSize",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/automaticSize",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInset",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInsetReference-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/SectionInsetReference-swift.enum"
+      ],
+      "title": "Configuring item spacing"
+    },
+    {
+      "anchor": "Configuring-headers-and-footers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/headerReferenceSize",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/footerReferenceSize",
+        "doc://com.apple.uikit/documentation/UIKit/flow-layout-supplementary-views"
+      ],
+      "title": "Configuring headers and footers"
+    },
+    {
+      "anchor": "Pinning-headers-and-footers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionHeadersPinToVisibleBounds",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionFootersPinToVisibleBounds"
+      ],
+      "title": "Pinning headers and footers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UICollectionViewFlowLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-flow-layout",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegateFlowLayout"
+              ],
+              "title": "Configuring the flow layout"
+            },
+            {
+              "anchor": "Configuring-the-scroll-direction",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/scrollDirection",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionView/ScrollDirection"
+              ],
+              "title": "Configuring the scroll direction"
+            },
+            {
+              "anchor": "Configuring-item-spacing",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumLineSpacing",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/minimumInteritemSpacing",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/itemSize",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/estimatedItemSize",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/automaticSize",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInset",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionInsetReference-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/SectionInsetReference-swift.enum"
+              ],
+              "title": "Configuring item spacing"
+            },
+            {
+              "anchor": "Configuring-headers-and-footers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/headerReferenceSize",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/footerReferenceSize",
+                "doc://com.apple.uikit/documentation/UIKit/flow-layout-supplementary-views"
+              ],
+              "title": "Configuring headers and footers"
+            },
+            {
+              "anchor": "Pinning-headers-and-footers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionHeadersPinToVisibleBounds",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout/sectionFootersPinToVisibleBounds"
+              ],
+              "title": "Pinning headers and footers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Manual-layouts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-collection-view-layouts",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewTransitionLayout",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutAttributes",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext"
+              ],
+              "title": "Manual layouts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UICollectionViewFlowLayout"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UICollectionViewLayout",
+                    "text": "UICollectionViewLayout"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegateFlowLayout/title",
+          "value": "UICollectionViewDelegateFlowLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegateFlowLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegateFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegateFlowLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegateFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1scrollDirection/title",
+          "value": "scrollDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1scrollDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scrollDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionFootersPinToVisibleBounds/title",
+          "value": "sectionFootersPinToVisibleBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionFootersPinToVisibleBounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sectionFootersPinToVisibleBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/title",
+          "value": "UICollectionViewLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionInsetReference-swift.property/title",
+          "value": "sectionInsetReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionInsetReference-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sectionInsetReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout/title",
+          "value": "UICollectionViewFlowLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1ScrollDirection/title",
+          "value": "UICollectionViewScrollDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1ScrollDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewScrollDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1ScrollDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewScrollDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewTransitionLayout/title",
+          "value": "UICollectionViewTransitionLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewTransitionLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewTransitionLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewTransitionLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewTransitionLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1minimumInteritemSpacing/title",
+          "value": "minimumInteritemSpacing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1minimumInteritemSpacing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumInteritemSpacing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1SectionInsetReference-swift.enum/title",
+          "value": "UICollectionViewFlowLayoutSectionInsetReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1SectionInsetReference-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutSectionInsetReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1SectionInsetReference-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutSectionInsetReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionHeadersPinToVisibleBounds/title",
+          "value": "sectionHeadersPinToVisibleBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionHeadersPinToVisibleBounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sectionHeadersPinToVisibleBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1headerReferenceSize/title",
+          "value": "headerReferenceSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1headerReferenceSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "headerReferenceSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1minimumLineSpacing/title",
+          "value": "minimumLineSpacing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1minimumLineSpacing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumLineSpacing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionInset/title",
+          "value": "sectionInset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1sectionInset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sectionInset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/title",
+          "value": "UICollectionViewLayoutAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutAttributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1automaticSize/title",
+          "value": "UICollectionViewFlowLayoutAutomaticSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1automaticSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutAutomaticSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1itemSize/title",
+          "value": "itemSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1itemSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "itemSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1estimatedItemSize/title",
+          "value": "estimatedItemSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1estimatedItemSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "estimatedItemSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/title",
+          "value": "UICollectionViewFlowLayoutInvalidationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1footerReferenceSize/title",
+          "value": "footerReferenceSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayout~1footerReferenceSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "footerReferenceSize"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewflowlayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewflowlayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

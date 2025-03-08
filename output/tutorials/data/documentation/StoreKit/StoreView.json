@@ -1,0 +1,1955 @@
+{
+  "abstract": [
+    {
+      "text": "A view that merchandises a collection of In-App Purchase products.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/StoreView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StoreKit_SwiftUI0A4ViewV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "StoreView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "StoreView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "StoreView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "StoreView"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Icon"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "PlaceholderIcon"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Icon"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "PlaceholderIcon"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "StoreView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays a collection of in-app purchase products, including their localized names, descriptions, and prices, and displays a purchase button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a store view by providing a collection of product identifiers for the view to load from the App Store, or a collection of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values you previously loaded. If you provide product identifiers, the store view automatically loads the product information from the App Store, and updates the view when the products are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide a view to use as an icon or image for each individual product. If you provide product identifiers, you can optionally provide placeholder icons for the system to use instead of the automatic placeholder icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set up promoted images for your products in App Store Connect, you can choose to display those images for your products.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-the-store-layout",
+          "level": 3,
+          "text": "Manage the store layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "StoreView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arranges products in rows. If the view has enough horizontal space available, the store adds columns. In tvOS, the view arranges the products in columns and adds rows as space permits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The store view grows to fit its container, and scrolls when the container doesn’t have enough space to display all the products. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to change this behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To achieve a custom layout, you can compose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances with other container views instead of using the ",
+              "type": "text"
+            },
+            {
+              "code": "StoreView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-store",
+          "level": 3,
+          "text": "Customize the store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the store by displaying additional buttons, and applying styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a button that syncs in-app purchase entitlements with the App Store, modify the in-app store view or an ancestor view using the ",
+              "type": "text"
+            },
+            {
+              "code": "storeButton(_:for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier with the parameters ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Visibility/visible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreButtonKind/restorePurchases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The app calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/sync()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method when people use this button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the appearance of the products using product view styles, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/CompactProductViewStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/LargeProductViewStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/RegularProductViewStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To apply the style, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/productViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)": {
+      "abstract": [
+        {
+          "text": "Fixes this view at its ideal size in the specified dimensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixedSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "horizontal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "vertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fixedSize(horizontal:vertical:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/fixedSize(horizontal:vertical:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/productViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for In-App Purchase product views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI16ProductViewStyleP",
+          "text": "ProductViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/productViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "productViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/productViewStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Visibility/visible": {
+      "abstract": [
+        {
+          "text": "The element may be visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visible"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Visibility/visible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Visibility.visible",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Visibility/visible"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/sync()": {
+      "abstract": [
+        {
+          "text": "Synchronizes your app’s transaction information and subscription status with information from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sync"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/sync()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sync()",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/sync()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/CompactProductViewStyle": {
+      "abstract": [
+        {
+          "text": "A style for a product view that’s suitable for layouts with less available space, or for displaying more items in a small amount of space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompactProductViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/CompactProductViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompactProductViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompactProductViewStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/compactproductviewstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/LargeProductViewStyle": {
+      "abstract": [
+        {
+          "text": "A style for a product view that’s suitable for layouts where the in-app purchase content is prominent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LargeProductViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/LargeProductViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LargeProductViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LargeProductViewStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/largeproductviewstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/storekit/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductIconPhase": {
+      "abstract": [
+        {
+          "text": "The current phase of the asynchronous loading operation of a product’s promotional image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductIconPhase"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductIconPhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductIconPhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductIconPhase",
+      "type": "topic",
+      "url": "/documentation/storekit/producticonphase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises an individual In-App Purchase product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductView",
+      "type": "topic",
+      "url": "/documentation/storekit/productview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/RegularProductViewStyle": {
+      "abstract": [
+        {
+          "text": "A style for a product view that uses a standard, platform-appropriate layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegularProductViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/RegularProductViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegularProductViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegularProductViewStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/regularproductviewstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreButtonKind/restorePurchases": {
+      "abstract": [
+        {
+          "text": "A type of button that people use to restore purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorePurchases"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI0A10ButtonKindV",
+          "text": "StoreButtonKind"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreButtonKind/restorePurchases",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restorePurchases",
+      "type": "topic",
+      "url": "/documentation/storekit/storebuttonkind/restorepurchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of In-App Purchase products.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:icon:placeholderIcon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to load a collection of products from the App Store using product identifiers, and merchandise them using their promotional images and a custom placeholder icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ids"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI16ProductIconPhaseO",
+          "text": "ProductIconPhase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placeholderIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PlaceholderIcon"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:icon:placeholderIcon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ids:icon:placeholderIcon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(ids:icon:placeholdericon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to load and merchandise a collection of products from the App Store using product identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ids"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefersPromotionalIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ids:prefersPromotionalIcon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(ids:preferspromotionalicon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:icon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to load a collection of products from the App Store using product identifiers, and merchandise them using a custom image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ids"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefersPromotionalIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:icon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ids:prefersPromotionalIcon:icon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(ids:preferspromotionalicon:icon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:icon:placeholderIcon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to load a collection of products from the App Store using product identifiers, and merchandise them using an image and a custom placeholder icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ids"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefersPromotionalIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placeholderIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PlaceholderIcon"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:icon:placeholderIcon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(ids:prefersPromotionalIcon:icon:placeholderIcon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(ids:preferspromotionalicon:icon:placeholdericon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:icon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to merchandise a collection of products with promotional images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "products"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI16ProductIconPhaseO",
+          "text": "ProductIconPhase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:icon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(products:icon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(products:icon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:prefersPromotionalIcon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to load and merchandise a collection of products from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "products"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefersPromotionalIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:prefersPromotionalIcon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(products:prefersPromotionalIcon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(products:preferspromotionalicon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:prefersPromotionalIcon:icon:)": {
+      "abstract": [
+        {
+          "text": "Creates a view to merchandise a collection of products using a custom icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "products"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefersPromotionalIcon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:prefersPromotionalIcon:icon:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(products:prefersPromotionalIcon:icon:)",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview/init(products:preferspromotionalicon:icon:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Merchandising-In-App-Purchases-and-subscriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+        "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample"
+      ],
+      "title": "Merchandising In-App Purchases and subscriptions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-store-views-that-load-products",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:icon:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:prefersPromotionalIcon:icon:placeholderIcon:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(ids:icon:placeholderIcon:)"
+      ],
+      "title": "Creating store views that load products"
+    },
+    {
+      "anchor": "Creating-store-views-with-preloaded-products",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:prefersPromotionalIcon:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:prefersPromotionalIcon:icon:)",
+        "doc://com.apple.storekit/documentation/StoreKit/StoreView/init(products:icon:)"
+      ],
+      "title": "Creating store views with preloaded products"
+    },
+    {
+      "anchor": "Loading-promotional-images",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/ProductIconPhase"
+      ],
+      "title": "Loading promotional images"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/storeview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

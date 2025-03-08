@@ -1,0 +1,476 @@
+{
+  "abstract": [
+    {
+      "text": "Reveal performance and display issues in your views with color overlays, and slow down animations to debug and improve them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying graphics and animations issues in Simulator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app encounters issues such as hitches, blurred views, or misplaced views, use Simulator’s color overlays to help you diagnose several common causes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "when your app draws too many views with transparency on top of each other, and the system has to perform work to blend the views together.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Excess blending",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "when Core Animation needs to make copies of your image for display.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Copying",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "when your app attempts to display an image that doesn’t divide evenly into the scale factor for a device, or an image that doesn’t fit in the size of a view, the image may be blurry or slightly out of position.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Misalignment",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "when your app renders a view offscreen before moving it onscreen to display.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Offscreen rendering",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app encounters issues with animations, such as unexpected jumps, hitches, or diversions from an expected course of changes, use Simulator’s tool to slow down animations so that you can examine them more closely than you can at full speed, and determine the right course of corrective action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-and-optimize-graphics-using-color-overlays",
+          "level": 3,
+          "text": "Debug and optimize graphics using color overlays",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Highlight images and areas of the screen that may create issues with rendering, scrolling performance, and memory in Simulator. Choose Debug > Color and select a color overlay to show or hide in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulator overlays views in red that your app draws on top of other views and that have blending enabled. Simulator overlays other areas in green. Minimize blended layers to improve rendering and scrolling performance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Color Blended Layers",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulator overlays images in blue that Core Animation must copy instead of using the original. Minimize copied images to improve memory usage and performance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Color Copied Images",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulator overlays images in magenta whose bounds are not aligned to the destination pixels. Fix misaligned images to avoid blurs and performance issues. Simulator overlays images in yellow that your app draws with a scale factor. Minimize images with scale factors to improve rendering and scrolling performance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Color Misaligned Images",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulator overlays content in yellow that is rendered offscreen. Only use off-screen rendering when you have confirmed with tests that the memory and performance tradeoffs work for your app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Color Off-screen Rendered",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can show multiple overlays at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Examine your app while you’re displaying overlays to help tune performance. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Slow-down-animations-to-diagnose-problems",
+          "level": 3,
+          "text": "Slow down animations to diagnose problems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unrelated performance issues, logic issues, unforeseen layout circumstances, and other problems can interfere with smooth animations in your app. Slow down the rate of animations to examine them closely so that you can narrow down possibilities for the root cause. Repeatable issues that occur in animations are frequently a logic or layout issue, while non-repeatable issues can be caused by other issues that slow down your app’s main queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose Debug > Slow Animations to slow down animations or return them to normal speed. A checkmark indicates that Simulator is running animations slowly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator": {
+      "abstract": [
+        {
+          "text": "Configure and manage devices connected to your Mac or devices in Simulator and use them to run your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Devices and Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/devices-and-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance": {
+      "abstract": [
+        {
+          "text": "Model, measure, and boost the performance of your app by using a continuous-improvement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "cycle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-your-app-s-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your app’s performance",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-your-app-s-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator": {
+      "abstract": [
+        {
+          "text": "Enter text directly in Simulator, or share location data, images, web addresses, files, or data from the clipboard with Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing data with Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-data-with-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator": {
+      "abstract": [
+        {
+          "text": "Test hardware device-specific scenarios, such as Face ID or Touch ID authentication, fall detection, getting a memory warning, or location changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing complex hardware device scenarios in Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-complex-hardware-device-scenarios-in-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices": {
+      "abstract": [
+        {
+          "text": "Review the differences between Simulator and hardware devices to determine which you should choose to test a scenario.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing in Simulator versus testing on hardware devices",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-in-simulator-versus-testing-on-hardware-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Simulator-testing-considerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices",
+        "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator",
+        "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator"
+      ],
+      "title": "Simulator testing considerations"
+    }
+  ]
+}

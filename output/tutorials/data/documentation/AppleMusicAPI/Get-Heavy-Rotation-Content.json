@@ -1,0 +1,851 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch the resources in heavy rotation for the user.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-history-heavy-rotation#all",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Heavy Rotation Content"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Heavy Rotation Content"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/history/heavy-rotation"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The offset to use for a paginated request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional relationships to include in the fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PaginatedResourceCollectionResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:PaginatedResourceCollectionResponse",
+              "text": "PaginatedResourceCollectionResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/history/heavy-rotation?limit=1"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"id\": \"1623447658\",",
+                    "            \"type\": \"albums\",",
+                    "            \"href\": \"/v1/catalog/us/albums/1623447658\",",
+                    "            \"attributes\": {",
+                    "                \"copyright\": \"A Polydor Records Release; ℗ 2022 Universal Music Operations Limited\",",
+                    "                \"genreNames\": [",
+                    "                    \"Alternative\",",
+                    "                    \"Music\"",
+                    "                ],",
+                    "                \"releaseDate\": \"2022-05-13\",",
+                    "                \"isMasteredForItunes\": true,",
+                    "                \"upc\": \"00602445960248\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 3000,",
+                    "                    \"height\": 3000,",
+                    "                    \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music122/v4/48/15/69/48156938-386b-b9f0-bb88-5fffbc686b15/22UMGIM23127.rgb.jpg/{w}x{h}bb.jpg\",",
+                    "                    \"bgColor\": \"13140f\",",
+                    "                    \"textColor1\": \"edcbc9\",",
+                    "                    \"textColor2\": \"d4ba69\",",
+                    "                    \"textColor3\": \"c1a6a3\",",
+                    "                    \"textColor4\": \"ad9957\"",
+                    "                },",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"1623447658\",",
+                    "                    \"kind\": \"album\"",
+                    "                },",
+                    "                \"url\": \"https://music.apple.com/us/album/dance-fever-apple-music-edition/1623447658\",",
+                    "                \"recordLabel\": \"Polydor Records\",",
+                    "                \"trackCount\": 21,",
+                    "                \"isCompilation\": false,",
+                    "                \"isSingle\": false,",
+                    "                \"name\": \"Dance Fever (Apple Music Edition)\",",
+                    "                \"artistName\": \"Florence + the Machine\",",
+                    "                \"editorialNotes\": {",
+                    "                    \"standard\": \"“When I make records, I make them with the idea that no one else will hear them,” Florence Welch tells Apple Music’s Zane Lowe. “When you get to the realization that this private dialogue is going to be completely public, it’s like I’ve tricked myself again.” On her band’s fifth album <i>Dance Fever</i>, such private dialogues include rejecting real love (“Girls Against God”), dance as the greatest form of release (the anxious synth-folk of “Free”), embracing less healthy coping mechanisms in her past (“Morning Elvis”), and the push-pull between a creative career and the possible desire to start a family. “I am no mother, I am no bride, I am king,” Welch declares in baritone on “King,” in which she ponders one of <i>Dance Fever</i>’s most prominent themes: her complicated relationship with her own artistry. “A lot of it is questioning what it gives to me as well, and being like, ‘Why do I need this so much, sometimes at the cost of more sustainable forms of intimacy or more stable relationships?’” she says. “I think this record is questioning, ‘How committed am I to my own loneliness? How committed am I to my sense of a tragic figure?’” \\n\\nWork on the album had begun alongside producer Jack Antonoff in New York in early 2020 before the pandemic forced Welch back to London, where her creativity was stifled for six long months. <i>Dance Fever</i>, then, also covers writer’s block (the cathartic “My Love,” a track intended to help shake off Welch’s blues, and our own) and her despair of what was lost in a locked-down world. Her lyrics occasionally poke fun at the image she has created of herself (“I think there's a humor also in self-knowledge that runs through this record that I've actually found really liberating,” says Welch), but they are often as strikingly vulnerable as on 2018’s <i>High as Hope</i>. And even if the singer admits on “King” that she is “never satisfied,” her band’s fifth album has brought her rare peace. “I feel like I managed to take everything that I learned in the last 15 years and consolidate it into this record, into this art, into the videos,” she says. “I felt like, if I had to prove something to myself, somehow I did it on this record.” Read on as Welch talks us through a selection of tracks on this special Apple Music edition of <i>Dance Fever</i>, which also contains three tracks reworked as affecting spoken-word moments.\\n\\n<b>“King”</b>\\n“Sometimes songs just arrive fully formed, and it's always when you think you'll never write a song again. I felt like my creative abilities were finally at the peak of how I understood myself as an artist and what I wanted to do. But if I wanted to have a family, there was this sense that suddenly I was being irresponsible with my time by choosing this thing that I've known my whole life, which is performance, which is making songs, which is striving to be the best performer that I can be. Somehow, it would be your fault if you miss the boat. I think that scream at the end of ‘King,’ it's just one of frustration, and confusion as well. I was thinking about Nick Cave and Leonard Cohen. I was thinking about how they can commit their body entirely to the stage. I was like, ‘Oh my god, I'm not going to be able to do that. I'm going to have to make choices.’ It's a statement of confidence, but also of humor that the album has, of ‘If I'm going to sacrifice these other things in my life, I have to be the best.’ I was like, ‘Why not me? Why can't I be king?’” \\n\\n<b>“Free”</b> \\n“I think out of all the Florence + the Machine songs, it's sort of the purest sentiment of why I do it, distilled into why music is so important to me, why I need it, why performance is so important to me. Sometimes you just know a song is working: When we started playing it before it had even come out, just this ripple started in the audience of people catching onto the chorus and starting to move. And it was one of those moments where I was like, ‘Oh, this is a special one. This is really hitting something in people.’ And that's so magical for me. That's when the celebration starts.” \\n\\n<b>“Daffodil”</b>\\n“I thought I'd lost my mind, because I remember coming home and being like, ‘Okay, I wrote a song today. It might be the most Florence + the Machine thing I've ever done. We're a year into the pandemic, I think maybe I'm losing it. The chorus is just “daffodil” over and over again.’ I was like, ‘Can you do that? That's a crazy thing to do.’ There were so many moments where I had nearly gave up on this record. There were so many moments where I nearly went, ‘It just feels like the way that the world is, this is just too hard to finish.’” \\n\\n<b>“The Bomb”</b>\\n“There's a lot of nods, I think, to the previous records. All three of them are in this album, which is nice. Because I feel like somehow I'm bridging the gaps between all of them on this record, like all the things I've been interested in. This song is nodding to what I was thinking about, in terms of unavailability in people, in <i>High as Hope</i> in songs like ‘Big God,’ with like the obsession of someone who'll never text you back. Why is the person who creates the most space and gives you nothing the most appealing person? And really that's because if you're a songwriter, they give you the most enormous space for fantasy and you can write anything you want because they don't really exist. Every time I think in my life I've been in a stable place, something or someone will come up and be like, ‘How do you feel about blowing all this up?’ It's also a fear of growing up and a fear of getting older, because if you regenerate yourself constantly through other people by blowing up, changing everything, you never have to face aging or death.” \\n\\n<b>“Morning Elvis”</b> \\n“I'm obsessed with Nick Cave as a performer, but the performer he's obsessed with is Elvis. So that's how it feeds back to me. I was at home and stuck and there was an Elvis documentary. It made me remember us, when we were on tour in New Orleans, it would have maybe been on the second record. The wheels were really coming off for me, in terms of drinking and partying. I just got very in the spirit of New Orleans and was at a party and just went, 'You all leave without me, I'm staying at this party.' I ended up with my dress completely shredded, because I'm always wearing these vintage things that basically just disintegrate: If you’re on a rager, you will come back with nothing. You would've thought things were going so well for me. What was it about me that had such a death wish? I had such little care for myself. It didn't matter what I had done the night before, or the week before, or what chaos I had created, I knew if I got to the stage, something there would save me and that I would be absolved. And that song is about that feeling, but also a testament to all the performers I've seen turn pain into something so beautiful.” \",",
+                    "                    \"short\": \"“If I had to prove something to myself, somehow I did it on this record.”\"",
+                    "                },",
+                    "                \"isComplete\": true",
+                    "            }",
+                    "        }",
+                    "    ],",
+                    "    \"href\": \"/v1/me/history/heavy-rotation?limit=1\",",
+                    "    \"next\": \"/v1/me/history/heavy-rotation?offset=1\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks": {
+      "abstract": [
+        {
+          "text": "Fetch the recently played tracks for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/me/recent/played/tracks"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Tracks",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-v1-me-recent-played-tracks"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content": {
+      "abstract": [
+        {
+          "text": "Fetch the resources in heavy rotation for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Heavy Rotation Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Heavy Rotation Content",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-heavy-rotation-content"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources": {
+      "abstract": [
+        {
+          "text": "Fetch the resources recently added to the library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Added Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Added Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-added-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources": {
+      "abstract": [
+        {
+          "text": "Fetch the recently played resources for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Played Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-played-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations": {
+      "abstract": [
+        {
+          "text": "Fetch recently played radio stations for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Played Stations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Stations",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-played-stations"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PaginatedResourceCollectionResponse": {
+      "abstract": [
+        {
+          "text": "A response object composed of paginated resource objects for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaginatedResourceCollectionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/PaginatedResourceCollectionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaginatedResourceCollectionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaginatedResourceCollectionResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/paginatedresourcecollectionresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource": {
+      "abstract": [
+        {
+          "text": "A resource—such as an album, song, or playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/resource"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Historical-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources"
+      ],
+      "title": "Requesting Historical Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-heavy-rotation-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

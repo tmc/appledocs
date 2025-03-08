@@ -1,0 +1,1194 @@
+{
+  "abstract": [
+    {
+      "text": "A view that represents a WatchKit interface object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI30WKInterfaceObjectRepresentableP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceObjectRepresentable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceObjectRepresentable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "WKInterfaceObjectRepresentable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObjectRepresentable"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/Body-swift.associatedtype",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+              "text": "Body"
+            },
+            {
+              "kind": "text",
+              "text": " == "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5NeverO",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5NeverO",
+              "text": "Never"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "WKInterfaceObjectRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to create and manage a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceObject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface. Adopt this protocol in one of your app’s custom instances, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use its methods to create, update, and tear down your interface object. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creation and update processes parallel the behavior of SwiftUI views, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use them to configure your interface object with your app’s current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state information. Use the teardown process to remove your interface object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cleanly from your SwiftUI. For example, you might use the teardown process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to notify other parts of your app that the interface object is disappearing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add your interface object into your SwiftUI interface, create your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "WKInterfaceObjectRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance and add it to your SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface. The system calls the methods of your representable instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at appropriate times to create and update the interface object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system doesn’t automatically communicate changes occurring within your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface object to other parts of your SwiftUI interface. When you want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your interface object to coordinate with other SwiftUI views, you must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Coordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "facilitate those interactions. For example, you use a coordinator to forward",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target-action and delegate messages from your interface object to any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/Body-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "The type of view representing the body of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/Body-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/body-swift.associatedtype"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable": {
+      "abstract": [
+        {
+          "text": "A view that represents a WatchKit interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObjectRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Context": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObjectRepresentable.Context",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/context"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Coordinator": {
+      "abstract": [
+        {
+          "text": "A type to coordinate with the WatchKit interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Coordinator",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Coordinator",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/coordinator"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/WKInterfaceObjectType": {
+      "abstract": [
+        {
+          "text": "The type of WatchKit interface object to be presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/WKInterfaceObjectType",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "WKInterfaceObjectType",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/wkinterfaceobjecttype"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/dismantleWKInterfaceObject(_:coordinator:)": {
+      "abstract": [
+        {
+          "text": "Cleans up the presented WatchKit interface object (and its coordinator)",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in anticipation of their removal.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismantleWKInterfaceObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP0cD4TypeQa",
+          "text": "WKInterfaceObjectType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP11CoordinatorQa",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/dismantleWKInterfaceObject(_:coordinator:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dismantleWKInterfaceObject(_:coordinator:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/dismantlewkinterfaceobject(_:coordinator:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/makeCoordinator()": {
+      "abstract": [
+        {
+          "text": "Creates the custom instance that you use to communicate changes from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your interface object to other parts of your SwiftUI interface.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP11CoordinatorQa",
+          "text": "Coordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/makeCoordinator()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeCoordinator()",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/makecoordinator()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/makeWKInterfaceObject(context:)": {
+      "abstract": [
+        {
+          "text": "Creates a WatchKit interface object and configures its initial state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeWKInterfaceObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP0cD4TypeQa",
+          "text": "WKInterfaceObjectType"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/makeWKInterfaceObject(context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeWKInterfaceObject(context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/makewkinterfaceobject(context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/updateWKInterfaceObject(_:context:)": {
+      "abstract": [
+        {
+          "text": "Updates the presented WatchKit interface object (and its coordinator) to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the latest configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateWKInterfaceObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP0cD4TypeQa",
+          "text": "WKInterfaceObjectType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30WKInterfaceObjectRepresentableP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/updateWKInterfaceObject(_:context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "updateWKInterfaceObject(_:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentable/updatewkinterfaceobject(_:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your WatchKit interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObjectRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/wkinterfaceobjectrepresentablecontext"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceObject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s5NeverO": {
+      "abstract": [
+        {
+          "text": "A type that has no values and can’t be constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5NeverO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Never",
+      "type": "topic",
+      "url": "/documentation/Swift/Never"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-WatchKit-views-to-SwiftUI-view-hierarchies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentableContext"
+      ],
+      "title": "Adding WatchKit views to SwiftUI view hierarchies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-updating-the-interface-object",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/makeWKInterfaceObject(context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/updateWKInterfaceObject(_:context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Context"
+      ],
+      "title": "Creating and updating the interface object"
+    },
+    {
+      "anchor": "Cleaning-up-the-interface-object",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/dismantleWKInterfaceObject(_:coordinator:)"
+      ],
+      "title": "Cleaning up the interface object"
+    },
+    {
+      "anchor": "Providing-a-custom-coordinator-object",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/makeCoordinator()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/Coordinator",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKInterfaceObjectRepresentable/WKInterfaceObjectType"
+      ],
+      "title": "Providing a custom coordinator object"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/wkinterfaceobjectrepresentable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

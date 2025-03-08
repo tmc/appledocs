@@ -1,0 +1,839 @@
+{
+  "abstract": [
+    {
+      "text": "Store app preferences in iCloud and share them among instances of your app running on a user’s connected devices.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud"
+  },
+  "kind": "article",
+  "legacy_identifier": 3080747,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.5",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.5",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "11.6",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Synchronizing App Preferences with iCloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to store preference, configuration, and app-state data in the iCloud key-value store using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. You can then share this data with every instance of your app on every device connected to a userʼs iCloud account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample the user picks a background color. App instances running on other devices that are logged in with the same iCloud account are then notified of the color to match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "With ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSUbiquitousKeyValueStore",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " you’re limited to 1 MB of total space. Don’t use it to store large amounts of data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key-value store is not a replacement for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or other local techniques for saving the same data. The key-value store’s purpose is to synchronize key-value data between app instances running on different devices of the same user. If iCloud is not enabled or is not available on a given device, the app still keeps a local copy of the data in ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3678696",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure your Xcode project first you need change the Bundle Identifiers for both macOS and iOS targets to match your own. Next, to work with iCloud and ",
+              "type": "text"
+            },
+            {
+              "code": "NSUbiquitousKeyValueStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you need set up an iCloud key-value store ID for both targets. This sample already has the both targets’ iCloud capabilities set up, with the ",
+              "type": "text"
+            },
+            {
+              "code": "PrefsInCloud.entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file already created. You need to fill in your own key-value store IDs in those entitlement files to complete the configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each target (iOS and macOS):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Xcode project, open the target’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PrefsInCloud.entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In that file, go to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.ubiquity-kvstore-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement and replace ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$(CFBundleIdenfier)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with your key-value store ID (i.e. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$(TeamIdentifierPrefix)<your key-value_store ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). For example if your key-value store ID is “com.mycompany.myKeyValueStoreID” it would look like this: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$(TeamIdentifierPrefix)com.mycompany.myKeyValueStoreID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". It’s important that the key-value store ID portions are the same between both targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to configuring the project, you need to configure the devices in which the project runs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the iOS and macOS devices, verify that iCloud Drive is turned on. Then log into both devices with the same iCloud account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build and run the app to install it on both devices, and then do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS: Tap the action button at the top right to pick the desired background color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS: Choose the desired background color from window’s popup menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The desired color represents a value (numbered 0 to 3) which is uploaded to iCloud. App instances running on the other devices logged into the same iCloud account are notified to match that specific background color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The key-value store is intended for storing data that changes infrequently. As you test your devices, if the app on a device makes frequent changes to the key-value store, the system may defer the synchronization of some changes in order to minimize the number of round trips to the server. The more frequently the app make changes, the more likely the changes will be deferred and will not immediately show up on the other devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "3678697",
+          "level": 3,
+          "text": "Register to Respond to Key-Value Store Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register as an observer to the notification ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following example installs the app as the observer to respond to the key-value store changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NotificationCenter.default.addObserver(self,",
+            "    selector: #selector(ubiquitousKeyValueStoreDidChange(_:)),",
+            "    name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,",
+            "    object: NSUbiquitousKeyValueStore.default)"
+          ],
+          "metadata": {
+            "anchor": "3678689",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Immediately following the call to ",
+              "type": "text"
+            },
+            {
+              "code": "addObserver",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", obtain the key-value store changes since last launch by calling ",
+              "type": "text"
+            },
+            {
+              "code": "synchronize()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The operating system controls when keys and values are uploaded to iCloud. Calling ",
+              "type": "text"
+            },
+            {
+              "code": "synchronize()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " simply stores a local cache of them and notifies iCloud of new data waiting to be uploaded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3678698",
+          "level": 3,
+          "text": "Respond to Key-Value Store Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "NSNotificationCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to register as an observer to the notification ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to detect for value changes in iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements the function ",
+              "type": "text"
+            },
+            {
+              "code": "ubiquitousKeyValueStoreDidChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for listening for key-value notification changes. This function is called when the key-value store in the cloud has changed externally. It replaces the old key-value color with the new one. Additionally, this function updates the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key-value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample examines the reason for the change through the use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the notification’s ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let userInfo = notification.userInfo else { return }",
+            "      ",
+            "// Get the reason for the notification (initial download, external change or quota violation change).",
+            "guard let reasonForChange = userInfo[NSUbiquitousKeyValueStoreChangeReasonKey] as? Int else { return }"
+          ],
+          "metadata": {
+            "anchor": "3678691",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reason for the key-value notification change is one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSUbiquitousKeyValueStoreServerChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Value(s) were changed externally from other users/devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSUbiquitousKeyValueStoreInitialSyncChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Initial downloads happen the first time a device is connected to an iCloud account, and when a user switches their primary iCloud account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSUbiquitousKeyValueStoreQuotaViolationChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The app’s key-value store has exceeded its space quota on the iCloud server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSUbiquitousKeyValueStoreAccountChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The user has changed the primary iCloud account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain key-values that have changed, use the key ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the notification’s  ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let keys =",
+            "          userInfo[NSUbiquitousKeyValueStoreChangedKeysKey] as? [String] else { return }"
+          ],
+          "metadata": {
+            "anchor": "3678692",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "let possibleColorIndexFromiCloud =",
+            "          NSUbiquitousKeyValueStore.default.longLong(forKey: gBackgroundColorKey)"
+          ],
+          "metadata": {
+            "anchor": "3678693",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud": {
+      "abstract": [
+        {
+          "text": "Store app preferences in iCloud and share them among instances of your app running on a user’s connected devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing App Preferences with iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678689": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678689",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678689"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678691": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678691",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678691"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678692": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678692",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678692"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678693": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678693",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/icloud/synchronizing_app_preferences_with_icloud#3678693"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore": {
+      "abstract": [
+        {
+          "text": "An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user's connected devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUbiquitousKeyValueStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeExternallyNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1412267-didchangeexternallynotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStoreChangedKeysKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStoreChangeReasonKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/400e91e74e/SynchronizingAppPreferencesWithICloud.zip": {
+      "checksum": "12c2bc6cfb55419b88563d88011d2c9ffc8ecf95bab4983318b8248e4d84e455ac6b603fa94e0cee6b7e5705db5c788ade3c5684d651caa8840e136c8616f932",
+      "identifier": "https://docs-assets.developer.apple.com/published/400e91e74e/SynchronizingAppPreferencesWithICloud.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/400e91e74e/SynchronizingAppPreferencesWithICloud.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/400e91e74e/SynchronizingAppPreferencesWithICloud.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore"
+      ],
+      "title": "App Preferences"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/icloud/synchronizing_app_preferences_with_icloud"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/icloud/synchronizing_app_preferences_with_icloud"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

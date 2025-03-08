@@ -1,0 +1,4684 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the structure and properties of the objects the system includes in the JSON of a crash report.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Interpreting the JSON format of a crash report"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 15 and macOS 12, apps that generate crash reports store the data as JSON in files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an ",
+              "type": "text"
+            },
+            {
+              "code": ".ips",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension. Tools for viewing these files, such as Console, translate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the JSON to make it easier to read and interpret. The translated content uses field",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "names the article ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes. Use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following information to understand the structure of the JSON the system uses for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these crash reports and how the data maps to the field names found in the translated content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typical JSON parsers expect a single JSON object in the body of the file. The IPS file for a crash report contains two JSON objects: an object containing IPS metadata about the report incident and an object containing the crash report data. When parsing the file, extract the JSON for the metadata object from the first line. If the ",
+              "type": "text"
+            },
+            {
+              "code": "bug_type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the metadata object is ",
+              "type": "text"
+            },
+            {
+              "code": "309",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the log type for crash reports, you can extract the JSON for the crash report data from the remainder of the text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example reads the contents of a crash report into a dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    do {",
+            "        let content = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)",
+            "",
+            "        /// Read the first line, the metadata object, into a dictionary.",
+            "        let metadataRange = content.lineRange(for: ..<content.startIndex)",
+            "        let metadataJSON = content[metadataRange].data(using: .utf8)",
+            "        let metadata = try JSONSerialization.jsonObject(with: metadataJSON!) as! Dictionary<String, Any>",
+            "",
+            "        /// Check the `bug_type` property of the metadata for type `309`, the log type for crash reports.",
+            "        let logType = \"\\(metadata[\"bug_type\"] ?? \"(unknown)\")\"",
+            "        guard logType == \"309\" else {",
+            "            // Handle the error.        ",
+            "            fatalError(\"Log type \\(logType) is not a crash report.\")",
+            "        }",
+            "",
+            "        /// Read the remainder of the file, the crash report object, into a dictionary.",
+            "        let reportRange = content.lineRange(for: metadataRange.upperBound..<content.endIndex)",
+            "        let reportJSON = content[reportRange].data(using: .utf8)",
+            "        let report = try JSONSerialization.jsonObject(with: reportJSON!) as! Dictionary<String, Any>",
+            "",
+            "        return report",
+            "    } catch {",
+            "        // Handle the error.",
+            "        fatalError(\"*** An error occurred while reading the crash report: \\(error.localizedDescription) ***\")",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The crash report data is made up of additional objects pertaining to OS version, bundle, store, exception, termination, threads, frames, and binary images. The properties of all these objects are outlined below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "IPS-metadata",
+          "level": 3,
+          "text": "IPS metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IPS metadata object contains the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "name",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the process the report applies to. Usually the process executable name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bug_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier for the type of log captured by the report. Type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "309",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the crash reports this article describes. You might encounter other types. Type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "288",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", for instance, is a stackshot.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bundleID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier of the process the report applies to; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "build_version",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle version string of the process the report applies to; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "incident_id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique identifier for the report. Two reports never share the same identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "platform",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A number identifying the platform the process was running on. For the meaning of these values, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Platforms",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "timestamp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A date and time the log system generates for report tracking. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "procLaunch",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "captureTime",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " properties from the crash report object to determine launch and termination time for the process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Crash-report",
+          "level": 3,
+          "text": "Crash report",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The crash report object can contain the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "asi",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Additional application-specific logging. The properties of this object include an array of log strings. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Diagnostic-messages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Application Specific Information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "bundleInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bundle information for the process that crashed. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Bundle-info",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "captureTime",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The date and time of the crash. This appears in a translated report under Date/Time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coalitionID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ID of the coalition containing the process. Process coalitions track resource usage among groups of related processes, such as an operating system process supporting a specific API’s functionality in an app. Most processes, including app extensions, form their own coalition. This appears in a translated report under Coalition.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coalitionName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the coalition containing the process. For more details, see the description above on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "coalitionID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cpuType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The CPU architecture of the process that crashed. The value is one of ARM-64, ARM, X86-64, or X86. This appears in a translated report under Code Type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "crashReporterKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An anonymized per-device identifier. Two reports from the same device contain identical values. This identifier is reset upon erasing the device. This appears in a translated report under CrashReporter Key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "DTAppStoreToolsBuild",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The version of Xcode used to compile your app’s bitcode and to thin your app to device-specific variants. This appears in a translated report under AppStoreTools.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exception",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about how the process terminated. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Exception",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "faultingThread",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The index of the thread that crashed. The object at this index in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "threads",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains information about this thread, such as the state of its registers. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Threads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "incident",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique identifier for the report. Two reports never share the same identifier. This appears in a translated report under Incident Identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "isCorpse",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value if the crash didn’t originate from a hardware trap, either because the process was explicitly terminated by the operating system or the process called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "abort()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Exception Note as EXC_CORPSE_NOTIFY.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "isNonFatal",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value if the process didn’t terminate, because the issue that created the crash report wasn’t fatal. This appears in a translated report under Exception Note as NON-FATAL CONDITION (this ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "isn’t",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " a crash).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "isSimulated",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value if the process didn’t crash, but the operating system might have subsequently requested termination of the process. This appears in a translated report under Exception Note as SIMULATED (this ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "isn’t",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " a crash).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "lastExceptionBacktrace",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Backtrace information for the crashed process documenting the code running on the thread where a language exception occurs. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Threads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Last Exception Backtrace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "modelCode",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The specific device model the process was running on. This appears in a translated report under Hardware Model.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "osVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Version information for the OS the process was running under. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#OS-version",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under OS Version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "parentPid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier of the process that launched the crashed process. This appears in a translated report under Parent Process in square brackets after the process name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "parentProc",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the process that launched the crashed process. This appears in a translated report under Parent Process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "pid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier of the process that crashed. This appears in a translated report under Process as the text before the parenthesis.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "procLaunch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The date and time the process launched. This appears in a translated report under Launch Time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "procName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The executable name of the process that crashed. This appears in a translated report under Process as the text before the parenthesis.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "procPath",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The location of the executable on disk. macOS replaces user-identifable path components with placeholder values to protect privacy. This appears in a translated report under Path.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "procRole",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The task role assigned to the process at the time of termination; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/kernel/task_role_t",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Role.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "storeInfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store information about the process that crashed. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Store-info",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "termination",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about the termination of a process by another. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Termination",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "threads",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Backtrace information for the crashed process documenting the code running on each thread when the process terminated. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Threads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The backtrace for each thread appears in its own section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "translated",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value for a process with X86-64 instructions running translated under Rosetta on Apple silicon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uptime",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time, in seconds, the system has been running since it booted. This appears in a translated report under Time Awake Since Boot.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "usedImages",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each dictionary entry in this array contains information about a binary image loaded in the process at the time of termination, such as the app executable and system frameworks. For a description of this object’s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Binary-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Binary Images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "version",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Crash report schema version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "vmSummary",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Summary of the virtual memory in use by the process. Similar to the output from executing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "vmmap <pid> --summary",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This appears in a translated report under VM Region Summary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "vmregioninfo",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about the virtual memory regions for terminations due to a memory access issue. This appears in a translated report under VM Region Info.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Platforms",
+          "level": 3,
+          "text": "Platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The numeric values for ",
+              "type": "text"
+            },
+            {
+              "code": "platform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for iOS (includes iOS apps running under macOS on Apple silicon)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "4",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "6",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for Mac Catalyst",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "7",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for iOS Simulator",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for tvOS Simulator",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "9",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for watchOS Simulator",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "OS-version",
+          "level": 3,
+          "text": "OS version",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes OS version information in an object that can contain the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "build",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build number of the operating system. Appears in a translated report inside the parentheses under OS Version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "isEmbedded",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value if the operating system is for an embedded platform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "releaseType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of release: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "User",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a release version and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Beta",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for a prerelease versions. Appears in a translated report under Release Type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "train",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string containing the platform and OS version number. Appears in a translated report under OS Version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Bundle-info",
+          "level": 3,
+          "text": "Bundle info",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes bundle information in an object with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CFBundleIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier for the process that crashed. Appears in a translated report under Identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CFBundleShortVersionString",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle version string (short) for the process that crashed; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Appears in a translated report under Version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CFBundleVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle version for the process that crashed; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Appears in a translated report under Version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Store-info",
+          "level": 3,
+          "text": "Store info",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes store information in an object with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "applicationVariant",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The specific variant of your app produced by app thinning. Appears in a translated report under App Variant.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "deviceIdentifierForVendor",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique identifier for the combination of the device and vendor of the crashed app. Two reports for apps from the same vendor and from the same device contain identical values. This field is only present for TestFlight builds of an app, and replaces the CrashReporter Key field. Appears in a translated report under Beta Identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "itemID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Apple identifier, a unique record for titles in the store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Exception",
+          "level": 3,
+          "text": "Exception",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes exception information in an object with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "codes",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Processor-specific information about the exception encoded into one or more 64-bit hexadecimal numbers. This appears in a translated report under Exception Codes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "message",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Additional human-readable information extracted from the exception codes. This appears in a translated report under Exception Message.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "signal",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The BSD termination signal; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Exception Type as the text inside the parentheses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subtype",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The human-readable description of the exception codes. This appears in a translated report under Exception Subtype.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the Mach exception that terminated the process; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Exception Type as the text before the parenthesis.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Exception-information",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This exception information doesn’t refer to language exceptions thrown by an API or language features in Objective-C or C++. Crash reports record language exception information separately.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Termination",
+          "level": 3,
+          "text": "Termination",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes termination information in an object that can contain the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "byPid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The identifier of the terminating process.  This appears in a translated report under Terminating Process as the number in brackets after the terminating process name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "byProc",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the terminating process.  This appears in a translated report under Terminating Process before the PID in brackets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A code the system uses to identify the reason for termination or a BSD termination signal the system used. For a list of possible reason codes, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Termination Reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "flags",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Options set by the terminating process for how the process should terminate; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://opensource.apple.com/source/xnu/xnu-3789.21.4/bsd/sys/reason.h.auto.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "indicator",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Human-readable description of the termination code, if available. This appears in a translated report under Termination Reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "namespace",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A namespace the system uses to categorize the reason for termination; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://opensource.apple.com/source/xnu/xnu-3789.21.4/bsd/sys/reason.h.auto.html",
+                      "isActive": true,
+                      "overridingTitle": "reason_namespace",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "reason_namespace",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This appears in a translated report under Termination Reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on how to use this information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Exception-information",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JSON stores numeric values as decimal numbers. The value the system stores in the ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is intended to be viewed in its hexadecimal form; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Convert-numeric-values-to-hexadecimal-numbers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Threads",
+          "level": 3,
+          "text": "Threads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes thread information in objects that can contain the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "frames",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of dictionaries describing each frame of the thread’s backtrace. Stack frames are in calling order, where frame 0 is the function that was executing at the time execution halted. Frame 1 is the function that called the function in frame 0, and so on. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Frames",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The thread’s index number.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "queue",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that identifies the dispatch queue of the crashing thread, if applicable. This appears in a translated report in the label above the backtrace of each thread under Dispatch Queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "threadState",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A JSON representation of the CPU registers and their values for the thread as well as other useful runtime data from when the process terminated. The structure and properties of this object depend on the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "flavor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This appears in its own section of the formatted report after the backtraces for all the threads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "triggered",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Boolean",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value if this thread is responsible for the crash. This appears in a translated report as Triggered by Thread.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on how to use this information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Backtraces",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Thread-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JSON contains numbers for memory addresses in frame and thread state objects as decimal digits. To view the numbers contained in these fields in their more common hexadecimal form, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Convert-numeric-values-to-hexadecimal-numbers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Frames",
+          "level": 3,
+          "text": "Frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes information about frames in objects with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "imageIndex",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The index of the binary image containing the code this frame in the backtrace is executing. The object at this index in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "usedImages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array contains information about this image. For a description of this object‘s properties, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Binary-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "imageOffset",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The byte offset from the start of the binary image to the current instruction. If you add this value to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "base",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value from the binary images list, you’ll get the runtime memory address of the instruction that’s executing. For frame 0 in each backtrace, this is the address of the machine instruction executing on a thread when the process terminated. For other stack frames, this is the address of the first machine instruction that executes after control returns to that stack frame. This runtime memory address is the value that appears next to each frame in the backtraces of the formatted report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "symbol",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a fully symbolicated crash report, the name of the function that is executing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "symbolLocation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of bytes from the executing instruction’s entry point. This is the value that appears after the ‘+’ next to each frame in the backtraces of the formatted report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on how to use this information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Backtraces",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JSON contains numbers for the memory locations and offsets as decimal digits. To convert the numbers contained in these fields to their more common hexadecimal form, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Convert-numeric-values-to-hexadecimal-numbers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Binary-images",
+          "level": 3,
+          "text": "Binary images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A report includes information about binary images loaded in the process at the time of termination in objects with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "arch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The CPU architecture from the binary image that the operating system loaded into the process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "base",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The binary image’s load address. This is the start of the memory address range for the loaded image that appears in a translated report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "name",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The binary name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The path to the binary on disk. macOS replaces user-identifable path components with placeholder values to protect privacy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The size of the image. If you add this value to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "base",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value, you’ll get the end of the memory address range for the loaded image that appears in a translated report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A character that indicates the binary image’s region type: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "P",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (process), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "S",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (shared cache), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "C",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (shared cache library), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "K",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (kernel), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "U",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (kernel cache),  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "T",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (kernel text exec), ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "A",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (absolute).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uuid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A build UUID that uniquely identifies the binary image you can use to locate the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file when symbolicating the crash report. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on how to use this information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Binary-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-numeric-values-to-hexadecimal-numbers",
+          "level": 3,
+          "text": "Convert numeric values to hexadecimal numbers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JSON stores numeric values as decimal numbers. Many of these numeric values, such as error codes and memory addresses, appear in a translated report as hexadecimal numbers to make them easier to interpret.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the following to print a hexadecimal representation of the numbers from the decimal representation found in the JSON.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "",
+            "let decimal = 2343432205",
+            "",
+            "print(String(format: \"0x%lx\", decimal))",
+            "// Prints \"0x8badf00d\"."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Replace hexadecimal addresses in a crash report with function names and line numbers",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that correspond to your app’s code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding identifiable symbol names to a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information": {
+      "abstract": [
+        {
+          "text": "Configure Xcode to produce the symbol information for debugging and crash reports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your app to include debugging information",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-app-to-include-debugging-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure of a crash report and the information each field contains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Examining the fields in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Backtraces": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Backtraces",
+      "kind": "section",
+      "title": "Backtraces",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report#Backtraces"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Binary-images": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Binary-images",
+      "kind": "section",
+      "title": "Binary images",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report#Binary-images"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Diagnostic-messages": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Diagnostic-messages",
+      "kind": "section",
+      "title": "Diagnostic messages",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report#Diagnostic-messages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Exception-information": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Exception-information",
+      "kind": "section",
+      "title": "Exception information",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report#Exception-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Thread-state": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report#Thread-state",
+      "kind": "section",
+      "title": "Thread state",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report#Thread-state"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Binary-images": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Binary-images",
+      "kind": "section",
+      "title": "Binary images",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Binary-images"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Bundle-info": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Bundle-info",
+      "kind": "section",
+      "title": "Bundle info",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Bundle-info"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Convert-numeric-values-to-hexadecimal-numbers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Convert-numeric-values-to-hexadecimal-numbers",
+      "kind": "section",
+      "title": "Convert numeric values to hexadecimal numbers",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Convert-numeric-values-to-hexadecimal-numbers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Exception": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Exception",
+      "kind": "section",
+      "title": "Exception",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Exception"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Frames": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Frames",
+      "kind": "section",
+      "title": "Frames",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Frames"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#OS-version": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#OS-version",
+      "kind": "section",
+      "title": "OS version",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#OS-version"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Platforms": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Platforms",
+      "kind": "section",
+      "title": "Platforms",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Platforms"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Store-info": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Store-info",
+      "kind": "section",
+      "title": "Store info",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Store-info"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Termination": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Termination",
+      "kind": "section",
+      "title": "Termination",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Termination"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Threads": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report#Threads",
+      "kind": "section",
+      "title": "Threads",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report#Threads"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Learn what the exception type tells you about why your app crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Understanding the exception types in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-the-exception-types-in-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString": {
+      "abstract": [
+        {
+          "text": "The release or version number of the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleShortVersionString",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion": {
+      "abstract": [
+        {
+          "text": "The version of the build that identifies an iteration of the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleVersion"
+    },
+    "doc://com.apple.documentation/documentation/kernel/task_role_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/task_role_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "task_role_t",
+      "type": "topic",
+      "url": "/documentation/kernel/task_role_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://opensource.apple.com/source/xnu/xnu-3789.21.4/bsd/sys/reason.h.auto.html": {
+      "identifier": "https://opensource.apple.com/source/xnu/xnu-3789.21.4/bsd/sys/reason.h.auto.html",
+      "title": "reason_flags",
+      "titleInlineContent": [
+        {
+          "text": "reason_flags",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://opensource.apple.com/source/xnu/xnu-3789.21.4/bsd/sys/reason.h.auto.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Crash-reports",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report"
+      ],
+      "title": "Crash reports"
+    }
+  ]
+}

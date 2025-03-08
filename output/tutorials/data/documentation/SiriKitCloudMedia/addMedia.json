@@ -1,0 +1,828 @@
+{
+  "abstract": [
+    {
+      "text": "Add media items to the user’s library or to a playlist.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "SiriKit Cloud Media",
+      "versions": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:sirikit_media_api:post:intent-addMedia",
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "addMedia"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Process an Add Media Intent"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://cloudextension-testservice.local/api/"
+        },
+        {
+          "kind": "path",
+          "text": "intent/addMedia"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client’s current user interface language. Respond with localized content for this language, if available.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Accept-Language",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An approximate deadline, in seconds, for processing this real-time user request. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object provides the exact deadline for handling an intent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Request-Timeout",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "250"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/AppleCloudExtension/([0-9]+\\.[0-9]+\\.[0-9]+) *.*/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The extension protocol running on the client. This is an RFC 7231-compliant string that contains the product name ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AppleCloudExtension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and the SiriKit Extension library version running on the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "User-Agent",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of previous requests from the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-retry-count",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "1"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant session identifier to include in each request and response. Respond to each request with the same session ID the client sends in that request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-session-id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "kind": "text",
+          "text": "["
+        },
+        {
+          "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocation",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:sirikit_media_api:AddMediaIntentHandlingInvocation",
+          "text": "AddMediaIntentHandlingInvocation"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "An array of requests to process intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocationResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:AddMediaIntentHandlingInvocationResponse",
+              "text": "AddMediaIntentHandlingInvocationResponse"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Processing a request to add media items to the user’s library or to a playlist requires a few steps: resolving the intended media item, resolving the intended destination library or playlist, confirming the intent, and handling the intent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can often improve the overall response time to the user’s request by providing multiple responses to the client’s first request. Include an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocationResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for each of the subsequent steps in your response to the first request of a session. This allows the client to skip subsequent requests when you can resolve each parameter successfully. If your service responds with a disambiguation, confirmation, or failure, the client disregards the pre-emptive responses, and sends the subsequent intent-processing requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntent": {
+      "abstract": [
+        {
+          "text": "An object that describes the user’s request to add media items to their library or to a specific playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingConfirmInvocationResponse": {
+      "abstract": [
+        {
+          "text": "The service’s response to a request to confirm an add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingConfirmInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingConfirmInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingConfirmInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentHandlingConfirmInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintenthandlingconfirminvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingHandleInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to handle a fully resolved add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingHandleInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingHandleInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingHandleInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentHandlingHandleInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintenthandlinghandleinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocation": {
+      "abstract": [
+        {
+          "text": "A request to process an add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingInvocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingInvocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentHandlingInvocation",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintenthandlinginvocation"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocationResponse": {
+      "abstract": [
+        {
+          "text": "The service’s response to a request to process an add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentHandlingInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintenthandlinginvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingResolveMediaDestinationInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve media items in an add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingResolveMediaDestinationInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingResolveMediaDestinationInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingResolveMediaDestinationInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentHandlingResolveMediaDestinationInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintenthandlingresolvemediadestinationinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingResolveMediaItemsInvocationResponse": {
+      "abstract": [
+        {
+          "text": "Your service’s response to a request to resolve media items in an update media affinity intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingResolveMediaItemsInvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingResolveMediaItemsInvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentHandlingResolveMediaItemsInvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentHandlingResolveMediaItemsInvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintenthandlingresolvemediaitemsinvocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentResponse": {
+      "abstract": [
+        {
+          "text": "A structure that contains a response code indicating your service’s progress in handling an add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintentresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentResponseCode": {
+      "abstract": [
+        {
+          "text": "Codes your service can return when confirming or handling an add media intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentResponseCode"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentResponseCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaIntentResponseCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaIntentResponseCode",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediaintentresponsecode"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaMediaDestinationResolutionResult": {
+      "abstract": [
+        {
+          "text": "The user’s library or a specified playlist, or information about why your service can’t use the requested destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaMediaDestinationResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaMediaDestinationResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaMediaDestinationResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaMediaDestinationResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediamediadestinationresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaMediaItemResolutionResult": {
+      "abstract": [
+        {
+          "text": "A media item that matches an add media intent, or information about why your service can’t provide a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddMediaMediaItemResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaMediaItemResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddMediaMediaItemResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddMediaMediaItemResolutionResult",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmediamediaitemresolutionresult"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session": {
+      "abstract": [
+        {
+          "text": "Information the client provides about a sequence of requests and responses to process an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "role": "symbol",
+      "title": "Session",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/session"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia": {
+      "abstract": [
+        {
+          "text": "Add media items to the user’s library or to a playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/addMedia",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Add Media Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/addmedia"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Processing-an-Add-Media-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocation",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingInvocationResponse"
+      ],
+      "title": "Processing an Add Media Intent"
+    },
+    {
+      "anchor": "Identifying-a-Media-Item",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingResolveMediaItemsInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaMediaItemResolutionResult"
+      ],
+      "title": "Identifying a Media Item"
+    },
+    {
+      "anchor": "Identifying-a-Library-or-Playlist",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingResolveMediaDestinationInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaMediaDestinationResolutionResult"
+      ],
+      "title": "Identifying a Library or Playlist"
+    },
+    {
+      "anchor": "Confirming-and-Handling-an-Add-Media-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentResponseCode",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingConfirmInvocationResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/AddMediaIntentHandlingHandleInvocationResponse"
+      ],
+      "title": "Confirming and Handling an Add Media Intent"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/addmedia"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

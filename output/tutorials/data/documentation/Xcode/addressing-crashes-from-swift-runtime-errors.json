@@ -1,0 +1,668 @@
+{
+  "abstract": [
+    {
+      "text": "Identify the signs of a Swift runtime error, and address the crashes runtime errors",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "cause.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/addressing-crashes-from-swift-runtime-errors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Addressing crashes from Swift runtime errors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift uses memory safety techniques to catch programming mistakes early. Optionals",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "require you to think about how best to handle a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. Type safety prevents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "casting an object to a type that doesn’t match the object’s actual type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use the ",
+              "type": "text"
+            },
+            {
+              "code": "!",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator to force unwrap an optional value that’s ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you force a type downcast that fails with the ",
+              "type": "text"
+            },
+            {
+              "code": "as!",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator, the Swift runtime catches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these errors and intentionally crashes the app. If you can reproduce the runtime",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "error, Xcode logs information about the issue to the console. On ARM processors,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the exception info in the crash report looks like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BREAKPOINT (SIGTRAP)",
+            "...",
+            "Termination Signal: Trace/BPT trap: 5",
+            "Termination Reason: Namespace SIGNAL, Code 0x5"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Intel processors (including apps for macOS, Mac Catalyst, and the simulators for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS, iPadOS, tvOS, and watchOS), the exception info in the crash report looks like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:        EXC_BAD_INSTRUCTION (SIGILL)",
+            "...",
+            "Exception Note:        EXC_CORPSE_NOTIFY",
+            "",
+            "Termination Signal:    Illegal instruction: 4",
+            "Termination Reason:    Namespace SIGNAL, Code 0x4"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Identify-the-location-of-the-error",
+          "level": 3,
+          "text": "Identify the location of the error",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The crash report shows the thread that encountered the runtime error, with a frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the backtrace identifying the specific line of code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Thread 0 Crashed:",
+            "0   MyCoolApp                         0x0000000100a71a88 @objc ViewController.viewDidLoad() (in MyCoolApp) (ViewController.swift:18)",
+            "1   MyCoolApp                         0x0000000100a71a40 @objc ViewController.viewDidLoad() (in MyCoolApp) (ViewController.swift:18)",
+            "2   UIKitCore                         0x00000001c569e920 -[UIViewController _sendViewDidLoadWithAppearanceProxyObjectTaggingEnabled] + 100",
+            "3   UIKitCore                         0x00000001c56a3430 -[UIViewController loadViewIfRequired] + 936",
+            "4   UIKitCore                         0x00000001c56a3838 -[UIViewController view] + 28"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, thread 0 encountered the error. Frame 0 of this thread shows that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the runtime error occurs on line 18 of ",
+              "type": "text"
+            },
+            {
+              "code": "ViewController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in the ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidLoad",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "0   MyCoolApp                         0x0000000100a71a88 @objc ViewController.viewDidLoad() (in MyCoolApp) (ViewController.swift:18)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-your-code",
+          "level": 3,
+          "text": "Change your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Look at the other frames in the backtrace to identify the exact function calls that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "produced the error, and determine whether you used a force unwrap or a forced downcast.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A force unwrap uses the ",
+              "type": "text"
+            },
+            {
+              "code": "!",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let image = UIImage(named: \"aMissingIcon\")!",
+            "print(\"Image size: \\(image.size)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of the force unwrap, gracefully handle the ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value where it first appears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your code by using optional binding:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let image = UIImage(named: \"aMissingIcon\") {",
+            "    print(\"Image size: \\(image.size)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the Swift documentation for more information on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For type casts, a forced downcast uses the ",
+              "type": "text"
+            },
+            {
+              "code": "as!",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator. This example crashes if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains something other than a ",
+              "type": "text"
+            },
+            {
+              "code": "Song",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for item in library {",
+            "    let song = item as! Song",
+            "    print(\"Song: \\(song.name), by \\(song.artist)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of the forced downcast, gracefully handle the scenarios where the type of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the object doesn’t match the expected type by using a conditional downcast:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for item in library {",
+            "    if let song = item as? Song {",
+            "         print(\"Song: \\(song.name), by \\(song.artist)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the Swift documentation for more information on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes": {
+      "abstract": [
+        {
+          "text": "Identify the signs of a language exception, and address the crashes caused by uncaught",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "language exceptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing language exception crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-language-exception-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reading-an-exception-message": {
+      "abstract": [
+        {
+          "text": "Understand and address the common reasons apps crash.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reading-an-exception-message",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading an exception message",
+      "type": "topic",
+      "url": "/documentation/xcode/reading-an-exception-message"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330",
+      "title": "Optionals",
+      "titleInlineContent": [
+        {
+          "text": "Optionals",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID330"
+    },
+    "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22",
+      "title": "Type Casting",
+      "titleInlineContent": [
+        {
+          "text": "Type Casting",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Runtime-errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+        "doc://com.apple.Xcode/documentation/Xcode/reading-an-exception-message"
+      ],
+      "title": "Runtime errors"
+    }
+  ]
+}

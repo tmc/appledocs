@@ -1,0 +1,1269 @@
+{
+  "abstract": [
+    {
+      "text": "Preserve battery life and improve performance on the watch by providing a timeline with expected data and updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Loading future timeline events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit renders your complication in advance to ensure that it’s instantly available when the user glances at their watch. To minimize power usage, create a timeline that includes your app’s current data as well as future entries. These timeline entries let ClockKit automatically update your complication without requiring further background tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a meeting complication could display all the meetings that the user currently has scheduled, with a timeline entry for each meeting. If details about the meeting change, your server can use PushKit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushType/complication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications to alert the user of these changes, updating the timeline as needed. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Batch-Load-Data",
+          "level": 3,
+          "text": "Batch Load Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To batch load data for future timeline entries, implement your data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and pass the handler the date of the last timeline entry you can create. For example, a meeting app might return the date of the user’s last meeting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {",
+            "    handler(myMeetings.last?.date)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app can’t provide future data, pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In watchOS 6 and earlier the system sets the end date to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if you passed ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". To indicate that your app can batch load future timeline entries, implement your data source’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getSupportedTimeTravelDirections(for:withHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method, and pass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimeTravelDirections/forward",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the handler.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, implement your data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This process is similar to implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and may reuse much of the same code. However, your implementation must create timeline entries starting at the specified date. The entries must occur in chronological order, and the ",
+              "type": "text"
+            },
+            {
+              "code": "limit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter determines the maximum number of entries you can pass to the handler. ClockKit calls this method again whenever it needs to extend your timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on creating timeline entries, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Schedule-Future-Events",
+          "level": 3,
+          "text": "Schedule Future Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When constructing your timeline entries, choose dates that make sense based on when the user needs to see the data. ClockKit displays a timeline entry at the time specified by the entry’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimelineEntry/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For some types of data, you may want to specify a date before the event actually occurs. For example, if you’re implementing a meeting app, alert users to the meeting before it starts. One option is to set the dates so that the complication displays the next meeting, as soon as the current meeting begins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3161329",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the timeline entry that you want to display now.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntryForComplication:withHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "getCurrentTimelineEntry(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getSupportedTimeTravelDirections(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines whether your complication can provide timeline entries for the future or the past.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSupportedTimeTravelDirections"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationTimeTravelDirections",
+          "text": "CLKComplicationTimeTravelDirections"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getSupportedTimeTravelDirections(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSupportedTimeTravelDirectionsForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getSupportedTimeTravelDirections(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getsupportedtimetraveldirections(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the last date for the data that your app can supply.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEndDate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEndDateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEndDate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineenddate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves future timeline entries for the complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEntries(for:after:limit:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineentries(for:after:limit:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimeTravelDirections/forward": {
+      "abstract": [
+        {
+          "text": "Future data support. Use this option when it makes sense to provide future data for your complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forward"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationTimeTravelDirections",
+          "text": "CLKComplicationTimeTravelDirections"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimeTravelDirections/forward",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTimeTravelDirectionForward"
+        }
+      ],
+      "role": "symbol",
+      "title": "forward",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtimetraveldirections/forward"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimelineEntry/date": {
+      "abstract": [
+        {
+          "text": "The time at which to display the entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTimelineEntry/date",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "date"
+        }
+      ],
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtimelineentry/date"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication": {
+      "abstract": [
+        {
+          "text": "Provide the placeholders that users see when adding your complication to a watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Placeholders for Your Complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-placeholders-for-your-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication": {
+      "abstract": [
+        {
+          "text": "Use text in SwiftUI complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding text to a complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-text-to-a-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Design the appearance of a graphic complication using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Building complications with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/clockkit/building-complications-with-swiftui"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry": {
+      "abstract": [
+        {
+          "text": "Package your app-specific data into a template and create a timeline entry for that template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a timeline entry",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up and implement complications for your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating complications for your watchOS app",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app": {
+      "abstract": [
+        {
+          "text": "Define the complications that your app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring complications for your app",
+      "type": "topic",
+      "url": "/documentation/clockkit/declaring-complications-for-your-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges": {
+      "abstract": [
+        {
+          "text": "Add rich visual data to your SwiftUI complications with progress views and gauges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying progress views and gauges",
+      "type": "topic",
+      "url": "/documentation/clockkit/displaying-progress-views-and-gauges"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up your watchOS app’s complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Complications for Your watchOS App",
+      "type": "topic",
+      "url": "/documentation/clockkit/enabling-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date": {
+      "abstract": [
+        {
+          "text": "Replace or extend the data in your complication’s timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your complications up to date",
+      "type": "topic",
+      "url": "/documentation/clockkit/keeping-your-complications-up-to-date"
+    },
+    "doc://com.apple.documentation/documentation/PushKit/PKPushType/complication": {
+      "abstract": [
+        {
+          "text": "A push type for watchOS complications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "complication"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPushType",
+          "text": "PKPushType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit/PKPushType/complication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complication",
+      "type": "topic",
+      "url": "/documentation/PushKit/PKPushType/complication"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture": {
+      "abstract": [
+        {
+          "text": "A date object representing a date in the distant future. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "distantFuture"
+        },
+        {
+          "kind": "text",
+          "text": ": Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate/1415385-distantfuture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "distantFuture",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate/1415385-distantfuture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3161329": {
+      "alt": "An illustration showing three meetings in the timeline. For the future events, the date is set to the previous meeting’s start time.",
+      "identifier": "media-3161329",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1afb2ae7c1edee98eef4ca32dd1bd8e/media-3161329@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd79dbe817a0a06df6b0f542b59de861/media-3161329~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+        "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+        "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+        "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/enabling-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-placeholders-for-your-complication"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Articles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+                "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+                "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+                "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+              ],
+              "title": "Articles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PushKit~1PKPushType~1complication/title",
+          "value": "PKPushTypeComplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PushKit~1PKPushType~1complication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@PKPushType",
+              "text": "PKPushType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKPushTypeComplication"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getSupportedTimeTravelDirections(for:withHandler:)/title",
+          "value": "getSupportedTimeTravelDirectionsForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getSupportedTimeTravelDirections(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSupportedTimeTravelDirectionsForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/title",
+          "value": "getTimelineEndDateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEndDate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEndDateForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimelineEntry~1date/title",
+          "value": "date"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimelineEntry~1date/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "date"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/title",
+          "value": "getCurrentTimelineEntryForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCurrentTimelineEntryForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimeTravelDirections~1forward/title",
+          "value": "CLKComplicationTimeTravelDirectionForward"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTimeTravelDirections~1forward/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTimeTravelDirectionForward"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/title",
+          "value": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/loading-future-timeline-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/loading-future-timeline-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1545 @@
+{
+  "abstract": [
+    {
+      "text": "Create a photo that extends to both edges of the display, with captions that appear in the article layout and in full-screen view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding an Image and Captions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you created a divider and used a ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to extend the divider to the right edge of the display. Here, you’ll do something similar—you’ll use a ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to position a photo against both edges of the display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "photo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component to display an image in your article.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add two types of captions: one that appears in the article layout and another that appears when the image is in full screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make the photo bleed to both edges of the display by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ignoreDocumentMargin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"true\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the photo caption closer to the content above and below it by using smaller values for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "margin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new default component text style for components with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "caption",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " role.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624434",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Positions-for-the-Photo-and-Caption",
+          "level": 3,
+          "text": "Define Positions for the Photo and Caption",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you created ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects and used them to adjust the positions of your text components. Here, you’ll do something similar, creating new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects for photos and captions. To cause the photo to reach the far right and left edges of the display, you’ll use the ",
+              "type": "text"
+            },
+            {
+              "code": "ignoreDocumentMargin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and before the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentLayouts",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "fullBleedLayout-and-halfMarginBothLayout-Copy-This-Code",
+          "level": 4,
+          "text": "fullBleedLayout and halfMarginBothLayout: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"fullBleedLayout\": {",
+            "      \"ignoreDocumentMargin\": true",
+            "    },",
+            "    \"halfMarginBothLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14,",
+            "      \"margin\": {",
+            "        \"top\": 12,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "fullBleedLayout-and-halfMarginBothLayout-Result",
+          "level": 4,
+          "text": "fullBleedLayout and halfMarginBothLayout: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentLayouts\": {",
+            "    ...",
+            "    \"fullBleedLayout\": {",
+            "      \"ignoreDocumentMargin\": true",
+            "    },",
+            "    \"halfMarginBothLayout\": {",
+            "      \"columnStart\": 0,",
+            "      \"columnSpan\": 14,",
+            "      \"margin\": {",
+            "        \"top\": 12,",
+            "        \"bottom\": 12",
+            "      }",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Style-for-Caption-Text",
+          "level": 3,
+          "text": "Define a Style for Caption Text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you created default text styles for component types. Here, you’ll do something similar—create a new default text style for ",
+              "type": "text"
+            },
+            {
+              "code": "caption",
+              "type": "codeVoice"
+            },
+            {
+              "text": " components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Caption-Text-Style-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last text style and before the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Caption-Text-Style-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Caption-Text-Style-Copy-This-Code",
+          "level": 4,
+          "text": "Caption Text Style: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"default-caption\": {",
+            "      \"fontName\": \"IowanOldStyle-Italic\",",
+            "      \"fontSize\": 12,",
+            "      \"lineHeight\": 16,",
+            "      \"paragraphSpacingBefore\": 12,",
+            "      \"paragraphSpacingAfter\": 12,",
+            "      \"textColor\": \"#53585F\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Caption-Text-Style-Result",
+          "level": 4,
+          "text": "Caption Text Style: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    ...",
+            "    \"default-caption\": {",
+            "      \"fontName\": \"IowanOldStyle-Italic\",",
+            "      \"fontSize\": 12,",
+            "      \"lineHeight\": 16,",
+            "      \"paragraphSpacingBefore\": 12,",
+            "      \"paragraphSpacingAfter\": 12,",
+            "      \"textColor\": \"#53585F\"",
+            "    }",
+            "  }",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-Photo-and-Captions-in-Your-Article",
+          "level": 3,
+          "text": "Add a Photo and Captions in Your Article",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "photo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component in your JSON file represents a photo in your article. The ",
+              "type": "text"
+            },
+            {
+              "code": "\"caption\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "code": "photo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component represents some text that is seen when the image is in full screen, and a ",
+              "type": "text"
+            },
+            {
+              "code": "caption",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component represents some text that is visible in the article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Photo-and-Captions-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array of your article, after the closing brace and comma (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "},",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") that end the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "byline",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Photo-and-Captions-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make this change in your ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the photo and captions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Photo-and-Captions-Copy-This-Code",
+          "level": 4,
+          "text": "Photo and Captions: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "    {",
+            "      \"role\": \"photo\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"caption\": \"A caption for the photo.\",",
+            "      \"URL\": \"bundle://header.jpg\"",
+            "    },",
+            "    {",
+            "      \"role\": \"caption\",",
+            "      \"layout\": \"halfMarginBothLayout\",",
+            "      \"text\": \"ABOVE: A caption for the photo. (Attribution)\"",
+            "    },",
+            "    {",
+            "      \"role\": \"divider\",",
+            "      \"layout\": \"fullMarginBelowLayout\",",
+            "      \"stroke\": {",
+            "        \"width\": 1,",
+            "        \"color\": \"#D5B327\"",
+            "      }",
+            "    },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Photo-and-Captions-Result",
+          "level": 4,
+          "text": "Photo and Captions: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    ...",
+            "    {",
+            "      \"role\": \"photo\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"caption\": \"A caption for the photo.\",",
+            "      \"URL\": \"bundle://header.jpg\"",
+            "    },",
+            "    {",
+            "      \"role\": \"caption\",",
+            "      \"layout\": \"halfMarginBothLayout\",",
+            "      \"text\": \"ABOVE: A caption for the photo. (Attribution)\"",
+            "    },",
+            "    {",
+            "      \"role\": \"divider\",",
+            "      \"layout\": \"fullMarginBelowLayout\",",
+            "      \"stroke\": {",
+            "        \"width\": 1,",
+            "        \"color\": \"#D5B327\"",
+            "      }",
+            "    },",
+            "    ...",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Further-Exploration",
+          "level": 3,
+          "text": "Further Exploration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At any time, you can try changing property values in your ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and then use News Preview to see how these changes affect the look of your article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, try changing the URL of your article’s ",
+              "type": "text"
+            },
+            {
+              "code": "photo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "photo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "photo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component, find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"bundle://header.jpg\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", with the URL of an image on your website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preview your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in News Preview.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "photo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component now displays your image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider": {
+      "abstract": [
+        {
+          "text": "Create a horizontal, styled divider that extends to the right edge of the display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Divider",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-divider"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images": {
+      "abstract": [
+        {
+          "text": "Display three images as a sequential gallery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Gallery of Images",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-gallery-of-images"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images": {
+      "abstract": [
+        {
+          "text": "Display five images as mosaic tiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Mosaic of Images",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-mosaic-of-images"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast": {
+      "abstract": [
+        {
+          "text": "Add a link to a podcast that displays the podcast artwork and the podcast show or episode information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Podcast",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-podcast"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote": {
+      "abstract": [
+        {
+          "text": "Break an existing body component into two components, and then insert a pull quote between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Pull Quote",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-pull-quote"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet": {
+      "abstract": [
+        {
+          "text": "Include a tweet in an article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Tweet",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-tweet"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Caption-Text-Style-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Caption-Text-Style-Copy-This-Code",
+      "kind": "section",
+      "title": "Caption Text Style: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions#Caption-Text-Style-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Caption-Text-Style-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Caption-Text-Style-Result",
+      "kind": "section",
+      "title": "Caption Text Style: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions#Caption-Text-Style-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Photo-and-Captions-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Photo-and-Captions-Copy-This-Code",
+      "kind": "section",
+      "title": "Photo and Captions: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions#Photo-and-Captions-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Photo-and-Captions-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#Photo-and-Captions-Result",
+      "kind": "section",
+      "title": "Photo and Captions: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions#Photo-and-Captions-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Copy-This-Code",
+      "kind": "section",
+      "title": "fullBleedLayout and halfMarginBothLayout: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Result",
+      "kind": "section",
+      "title": "fullBleedLayout and halfMarginBothLayout: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-an-image-and-captions#fullBleedLayout-and-halfMarginBothLayout-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article": {
+      "abstract": [
+        {
+          "text": "Create an article with text components and component text styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Your First Article",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-your-first-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components": {
+      "abstract": [
+        {
+          "text": "Adjust the positions of the text components in your article—for example, place the article body off-center.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning Text Components",
+      "type": "topic",
+      "url": "/documentation/applenews/positioning-text-components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial": {
+      "abstract": [
+        {
+          "text": "Download the tutorial files, and learn about what you’ll create in the introductory tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up the Introductory Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/setting-up-the-introductory-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for the Introductory Design Tutorial",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-the-introductory-design-tutorial"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption": {
+      "abstract": [
+        {
+          "text": "The component for adding caption text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Caption"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Caption"
+        }
+      ],
+      "role": "symbol",
+      "title": "Caption",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/caption"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/CaptionDescriptor": {
+      "abstract": [
+        {
+          "text": "The object you use in image components for displaying captions when the image is full-screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CaptionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/CaptionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CaptionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CaptionDescriptor",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/captiondescriptor"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout": {
+      "abstract": [
+        {
+          "text": "The object for defining the positioning for a specific component within the article’s column system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentLayout",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentlayout"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the style for a text component, including spacing, alignment, and drop caps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentTextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentTextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componenttextstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo": {
+      "abstract": [
+        {
+          "text": "The component for including a photograph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Photo",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/photo"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the text style, such as font family, size, and color, that you can apply to ranges of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/textstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3624434": {
+      "alt": "Screenshot of an Apple News article with a captioned photo on iPad.",
+      "identifier": "media-3624434",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f7f64feedcfb0751a44bd3698636cb5/media-3624434@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e403d6dff542198072b212e33bf75c7/media-3624434~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Photo",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/Caption",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/CaptionDescriptor",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentTextStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentLayout"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Introductory-Design-Tutorial",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/setting-up-the-introductory-tutorial",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-your-first-article",
+        "doc://com.apple.applenews/documentation/AppleNews/positioning-text-components",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-divider",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-pull-quote",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-gallery-of-images",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-mosaic-of-images",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-tweet",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-podcast",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-the-introductory-design-tutorial"
+      ],
+      "title": "Introductory Design Tutorial"
+    }
+  ]
+}

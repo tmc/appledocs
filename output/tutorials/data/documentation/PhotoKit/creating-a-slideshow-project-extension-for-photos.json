@@ -1,0 +1,1528 @@
+{
+  "abstract": [
+    {
+      "text": "Augment the macOS Photos app with extensions that support project creation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PhotosUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a Slideshow Project Extension for Photos"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in macOS 10.13, you can create Photos project extensions. This sample app shows you how to implement a slideshow extension that transitions between photos by zooming in on a region of interest (ROI) with significant meaning in an asset, for example, faces that are relevant to a user, as opposed to faces in a crowd. The app demonstrates the computation of saliency based on an ROI’s weight and quality and the process of subscribing to change notifications so your extension can respond to asset modifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, choose the extension type by entering ",
+              "type": "text"
+            },
+            {
+              "code": "slideshow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the field at ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " > ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionAttributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add more categories to the information property list for your extension to appear in other categories in the Create menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build and run the Photos Project Slideshow scheme in Xcode once to run the sample app and install the extension in the macOS Photos app. To use the extension, build and run the Slideshow Sample scheme in Xcode, which prompts you to open the macOS Photos app to use the extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From within the Photos app, access the Create categories by choosing File > Create or right-clicking any group of assets. Under the Slideshow category, you’ll see the app extension and can create a project to run in it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the project extension runs inside the Photos app, the sample emulates the grid layout of the user’s photo assets. Pressing the play button in the upper-right corner of the extension starts the slideshow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-Focus-Rectangle-of-the-Zoom-Transition",
+          "level": 3,
+          "text": "Customize the Focus Rectangle of the Zoom Transition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project contains custom ",
+              "type": "text"
+            },
+            {
+              "code": "Animator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "AssetModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Animator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class handles transitions between photos in the slideshow. This sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "Animator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks an ",
+              "type": "text"
+            },
+            {
+              "code": "AssetModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for a rectangle to zoom in on. Photos identifies each ROI it finds as a possible ROI, and the sample uses the bounding box of the most salient one as the preferred zoom rectangle. The code defines saliency of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the sum of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest/weight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest/quality",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values, and then sorts the array of the photo’s regions by that value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sortedRois = assetProjectElement.regionsOfInterest.sorted { (roi1, roi2) -> Bool in",
+            "    return roi1.weight + roi1.quality < roi2.weight + roi2.quality",
+            "}",
+            "return sortedRois.last?.rect"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "weight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of an ROI represents the pervasiveness of the ROI in the project as a whole. The ",
+              "type": "text"
+            },
+            {
+              "code": "quality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " score represents the quality of the ROI in the individual asset, based on factors such as sharpness, visibility, and prominence in the photo. Adding these two values is a heuristic for determining the ROI’s relative importance throughout a photo project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-Asset-Changes-in-the-Project",
+          "level": 3,
+          "text": "Respond to Asset Changes in the Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To respond to asset changes in the Photos Library, your app extension needs to monitor change notifications. Register for change observation as soon as the project begins or resumes. In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/beginProject(with:projectInfo:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/resumeProject(with:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods provide points for your extension to begin monitoring changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.projectAssets = PHAsset.fetchAssets(in: extensionContext.project, options: nil)",
+            "extensionContext.photoLibrary.register(self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the project is complete, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/finishProject(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol method to unregister from change observation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "library.unregisterChangeObserver(self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever something changes in the Photos library, the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When implementing this method, ask the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHChange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for details about changes to any of the objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When assets are added or removed, the sample project calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionContext/updatedProjectInfo(from:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get an updated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that you use to refresh your UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func photoLibraryDidChange(_ changeInstance: PHChange) {",
+            "    guard let fetchResult = projectAssets,",
+            "        let changeDetails = changeInstance.changeDetails(for: fetchResult)",
+            "        else { return }",
+            "    projectAssets = changeDetails.fetchResultAfterChanges",
+            "",
+            "    guard let projectExtensionContext = projectExtensionContext else { return }",
+            "    projectExtensionContext.updatedProjectInfo(from: projectModel?.projectInfo) { (updatedProjectInfo) in",
+            "        guard let projectInfo = updatedProjectInfo else { return }",
+            "        DispatchQueue.main.async {",
+            "            self.setupProjectModel(with: projectInfo, extensionContext: projectExtensionContext)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-Copy-and-Paste",
+          "level": 3,
+          "text": "Support Copy and Paste",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your extension handles the paste action, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1518160-validatemenuitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method to handle pasteboard contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {",
+            "    var canHandlePaste = false",
+            "    if menuItem.action == #selector(paste(_:)) {",
+            "        canHandlePaste = canHandleCurrentPasteboardContent()",
+            "    }",
+            "    return canHandlePaste",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "47b788a396e5/CreatingASlideshowProjectExtensionForPhotos.zip": {
+      "checksum": "47b788a396e53f88a460f86a551d829fc8d2d05ebf7d6d316784cb9adce76680a736d63e148506b477bd2f6d88ea2912a0defe9696108357678c5ba7391d885d",
+      "identifier": "47b788a396e5/CreatingASlideshowProjectExtensionForPhotos.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/47b788a396e5/CreatingASlideshowProjectExtensionForPhotos.zip"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1518160-validatemenuitem": {
+      "abstract": [
+        {
+          "text": "Implemented to override the default action of enabling or disabling a specific menu item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1518160-validatemenuitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateMenuItem:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1518160-validatemenuitem"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Select media assets by using a Photos picker view that SwiftUI provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing Photos picker to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/photokit/bringing-photos-picker-to-your-swiftui-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums": {
+      "abstract": [
+        {
+          "text": "Help users organize their photos into albums and browse photo collections in a grid-based layout using PhotoKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Browsing and Modifying Photo Albums",
+      "type": "topic",
+      "url": "/documentation/photokit/browsing-and-modifying-photo-albums"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker": {
+      "abstract": [
+        {
+          "text": "Embed a system-provided, half-height Photos picker into your app’s view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing an inline Photos picker",
+      "type": "topic",
+      "url": "/documentation/photokit/implementing-an-inline-photos-picker"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios": {
+      "abstract": [
+        {
+          "text": "Improve the user experience of finding and selecting assets by using the Photos picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Photos and Videos in iOS",
+      "type": "topic",
+      "url": "/documentation/photokit/selecting-photos-and-videos-in-ios"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHChange": {
+      "abstract": [
+        {
+          "text": "A description of a change that occurred in the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHChange"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHChange",
+      "type": "topic",
+      "url": "/documentation/photos/phchange"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Tells your observer that a set of changes has occurred in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoLibraryDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHChange",
+          "text": "PHChange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver/photoLibraryDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "photoLibraryDidChange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "photoLibraryDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrarychangeobserver/photolibrarydidchange(_:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectCategory": {
+      "abstract": [
+        {
+          "text": "A representation of Photos project extension categories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHProjectCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHProjectCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHProjectCategory",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectcategory"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionContext/updatedProjectInfo(from:completion:)": {
+      "abstract": [
+        {
+          "text": "Creates an updated ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectInfo",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instance from existing project information and current assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatedProjectInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHProjectInfo",
+          "text": "PHProjectInfo"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHProjectInfo",
+          "text": "PHProjectInfo"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionContext/updatedProjectInfo(from:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatedProjectInfoFromProjectInfo:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatedProjectInfo(from:completion:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectextensioncontext/updatedprojectinfo(from:completion:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController": {
+      "abstract": [
+        {
+          "text": "A protocol defining the life cycle and supported types of project extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHProjectExtensionController"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHProjectExtensionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHProjectExtensionController",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectextensioncontroller"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/beginProject(with:projectInfo:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to customize the initial state when the user creates a project using the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginProject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHProjectExtensionContext",
+          "text": "PHProjectExtensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "projectInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHProjectInfo",
+          "text": "PHProjectInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/beginProject(with:projectInfo:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginProjectWithExtensionContext:projectInfo:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "beginProject(with:projectInfo:completion:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectextensioncontroller/beginproject(with:projectinfo:completion:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/finishProject(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup when a user switches away from the project or terminates the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishProject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/finishProject(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishProjectWithCompletionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "finishProject(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectextensioncontroller/finishproject(completionhandler:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/resumeProject(with:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to restore or refresh the user interface when the user returns to a previously created project.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeProject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHProjectExtensionContext",
+          "text": "PHProjectExtensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectExtensionController/resumeProject(with:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resumeProjectWithExtensionContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "resumeProject(with:completion:)",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectextensioncontroller/resumeproject(with:completion:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectInfo": {
+      "abstract": [
+        {
+          "text": "Information about the project extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHProjectInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHProjectInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHProjectInfo",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectinfo"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest": {
+      "abstract": [
+        {
+          "text": "A representation of a region of interest in a photo asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHProjectRegionOfInterest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHProjectRegionOfInterest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHProjectRegionOfInterest",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectregionofinterest"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest/quality": {
+      "abstract": [
+        {
+          "text": "The region’s quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest/quality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quality"
+        }
+      ],
+      "role": "symbol",
+      "title": "quality",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectregionofinterest/quality"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest/weight": {
+      "abstract": [
+        {
+          "text": "The face region’s weight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHProjectRegionOfInterest/weight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "weight"
+        }
+      ],
+      "role": "symbol",
+      "title": "weight",
+      "type": "topic",
+      "url": "/documentation/photosui/phprojectregionofinterest/weight"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "47b788a396e5/CreatingASlideshowProjectExtensionForPhotos.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums",
+        "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+        "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectInfo/title",
+          "value": "PHProjectInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController/title",
+          "value": "PHProjectExtensionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectExtensionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectExtensionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectCategory/title",
+          "value": "PHProjectCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest~1quality/title",
+          "value": "quality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest~1quality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest~1weight/title",
+          "value": "weight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest~1weight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "weight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController~1beginProject(with:projectInfo:completion:)/title",
+          "value": "beginProjectWithExtensionContext:projectInfo:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController~1beginProject(with:projectInfo:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginProjectWithExtensionContext:projectInfo:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest/title",
+          "value": "PHProjectRegionOfInterest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectRegionOfInterest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectRegionOfInterest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHProjectRegionOfInterest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController~1finishProject(completionHandler:)/title",
+          "value": "finishProjectWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController~1finishProject(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishProjectWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionContext~1updatedProjectInfo(from:completion:)/title",
+          "value": "updatedProjectInfoFromProjectInfo:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionContext~1updatedProjectInfo(from:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatedProjectInfoFromProjectInfo:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver~1photoLibraryDidChange(_:)/title",
+          "value": "photoLibraryDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver~1photoLibraryDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "photoLibraryDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController~1resumeProject(with:completion:)/title",
+          "value": "resumeProjectWithExtensionContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHProjectExtensionController~1resumeProject(with:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resumeProjectWithExtensionContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/title",
+          "value": "PHChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChange"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

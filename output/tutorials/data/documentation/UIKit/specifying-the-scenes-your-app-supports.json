@@ -1,0 +1,1222 @@
+{
+  "abstract": [
+    {
+      "text": "Tell the system about your app’s scenes, including the objects you use to manage each scene and its initial user interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/scenes"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+        "doc://com.apple.uikit/documentation/UIKit/scenes"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+        "doc://com.apple.uikit/documentation/UIKit/scenes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Specifying the scenes your app supports"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 13 and later, users can create multiple copies of your app’s UI and toggle between them in the app switcher. On iPad, users can also display one copy of your app’s UI side by side with another copy. For each copy of your app’s UI, you use a scene object to manage the window, views, and view controllers that present the UI onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user requests a new scene, UIKit creates the corresponding scene object and handles its initial setup. To do that, UIKit relies on information that you provide. Apps must declare the types of scenes they support and the objects they use to manage those scenes. You can do that statically in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file or dynamically at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Scenes are opt in, but you must support them if you want to display multiple copies of your app’s UI simultaneously.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-scene-support-in-your-project-settings",
+          "level": 3,
+          "text": "Enable scene support in your project settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps must explicitly opt in to scenes, which you do by updating your app’s configuration settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Xcode project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the General settings for your app target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the “Supports multiple windows” checkbox in the Deployment Info section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable the multiple windows option, Xcode adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The presence of this key tells the system that your app supports scenes. The value of this key is a dictionary, which initially contains only the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key tells the system whether your app actually supports multiple simultaneous scenes. Xcode initially sets the value of this key to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but you can disable the feature if you want to display only one scene at a time. Supporting multiple scenes requires extra work on your part to ensure that your scenes don’t interfere with each other. For example, if your scenes use the same shared data structures, they must coordinate access to those structures to preserve the integrity of your app’s data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-details-for-each-scene",
+          "level": 3,
+          "text": "Configure the details for each scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit handles the creation of your app’s scenes using information that you provide. The simplest way to provide this information is in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Xcode project and select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the plus (+) button of the Application Scene Manifest entry. This entry corresponds to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key. If it isn’t present, add it as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports#Enable-scene-support-in-your-project-settings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the menu that appears, select Scene Configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Scene Configuration entry, click the plus (+) button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Application Session Role to add a main scene to your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill in the scene details in the provided entry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most apps need only one main scene, but you may add multiple scenes and configure each differently. For example, you might include a second scene specifically to display notification-related content. UIKit requires the following information for each scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The class name of the scene, which is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The class name of the custom delegate object your app uses to manage the scene. The class must adopt the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique name that your app uses to identify the scene internally.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the storyboard containing the scene’s initial UI. Specify the name without the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".storyboard",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " filename extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to configure your scenes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-interface-for-your-scene",
+          "level": 3,
+          "text": "Create the interface for your scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify the UI for your scene using storyboards. The storyboard you assign to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key contains the initial view controller you want to display for your scene. In addition to creating the scene object, UIKit creates a window for your scene automatically and installs the initial view controller from your storyboard in it. You can replace that view controller programmatically using the methods of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t forget to designate an initial view controller in your storyboard. UIKit relies on the presence of this view controller when configuring your UI.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Change-your-scenes-configuration-dynamically",
+          "level": 3,
+          "text": "Change your scene’s configuration dynamically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before actually creating your scene object, UIKit calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your app delegate to let you change the scene-related details. You might use this method to adjust the scene configuration based on the options that UIKit provides. For example, when the system passes a notification response to your scene, you might specify a different storyboard with your notification-related interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t implement configure scenes dynamically, UIKit uses the information in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to create your scenes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adopt-scene-based-life-cycle-semantics",
+          "level": 3,
+          "text": "Adopt scene-based life-cycle semantics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding support for scenes changes how your app responds to life-cycle events. In an app without scenes, the app delegate object handles transitions to the foreground or background. When you add scene support to your app, UIKit shifts that responsibility to your scene delegate objects. Scene life cycles are independent of one another, and independent of the app itself, so your scene delegate objects must handle the transitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app also supports iOS 12, you can handle life-cycle transitions in both your app delegate and scene delegate objects. UIKit notifies only one delegate object. In iOS 13 and later, UIKit notifies your scene delegate objects. In iOS 12 and earlier, UIKit notifies your app delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to handle life-cycle events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest": {
+      "abstract": [
+        {
+          "text": "The information about the app’s scene-based life-cycle support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSceneManifest",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app supports two or more scenes simultaneously.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSupportsMultipleScenes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UIApplicationSupportsMultipleScenes"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations": {
+      "abstract": [
+        {
+          "text": "The default configuration details the system uses to create new scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISceneConfigurations",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile": {
+      "abstract": [
+        {
+          "text": "The name of the storyboard file containing the scene’s initial user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISceneStoryboardFile",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest/UISceneConfigurations/UIWindowSceneSessionRoleApplication/UISceneStoryboardFile"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the configuration data for UIKit to use when creating a new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationForConnecting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:configurationForConnectingSceneSession:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:configurationForConnecting:options:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration": {
+      "abstract": [
+        {
+          "text": "Information about the objects and storyboard for UKit to use when creating a particular scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uisceneconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneSession": {
+      "abstract": [
+        {
+          "text": "An object that contains information about one of your app’s scenes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenesession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowScene": {
+      "abstract": [
+        {
+          "text": "A scene that manages one or more windows for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowScene"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindowScene",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscene"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Additional methods that you use to manage app-specific tasks occurring in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindowSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindowSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindowscenedelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "abstract": [
+        {
+          "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-your-app-s-life-cycle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/multitasking-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scenes": {
+      "abstract": [
+        {
+          "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/uikit/scenes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports#Enable-scene-support-in-your-project-settings": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports#Enable-scene-support-in-your-project-settings",
+      "kind": "section",
+      "title": "Enable scene support in your project settings",
+      "type": "topic",
+      "url": "/documentation/uikit/specifying-the-scenes-your-app-supports#Enable-scene-support-in-your-project-settings"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UISceneSession"
+      ],
+      "title": "Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UISceneSession"
+              ],
+              "title": "Configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/title",
+          "value": "application:configurationForConnectingSceneSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:configurationForConnectingSceneSession:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneConfiguration/title",
+          "value": "UISceneConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/title",
+          "value": "UIWindowScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession/title",
+          "value": "UISceneSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate/title",
+          "value": "UIWindowSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindowSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/specifying-the-scenes-your-app-supports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/specifying-the-scenes-your-app-supports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

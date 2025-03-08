@@ -1,0 +1,2386 @@
+{
+  "abstract": [
+    {
+      "text": "A container for per-pixel distance or disparity information captured by compatible camera devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVDepthData",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVDepthData"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVDepthData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVDepthData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/extracting-portrait-effects-matte-image-data-from-a-photo",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Depth data",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a generic term for a map of per-pixel data containing depth-related information. A depth data object wraps a disparity or depth map and provides conversion methods, focus information, and camera calibration data to aid in using the map for rendering or computer vision tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A depth map describes at each pixel the distance to an object, in meters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A disparity map describes normalized shift values for use in comparing two images. The value for each pixel in the map is in units of 1/meters: (",
+              "type": "text"
+            },
+            {
+              "code": "pixelShift / (pixelFocalLength * baselineInMeters)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The capture pipeline generates disparity or depth maps from camera images containing nonrectilinear data. Camera lenses have small imperfections that cause small distortions in their resultant images compared to an ideal pinhole camera model, so ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " maps contain nonrectilinear (nondistortion-corrected) data as well. The maps’ values are warped to match the lens distortion characteristics present in the YUV image pixel buffers captured at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a depth data map is nonrectilinear, you can use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " map as a proxy for depth when rendering effects to its accompanying image, but not to correlate points in 3D space. To use depth data for computer vision tasks, use the data in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/cameraCalibrationData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to rectify the depth data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways to capture depth data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class captures and delivers depth data in a stream (similar to how the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " delivers video data).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class delivers depth data as a property of an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object containing the captured image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects using information obtained from image files with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When editing images containing depth information, use the methods listed in Transforming and Processing to generate derivative ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects reflecting the edits that have been performed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData": {
+      "abstract": [
+        {
+          "text": "Information about the camera characteristics used to capture images and depth data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCameraCalibrationData"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCameraCalibrationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCameraCalibrationData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcameracalibrationdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records scene depth information on compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDepthDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDepthDataOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDepthDataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedepthdataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto": {
+      "abstract": [
+        {
+          "text": "A container for image data from a photo capture output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhoto",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephoto"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records video and provides access to video frames for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureVideoDataOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureVideoDataOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureVideoDataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturevideodataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData": {
+      "abstract": [
+        {
+          "text": "A container for per-pixel distance or disparity information captured by compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy": {
+      "abstract": [
+        {
+          "text": "Values indicating the general accuracy of a depth data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Accuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Accuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData.Accuracy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/accuracy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality": {
+      "abstract": [
+        {
+          "text": "Values indicating the overall quality of a depth data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Quality"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Quality"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData.Quality",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/quality"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/applyingExifOrientation(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a derivative depth data object by mirroring or rotating it to the specified orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingExifOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGImagePropertyOrientation",
+          "text": "CGImagePropertyOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/applyingExifOrientation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataByApplyingExifOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyingExifOrientation(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/applyingexiforientation(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/availableDepthDataTypes-3ifx1": {
+      "abstract": [
+        {
+          "text": "The list of depth data formats to which you can convert this depth data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableDepthDataTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/availableDepthDataTypes-3ifx1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableDepthDataTypes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/availabledepthdatatypes-3ifx1"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/availableDepthDataTypes-472g0": {
+      "abstract": [
+        {
+          "text": "The list of depth data formats to which you can convert this depth data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "availableDepthDataTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/availableDepthDataTypes-472g0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableDepthDataTypes",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/availabledepthdatatypes-472g0"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/cameraCalibrationData": {
+      "abstract": [
+        {
+          "text": "The imaging parameters with which this depth data was captured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraCalibrationData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCameraCalibrationData",
+          "text": "AVCameraCalibrationData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/cameraCalibrationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraCalibrationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraCalibrationData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/cameracalibrationdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/converting(toDepthDataType:)": {
+      "abstract": [
+        {
+          "text": "Returns a derivative depth data object by converting the depth data map to the specified data type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "converting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toDepthDataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/converting(toDepthDataType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataByConvertingToDepthDataType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "converting(toDepthDataType:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/converting(todepthdatatype:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy": {
+      "abstract": [
+        {
+          "text": "The general accuracy of depth data map values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthDataAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVDepthDataAccuracy",
+          "text": "Accuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthDataAccuracy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/depthdataaccuracy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataMap": {
+      "abstract": [
+        {
+          "text": "A pixel buffer containing the depth data’s per-pixel depth or disparity data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthDataMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthDataMap",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/depthdatamap"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality": {
+      "abstract": [
+        {
+          "text": "The overall quality of the depth map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthDataQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVDepthDataQuality",
+          "text": "Quality"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthDataQuality",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/depthdataquality"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataType": {
+      "abstract": [
+        {
+          "text": "The pixel format of the depth data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthDataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataType"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthDataType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/depthdatatype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/dictionaryRepresentation(forAuxiliaryDataType:)": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of the depth data suitable for writing into an image file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAuxiliaryDataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/dictionaryRepresentation(forAuxiliaryDataType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentationForAuxiliaryDataType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dictionaryRepresentation(forAuxiliaryDataType:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/dictionaryrepresentation(forauxiliarydatatype:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/init(fromDictionaryRepresentation:)": {
+      "abstract": [
+        {
+          "text": "Creates a depth data object from depth information such as that found in an image file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromDictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/init(fromDictionaryRepresentation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataFromDictionaryRepresentation:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(fromDictionaryRepresentation:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/init(fromdictionaryrepresentation:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the depth map contains temporally smoothed data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDepthDataFiltered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataFiltered"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDepthDataFiltered",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/isdepthdatafiltered"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/replacingDepthDataMap(with:)": {
+      "abstract": [
+        {
+          "text": "Returns a derivative depth data object by replacing the depth data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacingDepthDataMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/replacingDepthDataMap(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataByReplacingDepthDataMapWithPixelBuffer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "replacingDepthDataMap(with:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/replacingdepthdatamap(with:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream": {
+      "abstract": [
+        {
+          "text": "Render a capture stream with rose-colored filtering and depth effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "AVCamFilter: Applying Filters to a Capture Stream",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcamfilter-applying-filters-to-a-capture-stream"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-depth-using-the-lidar-camera": {
+      "abstract": [
+        {
+          "text": "Access the LiDAR camera on supporting devices to capture precise depth data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-depth-using-the-lidar-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing depth using the LiDAR camera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-depth-using-the-lidar-camera"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth": {
+      "abstract": [
+        {
+          "text": "Get a depth map with a photo to create effects like the system camera’s Portrait mode (on compatible devices).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing Photos with Depth",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capturing-photos-with-depth"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually": {
+      "abstract": [
+        {
+          "text": "Generate a depth image and attach it to your own image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Auxiliary Depth Data Manually",
+      "type": "topic",
+      "url": "/documentation/avfoundation/creating-auxiliary-depth-data-manually"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-live-video-by-leveraging-truedepth-camera-data": {
+      "abstract": [
+        {
+          "text": "Apply your own background to a live capture feed streamed from the front-facing TrueDepth camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-live-video-by-leveraging-truedepth-camera-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing Live Video by Leveraging TrueDepth Camera Data",
+      "type": "topic",
+      "url": "/documentation/avfoundation/enhancing-live-video-by-leveraging-truedepth-camera-data"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/extracting-portrait-effects-matte-image-data-from-a-photo": {
+      "abstract": [
+        {
+          "text": "Check for portrait effects matte metadata in existing images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/extracting-portrait-effects-matte-image-data-from-a-photo",
+      "kind": "article",
+      "role": "article",
+      "title": "Extracting Portrait Effects Matte Image Data from a Photo",
+      "type": "topic",
+      "url": "/documentation/avfoundation/extracting-portrait-effects-matte-image-data-from-a-photo"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera": {
+      "abstract": [
+        {
+          "text": "Visualize depth data in 2D and 3D from the TrueDepth camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Streaming Depth Data from the TrueDepth Camera",
+      "type": "topic",
+      "url": "/documentation/avfoundation/streaming-depth-data-from-the-truedepth-camera"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO": {
+      "abstract": [
+        {
+          "text": "Read and write most image file formats, and access an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Image I/O",
+      "type": "topic",
+      "url": "/documentation/ImageIO"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Depth-data-capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-depth-using-the-lidar-camera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/enhancing-live-video-by-leveraging-truedepth-camera-data",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData"
+      ],
+      "title": "Depth data capture"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Depth-Data",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/init(fromDictionaryRepresentation:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/dictionaryRepresentation(forAuxiliaryDataType:)"
+      ],
+      "title": "Creating Depth Data"
+    },
+    {
+      "anchor": "Reading-Pixel-Depth-Information",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataMap",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataType"
+      ],
+      "title": "Reading Pixel Depth Information"
+    },
+    {
+      "anchor": "Evaluating-Depth-Data",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality"
+      ],
+      "title": "Evaluating Depth Data"
+    },
+    {
+      "anchor": "Transforming-and-Processing",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/applyingExifOrientation(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/converting(toDepthDataType:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/availableDepthDataTypes-3ifx1",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/replacingDepthDataMap(with:)"
+      ],
+      "title": "Transforming and Processing"
+    },
+    {
+      "anchor": "Using-Calibration-Data",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/cameraCalibrationData"
+      ],
+      "title": "Using Calibration Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Depth-Data",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/init(fromDictionaryRepresentation:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/dictionaryRepresentation(forAuxiliaryDataType:)"
+              ],
+              "title": "Creating Depth Data"
+            },
+            {
+              "anchor": "Reading-Pixel-Depth-Information",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataMap",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataType"
+              ],
+              "title": "Reading Pixel Depth Information"
+            },
+            {
+              "anchor": "Evaluating-Depth-Data",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality"
+              ],
+              "title": "Evaluating Depth Data"
+            },
+            {
+              "anchor": "Transforming-and-Processing",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/applyingExifOrientation(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/converting(toDepthDataType:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/availableDepthDataTypes-472g0",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/replacingDepthDataMap(with:)"
+              ],
+              "title": "Transforming and Processing"
+            },
+            {
+              "anchor": "Using-Calibration-Data",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/cameraCalibrationData"
+              ],
+              "title": "Using Calibration Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Depth-data-capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capturing-photos-with-depth",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/creating-auxiliary-depth-data-manually",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/avcamfilter-applying-filters-to-a-capture-stream",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-depth-data-from-the-truedepth-camera",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCameraCalibrationData"
+              ],
+              "title": "Depth data capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVDepthData"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy/title",
+          "value": "AVDepthDataAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1cameraCalibrationData/title",
+          "value": "cameraCalibrationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1cameraCalibrationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraCalibrationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/title",
+          "value": "AVCaptureDepthDataOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDepthDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDepthDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1init(fromDictionaryRepresentation:)/title",
+          "value": "depthDataFromDictionaryRepresentation:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1init(fromDictionaryRepresentation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "depthDataFromDictionaryRepresentation:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCameraCalibrationData/title",
+          "value": "AVCameraCalibrationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCameraCalibrationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCameraCalibrationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCameraCalibrationData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCameraCalibrationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/title",
+          "value": "AVDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1replacingDepthDataMap(with:)/title",
+          "value": "depthDataByReplacingDepthDataMapWithPixelBuffer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1replacingDepthDataMap(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "depthDataByReplacingDepthDataMapWithPixelBuffer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataType/title",
+          "value": "depthDataType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/title",
+          "value": "AVCapturePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1dictionaryRepresentation(forAuxiliaryDataType:)/title",
+          "value": "dictionaryRepresentationForAuxiliaryDataType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1dictionaryRepresentation(forAuxiliaryDataType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dictionaryRepresentationForAuxiliaryDataType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1applyingExifOrientation(_:)/title",
+          "value": "depthDataByApplyingExifOrientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1applyingExifOrientation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "depthDataByApplyingExifOrientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1isDepthDataFiltered/title",
+          "value": "depthDataFiltered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1isDepthDataFiltered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataFiltered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/title",
+          "value": "AVCaptureVideoDataOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureVideoDataOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureVideoDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataMap/title",
+          "value": "depthDataMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataAccuracy/title",
+          "value": "depthDataAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Quality/title",
+          "value": "AVDepthDataQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Quality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Quality/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1converting(toDepthDataType:)/title",
+          "value": "depthDataByConvertingToDepthDataType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1converting(toDepthDataType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "depthDataByConvertingToDepthDataType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataQuality/title",
+          "value": "depthDataQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataQuality"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avdepthdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avdepthdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

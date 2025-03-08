@@ -1,0 +1,5006 @@
+{
+  "abstract": [
+    {
+      "text": "An object that transfers data to and from the pasteboard server.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPasteboard",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPasteboard"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPasteboard"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSPasteboard"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pasteboard server is shared by all running apps. It contains data that the user has cut or copied, as well as other data that one application wants to transfer to another. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are an application’s sole interface to the server and to all pasteboard operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is also used to transfer data between apps and service providers listed in each application’s Services menu. The drag pasteboard is used to transfer data that is being dragged by the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pasteboard can contain multiple items. You can directly write or read any object that implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " respectively. This allows you to write and read common items such as URLs, colors, images, strings, attributed strings, and sounds without an intermediary object. Your custom classes can also implement these protocols for use with the pasteboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Writing methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setData(_:forType:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide a convenient means of writing to the first pasteboard item, without having to create the first pasteboard item. You can use code like this, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[pboard clearContents];",
+            "[pboard setData:data forType:type];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The general pasteboard, available by way of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/general",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method, automatically participates with the Universal Clipboard feature in macOS 10.12 and later and in iOS 10.0 and later. There is no macOS API for interacting with this feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard": {
+      "abstract": [
+        {
+          "text": "An object that transfers data to and from the pasteboard server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum": {
+      "abstract": [
+        {
+          "text": "A value indicating pasteboard access behavior.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.AccessBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/accessbehavior-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ContentsOptions": {
+      "abstract": [
+        {
+          "text": "Options for preparing the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentsOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ContentsOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentsOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.ContentsOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/contentsoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/DetectedMetadata": {
+      "abstract": [
+        {
+          "text": "An object that contains common types of metadata that the data detection system matches for a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectedMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/DetectedMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectedMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.DetectedMetadata",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectedmetadata"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/DetectedValues": {
+      "abstract": [
+        {
+          "text": "An object that contains common types of data that the data detection system matches for a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectedValues"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/DetectedValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectedValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.DetectedValues",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectedvalues"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/Name-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that represent the standard pasteboard names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/Name-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.Name",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/name-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType": {
+      "abstract": [
+        {
+          "text": "The supported pasteboard types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasteboardType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasteboardType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.PasteboardType",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/pasteboardtype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptionKey": {
+      "abstract": [
+        {
+          "text": "Options for reading pasteboard data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReadingOptionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReadingOptionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.ReadingOptionKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/readingoptionkey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptions": {
+      "abstract": [
+        {
+          "text": "Options that specify how to interpret data on the pasteboard when initializing pasteboard data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReadingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReadingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.ReadingOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/readingoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/WritingOptions": {
+      "abstract": [
+        {
+          "text": "Type to specify options for writing to a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WritingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/WritingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WritingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboard.WritingOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/writingoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-86972": {
+      "abstract": [
+        {
+          "text": "The current pasteboard access behavior. The user can customize this behavior per-app in System Settings for any app that has triggered a pasteboard access alert in the past.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPasteboardAccessBehavior",
+          "text": "AccessBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-86972",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/accessbehavior-86972"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-9k4t4": {
+      "abstract": [
+        {
+          "text": "The current pasteboard access behavior. The user can customize this behavior per-app in System Settings for any app that has triggered a pasteboard access alert in the past.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPasteboardAccessBehavior",
+          "text": "AccessBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-9k4t4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/accessbehavior-9k4t4"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/addTypes(_:owner:)": {
+      "abstract": [
+        {
+          "text": "Adds promises for the specified types to the first pasteboard item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTypes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/addTypes(_:owner:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTypes:owner:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTypes(_:owner:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/addtypes(_:owner:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/availableType(from:)": {
+      "abstract": [
+        {
+          "text": "Scans the specified types for a type that the receiver supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/availableType(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableTypeFromArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableType(from:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/availabletype(from:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadItem(withDataConformingToTypes:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the receiver contains any items that conform to the specified UTIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canReadItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDataConformingToTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadItem(withDataConformingToTypes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canReadItemWithDataConformingToTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canReadItem(withDataConformingToTypes:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/canreaditem(withdataconformingtotypes:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadObject(forClasses:options:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the receiver contains any items that can be represented as an instance of any class in a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canReadObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardReadingOptionKey",
+          "text": "ReadingOptionKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadObject(forClasses:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canReadObjectForClasses:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canReadObject(forClasses:options:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/canreadobject(forclasses:options:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/changeCount": {
+      "abstract": [
+        {
+          "text": "The receiver’s change count.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/changeCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "changeCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "changeCount",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/changecount"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/clearContents()": {
+      "abstract": [
+        {
+          "text": "Clears the existing contents of the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearContents"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/clearContents()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearContents()",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/clearcontents()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/data(forType:)": {
+      "abstract": [
+        {
+          "text": "Returns the data for the specified type from the first item in the receiver that contains the type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/data(forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "data(forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/data(fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/declareTypes(_:owner:)": {
+      "abstract": [
+        {
+          "text": "Prepares the receiver for a change in its contents by declaring the new types of data it will contain and a new owner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "declareTypes"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/declareTypes(_:owner:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "declareTypes:owner:"
+        }
+      ],
+      "role": "symbol",
+      "title": "declareTypes(_:owner:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/declaretypes(_:owner:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectMetadataForTypes:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Determines available metadata from the specified metadata types for the first pasteboard item, without notifying the user.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectMetadataForTypes:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectMetadataForTypes:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectMetadataForTypes:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectMetadataForTypes:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectmetadatafortypes:completionhandler:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectPatternsForPatterns:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Determines whether the first pasteboard item matches the specified patterns, without notifying the user.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectPatternsForPatterns:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectPatternsForPatterns:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectPatternsForPatterns:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectPatternsForPatterns:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectpatternsforpatterns:completionhandler:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectValuesForPatterns:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Determines whether the first pasteboard item matches the specified patterns, reading the contents if it finds a match.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectValuesForPatterns:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectValuesForPatterns:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectValuesForPatterns:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectValuesForPatterns:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectvaluesforpatterns:completionhandler:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedMetadata(for:)": {
+      "abstract": [
+        {
+          "text": "Determines available metadata from the specified metadata types for the first pasteboard item, without notifying the user.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12NSPasteboardC6AppKitE16DetectedMetadataV",
+          "text": "DetectedMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ">>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12NSPasteboardC6AppKitE16DetectedMetadataV",
+          "text": "DetectedMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedMetadata(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedMetadata(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectedmetadata(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedPatterns(for:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the first pasteboard item matches the specified patterns, without notifying the user.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedPatterns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12NSPasteboardC6AppKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12NSPasteboardC6AppKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedPatterns(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedPatterns(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectedpatterns(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedValues(for:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the first pasteboard item matches the specified patterns, reading the contents if it finds a match.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12NSPasteboardC6AppKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        },
+        {
+          "kind": "text",
+          "text": ">>) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12NSPasteboardC6AppKitE14DetectedValuesV",
+          "text": "DetectedValues"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedValues(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detectedValues(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/detectedvalues(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/general": {
+      "abstract": [
+        {
+          "text": "The shared pasteboard object to use for general content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "general"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/general",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "generalPasteboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "general",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/general"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/index(of:)": {
+      "abstract": [
+        {
+          "text": "Returns the index of the specified pasteboard item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboardItem",
+          "text": "NSPasteboardItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/index(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexOfPasteboardItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "index(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/index(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)": {
+      "abstract": [
+        {
+          "text": "Creates a new pasteboard object that supplies the specified data in as many types as possible based on the available filter services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byFilteringData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pasteboardByFilteringData:ofType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(byFilteringData:ofType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/init(byfilteringdata:oftype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringFile:)": {
+      "abstract": [
+        {
+          "text": "Creates a new pasteboard object that supplies the specified file in as many types as possible based on the available filter services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byFilteringFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringFile:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pasteboardByFilteringFile:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(byFilteringFile:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/init(byfilteringfile:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringTypesInPasteboard:)": {
+      "abstract": [
+        {
+          "text": "Creates a new pasteboard object that supplies the specified pasteboard data in as many types as possible based on the available filter services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byFilteringTypesInPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringTypesInPasteboard:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pasteboardByFilteringTypesInPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(byFilteringTypesInPasteboard:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/init(byfilteringtypesinpasteboard:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(name:)": {
+      "abstract": [
+        {
+          "text": "Returns the pasteboard with the specified name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardName",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pasteboardWithName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/init(name:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/name-swift.property": {
+      "abstract": [
+        {
+          "text": "The receiver’s name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/name-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/name-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/pasteboardItems": {
+      "abstract": [
+        {
+          "text": "An array that contains all the items held by the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pasteboardItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboardItem",
+          "text": "NSPasteboardItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/pasteboardItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pasteboardItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "pasteboardItems",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/pasteboarditems"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/prepareForNewContents(with:)": {
+      "abstract": [
+        {
+          "text": "Prepares the pasteboard to receive new contents, removing the existing pasteboard contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareForNewContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPasteboardContentsOptions",
+          "text": "ContentsOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/prepareForNewContents(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareForNewContentsWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareForNewContents(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/preparefornewcontents(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/propertyList(forType:)": {
+      "abstract": [
+        {
+          "text": "Returns the property list for the specified type from the first item in the receiver that contains the type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "propertyList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/propertyList(forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "propertyListForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "propertyList(forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/propertylist(fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileContentsType(_:toFile:)": {
+      "abstract": [
+        {
+          "text": "Reads data representing a file’s contents from the receiver and writes it to the specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readFileContentsType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileContentsType(_:toFile:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readFileContentsType:toFile:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readFileContentsType(_:toFile:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/readfilecontentstype(_:tofile:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileWrapper()": {
+      "abstract": [
+        {
+          "text": "Reads data representing a file’s contents from the receiver and returns it as a file wrapper.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readFileWrapper"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileWrapper",
+          "text": "FileWrapper"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileWrapper()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readFileWrapper"
+        }
+      ],
+      "role": "symbol",
+      "title": "readFileWrapper()",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/readfilewrapper()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readObjects(forClasses:options:)": {
+      "abstract": [
+        {
+          "text": "Reads from the receiver objects that best match the specified array of classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardReadingOptionKey",
+          "text": "ReadingOptionKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readObjects(forClasses:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readObjectsForClasses:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "readObjects(forClasses:options:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/readobjects(forclasses:options:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/releaseGlobally()": {
+      "abstract": [
+        {
+          "text": "Releases the receiver’s resources in the pasteboard server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "releaseGlobally"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/releaseGlobally()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "releaseGlobally"
+        }
+      ],
+      "role": "symbol",
+      "title": "releaseGlobally()",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/releaseglobally()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setData(_:forType:)": {
+      "abstract": [
+        {
+          "text": "Sets the data as the representation for the specified type for the first item on the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setData(_:forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setData:forType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setData(_:forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/setdata(_:fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setPropertyList(_:forType:)": {
+      "abstract": [
+        {
+          "text": "Sets the given property list as the representation for the specified type for the first item on the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPropertyList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setPropertyList(_:forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPropertyList:forType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPropertyList(_:forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/setpropertylist(_:fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)": {
+      "abstract": [
+        {
+          "text": "Sets the given string as the representation for the specified type for the first item on the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setString:forType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setString(_:forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/setstring(_:fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/string(forType:)": {
+      "abstract": [
+        {
+          "text": "Returns a concatenation of the strings for the specified type from all the items in the receiver that contain the type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/string(forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stringForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "string(forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/string(fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types": {
+      "abstract": [
+        {
+          "text": "An array of the receiver’s supported data types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "types"
+        }
+      ],
+      "role": "symbol",
+      "title": "types",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/types"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types(filterableTo:)": {
+      "abstract": [
+        {
+          "text": "Returns the data types that can be converted to the specified type using the available filter services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "filterableTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPasteboardType",
+          "text": "PasteboardType"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types(filterableTo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "typesFilterableTo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "types(filterableTo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/types(filterableto:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/withUniqueName()": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new pasteboard with a name that is guaranteed to be unique with respect to other pasteboards in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUniqueName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/withUniqueName()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pasteboardWithUniqueName"
+        }
+      ],
+      "role": "symbol",
+      "title": "withUniqueName()",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/withuniquename()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/write(_:)": {
+      "abstract": [
+        {
+          "text": "Writes the serialized contents of the specified file wrapper to the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFileWrapper",
+          "text": "FileWrapper"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/write(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeFileWrapper:"
+        }
+      ],
+      "role": "symbol",
+      "title": "write(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/write(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeFileContents(_:)": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the specified file to the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeFileContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeFileContents(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeFileContents:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeFileContents(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/writefilecontents(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeObjects(_:)": {
+      "abstract": [
+        {
+          "text": "Writes an array of objects to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSPasteboardWriting",
+          "text": "NSPasteboardWriting"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeObjects(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeObjects:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writeObjects(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/writeobjects(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem": {
+      "abstract": [
+        {
+          "text": "An item on a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboarditem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItemDataProvider": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by the data provider of a pasteboard item to provide the data for a particular UTI type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItemDataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItemDataProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItemDataProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardItemDataProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboarditemdataprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for initializing an object from a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardReading",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardreading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardTypeOwner": {
+      "abstract": [
+        {
+          "text": "An object that serves as a data provider for data types that use lazy data fulfillment from a pasteboard request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardTypeOwner"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardTypeOwner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardTypeOwner"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardTypeOwner",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardtypeowner"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for retrieving a representation of an object that can be written to a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardWriting",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardwriting"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard": {
+      "abstract": [
+        {
+          "text": "Adopt a simplified version of the Writing Tools experience in a custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view using the pasteboard and macOS services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Writing Tools via the pasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-writing-tools-via-the-pasteboard"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45",
+      "title": "Protocol",
+      "titleInlineContent": [
+        {
+          "text": "Protocol",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pasteboard",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItemDataProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ContentsOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardTypeOwner"
+      ],
+      "title": "Pasteboard"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-Releasing-a-Pasteboard",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/general",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringFile:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringTypesInPasteboard:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(name:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/Name-swift.struct",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/withUniqueName()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/releaseGlobally()"
+      ],
+      "title": "Creating and Releasing a Pasteboard"
+    },
+    {
+      "anchor": "Writing-Data",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/clearContents()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeObjects(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setData(_:forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setPropertyList(_:forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType"
+      ],
+      "title": "Writing Data"
+    },
+    {
+      "anchor": "Reading-Data",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readObjects(forClasses:options:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptionKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/pasteboardItems",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/index(of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/data(forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/propertyList(forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/string(forType:)"
+      ],
+      "title": "Reading Data"
+    },
+    {
+      "anchor": "Validating-Contents",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/availableType(from:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadItem(withDataConformingToTypes:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadObject(forClasses:options:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types(filterableTo:)"
+      ],
+      "title": "Validating Contents"
+    },
+    {
+      "anchor": "Preparing-the-Pasteboard-for-Content",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/prepareForNewContents(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ContentsOptions"
+      ],
+      "title": "Preparing the Pasteboard for Content"
+    },
+    {
+      "anchor": "Getting-Information-about-a-Pasteboard",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/name-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/changeCount"
+      ],
+      "title": "Getting Information about a Pasteboard"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These methods all operate on what is conceptually the first item on the pasteboard. They accept UTIs and pboard type strings. In a future release they may take only UTIs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Writing-Data-macOS-105-and-Earlier",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/declareTypes(_:owner:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/addTypes(_:owner:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeFileContents(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/write(_:)"
+      ],
+      "title": "Writing Data (macOS 10.5 and Earlier)"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These methods all operate on what is conceptually the first item on the pasteboard. They accept UTIs and pboard type strings. In a future release they may take only UTIs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Reading-Data-macOS-105-and-Earlier",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileContentsType(_:toFile:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileWrapper()"
+      ],
+      "title": "Reading Data (macOS 10.5 and Earlier)"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/WritingOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/DetectedMetadata",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/DetectedValues"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-86972",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-9k4t4"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedMetadata(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedPatterns(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectedValues(for:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-Releasing-a-Pasteboard",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/general",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringFile:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(byFilteringTypesInPasteboard:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/init(name:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/Name-swift.struct",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/withUniqueName()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/releaseGlobally()"
+              ],
+              "title": "Creating and Releasing a Pasteboard"
+            },
+            {
+              "anchor": "Writing-Data",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/clearContents()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeObjects(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setData(_:forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setPropertyList(_:forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/setString(_:forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType"
+              ],
+              "title": "Writing Data"
+            },
+            {
+              "anchor": "Reading-Data",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readObjects(forClasses:options:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptionKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ReadingOptions",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/pasteboardItems",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/index(of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/data(forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/propertyList(forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/string(forType:)"
+              ],
+              "title": "Reading Data"
+            },
+            {
+              "anchor": "Validating-Contents",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/availableType(from:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadItem(withDataConformingToTypes:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/canReadObject(forClasses:options:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/types(filterableTo:)"
+              ],
+              "title": "Validating Contents"
+            },
+            {
+              "anchor": "Preparing-the-Pasteboard-for-Content",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/prepareForNewContents(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ContentsOptions"
+              ],
+              "title": "Preparing the Pasteboard for Content"
+            },
+            {
+              "anchor": "Getting-Information-about-a-Pasteboard",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/name-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/changeCount"
+              ],
+              "title": "Getting Information about a Pasteboard"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "These methods all operate on what is conceptually the first item on the pasteboard. They accept UTIs and pboard type strings. In a future release they may take only UTIs.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Writing-Data-macOS-105-and-Earlier",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/declareTypes(_:owner:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/addTypes(_:owner:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/writeFileContents(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/write(_:)"
+              ],
+              "title": "Writing Data (macOS 10.5 and Earlier)"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "These methods all operate on what is conceptually the first item on the pasteboard. They accept UTIs and pboard type strings. In a future release they may take only UTIs.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Reading-Data-macOS-105-and-Earlier",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileContentsType(_:toFile:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/readFileWrapper()"
+              ],
+              "title": "Reading Data (macOS 10.5 and Earlier)"
+            },
+            {
+              "anchor": "Structures",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/WritingOptions"
+              ],
+              "title": "Structures"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/accessBehavior-86972"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectMetadataForTypes:completionHandler:",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectPatternsForPatterns:completionHandler:",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/detectValuesForPatterns:completionHandler:"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Pasteboard",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItem",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardItemDataProvider",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/ContentsOptions",
+                "doc://com.apple.appkit/documentation/AppKit/NSPasteboardTypeOwner"
+              ],
+              "title": "Pasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSPasteboard"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/title",
+          "value": "NSPasteboardWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1writeObjects(_:)/title",
+          "value": "writeObjects:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1writeObjects(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeObjects:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1types(filterableTo:)/title",
+          "value": "typesFilterableTo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1types(filterableTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "typesFilterableTo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setPropertyList(_:forType:)/title",
+          "value": "setPropertyList:forType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setPropertyList(_:forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPropertyList:forType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1writeFileContents(_:)/title",
+          "value": "writeFileContents:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1writeFileContents(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeFileContents:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1AccessBehavior-swift.enum/title",
+          "value": "NSPasteboardAccessBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1AccessBehavior-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardAccessBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1AccessBehavior-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardAccessBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1canReadItem(withDataConformingToTypes:)/title",
+          "value": "canReadItemWithDataConformingToTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1canReadItem(withDataConformingToTypes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canReadItemWithDataConformingToTypes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1types/title",
+          "value": "types"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1types/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1data(forType:)/title",
+          "value": "dataForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1data(forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dataForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1write(_:)/title",
+          "value": "writeFileWrapper:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1write(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeFileWrapper:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1addTypes(_:owner:)/title",
+          "value": "addTypes:owner:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1addTypes(_:owner:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTypes:owner:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1canReadObject(forClasses:options:)/title",
+          "value": "canReadObjectForClasses:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1canReadObject(forClasses:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canReadObjectForClasses:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setString(_:forType:)/title",
+          "value": "setString:forType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setString(_:forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setString:forType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1clearContents()/title",
+          "value": "clearContents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1clearContents()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "clearContents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1readFileContentsType(_:toFile:)/title",
+          "value": "readFileContentsType:toFile:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1readFileContentsType(_:toFile:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readFileContentsType:toFile:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1Name-swift.struct/title",
+          "value": "NSPasteboardName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1Name-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1Name-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1readObjects(forClasses:options:)/title",
+          "value": "readObjectsForClasses:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1readObjects(forClasses:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readObjectsForClasses:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ReadingOptions/title",
+          "value": "NSPasteboardReadingOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ReadingOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReadingOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ReadingOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReadingOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1changeCount/title",
+          "value": "changeCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1changeCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "changeCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1withUniqueName()/title",
+          "value": "pasteboardWithUniqueName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1withUniqueName()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pasteboardWithUniqueName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1WritingOptions/title",
+          "value": "NSPasteboardWritingOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1WritingOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWritingOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1WritingOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWritingOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/title",
+          "value": "NSPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(name:)/title",
+          "value": "pasteboardWithName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pasteboardWithName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1pasteboardItems/title",
+          "value": "pasteboardItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1pasteboardItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pasteboardItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ContentsOptions/title",
+          "value": "NSPasteboardContentsOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ContentsOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardContentsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ContentsOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardContentsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1general/title",
+          "value": "generalPasteboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1general/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "generalPasteboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1string(forType:)/title",
+          "value": "stringForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1string(forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stringForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType/title",
+          "value": "NSPasteboardType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1PasteboardType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/title",
+          "value": "NSPasteboardReading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1availableType(from:)/title",
+          "value": "availableTypeFromArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1availableType(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableTypeFromArray:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1index(of:)/title",
+          "value": "indexOfPasteboardItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1index(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indexOfPasteboardItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1accessBehavior-86972/title",
+          "value": "accessBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1accessBehavior-86972/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1propertyList(forType:)/title",
+          "value": "propertyListForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1propertyList(forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "propertyListForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1name-swift.property/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1name-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1releaseGlobally()/title",
+          "value": "releaseGlobally"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1releaseGlobally()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "releaseGlobally"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(byFilteringTypesInPasteboard:)/title",
+          "value": "pasteboardByFilteringTypesInPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(byFilteringTypesInPasteboard:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pasteboardByFilteringTypesInPasteboard:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1declareTypes(_:owner:)/title",
+          "value": "declareTypes:owner:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1declareTypes(_:owner:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "declareTypes:owner:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ReadingOptionKey/title",
+          "value": "NSPasteboardReadingOptionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ReadingOptionKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReadingOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1ReadingOptionKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReadingOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardTypeOwner/title",
+          "value": "NSPasteboardTypeOwner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardTypeOwner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardTypeOwner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardTypeOwner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardTypeOwner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItem/title",
+          "value": "NSPasteboardItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(byFilteringData:ofType:)/title",
+          "value": "pasteboardByFilteringData:ofType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(byFilteringData:ofType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pasteboardByFilteringData:ofType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1readFileWrapper()/title",
+          "value": "readFileWrapper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1readFileWrapper()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "readFileWrapper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(byFilteringFile:)/title",
+          "value": "pasteboardByFilteringFile:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1init(byFilteringFile:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pasteboardByFilteringFile:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1prepareForNewContents(with:)/title",
+          "value": "prepareForNewContentsWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1prepareForNewContents(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForNewContentsWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItemDataProvider/title",
+          "value": "NSPasteboardItemDataProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItemDataProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItemDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardItemDataProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItemDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setData(_:forType:)/title",
+          "value": "setData:forType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboard~1setData(_:forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setData:forType:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nspasteboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nspasteboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

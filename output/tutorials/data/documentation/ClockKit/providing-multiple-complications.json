@@ -1,0 +1,1654 @@
+{
+  "abstract": [
+    {
+      "text": "Present multiple complications for a single complication family using descriptors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/providing-multiple-complications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.1",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Providing Multiple Complications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Coffee Tracker app records a user’s caffeine intake over the course of a 24-hour period.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each time the user adds a drink, the app recalculates the current caffeine levels",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the equivalent cups of coffee consumed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It then updates the complication timeline",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and estimates the decrease in the user’s caffeine level over the next 24 hours.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample provides three different complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The  Caffeine Dose complication displays the estimated amount of caffeine remaining in the user’s body based on the logged drinks.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The caffeine dose decreases over time based on a 5-hour half-life.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Total Cups complication displays the equivalent number of 8-ounce cups of regular coffee that the user drank based on the logged drinks.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, if the user logs a double espresso, the Total Cups increases by 1.3 cups.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Both Caffeine and Cups complication displays both the caffeine dose and the total equivalent cups drank.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most complication families, the app provides both the Caffeine Dose and the Total Cups complication;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "however, some families have enough space to display the Both Caffeine and Cups complication instead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCircular",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "family, Coffee Tracker provides a Caffeine Dose and a Total Cups complication,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while it only provides the Both Caffeine and Cups complication for the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicBezel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " family.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the complication to an active watch face, start by building and running the sample code project in the simulator,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Digital Crown to exit the app and return to the watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using the trackpad, firmly press the watch face to put the face in edit mode, and then tap Customize.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swipe left until the configuration screen highlights the complications. Select the complication to modify.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll to the Coffee Tracker complication, and then click the Digital Crown again to save your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap the Coffee Tracker complication to go back to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on setting up watch faces, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT205536",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-Complications-Supported-by-the-App",
+          "level": 3,
+          "text": "Define the Complications Supported by the App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Coffee Tracker app declares constants that contain an identifier and a display name for each type of complication that the app supports.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses the identifiers to define the different types of complications.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It shows the display names when the user scrolls through the complications while configuring a watch face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A structure that contains the identifier and display name for a specific",
+            "// complication.",
+            "struct Complication {",
+            "    let identifier: String",
+            "    let displayName: String",
+            "    ",
+            "    static let caffeine = Complication(identifier: \"Coffee_Tracker_Caffeine_Dose\", displayName: \"Caffeine Dose\")",
+            "    static let cups = Complication(identifier: \"Coffee_Tracker_Number_Of_Cups\", displayName: \"Total Cups\")",
+            "    static let both = Complication(identifier: \"Coffee_Tracker_Both\", displayName: \"Both Caffeine and Cups\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the complication data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method creates a descriptor for each identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It starts by creating the descriptor for the Caffeine Dose complications. Here, the ",
+              "type": "text"
+            },
+            {
+              "code": "supportedFamilies",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter specifies that this complication is available for most (but not all) of the complication families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the descriptor for complications that show the current caffeine dose.",
+            "let caffeine = CLKComplicationDescriptor(",
+            "    identifier: Complication.caffeine.identifier,",
+            "    displayName: Complication.caffeine.displayName,",
+            "    supportedFamilies: [.modularSmall,",
+            "                        .utilitarianSmall,",
+            "                        .utilitarianSmallFlat,",
+            "                        .utilitarianLarge,",
+            "                        .circularSmall,",
+            "                        .extraLarge,",
+            "                        .graphicCorner,",
+            "                        .graphicCircular,",
+            "                        .graphicRectangular,",
+            "                        .graphicExtraLarge])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, it creates the Total Cups descriptor. This descriptor supports the same subset of families.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the descriptor for complications that show the equivalent number",
+            "// of 8-ounce cups drank today.",
+            "let cups = CLKComplicationDescriptor(",
+            "    identifier: Complication.cups.identifier,",
+            "    displayName: Complication.cups.displayName,",
+            "    supportedFamilies: [.modularSmall,",
+            "                        .utilitarianSmall,",
+            "                        .utilitarianSmallFlat,",
+            "                        .utilitarianLarge,",
+            "                        .circularSmall,",
+            "                        .extraLarge,",
+            "                        .graphicCorner,",
+            "                        .graphicCircular,",
+            "                        .graphicRectangular,",
+            "                        .graphicExtraLarge])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, it creates the Both Caffeine and Cups descriptor. This descriptor supports the families that aren’t already supported by the Caffeine Dose and Total Cups descriptors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the descriptor for complications that show both the current caffeine",
+            "// dose and the total number of cups drank.",
+            "let both = CLKComplicationDescriptor(identifier: Complication.both.identifier,",
+            "                                     displayName: Complication.both.displayName,",
+            "                                     supportedFamilies: [.modularLarge, .graphicBezel])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app passes the descriptors back to the ",
+              "type": "text"
+            },
+            {
+              "code": "getComplicationDescriptors(handler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method’s handler.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "While each descriptor doesn’t need to cover all possible families, every family is covered by at least one descriptor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "handler([both, caffeine, cups])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The complications appear in the same order as the descriptor array.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the user configures a complication, the picker shows the first three items from the array that support the complication’s family.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If there are more than three, the picker displays a More button to provide access to the additional complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Timeline-Entries-for-Each-Type-of-Complication",
+          "level": 3,
+          "text": "Create Timeline Entries for Each Type of Complication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system calls the complication data source’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to request new timeline entries, it passes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains the complication’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/family",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coffee Tracker then creates a template based on the family and identifier pair by creating a switch statement for the pair.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "switch (complication.family, complication.identifier) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most families, the app checks the complication to determine which template it should provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case (.modularSmall, Complication.cups.identifier):",
+            "    return createCupsModularSmallTemplate(forDate: date)",
+            "case (.modularSmall, _):",
+            "    return createCaffeineModularSmallTemplate(forDate: date)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If an app creates templates based on the complication’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "identifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property, it must check for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " default identifier.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Coffee Tracker first explicitly checks for the Total Cups identifier and then uses the Caffeine Dose templates for any other identifiers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the family only supports a single complication, the app just returns a template based on the family.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case (.modularLarge, _):",
+            "    return createBothModularLargeTemplate(forDate: date)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the app creates a template that displays the requested data for the specified family. For example, the following code creates a modular small template that displays the current caffeine dose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func createCaffeineModularSmallTemplate(forDate date: Date) -> CLKComplicationTemplate {",
+            "    // Create the data providers.",
+            "    let mgCaffeineProvider = CLKSimpleTextProvider(text: data.mgCaffeineString(atDate: date))",
+            "    let mgUnitProvider = CLKSimpleTextProvider(text: \"mg Caffeine\", shortText: \"mg\")",
+            "    ",
+            "    // Create the template using the providers.",
+            "    return CLKComplicationTemplateModularSmallStackText(line1TextProvider: mgCaffeineProvider,",
+            "                                                        line2TextProvider: mgUnitProvider)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "08ce5d5a7923/ProvidingMultipleComplications.zip": {
+      "checksum": "08ce5d5a7923cf2108c68fdb6563f339a2de7835fb6d7966c955a89896b6e4838af5f4c3cad38e3b1b4cf65cb8b820f028ede79b81f0022f802837880538e887",
+      "identifier": "08ce5d5a7923/ProvidingMultipleComplications.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/08ce5d5a7923/ProvidingMultipleComplications.zip"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication": {
+      "abstract": [
+        {
+          "text": "Metadata about a custom complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplication"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplication",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/family": {
+      "abstract": [
+        {
+          "text": "The family to which the complication belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "family"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLKComplicationFamily",
+          "text": "CLKComplicationFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/family",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "family"
+        }
+      ],
+      "role": "symbol",
+      "title": "family",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication/family"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/identifier": {
+      "abstract": [
+        {
+          "text": "An identifier that specifies a complication if your app supports multiple complications per family.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplication/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplication/identifier"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)": {
+      "abstract": [
+        {
+          "text": "Returns the list of complication descriptors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getComplicationDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getComplicationDescriptors(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getComplicationDescriptorsWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getComplicationDescriptors(handler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcomplicationdescriptors(handler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the timeline entry that you want to display now.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getCurrentTimelineEntry(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCurrentTimelineEntryForComplication:withHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "getCurrentTimelineEntry(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Gets a localizable template that shows sample data for the specified complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLocalizableSampleTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTemplate",
+          "text": "CLKComplicationTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getLocalizableSampleTemplate(for:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getLocalizableSampleTemplateForComplication:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getLocalizableSampleTemplate(for:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/getlocalizablesampletemplate(for:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves future timeline entries for the complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplication",
+          "text": "CLKComplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationTimelineEntry",
+          "text": "CLKComplicationTimelineEntry"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/getTimelineEntries(for:after:limit:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTimelineEntries(for:after:limit:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/gettimelineentries(for:after:limit:withhandler:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicBezel": {
+      "abstract": [
+        {
+          "text": "A circular area with optional curved text that ClockKit displays along the bezel of the Infograph watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicBezel"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicBezel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicBezel"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicBezel",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphicbezel"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCircular": {
+      "abstract": [
+        {
+          "text": "A circular area that ClockKit displays on the Infograph and Infograph Modular watch faces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicCircular"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCircular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicCircular"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicCircular",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphiccircular"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier representing a default complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKDefaultComplicationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKDefaultComplicationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKDefaultComplicationIdentifier",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkdefaultcomplicationidentifier"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline": {
+      "abstract": [
+        {
+          "text": "Create complications that batch-load a timeline of future entries and run periodic background sessions to update the timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating and updating a complication’s timeline",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-and-updating-a-complication-s-timeline"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/en-us/HT205536": {
+      "identifier": "https://support.apple.com/en-us/HT205536",
+      "title": "Change the watch face on your Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "Change the watch face on your Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT205536"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "08ce5d5a7923/ProvidingMultipleComplications.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-Code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-and-updating-a-complication-s-timeline"
+      ],
+      "title": "Sample Code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sample-Code",
+              "generated": true,
+              "identifiers": [],
+              "title": "Sample Code"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getLocalizableSampleTemplate(for:withHandler:)/title",
+          "value": "getLocalizableSampleTemplateForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getLocalizableSampleTemplate(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getLocalizableSampleTemplateForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1family/title",
+          "value": "family"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication~1family/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "family"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/title",
+          "value": "getCurrentTimelineEntryForComplication:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getCurrentTimelineEntry(for:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCurrentTimelineEntryForComplication:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCircular/title",
+          "value": "CLKComplicationFamilyGraphicCircular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCircular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicCircular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/title",
+          "value": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getTimelineEntries(for:after:limit:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTimelineEntriesForComplication:afterDate:limit:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDefaultComplicationIdentifier/title",
+          "value": "CLKDefaultComplicationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDefaultComplicationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKDefaultComplicationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication/title",
+          "value": "CLKComplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getComplicationDescriptors(handler:)/title",
+          "value": "getComplicationDescriptorsWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1getComplicationDescriptors(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getComplicationDescriptorsWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicBezel/title",
+          "value": "CLKComplicationFamilyGraphicBezel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicBezel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicBezel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/providing-multiple-complications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/providing-multiple-complications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

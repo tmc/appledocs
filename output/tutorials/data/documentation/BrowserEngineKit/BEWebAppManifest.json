@@ -1,0 +1,1429 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a web app manifest.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)BEWebAppManifest",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BEWebAppManifest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BEWebAppManifest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.5",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.5",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.5",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.2",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "BEWebAppManifest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a web app or bookmark to someone’s Home Screen:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that represents the web app or bookmark.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A web app indicates its manifest using a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<link/>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " element with the attribute ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "rel=manifest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "href",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute is a URL that locates the manifest JSON. If the website offers a web app manifest, initialize a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BEWebAppManifest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the contents of the web app’s manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SFAddToHomeScreenActivityItem",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " you created in step 1 in its list of activity items.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Present the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIActivityViewController",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When someone selects the Add to Home Screen activity, the system calls the activity item’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Pass the web app manifest you created in step 2 to the completion handler in your implementation, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if the website doesn’t offer a web app manifest or you can’t fetch the manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest": {
+      "abstract": [
+        {
+          "text": "An object that represents a web app manifest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEWebAppManifest"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEWebAppManifest"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEWebAppManifest",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebappmanifest"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(JSONData:manifestURL:)-4zjpz": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "JSONData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "manifestURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(JSONData:manifestURL:)-4zjpz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(JSONData:manifestURL:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebappmanifest/init(jsondata:manifesturl:)-4zjpz"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(jsonData:manifestURL:)": {
+      "abstract": [
+        {
+          "text": "Returns nil if manifestURL is invalid or jsonData cannot be parsed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "jsonData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "manifestURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(jsonData:manifestURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithJSONData:manifestURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(jsonData:manifestURL:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebappmanifest/init(jsondata:manifesturl:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/jsonData": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jsonData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/jsonData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "jsonData"
+        }
+      ],
+      "role": "symbol",
+      "title": "jsonData",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebappmanifest/jsondata"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/manifestURL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manifestURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/manifestURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "manifestURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "manifestURL",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebappmanifest/manifesturl"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction": {
+      "abstract": [
+        {
+          "text": "Integrate your web browser engine asynchronously with the text system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text interaction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/text-interaction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination": {
+      "abstract": [
+        {
+          "text": "Display content in the browser’s UI that an extension renders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View coordination",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/view-coordination"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFAddToHomeScreenActivityItem": {
+      "abstract": [
+        {
+          "text": "A protocol that describes a bookmark someone can add to their Home Screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFAddToHomeScreenActivityItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFAddToHomeScreenActivityItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFAddToHomeScreenActivityItem",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFAddToHomeScreenActivityItem"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Provides the web app’s manifest to the system, if the bookmark represents a web app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWebAppManifest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BEWebAppManifest",
+          "text": "BEWebAppManifest"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWebAppManifest(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFAddToHomeScreenActivityItem/getWebAppManifest(completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction"
+      ],
+      "title": "Web content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-web-app-manifest",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(JSONData:manifestURL:)-4zjpz",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(jsonData:manifestURL:)"
+      ],
+      "title": "Creating a web app manifest"
+    },
+    {
+      "anchor": "Getting-manifest-information",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/jsonData",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/manifestURL"
+      ],
+      "title": "Getting manifest information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.5",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.5",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.5",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.2",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BEWebAppManifest"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-web-app-manifest",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/init(jsonData:manifestURL:)"
+              ],
+              "title": "Creating a web app manifest"
+            },
+            {
+              "anchor": "Getting-manifest-information",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/jsonData",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest/manifestURL"
+              ],
+              "title": "Getting manifest information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Web-content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction"
+              ],
+              "title": "Web content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "BEWebAppManifest"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFAddToHomeScreenActivityItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1getWebAppManifest(completionHandler:)/title",
+          "value": "getWebAppManifestWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFAddToHomeScreenActivityItem~1getWebAppManifest(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "getWebAppManifestWithCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)BEWebAppManifest",
+              "text": "BEWebAppManifest"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest/title",
+          "value": "BEWebAppManifest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest~1manifestURL/title",
+          "value": "manifestURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest~1manifestURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "manifestURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest~1jsonData/title",
+          "value": "jsonData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest~1jsonData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "jsonData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest~1init(jsonData:manifestURL:)/title",
+          "value": "initWithJSONData:manifestURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest~1init(jsonData:manifestURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithJSONData:manifestURL:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/bewebappmanifest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/bewebappmanifest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

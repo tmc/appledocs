@@ -1,0 +1,1275 @@
+{
+  "abstract": [
+    {
+      "text": "Test your app’s implementation of refund requests, and your app’s and server’s handling of approved and declined refunds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/Transaction"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing refund requests"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sandbox environment and StoreKit Testing in Xcode both support testing refund requests, which enable your customers to request a refund from within your app. Your app displays the refund request sheet by calling any of these methods: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " , ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Customers fill out the sheet to submit the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on your testing setup, the App Store automatically approves or declines the refund request in the testing environment. Note that the App Store doesn’t send emails for refund requests in testing environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-approved-refunds",
+          "level": 3,
+          "text": "Test approved refunds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a test for approved refunds, select any refund reason on the refund request sheet, and submit the sheet. The App Store automatically approves the refund request in the testing environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with refund information in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/revocationDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/revocationReason-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. If you’re testing in the sandbox environment and your server receives ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the sandbox, it gets a notification with a ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-declined-refunds",
+          "level": 3,
+          "text": "Test declined refunds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a test for declined refunds, follow these steps on the refund request sheet with your app running in the sandbox environment:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Issue, select Other.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the text box, type REJECT.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap Request Refund.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store automatically rejects the refund request in the testing environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your server receives ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the sandbox environment, it gets a notification with a ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND_DECLINED",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on receiving server notifications for the sandbox environment, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)": {
+      "abstract": [
+        {
+          "text": "Display the refund request sheet for the given transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refundRequestSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "transactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onDismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": (@"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV18RefundRequestErrorO",
+          "text": "RefundRequestError"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ())? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "refundRequestSheet(for:isPresented:onDismiss:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/refundRequestSheet(for:isPresented:onDismiss:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the specified transaction in a window scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-65tph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(for:in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/beginrefundrequest(for:in:)-65tph"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the specified transaction in a view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(for:in:)-9mscy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(for:in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/beginrefundrequest(for:in:)-9mscy"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the transaction in a view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(in:)-63bvd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/beginrefundrequest(in:)-63bvd"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj": {
+      "abstract": [
+        {
+          "text": "Presents the refund request sheet for the transaction in a window scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRefundRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV19RefundRequestStatusO",
+          "text": "RefundRequestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/beginRefundRequest(in:)-9k0pj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRefundRequest(in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/beginrefundrequest(in:)-9k0pj"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/revocationDate": {
+      "abstract": [
+        {
+          "text": "The date that the App Store refunded the transaction or revoked it from Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revocationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/revocationDate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revocationDate",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/revocationdate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/revocationReason-swift.property": {
+      "abstract": [
+        {
+          "text": "The reason that the App Store refunded the transaction or revoked it from Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revocationReason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV16RevocationReasonV",
+          "text": "RevocationReason"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/revocationReason-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revocationReason",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/revocationreason-swift.property"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox": {
+      "abstract": [
+        {
+          "text": "Verify your implementation of In-App Purchases by testing your code throughout its development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing at all stages of development with Xcode and the sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode": {
+      "abstract": [
+        {
+          "text": "Validate your app’s handling of win-back offers that you configure for the testing environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-xcode"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "In-App-Purchase-Testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+      ],
+      "title": "In-App Purchase Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "In-App-Purchase-Testing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-at-all-stages-of-development-with-xcode-and-the-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-xcode"
+              ],
+              "title": "In-App Purchase Testing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/testing-refund-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/testing-refund-requests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

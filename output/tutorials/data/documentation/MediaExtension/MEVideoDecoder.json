@@ -1,0 +1,3858 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that defines the requirements for a video decoder.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MEVideoDecoder",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MEVideoDecoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MediaExtension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MEVideoDecoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MEVideoDecoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This protocol provides an interface for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create and interact with MediaExtension video decoders. ",
+              "type": "text"
+            },
+            {
+              "code": "MEVideoDecoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are always instantiated by Video Toolbox.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Developers who wish to build MediaExtension video decoders using this API need to include a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", provisioning profile, and specialized dictionary in their Info.plist file when building their extensions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/help/account/manage-provisioning-profiles/create-a-development-provisioning-profile",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a user installs and runs the host app, embedded video decoder extensions become available to any app on the user’s system that opts in to using them by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "MEVideoDecoder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects run in a sandboxed process without access to the filesystem, network, and other kernel resources.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections explain the video decoder life cycle and performing decoding operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Creating-a-video-decoder",
+          "level": 3,
+          "text": "Creating a video decoder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time Video Toolbox opens a decoder in a process, it creates an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " factory object. It then calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for each decoder instance it needs. A decoder can evaluate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMVideoCodecType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMVideoFormatDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that the system provides and confirm whether it can decode the specified format. If the decoder can’t decode the format, the factory routine needs to return the error ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This sequence of events happens within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-a-pixel-buffer",
+          "level": 3,
+          "text": "Configuring a pixel buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once instantiated, a decoder can call back to the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to notify Video Toolbox of its output ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requirements. It can make these calls multiple times if output requirements change in response to properties receiving new values or due to observed bitstream characteristics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Querying-and-setting-properties",
+          "level": 3,
+          "text": "Querying and setting properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Properties can receive queries or new values on the decoder at any time, before, during or after frame decode, unless otherwise noted. These calls generally correspond to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionCopyProperty(_:key:allocator:valueOut:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which opened the decoder. There may be cases where Video Toolbox directly sets or queries properties as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decoding-frames",
+          "level": 3,
+          "text": "Decoding frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework serializes calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/decodeFrame(from:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and doesn’t send a new frame to the decoder until the last ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/decodeFrame(from:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns, unless decoding happens asynchronously. These calls correspond to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls on the owning ",
+              "type": "text"
+            },
+            {
+              "code": "VTDecompressionSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Video decoders need to write their output frames into ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects allocated by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager/makePixelBuffer()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Obtaining pixel buffers from any other source may degrade performance or result in other issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the decoder’s internal decoding queue is full and it can’t decode more frames, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/isReadyForMoreMediaData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property value returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " once the decoder can start accepting new frames again. This generally occurs after an earlier asynchronous frame completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handling-format-description-changes",
+          "level": 3,
+          "text": "Handling format description changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a change occurs in the format description on incoming ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/canAccept(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to confirm whether the decoder can transition to the new format description. If that method response is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system usually closes the decoder and creates a new instance for the changed format description. A call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can trigger a call of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/canAccept(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or Video Toolbox calls this method if it sees a format description change on incoming ",
+              "type": "text"
+            },
+            {
+              "code": "CMSampleBufferRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a buffer of media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMSampleBuffer"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMVideoCodecType": {
+      "abstract": [
+        {
+          "text": "A video codec type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMVideoCodecType"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FourCharCode",
+          "text": "FourCharCode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMVideoCodecType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMVideoCodecType",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMVideoCodecType"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMVideoFormatDescription": {
+      "abstract": [
+        {
+          "text": "A type you use to interact with video format descriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMVideoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+          "text": "CMFormatDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMVideoFormatDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMVideoFormatDescription",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMVideoFormatDescription"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e": {
+      "abstract": [
+        {
+          "text": "An image buffer that holds pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/cvpixelbuffer-q2e",
+      "kind": "article",
+      "role": "article",
+      "title": "CVPixelBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/cvpixelbuffer-q2e"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSession": {
+      "abstract": [
+        {
+          "text": "A reference to a decompression session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTDecompressionSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTDecompressionSession",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTDecompressionSession"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether the session can decode frames with the given format description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTDecompressionSessionCanAcceptFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTDecompressionSessionRef",
+          "text": "VTDecompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatDescription"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "newFormatDesc"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+          "text": "CMFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a session for decompressing video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTDecompressionSessionCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatDescription"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "videoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoFormatDescriptionRef",
+          "text": "CMVideoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decoderSpecification"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "videoDecoderSpecification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageBufferAttributes"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "destinationImageBufferAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputCallback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@VTDecompressionOutputCallbackRecord",
+          "text": "VTDecompressionOutputCallbackRecord"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decompressionSessionOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTDecompressionSessionRef",
+          "text": "VTDecompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)": {
+      "abstract": [
+        {
+          "text": "Decompresses a video frame and invokes the output callback when the decompression completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTDecompressionSessionDecodeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTDecompressionSessionRef",
+          "text": "VTDecompressionSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "decodeFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VTDecodeFrameFlags",
+          "text": "VTDecodeFrameFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "infoFlagsOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@VTDecodeInfoFlags",
+          "text": "VTDecodeInfoFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTDecompressionOutputHandler",
+          "text": "VTDecompressionOutputHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()": {
+      "abstract": [
+        {
+          "text": "Loads decoders appropriate for the client’s professional video workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTRegisterProfessionalVideoWorkflowVideoDecoders"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTRegisterProfessionalVideoWorkflowVideoDecoders()",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTRegisterProfessionalVideoWorkflowVideoDecoders()"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionCopyProperty(_:key:allocator:valueOut:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a property on a Video Toolbox session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionCopyProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "propertyKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "valueOut"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "propertyValueOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionCopyProperty(_:key:allocator:valueOut:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTSessionCopyProperty(_:key:allocator:valueOut:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTSessionCopyProperty(_:key:allocator:valueOut:)"
+    },
+    "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)": {
+      "abstract": [
+        {
+          "text": "Sets a property on a VideoToolbox session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "propertyKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "propertyValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTSessionSetProperty(_:key:value:)",
+      "type": "topic",
+      "url": "/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions": {
+      "abstract": [
+        {
+          "text": "An object that guides the video decoder operation on a per-frame basis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEDecodeFrameOptions",
+      "type": "topic",
+      "url": "/documentation/mediaextension/medecodeframeoptions"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameStatus": {
+      "abstract": [
+        {
+          "text": "A type that represents a non-error status related to a frame decode operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEDecodeFrameStatus",
+      "type": "topic",
+      "url": "/documentation/mediaextension/medecodeframestatus"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature": {
+      "abstract": [
+        {
+          "text": "An error code that indicates the extension doesn’t support an aspect of the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsupportedFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEErrorUnsupportedFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEError.Code.unsupportedFeature",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the requirements for a video decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoder",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/actualThreadCount": {
+      "abstract": [
+        {
+          "text": "The actual number of threads the decoder uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actualThreadCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/actualThreadCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actualThreadCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "actualThreadCount",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/actualthreadcount"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/canAccept(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the extension whether the decoder can decode frames with the format description that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canAccept"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+          "text": "CMFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/canAccept(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canAcceptFormatDescription:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canAccept(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/canaccept(_:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/contentHasInterframeDependencies": {
+      "abstract": [
+        {
+          "text": "A Boolean that specifies whether the content has interframe dependencies, if the decoder knows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentHasInterframeDependencies"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/contentHasInterframeDependencies",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentHasInterframeDependencies"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentHasInterframeDependencies",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/contenthasinterframedependencies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/decodeFrame(from:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the extension to decode a video frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEDecodeFrameOptions",
+          "text": "MEDecodeFrameOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVImageBufferRef",
+          "text": "CVImageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MEDecodeFrameStatus",
+          "text": "MEDecodeFrameStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/decodeFrame(from:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decodeFrameFromSampleBuffer:options:completionHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "decodeFrame(from:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/decodeframe(from:options:completionhandler:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/isReadyForMoreMediaData": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the readiness of the decoder to accept more sample buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadyForMoreMediaData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/isReadyForMoreMediaData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "readyForMoreMediaData"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isReadyForMoreMediaData",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/isreadyformoremediadata"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/pixelFormatsWithReducedResolutionDecodeSupport": {
+      "abstract": [
+        {
+          "text": "Provides a list of output pixel formats where the decoder supports reduced resolution decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormatsWithReducedResolutionDecodeSupport"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/pixelFormatsWithReducedResolutionDecodeSupport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelFormatsWithReducedResolutionDecodeSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelFormatsWithReducedResolutionDecodeSupport",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/pixelformatswithreducedresolutiondecodesupport"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/producesRAWOutput": {
+      "abstract": [
+        {
+          "text": "Indicates whether the decoder produces RAW output which requires the use of a RAW processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "producesRAWOutput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/producesRAWOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "producesRAWOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "producesRAWOutput",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/producesrawoutput"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/recommendedThreadCount": {
+      "abstract": [
+        {
+          "text": "The recommended number of threads for the decoder to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recommendedThreadCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/recommendedThreadCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recommendedThreadCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "recommendedThreadCount",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/recommendedthreadcount"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/reducedResolution": {
+      "abstract": [
+        {
+          "text": "A request to decode at a lower resolution than full-size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reducedResolution"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/reducedResolution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reducedResolution"
+        }
+      ],
+      "role": "symbol",
+      "title": "reducedResolution",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/reducedresolution"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/supportedPixelFormatsOrderedByQuality": {
+      "abstract": [
+        {
+          "text": "Provides hints about quality tradeoffs between pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedPixelFormatsOrderedByQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/supportedPixelFormatsOrderedByQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedPixelFormatsOrderedByQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedPixelFormatsOrderedByQuality",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder/supportedpixelformatsorderedbyquality"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a factory to create new video decoders for a codec type that the extension implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoderExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)": {
+      "abstract": [
+        {
+          "text": "Creates a new video decoder that matches the codec type, format description, decoder specifications, and pixel buffer manager that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeVideoDecoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "codecType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoCodecType",
+          "text": "CMVideoCodecType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "videoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoFormatDescriptionRef",
+          "text": "CMVideoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "videoDecoderSpecifications"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelBufferManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEVideoDecoderPixelBufferManager",
+          "text": "MEVideoDecoderPixelBufferManager"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MEVideoDecoder",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderextension/makevideodecoder(codectype:videoformatdescription:videodecoderspecifications:pixelbuffermanager:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager": {
+      "abstract": [
+        {
+          "text": "Describes pixel buffer requirements and creates new pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderPixelBufferManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderPixelBufferManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoderPixelBufferManager",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderpixelbuffermanager"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager/makePixelBuffer()": {
+      "abstract": [
+        {
+          "text": "Generates a pixel buffer using the session’s pixel buffer pool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makePixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager/makePixelBuffer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createPixelBufferAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makePixelBuffer()",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderpixelbuffermanager/makepixelbuffer()"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderReadyForMoreMediaDataDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that indicates a change to the decoder’s readiness to process additional media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderReadyForMoreMediaDataDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderReadyForMoreMediaDataDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MEVideoDecoderReadyForMoreMediaDataDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderreadyformoremediadatadidchangenotification"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement": {
+      "abstract": [
+        {
+          "text": "Include an entitlement to indicate your extension is a MediaExtension video decoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Video decoder entitlement",
+      "type": "topic",
+      "url": "/documentation/mediaextension/video-decoder-entitlement"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary": {
+      "abstract": [
+        {
+          "text": "Include a property list dictionary to describe a video decoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Video decoder property list dictionary",
+      "type": "topic",
+      "url": "/documentation/mediaextension/video-decoder-property-list-dictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "https://developer.apple.com/documentation/bundleresources/entitlements": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements",
+      "title": "Entitlements",
+      "titleInlineContent": [
+        {
+          "text": "Entitlements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/entitlements"
+    },
+    "https://developer.apple.com/help/account/manage-provisioning-profiles/create-a-development-provisioning-profile": {
+      "identifier": "https://developer.apple.com/help/account/manage-provisioning-profiles/create-a-development-provisioning-profile",
+      "title": "Create a development provisioning profile",
+      "titleInlineContent": [
+        {
+          "text": "Create a development provisioning profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-provisioning-profiles/create-a-development-provisioning-profile"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Video-decoders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+      ],
+      "title": "Video decoders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Inspecting-a-video-decoder",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/contentHasInterframeDependencies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/recommendedThreadCount",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/actualThreadCount",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/supportedPixelFormatsOrderedByQuality",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/reducedResolution",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/pixelFormatsWithReducedResolutionDecodeSupport",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/producesRAWOutput",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/isReadyForMoreMediaData"
+      ],
+      "title": "Inspecting a video decoder"
+    },
+    {
+      "anchor": "Decoding-frames",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/canAccept(_:)",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/decodeFrame(from:options:completionHandler:)",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameStatus"
+      ],
+      "title": "Decoding frames"
+    },
+    {
+      "anchor": "Extension-requirements",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+      ],
+      "title": "Extension requirements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MEVideoDecoder"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaextension/documentation/MediaExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Inspecting-a-video-decoder",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/contentHasInterframeDependencies",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/recommendedThreadCount",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/actualThreadCount",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/supportedPixelFormatsOrderedByQuality",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/reducedResolution",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/pixelFormatsWithReducedResolutionDecodeSupport",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/producesRAWOutput",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/isReadyForMoreMediaData"
+              ],
+              "title": "Inspecting a video decoder"
+            },
+            {
+              "anchor": "Decoding-frames",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/canAccept(_:)",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder/decodeFrame(from:options:completionHandler:)",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameStatus"
+              ],
+              "title": "Decoding frames"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderReadyForMoreMediaDataDidChangeNotification"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Extension-requirements",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+              ],
+              "title": "Extension requirements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Video-decoders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+              ],
+              "title": "Video decoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MEVideoDecoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/title",
+          "value": "MEVideoDecoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1canAccept(_:)/title",
+          "value": "canAcceptFormatDescription:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1canAccept(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canAcceptFormatDescription:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1actualThreadCount/title",
+          "value": "actualThreadCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1actualThreadCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "actualThreadCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTSessionCopyProperty(_:key:allocator:valueOut:)/title",
+          "value": "VTSessionCopyProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTSessionCopyProperty(_:key:allocator:valueOut:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTSessionCopyProperty"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTSessionRef",
+              "text": "VTSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "propertyKey"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFAllocatorRef",
+              "text": "CFAllocatorRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "allocator"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "propertyValueOut"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameStatus/title",
+          "value": "MEDecodeFrameStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMVideoCodecType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FourCharCode",
+              "text": "FourCharCode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMVideoCodecType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)/title",
+          "value": "VTDecompressionSessionCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSessionCreate(allocator:formatDescription:decoderSpecification:imageBufferAttributes:outputCallback:decompressionSessionOut:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTDecompressionSessionCreate"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFAllocatorRef",
+              "text": "CFAllocatorRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "allocator"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMVideoFormatDescriptionRef",
+              "text": "CMVideoFormatDescriptionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "videoFormatDescription"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "videoDecoderSpecification"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "destinationImageBufferAttributes"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@VTDecompressionOutputCallbackRecord",
+              "text": "VTDecompressionOutputCallbackRecord"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "outputCallback"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTDecompressionSessionRef",
+              "text": "VTDecompressionSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "decompressionSessionOut"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager~1makePixelBuffer()/title",
+          "value": "createPixelBufferAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager~1makePixelBuffer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createPixelBufferAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMVideoFormatDescription/title",
+          "value": "CMVideoFormatDescriptionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMVideoFormatDescription/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+              "text": "CMFormatDescriptionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMVideoFormatDescriptionRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1recommendedThreadCount/title",
+          "value": "recommendedThreadCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1recommendedThreadCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recommendedThreadCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1pixelFormatsWithReducedResolutionDecodeSupport/title",
+          "value": "pixelFormatsWithReducedResolutionDecodeSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1pixelFormatsWithReducedResolutionDecodeSupport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelFormatsWithReducedResolutionDecodeSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1contentHasInterframeDependencies/title",
+          "value": "contentHasInterframeDependencies"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1contentHasInterframeDependencies/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentHasInterframeDependencies"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/title",
+          "value": "MEVideoDecoderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1producesRAWOutput/title",
+          "value": "producesRAWOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1producesRAWOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "producesRAWOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/title",
+          "value": "CMSampleBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@opaqueCMSampleBuffer",
+              "text": "opaqueCMSampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1reducedResolution/title",
+          "value": "reducedResolution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1reducedResolution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reducedResolution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)/title",
+          "value": "VTDecompressionSessionCanAcceptFormatDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSessionCanAcceptFormatDescription(_:formatDescription:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Boolean",
+              "text": "Boolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTDecompressionSessionCanAcceptFormatDescription"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTDecompressionSessionRef",
+              "text": "VTDecompressionSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+              "text": "CMFormatDescriptionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "newFormatDesc"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)/title",
+          "value": "VTDecompressionSessionDecodeFrameWithOutputHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSessionDecodeFrame(_:sampleBuffer:flags:infoFlagsOut:outputHandler:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTDecompressionSessionDecodeFrameWithOutputHandler"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTDecompressionSessionRef",
+              "text": "VTDecompressionSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMSampleBufferRef",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@VTDecodeFrameFlags",
+              "text": "VTDecodeFrameFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "decodeFlags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@VTDecodeInfoFlags",
+              "text": "VTDecodeInfoFlags"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "infoFlagsOut"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTDecompressionOutputHandler",
+              "text": "VTDecompressionOutputHandler"
+            },
+            {
+              "kind": "internalParam",
+              "text": "outputHandler"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1unsupportedFeature/title",
+          "value": "MEErrorUnsupportedFeature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1unsupportedFeature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEErrorUnsupportedFeature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1decodeFrame(from:options:completionHandler:)/title",
+          "value": "decodeFrameFromSampleBuffer:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1decodeFrame(from:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodeFrameFromSampleBuffer:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/title",
+          "value": "MEDecodeFrameOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1supportedPixelFormatsOrderedByQuality/title",
+          "value": "supportedPixelFormatsOrderedByQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1supportedPixelFormatsOrderedByQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportedPixelFormatsOrderedByQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/title",
+          "value": "VTSessionSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTSessionSetProperty"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTSessionRef",
+              "text": "VTSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "propertyKey"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "propertyValue"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTRegisterProfessionalVideoWorkflowVideoDecoders()/title",
+          "value": "VTRegisterProfessionalVideoWorkflowVideoDecoders"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTRegisterProfessionalVideoWorkflowVideoDecoders()/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTRegisterProfessionalVideoWorkflowVideoDecoders"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/title",
+          "value": "MEVideoDecoderPixelBufferManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension~1makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)/title",
+          "value": "videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension~1makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1isReadyForMoreMediaData/title",
+          "value": "readyForMoreMediaData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder~1isReadyForMoreMediaData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "readyForMoreMediaData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSession/title",
+          "value": "VTDecompressionSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1VideoToolbox~1VTDecompressionSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OpaqueVTDecompressionSession",
+              "text": "OpaqueVTDecompressionSession"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTDecompressionSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaextension/mevideodecoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaextension/mevideodecoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

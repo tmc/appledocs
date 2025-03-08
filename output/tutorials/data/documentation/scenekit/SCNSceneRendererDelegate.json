@@ -1,0 +1,2232 @@
+{
+  "abstract": [
+    {
+      "text": "Methods your app can implement to participate in SceneKit’s animation loop or perform additional rendering.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)SCNSceneRendererDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNSceneRendererDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNSceneRendererDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SCNSceneRendererDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build an app or game with SceneKit, you use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object (or other object conforming the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol) to display your scene. Then, to add per-frame game logic, or to perform custom Metal or OpenGL rendering before or after SceneKit renders the scene, specify your own custom object that implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol for the view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When rendering your scene, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object (or other SceneKit renderer) runs a rendering loop that processes and then draws the scene. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows the steps in this loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2929793",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time through the rendering loop, a SceneKit view (or renderer) executes the following actions in order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SceneKit executes actions and performs animations attached to the scene graph. (See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyAnimationsAtTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SceneKit applies its physics simulation to any physics bodies in the scene. (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and related classes.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didSimulatePhysicsAtTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SceneKit renders the scene graph in the view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view calls its delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didRenderScene:atTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Working-With-the-Rendering-Loop",
+          "level": 3,
+          "text": "Working With the Rendering Loop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building a game, you typically need to run logic relating to gameplay before each frame of animation. Game logic may include input handling, artificial intelligence, game scripting, or other tasks. Often, the results of this logic involve making changes to nodes or running actions on nodes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The methods listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide places to implement your game logic. Which of these methods you implement for which tasks depends on your game design. For example, if your game uses physics, you might implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didSimulatePhysicsAtTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to decide whether the player has won the game based on the state of physics bodies in the scene. If your gameplay isn’t based on the physics simulation, you might make such decisions in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Custom-Rendering",
+          "level": 3,
+          "text": "Custom Rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to perform custom rendering before or after SceneKit renders the contents of the scene, implement one or both methods listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These methods are appropriate for custom Metal or OpenGL drawing that does not depend on the structure or content of the scene graph. If you instead want to render a special effect that is attached to a specific location in the scene, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Or if you want to use GPU shader programs to customize SceneKit’s rendering of scene content, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAction": {
+      "abstract": [
+        {
+          "text": "A simple, reusable animation that changes attributes of any node you attach it to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAction"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAction",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnaction"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable": {
+      "abstract": [
+        {
+          "text": "The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNAnimatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNAnimatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNAnimatable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnanimatable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult": {
+      "abstract": [
+        {
+          "text": "Information about the result of a scene-space or view-space search for scene elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNHitTestResult"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNHitTestResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNHitTestResult",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnhittestresult"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that renders a SceneKit scene as its content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNLayer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnlayer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to use your own custom Metal or OpenGL drawing code to render content for a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNNodeRendererDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNNodeRendererDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNNodeRendererDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNNodeRendererDelegate",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnnoderendererdelegate"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody": {
+      "abstract": [
+        {
+          "text": "The physics simulation attributes attached to a scene graph node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBody"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsBody",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsbody"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld": {
+      "abstract": [
+        {
+          "text": "The global simulation of collisions, gravity, joints, and other physics effects in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsWorld"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsWorld",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNPhysicsWorld"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNPhysicsWorld",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnphysicsworld"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer": {
+      "abstract": [
+        {
+          "text": "A renderer for displaying a SceneKit scene in an existing Metal workflow or OpenGL context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNRenderer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnrenderer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer": {
+      "abstract": [
+        {
+          "text": "Methods and properties common to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneRenderer",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate object that receives messages about SceneKit’s rendering process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRendererDelegate",
+          "text": "SCNSceneRendererDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerenderer/delegate"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to participate in SceneKit’s animation loop or perform additional rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRendererDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRendererDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNSceneRendererDelegate",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyAnimationsAtTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to perform any updates that need to occur after actions and animations are evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didApplyAnimationsAtTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyAnimationsAtTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didApplyAnimationsAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didApplyAnimationsAtTime:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate/renderer(_:didapplyanimationsattime:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyConstraintsAtTime:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didApplyConstraintsAtTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyConstraintsAtTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didApplyConstraintsAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didApplyConstraintsAtTime:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate/renderer(_:didapplyconstraintsattime:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didRenderScene:atTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the renderer has rendered the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRenderScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNScene",
+          "text": "SCNScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didRenderScene:atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didRenderScene:atTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didRenderScene:atTime:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate/renderer(_:didrenderscene:attime:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didSimulatePhysicsAtTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to perform any updates that need to occur after physics simulations are performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSimulatePhysicsAtTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didSimulatePhysicsAtTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didSimulatePhysicsAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didSimulatePhysicsAtTime:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate/renderer(_:didsimulatephysicsattime:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to perform any updates that need to occur before actions, animations, and physics are evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateAtTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:updateAtTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:updateAtTime:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate/renderer(_:updateattime:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the renderer has cleared the viewport and is about to render the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willRenderScene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNScene",
+          "text": "SCNScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:willRenderScene:atTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:willRenderScene:atTime:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnscenerendererdelegate/renderer(_:willrenderscene:attime:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable": {
+      "abstract": [
+        {
+          "text": "Methods for customizing SceneKit’s rendering of geometry and materials using Metal or OpenGL shader programs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNShadable"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShadable"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNShadable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadable"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNView": {
+      "abstract": [
+        {
+          "text": "A view for displaying 3D SceneKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNView",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnview"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "media-2929793": {
+      "alt": null,
+      "identifier": "media-2929793",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f3d7914795ccd9d65d70c7d530f2083/media-2929793@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Display-and-Interactivity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult"
+      ],
+      "title": "Display and Interactivity"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Adding-Custom-Logic-to-the-Rendering-Loop",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyAnimationsAtTime:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didSimulatePhysicsAtTime:)"
+      ],
+      "title": "Adding Custom Logic to the Rendering Loop"
+    },
+    {
+      "anchor": "Rendering-Custom-Scene-Content",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didRenderScene:atTime:)"
+      ],
+      "title": "Rendering Custom Scene Content"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyConstraintsAtTime:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNSceneRendererDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Adding-Custom-Logic-to-the-Rendering-Loop",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:updateAtTime:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyAnimationsAtTime:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didSimulatePhysicsAtTime:)"
+              ],
+              "title": "Adding Custom Logic to the Rendering Loop"
+            },
+            {
+              "anchor": "Rendering-Custom-Scene-Content",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:willRenderScene:atTime:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didRenderScene:atTime:)"
+              ],
+              "title": "Rendering Custom Scene Content"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRendererDelegate/renderer(_:didApplyConstraintsAtTime:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Display-and-Interactivity",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneRenderer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNLayer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNHitTestResult"
+              ],
+              "title": "Display and Interactivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNSceneRendererDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate/title",
+          "value": "SCNSceneRendererDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:willRenderScene:atTime:)/title",
+          "value": "renderer:willRenderScene:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:willRenderScene:atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:willRenderScene:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNView/title",
+          "value": "SCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:updateAtTime:)/title",
+          "value": "renderer:updateAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:updateAtTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:updateAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/title",
+          "value": "SCNShadable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShadable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShadable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNRenderer/title",
+          "value": "SCNRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNodeRendererDelegate/title",
+          "value": "SCNNodeRendererDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNodeRendererDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNodeRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNNodeRendererDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNNodeRendererDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didSimulatePhysicsAtTime:)/title",
+          "value": "renderer:didSimulatePhysicsAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didSimulatePhysicsAtTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didSimulatePhysicsAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult/title",
+          "value": "SCNHitTestResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNHitTestResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/title",
+          "value": "SCNAnimatable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAnimatable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAnimatable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer/title",
+          "value": "SCNSceneRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didRenderScene:atTime:)/title",
+          "value": "renderer:didRenderScene:atTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didRenderScene:atTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didRenderScene:atTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld/title",
+          "value": "SCNPhysicsWorld"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsWorld/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsWorld"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLayer/title",
+          "value": "SCNLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAction/title",
+          "value": "SCNAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didApplyConstraintsAtTime:)/title",
+          "value": "renderer:didApplyConstraintsAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didApplyConstraintsAtTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didApplyConstraintsAtTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRenderer~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBody/title",
+          "value": "SCNPhysicsBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNPhysicsBody/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNPhysicsBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didApplyAnimationsAtTime:)/title",
+          "value": "renderer:didApplyAnimationsAtTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNSceneRendererDelegate~1renderer(_:didApplyAnimationsAtTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didApplyAnimationsAtTime:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnscenerendererdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnscenerendererdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

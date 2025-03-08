@@ -1,0 +1,665 @@
+{
+  "abstract": [
+    {
+      "text": "A request for an item’s content protection key.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyRequest"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:sirikit_media_api:ContentProtectionKeyRequest",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ContentProtectionKeyRequest"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ContentProtectionKeyRequest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "ContentProtectionKeyRequest"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: SiriKit Cloud Media"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ContentProtectionKeyRequest"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "4000"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The item’s content key asset identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "assetIdentifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The content the client is playing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:PlayerContext",
+              "text": "PlayerContext"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An encrypted key request that contains session, authentication, and integrity information. For FairPlay Streaming, this is the server playback context (SPC); for more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/streaming/fps/FairPlayStreamingOverview.pdf",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keyRequest",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "byte"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The content’s encryption type, which must match the configuration in  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/ContentProtectionKey-data.dictionary/Cks-data.dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keySystem",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:ContentProtectionKeySystem",
+              "text": "ContentProtectionKeySystem"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A description of the client’s current playback queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userActivity",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:UserActivity",
+              "text": "UserActivity"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "25"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/[0-9]+\\.[0-9]+\\.[0-9]+/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The version of the client’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "SiriKitMediaAPI",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " library.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "version",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your service implements content protection, the client requests an item’s content protection key after each of the following events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The client receives the queue’s initial item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The client preloads each subsequent item in the queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user manually transitions to an item in the queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on providing your service’s content protection configuration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/ContentProtectionKey-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyRequest": {
+      "abstract": [
+        {
+          "text": "A request for an item’s content protection key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentProtectionKeyRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkeyrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyResponse": {
+      "abstract": [
+        {
+          "text": "A response to a request for an item’s content protection key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeyResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentProtectionKeyResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkeyresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem": {
+      "abstract": [
+        {
+          "text": "The content protection key systems that SiriKit Cloud Media supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeySystem"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentProtectionKeySystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentProtectionKeySystem",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkeysystem"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/ContentProtectionKey-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Configuration details for your service’s content protection key endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig.Media.Queues.ContentProtectionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/ContentProtectionKey-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig.Media.Queues.ContentProtectionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensionConfig.Media.Queues.ContentProtectionKey",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/extensionconfig/media-data.dictionary/queues-data.dictionary/contentprotectionkey-data.dictionary"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/ContentProtectionKey-data.dictionary/Cks-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Configuration details for your service’s content protection system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig.Media.Queues.ContentProtectionKey.Cks"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/ContentProtectionKey-data.dictionary/Cks-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig.Media.Queues.ContentProtectionKey.Cks"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensionConfig.Media.Queues.ContentProtectionKey.Cks",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/extensionconfig/media-data.dictionary/queues-data.dictionary/contentprotectionkey-data.dictionary/cks-data.dictionary"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext": {
+      "abstract": [
+        {
+          "text": "Information about the current playback content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayerContext",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playercontext"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity": {
+      "abstract": [
+        {
+          "text": "The context for playing a media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/useractivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey": {
+      "abstract": [
+        {
+          "text": "Provide the content key for a specific protected asset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentProtectionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve an Asset’s Content Protection Key",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentprotectionkey"
+    },
+    "https://developer.apple.com/streaming/fps/FairPlayStreamingOverview.pdf": {
+      "identifier": "https://developer.apple.com/streaming/fps/FairPlayStreamingOverview.pdf",
+      "title": "FairPlay Streaming Overview",
+      "titleInlineContent": [
+        {
+          "text": "FairPlay Streaming Overview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/streaming/fps/FairPlayStreamingOverview.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-Protection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/contentProtectionKey",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeyResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentProtectionKeySystem"
+      ],
+      "title": "Content Protection"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/contentprotectionkeyrequest"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

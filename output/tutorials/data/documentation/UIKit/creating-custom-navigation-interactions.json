@@ -1,0 +1,502 @@
+{
+  "abstract": [
+    {
+      "text": "Build nonstandard navigation interactions that move focus to the desired location.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/creating-custom-navigation-interactions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating custom navigation interactions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most apps, a simple layout is all that’s needed for the user to interact with your app. However, sometimes the focus engine doesn’t move focus where desired, or doesn’t move focus at all. For these situations, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to create invisible regions that redirect focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Place-your-focusable-items",
+          "level": 3,
+          "text": "Place your focusable items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place focusable items in your app and arrange them as desired. Where possible, take advantage of the focus engine’s built-in behavior. Use a focus guide only when absolutely necessary. The following image shows a row of three buttons and a column of three buttons. Focus moves automatically between buttons in the same row or column, but the focus engine doesn’t move focus when the user swipes down from Button 2 or Button 3. However, for this layout, the goal is for Button 4 to become focused when the user swipes down.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2943339",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-focus-guide",
+          "level": 3,
+          "text": "Add a focus guide",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get focus to move to Button 4 when the user swipes down from Button 2 or Button 3, a focus guide is required. Create a focus guide and add it to the current view. The focus guide is detectable by the focus engine and redirects focus as indicated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let myFocusGuide = UIFocusGuide()",
+            "self.view.addLayoutGuide(myFocusGuide)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-constraints-to-the-focus-guide",
+          "level": 3,
+          "text": "Add constraints to the focus guide",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user swipes down from Button 2 or Button 3, the focus should move to Button 4. To make this happen, you need to programmatically add constraints to the focus guide. The focus guide needs to be as wide as Button 2 and Button 3 combined. Set the focus guide’s left constraint to Button 2’s left constraint and its right constraint to Button 3’s right constraint. For convenience, this example sets the focus guide’s top and bottom constraints to Button 4’s top and bottom constraints. Finally, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide/preferredFocusEnvironments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is set to Button 4. The following image shows the location and size of the focus guide created using the constraints in the following code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myFocusGuide.leftAnchor.constraint(equalTo: button_2.leftAnchor).isActive = true",
+            "myFocusGuide.rightAnchor.constraint(equalTo: button_3.rightAnchor).isActive = true",
+            "myFocusGuide.topAnchor.constraint(equalTo: button_4.topAnchor).isActive = true",
+            "myFocusGuide.bottomAnchor.constraint(equalTo: button_4.bottomAnchor).isActive = true",
+            "myFocusGuide.preferredFocusEnvironments = [button_4]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The focus guide won’t work if the constraints are set to Active.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2943334",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users swipe down from Button 2 or Button 3, focus correctly redirects to Button 4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2943338",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide": {
+      "abstract": [
+        {
+          "text": "An object that exposes nonview areas as focusable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide/preferredFocusEnvironments": {
+      "abstract": [
+        {
+          "text": "An array of focus environments to which the guide directs focus, ordered by priority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFocusEnvironments"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+          "text": "UIFocusEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide/preferredFocusEnvironments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFocusEnvironments"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFocusEnvironments",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusguide/preferredfocusenvironments"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "media-2943334": {
+      "alt": "Screenshot that shows a newly created focus guide.",
+      "identifier": "media-2943334",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cec2c280e38c4210f17769ade7877401/media-2943334.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c7c2a2af4b13e1f40248624d43042691/media-2943334@2x.png"
+        }
+      ]
+    },
+    "media-2943338": {
+      "alt": "Screenshot that shows focus redirecting to Button 4.",
+      "identifier": "media-2943338",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3799b6cb539c85b5067e68e731f2d63/media-2943338.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a5d92ec8be8fd144426d65574dd3301/media-2943338@2x.png"
+        }
+      ]
+    },
+    "media-2943339": {
+      "alt": "Screenshot that shows the creation of a menu layout.",
+      "identifier": "media-2943339",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5ce0269c3b487ff50b5048b6f5391d30/media-2943339.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c248a54cea79794d38a66c9c81372ac/media-2943339@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Focus-guides",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide"
+      ],
+      "title": "Focus guides"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Focus-guides",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFocusGuide"
+              ],
+              "title": "Focus guides"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide~1preferredFocusEnvironments/title",
+          "value": "preferredFocusEnvironments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide~1preferredFocusEnvironments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredFocusEnvironments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide/title",
+          "value": "UIFocusGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusGuide"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/creating-custom-navigation-interactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/creating-custom-navigation-interactions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

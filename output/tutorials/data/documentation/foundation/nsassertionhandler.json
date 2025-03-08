@@ -1,0 +1,444 @@
+{
+  "abstract": [
+    {
+      "text": "An object that logs an assertion to the console.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412091,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSAssertionHandler",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSAssertionHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSAssertionHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAssertionHandler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSAssertionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects are automatically created to handle false assertions. Assertion macros, such as ",
+              "type": "text"
+            },
+            {
+              "code": "NSAssert",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NSCAssert",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", are used to evaluate a condition, and if the condition evaluates to false, the macros pass a string to an ",
+              "type": "text"
+            },
+            {
+              "code": "NSAssertionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object describing the failure. Each thread has its own ",
+              "type": "text"
+            },
+            {
+              "code": "NSAssertionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. When invoked, an assertion handler prints an error message that includes the method and class (or function) containing the assertion and raises an ",
+              "type": "text"
+            },
+            {
+              "code": "NSInternalInconsistencyException",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create assertions only using the assertion macros—you rarely need to invoke ",
+              "type": "text"
+            },
+            {
+              "code": "NSAssertionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods directly. The macros for use inside methods and functions send ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1569513-handlefailureinmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1569532-handlefailureinfunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " messages respectively to the current assertion handler. The assertion handler for the current thread is obtained using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1417391-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/nsassertionhandlerkey/nsassertionhandlerkey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you need to customize the behavior of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/errors_and_exceptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Errors and Exceptions",
+      "type": "topic",
+      "url": "/documentation/foundation/errors_and_exceptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsassertionhandler": {
+      "abstract": [
+        {
+          "text": "An object that logs an assertion to the console.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAssertionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAssertionHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsassertionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1417391-current": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "NSAssertionHandler",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object associated with the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAssertionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1417391-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/foundation/nsassertionhandler/1417391-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1569513-handlefailureinmethod": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleFailureInMethod:object:file:lineNumber:description:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1569513-handlefailureinmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleFailureInMethod:object:file:lineNumber:description:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsassertionhandler/1569513-handlefailureinmethod"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1569532-handlefailureinfunction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleFailureInFunction:file:lineNumber:description:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1569532-handlefailureinfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleFailureInFunction:file:lineNumber:description:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsassertionhandler/1569532-handlefailureinfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/nsassertionhandlerkey/nsassertionhandlerkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/nsassertionhandlerkey/nsassertionhandlerkey",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSAssertionHandlerKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsassertionhandler/nsassertionhandlerkey/nsassertionhandlerkey"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1680262",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsassertionhandler/1417391-current"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling Assertion Failures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsassertionhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsassertionhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

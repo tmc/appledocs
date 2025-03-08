@@ -1,0 +1,1202 @@
+{
+  "abstract": [
+    {
+      "text": "Include property list dictionaries to describe a format reader and register the formats it supports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaextension/documentation/MediaExtension/format-reader-property-list-dictionaries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MediaExtension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Format reader property list dictionaries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "ExtensionKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format reader needs to include one required dictionary and can also include an optional dictionary in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXAppExtensionAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A required dictionary that describes the format reader and contains the following keys and values:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderClassImplementationIDKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": The identifier for the format reader. Format similarly to the bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXExtensionPointIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The extension point name for format readers. Set to the value for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderExtensionPointName",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXPrincipalClass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The name of the format reader factory class that conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderExtension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderFileNameExtensionArrayKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": An array of strings that specify the file name extensions that the format reader supports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderUTTypeArrayKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": A key to the array of Uniform Type Identifiers that the format reader supports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderObjectNameKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": A user-readable string that describes the format reader.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": An optional dictionary that registers the formats from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderUTTypeArrayKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array that the format reader supports, so the system can recognize those media files and open them in the appropriate app. It contains the following keys and values:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": A user-readable string that specifies the media kind, which Finder displays.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": An array of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UTType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " identifiers, with the first entry set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.mediaextension-content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This type also conforms to higher level abstract types such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.movie",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.audiovisual-content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This array can include additional types as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": This value needs to match the value for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kMEFormatReaderUTTypeArrayKey",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXAppExtensionAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.filename-extension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key: This value needs to match the value for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderFileNameExtensionArrayKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXAppExtensionAttributes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "public.mime-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": This is an optional key to a MIME type that corresponds to the format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information on how to make a ",
+              "type": "text"
+            },
+            {
+              "code": "UTExportedTypeDeclarations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations": {
+      "abstract": [
+        {
+          "text": "The uniform type identifiers owned and exported by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTExportedTypeDeclarations",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo": {
+      "abstract": [
+        {
+          "text": "The Uniform Type Identifier types that this type conforms to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeConformsTo",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeConformsTo"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription": {
+      "abstract": [
+        {
+          "text": "A description for this type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "The Uniform Type Identifier to assign to this type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification": {
+      "abstract": [
+        {
+          "text": "A dictionary defining one or more equivalent type identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeTagSpecification",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UTExportedTypeDeclarations/UTTypeTagSpecification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEFileInfo": {
+      "abstract": [
+        {
+          "text": "An object that contains file properties from the media asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEFileInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEFileInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEFileInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEFileInfo",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mefileinfo"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReader": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the requirements for a format reader, which represents a single media asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEFormatReader"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEFormatReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEFormatReader",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meformatreader"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderExtension": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a factory to create a new format reader with a byte source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEFormatReaderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEFormatReaderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEFormatReaderExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meformatreaderextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderInstantiationOptions": {
+      "abstract": [
+        {
+          "text": "An object that contains options to pass to a format reader extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEFormatReaderInstantiationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderInstantiationOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEFormatReaderInstantiationOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEFormatReaderInstantiationOptions",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meformatreaderinstantiationoptions"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/format-reader-entitlement": {
+      "abstract": [
+        {
+          "text": "Include an entitlement to indicate your extension is a MediaExtension format reader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/format-reader-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Format reader entitlement",
+      "type": "topic",
+      "url": "/documentation/mediaextension/format-reader-entitlement"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderClassImplementationIDKey": {
+      "abstract": [
+        {
+          "text": "The unique identifier for the format reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderClassImplementationIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderClassImplementationIDKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderClassImplementationIDKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEFormatReaderClassImplementationIDKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmeformatreaderclassimplementationidkey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderExtensionPointName": {
+      "abstract": [
+        {
+          "text": "A key to the extension point name for format readers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderExtensionPointName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderExtensionPointName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderExtensionPointName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEFormatReaderExtensionPointName",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmeformatreaderextensionpointname"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderFileNameExtensionArrayKey": {
+      "abstract": [
+        {
+          "text": "A key to the array of file extensions that the format reader plug-in supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderFileNameExtensionArrayKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderFileNameExtensionArrayKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderFileNameExtensionArrayKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEFormatReaderFileNameExtensionArrayKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmeformatreaderfilenameextensionarraykey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderObjectNameKey": {
+      "abstract": [
+        {
+          "text": "A user-readable string describing the format reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderObjectNameKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderObjectNameKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderObjectNameKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEFormatReaderObjectNameKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmeformatreaderobjectnamekey"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderUTTypeArrayKey": {
+      "abstract": [
+        {
+          "text": "A key to the array of Uniform Type Identifiers that the format reader supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderUTTypeArrayKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderUTTypeArrayKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMEFormatReaderUTTypeArrayKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMEFormatReaderUTTypeArrayKey",
+      "type": "topic",
+      "url": "/documentation/mediaextension/kmeformatreaderuttypearraykey"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Format-readers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReader",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderExtension",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderInstantiationOptions",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEFileInfo",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/format-reader-entitlement"
+      ],
+      "title": "Format readers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Property-list-keys",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderClassImplementationIDKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderExtensionPointName",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderFileNameExtensionArrayKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderUTTypeArrayKey",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderObjectNameKey"
+      ],
+      "title": "Property list keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Property-list-keys",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderClassImplementationIDKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderExtensionPointName",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderFileNameExtensionArrayKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderUTTypeArrayKey",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/kMEFormatReaderObjectNameKey"
+              ],
+              "title": "Property list keys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Format-readers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReader",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderExtension",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEFormatReaderInstantiationOptions",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEFileInfo",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/format-reader-entitlement"
+              ],
+              "title": "Format readers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReader/title",
+          "value": "MEFormatReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFormatReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFormatReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderClassImplementationIDKey/title",
+          "value": "kMEFormatReaderClassImplementationIDKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderClassImplementationIDKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEFormatReaderClassImplementationIDKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReaderExtension/title",
+          "value": "MEFormatReaderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReaderExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFormatReaderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReaderExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFormatReaderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderFileNameExtensionArrayKey/title",
+          "value": "kMEFormatReaderFileNameExtensionArrayKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderFileNameExtensionArrayKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEFormatReaderFileNameExtensionArrayKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderUTTypeArrayKey/title",
+          "value": "kMEFormatReaderUTTypeArrayKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderUTTypeArrayKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEFormatReaderUTTypeArrayKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderObjectNameKey/title",
+          "value": "kMEFormatReaderObjectNameKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderObjectNameKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEFormatReaderObjectNameKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReaderInstantiationOptions/title",
+          "value": "MEFormatReaderInstantiationOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReaderInstantiationOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFormatReaderInstantiationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFormatReaderInstantiationOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFormatReaderInstantiationOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderExtensionPointName/title",
+          "value": "kMEFormatReaderExtensionPointName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1kMEFormatReaderExtensionPointName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMEFormatReaderExtensionPointName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFileInfo/title",
+          "value": "MEFileInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFileInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFileInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEFileInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEFileInfo"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaextension/format-reader-property-list-dictionaries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaextension/format-reader-property-list-dictionaries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

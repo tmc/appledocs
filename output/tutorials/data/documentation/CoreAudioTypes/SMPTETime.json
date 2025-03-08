@@ -1,0 +1,1535 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that defines an SMPTE time value.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@SMPTETime",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SMPTETime"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Audio Types"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SMPTETime"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SMPTETime"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SMPTETime"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SMPTE (Society of Motion Picture and Television Engineers, pronounced “SIMPtee”) times are used to correlate a point in an audio stream with an external event. For example, a SMPTE time can be used to correlate a sound in an audio file with a video frame in a movie file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the frames referred to by this structure are video frames, where a video frame is a single complete image. (Compare with the definition of audio frames in the discussion for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A complete SMPTE time description takes 80 bits, including 32 user bits that contain vendor-specific information. The actual time-code portion of the SMPTE time description is normally sent in several messages, each message containing a portion of the time code. (The user bits are sent in a separate message.) Typically, the SMPTE time description is divided up into 8 1-byte messages, with the first nibble of each message specifying which portion of the time code is contained in the message and the second nibble containing the time information. Four such messages are normally sent with each video frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Video data contains somewhere from 24 to 60 frames per second (as specified by the SMPTE time type—see ",
+              "type": "text"
+            },
+            {
+              "code": "SMPTE Timecode Types",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and each video frame has an associated SMPTE time. SMPTE time is based on a 24-hour clock. Each frame’s SMPTE time consists of an hour, minute, and second value, plus the number of the frame within the second. Because audio data is sampled at a much higher rate (MP3 data is sampled at over 100,000 bits per second, for example), it is frequently desirable to correlate the audio data with a time within the persistence period of a single video frame. For this reason, the time period during which a single video frame is displayed is subdivided into subframes (typically 80 or 100 subframes per frame, as specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "mSubFrameDivisor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field). The ",
+              "type": "text"
+            },
+            {
+              "code": "mSubFrames",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field specifies the number of subframes into the video frame represented by this time structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes": {
+      "abstract": [
+        {
+          "text": "Use specialized data types to interact with audio streams, complex buffers, and audiovisual timestamps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Audio Types",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription": {
+      "abstract": [
+        {
+          "text": "A format specification for an audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioStreamBasicDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamBasicDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioStreamBasicDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioStreamBasicDescription",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreambasicdescription"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime": {
+      "abstract": [
+        {
+          "text": "A structure that defines an SMPTE time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMPTETime"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMPTETime"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMPTETime",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/init()"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/init(mSubframes:mSubframeDivisor:mCounter:mType:mFlags:mHours:mMinutes:mSeconds:mFrames:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mSubframes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mSubframeDivisor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mCounter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMPTETimeType",
+          "text": "SMPTETimeType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMPTETimeFlags",
+          "text": "SMPTETimeFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mHours"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mMinutes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mSeconds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mFrames"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/init(mSubframes:mSubframeDivisor:mCounter:mType:mFlags:mHours:mMinutes:mSeconds:mFrames:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mSubframes:mSubframeDivisor:mCounter:mType:mFlags:mHours:mMinutes:mSeconds:mFrames:)",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/init(msubframes:msubframedivisor:mcounter:mtype:mflags:mhours:mminutes:mseconds:mframes:)"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mCounter": {
+      "abstract": [
+        {
+          "text": "The total number of messages received. It takes 8 messages to carry a full SMPTE time code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mCounter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "mCounter",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mcounter"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFlags": {
+      "abstract": [
+        {
+          "text": "A set of flags that indicate the SMPTE state (see ",
+          "type": "text"
+        },
+        {
+          "code": "SMPTE Time Flags",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMPTETimeFlags",
+          "text": "SMPTETimeFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "mFlags",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mflags"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFrames": {
+      "abstract": [
+        {
+          "text": "The value of the frames portion of the SMPTE time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mFrames"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFrames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mFrames"
+        }
+      ],
+      "role": "symbol",
+      "title": "mFrames",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mframes"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mHours": {
+      "abstract": [
+        {
+          "text": "The value of the hours portion of the SMPTE time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mHours"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mHours",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mHours"
+        }
+      ],
+      "role": "symbol",
+      "title": "mHours",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mhours"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mMinutes": {
+      "abstract": [
+        {
+          "text": "The value of the minutes portion of the SMPTE time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mMinutes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mMinutes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mMinutes"
+        }
+      ],
+      "role": "symbol",
+      "title": "mMinutes",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mminutes"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSeconds": {
+      "abstract": [
+        {
+          "text": "The value of the seconds portion of the SMPTE time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mSeconds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSeconds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mSeconds"
+        }
+      ],
+      "role": "symbol",
+      "title": "mSeconds",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mseconds"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframeDivisor": {
+      "abstract": [
+        {
+          "text": "The number of subframes per video frame (typically 80).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mSubframeDivisor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframeDivisor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mSubframeDivisor"
+        }
+      ],
+      "role": "symbol",
+      "title": "mSubframeDivisor",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/msubframedivisor"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframes": {
+      "abstract": [
+        {
+          "text": "A subframe offset to the HH:MM:SS:FF time. You can use this field to position a time marker somewhere within the time span represented by a video frame, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mSubframes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mSubframes"
+        }
+      ],
+      "role": "symbol",
+      "title": "mSubframes",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/msubframes"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mType": {
+      "abstract": [
+        {
+          "text": "A SMPTE time type constant indicating the kind of SMPTE time used (see ",
+          "type": "text"
+        },
+        {
+          "code": "SMPTE Timecode Types",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMPTETimeType",
+          "text": "SMPTETimeType"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mType"
+        }
+      ],
+      "role": "symbol",
+      "title": "mType",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetime/mtype"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeFlags": {
+      "abstract": [
+        {
+          "text": "A structure that defines SMPTE time flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMPTETimeFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMPTETimeFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMPTETimeFlags",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetimeflags"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeType": {
+      "abstract": [
+        {
+          "text": "Constants that define SMPTE time types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMPTETimeType"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMPTETimeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMPTETimeType",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/smptetimetype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "SMPTE-Time",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeFlags",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeType"
+      ],
+      "title": "SMPTE Time"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/init()",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/init(mSubframes:mSubframeDivisor:mCounter:mType:mFlags:mHours:mMinutes:mSeconds:mFrames:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mCounter",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFlags",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFrames",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mHours",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mMinutes",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSeconds",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframeDivisor",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframes",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mType"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SMPTETime"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mCounter",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFlags",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mFrames",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mHours",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mMinutes",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSeconds",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframeDivisor",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mSubframes",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETime/mType"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "SMPTE-Time",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeFlags",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/SMPTETimeType"
+              ],
+              "title": "SMPTE Time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SMPTETime"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mType/title",
+          "value": "mType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mSubframes/title",
+          "value": "mSubframes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mSubframes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mSubframes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mMinutes/title",
+          "value": "mMinutes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mMinutes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mMinutes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime/title",
+          "value": "SMPTETime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mSubframeDivisor/title",
+          "value": "mSubframeDivisor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mSubframeDivisor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mSubframeDivisor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mHours/title",
+          "value": "mHours"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mHours/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mHours"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mSeconds/title",
+          "value": "mSeconds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mSeconds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mSeconds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETimeFlags/title",
+          "value": "SMPTETimeFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETimeFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETimeFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETimeFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETimeFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mFrames/title",
+          "value": "mFrames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mFrames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mFrames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETimeType/title",
+          "value": "SMPTETimeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETimeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETimeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETimeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMPTETimeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/title",
+          "value": "AudioStreamBasicDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamBasicDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioStreamBasicDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mCounter/title",
+          "value": "mCounter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mCounter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mFlags/title",
+          "value": "mFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1SMPTETime~1mFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreaudiotypes/smptetime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreaudiotypes/smptetime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

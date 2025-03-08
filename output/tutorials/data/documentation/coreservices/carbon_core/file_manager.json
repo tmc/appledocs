@@ -1,0 +1,3426 @@
+{
+  "abstract": [
+    {
+      "text": "Interact with files, folders, and volumes.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "File Manager is deprecated in macOS 10.8 and later. The Foundation and Core Foundation frameworks provide APIs that you can use to replace File Manager functions in your app. See ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1744715",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "To get notifications when a folder changes, use the File System Events API. See ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1733622",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". ",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "To mount a local volume, use the Disk Arbitration API. You can unmount or eject a local volume by calling the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409917-unmountvolumeaturl",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method. See ",
+          "type": "text"
+        },
+        {
+          "identifier": "devLink-1741586",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". ",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    },
+    {
+      "inlineContent": [
+        {
+          "text": "For low-level access, use POSIX and BSD APIs. ",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2934103,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "File Manager"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Using File Manager APIs on volumes formatted with APFS is strongly discouraged. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Some functions, like ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1565474-fsexchangeobjects",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", aren't supported in APFS. Other functions may have different in behaviors APFS and HFS+, such as the returned order of directory entries by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1566447-fsgetcataloginfobulk",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or how  file modification times are calculated by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Several File Manager APIs interact with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure (also deprecated), which uses 32-bit inode numbers. This interaction can cause performance issues in APFS, which uses 64-bit inode numbers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Whenever possible, use high-level APIs from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1708935",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1700967",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "warning",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1700967": {
+      "identifier": "devLink-1700967",
+      "title": "Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/technotes/tn2124/_index.html#//apple_ref/doc/uid/DTS10003391-CH1-SECCF"
+    },
+    "devLink-1708935": {
+      "identifier": "devLink-1708935",
+      "title": "Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/technotes/tn2239/_index.html#//apple_ref/doc/uid/DTS40010638-CH1-SUBSECTION30"
+    },
+    "devLink-1733622": {
+      "identifier": "devLink-1733622",
+      "title": "File System Events Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/FSEvents_ProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005289"
+    },
+    "devLink-1741586": {
+      "identifier": "devLink-1741586",
+      "title": "Disk Arbitration Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/DriversKernelHardware/Conceptual/DiskArbitrationProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009310"
+    },
+    "devLink-1744715": {
+      "identifier": "devLink-1744715",
+      "title": "File System Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1389059-fsfindfolder": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1389059-fsfindfolder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFindFolder",
+      "type": "topic",
+      "url": "/documentation/coreservices/1389059-fsfindfolder"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1389228-fsdetermineifrefisenclosedbyfold": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1389228-fsdetermineifrefisenclosedbyfold",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSDetermineIfRefIsEnclosedByFolder",
+      "type": "topic",
+      "url": "/documentation/coreservices/1389228-fsdetermineifrefisenclosedbyfold"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529232-fsopenresfile": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529232-fsopenresfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSOpenResFile",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529232-fsopenresfile"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529242-fscreateresourcefile": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529242-fscreateresourcefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateResourceFile",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529242-fscreateresourcefile"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529331-fsresourcefilealreadyopen": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529331-fsresourcefilealreadyopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSResourceFileAlreadyOpen",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529331-fsresourcefilealreadyopen"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529336-fscreateresfile": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529336-fscreateresfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateResFile",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529336-fscreateresfile"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529349-fsopenorphanresfile": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529349-fsopenorphanresfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSOpenOrphanResFile",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529349-fsopenorphanresfile"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529360-fscreateresourcefork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529360-fscreateresourcefork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateResourceFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529360-fscreateresourcefork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1529373-fsopenresourcefile": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1529373-fsopenresourcefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSOpenResourceFile",
+      "type": "topic",
+      "url": "/documentation/coreservices/1529373-fsopenresourcefile"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565089-fsgetforkposition": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565089-fsgetforkposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetForkPosition",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565089-fsgetforkposition"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565105-fsfilesecuritysetmode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565105-fsfilesecuritysetmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecuritySetMode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565105-fsfilesecuritysetmode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565106-fsfilesecuritygetmode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565106-fsfilesecuritygetmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityGetMode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565106-fsfilesecuritygetmode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565107-pbcreatedirectoryunicodeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565107-pbcreatedirectoryunicodeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateDirectoryUnicodeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565107-pbcreatedirectoryunicodeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565133-pbfsresolvenodeidsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565133-pbfsresolvenodeidsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFSResolveNodeIDSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565133-pbfsresolvenodeidsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565147-fsgetvolumeparms": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565147-fsgetvolumeparms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetVolumeParms",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565147-fsgetvolumeparms"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565163-fscreatefileunicode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565163-fscreatefileunicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateFileUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565163-fscreatefileunicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565166-fsmountservervolumesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565166-fsmountservervolumesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMountServerVolumeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565166-fsmountservervolumesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565189-pbcloseforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565189-pbcloseforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCloseForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565189-pbcloseforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565195-fspathmakeref": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565195-fspathmakeref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathMakeRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565195-fspathmakeref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565207-fsfilesecuritysetowneruuid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565207-fsfilesecuritysetowneruuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecuritySetOwnerUUID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565207-fsfilesecuritysetowneruuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565210-fsmakefsrefunicode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565210-fsmakefsrefunicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMakeFSRefUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565210-fsmakefsrefunicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565232-fnunsubscribe": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565232-fnunsubscribe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNUnsubscribe",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565232-fnunsubscribe"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565242-invokefnsubscriptionupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565242-invokefnsubscriptionupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeFNSubscriptionUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565242-invokefnsubscriptionupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565244-pbgetvolumeinfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565244-pbgetvolumeinfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetVolumeInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565244-pbgetvolumeinfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565258-fscopyobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565258-fscopyobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCopyObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565258-fscopyobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565270-fspathmoveobjecttotrashasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565270-fspathmoveobjecttotrashasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathMoveObjectToTrashAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565270-fspathmoveobjecttotrashasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565271-pbsetcataloginfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565271-pbsetcataloginfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetCatalogInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565271-pbsetcataloginfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565280-pbcreatefileunicodeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565280-pbcreatefileunicodeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateFileUnicodeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565280-pbcreatefileunicodeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565296-fsfilesecuritysetgroup": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565296-fsfilesecuritysetgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecuritySetGroup",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565296-fsfilesecuritysetgroup"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565302-fsunlockrange": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565302-fsunlockrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSUnlockRange",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565302-fsunlockrange"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565303-invokeiocompletionupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565303-invokeiocompletionupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeIOCompletionUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565303-invokeiocompletionupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565315-pbcreatedirectoryunicodesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565315-pbcreatedirectoryunicodesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateDirectoryUnicodeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565315-pbcreatedirectoryunicodesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565318-fsmountservervolumeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565318-fsmountservervolumeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMountServerVolumeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565318-fsmountservervolumeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565345-fsgetforkcbinfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565345-fsgetforkcbinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetForkCBInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565345-fsgetforkcbinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565356-fsgetcataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565368-fsopeniterator": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565368-fsopeniterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSOpenIterator",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565368-fsopeniterator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565370-fsdeletefork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565370-fsdeletefork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSDeleteFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565370-fsdeletefork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565373-fnsubscribe": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565373-fnsubscribe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNSubscribe",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565373-fnsubscribe"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565382-fsdisposevolumeoperation": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565382-fsdisposevolumeoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSDisposeVolumeOperation",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565382-fsdisposevolumeoperation"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565384-fspathcopyobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565384-fspathcopyobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathCopyObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565384-fspathcopyobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565396-fscancelvolumeoperation": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565396-fscancelvolumeoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCancelVolumeOperation",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565396-fscancelvolumeoperation"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565421-fnnotify": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565421-fnnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNNotify",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565421-fnnotify"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565453-pbgetforksizeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565453-pbgetforksizeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetForkSizeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565453-pbgetforksizeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565455-fsgetforksize": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565455-fsgetforksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetForkSize",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565455-fsgetforksize"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565474-fsexchangeobjects": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565474-fsexchangeobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSExchangeObjects",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565474-fsexchangeobjects"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565476-disposefsvolumeunmountupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565476-disposefsvolumeunmountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeFSVolumeUnmountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565476-disposefsvolumeunmountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565483-fsfileoperationunschedulefromrun": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565483-fsfileoperationunschedulefromrun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationUnscheduleFromRunLoop",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565483-fsfileoperationunschedulefromrun"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565506-fsflushvolume": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565506-fsflushvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFlushVolume",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565506-fsflushvolume"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565523-pballocateforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565523-pballocateforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBAllocateForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565523-pballocateforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565526-fswritefork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565526-fswritefork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSWriteFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565526-fswritefork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565529-fsgetvolumefordiskid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565529-fsgetvolumefordiskid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetVolumeForDiskID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565529-fsgetvolumefordiskid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565530-fsmountlocalvolumeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565530-fsmountlocalvolumeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMountLocalVolumeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565530-fsmountlocalvolumeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565539-newfsvolumeunmountupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565539-newfsvolumeunmountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewFSVolumeUnmountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565539-newfsvolumeunmountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565550-pbflushvolumesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565550-pbflushvolumesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFlushVolumeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565550-pbflushvolumesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565554-fscreatefork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565554-fscreatefork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565554-fscreatefork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565571-fscomparefsrefs": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565571-fscomparefsrefs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCompareFSRefs",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565571-fscomparefsrefs"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565574-fssetvolumeinfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565574-fssetvolumeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSetVolumeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565574-fssetvolumeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565576-fsfilesecuritygettypeid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565576-fsfilesecuritygettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityGetTypeID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565576-fsfilesecuritygettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565587-fsgetvolumemountinfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565587-fsgetvolumemountinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetVolumeMountInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565587-fsgetvolumemountinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565594-pbgetforkpositionsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565594-pbgetforkpositionsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetForkPositionSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565594-pbgetforkpositionsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565603-fsfilesecuritycopyaccesscontroll": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565603-fsfilesecuritycopyaccesscontroll",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityCopyAccessControlList",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565603-fsfilesecuritycopyaccesscontroll"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565615-newfsvolumemountupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565615-newfsvolumemountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewFSVolumeMountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565615-newfsvolumemountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565623-fsresolvenodeid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565623-fsresolvenodeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSResolveNodeID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565623-fsresolvenodeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565632-pbwriteforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565632-pbwriteforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBWriteForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565632-pbwriteforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565635-fsrefmakepath": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565635-fsrefmakepath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRefMakePath",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565635-fsrefmakepath"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565652-invokefsvolumeejectupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565652-invokefsvolumeejectupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeFSVolumeEjectUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565652-invokefsvolumeejectupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565655-fscopydiskidforvolume": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565655-fscopydiskidforvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCopyDiskIDForVolume",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565655-fscopydiskidforvolume"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565669-pbflushforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565669-pbflushforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFlushForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565669-pbflushforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565673-fsfileoperationgettypeid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565673-fsfileoperationgettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationGetTypeID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565673-fsfileoperationgettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565676-pbcreateforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565676-pbcreateforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565676-pbcreateforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565689-fsopenfork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565689-fsopenfork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSOpenFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565689-fsopenfork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565699-fscreatefileandopenforkunicode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565699-fscreatefileandopenforkunicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateFileAndOpenForkUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565699-fscreatefileandopenforkunicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565707-pbgetcataloginfobulksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565707-pbgetcataloginfobulksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetCatalogInfoBulkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565707-pbgetcataloginfobulksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565713-pbcatalogsearchsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565713-pbcatalogsearchsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCatalogSearchSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565713-pbcatalogsearchsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565735-disposefsvolumemountupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565735-disposefsvolumemountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeFSVolumeMountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565735-disposefsvolumemountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565742-fsfilesecuritycreate": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565742-fsfilesecuritycreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityCreate",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565742-fsfilesecuritycreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565757-fsiterateforks": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565757-fsiterateforks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSIterateForks",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565757-fsiterateforks"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565760-fnnotifyall": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565760-fnnotifyall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNNotifyAll",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565760-fnnotifyall"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565792-fsrenameunicode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565792-fsrenameunicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRenameUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565792-fsrenameunicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565808-fsgetasyncunmountstatus": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565808-fsgetasyncunmountstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetAsyncUnmountStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565808-fsgetasyncunmountstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565810-pbfscopyfileasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565810-pbfscopyfileasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFSCopyFileAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565810-pbfscopyfileasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565811-fsfilesecuritygetgroup": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565811-fsfilesecuritygetgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityGetGroup",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565811-fsfilesecuritygetgroup"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565813-fscopydadiskforvolume": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565813-fscopydadiskforvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCopyDADiskForVolume",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565813-fscopydadiskforvolume"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565840-pbunlinkobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565840-pbunlinkobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBUnlinkObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565840-pbunlinkobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565842-invokefsvolumeunmountupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565842-invokefsvolumeunmountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeFSVolumeUnmountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565842-invokefsvolumeunmountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565845-fsfileoperationschedulewithrunlo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565845-fsfileoperationschedulewithrunlo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationScheduleWithRunLoop",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565845-fsfileoperationschedulewithrunlo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565853-pbflushforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565853-pbflushforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFlushForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565853-pbflushforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565854-fsmoveobjecttotrashasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565854-fsmoveobjecttotrashasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMoveObjectToTrashAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565854-fsmoveobjecttotrashasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565862-fscatalogsearch": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565862-fscatalogsearch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogSearch",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565862-fscatalogsearch"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565866-fsfileoperationcancel": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565866-fsfileoperationcancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationCancel",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565866-fsfileoperationcancel"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565869-newiocompletionupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565869-newiocompletionupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewIOCompletionUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565869-newiocompletionupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565877-fsgethfsunistrfromstring": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565877-fsgethfsunistrfromstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetHFSUniStrFromString",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565877-fsgethfsunistrfromstring"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565887-pbsetforkpositionasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565887-pbsetforkpositionasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetForkPositionAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565887-pbsetforkpositionasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565924-fsunlinkobject": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565924-fsunlinkobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSUnlinkObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565924-fsunlinkobject"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565934-pbgetcataloginfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565934-pbgetcataloginfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetCatalogInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565934-pbgetcataloginfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565935-pbmoveobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565935-pbmoveobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBMoveObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565935-pbmoveobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565952-fsisfsrefvalid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565952-fsisfsrefvalid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSIsFSRefValid",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565952-fsisfsrefvalid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565966-pbdeleteobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565966-pbdeleteobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBDeleteObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565966-pbdeleteobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565979-fscreatedirectoryunicode": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565979-fscreatedirectoryunicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateDirectoryUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565979-fscreatedirectoryunicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565993-fsgetasyncejectstatus": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565993-fsgetasyncejectstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetAsyncEjectStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565993-fsgetasyncejectstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565997-fsreadfork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565997-fsreadfork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSReadFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565997-fsreadfork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566021-pbexchangeobjectsasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566021-pbexchangeobjectsasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBExchangeObjectsAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566021-pbexchangeobjectsasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566022-fspathmoveobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566022-fspathmoveobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathMoveObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566022-fspathmoveobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566027-pbgetforkcbinfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566027-pbgetforkcbinfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetForkCBInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566027-pbgetforkcbinfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566029-fsfilesecuritysetaccesscontrolli": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566029-fsfilesecuritysetaccesscontrolli",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecuritySetAccessControlList",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566029-fsfilesecuritysetaccesscontrolli"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566031-fsejectvolumesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566031-fsejectvolumesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEjectVolumeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566031-fsejectvolumesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566035-pbsetforkpositionsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566035-pbsetforkpositionsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetForkPositionSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566035-pbsetforkpositionsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566046-pbcreatefileandopenforkunicodesy": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566046-pbcreatefileandopenforkunicodesy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateFileAndOpenForkUnicodeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566046-pbcreatefileandopenforkunicodesy"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566055-pbcloseiteratorasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566055-pbcloseiteratorasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCloseIteratorAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566055-pbcloseiteratorasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566056-fspathcopyobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566056-fspathcopyobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathCopyObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566056-fspathcopyobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566059-pbopenforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566059-pbopenforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBOpenForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566059-pbopenforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566072-pbflushvolumeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566072-pbflushvolumeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFlushVolumeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566072-pbflushvolumeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566083-pballocateforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566083-pballocateforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBAllocateForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566083-pballocateforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566089-fsdeleteobject": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566089-fsdeleteobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSDeleteObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566089-fsdeleteobject"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566093-pbiterateforkssync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566093-pbiterateforkssync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBIterateForksSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566093-pbiterateforkssync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566158-fsgetresourceforkname": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566158-fsgetresourceforkname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetResourceForkName",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566158-fsgetresourceforkname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566159-fscopyurlforvolume": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566159-fscopyurlforvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCopyURLForVolume",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566159-fscopyurlforvolume"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566163-fspathgettemporarydirectoryforre": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566163-fspathgettemporarydirectoryforre",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathGetTemporaryDirectoryForReplaceObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566163-fspathgettemporarydirectoryforre"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566167-invokefsvolumemountupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566167-invokefsvolumemountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeFSVolumeMountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566167-invokefsvolumemountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566169-fspathmoveobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566169-fspathmoveobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathMoveObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566169-fspathmoveobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566173-pbcloseforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566173-pbcloseforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCloseForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566173-pbcloseforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566175-fsallocatefork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566175-fsallocatefork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSAllocateFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566175-fsallocatefork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566185-fssetforksize": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566185-fssetforksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSetForkSize",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566185-fssetforksize"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566223-fsfilesecurityrefcreatecopy": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566223-fsfilesecurityrefcreatecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityRefCreateCopy",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566223-fsfilesecurityrefcreatecopy"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566251-pbiterateforksasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566251-pbiterateforksasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBIterateForksAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566251-pbiterateforksasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566258-pbgetforkcbinfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566258-pbgetforkcbinfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetForkCBInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566258-pbgetforkcbinfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566268-pbmakefsrefunicodeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566268-pbmakefsrefunicodeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBMakeFSRefUnicodeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566268-pbmakefsrefunicodeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566270-pbmoveobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566270-pbmoveobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBMoveObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566270-pbmoveobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566279-fsfileoperationcopystatus": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566279-fsfileoperationcopystatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationCopyStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566279-fsfileoperationcopystatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566285-fscopyobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566285-fscopyobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCopyObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566285-fscopyobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566291-fsmoveobject": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566291-fsmoveobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMoveObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566291-fsmoveobject"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566297-pbfscopyfilesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566297-pbfscopyfilesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFSCopyFileSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566297-pbfscopyfilesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566302-fsmountlocalvolumesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566302-fsmountlocalvolumesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMountLocalVolumeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566302-fsmountlocalvolumesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566325-pbdeleteobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566325-pbdeleteobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBDeleteObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566325-pbdeleteobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566328-pbgetcataloginfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566328-pbgetcataloginfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetCatalogInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566328-pbgetcataloginfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566334-pbrenameunicodeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566334-pbrenameunicodeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBRenameUnicodeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566334-pbrenameunicodeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566335-fspathfileoperationcopystatus": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566335-fspathfileoperationcopystatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathFileOperationCopyStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566335-fspathfileoperationcopystatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566339-fspathmakerefwithoptions": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566339-fspathmakerefwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathMakeRefWithOptions",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566339-fspathmakerefwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566340-pbsetcataloginfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566340-pbsetcataloginfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetCatalogInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566340-pbsetcataloginfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566346-fnnotifybypath": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566346-fnnotifybypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNNotifyByPath",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566346-fnnotifybypath"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566350-fsgetvolumeinfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566350-fsgetvolumeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetVolumeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566350-fsgetvolumeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566367-newfsvolumeejectupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566367-newfsvolumeejectupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewFSVolumeEjectUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566367-newfsvolumeejectupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566371-fslockrange": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566371-fslockrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSLockRange",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566371-fslockrange"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566399-pbgetcataloginfobulkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566399-pbgetcataloginfobulkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetCatalogInfoBulkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566399-pbgetcataloginfobulkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566401-pbcatalogsearchasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566401-pbcatalogsearchasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCatalogSearchAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566401-pbcatalogsearchasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566414-fsflushfork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566414-fsflushfork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFlushFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566414-fsflushfork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566418-pbgetforkpositionasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566418-pbgetforkpositionasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetForkPositionAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566418-pbgetforkpositionasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566427-pbsetvolumeinfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566427-pbsetvolumeinfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetVolumeInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566427-pbsetvolumeinfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566436-fsgettemporarydirectoryforreplac": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566436-fsgettemporarydirectoryforreplac",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetTemporaryDirectoryForReplaceObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566436-fsgettemporarydirectoryforreplac"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566445-fsfilesecuritysetgroupuuid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566445-fsfilesecuritysetgroupuuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecuritySetGroupUUID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566445-fsfilesecuritysetgroupuuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566447-fsgetcataloginfobulk": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566447-fsgetcataloginfobulk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetCatalogInfoBulk",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566447-fsgetcataloginfobulk"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566452-pbcloseiteratorsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566452-pbcloseiteratorsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCloseIteratorSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566452-pbcloseiteratorsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566463-fspathreplaceobject": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566463-fspathreplaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathReplaceObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566463-fspathreplaceobject"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566473-fsgetvolumemountinfosize": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566473-fsgetvolumemountinfosize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetVolumeMountInfoSize",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566473-fsgetvolumemountinfosize"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566491-pbwriteforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566491-pbwriteforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBWriteForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566491-pbwriteforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566508-fssetforkposition": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566508-fssetforkposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSetForkPosition",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566508-fssetforkposition"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566510-fsvolumemount": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566510-fsvolumemount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeMount",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566510-fsvolumemount"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566516-pbunlinkobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566516-pbunlinkobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBUnlinkObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566516-pbunlinkobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566519-fsgetasyncmountstatus": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566519-fsgetasyncmountstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetAsyncMountStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566519-fsgetasyncmountstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566525-fsmoveobjectsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566525-fsmoveobjectsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMoveObjectSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566525-fsmoveobjectsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566541-pbsetvolumeinfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566541-pbsetvolumeinfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetVolumeInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566541-pbsetvolumeinfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566552-pbsetforksizeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566552-pbsetforksizeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetForkSizeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566552-pbsetforksizeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566562-pbfsresolvenodeidasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566562-pbfsresolvenodeidasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBFSResolveNodeIDAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566562-pbfsresolvenodeidasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566580-fssetcataloginfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566580-fssetcataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSetCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566580-fssetcataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566587-fsunmountvolumeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566587-fsunmountvolumeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSUnmountVolumeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566587-fsunmountvolumeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566593-pbcreatefileandopenforkunicodeas": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566593-pbcreatefileandopenforkunicodeas",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateFileAndOpenForkUnicodeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566593-pbcreatefileandopenforkunicodeas"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566612-fsgetvolumefordadisk": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566612-fsgetvolumefordadisk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetVolumeForDADisk",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566612-fsgetvolumefordadisk"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566615-fngetdirectoryforsubscription": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566615-fngetdirectoryforsubscription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNGetDirectoryForSubscription",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566615-fngetdirectoryforsubscription"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566627-pbexchangeobjectssync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566627-pbexchangeobjectssync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBExchangeObjectsSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566627-pbexchangeobjectssync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566651-fsmoveobjecttotrashsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566651-fsmoveobjecttotrashsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMoveObjectToTrashSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566651-fsmoveobjecttotrashsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566659-fsfilesecuritygetowner": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566659-fsfilesecuritygetowner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityGetOwner",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566659-fsfilesecuritygetowner"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566666-fsfileoperationcreate": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566666-fsfileoperationcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationCreate",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566666-fsfileoperationcreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566671-fscreatevolumeoperation": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566671-fscreatevolumeoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateVolumeOperation",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566671-fscreatevolumeoperation"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566681-fscloseiterator": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566681-fscloseiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCloseIterator",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566681-fscloseiterator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566686-pbopeniteratorasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566686-pbopeniteratorasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBOpenIteratorAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566686-pbopeniteratorasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566694-fsfilesecuritygetowneruuid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566694-fsfilesecuritygetowneruuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityGetOwnerUUID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566694-fsfilesecuritygetowneruuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566697-pbcreateforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566697-pbcreateforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566697-pbcreateforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566703-pbreadforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566703-pbreadforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBReadForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566703-pbreadforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566717-pbcomparefsrefsasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566717-pbcomparefsrefsasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCompareFSRefsAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566717-pbcomparefsrefsasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566736-fsreplaceobject": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566736-fsreplaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSReplaceObject",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566736-fsreplaceobject"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566739-pbreadforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566739-pbreadforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBReadForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566739-pbreadforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566752-pbdeleteforkasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566752-pbdeleteforkasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBDeleteForkAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566752-pbdeleteforkasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566754-disposefsvolumeejectupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566754-disposefsvolumeejectupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeFSVolumeEjectUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566754-disposefsvolumeejectupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566760-fsgetdataforkname": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566760-fsgetdataforkname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetDataForkName",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566760-fsgetdataforkname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566762-fsmoveobjectasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566762-fsmoveobjectasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMoveObjectAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566762-fsmoveobjectasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566764-fsunmountvolumesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566764-fsunmountvolumesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSUnmountVolumeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566764-fsunmountvolumesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566799-fsfilesecuritygetgroupuuid": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566799-fsfilesecuritygetgroupuuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityGetGroupUUID",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566799-fsfilesecuritygetgroupuuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566802-pbopenforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566802-pbopenforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBOpenForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566802-pbopenforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566817-pbcomparefsrefssync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566817-pbcomparefsrefssync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCompareFSRefsSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566817-pbcomparefsrefssync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566818-fspathmoveobjecttotrashsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566818-fspathmoveobjecttotrashsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathMoveObjectToTrashSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566818-fspathmoveobjecttotrashsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566822-pbdeleteforksync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566822-pbdeleteforksync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBDeleteForkSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566822-pbdeleteforksync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566843-fnsubscribebypath": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566843-fnsubscribebypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FNSubscribeByPath",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566843-fnsubscribebypath"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566865-pbopeniteratorsync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566865-pbopeniteratorsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBOpenIteratorSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566865-pbopeniteratorsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566879-pbrenameunicodesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566879-pbrenameunicodesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBRenameUnicodeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566879-pbrenameunicodesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566892-pbgetvolumeinfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566892-pbgetvolumeinfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetVolumeInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566892-pbgetvolumeinfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566896-pbcreatefileunicodesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566896-pbcreatefileunicodesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBCreateFileUnicodeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566896-pbcreatefileunicodesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566900-fsclosefork": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566900-fsclosefork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCloseFork",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566900-fsclosefork"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566919-fsejectvolumeasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566919-fsejectvolumeasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEjectVolumeAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566919-fsejectvolumeasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566925-pbmakefsrefunicodesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566925-pbmakefsrefunicodesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBMakeFSRefUnicodeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566925-pbmakefsrefunicodesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566944-pbsetforksizesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566944-pbsetforksizesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetForkSizeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566944-pbsetforksizesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566945-newfnsubscriptionupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566945-newfnsubscriptionupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewFNSubscriptionUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566945-newfnsubscriptionupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566946-fsfilesecuritysetowner": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566946-fsfilesecuritysetowner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecuritySetOwner",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566946-fsfilesecuritysetowner"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566947-disposeiocompletionupp": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566947-disposeiocompletionupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeIOCompletionUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566947-disposeiocompletionupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566954-fsfilesecuritycreatewithfspermis": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566954-fsfilesecuritycreatewithfspermis",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityCreateWithFSPermissionInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566954-fsfilesecuritycreatewithfspermis"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566956-pbgetforksizesync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566956-pbgetforksizesync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetForkSizeSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566956-pbgetforksizesync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566957-fscreatestringfromhfsunistr": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566957-fscreatestringfromhfsunistr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCreateStringFromHFSUniStr",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566957-fscreatestringfromhfsunistr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/afpalternateaddress": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/afpalternateaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AFPAlternateAddress",
+      "type": "topic",
+      "url": "/documentation/coreservices/afpalternateaddress"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/afptagdata": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/afptagdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AFPTagData",
+      "type": "topic",
+      "url": "/documentation/coreservices/afptagdata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/afpvolmountinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/afpvolmountinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AFPVolMountInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/afpvolmountinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/afpxvolmountinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/afpxvolmountinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AFPXVolMountInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/afpxvolmountinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/alias_manager": {
+      "abstract": [
+        {
+          "text": "Create and resolve alias records that describe file system objects such as files, directories, and volumes. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/alias_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alias Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/alias_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "abstract": [
+        {
+          "text": "Find and use components in your app or add custom components to system-provided services, such as QuickTime and Core Audio. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager": {
+      "abstract": [
+        {
+          "text": "Interact with files, folders, and volumes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/file_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager": {
+      "abstract": [
+        {
+          "text": "Investigate the operating environment of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestalt Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/gestalt_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "abstract": [
+        {
+          "text": "Handle text encoding conversion between apps and transfer text across different platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/disposefsvolumeejectupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/disposefsvolumeejectupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeFSVolumeEjectUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/disposefsvolumeejectupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/disposefsvolumemountupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/disposefsvolumemountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeFSVolumeMountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/disposefsvolumemountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/disposefsvolumeunmountupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/disposefsvolumeunmountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeFSVolumeUnmountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/disposefsvolumeunmountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsaliasinfoptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsaliasinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSAliasInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsaliasinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsallocationflags": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsallocationflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSAllocationFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsallocationflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscatalogbulkparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscatalogbulkparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogBulkParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscatalogbulkparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscatalogbulkparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscatalogbulkparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogBulkParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscatalogbulkparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscataloginfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscataloginfobitmap": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfobitmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogInfoBitmap",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscataloginfobitmap"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscataloginfoptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscataloginfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsejectstatus": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsejectstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEjectStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsejectstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsfileoperationclientcontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsfileoperationclientcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationClientContext",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsfileoperationclientcontext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsfileoperationref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsfileoperationref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsfileoperationref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsfileoperationstage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsfileoperationstage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationStage",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsfileoperationstage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsfileoperationstatusprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsfileoperationstatusprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileOperationStatusProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsfileoperationstatusprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsfilesecurityref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsfilesecurityref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSecurityRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsfilesecurityref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkcbinfoparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkcbinfoparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkCBInfoParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkcbinfoparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkcbinfoparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkcbinfoparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkCBInfoParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkcbinfoparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkinfoflags": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkinfoflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkInfoFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkinfoflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkinfoptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkioparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkioparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkIOParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkioparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsforkioparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsforkioparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSForkIOParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsforkioparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsiorefnum": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsiorefnum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSIORefNum",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsiorefnum"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsiterator": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSIterator",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsiterator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsiteratorflags": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsiteratorflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSIteratorFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsiteratorflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsmountstatus": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsmountstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSMountStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsmountstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fspathfileoperationstatusprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fspathfileoperationstatusprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPathFileOperationStatusProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fspathfileoperationstatusprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fspermissioninfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fspermissioninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSPermissionInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/fspermissioninfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrangelockparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrangelockparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRangeLockParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrangelockparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrangelockparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrangelockparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRangeLockParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrangelockparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsref": {
+      "abstract": [
+        {
+          "text": "Identifies a directory or file, including a volume’s root directory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrefforkioparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrefforkioparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRefForkIOParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrefforkioparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrefforkioparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrefforkioparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRefForkIOParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrefforkioparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrefparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrefparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRefParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrefparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrefparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrefparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRefParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrefparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsrefptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsrefptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRefPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsrefptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fssearchparams": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fssearchparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSearchParams",
+      "type": "topic",
+      "url": "/documentation/coreservices/fssearchparams"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fssearchparamsptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fssearchparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSearchParamsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fssearchparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsspec": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSpec",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsspec"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsspecarrayptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspecarrayptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSpecArrayPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsspecarrayptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsspechandle": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspechandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSpecHandle",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsspechandle"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsspecptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspecptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSpecPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsspecptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsunmountstatus": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsunmountstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSUnmountStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsunmountstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeejectprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeejectprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeEjectProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeejectprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeejectupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeejectupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeEjectUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeejectupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfobitmap": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfobitmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeInfoBitmap",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeinfobitmap"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeInfoParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeinfoparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoparamptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeInfoParamPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeinfoparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumemountprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumemountprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeMountProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumemountprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumemountupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumemountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeMountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumemountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeoperation": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeOperation",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeoperation"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumerefnum": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumerefnum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeRefNum",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumerefnum"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeunmountprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeunmountprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeUnmountProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeunmountprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsvolumeunmountupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsvolumeunmountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSVolumeUnmountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsvolumeunmountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationbytescompletekey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationbytescompletekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationBytesCompleteKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationbytescompletekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationbytesremainingkey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationbytesremainingkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationBytesRemainingKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationbytesremainingkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationobjectscompletekey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationobjectscompletekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationObjectsCompleteKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationobjectscompletekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationobjectsremainingkey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationobjectsremainingkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationObjectsRemainingKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationobjectsremainingkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationthroughputkey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationthroughputkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationThroughputKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationthroughputkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotalbyteskey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotalbyteskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationTotalBytesKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationtotalbyteskey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotalobjectskey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotalobjectskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationTotalObjectsKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationtotalobjectskey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotaluservisibleobjectskey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotaluservisibleobjectskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationTotalUserVisibleObjectsKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationtotaluservisibleobjectskey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationuservisibleobjectscompletekey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationuservisibleobjectscompletekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationUserVisibleObjectsCompleteKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationuservisibleobjectscompletekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfsoperationuservisibleobjectsremainingkey": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfsoperationuservisibleobjectsremainingkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSOperationUserVisibleObjectsRemainingKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfsoperationuservisibleobjectsremainingkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409917-unmountvolumeaturl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmountVolumeAtURL:options:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanager/1409917-unmountvolumeaturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unmountVolumeAtURL:options:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanager/1409917-unmountvolumeaturl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/alias_manager",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ],
+      "title": "Managers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2934375",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566279-fsfileoperationcopystatus",
+        "doc://com.apple.documentation/documentation/coreservices/1566335-fspathfileoperationcopystatus",
+        "doc://com.apple.documentation/documentation/coreservices/1566285-fscopyobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566762-fsmoveobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566056-fspathcopyobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566169-fspathmoveobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565866-fsfileoperationcancel",
+        "doc://com.apple.documentation/documentation/coreservices/1566666-fsfileoperationcreate",
+        "doc://com.apple.documentation/documentation/coreservices/1565673-fsfileoperationgettypeid",
+        "doc://com.apple.documentation/documentation/coreservices/1565845-fsfileoperationschedulewithrunlo",
+        "doc://com.apple.documentation/documentation/coreservices/1565483-fsfileoperationunschedulefromrun",
+        "doc://com.apple.documentation/documentation/coreservices/1565258-fscopyobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566525-fsmoveobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1565384-fspathcopyobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566022-fspathmoveobjectsync"
+      ],
+      "kind": "taskGroup",
+      "title": "High-Level File Operations"
+    },
+    {
+      "anchor": "2934376",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565934-pbgetcataloginfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566328-pbgetcataloginfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566340-pbsetcataloginfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565271-pbsetcataloginfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566580-fssetcataloginfo",
+        "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Information About Files and Directories"
+    },
+    {
+      "anchor": "2934379",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566175-fsallocatefork",
+        "doc://com.apple.documentation/documentation/coreservices/1565523-pballocateforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566083-pballocateforkasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Allocating Storage for Forks"
+    },
+    {
+      "anchor": "2934380",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565571-fscomparefsrefs",
+        "doc://com.apple.documentation/documentation/coreservices/1566717-pbcomparefsrefsasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566817-pbcomparefsrefssync"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing File System References"
+    },
+    {
+      "anchor": "2934383",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565635-fsrefmakepath",
+        "doc://com.apple.documentation/documentation/coreservices/1565195-fspathmakeref",
+        "doc://com.apple.documentation/documentation/coreservices/1566339-fspathmakerefwithoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting Between Paths and FSRef Structures"
+    },
+    {
+      "anchor": "2934398",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565210-fsmakefsrefunicode",
+        "doc://com.apple.documentation/documentation/coreservices/1566925-pbmakefsrefunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566268-pbmakefsrefunicodeasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a File System Reference (FSRef)"
+    },
+    {
+      "anchor": "2934391",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565554-fscreatefork",
+        "doc://com.apple.documentation/documentation/coreservices/1565370-fsdeletefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566697-pbcreateforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566752-pbdeleteforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566822-pbdeleteforksync"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Deleting Named Forks"
+    },
+    {
+      "anchor": "2934392",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565315-pbcreatedirectoryunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565107-pbcreatedirectoryunicodeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565979-fscreatedirectoryunicode"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Directories"
+    },
+    {
+      "anchor": "2934396",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566896-pbcreatefileunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565280-pbcreatefileunicodeasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Files"
+    },
+    {
+      "anchor": "2934393",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565869-newiocompletionupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565303-invokeiocompletionupp",
+        "doc://com.apple.documentation/documentation/coreservices/1566947-disposeiocompletionupp"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating, Invoking, and Disposing Universal Procedure Pointers to Completion Functions"
+    },
+    {
+      "anchor": "2934386",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565966-pbdeleteobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566325-pbdeleteobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566089-fsdeleteobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Deleting Files and Directories"
+    },
+    {
+      "anchor": "2934385",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566760-fsgetdataforkname",
+        "doc://com.apple.documentation/documentation/coreservices/1566158-fsgetresourceforkname"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining the Unicode Names of the Data and Resource Forks"
+    },
+    {
+      "anchor": "2934389",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565474-fsexchangeobjects",
+        "doc://com.apple.documentation/documentation/coreservices/1566627-pbexchangeobjectssync",
+        "doc://com.apple.documentation/documentation/coreservices/1566021-pbexchangeobjectsasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Exchanging the Contents of Two Files"
+    },
+    {
+      "anchor": "2934395",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566350-fsgetvolumeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1565574-fssetvolumeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1565244-pbgetvolumeinfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566892-pbgetvolumeinfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566541-pbsetvolumeinfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566427-pbsetvolumeinfosync"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting Volume Information"
+    },
+    {
+      "anchor": "2934406",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566093-pbiterateforkssync",
+        "doc://com.apple.documentation/documentation/coreservices/1566251-pbiterateforksasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565757-fsiterateforks"
+      ],
+      "kind": "taskGroup",
+      "title": "Iterating Over Named Forks"
+    },
+    {
+      "anchor": "2934402",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565455-fsgetforksize",
+        "doc://com.apple.documentation/documentation/coreservices/1565453-pbgetforksizeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566956-pbgetforksizesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566185-fssetforksize",
+        "doc://com.apple.documentation/documentation/coreservices/1566944-pbsetforksizesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566552-pbsetforksizeasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Manipulating File and Fork Size"
+    },
+    {
+      "anchor": "2934399",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565089-fsgetforkposition",
+        "doc://com.apple.documentation/documentation/coreservices/1566035-pbsetforkpositionsync",
+        "doc://com.apple.documentation/documentation/coreservices/1565594-pbgetforkpositionsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566418-pbgetforkpositionasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566508-fssetforkposition",
+        "doc://com.apple.documentation/documentation/coreservices/1565887-pbsetforkpositionasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Manipulating File Position"
+    },
+    {
+      "anchor": "2934419",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565935-pbmoveobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566762-fsmoveobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566291-fsmoveobject",
+        "doc://com.apple.documentation/documentation/coreservices/1566270-pbmoveobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566334-pbrenameunicodeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566879-pbrenameunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565792-fsrenameunicode"
+      ],
+      "kind": "taskGroup",
+      "title": "Moving and Renaming Files or Directories"
+    },
+    {
+      "anchor": "2934412",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565707-pbgetcataloginfobulksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566447-fsgetcataloginfobulk",
+        "doc://com.apple.documentation/documentation/coreservices/1566399-pbgetcataloginfobulkasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining File and Directory Information Using a Catalog Iterator on HFS Plus Volumes"
+    },
+    {
+      "anchor": "2934417",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565345-fsgetforkcbinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1566258-pbgetforkcbinfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566027-pbgetforkcbinfoasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining Fork Control Block Information"
+    },
+    {
+      "anchor": "2934418",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566681-fscloseiterator",
+        "doc://com.apple.documentation/documentation/coreservices/1566055-pbcloseiteratorasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566686-pbopeniteratorasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565368-fsopeniterator",
+        "doc://com.apple.documentation/documentation/coreservices/1566865-pbopeniteratorsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566452-pbcloseiteratorsync"
+      ],
+      "kind": "taskGroup",
+      "title": "Opening and Closing Catalog Iterators"
+    },
+    {
+      "anchor": "2934415",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565689-fsopenfork",
+        "doc://com.apple.documentation/documentation/coreservices/1566802-pbopenforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566059-pbopenforkasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Opening Files"
+    },
+    {
+      "anchor": "2934411",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565997-fsreadfork",
+        "doc://com.apple.documentation/documentation/coreservices/1566703-pbreadforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566739-pbreadforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1565632-pbwriteforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1565526-fswritefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566491-pbwriteforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566900-fsclosefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566173-pbcloseforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1565189-pbcloseforkasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading, Writing, and Closing Files"
+    },
+    {
+      "anchor": "2934408",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565862-fscatalogsearch",
+        "doc://com.apple.documentation/documentation/coreservices/1565713-pbcatalogsearchsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566401-pbcatalogsearchasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Searching a Volume Using a Catalog Iterator"
+    },
+    {
+      "anchor": "2934423",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566414-fsflushfork",
+        "doc://com.apple.documentation/documentation/coreservices/1565853-pbflushforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1565669-pbflushforkasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Updating Files"
+    },
+    {
+      "anchor": "2934422",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565506-fsflushvolume",
+        "doc://com.apple.documentation/documentation/coreservices/1565550-pbflushvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566072-pbflushvolumeasync"
+      ],
+      "kind": "taskGroup",
+      "title": "Updating Volumes"
+    },
+    {
+      "anchor": "2934420",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/disposefsvolumeejectupp",
+        "doc://com.apple.documentation/documentation/coreservices/1566754-disposefsvolumeejectupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565735-disposefsvolumemountupp",
+        "doc://com.apple.documentation/documentation/coreservices/disposefsvolumemountupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565476-disposefsvolumeunmountupp",
+        "doc://com.apple.documentation/documentation/coreservices/disposefsvolumeunmountupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565421-fnnotify",
+        "doc://com.apple.documentation/documentation/coreservices/1565760-fnnotifyall",
+        "doc://com.apple.documentation/documentation/coreservices/1566346-fnnotifybypath",
+        "doc://com.apple.documentation/documentation/coreservices/1565373-fnsubscribe",
+        "doc://com.apple.documentation/documentation/coreservices/1566843-fnsubscribebypath",
+        "doc://com.apple.documentation/documentation/coreservices/1566615-fngetdirectoryforsubscription",
+        "doc://com.apple.documentation/documentation/coreservices/1565232-fnunsubscribe",
+        "doc://com.apple.documentation/documentation/coreservices/1565396-fscancelvolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/1565655-fscopydiskidforvolume",
+        "doc://com.apple.documentation/documentation/coreservices/1566671-fscreatevolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/1565382-fsdisposevolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/1566031-fsejectvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566919-fsejectvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565993-fsgetasyncejectstatus",
+        "doc://com.apple.documentation/documentation/coreservices/1566519-fsgetasyncmountstatus",
+        "doc://com.apple.documentation/documentation/coreservices/1565808-fsgetasyncunmountstatus",
+        "doc://com.apple.documentation/documentation/coreservices/1565166-fsmountservervolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565318-fsmountservervolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566302-fsmountlocalvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565530-fsmountlocalvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566764-fsunmountvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566587-fsunmountvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565242-invokefnsubscriptionupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565652-invokefsvolumeejectupp",
+        "doc://com.apple.documentation/documentation/coreservices/1566167-invokefsvolumemountupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565842-invokefsvolumeunmountupp",
+        "doc://com.apple.documentation/documentation/coreservices/1566945-newfnsubscriptionupp",
+        "doc://com.apple.documentation/documentation/coreservices/1566367-newfsvolumeejectupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565615-newfsvolumemountupp",
+        "doc://com.apple.documentation/documentation/coreservices/1565539-newfsvolumeunmountupp"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2934139",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/afpalternateaddress",
+        "doc://com.apple.documentation/documentation/coreservices/afptagdata",
+        "doc://com.apple.documentation/documentation/coreservices/afpvolmountinfo",
+        "doc://com.apple.documentation/documentation/coreservices/afpxvolmountinfo",
+        "doc://com.apple.documentation/documentation/coreservices/fscatalogbulkparam",
+        "doc://com.apple.documentation/documentation/coreservices/fscataloginfo",
+        "doc://com.apple.documentation/documentation/coreservices/fsfileoperationclientcontext",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkcbinfoparam",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkioparam",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkinfo",
+        "doc://com.apple.documentation/documentation/coreservices/fspermissioninfo",
+        "doc://com.apple.documentation/documentation/coreservices/fsrangelockparam",
+        "doc://com.apple.documentation/documentation/coreservices/fsref",
+        "doc://com.apple.documentation/documentation/coreservices/fsrefforkioparam",
+        "doc://com.apple.documentation/documentation/coreservices/fsrefparam",
+        "doc://com.apple.documentation/documentation/coreservices/fssearchparams",
+        "doc://com.apple.documentation/documentation/coreservices/fsspec",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoparam"
+      ],
+      "kind": "taskGroup",
+      "title": "Structures"
+    },
+    {
+      "anchor": "2934141",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/fsaliasinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsallocationflags",
+        "doc://com.apple.documentation/documentation/coreservices/fscatalogbulkparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fscataloginfobitmap",
+        "doc://com.apple.documentation/documentation/coreservices/fscataloginfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsejectstatus",
+        "doc://com.apple.documentation/documentation/coreservices/fsfileoperationref",
+        "doc://com.apple.documentation/documentation/coreservices/fsfileoperationstage",
+        "doc://com.apple.documentation/documentation/coreservices/fsfileoperationstatusprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsfilesecurityref",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkcbinfoparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkioparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkinfoflags",
+        "doc://com.apple.documentation/documentation/coreservices/fsforkinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsiorefnum",
+        "doc://com.apple.documentation/documentation/coreservices/fsiterator",
+        "doc://com.apple.documentation/documentation/coreservices/fsiteratorflags",
+        "doc://com.apple.documentation/documentation/coreservices/fsmountstatus",
+        "doc://com.apple.documentation/documentation/coreservices/fspathfileoperationstatusprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsrangelockparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsrefforkioparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsrefparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsrefptr",
+        "doc://com.apple.documentation/documentation/coreservices/fssearchparamsptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsspecarrayptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsspechandle",
+        "doc://com.apple.documentation/documentation/coreservices/fsspecptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsunmountstatus",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeejectprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeejectupp",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfobitmap",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumemountprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumemountupp",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumerefnum",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeunmountprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/fsvolumeunmountupp"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "2934158",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1566175-fsallocatefork",
+        "doc://com.apple.documentation/documentation/coreservices/1565396-fscancelvolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/1565862-fscatalogsearch",
+        "doc://com.apple.documentation/documentation/coreservices/1566900-fsclosefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566681-fscloseiterator",
+        "doc://com.apple.documentation/documentation/coreservices/1565571-fscomparefsrefs",
+        "doc://com.apple.documentation/documentation/coreservices/1565813-fscopydadiskforvolume",
+        "doc://com.apple.documentation/documentation/coreservices/1565655-fscopydiskidforvolume",
+        "doc://com.apple.documentation/documentation/coreservices/1566159-fscopyurlforvolume",
+        "doc://com.apple.documentation/documentation/coreservices/1565979-fscreatedirectoryunicode",
+        "doc://com.apple.documentation/documentation/coreservices/1565699-fscreatefileandopenforkunicode",
+        "doc://com.apple.documentation/documentation/coreservices/1565163-fscreatefileunicode",
+        "doc://com.apple.documentation/documentation/coreservices/1565554-fscreatefork",
+        "doc://com.apple.documentation/documentation/coreservices/1529336-fscreateresfile",
+        "doc://com.apple.documentation/documentation/coreservices/1529242-fscreateresourcefile",
+        "doc://com.apple.documentation/documentation/coreservices/1529360-fscreateresourcefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566957-fscreatestringfromhfsunistr",
+        "doc://com.apple.documentation/documentation/coreservices/1566671-fscreatevolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/1565370-fsdeletefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566089-fsdeleteobject",
+        "doc://com.apple.documentation/documentation/coreservices/1389228-fsdetermineifrefisenclosedbyfold",
+        "doc://com.apple.documentation/documentation/coreservices/1565382-fsdisposevolumeoperation",
+        "doc://com.apple.documentation/documentation/coreservices/1566919-fsejectvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566031-fsejectvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565474-fsexchangeobjects",
+        "doc://com.apple.documentation/documentation/coreservices/1565603-fsfilesecuritycopyaccesscontroll",
+        "doc://com.apple.documentation/documentation/coreservices/1565742-fsfilesecuritycreate",
+        "doc://com.apple.documentation/documentation/coreservices/1566954-fsfilesecuritycreatewithfspermis",
+        "doc://com.apple.documentation/documentation/coreservices/1565811-fsfilesecuritygetgroup",
+        "doc://com.apple.documentation/documentation/coreservices/1566799-fsfilesecuritygetgroupuuid",
+        "doc://com.apple.documentation/documentation/coreservices/1565106-fsfilesecuritygetmode",
+        "doc://com.apple.documentation/documentation/coreservices/1566659-fsfilesecuritygetowner",
+        "doc://com.apple.documentation/documentation/coreservices/1566694-fsfilesecuritygetowneruuid",
+        "doc://com.apple.documentation/documentation/coreservices/1565576-fsfilesecuritygettypeid",
+        "doc://com.apple.documentation/documentation/coreservices/1566223-fsfilesecurityrefcreatecopy",
+        "doc://com.apple.documentation/documentation/coreservices/1566029-fsfilesecuritysetaccesscontrolli",
+        "doc://com.apple.documentation/documentation/coreservices/1565296-fsfilesecuritysetgroup",
+        "doc://com.apple.documentation/documentation/coreservices/1566445-fsfilesecuritysetgroupuuid",
+        "doc://com.apple.documentation/documentation/coreservices/1565105-fsfilesecuritysetmode",
+        "doc://com.apple.documentation/documentation/coreservices/1566946-fsfilesecuritysetowner",
+        "doc://com.apple.documentation/documentation/coreservices/1565207-fsfilesecuritysetowneruuid",
+        "doc://com.apple.documentation/documentation/coreservices/1389059-fsfindfolder",
+        "doc://com.apple.documentation/documentation/coreservices/1566414-fsflushfork",
+        "doc://com.apple.documentation/documentation/coreservices/1565506-fsflushvolume",
+        "doc://com.apple.documentation/documentation/coreservices/1565993-fsgetasyncejectstatus",
+        "doc://com.apple.documentation/documentation/coreservices/1566519-fsgetasyncmountstatus",
+        "doc://com.apple.documentation/documentation/coreservices/1565808-fsgetasyncunmountstatus",
+        "doc://com.apple.documentation/documentation/coreservices/1566447-fsgetcataloginfobulk",
+        "doc://com.apple.documentation/documentation/coreservices/1566760-fsgetdataforkname",
+        "doc://com.apple.documentation/documentation/coreservices/1565345-fsgetforkcbinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1565089-fsgetforkposition",
+        "doc://com.apple.documentation/documentation/coreservices/1565455-fsgetforksize",
+        "doc://com.apple.documentation/documentation/coreservices/1565877-fsgethfsunistrfromstring",
+        "doc://com.apple.documentation/documentation/coreservices/1566158-fsgetresourceforkname",
+        "doc://com.apple.documentation/documentation/coreservices/1566436-fsgettemporarydirectoryforreplac",
+        "doc://com.apple.documentation/documentation/coreservices/1566612-fsgetvolumefordadisk",
+        "doc://com.apple.documentation/documentation/coreservices/1565529-fsgetvolumefordiskid",
+        "doc://com.apple.documentation/documentation/coreservices/1566350-fsgetvolumeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1565587-fsgetvolumemountinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1566473-fsgetvolumemountinfosize",
+        "doc://com.apple.documentation/documentation/coreservices/1565147-fsgetvolumeparms",
+        "doc://com.apple.documentation/documentation/coreservices/1565952-fsisfsrefvalid",
+        "doc://com.apple.documentation/documentation/coreservices/1565757-fsiterateforks",
+        "doc://com.apple.documentation/documentation/coreservices/1566371-fslockrange",
+        "doc://com.apple.documentation/documentation/coreservices/1565210-fsmakefsrefunicode",
+        "doc://com.apple.documentation/documentation/coreservices/1565530-fsmountlocalvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566302-fsmountlocalvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565318-fsmountservervolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565166-fsmountservervolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566291-fsmoveobject",
+        "doc://com.apple.documentation/documentation/coreservices/1565854-fsmoveobjecttotrashasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566651-fsmoveobjecttotrashsync",
+        "doc://com.apple.documentation/documentation/coreservices/1565689-fsopenfork",
+        "doc://com.apple.documentation/documentation/coreservices/1565368-fsopeniterator",
+        "doc://com.apple.documentation/documentation/coreservices/1529349-fsopenorphanresfile",
+        "doc://com.apple.documentation/documentation/coreservices/1529232-fsopenresfile",
+        "doc://com.apple.documentation/documentation/coreservices/1529373-fsopenresourcefile",
+        "doc://com.apple.documentation/documentation/coreservices/1566163-fspathgettemporarydirectoryforre",
+        "doc://com.apple.documentation/documentation/coreservices/1565195-fspathmakeref",
+        "doc://com.apple.documentation/documentation/coreservices/1566339-fspathmakerefwithoptions",
+        "doc://com.apple.documentation/documentation/coreservices/1565270-fspathmoveobjecttotrashasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566818-fspathmoveobjecttotrashsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566463-fspathreplaceobject",
+        "doc://com.apple.documentation/documentation/coreservices/1565997-fsreadfork",
+        "doc://com.apple.documentation/documentation/coreservices/1565635-fsrefmakepath",
+        "doc://com.apple.documentation/documentation/coreservices/1565792-fsrenameunicode",
+        "doc://com.apple.documentation/documentation/coreservices/1566736-fsreplaceobject",
+        "doc://com.apple.documentation/documentation/coreservices/1565623-fsresolvenodeid",
+        "doc://com.apple.documentation/documentation/coreservices/1529331-fsresourcefilealreadyopen",
+        "doc://com.apple.documentation/documentation/coreservices/1566508-fssetforkposition",
+        "doc://com.apple.documentation/documentation/coreservices/1566185-fssetforksize",
+        "doc://com.apple.documentation/documentation/coreservices/1565574-fssetvolumeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1565924-fsunlinkobject",
+        "doc://com.apple.documentation/documentation/coreservices/1565302-fsunlockrange",
+        "doc://com.apple.documentation/documentation/coreservices/1566587-fsunmountvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566764-fsunmountvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566510-fsvolumemount",
+        "doc://com.apple.documentation/documentation/coreservices/1565526-fswritefork",
+        "doc://com.apple.documentation/documentation/coreservices/1566083-pballocateforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565523-pballocateforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566401-pbcatalogsearchasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565713-pbcatalogsearchsync",
+        "doc://com.apple.documentation/documentation/coreservices/1565189-pbcloseforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566173-pbcloseforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566055-pbcloseiteratorasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566452-pbcloseiteratorsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566717-pbcomparefsrefsasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566817-pbcomparefsrefssync",
+        "doc://com.apple.documentation/documentation/coreservices/1565107-pbcreatedirectoryunicodeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565315-pbcreatedirectoryunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566593-pbcreatefileandopenforkunicodeas",
+        "doc://com.apple.documentation/documentation/coreservices/1566046-pbcreatefileandopenforkunicodesy",
+        "doc://com.apple.documentation/documentation/coreservices/1565280-pbcreatefileunicodeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566896-pbcreatefileunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565676-pbcreateforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566697-pbcreateforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566752-pbdeleteforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566822-pbdeleteforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566325-pbdeleteobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565966-pbdeleteobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566021-pbexchangeobjectsasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566627-pbexchangeobjectssync",
+        "doc://com.apple.documentation/documentation/coreservices/1565810-pbfscopyfileasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566297-pbfscopyfilesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566562-pbfsresolvenodeidasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565133-pbfsresolvenodeidsync",
+        "doc://com.apple.documentation/documentation/coreservices/1565669-pbflushforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565853-pbflushforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566072-pbflushvolumeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565550-pbflushvolumesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566399-pbgetcataloginfobulkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565707-pbgetcataloginfobulksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566027-pbgetforkcbinfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566258-pbgetforkcbinfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566418-pbgetforkpositionasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565594-pbgetforkpositionsync",
+        "doc://com.apple.documentation/documentation/coreservices/1565453-pbgetforksizeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566956-pbgetforksizesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565244-pbgetvolumeinfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566892-pbgetvolumeinfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566251-pbiterateforksasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566093-pbiterateforkssync",
+        "doc://com.apple.documentation/documentation/coreservices/1566268-pbmakefsrefunicodeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566925-pbmakefsrefunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566270-pbmoveobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565935-pbmoveobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566059-pbopenforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566802-pbopenforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566686-pbopeniteratorasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566865-pbopeniteratorsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566703-pbreadforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566739-pbreadforksync",
+        "doc://com.apple.documentation/documentation/coreservices/1566334-pbrenameunicodeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566879-pbrenameunicodesync",
+        "doc://com.apple.documentation/documentation/coreservices/1565887-pbsetforkpositionasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566035-pbsetforkpositionsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566552-pbsetforksizeasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566944-pbsetforksizesync",
+        "doc://com.apple.documentation/documentation/coreservices/1566541-pbsetvolumeinfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566427-pbsetvolumeinfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1565840-pbunlinkobjectasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566516-pbunlinkobjectsync",
+        "doc://com.apple.documentation/documentation/coreservices/1566491-pbwriteforkasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565632-pbwriteforksync"
+      ],
+      "kind": "taskGroup",
+      "title": "Functions"
+    },
+    {
+      "anchor": "2934432",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationbytescompletekey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationbytesremainingkey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationobjectscompletekey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationobjectsremainingkey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationthroughputkey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotalbyteskey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotalobjectskey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationtotaluservisibleobjectskey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationuservisibleobjectscompletekey",
+        "doc://com.apple.documentation/documentation/coreservices/kfsoperationuservisibleobjectsremainingkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/carbon_core/file_manager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

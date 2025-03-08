@@ -1,0 +1,1151 @@
+{
+  "abstract": [
+    {
+      "text": "Display a horizontal row of three-dimensional shapes in your visionOS app, using predefined mesh and white material.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-3d-shapes-in-visionos-with-realitykit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-3d-shapes-1-main-view.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating 3D entities with RealityKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to create and display 3D objects using predefined methods in ",
+              "type": "text"
+            },
+            {
+              "code": "MeshResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for creating a box and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateSphere(radius:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for creating a sphere. Additionally, it shows how to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply a white material. By combining the mesh and material, you can create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for your visionOS app with RealityKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app draws the following entities in its main view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A box",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A rounded box",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A sphere",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A cone",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A cylinder",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-3d-shapes-1-main-view.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit defines the ",
+              "type": "text"
+            },
+            {
+              "code": "Box",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Sphere",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "Cone",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "Cylinder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types, and the app creates a ",
+              "type": "text"
+            },
+            {
+              "code": "roundedBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type by adding a ",
+              "type": "text"
+            },
+            {
+              "code": "cornerRadius",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "Box",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-3D-shapes-to-the-view",
+          "level": 3,
+          "text": "Add 3D shapes to the view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s main view renders the entity using ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and adds the shape using the ",
+              "type": "text"
+            },
+            {
+              "code": "addGeometryShapes(to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct ShapesView: View {",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            addGeometryShapes(to: content)",
+            "        }",
+            "    }",
+            "",
+            "    // Positions and adds all geometric shapes to the scene.",
+            "    func addGeometryShapes(to content: RealityViewContent) {",
+            "        /// An array of all the 3D entities representing different shapes.",
+            "        let allGeometryEntities = [",
+            "            Primitives3DView.boxEntity,",
+            "            Primitives3DView.roundedBoxEntity,",
+            "            Primitives3DView.sphereEntity,",
+            "            Primitives3DView.coneEntity,",
+            "            Primitives3DView.cylinderEntity",
+            "        ]",
+            "",
+            "        var xOffset: Float = -0.25",
+            "",
+            "        // Position the entities along the x-axis, and add them to the content.",
+            "        for entity in allGeometryEntities {",
+            "            entity.position.x = xOffset",
+            "            content.add(entity)",
+            "            xOffset += 0.125",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "addGeometryShapes(to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method sets an array of 3D entities in a row along the x-axis, including a box, a rounded box, a sphere, a cone, and a cylinder, with an offset of 0.125 between each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-primitives-3D-view-extension",
+          "level": 3,
+          "text": "Create a primitives 3D view extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Primitives3DView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension defines the entity types for the box, sphere, cone, and cylinder with white material by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating a material with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generating a mesh with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rendering a 3D model with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelComponent",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "",
+            "extension ShapesView {",
+            "    /// The white material that responds to lighting.",
+            "    static let whiteMaterial = SimpleMaterial(color: .white, isMetallic: false)",
+            "",
+            "    /// The entity with a box geometry.",
+            "    static let boxEntity: Entity = {",
+            "        // Create an entity instance.",
+            "        let entity = Entity()",
+            "",
+            "        // Create a mesh resource.",
+            "        let boxSize: Float = 0.1",
+            "        let boxMesh = MeshResource.generateBox(size: boxSize)",
+            "",
+            "        // Add the mesh resource to a model component, and add it to the entity.",
+            "        entity.components.set(ModelComponent(mesh: boxMesh, materials: [whiteMaterial]))",
+            "",
+            "        return entity",
+            "    }()",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample code project, the ",
+              "type": "text"
+            },
+            {
+              "code": "boxEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property creates an entity and generates a box mesh with a length of 0.1 units. Use the mesh and the white material to create a ",
+              "type": "text"
+            },
+            {
+              "code": "ModelComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and then set it as a component and return the entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can create 3D shapes using other preset meshes, such as those in the example below (a sphere, cone, and cylinder):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "",
+            "extension Primitives3DView {",
+            "    // ...",
+            "",
+            "    /// The entity with a spherical geometry.",
+            "    static let sphereEntity: Entity = {",
+            "        // Create an entity instance.",
+            "        let entity = Entity()",
+            "",
+            "        // Create a mesh resource.",
+            "        let sphereRadius: Float = 0.05",
+            "        let boxMesh = MeshResource.generateSphere(radius: sphereRadius)",
+            "",
+            "        // Add the mesh resource to a model component, and add it to the entity.",
+            "        entity.components.set(ModelComponent(mesh: boxMesh, materials: [whiteMaterial]))",
+            "",
+            "        return entity",
+            "    }()",
+            "",
+            "    /// The entity with a conical geometry.",
+            "    static let coneEntity: Entity = {",
+            "        // Create an entity instance.",
+            "        let entity = Entity()",
+            "",
+            "        // Create a mesh resource.",
+            "        let coneHeight: Float = 0.1",
+            "        let coneRadius: Float = 0.05",
+            "        let roundedBoxMesh = MeshResource.generateCone(height: coneHeight, radius: coneRadius)",
+            "",
+            "        // Add the mesh resource to a model component, and add it to the entity.",
+            "        entity.components.set(ModelComponent(mesh: roundedBoxMesh, materials: [whiteMaterial]))",
+            "",
+            "        return entity",
+            "    }()",
+            "",
+            "    /// The entity with a cylindrical geometry.",
+            "    static let cylinderEntity: Entity = {",
+            "        // Create an entity instance.",
+            "        let entity = Entity()",
+            "",
+            "        // Create a mesh resource.",
+            "        let cylinderHeight: Float = 0.1",
+            "        let cylinderRadius: Float = 0.05",
+            "        let roundedBoxMesh = MeshResource.generateCylinder(height: cylinderHeight, radius: cylinderRadius)",
+            "",
+            "        // Add the mesh resource to a model component, and add it to the entity.",
+            "        entity.components.set(ModelComponent(mesh: roundedBoxMesh, materials: [whiteMaterial]))",
+            "",
+            "        return entity",
+            "    }()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/creating-2d-shapes-in-visionos-with-swiftui",
+            "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource": {
+      "abstract": [
+        {
+          "text": "A high-level representation of a collection of vertices and edges that define a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshResource",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v": {
+      "abstract": [
+        {
+          "text": "Creates a box mesh from a length for the box’s width, height, and depth, and a radius for the corners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateBox"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " = 0) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateBox(size:cornerRadius:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/generateBox(size:cornerRadius:)-8em0v"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateSphere(radius:)": {
+      "abstract": [
+        {
+          "text": "Creates a new sphere mesh with the specified radius.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateSphere"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/generateSphere(radius:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateSphere(radius:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/generateSphere(radius:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial": {
+      "abstract": [
+        {
+          "text": "A basic material that responds to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SimpleMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/SimpleMaterial"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionOS/understanding-the-realitykit-modular-architecture"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-2d-shapes-in-visionos-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Draw two-dimensional shapes in your visionOS app with SwiftUI shapes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or with your custom shapes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-2d-shapes-in-visionos-with-swiftui",
+      "images": [
+        {
+          "identifier": "sample-2d-shapes-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating 2D shapes with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-2d-shapes-in-visionos-with-swiftui"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "eca86063e133/Creating3DEntitiesInVisionOSWithRealityKit.zip": {
+      "checksum": "eca86063e13369d84c8841be390c81c5103a962a23e349917bb9b73d709783186c8118572a28edff960e549082ec640746d549c1a968b3db780ee147e467529b",
+      "identifier": "eca86063e133/Creating3DEntitiesInVisionOSWithRealityKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/eca86063e133/Creating3DEntitiesInVisionOSWithRealityKit.zip"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-2d-shapes-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-2d-shapes-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b90e18496a4aec9e565db5247d51fa7b/sample-2d-shapes-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2a55381ac311f3f641e4a2823308b5c/sample-2d-shapes-1-main-view~dark.png"
+        }
+      ]
+    },
+    "sample-3d-shapes-1-main-view.png": {
+      "alt": "A screenshot of a visionOS app in Simulator with one translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "sample-3d-shapes-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e013edfa7e1ad36291edb644bd975c2/sample-3d-shapes-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b0e1eb5660516c5759744b9525ca8088/sample-3d-shapes-1-main-view~dark.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "eca86063e133/Creating3DEntitiesInVisionOSWithRealityKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

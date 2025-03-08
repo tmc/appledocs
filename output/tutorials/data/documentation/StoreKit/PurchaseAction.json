@@ -1,0 +1,1003 @@
+{
+  "abstract": [
+    {
+      "text": "An action that starts an In-App Purchase.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StoreKit_SwiftUI14PurchaseActionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PurchaseAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PurchaseAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PurchaseAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PurchaseAction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit provides several APIs you can use to enable customers to initiate a purchase. Choose the API that suits your app’s implementation, specifically:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PurchaseAction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for apps that use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", including multi-scene apps for visionOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Product/purchase(confirmIn:options:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for apps that use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if your app runs on watchOS or macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you use StoreKit views such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " you don’t need to call any other API to initiate a purchase. StoreKit manages the purchase action automatically, including presenting the purchase confirmation UI. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-the-purchase-action-API",
+          "level": 3,
+          "text": "Use the purchase action API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "PurchaseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for SwiftUI implementations, including multi-scene apps for visionOS. Call the instance to start an in-app purchase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this API, read the ",
+              "type": "text"
+            },
+            {
+              "code": "PurchaseAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment value to get an instance of the structure for a given ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You call the instance directly because it defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction/callAsFunction(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that Swift calls when you call the instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you initiate an in-app purchase, the system presents UI for the customer to confirm the purchase details. The purchase action you get from the environment automatically includes the UI context. It presents the confirmation UI in proximity to the scene in which the view displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of starting an in-app purchase when a person taps a button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PurchaseExample: View {",
+            "    @Environment(\\.purchase) private var purchase: PurchaseAction",
+            "    let product: Product",
+            "    let purchaseOptions: [Product.PurchaseOption]",
+            "",
+            "    var body: some View {",
+            "        Button {",
+            "            Task {",
+            "                let purchaseResult = try? await purchase(product, options: purchaseOptions)",
+            "                 // Process the purchase result.",
+            "            }",
+            "        } label: {",
+            "            Text(product.displayName)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the second line in the code example can omit the type name, as follows, because the compiler can infer the type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.purchase) private var purchase"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Environment"
+    },
+    "doc://com.apple.documentation/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult": {
+      "abstract": [
+        {
+          "text": "The result of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.PurchaseResult",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchaseresult"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)": {
+      "abstract": [
+        {
+          "text": "Initiates a purchase for the product with the App Store and displays the confirmation sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchase"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseResultO",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "purchase(options:)",
+      "type": "topic",
+      "url": "/documentation/storekit/product/purchase(options:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ProductView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises an individual In-App Purchase product.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ProductView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProductView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProductView",
+      "type": "topic",
+      "url": "/documentation/storekit/productview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction": {
+      "abstract": [
+        {
+          "text": "An action that starts an In-App Purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PurchaseAction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PurchaseAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PurchaseAction",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction/callAsFunction(_:options:)": {
+      "abstract": [
+        {
+          "text": "Starts an in-app purchase for the indicated product and purchase options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callAsFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseResultO",
+          "text": "PurchaseResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction/callAsFunction(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callAsFunction(_:options:)",
+      "type": "topic",
+      "url": "/documentation/storekit/purchaseaction/callasfunction(_:options:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/StoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of In-App Purchase products.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/StoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/storeview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/storekit-views": {
+      "abstract": [
+        {
+          "text": "Display a customizable In-App Purchase store using StoreKit views for SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/storekit-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "StoreKit views",
+      "type": "topic",
+      "url": "/documentation/storekit/storekit-views"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Purchase-requests-and-results",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Product/purchase(options:)",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/PurchaseResult"
+      ],
+      "title": "Purchase requests and results"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Calling-the-action",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/PurchaseAction/callAsFunction(_:options:)"
+      ],
+      "title": "Calling the action"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/purchaseaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

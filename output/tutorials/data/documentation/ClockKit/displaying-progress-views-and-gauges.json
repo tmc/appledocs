@@ -1,0 +1,976 @@
+{
+  "abstract": [
+    {
+      "text": "Add rich visual data to your SwiftUI complications with progress views and gauges.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/displaying-progress-views-and-gauges"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying progress views and gauges"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Progress views provide a visual depiction of progress on a task by showing the task’s percent complete. You can configure progress views as either a circle or a line, and include an optional label and tint color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gauges, on the other hand, depict a value within a given range of values. You configure gauges much as you do progress views, but gauges have even more options, including minimum and maximum value labels and color gradients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Progress-View",
+          "level": 3,
+          "text": "Create a Progress View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ProgressView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", call the initializer and pass a value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A progress view that is 20% complete.",
+            "ProgressView(value: 0.2)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the progress view takes a value between 0.0 and 1.0, and visually represents the percentage of the task’s completion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-a-Progress-View",
+          "level": 3,
+          "text": "Customize a Progress View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize a progress view by selecting a style, adding labels, and setting a tint color. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ProgressView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " supports linear and circular styles. By default, the SwiftUI selects the style based on the view’s context. However, you can add a ",
+              "type": "text"
+            },
+            {
+              "code": "progressViewStyle(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to specify the style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code sets a circular style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A circular progress view.",
+            "ProgressView(value: 0.4)",
+            "    .progressViewStyle(CircularProgressViewStyle())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3686517",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below sets a linear style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A linear progress view.",
+            "ProgressView(value: 0.6)",
+            "    .progressViewStyle(LinearProgressViewStyle())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3686525",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ProgressView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also supports a label that describes the task. Pass a closure that returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the progress view’s initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A progress view with an image label.",
+            "ProgressView(value: 0.8) {",
+            "    Image(\"coffee_template_small\")",
+            "        .renderingMode(.template)",
+            "        .foregroundColor(.yellow)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3686524",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The label appears inside a circular style, and below and to the left of the linear progress bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "progressViewStyle(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to apply a tint to the progress bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProgressView(value: 0.4) {",
+            "    Image(\"coffee_template_small\")",
+            "        .renderingMode(.template)",
+            "        .foregroundColor(.yellow)",
+            "}",
+            ".progressViewStyle(CircularProgressViewStyle(tint: .green))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3686514",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Gauge",
+          "level": 3,
+          "text": "Create a Gauge",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In many ways, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gauge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is similar to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ProgressView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It supports both a linear and circular style, and you can add a label and tinting. The main difference is that the gauge represents a value within a specified range—not the percent complete. It also has additional options, like labels for the range’s minimum, maximum values, and a label for the current value. Finally, it supports color gradients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-a-Gauge",
+          "level": 3,
+          "text": "Customize a Gauge",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates temperature gauge, and then customizes it by adding value labels for the minimum, maximum, and current values. It also assigns a color gradient to the gauge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Gauge(value: 76.0, in: 60.0...85.0) {",
+            "    Text(\"ºF\")",
+            "} currentValueLabel: {",
+            "    Text(\"76\")",
+            "} minimumValueLabel: {",
+            "    Text(\"60\")",
+            "} maximumValueLabel: {",
+            "    Text(\"85\")",
+            "}",
+            ".gaugeStyle(",
+            "    CircularGaugeStyle(tint:",
+            "        Gradient(colors: [.green, .yellow, .orange, .red])))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3686516",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the gauge doesn’t show the label (",
+              "type": "text"
+            },
+            {
+              "code": "ºF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this example) when you specify the minimum and maximum value labels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication": {
+      "abstract": [
+        {
+          "text": "Use text in SwiftUI complications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding text to a complication",
+      "type": "topic",
+      "url": "/documentation/clockkit/adding-text-to-a-complication"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Design the appearance of a graphic complication using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Building complications with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/clockkit/building-complications-with-swiftui"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry": {
+      "abstract": [
+        {
+          "text": "Package your app-specific data into a template and create a timeline entry for that template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a timeline entry",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-a-timeline-entry"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Set up and implement complications for your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating complications for your watchOS app",
+      "type": "topic",
+      "url": "/documentation/clockkit/creating-complications-for-your-watchos-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app": {
+      "abstract": [
+        {
+          "text": "Define the complications that your app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring complications for your app",
+      "type": "topic",
+      "url": "/documentation/clockkit/declaring-complications-for-your-app"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date": {
+      "abstract": [
+        {
+          "text": "Replace or extend the data in your complication’s timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your complications up to date",
+      "type": "topic",
+      "url": "/documentation/clockkit/keeping-your-complications-up-to-date"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events": {
+      "abstract": [
+        {
+          "text": "Preserve battery life and improve performance on the watch by providing a timeline with expected data and updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading future timeline events",
+      "type": "topic",
+      "url": "/documentation/clockkit/loading-future-timeline-events"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Gauge": {
+      "abstract": [
+        {
+          "text": "A view that shows a value within a range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gauge"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "CurrentValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "BoundsLabel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "MarkedValueLabels"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "CurrentValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "BoundsLabel"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "MarkedValueLabels"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gauge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Gauge",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Gauge"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ProgressView": {
+      "abstract": [
+        {
+          "text": "A view that shows the progress toward completion of a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProgressView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "CurrentValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "CurrentValueLabel"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ProgressView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProgressView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ProgressView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3686514": {
+      "alt": "A preview of the tinted, circular progress view with a green gauge.",
+      "identifier": "media-3686514",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be07fdf6878f851597a960c58993146/media-3686514@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be07fdf6878f851597a960c58993146/media-3686514~dark@2x.png"
+        }
+      ]
+    },
+    "media-3686516": {
+      "alt": "A preview of the gauge view showing 76 degrees with a high of 85 and a low of 60.",
+      "identifier": "media-3686516",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44b5035ff25a6b4640a0d258256c1cf9/media-3686516@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44b5035ff25a6b4640a0d258256c1cf9/media-3686516~dark@2x.png"
+        }
+      ]
+    },
+    "media-3686517": {
+      "alt": "A preview of the circular progress view, showing a task that is 40 percent complete.",
+      "identifier": "media-3686517",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4678217b2f60ffad7269a219e76e0bd6/media-3686517@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4678217b2f60ffad7269a219e76e0bd6/media-3686517~dark@2x.png"
+        }
+      ]
+    },
+    "media-3686524": {
+      "alt": "Previews of the circular and linear progress views with a coffee cup image as the label.",
+      "identifier": "media-3686524",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a2066661e45e17c79060f39026681ac/media-3686524@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a2066661e45e17c79060f39026681ac/media-3686524~dark@2x.png"
+        }
+      ]
+    },
+    "media-3686525": {
+      "alt": "A preview of the linear progress view showing a task that is 60 percent complete.",
+      "identifier": "media-3686525",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/acba2def2c1bbdb7c649fce880513ab7/media-3686525@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/acba2def2c1bbdb7c649fce880513ab7/media-3686525~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+        "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+        "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+        "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+        "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+        "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Articles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-complications-for-your-watchos-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/declaring-complications-for-your-app",
+                "doc://com.apple.clockkit/documentation/ClockKit/creating-a-timeline-entry",
+                "doc://com.apple.clockkit/documentation/ClockKit/loading-future-timeline-events",
+                "doc://com.apple.clockkit/documentation/ClockKit/keeping-your-complications-up-to-date",
+                "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+                "doc://com.apple.clockkit/documentation/ClockKit/adding-text-to-a-complication"
+              ],
+              "title": "Articles"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/displaying-progress-views-and-gauges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/displaying-progress-views-and-gauges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

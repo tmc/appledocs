@@ -1,0 +1,2947 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the structure of a crash report and the information each field contains.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Examining the fields in a crash report"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each section of a crash report contains information to help you diagnose the source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "examining-the-fields-in-a-crash-report-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Header",
+          "level": 3,
+          "text": "Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A crash report begins with a header section that describes the environment the crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurred in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Incident Identifier: 6156848E-344E-4D9E-84E0-87AFD0D0AE7B",
+            "CrashReporter Key:   76f2fb60060d6a7f814973377cbdc866fffd521f",
+            "Hardware Model:      iPhone8,1",
+            "Process:             TouchCanvas [1052]",
+            "Path:                /private/var/containers/Bundle/Application/51346174-37EF-4F60-B72D-8DE5F01035F5/TouchCanvas.app/TouchCanvas",
+            "Identifier:          com.example.apple-samplecode.TouchCanvas",
+            "Version:             1 (3.0)",
+            "Code Type:           ARM-64 (Native)",
+            "Role:                Foreground",
+            "Parent Process:      launchd [1]",
+            "Coalition:           com.example.apple-samplecode.TouchCanvas [1806]",
+            "",
+            "Date/Time:           2020-03-27 18:06:51.4969 -0700",
+            "Launch Time:         2020-03-27 18:06:31.7593 -0700",
+            "OS Version:          iPhone OS 13.3.1 (17D50)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fields in the header can contain the following information. No single crash report",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains all of these fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Incident Identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A unique identifier for the report. Two reports never share",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the same ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Incident Identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CrashReporter Key",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": An anonymized per-device identifier. Two reports from the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "same device contain identical values. This identifier is reset upon erasing the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Beta Identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A unique identifier for the combination of the device and vendor",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the crashed application. Two reports for apps from the same vendor and from the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "same device contain identical values. This field is only present for TestFlight builds",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of an app, and replaces the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CrashReporter Key",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Hardware Model",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The specific device model the app was running on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Process",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The executable name for the process that crashed. This matches the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleExecutable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "value in the app’s information property list. The number in brackets is the process",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Path",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The location of the executable on disk. macOS replaces user-identifable",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "path components with placeholder values to protect privacy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the process that crashed. If the binary doesn’t have a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "this field contains either the process name or a placeholder value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Version",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The version of the process that crashed. The value is a concatenation",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AppStoreTools",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The version of Xcode used to compile your app’s bitcode and to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "thin your app to device specific variants.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AppVariant",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The specific variant of your app produced by app thinning. This field",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "contains multiple values, described later in this section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Code Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The CPU architecture of the process that crashed. The value is one",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ARM-64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ARM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "X86-64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "X86",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Role",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://opensource.apple.com/source/xnu/xnu-3248.60.10/osfmk/mach/task_policy.h",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "assigned to the process at the time of termination. This field is generally not helpful",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "when you analyze a crash report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Parent Process",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The name and process ID (in square brackets) of the process that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "launched the crashed process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Coalition",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The name of the process coalition containing the app. Process coalitions",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "track resource usage among groups of related processes, such as an operating system",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "process supporting a specific API’s functionality in an app. Most processes, including",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app extensions, form their own coalition.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Date/Time",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The date and time of the crash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Launch Time",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The date and time the app launched.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "OS Version",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The operating system version, including the build number, on which",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the crash occurred.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AppVariant",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains three values separated by colons, for example, ",
+              "type": "text"
+            },
+            {
+              "code": "1:iPhone10,6:12.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These fields represent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An internal system value. This value isn’t useful for diagnosing a crash. In the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "example, this value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the thinning variant. The variant represents a class of devices with",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "similar characteristics, such as screen scale, memory class, and Metal GPU family.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The thinning variant’s name doesn’t indicate the exact hardware model the crash report",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is from, and may differ from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Hardware Model",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field. In the example, this value",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iPhone10,6",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The operating system version variant. For each class of devices, app thinning creates",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "additional variants for different versions of the operating system. In the example,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "this value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "12.2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", indicating this variant targets iOS devices running iOS 12.2",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or higher.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Exception-information",
+          "level": 3,
+          "text": "Exception information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every crash report contains exception information. This information section tells",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you how the process terminated, but it may not fully explain why the app terminated.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This information is important, but is often overlooked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Exception Type:  EXC_BREAKPOINT (SIGTRAP)",
+            "Exception Codes: 0x0000000000000001, 0x0000000102afb3d0"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This exception information doesn’t refer to language exceptions thrown by",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "an API or language features in Objective-C or C++. Crash reports record language",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "exception information separately.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following fields provide information about the exception. No single crash report",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains all of these fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Exception Type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The name of the Mach exception that terminated the process, along",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with the name of the corresponding BSD termination signal in parentheses. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Exception Codes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Processor specific information about the exception encoded into",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "one or more 64-bit hexadecimal numbers. Typically, this field isn’t present because",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the operating system presents the information as human-readable information in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "other fields of this section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Exception Subtype",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The human-readable description of the exception codes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Exception Message",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Additional human-readable information extracted from the exception",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "codes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Exception Note",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Additional information that isn’t specific to one exception type.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If this field contains ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXC_CORPSE_NOTIFY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the crash didn’t originate from a hardware",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "trap, either because the process was explicitly terminated by the operating system",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or the process called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "abort()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If this field contains ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SIMULATED (this is NOT a crash)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the process didn’t crash, but the operating system might have subsequently",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "requested termination of the process. If this field contains ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NON-FATAL CONDITION (this is NOT a crash)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the process didn’t terminate, because the issue that created",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the crash report wasn’t fatal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Termination Reason",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Exit reason information specified when the operating system",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "terminates a process. Key operating system components, both inside and outside of",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a process, terminate the process upon encountering a fatal error and record the reason",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in this field. Examples of the information you can find in this field are messages",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "about an invalid code signature, a missing dependent library, or accessing privacy",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "sensitive information without a purpose string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Triggered by Thread",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Crashed Thread",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The thread on which the exception originated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Diagnostic-messages",
+          "level": 3,
+          "text": "Diagnostic messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system sometimes includes additional diagnostic information. This information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uses a variety of formats, depending on reason for the crash, and isn’t present in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "every crash report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Framework error messages occurring just before the process terminated appear in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Application Specific Information",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. In this example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework logged an error about incorrect use of a dispatch queue:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Application Specific Information:",
+            "BUG IN CLIENT OF LIBDISPATCH: dispatch_sync called on queue already owned by current thread"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "Application Specific Information",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is sometimes elided from a crash report",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to avoid logging privacy-sensitive information in the message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminations due to a watchdog violation contain a ",
+              "type": "text"
+            },
+            {
+              "code": "Termination Description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with information about why the watchdog triggered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Termination Description: SPRINGBOARD, ",
+            "    scene-create watchdog transgression: application<com.example.MyCoolApp>:667",
+            "    exhausted real (wall clock) time allowance of 19.97 seconds "
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " goes into more detail about watchdog terminations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and how to interpret this information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Terminations due to a memory access issue contain information about the virtual memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regions in the ",
+              "type": "text"
+            },
+            {
+              "code": "VM Region Info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VM Region Info: 0 is not in any region.  Bytes before following region: 4307009536",
+            "      REGION TYPE                      START - END             [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL",
+            "      UNUSED SPACE AT START",
+            "--->  ",
+            "      __TEXT                 0000000100b7c000-0000000100b84000 [   32K] r-x/r-x SM=COW  ...pp/MyGreatApp"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " goes into more detail about this information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Backtraces",
+          "level": 3,
+          "text": "Backtraces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each thread of the crashed proces is captured as a backtrace, documenting the code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "running on the thread when the process terminated. The backtraces are similar to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "what you see when you pause the process with the debugger. Crashes caused by a language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exception include an additional backtrace, the ",
+              "type": "text"
+            },
+            {
+              "code": "Last Exception Backtrace",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", located",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before the first thread. If your crash report contains a ",
+              "type": "text"
+            },
+            {
+              "code": "Last Exception Backtrace",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information specific to language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exception crashes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first line of each backtrace lists the thread number and the thread name. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "privacy reasons, crash reports delivered through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev675635e70",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode don’t contain thread names. This example shows the backtraces for three",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "threads; ",
+              "type": "text"
+            },
+            {
+              "code": "Thread 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " crashed, and is identified as the app’s main thread by its name:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Thread 0 name:  Dispatch queue: com.apple.main-thread",
+            "Thread 0 Crashed:",
+            "0   TouchCanvas                       0x0000000102afb3d0 CanvasView.updateEstimatedPropertiesForTouches(_:) + 62416 (CanvasView.swift:231)",
+            "1   TouchCanvas                       0x0000000102afb3d0 CanvasView.updateEstimatedPropertiesForTouches(_:) + 62416 (CanvasView.swift:231)",
+            "2   TouchCanvas                       0x0000000102af7d10 ViewController.touchesMoved(_:with:) + 48400 (<compiler-generated>:0)",
+            "3   TouchCanvas                       0x0000000102af80b8 @objc ViewController.touchesMoved(_:with:) + 49336 (<compiler-generated>:0)",
+            "4   UIKitCore                         0x00000001ba9d8da4 forwardTouchMethod + 328",
+            "5   UIKitCore                         0x00000001ba9d8e40 -[UIResponder touchesMoved:withEvent:] + 60",
+            "6   UIKitCore                         0x00000001ba9d8da4 forwardTouchMethod + 328",
+            "7   UIKitCore                         0x00000001ba9d8e40 -[UIResponder touchesMoved:withEvent:] + 60",
+            "8   UIKitCore                         0x00000001ba9e6ea4 -[UIWindow _sendTouchesForEvent:] + 1896",
+            "9   UIKitCore                         0x00000001ba9e8390 -[UIWindow sendEvent:] + 3352",
+            "10  UIKitCore                         0x00000001ba9c4a9c -[UIApplication sendEvent:] + 344",
+            "11  UIKitCore                         0x00000001baa3cc20 __dispatchPreprocessedEventFromEventQueue + 5880",
+            "12  UIKitCore                         0x00000001baa3f17c __handleEventQueueInternal + 4924",
+            "13  UIKitCore                         0x00000001baa37ff0 __handleHIDEventFetcherDrain + 108",
+            "14  CoreFoundation                    0x00000001b68a4a00 __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 24",
+            "15  CoreFoundation                    0x00000001b68a4958 __CFRunLoopDoSource0 + 80",
+            "16  CoreFoundation                    0x00000001b68a40f0 __CFRunLoopDoSources0 + 180",
+            "17  CoreFoundation                    0x00000001b689f23c __CFRunLoopRun + 1080",
+            "18  CoreFoundation                    0x00000001b689eadc CFRunLoopRunSpecific + 464",
+            "19  GraphicsServices                  0x00000001c083f328 GSEventRunModal + 104",
+            "20  UIKitCore                         0x00000001ba9ac63c UIApplicationMain + 1936",
+            "21  TouchCanvas                       0x0000000102af16dc main + 22236 (AppDelegate.swift:12)",
+            "22  libdyld.dylib                     0x00000001b6728360 start + 4",
+            "",
+            "Thread 1:",
+            "0   libsystem_pthread.dylib           0x00000001b6645758 start_wqthread + 0",
+            "",
+            "Thread 2:",
+            "0   libsystem_pthread.dylib           0x00000001b6645758 start_wqthread + 0",
+            "..."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the thread number, each line of a backtrace represents a stack frame in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "backtrace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "0   TouchCanvas                       0x0000000102afb3d0 CanvasView.updateEstimatedPropertiesForTouches(_:) + 62416 (CanvasView.swift:231)"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each column of the stack frame contains information about the code executing at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "time of the crash. The following list uses the components of stack frame 0 from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The stack frame number. Stack frames are in calling order, where frame 0 is",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the function that was executing at the time execution halted. Frame 1 is the function",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that called the function in frame 0, and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "TouchCanvas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The name of the binary containing the function that is executing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0x0000000102afb3d0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The address of the machine instruction that is executing.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For frame 0 in each backtrace, this is the address of the machine instruction executing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on a thread when the process terminated. For other stack frames, this is the address",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of first machine instruction that executes after control returns to that stack frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CanvasView.updateEstimatedPropertiesForTouches(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". In a fully symbolicated crash",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "report, the name of the function that is executing. For privacy reasons, the function",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "name is sometimes limited to the first 100 characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "62416",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The number after the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the byte offset from the function’s entry",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "point to the current instruction in the function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CanvasView.swift:231",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The file name and line number containing the code, if you",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "have a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for the binary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some situations, the file name or the line number information won’t correspond",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the orginial source code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the source file name is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<compiler-generated>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the compiler created the code",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for that frame, and the code isn’t in your source files. If this is top frame in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the crashed thread, look at the preceeding few stack frames for clues.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the line number for a source file is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", this means the backtrace doesn’t map",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to a specific line of code in the original code. This is because the compiler optimized",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the code, such as by inlining functions, and the code executing at the time of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "crash doesn’t correspond to an exact line in the orignial code. The function name",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for the frame is still a clue in this situation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Thread-state",
+          "level": 3,
+          "text": "Thread state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The thread state section of a crash report lists the CPU registers and their values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the crashed thread when the app terminated. Understanding the thread state is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an advanced topic that requires understanding of the application binary interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(ABI). See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/writing-arm64-code-for-apple-platforms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Thread 0 crashed with ARM Thread State (64-bit):",
+            "    x0: 0x0000000000000001   x1: 0x0000000000000000   x2: 0x0000000000000000   x3: 0x000000000000000f",
+            "    x4: 0x00000000000001c2   x5: 0x000000010327f6c0   x6: 0x000000010327f724   x7: 0x0000000000000120",
+            "    x8: 0x0000000000000001   x9: 0x0000000000000001  x10: 0x0000000000000001  x11: 0x0000000000000000",
+            "   x12: 0x00000001038612b0  x13: 0x000005a102b075a7  x14: 0x0000000000000100  x15: 0x0000010000000000",
+            "   x16: 0x00000001c3e6c630  x17: 0x00000001bae4bbf8  x18: 0x0000000000000000  x19: 0x0000000282c14280",
+            "   x20: 0x00000001fe64a3e0  x21: 0x4000000281f1df10  x22: 0x0000000000000001  x23: 0x0000000000000000",
+            "   x24: 0x0000000000000000  x25: 0x0000000282c14280  x26: 0x0000000103203140  x27: 0x00000001bacf4b7c",
+            "   x28: 0x00000001fe5ded08   fp: 0x000000016d311310   lr: 0x0000000102afb3d0",
+            "    sp: 0x000000016d311200   pc: 0x0000000102afb3d0 cpsr: 0x60000000",
+            "   esr: 0xf2000001  Address size fault"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Registers provide extra information for crashes caused by memory access issues. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report#Understand-the-crashed-threads-registers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "discusses that scenario further.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Binary-images",
+          "level": 3,
+          "text": "Binary images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The binary images section of a crash report lists all code loaded in the process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the time of termination, such as the app executable and system frameworks. Each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "line in the Binary Images section represents a single binary image. iOS, iPadOS, tvOS, visionOS, and watchOS use the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Binary Images:",
+            "0x102aec000 - 0x102b03fff TouchCanvas arm64  <fe7745ae12db30fa886c8baa1980437a> /var/containers/Bundle/Application/51346174-37EF-4F60-B72D-8DE5F01035F5/TouchCanvas.app/TouchCanvas",
+            "..."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This list contains the components from the preceding example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0x102aec000 - 0x102b03fff",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The binary image’s address range within the process.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The first address is the binary’s load address. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for how to use this value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "TouchCanvas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The binary name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "arm64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The CPU architecture from the binary image that the operating system loaded",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "into the process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fe7745ae12db30fa886c8baa1980437a",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A build UUID that uniquely identifies the binary",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "image. Use this value to locate the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file when symbolicating",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the crash report. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "more information on build UUIDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/var/containers/.../TouchCanvas.app/TouchCanvas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The path to the binary on disk.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "macOS replaces user-identifable path components with placeholder values to protect",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "privacy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS uses the following format for this section:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Binary Images:",
+            "       0x1025e5000 -        0x1025e6ffb +com.example.apple-samplecode.TouchCanvas (1.0 - 1) <5ED9BD63-2A55-3DDD-B3FF-EFCF61382F6F> /Users/USER/*/TouchCanvas.app/Contents/MacOS/TouchCanvas"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This list contains the components from the preceding example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0x105f97000 - 0x105f98ffb",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The binary image’s address range within the process.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The first address is the binary’s load address. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for how to use this value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "+com.example.apple-samplecode.TouchCanvas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the binary. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " prefix indicates the binary is not part of macOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1.0 - 1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The binary’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "5ED9BD63-2A55-3DDD-B3FF-EFCF61382F6F",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A build UUID that uniquely identifies the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "binary image. Use this value to locate the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file when symbolicating",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the crash report. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "more information on build UUIDs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "/Users/USER/*/TouchCanvas.app/Contents/MacOS/TouchCanvas",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The path to the binary",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "on disk. macOS replaces user-identifable path components with placeholder values",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to protect privacy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Replace hexadecimal addresses in a crash report with function names and line numbers",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that correspond to your app’s code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding identifiable symbol names to a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+      "kind": "section",
+      "title": "Symbolicate the crash report with the command line",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes": {
+      "abstract": [
+        {
+          "text": "Identify the signs of a language exception, and address the crashes caused by uncaught",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "language exceptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing language exception crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-language-exception-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations": {
+      "abstract": [
+        {
+          "text": "Identify the signature of an unresponsive app terminated by the watchdog, and address",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing watchdog terminations",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-watchdog-terminations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report#Understand-the-crashed-threads-registers": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report#Understand-the-crashed-threads-registers",
+      "kind": "section",
+      "title": "Understand the crashed thread’s registers",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report#Understand-the-crashed-threads-registers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information": {
+      "abstract": [
+        {
+          "text": "Configure Xcode to produce the symbol information for debugging and crash reports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your app to include debugging information",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-app-to-include-debugging-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure and properties of the objects the system includes in the JSON of a crash report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting the JSON format of a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes": {
+      "abstract": [
+        {
+          "text": "Identify crashes that arise from memory access issues, and investigate the cause",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the crash.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/investigating-memory-access-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating memory access crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-memory-access-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Learn what the exception type tells you about why your app crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Understanding the exception types in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-the-exception-types-in-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleExecutable": {
+      "abstract": [
+        {
+          "text": "The name of the bundle’s executable file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleExecutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleExecutable",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleExecutable"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString": {
+      "abstract": [
+        {
+          "text": "The release or version number of the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleShortVersionString",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleShortVersionString"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion": {
+      "abstract": [
+        {
+          "text": "The version of the build that identifies an iteration of the bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleVersion"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/writing-arm64-code-for-apple-platforms": {
+      "abstract": [
+        {
+          "text": "Create 64-bit ARM assembly language instructions that adhere to the application binary interface (ABI) that Apple platforms support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/writing-arm64-code-for-apple-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing ARM64 code for Apple platforms",
+      "type": "topic",
+      "url": "/documentation/Xcode/writing-arm64-code-for-apple-platforms"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "examining-the-fields-in-a-crash-report-1": {
+      "alt": "An outline of a crash report showing where each section is located.",
+      "identifier": "examining-the-fields-in-a-crash-report-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb64dd660c25af51a6a38152f138872e/examining-the-fields-in-a-crash-report-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eeb9b57faffdc4950af93d82c9becaa6/examining-the-fields-in-a-crash-report-1~dark@2x.png"
+        }
+      ]
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev675635e70": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev675635e70",
+      "title": "Crashes Organizer",
+      "titleInlineContent": [
+        {
+          "text": "Crashes Organizer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev675635e70"
+    },
+    "https://opensource.apple.com/source/xnu/xnu-3248.60.10/osfmk/mach/task_policy.h": {
+      "identifier": "https://opensource.apple.com/source/xnu/xnu-3248.60.10/osfmk/mach/task_policy.h",
+      "title": "task_role",
+      "titleInlineContent": [
+        {
+          "text": "task_role",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://opensource.apple.com/source/xnu/xnu-3248.60.10/osfmk/mach/task_policy.h"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Crash-reports",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report"
+      ],
+      "title": "Crash reports"
+    }
+  ]
+}

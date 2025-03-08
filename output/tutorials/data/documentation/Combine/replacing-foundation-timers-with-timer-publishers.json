@@ -1,0 +1,1387 @@
+{
+  "abstract": [
+    {
+      "text": "Publish elements periodically by using a timer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Replacing Foundation Timers with Timer Publishers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses Foundation’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to repeatedly receive a callback or invoke a closure on a specified interval, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can convert these instances to Combine to simplify your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Performing-Periodic-Work-with-a-Timer",
+          "level": 3,
+          "text": "Performing Periodic Work with a Timer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following snippet, which uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/2091889-scheduledtimer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to update the ",
+              "type": "text"
+            },
+            {
+              "code": "lastUpdated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of a data model once a second, on a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dispatch queue:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var timer: Timer?",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in",
+            "        self.myDispatchQueue.async() {",
+            "            self.myDataModel.lastUpdated = Date()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Converting-to-a-Timer-Publisher",
+          "level": 3,
+          "text": "Converting to a Timer Publisher",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To migrate this code to Combine, replace the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that is returned by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/2091889-scheduledtimer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this publisher with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/3329589-publish",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Every time the underyling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " fires,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the publisher emits a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the instant the timer fired. You then apply Combine operators to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "eventually connecting the publisher to a subscriber like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, it won’t produce elements until you explicitly connect to it. Do this by either calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or using an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " operator to connect automatically when a subscriber attaches.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next example shows how to use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to replace the previous example. It uses Combine’s operators to perform the tasks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that were in the previous example’s closure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var cancellable: Cancellable?",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    cancellable = Timer.publish(every: 1, on: .main, in: .default)",
+            "        .autoconnect()",
+            "        .receive(on: myDispatchQueue)",
+            "        .assign(to: \\.lastUpdated, on: myDataModel)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, Combine operators replace all the behavior inside the closure of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the earlier example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/receive(on:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " operator ensures",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that its subsequent operators run on the specified dispatch queue. This replaces",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "async()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " call from before.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " operator updates the data",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "model, by using a key path to set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "lastUpdate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another advantage you’ll find when using Combine to simplify your code is that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " produces new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances as its output type. The first example’s closure receives the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "itself as its parameter, so it has to create new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that provides an explicit means of connecting and canceling publication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConnectablePublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConnectablePublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConnectablePublisher",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()": {
+      "abstract": [
+        {
+          "text": "Automates the process of connecting or disconnecting from this connectable publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoconnect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO11AutoconnectC",
+          "text": "Autoconnect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoconnect()",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher/autoconnect()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()": {
+      "abstract": [
+        {
+          "text": "Connects to the publisher, allowing it to produce elements, and returns an instance with which to cancel publishing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11CancellableP",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "connect()",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher/connect()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)": {
+      "abstract": [
+        {
+          "text": "Assigns each element from a publisher to a property on an object.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assign"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s24ReferenceWritableKeyPathC",
+          "text": "ReferenceWritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assign(to:on:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/assign(to:on:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/receive(on:options:)": {
+      "abstract": [
+        {
+          "text": "Specifies the scheduler on which to receive elements from the publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receive"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B7OptionsQa",
+          "text": "SchedulerOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO9ReceiveOnV",
+          "text": "ReceiveOn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/receive(on:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receive(on:options:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/receive(on:options:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)": {
+      "abstract": [
+        {
+          "text": "Attaches a subscriber with closure-based behavior to a publisher that never fails.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveValue"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sink(receiveValue:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/sink(receivevalue:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine": {
+      "abstract": [
+        {
+          "text": "Expose KVO changes with a Combine publisher.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Key-Value Observing with Combine",
+      "type": "topic",
+      "url": "/documentation/combine/performing-key-value-observing-with-combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers": {
+      "abstract": [
+        {
+          "text": "Deliver notifications to subscribers by using notification centers’ publishers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers",
+      "kind": "article",
+      "role": "article",
+      "title": "Routing Notifications to Combine Subscribers",
+      "type": "topic",
+      "url": "/documentation/combine/routing-notifications-to-combine-subscribers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code": {
+      "abstract": [
+        {
+          "text": "Apply common patterns to migrate your closure-based, event-handling code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Combine for Your App’s Asynchronous Code",
+      "type": "topic",
+      "url": "/documentation/combine/using-combine-for-your-app-s-asynchronous-code"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer": {
+      "abstract": [
+        {
+          "text": "A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer",
+      "type": "topic",
+      "url": "/documentation/foundation/timer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer/2091889-scheduledtimer": {
+      "abstract": [
+        {
+          "text": "Creates a timer and schedules it on the current run loop in the default mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledTimer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval, "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeats"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": (Timer) -> Void) -> Timer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer/2091889-scheduledtimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduledTimer(withTimeInterval:repeats:block:)",
+      "type": "topic",
+      "url": "/documentation/foundation/timer/2091889-scheduledtimer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer/3329589-publish": {
+      "abstract": [
+        {
+          "text": "Returns a publisher that repeatedly emits the current date on the given interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "publish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "every"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerOptions?) -> Timer.TimerPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer/3329589-publish",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publish(every:tolerance:on:in:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/timer/3329589-publish"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that repeatedly emits the current date on a given interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer.TimerPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer.TimerPublisher",
+      "type": "topic",
+      "url": "/documentation/foundation/timer/timerpublisher"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Combine-Migration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers",
+        "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine",
+        "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code"
+      ],
+      "title": "Combine Migration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1timer/title",
+          "value": "NSTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1timer~12091889-scheduledtimer/title",
+          "value": "scheduledTimerWithTimeInterval:repeats:block:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/replacing-foundation-timers-with-timer-publishers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

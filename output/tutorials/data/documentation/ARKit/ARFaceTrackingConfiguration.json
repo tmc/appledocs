@@ -1,0 +1,1531 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration that tracks facial movement and expressions using the front camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARFaceTrackingConfiguration",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARFaceTrackingConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARFaceTrackingConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARFaceTrackingConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.arkit/documentation/ARKit/verifying-device-support-and-user-permission",
+        "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A face-tracking configuration detects faces within 3 meters of the device’s front camera. When ARKit detects a face, it creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that provides information about a person’s facial position, orientation, topology, and expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Face tracking supports devices with Apple Neural Engine in iOS 14 and iPadOS 14 and requires a device with a TrueDepth camera on iOS 13 and iPadOS 13 and earlier. To determine whether the device supports face tracking, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before attempting to use this configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isLightEstimationEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " setting, a face-tracking configuration estimates directional and environmental lighting (an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object) by referring to the detected face as a light probe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Because face tracking provides your app with personal facial information, your app must include a privacy policy describing to users how you intend to use face tracking and face data. For details, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/terms/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARBodyTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks human body poses, planar surfaces, and images using the rear-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARBodyTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARBodyTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARBodyTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARBodyTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arbodytrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration": {
+      "abstract": [
+        {
+          "text": "The base object that contains information about how to configure an augmented reality session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isLightEstimationEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value specifying whether ARKit analyzes scene lighting in captured camera images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLightEstimationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isLightEstimationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightEstimationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLightEstimationEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/islightestimationenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the current device supports this session configuration class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/isSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/issupported"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate": {
+      "abstract": [
+        {
+          "text": "Estimated environmental lighting information associated with a captured video frame in a face-tracking AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARDirectionalLightEstimate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDirectionalLightEstimate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARDirectionalLightEstimate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARDirectionalLightEstimate",
+      "type": "topic",
+      "url": "/documentation/arkit/ardirectionallightestimate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a unique face that is visible in the front-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks facial movement and expressions using the front camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new face-tracking configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration/init()"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/isWorldTrackingEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that instructs a session to provide the app with user face data during a world-tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWorldTrackingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/isWorldTrackingEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldTrackingEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isWorldTrackingEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration/isworldtrackingenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/maximumNumberOfTrackedFaces": {
+      "abstract": [
+        {
+          "text": "The number of faces to track during the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumNumberOfTrackedFaces"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/maximumNumberOfTrackedFaces",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumNumberOfTrackedFaces"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumNumberOfTrackedFaces",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration/maximumnumberoftrackedfaces"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/new": {
+      "abstract": [
+        {
+          "text": "Allocates and initializes a new face-tracking configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/new",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration/new"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportedNumberOfTrackedFaces": {
+      "abstract": [
+        {
+          "text": "The maximum number of faces that the framework can track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedNumberOfTrackedFaces"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportedNumberOfTrackedFaces",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedNumberOfTrackedFaces"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedNumberOfTrackedFaces",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration/supportednumberoftrackedfaces"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportsWorldTracking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the iOS device supports tracking the user’s facial features in a world-tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsWorldTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportsWorldTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsWorldTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsWorldTracking",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration/supportsworldtracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment": {
+      "abstract": [
+        {
+          "text": "Add visual effects to the user’s environment in an AR experience through the front or rear camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing Which Camera Feed to Augment",
+      "type": "topic",
+      "url": "/documentation/arkit/choosing-which-camera-feed-to-augment"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/verifying-device-support-and-user-permission": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect user privacy at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/verifying-device-support-and-user-permission",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying Device Support and User Permission",
+      "type": "topic",
+      "url": "/documentation/arkit/verifying-device-support-and-user-permission"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/terms/": {
+      "identifier": "https://developer.apple.com/terms/",
+      "title": "Apple Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/terms/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARConfiguration"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Body-and-Face-Tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARBodyTrackingConfiguration"
+      ],
+      "title": "Body and Face Tracking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Configuration",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/init()"
+      ],
+      "title": "Creating a Configuration"
+    },
+    {
+      "anchor": "Enabling-World-Tracking",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportsWorldTracking",
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/isWorldTrackingEnabled"
+      ],
+      "title": "Enabling World Tracking"
+    },
+    {
+      "anchor": "Tracking-Multiple-Faces",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/maximumNumberOfTrackedFaces",
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportedNumberOfTrackedFaces"
+      ],
+      "title": "Tracking Multiple Faces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARFaceTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Configuration",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/init()",
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/new"
+              ],
+              "title": "Creating a Configuration"
+            },
+            {
+              "anchor": "Enabling-World-Tracking",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportsWorldTracking",
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/isWorldTrackingEnabled"
+              ],
+              "title": "Enabling World Tracking"
+            },
+            {
+              "anchor": "Tracking-Multiple-Faces",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/maximumNumberOfTrackedFaces",
+                "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration/supportedNumberOfTrackedFaces"
+              ],
+              "title": "Tracking Multiple Faces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARConfiguration"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Body-and-Face-Tracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARBodyTrackingConfiguration"
+              ],
+              "title": "Body and Face Tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARFaceTrackingConfiguration"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ARConfiguration",
+                    "text": "ARConfiguration"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1isWorldTrackingEnabled/title",
+          "value": "worldTrackingEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1isWorldTrackingEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldTrackingEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1supportedNumberOfTrackedFaces/title",
+          "value": "supportedNumberOfTrackedFaces"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1supportedNumberOfTrackedFaces/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportedNumberOfTrackedFaces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1isSupported/title",
+          "value": "isSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1isSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1isLightEstimationEnabled/title",
+          "value": "lightEstimationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1isLightEstimationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightEstimationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBodyTrackingConfiguration/title",
+          "value": "ARBodyTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBodyTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBodyTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBodyTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBodyTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/title",
+          "value": "ARFaceTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDirectionalLightEstimate/title",
+          "value": "ARDirectionalLightEstimate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDirectionalLightEstimate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDirectionalLightEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDirectionalLightEstimate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDirectionalLightEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/title",
+          "value": "ARFaceAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration/title",
+          "value": "ARConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1maximumNumberOfTrackedFaces/title",
+          "value": "maximumNumberOfTrackedFaces"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1maximumNumberOfTrackedFaces/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumNumberOfTrackedFaces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1supportsWorldTracking/title",
+          "value": "supportsWorldTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration~1supportsWorldTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsWorldTracking"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arfacetrackingconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arfacetrackingconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

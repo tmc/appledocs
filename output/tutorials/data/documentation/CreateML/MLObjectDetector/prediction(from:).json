@@ -1,0 +1,600 @@
+{
+  "abstract": [
+    {
+      "text": "Locates objects in an image and generates an annotation for each object it detects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/prediction(from:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CreateML",
+    "externalID": "s:8CreateML16MLObjectDetectorV10prediction4fromSayAC16ObjectAnnotationVG10Foundation3URLV_tKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "prediction"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "from"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation3URLV",
+        "text": "URL"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8CreateML16MLObjectDetectorV",
+        "text": "MLObjectDetector"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8CreateML16MLObjectDetectorV15DetectedObjectsa",
+        "text": "DetectedObjects"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "prediction(from:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "prediction"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "from"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "image"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation3URLV",
+              "text": "URL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8CreateML16MLObjectDetectorV",
+              "text": "MLObjectDetector"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/DetectedObjects",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8CreateML16MLObjectDetectorV15DetectedObjectsa",
+              "text": "DetectedObjects"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/DetectedObjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance — which is an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/ObjectAnnotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array — where each annotation represents an item the object detector found in the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "image: The URL for the image file where you want the object detector to look for objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector": {
+      "abstract": [
+        {
+          "text": "A model you train to classify one or more objects within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLObjectDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLObjectDetector"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLObjectDetector",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/DetectedObjects": {
+      "abstract": [
+        {
+          "text": "An array of annotations that represent the items an object detector",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "found in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectedObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/DetectedObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectedObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLObjectDetector.DetectedObjects",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector/detectedobjects"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/ObjectAnnotation": {
+      "abstract": [
+        {
+          "text": "The label, location, and confidence score of an item the object detector found in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/ObjectAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLObjectDetector.ObjectAnnotation",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector/objectannotation"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/prediction(from:)": {
+      "abstract": [
+        {
+          "text": "Locates objects in an image and generates an annotation for each object it detects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prediction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML16MLObjectDetectorV",
+          "text": "MLObjectDetector"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML16MLObjectDetectorV15DetectedObjectsa",
+          "text": "DetectedObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/prediction(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prediction(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector/prediction(from:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/predictions(from:)": {
+      "abstract": [
+        {
+          "text": "Locates objects in an array of images and generates an array of annotation collections, one for each input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML16MLObjectDetectorV",
+          "text": "MLObjectDetector"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML16MLObjectDetectorV15DetectedObjectsa",
+          "text": "DetectedObjects"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/predictions(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector/predictions(from:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation3URLV": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation3URLV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Testing-an-object-detector",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/predictions(from:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/DetectedObjects",
+        "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector/ObjectAnnotation"
+      ],
+      "title": "Testing an object detector"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlobjectdetector/prediction(from:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

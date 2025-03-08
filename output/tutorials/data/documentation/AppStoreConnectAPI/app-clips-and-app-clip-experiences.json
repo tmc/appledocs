@@ -1,0 +1,1792 @@
+{
+  "abstract": [
+    {
+      "text": "Read App Clip information and manage App Clip experiences.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clips-and-app-clip-experiences"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "App Clips and App Clip Experiences"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating and managing default and advanced App Clip experiences using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " website are key tasks when creating an App Clip. However, your App Clip may require many App Clip experiences. For example, your App Clip could allow users to order food at a chain restaurant with hundreds of locations. Each location would need its own advanced App Clip experience to display a photo of the location on the App Clip card. To reduce the effort of managing hundreds or even thousands of App Clip experiences, use the App Store Connect API to automatically access App Clip information and automate the creation and management of:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default App Clip experiences",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advanced App Clip experiences",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Clip experiences for testers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re new to creating an App Clip, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/introduction/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about creating App Clip experiences, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-App-Store-Connect-API-Usage",
+          "level": 3,
+          "text": "Review App Store Connect API Usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read App Clip information and manage App Clip experiences with the App Store Connect API, you need to understand key concepts for using the API. If you’re new to using the App Store Connect API, make sure to read the documentation in the Essentials section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and learn how to create API keys, generate JWTs, identify rate limits, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read App Clip information and manage App Clip experiences, be sure you have one of the following user roles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ACCOUNT_HOLDER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ADMIN",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APP_MANAGER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "MARKETING",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full list of App Store Connect user roles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to create an App Clip and upload it to App Store Connect before you can create an App Clip experience using the App Store Connect API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Plan-App-Clip-Experience-Creation-and-Management",
+          "level": 3,
+          "text": "Plan App Clip Experience Creation and Management",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating or managing App Clip experiences typically requires a sequence of calls to endpoints the App Store Connect API provides. Before you start working on the implementation, list the steps required to achieve your goal. While the exact API calls you need to make depend on your use case, creating an App Clip experience usually involves:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gathering additional information",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Uploading the image asset that appears on the App Clip card",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating the App Clip experience",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Gather-Required-Information",
+          "level": 3,
+          "text": "Gather Required Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can create or update an App Clip experience using the App Store Connect API, you likely need to gather additional information. To find out what information you need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify the endpoint you need to call. For example, you use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperiences",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint to create a default App Clip experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Review attributes and relationships of the request you send to the endpoint and other involved objects. For example, successfully creating a default App Clip experience requires ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clips",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clip-app-store-review-details",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clip-header-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experience-localizations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Upload-the-Image-Asset-that-Appears-on-the-App-Clip-Card",
+          "level": 3,
+          "text": "Upload the Image Asset that Appears on the App Clip Card",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Clip experience functionality provided by the App Store Connect API often involves uploading image assets to App Store Connect. For example, creating an App Clip experience using the App Store Connect API requires an image asset that appears on the App Clip card.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Uploading an image asset for an App Clip experience works similarly to uploading other assets to App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reserve the image asset using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipHeaderImages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint for a default App Clip experience or the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperienceImages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint for an advanced App Clip experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upload the image asset using the upload operations provided in the response to your reservation request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Commit the image asset using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipHeaderImages-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint for a default App Clip experience and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperienceImages-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint for an advanced App Clip experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch information about the image asset to verify that the upload succeeded using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipHeaderImages-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipAdvancedExperienceImages-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoints.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information on uploading assets to App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-App-Clip-Experience",
+          "level": 3,
+          "text": "Create an App Clip Experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating default and advanced App Clip experiences is a key functionality that App Store Connect provides. When you’ve gathered all required information and uploaded the image that appears on the App Clip card, you’re ready to create an App Clip experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a default App Clip experience:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperiences",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint. Be sure to attach the default App Clip experience to an App Store version by including the related ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resource in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceCreateRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Alternatively, update an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resource to include the new default App Clip experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAppStoreReviewDetails",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint to provide the default App Clip experience’s invocation URL to App Review.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperienceLocalizations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint to provide a localized subtitle and an image that appears on the App Clip card.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To create a new App Clip experience that uses metadata of an existing default App Clip experience, create the new experience and include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "appClipDefaultExperienceTemplate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " relationship in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceCreateRequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an advanced App Clip experience:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperiences",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include the related ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clips",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceLocalization",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experience-images",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For both default or advanced App Clip experiences, provide at least one localization and make sure that it matches your app’s primary locale. If your app supports additional localizations, provide the same localizations for each App Clip experience.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an advanced App Clip experience that appears in Apple Maps, you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceCreateRequest/Data-data.dictionary/Attributes-data.dictionary/Place-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " association that connects the App Clip experience to a physical location. Apple Maps uses any location data that you provide solely for matching an App Clip experience to an existing location. If it can’t find a match, Apple Maps doesn’t use the provided location data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-and-Delete-App-Clip-Experiences",
+          "level": 3,
+          "text": "Update and Delete App Clip Experiences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to how App Store Connect provides functionality to create App Clip experiences, it also offers functionality to update App Clip experiences. For example, you may need to update the phone number of an advanced App Clip experience, or change the localized subtitle that appears on the App Clip card of a default App Clip experience. However, you can’t update existing App Clip experiences for an already released App Clip. To update an already released App Clip, create a new App Clip experience and attach it to a new version of your app. When the new version passes App Review and you publish it on the App Store, it uses the new App Clip experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can’t delete App Clip experiences for an already released app version unless you release a new version of your app without an App Clip. That said, you can use functionality provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experiences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experiences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resources to update or delete App Clip experiences that aren’t attached to a released App Clip:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To update a default App Clip experience, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipDefaultExperiences-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To delete a default App Clip experience, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-appClipDefaultExperiences-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To update an advanced App Clip experience, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To delete an advanced App Clip experience, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint and set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isPoweredBy",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceUpdateRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Manage-Beta-App-Clip-Experiences",
+          "level": 3,
+          "text": "Manage Beta App Clip Experiences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verifying that the launch experience of the App Clip is free of errors is a key task when developing an App Clip. When you distribute your full app with TestFlight, you can configure beta App Clip experiences that testers use to launch your App Clip with the TestFlight app. To help automate creating and updating beta App Clip experiences, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-app-clip-invocations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource. It provides functionality to create, read, update, and delete a beta App Clip experience. For example, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to create a beta App Clip experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceCreateRequest/Data-data.dictionary/Attributes-data.dictionary/Place-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The place information of an advanced App Clip experience you create with this request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceCreateRequest/Data-data.dictionary/Attributes-data.dictionary/Place-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data-data.dictionary/attributes-data.dictionary/place-data.dictionary"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceLocalization": {
+      "abstract": [
+        {
+          "text": "The data structure that represents the Advanced App Clip Localizations resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceLocalization"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceLocalization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceLocalization"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppClipAdvancedExperienceLocalization",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appclipadvancedexperiencelocalization"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceUpdateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to update an advanced App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceUpdateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipAdvancedExperienceUpdateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppClipAdvancedExperienceUpdateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppClipAdvancedExperienceUpdateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceCreateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to create a default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppClipDefaultExperienceCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppClipDefaultExperienceCreateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppClipDefaultExperienceCreateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppClipDefaultExperienceCreateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-appClipDefaultExperiences-_id_": {
+      "abstract": [
+        {
+          "text": "Delete a specific default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-appClipDefaultExperiences-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/appClipDefaultExperiences/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Default App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-appclipdefaultexperiences-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipAdvancedExperienceImages-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about the image that appears on the App Clip card of an advanced App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipAdvancedExperienceImages-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appClipAdvancedExperienceImages/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Image Information for an Advanced App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appclipadvancedexperienceimages-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipHeaderImages-_id_": {
+      "abstract": [
+        {
+          "text": "Get the image that appears on the App Clip card of a default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-appClipHeaderImages-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/appClipHeaderImages/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the App Clip Card Image",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-appclipheaderimages-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperienceImages-_id_": {
+      "abstract": [
+        {
+          "text": "Update image information or commit the image asset of an advanced App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperienceImages-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/appClipAdvancedExperienceImages/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify the Image for an Advanced App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-appclipadvancedexperienceimages-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_": {
+      "abstract": [
+        {
+          "text": "Update and delete an existing advanced App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipAdvancedExperiences-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/appClipAdvancedExperiences/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify and Delete an Advanced App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-appclipadvancedexperiences-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipDefaultExperiences-_id_": {
+      "abstract": [
+        {
+          "text": "Update a default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipDefaultExperiences-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/appClipDefaultExperiences/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a Default App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-appclipdefaultexperiences-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipHeaderImages-_id_": {
+      "abstract": [
+        {
+          "text": "Change the image that appears on the App Clip card of a default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appClipHeaderImages-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/appClipHeaderImages/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify an App Clip Card Image",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-appclipheaderimages-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperienceImages": {
+      "abstract": [
+        {
+          "text": "Reserve an image asset that appears on the App Clip card of an advanced App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperienceImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appClipAdvancedExperienceImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an App Clip Card Image for an Advanced App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipadvancedexperienceimages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperiences": {
+      "abstract": [
+        {
+          "text": "Configure a new advanced App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAdvancedExperiences",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appClipAdvancedExperiences"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an Advanced App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipadvancedexperiences"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAppStoreReviewDetails": {
+      "abstract": [
+        {
+          "text": "Provide App Clip metadata required by App Store Review.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipAppStoreReviewDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appClipAppStoreReviewDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create App Store Review Details for an App Clip",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipappstorereviewdetails"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperienceLocalizations": {
+      "abstract": [
+        {
+          "text": "Provide localized metadata that appears on the App Clip card of a default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperienceLocalizations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appClipDefaultExperienceLocalizations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create the Localized Metadata for a Default App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipdefaultexperiencelocalizations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperiences": {
+      "abstract": [
+        {
+          "text": "Configure a new default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipDefaultExperiences",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appClipDefaultExperiences"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Default App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipdefaultexperiences"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipHeaderImages": {
+      "abstract": [
+        {
+          "text": "Reserve an image asset that appears on the App Clip card of a default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-appClipHeaderImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/appClipHeaderImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an App Clip Card Image for a Default App Clip Experience",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-appclipheaderimages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations": {
+      "abstract": [
+        {
+          "text": "Configure a new App Clip experience that testers launch using the TestFlight app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-betaAppClipInvocations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/betaAppClipInvocations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an App Clip Invocation for Testers in TestFlight",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-betaappclipinvocations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole": {
+      "abstract": [
+        {
+          "text": "Strings that represent user roles and permissions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserRole",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/userrole"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experience-images": {
+      "abstract": [
+        {
+          "text": "Read, create, and update imagery that appears on the App Clip card for advanced App Clip experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experience-images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advanced App Clip Experience Images",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/advanced-app-clip-experience-images"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experiences": {
+      "abstract": [
+        {
+          "text": "Create, read, update, and delete your advanced App Clip experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experiences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advanced App Clip Experiences",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/advanced-app-clip-experiences"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clip-app-store-review-details": {
+      "abstract": [
+        {
+          "text": "Manage required App Clip information you provide for App Review.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clip-app-store-review-details",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Clip App Store review details",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-clip-app-store-review-details"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clip-header-images": {
+      "abstract": [
+        {
+          "text": "Read and manage image assets that appear on the App Clip card.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clip-header-images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Clip Header Images",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-clip-header-images"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clips": {
+      "abstract": [
+        {
+          "text": "Read App Clip and App Clip experience information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clips",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-clips"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store": {
+      "abstract": [
+        {
+          "text": "Manage all aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-versions": {
+      "abstract": [
+        {
+          "text": "Manage versions of your app that are available in App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store-versions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store Versions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store-versions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-app-clip-invocations": {
+      "abstract": [
+        {
+          "text": "Manage App Clip experiences for testers in TestFlight.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/beta-app-clip-invocations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Beta App Clip Invocations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/beta-app-clip-invocations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experience-localizations": {
+      "abstract": [
+        {
+          "text": "Read and manage the metadata of your default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experience-localizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Default App Clip Experience Localizations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/default-app-clip-experience-localizations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experiences": {
+      "abstract": [
+        {
+          "text": "Read, create, update, and delete your default App Clip experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experiences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Default App Clip Experiences",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/default-app-clip-experiences"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect": {
+      "abstract": [
+        {
+          "text": "Upload screenshots, app previews, attachments for App Review, and routing app coverage files to App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uploading-assets-to-app-store-connect",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading Assets to App Store Connect",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/uploading-assets-to-app-store-connect"
+    },
+    "doc://com.apple.documentation/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/AppClip"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/": {
+      "identifier": "https://appstoreconnect.apple.com/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/introduction/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/introduction/",
+      "title": "Human Interface Guidelines > App Clips",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > App Clips",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/app-clips/overview/introduction/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Getting-App-Clip-and-App-Clip-Experience-Information",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-clips"
+      ],
+      "title": "Getting App Clip and App Clip Experience Information"
+    },
+    {
+      "anchor": "Managing-App-Clip-Experiences",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/default-app-clip-experiences",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/advanced-app-clip-experiences"
+      ],
+      "title": "Managing App Clip Experiences"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/app-clips-and-app-clip-experiences"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

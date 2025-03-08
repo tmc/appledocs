@@ -1,0 +1,394 @@
+{
+  "abstract": [
+    {
+      "text": "Specify a standard or custom symbol as a sidebar icon.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileprovider/documentation/FileProvider",
+        "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileprovider/documentation/FileProvider/setting-the-finder-sidebar-icon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "File Provider"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting the Finder Sidebar Icon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the sidebar icon for your File Provider extension, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/CFBundleSymbolName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in the File Provider extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The key takes the name of one of the SF Symbols. For the complete list of available symbols, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sf-symbols/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This image shows setting the sidebar icon to the ",
+              "type": "text"
+            },
+            {
+              "code": "cloud.bolt.fill",
+              "type": "codeVoice"
+            },
+            {
+              "text": " symbol in the Plist editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3908721",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can open the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file as source code and edit the XML directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>CFBundleIcons</key>",
+            "    <dict>",
+            "        <key>CFBundlePrimaryIcon</key>",
+            "        <dict>",
+            "            <key>CFBundleSymbolName</key>",
+            "            <string>cloud.bolt.fill</string>",
+            "        </dict>",
+            "    </dict>",
+            "    <key>NSExtension</key>",
+            "    <dict>",
+            "        <key>NSExtensionFileProviderDocumentGroup</key>",
+            "        <string>group.com.examples.My-File-Provider-App</string>",
+            "        <key>NSExtensionFileProviderSupportsEnumeration</key>",
+            "        <true/>",
+            "        <key>NSExtensionPointIdentifier</key>",
+            "        <string>com.apple.fileprovider-nonui</string>",
+            "        <key>NSExtensionPrincipalClass</key>",
+            "        <string>$(PRODUCT_MODULE_NAME).FileProviderExtension</string>",
+            "    </dict>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom symbol for your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/creating-custom-symbol-images-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To see a sample code project that uses a custom symbol, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/CFBundleSymbolName": {
+      "abstract": [
+        {
+          "text": "The name of the symbol to show in the action sheet, and in Finder’s sidebar on macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/CFBundleSymbolName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleSymbolName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIcons/CFBundlePrimaryIcon/CFBundleSymbolName"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/creating-custom-symbol-images-for-your-app": {
+      "abstract": [
+        {
+          "text": "Create, organize, and annotate symbol images using SF Symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/creating-custom-symbol-images-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating custom symbol images for your app",
+      "type": "topic",
+      "url": "/documentation/UIKit/creating-custom-symbol-images-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider": {
+      "abstract": [
+        {
+          "text": "An extension other apps use to access files and folders managed by your app and synced with a remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider",
+      "type": "topic",
+      "url": "/documentation/fileprovider"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Build a File Provider extension that syncs the local copies of your files with your remote storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/replicated-file-provider-extension",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Replicated File Provider extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/replicated-file-provider-extension"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions": {
+      "abstract": [
+        {
+          "text": "Make remote files available in macOS and iOS, and synchronize their states by using file provider extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing files using file provider extensions",
+      "type": "topic",
+      "url": "/documentation/fileprovider/synchronizing-files-using-file-provider-extensions"
+    },
+    "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension": {
+      "abstract": [
+        {
+          "text": "Keep the local and remote copies of your File Provider extension’s content in sync.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing the File Provider Extension",
+      "type": "topic",
+      "url": "/documentation/fileprovider/synchronizing-the-file-provider-extension"
+    },
+    "https://developer.apple.com/sf-symbols/": {
+      "identifier": "https://developer.apple.com/sf-symbols/",
+      "title": "SF Symbols 3",
+      "titleInlineContent": [
+        {
+          "text": "SF Symbols 3",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sf-symbols/"
+    },
+    "media-3908721": {
+      "alt": "A screenshot of the File Provider extension’s Info.plist file. The Plist editor shows an Icon file (iOS 5) key that contains a Primary Icon key, which also contains the SF Symbol name key. ",
+      "identifier": "media-3908721",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb6b976038df19008cb0692faf373041/media-3908721@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7eabdc3057e10ff8187adc9486419be3/media-3908721~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension",
+        "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-the-file-provider-extension",
+                "doc://com.apple.fileprovider/documentation/FileProvider/synchronizing-files-using-file-provider-extensions"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileprovider/setting-the-finder-sidebar-icon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileprovider/setting-the-finder-sidebar-icon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "abstract": [
+    {
+      "text": "Access classes and other declarations from your Objective-C code in Swift.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/importing-objective-c-into-swift"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Importing Objective-C into Swift"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use Objective-C and Swift files together in a single project, no matter which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "language the project used originally. This makes creating mixed-language app and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework targets as straightforward as creating an app or framework target written",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a single language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "importing-objective-c-into-swift-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process for using your Objective-C declarations from your Swift code within mixed-language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "targets differs slightly depending on whether you’re writing an app or a framework.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Both processes are described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-Code-Within-an-App-Target",
+          "level": 3,
+          "text": "Import Code Within an App Target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To import a set of Objective-C files into Swift code within the same app target,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you rely on an Objective-C bridging header file to expose those files to Swift. Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "offers to create this header when you add a Swift file to an existing Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, or an Objective-C file to an existing Swift app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "importing-objective-c-into-swift-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you accept, Xcode creates the bridging header file along with the file you were",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creating, and names it by using your product module name followed by ",
+              "type": "text"
+            },
+            {
+              "code": "\"-Bridging-Header.h\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can create a bridging header yourself by choosing File > New",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "> File > [",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "operating system",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "] > Source > Header File.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Edit the bridging header to expose your Objective-C code to your Swift code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your Objective-C bridging header, import every Objective-C header you want",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to expose to Swift.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Build Settings, in Swift Compiler - General, make sure the Objective-C Bridging",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Header build setting has a path to the bridging header file. The path should be relative",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to your project, similar to the way your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " path is specified in Build",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Settings. In most cases, you won’t need to modify this setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any public Objective-C headers listed in the bridging header are visible to Swift.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Objective-C declarations are automatically available from any Swift file within",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that target, with no import statements. Use classes and other declarations from your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom Objective-C code with the same Swift syntax you use for system classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-Code-Within-a-Framework-Target",
+          "level": 3,
+          "text": "Import Code Within a Framework Target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the Objective-C declarations in files in the same framework target as your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift code, configure an umbrella header as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Build Settings, in Packaging, make sure the Defines Module setting for the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "framework target is set to Yes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the umbrella header, import every Objective-C header you want to expose to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Swift.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift sees every header you expose publicly in your umbrella header. The contents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the Objective-C files in that framework are automatically available from any Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file within that framework target, with no import statements. Use classes and other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declarations from your Objective-C code with the same Swift syntax you use for system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use native Swift syntax to interoperate with types and functions in C and Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Imported C and Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/imported-c-and-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/importing-swift-into-objective-c": {
+      "abstract": [
+        {
+          "text": "Access Swift types and declarations from within your Objective-C codebase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/importing-swift-into-objective-c",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing Swift into Objective-C",
+      "type": "topic",
+      "url": "/documentation/swift/importing-swift-into-objective-c"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "importing-objective-c-into-swift-1": {
+      "alt": "Diagram showing the steps to import Objective-C declarations into Swift code. Import your Objective-C headers into an Objective-C bridging header file to expose the declarations to all your Swift files.",
+      "identifier": "importing-objective-c-into-swift-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5cb5e2afcbdb079c89832447804509e/importing-objective-c-into-swift-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fa0d48d2319fed4c8ef2ffef47be1b98/importing-objective-c-into-swift-1~dark@2x.png"
+        }
+      ]
+    },
+    "importing-objective-c-into-swift-2": {
+      "alt": "Screenshot of the Xcode prompt to configure an Objective-C bridging header.",
+      "identifier": "importing-objective-c-into-swift-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a9554a73a7fdb2e95dea503e844421c/importing-objective-c-into-swift-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a9554a73a7fdb2e95dea503e844421c/importing-objective-c-into-swift-2~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Swift-and-Objective-C-in-the-Same-Project",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/importing-swift-into-objective-c"
+      ],
+      "title": "Swift and Objective-C in the Same Project"
+    }
+  ]
+}

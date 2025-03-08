@@ -1,0 +1,1673 @@
+{
+  "abstract": [
+    {
+      "text": "A template-based layout for custom messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.messages/documentation/Messages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MSMessageTemplateLayout",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MSMessageTemplateLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Messages"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MSMessageTemplateLayout"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MSMessageTemplateLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes how an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is presented in the transcript. The message template includes the Message extension’s icon, an image, video, or audio file, and a number of text elements (title, subtitle, caption, subcaption, trailing caption, and trailing subcaption). These elements are laid out as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/messages/msmessagetemplatelayout#1965603",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1965603",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the template:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instantiate a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MSMessageTemplateLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign values to the properties representing the desired visual elements.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can leave unwanted elements set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The system sizes the message balloon to fit the provided content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MSMessageTemplateLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage/layout",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass the ",
+              "type": "text"
+            },
+            {
+              "code": "MSMessageTemplateLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/messages/msmessagetemplatelayout#1965603": {
+      "identifier": "/documentation/messages/msmessagetemplatelayout#1965603",
+      "title": "Figure 1",
+      "titleInlineContent": [
+        {
+          "text": "Figure 1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/messages/msmessagetemplatelayout#1965603"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.messages/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/messages"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessage": {
+      "abstract": [
+        {
+          "text": "A custom message object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessage",
+      "type": "topic",
+      "url": "/documentation/messages/msmessage"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessage/layout": {
+      "abstract": [
+        {
+          "text": "A layout object that defines the message’s appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MSMessageLayout",
+          "text": "MSMessageLayout"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage/layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "layout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessage/layout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageLayout": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines the appearance of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.messages/documentation/Messages/MSMessage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects in the conversation transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessageLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout": {
+      "abstract": [
+        {
+          "text": "A layout that provides a custom, interactive view inside the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessageLiveLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageLiveLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageLiveLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagelivelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout": {
+      "abstract": [
+        {
+          "text": "A template-based layout for custom messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSMessageTemplateLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSMessageTemplateLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSMessageTemplateLayout",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/caption": {
+      "abstract": [
+        {
+          "text": "A left-aligned caption for the message bubble.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "caption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/caption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "caption"
+        }
+      ],
+      "role": "symbol",
+      "title": "caption",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/caption"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/image": {
+      "abstract": [
+        {
+          "text": "An image used to represent the message in the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/image"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageSubtitle": {
+      "abstract": [
+        {
+          "text": "The subtitle for the image or media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageSubtitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageSubtitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageSubtitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageSubtitle",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/imagesubtitle"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageTitle": {
+      "abstract": [
+        {
+          "text": "The title for the image or media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageTitle",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/imagetitle"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/mediaFileURL": {
+      "abstract": [
+        {
+          "text": "A media file used to represent the message in the transcript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/mediaFileURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaFileURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaFileURL",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/mediafileurl"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/subcaption": {
+      "abstract": [
+        {
+          "text": "A left-aligned subcaption for the message bubble.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subcaption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/subcaption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subcaption"
+        }
+      ],
+      "role": "symbol",
+      "title": "subcaption",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/subcaption"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingCaption": {
+      "abstract": [
+        {
+          "text": "A right-aligned caption for the message bubble.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trailingCaption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingCaption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trailingCaption"
+        }
+      ],
+      "role": "symbol",
+      "title": "trailingCaption",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/trailingcaption"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingSubcaption": {
+      "abstract": [
+        {
+          "text": "A right-aligned subcaption for the message bubble.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trailingSubcaption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingSubcaption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trailingSubcaption"
+        }
+      ],
+      "role": "symbol",
+      "title": "trailingSubcaption",
+      "type": "topic",
+      "url": "/documentation/messages/msmessagetemplatelayout/trailingsubcaption"
+    },
+    "doc://com.apple.messages/documentation/Messages/MSSession": {
+      "abstract": [
+        {
+          "text": "A session object used to create and update messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MSSession"
+        }
+      ],
+      "identifier": "doc://com.apple.messages/documentation/Messages/MSSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MSSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MSSession",
+      "type": "topic",
+      "url": "/documentation/messages/mssession"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-1965603": {
+      "alt": null,
+      "identifier": "media-1965603",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1901e82e59b3edc1aa1efc9684c8c7ee/media-1965603@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessageLayout"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interactive-messages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessage",
+        "doc://com.apple.messages/documentation/Messages/MSSession",
+        "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+        "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout"
+      ],
+      "title": "Interactive messages"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Assigning-Visual-Elements",
+      "identifiers": [
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/image",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/mediaFileURL",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageTitle",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageSubtitle",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/caption",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/subcaption",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingCaption",
+        "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingSubcaption"
+      ],
+      "title": "Assigning Visual Elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MSMessageTemplateLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.messages/documentation/Messages"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Assigning-Visual-Elements",
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/image",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/mediaFileURL",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageTitle",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/imageSubtitle",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/caption",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/subcaption",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingCaption",
+                "doc://com.apple.messages/documentation/Messages/MSMessageTemplateLayout/trailingSubcaption"
+              ],
+              "title": "Assigning Visual Elements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessageLayout"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interactive-messages",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.messages/documentation/Messages/MSMessage",
+                "doc://com.apple.messages/documentation/Messages/MSSession",
+                "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+                "doc://com.apple.messages/documentation/Messages/MSMessageLiveLayout"
+              ],
+              "title": "Interactive messages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MSMessageTemplateLayout"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.messages/documentation/Messages/MSMessageLayout",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MSMessageLayout",
+                    "text": "MSMessageLayout"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSession/title",
+          "value": "MSSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1imageTitle/title",
+          "value": "imageTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1imageTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage/title",
+          "value": "MSMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLayout/title",
+          "value": "MSMessageLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1caption/title",
+          "value": "caption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1caption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "caption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1subcaption/title",
+          "value": "subcaption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1subcaption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subcaption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout/title",
+          "value": "MSMessageTemplateLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageTemplateLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1trailingCaption/title",
+          "value": "trailingCaption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1trailingCaption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "trailingCaption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout/title",
+          "value": "MSMessageLiveLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageLiveLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MSMessageLiveLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1imageSubtitle/title",
+          "value": "imageSubtitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1imageSubtitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageSubtitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1trailingSubcaption/title",
+          "value": "trailingSubcaption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1trailingSubcaption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "trailingSubcaption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage~1layout/title",
+          "value": "layout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessage~1layout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1mediaFileURL/title",
+          "value": "mediaFileURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.messages~1documentation~1Messages~1MSMessageTemplateLayout~1mediaFileURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaFileURL"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/messages/msmessagetemplatelayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/messages/msmessagetemplatelayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

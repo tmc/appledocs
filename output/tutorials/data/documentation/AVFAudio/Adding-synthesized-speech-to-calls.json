@@ -1,0 +1,1451 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a more accessible experience by adding your app’s audio to a call.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.2",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adding synthesized speech to calls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to create an accessibility app that supports augmentative and alternative communication (AAC) by adding synthesized speech to a call. This feature is available in iOS 18.2 and visionOS 2.2 and later, and is available to use with calling apps that capture microphone input using Apple’s voice processing like Phone, FaceTime, and most VoIP apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides a basic user interface with a button to toggle the feature state and a text field. When you enter text into the field and press enter, the app speaks the phrase. If you have an active call in progress and you enable adding the app’s audio to it, you’ll hear the synthesized speech on the originating and receiving ends of the call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple intends apps to use this feature to add synthesized speech to a call. The sample uses the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVSpeechSynthesizer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API to generate audio, but your app can use any audio API to generate and play synthesized speech. The App Store review process rejects apps that attempt to misuse this feature for other purposes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 2,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample requires running on an iOS device with iOS 18.2 or later. To test the sample, establish a phone or FaceTime call with another device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-the-accessibility-service",
+          "level": 2,
+          "text": "Enable the accessibility service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before an app can add its audio to calls, a person must turn on a system-level service in the Settings app by choosing Accessibility > Audio & Visual > Add Audio in Calls. This setting is global to the device and influences the availability of the service for all apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "add_audio_in_calls",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample determines the state of this setting by querying the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for its microphone injection permission:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retrieve the current microphone injection permission.",
+            "let permission = AVAudioApplication.shared.microphoneInjectionPermission"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A permission value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/serviceDisabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicates the person hasn’t turned on the service, which means apps can’t add audio to calls. When the app retrieves this value, it presents an alert dialog that indicates the current state and provides the person an opportunity to update their setting. When you press the dialog’s Open Settings button, the app uses the Accessibility framework to directly open the Add Audio in Calls screen in the Settings app like shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@ViewBuilder",
+            "var alertButtons: some View {",
+            "    Button(\"Open Settings\") {",
+            "        Task {",
+            "            do {",
+            "                // Open the configuration screen for this feature in the Settings app.",
+            "                try await AccessibilitySettings.openSettings(for: .allowAppsToAddAudioToCalls)",
+            "            } catch {",
+            "                print(\"Unable to open Settings app: \\(error)\")",
+            "            }",
+            "        }",
+            "    }",
+            "    Button(\"Cancel\", role: .cancel) {}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-permission",
+          "level": 2,
+          "text": "Request permission",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Turning on Add Audio in Calls makes the feature available to apps on the system, but apps must explicitly request and be granted permission to use the feature. The sample determines its permission by querying for the current microphone injection permission. A value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/undetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicates the app hasn’t yet requested permission and needs to before it can use the feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an app to request a person’s permission, it needs to provide an ",
+              "type": "text"
+            },
+            {
+              "code": "NSMicrophoneInjectionUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a description of why the app requests microphone access. The system displays this string when an app requests user permission. The sample app defines this entry as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSMicrophoneInjectionUsageDescription</key>",
+            "<string>This app adds its audio to calls to support augmentative and alternative communication.</string>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attempting to request permission without this usage string present results in the system quitting the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app requests permission by calling the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/requestRecordPermission(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and awaiting a response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// If undetermined, prompt the person to grant the app access, and turn on the feature, if allowed.",
+            "if await AVAudioApplication.requestMicrophoneInjectionPermission() == .granted {",
+            "    // If the person grants access, turn on adding app audio.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method causes the system to present a dialog that requests user permission. If a person grants the app permission, the call returns a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/granted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the app updates its state accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person denies the app permission, the system sets the microphone injection permission state to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/denied",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the app is unable to use the feature. The app remains in this state until a person explicitly changes the permission from the Add Audio in Calls screen in the Settings app. If you attempt to turn on the feature in the app while in this state, the app presents an alert similar to the one shown in the previous section to update the app’s permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-adding-audio-to-calls",
+          "level": 2,
+          "text": "Enable adding audio to calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app has permission to add audio and a person toggles the feature state in the user interface, the app responds by calling the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPreferredMicrophoneInjectionMode(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To turn on the feature, the app passes the method a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode/spokenAudio",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; to turn off the feature, it passes a value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let mode: AVAudioSession.MicrophoneInjectionMode = // spoken audio or none",
+            "try AVAudioSession.sharedInstance().setPreferredMicrophoneInjectionMode(mode)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When turned on during an active call, the system plays the app’s audio locally and adds it to the microphone’s input stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "AVAudioSession/setPreferredMicrophoneInjectionMode(_:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method uses the word ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "preferred",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " to indicate that an app can set its preference, but a person ultimately determines whether they allow the feature’s use.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Monitor-the-availability-of-calls",
+          "level": 2,
+          "text": "Monitor the availability of calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether a call can use this feature, the sample awaits notification of changes to the state of the audio session’s microphone injection capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Monitor the active state of phone and FaceTime calls.",
+            "private func observeCallState() async {",
+            "    // Await notification of changes to the audio session's microphone injection capabilities.",
+            "    for await notification in NotificationCenter.default.notifications(named: AVAudioSession.microphoneInjectionCapabilitiesChangeNotification) {",
+            "        // Inspect the user information dictionary to determine whether microphone injection is available.",
+            "        isCallActive = notification.userInfo?[AVAudioSessionMicrophoneInjectionIsAvailableKey] as? Bool ?? false",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a call begins or ends, the system posts a notification of the change. The app queries the notification’s user information dictionary for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionMicrophoneInjectionIsAvailableKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to determine whether there’s an active call. When the value is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app updates its UI to show a pulsing phone icon in the toolbar to indicate the call is active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "07ddaa5f3c26/AddingSynthesizedSpeechToCalls.zip": {
+      "checksum": "07ddaa5f3c268708172509cf55d8f0514f2eae9f25bc9621b89df73abadba45d90f8b98a384085d4e036adae9fddf83d0e47c7fec8b95aa2390e9f4424defc23",
+      "identifier": "07ddaa5f3c26/AddingSynthesizedSpeechToCalls.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/07ddaa5f3c26/AddingSynthesizedSpeechToCalls.zip"
+    },
+    "add_audio_in_calls": {
+      "alt": "A screenshot showing the Add Audio in Calls screen in the Settings app. At the top of the image is a navigation bar title of Add Audio in Calls and a Back button on its leading edge. Below the navigation bar is a toggle switch, in an enabled state, with the label of Allow Apps to Add Audio in Calls. Below the switch is a description of this feature with the text Any audio from apps, along with microphone input, will be audible during a call. Muting the microphone will silence all audio. This may be used by apps that help assist with speaking and communication.",
+      "identifier": "add_audio_in_calls",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/794d40aef207b215a4d7518067f6713d/add_audio_in_calls@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8fe385f1f5ab897b1e19fd5a77cc0d95/add_audio_in_calls~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages one or more audio sessions that belong to an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/denied": {
+      "abstract": [
+        {
+          "text": "A person denies the app permission to add audio to calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "denied"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/denied",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplicationMicrophoneInjectionPermissionDenied"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication.MicrophoneInjectionPermission.denied",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/denied"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/granted": {
+      "abstract": [
+        {
+          "text": "A person grants the app permission to add audio to calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "granted"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/granted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplicationMicrophoneInjectionPermissionGranted"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication.MicrophoneInjectionPermission.granted",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/granted"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/serviceDisabled": {
+      "abstract": [
+        {
+          "text": "A person disables this service for all apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceDisabled"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/serviceDisabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication.MicrophoneInjectionPermission.serviceDisabled",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/servicedisabled"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/undetermined": {
+      "abstract": [
+        {
+          "text": "The app hasn’t requested a person’s permission to add audio to calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "undetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/MicrophoneInjectionPermission-swift.enum/undetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplicationMicrophoneInjectionPermissionUndetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication.MicrophoneInjectionPermission.undetermined",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/undetermined"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/requestRecordPermission(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the app has permission to record audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestRecordPermission"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication/requestRecordPermission(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestRecordPermissionWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestRecordPermission(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication/requestrecordpermission(completionhandler:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter": {
+      "abstract": [
+        {
+          "text": "An object for configuring macOS apps to participate in AirPods Automatic Switching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode/none": {
+      "abstract": [
+        {
+          "text": "A mode that indicates not to use spoken audio injection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode/none",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionMicrophoneInjectionModeNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.MicrophoneInjectionMode.none",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/microphoneinjectionmode/none"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode/spokenAudio": {
+      "abstract": [
+        {
+          "text": "A mode that indicates to inject spoken audio, like synthesized speech, along with microphone audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spokenAudio"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/MicrophoneInjectionMode/spokenAudio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionMicrophoneInjectionModeSpokenAudio"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.MicrophoneInjectionMode.spokenAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/microphoneinjectionmode/spokenaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPreferredMicrophoneInjectionMode(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred mode of injecting audio into another app’s input stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPreferredMicrophoneInjectionMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioSessionMicrophoneInjectionMode",
+          "text": "MicrophoneInjectionMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPreferredMicrophoneInjectionMode(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPreferredMicrophoneInjectionMode:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPreferredMicrophoneInjectionMode(_:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/setpreferredmicrophoneinjectionmode(_:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionMicrophoneInjectionIsAvailableKey": {
+      "abstract": [
+        {
+          "text": "A key to retrieve a Boolean value that indicates whether microphone injection is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionMicrophoneInjectionIsAvailableKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionMicrophoneInjectionIsAvailableKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionMicrophoneInjectionIsAvailableKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSessionMicrophoneInjectionIsAvailableKey",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessionmicrophoneinjectionisavailablekey"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVSpeechSynthesizer": {
+      "abstract": [
+        {
+          "text": "An object that produces synthesized speech from text utterances and enables monitoring or controlling of ongoing speech.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpeechSynthesizer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVSpeechSynthesizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSpeechSynthesizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSpeechSynthesizer",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avspeechsynthesizer"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones": {
+      "abstract": [
+        {
+          "text": "Configure an iOS device’s built-in microphones to add stereo recording capabilities to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing stereo audio from built-In microphones",
+      "type": "topic",
+      "url": "/documentation/avfaudio/capturing-stereo-audio-from-built-in-microphones"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling audio interruptions",
+      "type": "topic",
+      "url": "/documentation/avfaudio/handling-audio-interruptions"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to route changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to audio route changes",
+      "type": "topic",
+      "url": "/documentation/avfaudio/responding-to-audio-route-changes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "07ddaa5f3c26/AddingSynthesizedSpeechToCalls.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "System-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+      ],
+      "title": "System audio"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "System-audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+              ],
+              "title": "System audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1granted/title",
+          "value": "AVAudioApplicationMicrophoneInjectionPermissionGranted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1granted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplicationMicrophoneInjectionPermissionGranted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1MicrophoneInjectionMode~1none/title",
+          "value": "AVAudioSessionMicrophoneInjectionModeNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1MicrophoneInjectionMode~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionMicrophoneInjectionModeNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/title",
+          "value": "AVAudioSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVSpeechSynthesizer/title",
+          "value": "AVSpeechSynthesizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVSpeechSynthesizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVSpeechSynthesizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionMicrophoneInjectionIsAvailableKey/title",
+          "value": "AVAudioSessionMicrophoneInjectionIsAvailableKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSessionMicrophoneInjectionIsAvailableKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionMicrophoneInjectionIsAvailableKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/title",
+          "value": "AVAudioApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1MicrophoneInjectionMode~1spokenAudio/title",
+          "value": "AVAudioSessionMicrophoneInjectionModeSpokenAudio"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1MicrophoneInjectionMode~1spokenAudio/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionMicrophoneInjectionModeSpokenAudio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1requestRecordPermission(completionHandler:)/title",
+          "value": "requestRecordPermissionWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1requestRecordPermission(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestRecordPermissionWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1serviceDisabled/title",
+          "value": "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1serviceDisabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setPreferredMicrophoneInjectionMode(_:)/title",
+          "value": "setPreferredMicrophoneInjectionMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setPreferredMicrophoneInjectionMode(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPreferredMicrophoneInjectionMode:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/title",
+          "value": "AVAudioRoutingArbiter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1denied/title",
+          "value": "AVAudioApplicationMicrophoneInjectionPermissionDenied"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1denied/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplicationMicrophoneInjectionPermissionDenied"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1undetermined/title",
+          "value": "AVAudioApplicationMicrophoneInjectionPermissionUndetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication~1MicrophoneInjectionPermission-swift.enum~1undetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplicationMicrophoneInjectionPermissionUndetermined"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/adding-synthesized-speech-to-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/adding-synthesized-speech-to-calls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

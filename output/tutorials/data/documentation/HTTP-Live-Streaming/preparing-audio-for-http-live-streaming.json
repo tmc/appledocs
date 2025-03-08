@@ -1,0 +1,563 @@
+{
+  "abstract": [
+    {
+      "text": "Encode your media properly to ensure synchronized audio and video playback.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/preparing-audio-for-http-live-streaming"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing Audio for HTTP Live Streaming"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Producing media for HTTP Live Streaming (HLS) requires special considerations if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’re encoding audio using the Advanced Audio Coding (AAC) family of formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AAC audio processing requires a small amount of leading “throw-away” audio to prime",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the encoder and initialize internal tables. This small amount of audio results from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "encoder delay",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " which happens during encoding to produce properly formed, encoded",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "audio packets, and its duration is commonly referred to as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "priming duration",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This audio needs to occur before the first frame of video; otherwise, there will",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be no audio for the first few frames of video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "preparing-audio-for-http-live-streaming-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The audio sample rates are normally 44.1 kHz or 48 kHz. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-MPEG-2-transport-stream-segments",
+          "level": 3,
+          "text": "Encode MPEG-2 transport stream segments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MPEG-2 transport streams create an arbitrary timestamp when encoding media, using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an 33-bit clock that rolls over every 26 hours. For example, if your video starts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the two-hour mark, your audio starts at two hours plus the time for the leading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "audio. Therefore, a segment of audio that’s paired with a segment of video starting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the two-hour mark needs audio that starts at the two-hour mark minus the priming",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "duration. This additional segment ensures the first frame of video plays synchronously",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-fragmented-MPEG-4-segments",
+          "level": 3,
+          "text": "Encode fragmented MPEG-4 segments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MPEG-4 file format (ISO BMFF) carries the presumption that all track timelines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "begin with time zero, regardless of whether the timeline is divided into fragments.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you can set the initial decode time of any fragment to an arbitrary value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by means of the Track Fragment Base Media Decode Time Box (",
+              "type": "text"
+            },
+            {
+              "code": "tfdt",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Use this box",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to permit the alignment of the audio timeline with the video timeline that places",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the priming audio prior to the first video frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, starting with iOS 13.1 it’s possible to utilize an Edit List Box (",
+              "type": "text"
+            },
+            {
+              "code": "elst",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within the Track Box (",
+              "type": "text"
+            },
+            {
+              "code": "trak",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in order to place the duration of the priming audio",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prior to time 0. This permits a natural alignment of other tracks with audio at time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "0. The edit list needs to have a single entry in which the value of ",
+              "type": "text"
+            },
+            {
+              "code": "media_start",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is equivalent to the audio priming duration and the value of ",
+              "type": "text"
+            },
+            {
+              "code": "segment_duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "0. This is the recommended approach for time alignment for the Common Media Application",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Format (CMAF).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-play-position-changes-within-content",
+          "level": 3,
+          "text": "Handle play position changes within content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changing the play position to a specific point in time within content is known as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "seeking",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and is another consideration for encoding audio. HTTP Live Streaming (HLS)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has individual segments that are individually downloadable; each contains media data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for 4 to 6 seconds of the overall media timeline. When seeking into a point in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video, skip over the intervening segments between the current and target play position",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and load the appropriate segment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/deploying-a-basic-http-live-streaming-hls-stream": {
+      "abstract": [
+        {
+          "text": "Create a basic webpage to deliver HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/deploying-a-basic-http-live-streaming-hls-stream",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying a Basic HTTP Live Streaming (HLS) Stream",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/deploying-a-basic-http-live-streaming-hls-stream"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+      "title": "HTTP Live Streaming Specification",
+      "titleInlineContent": [
+        {
+          "text": "HTTP Live Streaming Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis"
+    },
+    "preparing-audio-for-http-live-streaming-1": {
+      "alt": "Illustration of audio priming samples in the audio track located ahead of the video samples in the video track.",
+      "identifier": "preparing-audio-for-http-live-streaming-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2ceacf9189804d8b5d286710141f294/preparing-audio-for-http-live-streaming-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/deploying-a-basic-http-live-streaming-hls-stream"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

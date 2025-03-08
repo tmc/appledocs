@@ -1,0 +1,486 @@
+{
+  "abstract": [
+    {
+      "text": "Unregisters a registered speech synthesizer or voice.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1462511,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SpeechSynthesisUnregisterModuleURL",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpeechSynthesisUnregisterModuleURL"
+      },
+      {
+        "kind": "text",
+        "text": "(CFURL) -> OSErr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "13.0",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SpeechSynthesisUnregisterModuleURL(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpeechSynthesisUnregisterModuleURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURL"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The file URL of the synthesizer plug-in or voice to unregister.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "url"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SpeechSynthesisUnregisterModuleURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function unregisters the speech synthesizer or voice specified by ",
+              "type": "text"
+            },
+            {
+              "code": "url",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When a synthesizer is unregistered, all voices that require that synthesizer are automatically unregistered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that if a speech channel is currently using a synthesizer or voice that becomes unregistered, the speech channel is considered inactive and will return an error when the application tries to access it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An application that called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to register a synthesizer or voice should do the following if the volume containing the synthesizer or voice is about to be unmounted:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to dispose of each speech channel that uses the synthesizer or voice",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SpeechSynthesisUnregisterModuleURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to unregister the synthesizer or voice",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you call ",
+              "type": "text"
+            },
+            {
+              "code": "SpeechSynthesisUnregisterModuleURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to unregister a synthesizer or voice and you receive either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/nosynthfound",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/voicenotfound",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " result codes, it means that the synthesizer or voice is not currently registered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl": {
+      "abstract": [
+        {
+          "text": "Registers and makes available a speech synthesizer or voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSynthesisRegisterModuleURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSynthesisRegisterModuleURL(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeSpeechChannel(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462081-disposespeechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu": {
+      "abstract": [
+        {
+          "text": "Unregisters a registered speech synthesizer or voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSynthesisUnregisterModuleURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSynthesisUnregisterModuleURL(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/speech_synthesis_manager#1659745"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/nosynthfound": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/nosynthfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noSynthFound",
+      "type": "topic",
+      "url": "/documentation/coreservices/nosynthfound"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/voicenotfound": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/voicenotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "voiceNotFound",
+      "type": "topic",
+      "url": "/documentation/coreservices/voicenotfound"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl"
+      ],
+      "title": "Registering and Unregistering Synthesizers and Voices"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1462511-speechsynthesisunregistermoduleu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1462511-speechsynthesisunregistermoduleu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

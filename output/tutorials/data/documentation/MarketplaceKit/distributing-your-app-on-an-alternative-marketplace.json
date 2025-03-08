@@ -1,0 +1,1311 @@
+{
+  "abstract": [
+    {
+      "text": "Design your app for alternative distribution from an alternative app marketplace.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing your app on an alternative app marketplace"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute your app from an alternative app marketplace, review and sign the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/apple-developer-program-license-agreement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-on-an-alternative-marketplace-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that reside on alternative marketplaces need to support iPhone or iPad, alternative app marketplaces don’t support other platforms. In addition, when App Store Connect sends your app to an alternative marketplace, it excludes any watchOS extensions or watch apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps on an alternative marketplace aren’t required to use MarketplaceKit. But you need to build your app with Xcode 14.1 or later and set the deployment target greater than or equal to the earliest version of iOS or iPadOS that Xcode 14.1 supports. If your app does call MarketplaceKit methods, build your app with Xcode 15.3 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-your-app-depending-on-the-installation-source",
+          "level": 2,
+          "text": "Customize your app depending on the installation source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app installs from more than one source, you can implement conditional code to do something different, such as displaying a different graphic, depending on the source from which a person installs your app. Use MarketplaceKit app distributor’s static ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine the installation source:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App distributor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Installation source",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TestFlight",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternative app marketplace; the argument ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " identifies the marketplace bundle ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The developer’s website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enterprise or education developer programs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In apps that people install from alternative marketplaces, use APIs that vary from apps on the App Store. Specifically, use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for ads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A custom e-commerce solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A social gaming network other than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/game-center",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " unless your app is also on the App Store",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to download large files in the background",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the App Store’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " system, or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in apps you distribute outside of the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-your-app-to-run-on-other-platforms",
+          "level": 2,
+          "text": "Enable your app to run on other platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps can run on platforms that MarketplaceKit doesn’t support, including macOS using Mac Catalyst or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "as-is",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " on Apple silicon, and visionOS. To check the platform, use ",
+              "type": "text"
+            },
+            {
+              "code": "#if canImport(MarketplaceKit)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for Mac apps built with Mac Catalyst and visionOS. Avoid importing MarketplaceKit on unsupported platforms, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if canImport(MarketplaceKit)",
+            "import MarketplaceKit",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", check the platform first and avoid accessing MarketplaceKit on unsupported platforms. The following example uses ",
+              "type": "text"
+            },
+            {
+              "code": "#if canImport(MarketplaceKit)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again to conditionalize access to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getDistributorName() async -> String {",
+            "#if canImport(MarketplaceKit)",
+            "    do {",
+            "        let currentDistributor = try await AppDistributor.current",
+            "        switch currentDistributor {",
+            "        case .appStore:",
+            "            return \"App Store\"",
+            "        case .testFlight:",
+            "            return \"TestFlight\"",
+            "        case .marketplace(let bundleId):",
+            "            return \"Alternative marketplace (\\(bundleId))\"",
+            "        case .web:",
+            "            return \"Website\"",
+            "        case .other:",
+            "            return \"Other\"",
+            "        @unknown default:",
+            "            return \"Unknown\"",
+            "        }",
+            "    } catch { return \"Error\" }",
+            "#else",
+            "    return \"Unavailable\"",
+            "#endif",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "as-is",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " apps that run on Apple silicon, use ",
+              "type": "text"
+            },
+            {
+              "code": "ProcessInfo.processInfo.isiOSAppOnMac",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if ProcessInfo.processInfo.isiOSAppOnMac {",
+            "    distributorName = \"Unavailable\"",
+            "} else {",
+            "    Task { currentDistributorName = await getCurrentDistributor() }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Establish-a-marketplace-relationship-and-enable-notifications",
+          "level": 2,
+          "text": "Establish a marketplace relationship and enable notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute your app on a particular alternative app marketplace, contact the marketplace directly and it provides you with a unique ID that you upload to App Store Connect. Apple verifies the ID with the marketplace’s public key to confirm your agreement, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relationship",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to submit your app for review, choose the Notarization review type; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". app completes ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Notarization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", your app becomes available for the marketplace to distribute. App Store Connect provides your Notarization-approved app in the form of an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alternative distribution package",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The package contains instructions that the alternative app marketplace follows to assemble an installable version of your app. You can download the alternative distribution package and provide it to the marketplace manually or, enable notifications in App Store Connect, which sends the package to the marketplace automatically. When notifications are on, App Store Connect keeps the marketplace up-to-date on the alternative distribution packages for all your latest app versions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-app-during-development",
+          "level": 2,
+          "text": "Test your app during development",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can install from an alternative marketplace app only after passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To test your app beforehand, set the installation source for development builds. Setting the installation source enables you to simulate an installation from a marketplace in production.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set your target’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Alternative Distribution - Marketplaces",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " build setting to a list of marketplace bundle IDs for the alternative marketplaces from which your app can install.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-on-an-alternative-marketplace-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The build setting by name is ",
+                  "type": "text"
+                },
+                {
+                  "code": "MARKETPLACES",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Open your Xcode project in Xcode 15.3 or later and add the build setting manually if one by that title isn’t present.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This build setting overrides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for development builds, which enables you to test any custom code branching your app might do, such as displaying a different image or offering different menu items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-on-an-alternative-marketplace-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your scheme’s Run task Options tab, Distribution selection menu, choose that marketplace’s bundle ID to simulate installation from that marketplace for runs on device through Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, to override the ",
+              "type": "text"
+            },
+            {
+              "code": "current",
+              "type": "codeVoice"
+            },
+            {
+              "text": " distributor in a test plan, choose a marketplace bundle ID in the Distribution selection menu of your test plan’s configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-on-an-alternative-marketplace-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "distributing-your-app-on-an-alternative-marketplace-1": {
+      "alt": "Three screenshots of iPhone that show the stages of installing an app, Backyard Birds, from a fictional alternative app marketplace called Megabyte Mart. The left screenshot has the caption Alternative app marketplace and shows a representation of the Megabyte Mart app that show the app icon for Backyard Birds with an Install button in a list. The center screenshot has the caption Install sheet and shows a confirmation, the title of the sheet is Megabyte Mart Would Like to Install an App, followed by lines that represent descriptive text, followed by the Backyard Birds app info, which includes the developer name Tapland, Inc. as well as screenshots, below the app info is the Install App button, followed by a Cancel button. The right screenshot has the caption App from an alternative marketplace and shows a representation of the homescreen with Megabyte Mart and Backyard Birds installed.",
+      "identifier": "distributing-your-app-on-an-alternative-marketplace-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04f5de82797e5c7eca1bf416f5a0f9c3/distributing-your-app-on-an-alternative-marketplace-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb940bca85eba285c541a8a2a2c62a44/distributing-your-app-on-an-alternative-marketplace-1~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-on-an-alternative-marketplace-2": {
+      "alt": "A screenshot of Xcode with the project, AltDistTesting, selected in the project navigation sidebar, and the build settings tab open. Under targets, AltDistTesting is selected, under Deployment the setting Alternative Distribution - Marketplaces is set to com.megabytemart.megabytemart.",
+      "identifier": "distributing-your-app-on-an-alternative-marketplace-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/715e17e0c190e7540475997a1000d417/distributing-your-app-on-an-alternative-marketplace-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b908c42be3eb7ecc76fac91224836ca/distributing-your-app-on-an-alternative-marketplace-2~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-on-an-alternative-marketplace-3": {
+      "alt": "A screenshot of Xcode Scheme settings window with Run selected in the sidebar and the options tab open. The Distribution pop-up menu shows the com.megabytemart.megabytemart option selected.",
+      "identifier": "distributing-your-app-on-an-alternative-marketplace-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70e79d5d902f0366fe7fd4361d78a65f/distributing-your-app-on-an-alternative-marketplace-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd1097a9d1043463163bfc71717ff1a5/distributing-your-app-on-an-alternative-marketplace-3~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-on-an-alternative-marketplace-4": {
+      "alt": "A screenshot of Xcode with TestPlan selected in the project navigation sidebar and the Configurations tab open. The Distribution pop-up menu has com.megabytemart.megabytemart selected.",
+      "identifier": "distributing-your-app-on-an-alternative-marketplace-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/209510fc162d3ec1d862ab011027f876/distributing-your-app-on-an-alternative-marketplace-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/651e753dfdfb679dee2ffb3fac7c27c3/distributing-your-app-on-an-alternative-marketplace-4~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor": {
+      "abstract": [
+        {
+          "text": "Options that describe the marketplace from which the app installs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppDistributor"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppDistributor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppDistributor",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStore"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.appStore",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/appstore"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current": {
+      "abstract": [
+        {
+          "text": "The source from which the app installs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14MarketplaceKit14AppDistributorO",
+          "text": "AppDistributor"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/current"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "marketplace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.marketplace(_:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/marketplace(_:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "other"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.other",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/other"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "testFlight"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.testFlight",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/testflight"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "web"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.web",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/web"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace": {
+      "abstract": [
+        {
+          "text": "Enable the distribution of other third-party apps from within your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an alternative app marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/creating-an-alternative-app-marketplace"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/AdAttributionKit"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/game-center": {
+      "abstract": [
+        {
+          "text": "Manage Game Center data and configurations for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/game-center",
+      "kind": "article",
+      "role": "article",
+      "title": "Game Center",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/game-center"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/BackgroundAssets"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/in-app-purchase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/": {
+      "identifier": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/",
+      "title": "Alternative EU Terms Addendum",
+      "titleInlineContent": [
+        {
+          "text": "Alternative EU Terms Addendum",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+      "title": "Manage distribution on an alternative app marketplace",
+      "titleInlineContent": [
+        {
+          "text": "Manage distribution on an alternative app marketplace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization",
+      "title": "Submit for Notarization",
+      "titleInlineContent": [
+        {
+          "text": "Submit for Notarization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/",
+      "title": "On Demand Resources",
+      "titleInlineContent": [
+        {
+          "text": "On Demand Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/"
+    },
+    "https://developer.apple.com/programs/apple-developer-program-license-agreement": {
+      "identifier": "https://developer.apple.com/programs/apple-developer-program-license-agreement",
+      "title": "Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/apple-developer-program-license-agreement"
+    },
+    "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps": {
+      "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps",
+      "title": "Notarization",
+      "titleInlineContent": [
+        {
+          "text": "Notarization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace",
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

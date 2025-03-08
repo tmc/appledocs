@@ -1,0 +1,835 @@
+{
+  "abstract": [
+    {
+      "text": "Display visual content using SpriteKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Drawing SpriteKit Content in a View"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display SpriteKit content on the screen by configuring a SpriteKit renderer, its scene, and the visual objects you lay out on top of the scene. SpriteKit provides objects that are designed specifically for various types of content (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), but for simplicity, this article displays an image in a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "There are other ways to draw SpriteKit content besides using a view. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for options.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3016873",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the code in this article sets up a view, you put the lines from each of the following code listings into a view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-Scene",
+          "level": 3,
+          "text": "Create the Scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Everything displayed with SpriteKit is done through a scene object, which is an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use the following code to set up a basic scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let scene = SKScene(size: skView.bounds.size)",
+            "",
+            "// Set the scene coordinates (0, 0) to the center of the screen.",
+            "scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you pass the ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the view’s ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the scene initializer, you size the scene to the view’s size. When you set the scene’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "(0.5, 0.5)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you determine that the coordinates (0, 0) map to the center of the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For further discussion about how setting the ",
+              "type": "text"
+            },
+            {
+              "code": "anchorPoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes an object’s position in the view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Sprites/Sprites.html#//apple_ref/doc/uid/TP40013043-CH9-SW36",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Lay-Out-Visual-Content-on-Top-of-the-Scene",
+          "level": 3,
+          "text": "Lay Out Visual Content on Top of the Scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use node objects to display graphics in a SpriteKit view. SpriteKit provides different nodes depending on the content (see Nodes that Draw in  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). In this case, use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display an image in the view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let image = SKSpriteNode(imageNamed: \"myImage.png\")",
+            "",
+            "// Add the image to the scene.",
+            "scene.addChild(image)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The functions to lay out content in a scene are covered in more detail in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/accessing-and-modifying-the-node-tree",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-the-Scene-Inside-a-View",
+          "level": 3,
+          "text": "Present the Scene Inside a View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you set up the scene, you display it in the view by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/presentScene(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let skView = self.view as? SKView { ",
+            "    skView.presentScene(scene)",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the code in this article sets up a view, you add it to your view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidLoad()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene": {
+      "abstract": [
+        {
+          "text": "An object that organizes all of the active SpriteKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint": {
+      "abstract": [
+        {
+          "text": "The point in the view’s frame that corresponds to the scene’s origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchorPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/anchorPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anchorPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "anchorPoint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/anchorpoint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/presentScene(_:)": {
+      "abstract": [
+        {
+          "text": "Presents a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentScene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/presentScene(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentScene:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentScene(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/presentscene(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/accessing-and-modifying-the-node-tree": {
+      "abstract": [
+        {
+          "text": "See the objects and functions you use to control the node tree’s composition.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/accessing-and-modifying-the-node-tree",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing and Modifying the Node Tree",
+      "type": "topic",
+      "url": "/documentation/spritekit/accessing-and-modifying-the-node-tree"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer": {
+      "abstract": [
+        {
+          "text": "Compare the different ways to display a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a SpriteKit Scene Renderer",
+      "type": "topic",
+      "url": "/documentation/spritekit/choosing-a-spritekit-scene-renderer"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Sprites/Sprites.html#//apple_ref/doc/uid/TP40013043-CH9-SW36": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Sprites/Sprites.html#//apple_ref/doc/uid/TP40013043-CH9-SW36",
+      "title": "Using the Anchor Point to Move the Sprite’s Frame",
+      "titleInlineContent": [
+        {
+          "text": "Using the Anchor Point to Move the Sprite’s Frame",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Sprites/Sprites.html#//apple_ref/doc/uid/TP40013043-CH9-SW36"
+    },
+    "media-3016873": {
+      "alt": "Screenshot of on the app window displaying an image (a sprite) using SpriteKit.",
+      "identifier": "media-3016873",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ced8e73de0c8478570ea46f6b7090c2e/media-3016873@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+                "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1anchorPoint/title",
+          "value": "anchorPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1anchorPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "anchorPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1presentScene(_:)/title",
+          "value": "presentScene:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1presentScene(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentScene:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/drawing-spritekit-content-in-a-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/drawing-spritekit-content-in-a-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

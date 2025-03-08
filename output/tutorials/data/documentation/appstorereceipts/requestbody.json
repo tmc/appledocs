@@ -1,0 +1,365 @@
+{
+  "abstract": [
+    {
+      "text": "The JSON contents you submit with the request to the App Store.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " endpoint is deprecated.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.0",
+        "1.7"
+      ]
+    },
+    "minor": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.6",
+        "1.7"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appstorereceipts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/appstorereceipts/requestbody"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3178807,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_receipts:requestBody",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "requestBody"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Receipts"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "1.7",
+        "deprecated": true,
+        "deprecatedAt": "1.7",
+        "introducedAt": "1.0",
+        "name": "App Store Receipts"
+      }
+    ],
+    "role": "dictionarySymbol",
+    "roleHeading": "Object",
+    "symbolKind": "dict",
+    "title": "requestBody"
+  },
+  "primaryContentSections": [
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Base64-encoded receipt data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "receipt-data",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "byte"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "byte"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your app’s shared secret, which is a hexadecimal string. The password is required for receipts that include subscriptions, and strongly recommended otherwise. For more information about the shared secret, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4287779",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "password",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set this value to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the response to include only the latest renewal transaction for any subscriptions. Use this field only for app receipts that contain auto-renewable subscriptions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "deprecated": true,
+          "name": "exclude-old-transactions",
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive a decoded receipt for validation, send a request with the encoded receipt data and app password to the App Store. For receipts that contain auto-renewable subscriptions, optionally include an exclusion flag. Send this JSON data using the HTTP POST request method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/error": {
+      "abstract": [
+        {
+          "text": "Error information that returns in the response body when a request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/error",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/error"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/requestbody": {
+      "abstract": [
+        {
+          "text": "The JSON contents you submit with the request to the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestBody"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/requestbody",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "requestBody",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/requestbody"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody": {
+      "abstract": [
+        {
+          "text": "The JSON data that returns in the response from the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "symbol",
+      "role": "restRequestSymbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-4287779": {
+      "identifier": "link-4287779",
+      "kind": "article",
+      "role": "link",
+      "title": "Generate a shared secret to verify receipts",
+      "type": "section",
+      "url": "https://help.apple.com/app-store-connect/#/devf341c0f01"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+        "doc://com.apple.documentation/documentation/appstorereceipts/responsebody",
+        "doc://com.apple.documentation/documentation/appstorereceipts/error"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appstorereceipts/requestbody"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1251 @@
+{
+  "abstract": [
+    {
+      "text": "Determine whether an app for which you issue a license launches.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App License Delivery SDK"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Renewing and revoking app licenses"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app license expires when its expiry date passes. The expiry date is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/issuedTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your license server determines the value of those properties at the time of issuing a license (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app’s license expires, the device’s operating system doesn’t allow the app to launch. You determine the criteria for renewal, expiration, and revocation of licenses for apps that you distribute. Depending on the circumstances, you can renew a license before it expires, let it expire, or revoke the license deliberately in advance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-a-license-renewal-request-from-the-system",
+          "level": 2,
+          "text": "Handle a license renewal request from the system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For app license renewal or revocation, the system checks with your server by sending a request. The communication is similar to a dynamic license request for licenses for new app versions, except that the system calls a different endpoint on your server — the ",
+              "type": "text"
+            },
+            {
+              "code": "licenseRenewalURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"license\": {",
+            "        \"dynamicLicenseURL\" : \"<licensing endpoint>\",",
+            "        \"licenseRenewalURL\" : \"<renewal endpoint>\",",
+            "        ...",
+            "    } ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once a day, the system checks for app licenses set to expire within the next 24 hours and includes each in a license renewal request. Depending on how your license server responds, the system either allows the app to continue to run or prevents it from running after expiration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renewal request is a POST with the following payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"renewalRequest\": \"BASE_64_ENCODED_LICENSE_REQUEST\",",
+            "    \"licenseKey\": : \"BASE_64_ENCODED_LICENSE_KEY\",",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle the request, decode the ",
+              "type": "text"
+            },
+            {
+              "code": "\"renewalRequest\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value using the ",
+              "type": "text"
+            },
+            {
+              "code": "\"licenseKey\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each POST requests renewal for one or more license IDs. On your license server, retrieve the list of license IDs in the request using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestedLicenseIDList",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format you supply in response is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"license\" : \"BASE_64_ENCODED_LICENSE\",",
+            "    \"ineligibleLicenses\": [",
+            "        \"LICENSE_ID1\", ",
+            "        \"LICENSE_ID2\" ",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Renewal response key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\"license\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A signed, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "base64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "-encoded license, as done for dynamic license responses. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "\"ineligibleLicenses\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " license IDs from the request that you don’t intend to renew.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Renew-an-app-license-from-your-app",
+          "level": 2,
+          "text": "Renew an app license from your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To renew a license, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppLibrary/requestLicenseRenewal(appleItemIDs:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from within your marketplace app, or other app you distribute from your website. The system then calls your license renewal endpoint and provides the license ID for the given ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your license server responds by providing a new license with the ",
+              "type": "text"
+            },
+            {
+              "code": "issuedTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to today, and a ",
+              "type": "text"
+            },
+            {
+              "code": "duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set at your discretion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If any logic running on your web server determines that an app license needs adjusting, record the state and periodically check it from your marketplace app. For example, your marketplace app can call a custom endpoint you implement just for that purpose. When the state indicates the license needs adjusting, your app calls ",
+              "type": "text"
+            },
+            {
+              "code": "requestLicenseRenewal(appleItemIDs:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which intructs the system to send the renewal request to your license server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revoke-an-app-license-from-your-app",
+          "level": 2,
+          "text": "Revoke an app license from your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To revoke an app license, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppLibrary/requestLicenseRenewal(appleItemIDs:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " passing the app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from your app. The system then sends a request to your license renewal endpoint with that app’s license ID. In response, your endpoint includes the license ID in the ",
+              "type": "text"
+            },
+            {
+              "code": "ineligibleLicenses",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, which instructs the system to prevent the app from running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resolve-an-expired-license-from-the-Home-Screen",
+          "level": 2,
+          "text": "Resolve an expired license from the Home Screen",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a license expires for your marketplace app or an app that your marketplace distributes and a person taps the app icon on the Home Screen, the system presents the alert:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "renewing-and-revoking-app-licenses-1.png",
+              "metadata": {
+                "deviceFrame": "iPhone14Pro"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Resolve button follows that, after a person taps it, presents a web view that loads a page you specify in your server’s ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file as the ",
+              "type": "text"
+            },
+            {
+              "code": "licenseResolutionURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"license\": {",
+            "    \"licenseRenewalURL\" : \"<renewal endpoint>\",",
+            "    \"licenseResolutionURL\" : \"<license resolution webpage>\",",
+            "    ...",
+            "} ...",
+            ""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system issues a GET request for the page, it includes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "License resolution parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "account",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The account you associate with the person in the intitial ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to install the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleItemID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identifier for a requested app. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleVersionID",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A version number that corresponds to the alternative distribution package. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Format the web page in your response to the person’s unique situation so they can resolve the issue in line. If they can’t resolve the issue immediately, your webpage provides the necessary context on the expiration or status of the problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your configuration file lacks ",
+              "type": "text"
+            },
+            {
+              "code": "licenseResolutionURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the system presents the alert:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "renewing-and-revoking-app-licenses-2.png",
+              "metadata": {
+                "deviceFrame": "iPhone14Pro"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey": {
+      "abstract": [
+        {
+          "text": "A structure that identifies an app and a key that’s required to decrypt the app’s license request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDAppKey"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDAppKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDAppKey",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldappkey"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute": {
+      "abstract": [
+        {
+          "text": "A structure that defines the requested license type for the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDLicenseAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDLicenseAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDLicenseAttribute",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/duration": {
+      "abstract": [
+        {
+          "text": "The maximum amount of time, in seconds, that iOS considers the license valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute/duration"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/issuedTime": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "issuedTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute/issuedTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "issuedTime",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldlicenseattribute/issuedtime"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider": {
+      "abstract": [
+        {
+          "text": "An object that creates a session with the alternative app marketplace’s signing assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDProvider",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldprovider"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession": {
+      "abstract": [
+        {
+          "text": "A structure that contains the details of a license request and methods to generate license responses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ALDSession"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ALDSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ALDSession",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestedLicenseIDList": {
+      "abstract": [
+        {
+          "text": "the list of license ID the client has requested a renwal for. used only when action is “renew”",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedLicenseIDList"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession/requestedLicenseIDList",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestedLicenseIDList",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/aldsession/requestedlicenseidlist"
+    },
+    "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps": {
+      "abstract": [
+        {
+          "text": "Build a license server that supports the installation of your apps and the apps available in your marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Licensing alternative distribution apps",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/AppLibrary/requestLicenseRenewal(appleItemIDs:)": {
+      "abstract": [
+        {
+          "text": "Instructs iOS to request an updated app license from your marketplace server for the given app identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestLicenseRenewal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "appleItemIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppLibrary/requestLicenseRenewal(appleItemIDs:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestLicenseRenewal(appleItemIDs:)",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/AppLibrary/requestLicenseRenewal(appleItemIDs:)"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppleItemID",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/AppleItemID"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/AppleVersionID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents a single app version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/AppleVersionID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppleVersionID",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/AppleVersionID"
+    },
+    "doc://com.apple.documentation/documentation/MarketplaceKit/MarketplaceKitURIScheme": {
+      "abstract": [
+        {
+          "text": "A URI scheme that defines an alternative distribution app installation link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceKitURIScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarketplaceKitURIScheme",
+      "type": "topic",
+      "url": "/documentation/MarketplaceKit/MarketplaceKitURIScheme"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "renewing-and-revoking-app-licenses-1.png": {
+      "alt": "A screenshot of the iOS Home Screen that includes an app icon titled Camping World. An alert displays in the center of the screen that reads App License Expired. The license for Camping App has expired. To open the app, you must first resolve the issue. Two buttons follow side by side in the alert. The button on the left reads Cancel and the button on the right reads Resolve.",
+      "identifier": "renewing-and-revoking-app-licenses-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ab84a64c023aa270c274bd679f6177c/renewing-and-revoking-app-licenses-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/08f3a7769e0afd79c7904e5c56167c61/renewing-and-revoking-app-licenses-1~dark@2x.png"
+        }
+      ]
+    },
+    "renewing-and-revoking-app-licenses-2.png": {
+      "alt": "A screenshot of the iOS Home Screen that includes an app icon titled Camping World. An alert displays in the center of the screen that reads App License Expired. The license for Camping App has expired and can't be opened. Contact the developer for additional details. The alert contains a button that reads OK.",
+      "identifier": "renewing-and-revoking-app-licenses-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5225eec16e210d829b1f2f6078ac2ae8/renewing-and-revoking-app-licenses-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae0eb66058c0bf27565647f6709d9dbd/renewing-and-revoking-app-licenses-2~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-licensing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDAppKey",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDLicenseAttribute",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDProvider",
+        "doc://com.apple.AppLicenseDeliverySDK/documentation/AppLicenseDeliverySDK/ALDSession"
+      ],
+      "title": "App licensing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applicensedeliverysdk/renewing-and-revoking-app-licenses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

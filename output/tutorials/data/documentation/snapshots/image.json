@@ -1,0 +1,366 @@
+{
+  "abstract": [
+    {
+      "text": "A JSON object for a Snapshot URL that describes the characteristics of custom images to use for map annotations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/snapshots"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/snapshots/image"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3590371,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:snapshots:Image",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Image"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "current": "1.0",
+        "introducedAt": "1.0",
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "role": "dictionarySymbol",
+    "roleHeading": "Object",
+    "symbolKind": "dict",
+    "title": "Image"
+  },
+  "primaryContentSections": [
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A required property that takes the full URL that specifies the location of the image. As an alternative, you may provide a data URL.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "url",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The height of the image in scale-independent pixels. This property only required when referencing an annotation with ",
+                  "type": "text"
+                },
+                {
+                  "code": "“markerStyle”: ”img”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "height",
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The width of the image in scale-independent pixels. This property only required when referencing an annotation with ",
+                  "type": "text"
+                },
+                {
+                  "code": "“markerStyle”: ”img”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "width",
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Maps Web Snapshots API supports JPEG, PNG, and GIF image formats for providing custom annotations. You may use up to 10 unique images in a snapshot request, and you may use an image for more than one annotation. It’s a good idea to use a URL shortener for image URLs so you don’t exceed the maximum character limit for a Snapshots URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an image fails to load in a reasonable amount of time, the snapshot rendering uses the default “balloon” style marker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By providing an image URL, you’re responsible for ensuring the availability of the image at all times.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/snapshots": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Maps Web Snapshots",
+      "type": "topic",
+      "url": "/documentation/snapshots"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/annotation": {
+      "abstract": [
+        {
+          "text": "An object for a Snapshot URL that describes annotation characteristics.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Annotation",
+      "type": "topic",
+      "url": "/documentation/snapshots/annotation"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot": {
+      "abstract": [
+        {
+          "text": "Create a Snapshot URL and generate a signature to validate the request. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a URL and Signature to Create a Maps Web Snapshot",
+      "type": "topic",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/image": {
+      "abstract": [
+        {
+          "text": "A JSON object for a Snapshot URL that describes the characteristics of custom images to use for map annotations.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/image",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/snapshots/image"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlay": {
+      "abstract": [
+        {
+          "text": "A JSON object for a Snapshot URL that describes overlay shape characteristics, including points for the overlay and styles such as width, color, and dash pattern.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Overlay"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlay",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Overlay",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlay"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlaystyle": {
+      "abstract": [
+        {
+          "text": "A  JSON object that describes reusable styles for an overlay.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OverlayStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "OverlayStyle",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlaystyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+        "doc://com.apple.documentation/documentation/snapshots/annotation",
+        "doc://com.apple.documentation/documentation/snapshots/overlay",
+        "doc://com.apple.documentation/documentation/snapshots/overlaystyle"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/snapshots/image"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

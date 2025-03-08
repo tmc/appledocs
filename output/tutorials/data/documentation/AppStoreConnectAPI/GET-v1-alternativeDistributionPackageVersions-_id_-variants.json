@@ -1,0 +1,612 @@
+{
+  "abstract": [
+    {
+      "text": "List variants for specific alternative distribution package version.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "added",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-variants"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-alternativeDistributionPackageVersions-{}-variants",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/alternativeDistributionPackageVersions/{id}/variants"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "3.3",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "List variants information"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/alternativeDistributionPackageVersions/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/variants"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "url",
+                "urlExpirationDate",
+                "alternativeDistributionKeyBlob",
+                "fileChecksum"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[alternativeDistributionPackageVariants]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximum",
+              "value": "200"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVariantsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:AlternativeDistributionPackageVariantsResponse",
+              "text": "AlternativeDistributionPackageVariantsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.appstoreconnect.apple.com/v1/alternativeDistributionPackageVersions/d1663e24-4360-4f7f-a661-8e616e3b3c3b/variants"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": [",
+                    "    {",
+                    "      \"type\": \"alternativeDistributionPackageVariants\",",
+                    "      \"id\": \"4c541b7a-15c3-43f9-955a-b6a108efbeb2\",",
+                    "      \"attributes\": {",
+                    "        \"url\": \"https://iosapps.itunes.apple.com/itunes-assets/SWDistributionArtifacts123/v4/2b/59/89/2b59891d-a15d-2dd5-6045-ca7678a30ffa/pre-thinned11331259484252926706.thinned.signed.dpkg.ipa?accessKey=1711772701_39674671210770318_4DTOwpunkZVQMLKpZ%2BjAwNgowYmcTc4wuMOmTOFvZGoatM6NH9nxnXAT4LPlxj4TjTJFgpup7mqKY4e2MCsK%2BPx%2F0YPImr7IGgKpHO%2Fpv%2BTsM2Xnar8bfWFBqNiAbNj0sXyOWGadl2yWlQGjj2d6l%2BAsWVscbovMko%2F3hqq8uZpfAVwZxcxsMBlKT35DmHQdt7Dou4vRj2A5%2FwaINXl5c7v42Bdei62Kl8o24dDmKzoFra1TiqcfmQC6Iv5DsIAl\",",
+                    "        \"urlExpirationDate\": \"2024-03-29T21:25:01-07:00\",",
+                    "        \"alternativeDistributionKeyBlob\": \"Z1HWrJd3AAAABAAAAAFUYH7ql3cAAAAEAAAAAfaWTj6EhQAAAAi2qUZInWMx01vEfIGEhQAAAAgAAAAAZbrpdWGqs9GEhQAAAAgAAAACgAlM7EDAqpNQ2wAAABAzDh0ZVuF6s3hEc8DgLYgHjmtHAlDbAAAA0OQldaDzMsijkMiQ+9cc7FcfIgY7Hccf9vPByDdNfeRb6IDCbTi/a7KsW/RVI15GeemXR3GOepUi8Fq0J2qr+g8XYbvMDgrdBaPwQcnjuzGEh9lSyZuk6h0BjwKyiQzM7Mt0fwsays6PVT2CaNJyMK6usqT4w+d9vztyLMEN2GAiEPn/q9IMmGcic5/T/+FLwCDRu/Rhj3FOIr4aCQZ+bnmbzyDv7r7a/B+siE0X0MTXsxoU4gGVvu2ThAoe+q6i9t6MtEu2N9B9FRcr1mAFxZoxOKXMUNsAAAAQhERpq5CkvNJrNdG2N6aILnZf7XBQ2wAAABDGwg2p+OJe8Z8PHtIA+2piJJC4HVDbAAAAEId4O7Ee3AyXNH6AYuOMw5po1KUAUNsAAABQdEQLV7XE5oAm3zpWhf74Rixf4tyhsBbgsKI8qeoJgONvIcz0byYB2EPSuQthWwTQJQDENNOvJiZkX52vVaFwCYpxoaRuMTo7A38Jtao6BLAHUZI1UNsAAAAgLT/ZgOBfpYaQUYzSeiZSjHrBqEbWFYtaqR/FwtOYSIwAAAAAUNsAAAAOAAAAAAAAAAAAAAAAAAA=\"",
+                    "      },",
+                    "      \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/alternativeDistributionPackageVariants/4c541b7a-15c3-43f9-955a-b6a108efbeb2\"",
+                    "      }",
+                    "    },",
+                    "    {",
+                    "      \"type\": \"alternativeDistributionPackageVariants\",",
+                    "      \"id\": \"b4ab437b-5c13-42c7-b5ea-a8ec9889e402\",",
+                    "      \"attributes\": {",
+                    "        \"url\": \"https://iosapps.itunes.apple.com/itunes-assets/SWDistributionArtifacts123/v4/36/46/ba/3646ba66-ad35-b5a1-b5a9-9a9dc490a003/pre-thinned11331259484252926706.thinned.signed.dpkg.ipa?accessKey=1711772702_1427237359064611442_j%2FXB8MGW%2FGVR9o3N6rCI63PgujyZoZVxN7xMmIwZIAZfFwCOr5WUQiwEQvXaguUGwtpKraEKQNbzsIq5vlSWVLr0G1Hz7OkjAQPlskdJqdFTLmzDOe8YuWMrtFXCUZ%2BUPm6KZQu2sZyfNdVoqoXCOVSV9KgpwVKUKvuZ5Oj9bg6k9L4afH4HLC7%2FZ0S0E%2BlG1HerKnKyOjewWCJqV0t7Yi6%2FjCY6EKE4yoPp9clquAJd6aR%2BxuGb%2FqwY%2FstsDRBl\",",
+                    "        \"urlExpirationDate\": \"2024-03-29T21:25:02-07:00\",",
+                    "        \"alternativeDistributionKeyBlob\": \"Z1HWrJd3AAAABAAAAAFUYH7ql3cAAAAEAAAAAfaWTj6EhQAAAAi4/6JJzTF4Y1vEfIGEhQAAAAgAAAAAZbrpdWGqs9GEhQAAAAgAAAACgAlM7EDAqpNQ2wAAABAUX/CANenwTqE+zCa0Go5RjmtHAlDbAAAA0O8d9OmuQVVLLHJ5NqHuy5RiIg1gFCSU596JSVqt30JomAeZmyeg7A033eOrl5UGaFPAFUtWBNYAG5Oy3LXEXurHcGP7R0bduTrcyRhUraRWwRZkFvlYSUpCqL4Ye6W+A1vBMODKDxXDk8ROjANbhCmnUTrE3wZ6N1RJqtbFiMAAL5V8ZHMgR/mppgj0/Qnv9R7Wkw7Fr00Mrn1xZcFZ4OtMG035PassXBun2/uV+Er5MItxy5QhBmmD9GDvKQfvJ/llljGGGQcUHVtH6hhr1QgxOKXMUNsAAAAQC7LlwBMbbKKOEA6MUONYa3Zf7XBQ2wAAABAMXIBQHUgb2uppLsFRWsjAJJC4HVDbAAAAEGkHfBWOZZ1ZzdI6an6H19Ro1KUAUNsAAABQkxQNnSw0CYr8aqmmO5mWa2erqyF96ZJP4vnno4RaWGYOBCJ+UtourTQRLEbLVMn9aAxqGNquuLQpYhxvsPS3VJkAwC5spOFlLS6RaYUnDTUHUZI1UNsAAAAg4ny+K6+r3sdb4bFZbmzsyAzIFORr5P0GcuNXEaYCHSMAAAAAUNsAAAAOAAAAAAAAAAAAAAAAAAA=\"",
+                    "      },",
+                    "      \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/alternativeDistributionPackageVariants/b4ab437b-5c13-42c7-b5ea-a8ec9889e402\"",
+                    "      }",
+                    "    }",
+                    "  ],",
+                    "  \"links\": {",
+                    "    \"self\": \"https://api.appstoreconnect.apple.com/v1/alternativeDistributionPackageVersions/d1663e24-4360-4f7f-a661-8e616e3b3c3b/variants\"",
+                    "  },",
+                    "  \"meta\": {",
+                    "    \"paging\": {",
+                    "      \"total\": 2,",
+                    "      \"limit\": 50",
+                    "    }",
+                    "  }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVariantsResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a list of alternative distribution package variant resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternativeDistributionPackageVariantsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AlternativeDistributionPackageVariantsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternativeDistributionPackageVariantsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternativeDistributionPackageVariantsResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternativedistributionpackagevariantsresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_": {
+      "abstract": [
+        {
+          "text": "Get detail information about a specific alternative distribution package version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionPackageVersions/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read information for an alternative distribution package version",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-deltas": {
+      "abstract": [
+        {
+          "text": "List deltas for a specific alternative distribution package version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-deltas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionPackageVersions/{id}/deltas"
+        }
+      ],
+      "role": "symbol",
+      "title": "List deltas information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-deltas"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-variants": {
+      "abstract": [
+        {
+          "text": "List variants for specific alternative distribution package version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-variants",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionPackageVersions/{id}/variants"
+        }
+      ],
+      "role": "symbol",
+      "title": "List variants information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-variants"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions": {
+      "abstract": [
+        {
+          "text": "Get version detail information about a specific alternative distribution package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionPackages/{id}/versions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read version information for an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackages-_id_-versions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-version-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackages-_id_-versions",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionPackageVersions-_id_-deltas"
+      ],
+      "title": "Getting version information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_-variants"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

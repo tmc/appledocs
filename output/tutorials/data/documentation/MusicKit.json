@@ -1,0 +1,4968 @@
+{
+  "abstract": [
+    {
+      "text": "Integrate your app with Apple Music.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MusicKit/documentation/MusicKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "MusicKit",
+    "modules": [
+      {
+        "name": "MusicKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "MusicKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use MusicKit to integrate your app with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleMusicAPI",
+              "isActive": true,
+              "overridingTitle": "Apple Music API",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple Music API",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a web service you use to access information about music items in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple Music catalog. Using MusicKit, you can more easily build apps that tie",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into Apple Music.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework provides a model layer for accessing music items in Swift,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as playback support so you can add music to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, it provides some related user interface elements,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as a view to display images that correspond to artwork for a music item,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or a way to present music subscription offers to users who may not have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an active Apple Music subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Users must grant permission for your app to access",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "their music data. Add the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+                  "isActive": true,
+                  "overridingTitle": "NSAppleMusicUsageDescription",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "NSAppleMusicUsageDescription",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "key to your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file, and include a description of how you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "intend to use the user’s media. If this key isn’t present, the system",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "terminates your app when it tries to access the user’s music.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Request permission for your app to use MusicKit with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicAuthorization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Check specific capabilities for the current ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ensure your music-related functionality is available to the user.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Find music items using a search term with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or find music items using a filter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Play music in your app with one of the two music players that MusicKit offers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Allow the user to begin a free trial for Apple Music from within your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by presenting a music subscription offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can load content from an arbitrary Apple Music API endpoint",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to take further advantage of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional functionality available in Apple Music API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MusicKit/documentation/MusicKit": {
+      "abstract": [
+        {
+          "text": "Integrate your app with Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MusicKit",
+      "type": "topic",
+      "url": "/documentation/musickit"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Album": {
+      "abstract": [
+        {
+          "text": "A music item that represents an album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Album"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Album",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Album"
+        }
+      ],
+      "role": "symbol",
+      "title": "Album",
+      "type": "topic",
+      "url": "/documentation/musickit/album"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/AlbumFilter": {
+      "abstract": [
+        {
+          "text": "Album properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlbumFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/AlbumFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlbumFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlbumFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/albumfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/AnyMusicProperty": {
+      "abstract": [
+        {
+          "text": "A type-erased identifier for a music item property, from any root type",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to any resulting value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyMusicProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/AnyMusicProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyMusicProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyMusicProperty",
+      "type": "topic",
+      "url": "/documentation/musickit/anymusicproperty"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ApplicationMusicPlayer": {
+      "abstract": [
+        {
+          "text": "An object your app uses to play music in a way that doesn’t affect",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the Music app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplicationMusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ApplicationMusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplicationMusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplicationMusicPlayer",
+      "type": "topic",
+      "url": "/documentation/musickit/applicationmusicplayer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Artist": {
+      "abstract": [
+        {
+          "text": "A music item that represents an artist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Artist"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Artist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Artist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Artist",
+      "type": "topic",
+      "url": "/documentation/musickit/artist"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ArtistFilter": {
+      "abstract": [
+        {
+          "text": "Artist properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArtistFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ArtistFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArtistFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArtistFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/artistfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Artwork": {
+      "abstract": [
+        {
+          "text": "An object that represents artwork for a music item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Artwork"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Artwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Artwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "Artwork",
+      "type": "topic",
+      "url": "/documentation/musickit/artwork"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage": {
+      "abstract": [
+        {
+          "text": "A view that displays the image for a music item’s artwork.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArtworkImage"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArtworkImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArtworkImage",
+      "type": "topic",
+      "url": "/documentation/musickit/artworkimage"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/AudioVariant": {
+      "abstract": [
+        {
+          "text": "Variants that indicate the quality of audio available for an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioVariant"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/AudioVariant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioVariant"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioVariant",
+      "type": "topic",
+      "url": "/documentation/musickit/audiovariant"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ContentRating": {
+      "abstract": [
+        {
+          "text": "The rating of the content that potentially plays while playing a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentRating"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ContentRating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentRating"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentRating",
+      "type": "topic",
+      "url": "/documentation/musickit/contentrating"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Curator": {
+      "abstract": [
+        {
+          "text": "A music item that represents a curator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Curator"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Curator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Curator"
+        }
+      ],
+      "role": "symbol",
+      "title": "Curator",
+      "type": "topic",
+      "url": "/documentation/musickit/curator"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/CuratorFilter": {
+      "abstract": [
+        {
+          "text": "Curator properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CuratorFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/CuratorFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CuratorFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CuratorFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/curatorfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/DefaultMusicTokenProvider": {
+      "abstract": [
+        {
+          "text": "The default token provider that music requests use to access",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultMusicTokenProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/DefaultMusicTokenProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultMusicTokenProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultMusicTokenProvider",
+      "type": "topic",
+      "url": "/documentation/musickit/defaultmusictokenprovider"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/EditorialNotes": {
+      "abstract": [
+        {
+          "text": "An object that represents editorial notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditorialNotes"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/EditorialNotes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditorialNotes"
+        }
+      ],
+      "role": "symbol",
+      "title": "EditorialNotes",
+      "type": "topic",
+      "url": "/documentation/musickit/editorialnotes"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/FilterableMusicItem": {
+      "abstract": [
+        {
+          "text": "A declaration of the associated type that contains the set of music item",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilterableMusicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/FilterableMusicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FilterableMusicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilterableMusicItem",
+      "type": "topic",
+      "url": "/documentation/musickit/filterablemusicitem"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Genre": {
+      "abstract": [
+        {
+          "text": "A music item that represents a genre.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Genre"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Genre",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Genre"
+        }
+      ],
+      "role": "symbol",
+      "title": "Genre",
+      "type": "topic",
+      "url": "/documentation/musickit/genre"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/GenreFilter": {
+      "abstract": [
+        {
+          "text": "Genre properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenreFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/GenreFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenreFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "GenreFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/genrefilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryAlbumFilter": {
+      "abstract": [
+        {
+          "text": "Album properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbumFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryAlbumFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbumFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryAlbumFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryalbumfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryAlbumSortProperties": {
+      "abstract": [
+        {
+          "text": "Album properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbumSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryAlbumSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryAlbumSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryAlbumSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryalbumsortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryArtistFilter": {
+      "abstract": [
+        {
+          "text": "Artist properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryArtistFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryArtistFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryArtistFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryArtistFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryartistfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryArtistSortProperties": {
+      "abstract": [
+        {
+          "text": "Artist properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryArtistSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryArtistSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryArtistSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryArtistSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryartistsortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryGenreFilter": {
+      "abstract": [
+        {
+          "text": "Genre properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryGenreFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryGenreFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryGenreFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryGenreFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/librarygenrefilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryGenreSortProperties": {
+      "abstract": [
+        {
+          "text": "Genre properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryGenreSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryGenreSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryGenreSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryGenreSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/librarygenresortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryMusicVideoFilter": {
+      "abstract": [
+        {
+          "text": "Music video properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryMusicVideoFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryMusicVideoFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryMusicVideoFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryMusicVideoFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/librarymusicvideofilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryMusicVideoSortProperties": {
+      "abstract": [
+        {
+          "text": "Music video properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryMusicVideoSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryMusicVideoSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryMusicVideoSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryMusicVideoSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/librarymusicvideosortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistEntryFilter": {
+      "abstract": [
+        {
+          "text": "Playlist entry properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistEntryFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistEntryFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistEntryFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistEntryFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryplaylistentryfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistEntrySortProperties": {
+      "abstract": [
+        {
+          "text": "Playlist entry properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistEntrySortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistEntrySortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistEntrySortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistEntrySortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryplaylistentrysortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistFilter": {
+      "abstract": [
+        {
+          "text": "Playlist properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryplaylistfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistSortProperties": {
+      "abstract": [
+        {
+          "text": "Playlist properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryPlaylistSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryPlaylistSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/libraryplaylistsortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibrarySongFilter": {
+      "abstract": [
+        {
+          "text": "Song properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibrarySongFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibrarySongFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibrarySongFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibrarySongFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/librarysongfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibrarySongSortProperties": {
+      "abstract": [
+        {
+          "text": "Song properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibrarySongSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibrarySongSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibrarySongSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibrarySongSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/librarysongsortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryTrackFilter": {
+      "abstract": [
+        {
+          "text": "Track properties your app uses as a filter for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryTrackFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryTrackFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryTrackFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryTrackFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/librarytrackfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/LibraryTrackSortProperties": {
+      "abstract": [
+        {
+          "text": "Track properties your app uses to sort results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryTrackSortProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/LibraryTrackSortProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryTrackSortProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryTrackSortProperties",
+      "type": "topic",
+      "url": "/documentation/musickit/librarytracksortproperties"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicAttributeProperty": {
+      "abstract": [
+        {
+          "text": "An identifier for a music item attribute property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from a specific root type to a specific resulting value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicAttributeProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicAttributeProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicAttributeProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicAttributeProperty",
+      "type": "topic",
+      "url": "/documentation/musickit/musicattributeproperty"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicAuthorization": {
+      "abstract": [
+        {
+          "text": "A type that allows you to request the user’s informed consent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for your app to access their music data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicAuthorization"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicAuthorization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicAuthorization",
+      "type": "topic",
+      "url": "/documentation/musickit/musicauthorization"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChart": {
+      "abstract": [
+        {
+          "text": "An object that contains popular items in the Apple Music catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChart"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChart"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogChart",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogchart"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartKind": {
+      "abstract": [
+        {
+          "text": "The available kinds of catalog charts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartKind"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogChartKind",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogchartkind"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartRequestable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a catalog charts request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartRequestable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartRequestable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartRequestable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogChartRequestable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogchartrequestable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartsRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch the most popular items",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the Apple Music catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogChartsRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogchartsrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartsResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a catalog charts request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogChartsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogChartsResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogchartsresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch items from the Apple Music catalog",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogResourceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogResourceRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogResourceRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogresourcerequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogResourceResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogResourceResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogResourceResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogresourceresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch items from the Apple Music catalog",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a search term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogSearchRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogsearchrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a catalog search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogSearchResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogsearchresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchSuggestionsRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch suggestions from the Apple Music catalog",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a search term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchSuggestionsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchSuggestionsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchSuggestionsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogSearchSuggestionsRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogsearchsuggestionsrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchSuggestionsResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a catalog search suggestions request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchSuggestionsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchSuggestionsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchSuggestionsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogSearchSuggestionsResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogsearchsuggestionsresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a catalog search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogSearchable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogSearchable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogsearchable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogTopLevelResourceRequesting": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a catalog resource request without any filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogTopLevelResourceRequesting"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogTopLevelResourceRequesting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicCatalogTopLevelResourceRequesting"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicCatalogTopLevelResourceRequesting",
+      "type": "topic",
+      "url": "/documentation/musickit/musiccatalogtoplevelresourcerequesting"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataRequest": {
+      "abstract": [
+        {
+          "text": "A request for loading data from an arbitrary Apple Music API endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicDataRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musicdatarequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataResponse": {
+      "abstract": [
+        {
+          "text": "An object containing results for a data request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicDataResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicDataResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicDataResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musicdataresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicDeveloperTokenProvider": {
+      "abstract": [
+        {
+          "text": "A set of methods that music requests use to access Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicDeveloperTokenProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicDeveloperTokenProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicDeveloperTokenProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicDeveloperTokenProvider",
+      "type": "topic",
+      "url": "/documentation/musickit/musicdevelopertokenprovider"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicExtendedAttributeProperty": {
+      "abstract": [
+        {
+          "text": "An identifier for a music item extended attribute property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from a specific root type to a specific resulting value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicExtendedAttributeProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicExtendedAttributeProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicExtendedAttributeProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicExtendedAttributeProperty",
+      "type": "topic",
+      "url": "/documentation/musickit/musicextendedattributeproperty"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicItem": {
+      "abstract": [
+        {
+          "text": "A protocol with basic requirements for music items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicItem",
+      "type": "topic",
+      "url": "/documentation/musickit/musicitem"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicItemCollection": {
+      "abstract": [
+        {
+          "text": "A collection of music items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicItemCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicItemCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicItemCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicItemCollection",
+      "type": "topic",
+      "url": "/documentation/musickit/musicitemcollection"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicItemID": {
+      "abstract": [
+        {
+          "text": "An object that represents a unique identifier for a music item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicItemID"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicItemID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicItemID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicItemID",
+      "type": "topic",
+      "url": "/documentation/musickit/musicitemid"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrary": {
+      "abstract": [
+        {
+          "text": "An object your app uses to access the user’s music library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrary",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrary"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryAddable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can add to the music library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryAddable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryAddable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryAddable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibraryAddable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibraryaddable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch items from the user’s music library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibraryRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibraryrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestFilterValueEquatable": {
+      "abstract": [
+        {
+          "text": "A protocol for types of values your app can use with equality",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "filters when fetching items using a music library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequestFilterValueEquatable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestFilterValueEquatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequestFilterValueEquatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibraryRequestFilterValueEquatable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibraryrequestfiltervalueequatable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestFilterValueMembershipComparable": {
+      "abstract": [
+        {
+          "text": "A protocol for types of values your app can use with membership",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "filters when fetching items using a music library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequestFilterValueMembershipComparable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestFilterValueMembershipComparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequestFilterValueMembershipComparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibraryRequestFilterValueMembershipComparable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibraryrequestfiltervaluemembershipcomparable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by using a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequestable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryRequestable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibraryRequestable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibraryrequestable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a library request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibraryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibraryResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibraryresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch items from user’s library",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a search term.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySearchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySearchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySearchRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysearchrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a library search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySearchResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySearchResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySearchResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysearchresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a library search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySearchable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySearchable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySearchable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysearchable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySection": {
+      "abstract": [
+        {
+          "text": "A section for a library sectioned response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySection"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySection",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysection"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionRequestable": {
+      "abstract": [
+        {
+          "text": "A protocol for types your app uses as sections",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when fetching items using a library sectioned request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySectionRequestable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionRequestable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySectionRequestable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySectionRequestable",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysectionrequestable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionedRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch items grouped by sections",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from the user’s music library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySectionedRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionedRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySectionedRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySectionedRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysectionedrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionedResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a library sectioned request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySectionedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicLibrarySectionedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicLibrarySectionedResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musiclibrarysectionedresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that contains recommended items based on the user’s library",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and listening history.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPersonalRecommendation",
+      "type": "topic",
+      "url": "/documentation/musickit/musicpersonalrecommendation"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationItem": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a personal recommendations request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPersonalRecommendationItem",
+      "type": "topic",
+      "url": "/documentation/musickit/musicpersonalrecommendationitem"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationsRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch music recommendations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "based on the user’s library and listening history.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendationsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendationsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPersonalRecommendationsRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musicpersonalrecommendationsrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationsResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains results for a personal recommendations request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendationsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPersonalRecommendationsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPersonalRecommendationsResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musicpersonalrecommendationsresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer": {
+      "abstract": [
+        {
+          "text": "An object your app uses to play music.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPlayer",
+      "type": "topic",
+      "url": "/documentation/musickit/musicplayer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlaylistAddable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can add to a playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPlaylistAddable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlaylistAddable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPlaylistAddable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPlaylistAddable",
+      "type": "topic",
+      "url": "/documentation/musickit/musicplaylistaddable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPropertyContainer": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that allow loading additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "properties that you can fetch asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPropertyContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPropertyContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPropertyContainer",
+      "type": "topic",
+      "url": "/documentation/musickit/musicpropertycontainer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicPropertySource": {
+      "abstract": [
+        {
+          "text": "An enumeration that specifies which source to use when requesting properties and relationships.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicPropertySource"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicPropertySource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicPropertySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicPropertySource",
+      "type": "topic",
+      "url": "/documentation/musickit/musicpropertysource"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedContainerRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch albums, playlists or stations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that the user has recently played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedContainerRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedContainerRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedContainerRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicRecentlyPlayedContainerRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musicrecentlyplayedcontainerrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedContainerResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains albums, playlists or stations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that the user has recently played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedContainerResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedContainerResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedContainerResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicRecentlyPlayedContainerResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musicrecentlyplayedcontainerresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedRequest": {
+      "abstract": [
+        {
+          "text": "A request that your app uses to fetch items the user has recently played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicRecentlyPlayedRequest",
+      "type": "topic",
+      "url": "/documentation/musickit/musicrecentlyplayedrequest"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedRequestable": {
+      "abstract": [
+        {
+          "text": "A protocol for music items that your app can fetch by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "using a recently played request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedRequestable"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedRequestable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedRequestable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicRecentlyPlayedRequestable",
+      "type": "topic",
+      "url": "/documentation/musickit/musicrecentlyplayedrequestable"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedResponse": {
+      "abstract": [
+        {
+          "text": "An object that contains items the user has recently played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicRecentlyPlayedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicRecentlyPlayedResponse",
+      "type": "topic",
+      "url": "/documentation/musickit/musicrecentlyplayedresponse"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicRelationshipProperty": {
+      "abstract": [
+        {
+          "text": "An identifier for a music item relationship property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from a specific root type to a specific value type",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for the element of the resulting collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicRelationshipProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicRelationshipProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicRelationshipProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicRelationshipProperty",
+      "type": "topic",
+      "url": "/documentation/musickit/musicrelationshipproperty"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscription": {
+      "abstract": [
+        {
+          "text": "A representation of the current state of the user’s subscription",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to Apple Music.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicSubscription",
+      "type": "topic",
+      "url": "/documentation/musickit/musicsubscription"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscriptionOffer": {
+      "abstract": [
+        {
+          "text": "A type for grouping other types for showing subscription offers",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for Apple Music.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicSubscriptionOffer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscriptionOffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicSubscriptionOffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicSubscriptionOffer",
+      "type": "topic",
+      "url": "/documentation/musickit/musicsubscriptionoffer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenProvider": {
+      "abstract": [
+        {
+          "text": "An object that music requests use to access Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicTokenProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicTokenProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicTokenProvider",
+      "type": "topic",
+      "url": "/documentation/musickit/musictokenprovider"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenRequestError": {
+      "abstract": [
+        {
+          "text": "An error that the token provider or music requests can throw",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "upon requesting any token necessary for accessing Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicTokenRequestError"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenRequestError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicTokenRequestError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicTokenRequestError",
+      "type": "topic",
+      "url": "/documentation/musickit/musictokenrequesterror"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenRequestOptions": {
+      "abstract": [
+        {
+          "text": "Options that music requests pass into token provider methods to fetch",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a required token for accessing Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicTokenRequestOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenRequestOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicTokenRequestOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicTokenRequestOptions",
+      "type": "topic",
+      "url": "/documentation/musickit/musictokenrequestoptions"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicUserTokenProvider": {
+      "abstract": [
+        {
+          "text": "A class that music requests use to fetch user tokens your app requires",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to access Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicUserTokenProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicUserTokenProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicUserTokenProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicUserTokenProvider",
+      "type": "topic",
+      "url": "/documentation/musickit/musicusertokenprovider"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicVideo": {
+      "abstract": [
+        {
+          "text": "A music item that represents a music video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicVideo"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicVideo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicVideo"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicVideo",
+      "type": "topic",
+      "url": "/documentation/musickit/musicvideo"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/MusicVideoFilter": {
+      "abstract": [
+        {
+          "text": "Music video properties your app uses as a filter",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MusicVideoFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/MusicVideoFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MusicVideoFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MusicVideoFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/musicvideofilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PartialMusicAsyncProperty": {
+      "abstract": [
+        {
+          "text": "A partially type-erased identifier for a music item property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that you can fetch asynchronously from a concrete root type",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to any resulting value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartialMusicAsyncProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PartialMusicAsyncProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartialMusicAsyncProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "PartialMusicAsyncProperty",
+      "type": "topic",
+      "url": "/documentation/musickit/partialmusicasyncproperty"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PartialMusicProperty": {
+      "abstract": [
+        {
+          "text": "A partially type-erased identifier for a music item property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from a concrete root type to any resulting value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartialMusicProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PartialMusicProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartialMusicProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "PartialMusicProperty",
+      "type": "topic",
+      "url": "/documentation/musickit/partialmusicproperty"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PlayParameters": {
+      "abstract": [
+        {
+          "text": "An opaque object that represents parameters to initiate playback",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a playable music item using a music player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PlayParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayParameters",
+      "type": "topic",
+      "url": "/documentation/musickit/playparameters"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PlayableMusicItem": {
+      "abstract": [
+        {
+          "text": "A set of properties that a music player uses to initiate playback",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a music item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayableMusicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PlayableMusicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayableMusicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayableMusicItem",
+      "type": "topic",
+      "url": "/documentation/musickit/playablemusicitem"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Playlist": {
+      "abstract": [
+        {
+          "text": "A music item that represents a playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Playlist"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Playlist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Playlist"
+        }
+      ],
+      "role": "symbol",
+      "title": "Playlist",
+      "type": "topic",
+      "url": "/documentation/musickit/playlist"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PlaylistFilter": {
+      "abstract": [
+        {
+          "text": "Playlist properties your app uses as a filter",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaylistFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PlaylistFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaylistFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaylistFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/playlistfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/PreviewAsset": {
+      "abstract": [
+        {
+          "text": "An object that represents a preview for resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/PreviewAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewAsset",
+      "type": "topic",
+      "url": "/documentation/musickit/previewasset"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/RadioShow": {
+      "abstract": [
+        {
+          "text": "A music item that represents a radio show.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RadioShow"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/RadioShow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RadioShow"
+        }
+      ],
+      "role": "symbol",
+      "title": "RadioShow",
+      "type": "topic",
+      "url": "/documentation/musickit/radioshow"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/RadioShowFilter": {
+      "abstract": [
+        {
+          "text": "Radio Show properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RadioShowFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/RadioShowFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RadioShowFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "RadioShowFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/radioshowfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/RecentlyPlayedMusicItem": {
+      "abstract": [
+        {
+          "text": "An item that represents an album, a playlist, or a station that the user has recently played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecentlyPlayedMusicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/RecentlyPlayedMusicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecentlyPlayedMusicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecentlyPlayedMusicItem",
+      "type": "topic",
+      "url": "/documentation/musickit/recentlyplayedmusicitem"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/RecordLabel": {
+      "abstract": [
+        {
+          "text": "A music item that represents a record label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecordLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/RecordLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecordLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecordLabel",
+      "type": "topic",
+      "url": "/documentation/musickit/recordlabel"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/RecordLabelFilter": {
+      "abstract": [
+        {
+          "text": "The set of record label properties your app uses as a filter",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecordLabelFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/RecordLabelFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecordLabelFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecordLabelFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/recordlabelfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Song": {
+      "abstract": [
+        {
+          "text": "A music item that represents a song.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Song"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Song",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Song"
+        }
+      ],
+      "role": "symbol",
+      "title": "Song",
+      "type": "topic",
+      "url": "/documentation/musickit/song"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/SongFilter": {
+      "abstract": [
+        {
+          "text": "Song properties your app uses as a filter for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SongFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/SongFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SongFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "SongFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/songfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Station": {
+      "abstract": [
+        {
+          "text": "A music item that represents a station.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Station"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Station",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Station"
+        }
+      ],
+      "role": "symbol",
+      "title": "Station",
+      "type": "topic",
+      "url": "/documentation/musickit/station"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/StationFilter": {
+      "abstract": [
+        {
+          "text": "The set of station properties your app uses as a filter",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for a catalog resource request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StationFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/StationFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StationFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "StationFilter",
+      "type": "topic",
+      "url": "/documentation/musickit/stationfilter"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer": {
+      "abstract": [
+        {
+          "text": "An object your app uses to play music by controlling the Music app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemMusicPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemMusicPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemMusicPlayer",
+      "type": "topic",
+      "url": "/documentation/musickit/systemmusicplayer"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/TitledSection": {
+      "abstract": [
+        {
+          "text": "A section you can use to request items from the library grouped by title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TitledSection"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/TitledSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TitledSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "TitledSection",
+      "type": "topic",
+      "url": "/documentation/musickit/titledsection"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Track": {
+      "abstract": [
+        {
+          "text": "A music item that represents a track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Track"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Track",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Track"
+        }
+      ],
+      "role": "symbol",
+      "title": "Track",
+      "type": "topic",
+      "url": "/documentation/musickit/track"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API": {
+      "abstract": [
+        {
+          "text": "Enable your app’s integration with the MusicKit App Service in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the developer portal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Automatic Developer Token Generation for Apple Music API",
+      "type": "topic",
+      "url": "/documentation/musickit/using-automatic-token-generation-for-apple-music-api"
+    },
+    "doc://com.apple.documentation/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/AppleMusicAPI"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleMusicUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer"
+    },
+    "doc://com.apple.documentation/documentation/musickit/using_musickit_to_integrate_with_apple_music": {
+      "abstract": [
+        {
+          "text": "Find an album in Apple Music that corresponds to a CD in a user’s collection, and present the information for the album.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/musickit/using_musickit_to_integrate_with_apple_music",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using MusicKit to Integrate with Apple Music",
+      "type": "topic",
+      "url": "/documentation/musickit/using_musickit_to_integrate_with_apple_music"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/MediaPlayer",
+        "doc://com.apple.documentation/documentation/AppleMusicAPI"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/Using-Automatic-Token-Generation-for-Apple-Music-API",
+        "doc://com.apple.documentation/documentation/musickit/using_musickit_to_integrate_with_apple_music",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "A set of value types represents each kind of music item.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Music-Items",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/Album",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Artist",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Curator",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Genre",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicVideo",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Playlist",
+        "doc://com.apple.MusicKit/documentation/MusicKit/RadioShow",
+        "doc://com.apple.MusicKit/documentation/MusicKit/RecordLabel",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Song",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Station",
+        "doc://com.apple.MusicKit/documentation/MusicKit/Track"
+      ],
+      "title": "Music Items"
+    },
+    {
+      "abstract": [
+        {
+          "text": "A set of structured attributes for music items.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Music-Item-Attributes",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/ContentRating",
+        "doc://com.apple.MusicKit/documentation/MusicKit/EditorialNotes",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PreviewAsset"
+      ],
+      "title": "Music Item Attributes"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The catalog search request allows your app to find music items",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the Apple Music catalog.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Catalog-Search",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchable"
+      ],
+      "title": "Catalog Search"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The catalog resource request allows your app to load items using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a specific filter. Each music item type has its own set of properties",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you can use as a filter for a catalog resource request when loading music items",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for your app.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Resource-Loading-Using-Filters",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogResourceResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/AlbumFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/ArtistFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/CuratorFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/GenreFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicVideoFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PlaylistFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/RadioShowFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/RecordLabelFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/SongFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/StationFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/FilterableMusicItem"
+      ],
+      "title": "Resource Loading Using Filters"
+    },
+    {
+      "anchor": "General-Purpose-Data-Request",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicDataResponse"
+      ],
+      "title": "General Purpose Data Request"
+    },
+    {
+      "anchor": "Playback",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/ApplicationMusicPlayer",
+        "doc://com.apple.MusicKit/documentation/MusicKit/SystemMusicPlayer",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlayer",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PlayableMusicItem",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PlayParameters"
+      ],
+      "title": "Playback"
+    },
+    {
+      "anchor": "Artwork",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/Artwork",
+        "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage"
+      ],
+      "title": "Artwork"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Before you can use any of the functionality of the framework, you need to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "request the user’s informed consent for your app to access their music data.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Authorization",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicAuthorization"
+      ],
+      "title": "Authorization"
+    },
+    {
+      "anchor": "Apple-Music-Subscription",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscription",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicSubscriptionOffer"
+      ],
+      "title": "Apple Music Subscription"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The framework manages tokens for accessing Apple Music API automatically",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by default, but you can generate your own developer token by creating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a class that inherits from the token provider type alias.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Token-management",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenProvider",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicDeveloperTokenProvider",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicUserTokenProvider",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenRequestOptions",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicTokenRequestError",
+        "doc://com.apple.MusicKit/documentation/MusicKit/DefaultMusicTokenProvider"
+      ],
+      "title": "Token management"
+    },
+    {
+      "anchor": "Utility",
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicItem",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicItemID",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicItemCollection",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPropertyContainer",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicRelationshipProperty",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicExtendedAttributeProperty",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicAttributeProperty",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PartialMusicAsyncProperty",
+        "doc://com.apple.MusicKit/documentation/MusicKit/PartialMusicProperty",
+        "doc://com.apple.MusicKit/documentation/MusicKit/AnyMusicProperty"
+      ],
+      "title": "Utility"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrary"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryAlbumFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryAlbumSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryArtistFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryArtistSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryGenreFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryGenreSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryMusicVideoFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryMusicVideoSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistEntryFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistEntrySortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryPlaylistSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibrarySongFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibrarySongSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryTrackFilter",
+        "doc://com.apple.MusicKit/documentation/MusicKit/LibraryTrackSortProperties",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartRequestable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogTopLevelResourceRequesting",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryAddable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestFilterValueEquatable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestFilterValueMembershipComparable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequestable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionRequestable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationItem",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPlaylistAddable",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedRequestable"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChart",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartsRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartsResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchSuggestionsRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogSearchSuggestionsResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibraryResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySearchResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySection",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionedRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicLibrarySectionedResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendation",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationsRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPersonalRecommendationsResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedResponse",
+        "doc://com.apple.MusicKit/documentation/MusicKit/TitledSection"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedContainerRequest",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicRecentlyPlayedContainerResponse"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MusicKit/documentation/MusicKit/AudioVariant",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicCatalogChartKind",
+        "doc://com.apple.MusicKit/documentation/MusicKit/MusicPropertySource",
+        "doc://com.apple.MusicKit/documentation/MusicKit/RecentlyPlayedMusicItem"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/musickit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

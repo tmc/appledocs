@@ -1,0 +1,844 @@
+{
+  "abstract": [
+    {
+      "text": "Determines if the given URL conforms to RFC 1808 and therefore can be decomposed.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/1542131-cfurlcanbedecomposed"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1542131,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CFURLCanBeDecomposed",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "CFURLCanBeDecomposed"
+      },
+      {
+        "kind": "text",
+        "text": "(CFURL!) -> Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CFURLCanBeDecomposed(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFURLCanBeDecomposed"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "anURL"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURL"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object to test. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "anURL"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if ",
+              "type": "text"
+            },
+            {
+              "code": "anURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to RFC 1808, ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a ",
+              "type": "text"
+            },
+            {
+              "code": "CFURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object can be decomposed, you can retrieve separately each of the four components (scheme, net location, path, and resource specifier), as well as the base URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Relative URLs are permitted to have only paths (or a variety of other configurations); these are considered decomposable if their base URL is decomposable. If no base URL is present, they are considered decomposable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541581-cfurlcopyfilesystempath": {
+      "abstract": [
+        {
+          "text": "Returns the path portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyFileSystemPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFURLPathStyle) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541581-cfurlcopyfilesystempath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyFileSystemPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541581-cfurlcopyfilesystempath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541982-cfurlcopypath": {
+      "abstract": [
+        {
+          "text": "Returns the path portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541982-cfurlcopypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyPath(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541982-cfurlcopypath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542114-cfurlcopyresourcespecifier": {
+      "abstract": [
+        {
+          "text": "Returns any additional resource specifiers after the path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyResourceSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542114-cfurlcopyresourcespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyResourceSpecifier(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542114-cfurlcopyresourcespecifier"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542131-cfurlcanbedecomposed": {
+      "abstract": [
+        {
+          "text": "Determines if the given URL conforms to RFC 1808 and therefore can be decomposed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCanBeDecomposed"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542131-cfurlcanbedecomposed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCanBeDecomposed(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542131-cfurlcanbedecomposed"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542229-cfurlhasdirectorypath": {
+      "abstract": [
+        {
+          "text": "Determines if a given URL's path represents a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLHasDirectoryPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542229-cfurlhasdirectorypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLHasDirectoryPath(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542229-cfurlhasdirectorypath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542357-cfurlgetportnumber": {
+      "abstract": [
+        {
+          "text": "Returns the port number from a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLGetPortNumber"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542357-cfurlgetportnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLGetPortNumber(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542357-cfurlgetportnumber"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542465-cfurlcopyscheme": {
+      "abstract": [
+        {
+          "text": "Returns the scheme portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyScheme"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542465-cfurlcopyscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyScheme(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542465-cfurlcopyscheme"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542469-cfurlcopylastpathcomponent": {
+      "abstract": [
+        {
+          "text": "Returns the last path component of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyLastPathComponent"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542469-cfurlcopylastpathcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyLastPathComponent(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542469-cfurlcopylastpathcomponent"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542692-cfurlcopyusername": {
+      "abstract": [
+        {
+          "text": "Returns the user name from a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyUserName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542692-cfurlcopyusername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyUserName(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542692-cfurlcopyusername"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542792-cfurlcopyquerystring": {
+      "abstract": [
+        {
+          "text": "Returns the query string of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyQueryString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542792-cfurlcopyquerystring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyQueryString(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542792-cfurlcopyquerystring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542952-cfurlcopystrictpath": {
+      "abstract": [
+        {
+          "text": "Returns the path portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyStrictPath"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, UnsafeMutablePointer<DarwinBoolean>!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542952-cfurlcopystrictpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyStrictPath(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542952-cfurlcopystrictpath"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543262-cfurlcopyparameterstring": {
+      "abstract": [
+        {
+          "text": "Returns the parameter string from a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyParameterString"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543262-cfurlcopyparameterstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyParameterString(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543262-cfurlcopyparameterstring"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543269-cfurlcopypathextension": {
+      "abstract": [
+        {
+          "text": "Returns the path extension of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyPathExtension"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543269-cfurlcopypathextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyPathExtension(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543269-cfurlcopypathextension"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543510-cfurlcopypassword": {
+      "abstract": [
+        {
+          "text": "Returns the password of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyPassword"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543510-cfurlcopypassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyPassword(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543510-cfurlcopypassword"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543550-cfurlcopyhostname": {
+      "abstract": [
+        {
+          "text": "Returns the host name of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyHostName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543550-cfurlcopyhostname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyHostName(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543550-cfurlcopyhostname"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543642-cfurlcopyfragment": {
+      "abstract": [
+        {
+          "text": "Returns the fragment from a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyFragment"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, CFString!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543642-cfurlcopyfragment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyFragment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543642-cfurlcopyfragment"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543732-cfurlcopynetlocation": {
+      "abstract": [
+        {
+          "text": "Returns the net location portion of a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURLCopyNetLocation"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543732-cfurlcopynetlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURLCopyNetLocation(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543732-cfurlcopynetlocation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl-rd7"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1541581-cfurlcopyfilesystempath",
+        "doc://com.apple.documentation/documentation/corefoundation/1543642-cfurlcopyfragment",
+        "doc://com.apple.documentation/documentation/corefoundation/1543550-cfurlcopyhostname",
+        "doc://com.apple.documentation/documentation/corefoundation/1542469-cfurlcopylastpathcomponent",
+        "doc://com.apple.documentation/documentation/corefoundation/1543732-cfurlcopynetlocation",
+        "doc://com.apple.documentation/documentation/corefoundation/1543262-cfurlcopyparameterstring",
+        "doc://com.apple.documentation/documentation/corefoundation/1543510-cfurlcopypassword",
+        "doc://com.apple.documentation/documentation/corefoundation/1541982-cfurlcopypath",
+        "doc://com.apple.documentation/documentation/corefoundation/1543269-cfurlcopypathextension",
+        "doc://com.apple.documentation/documentation/corefoundation/1542792-cfurlcopyquerystring",
+        "doc://com.apple.documentation/documentation/corefoundation/1542114-cfurlcopyresourcespecifier",
+        "doc://com.apple.documentation/documentation/corefoundation/1542465-cfurlcopyscheme",
+        "doc://com.apple.documentation/documentation/corefoundation/1542952-cfurlcopystrictpath",
+        "doc://com.apple.documentation/documentation/corefoundation/1542692-cfurlcopyusername",
+        "doc://com.apple.documentation/documentation/corefoundation/1542357-cfurlgetportnumber",
+        "doc://com.apple.documentation/documentation/corefoundation/1542229-cfurlhasdirectorypath"
+      ],
+      "title": "Accessing the Parts of a URL"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/1542131-cfurlcanbedecomposed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/1542131-cfurlcanbedecomposed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

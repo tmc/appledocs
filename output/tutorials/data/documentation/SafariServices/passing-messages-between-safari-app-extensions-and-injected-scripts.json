@@ -1,0 +1,1452 @@
+{
+  "abstract": [
+    {
+      "text": "Communicate between your Safari app extension and injected scripts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/passing-messages-between-safari-app-extensions-and-injected-scripts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Passing messages between Safari app extensions and injected scripts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The injected script and your Safari app extension live in different sandboxed worlds, each with specific limits on what it can access. You can’t call directly from the native code in your app extension to the injected script running in the browser. However, some sort of communication between the two is almost always desirable. For example, you may have a toolbar or contextual menu item that you want to use to affect web content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The solution is to pass messages between the injected script and the app extension. The two runtime environments share a common format for message passing, and each provides an interface for sending and receiving messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The complete workflow appears below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3027374",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within the scripting environment, you have access to the ",
+              "type": "text"
+            },
+            {
+              "code": "window",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects for the browser content, as well as a ",
+              "type": "text"
+            },
+            {
+              "code": "safari",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. The ",
+              "type": "text"
+            },
+            {
+              "code": "safari",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is an instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "SafariAppExtensionNamespace",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. It provides details about your app extension and support for passing messages between your injected script and the app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This table describes your app extension’s key properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "extension",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A proxy for the app extension. Use it to retrieve information about your app extension and to pass messages to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "self",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A proxy for your injected script. Use it to install event listeners to respond to messages from your app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Send-messages-to-the-app-extension",
+          "level": 3,
+          "text": "Send messages to the app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "code": "safari.extension.dispatchMessage.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "safari.extension.dispatchMessage(\"Hello World\");",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parameter for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariappextension/2048642-dispatchmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a string that identifies the message you want to send. You create your own message names and decide what those messages mean for your app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can optionally send additional user data to accompany the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "safari.extension.dispatchMessage(\"InterestingMessage\",  { \"key\": \"value\" });"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user data must be a JavaScript object made up of keys and values that conform to the W3C standard for safe passing of structured data, such as Boolean objects, numeric values, strings, arrays, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code sends an array in a message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var myArray = [\"a\", \"b\", \"c\"];",
+            "safari.extension.dispatchMessage(\"passArray\", { \"key\": myArray });"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app extension receives the message, the system calls the extension handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/messageReceived(withName:from:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method’s parameters include the message name, the page that sends the message, and, if part of the message, a user dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : AnyObject]!) {",
+                    "    page.getPropertiesWithCompletionHandler { properties in",
+                    "        NSLog(\"The extension received a message (\\(messageName)) from a script injected into (\\(properties?.url)) with userInfo (\\(userInfo))\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)messageReceivedWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary<NSString *, id> *)userInfo {",
+                    "    [page getPagePropertiesWithCompletionHandler:^(SFSafariPageProperties *properties) {",
+                    "        NSLog(@\"The extension received a message (%@) from a script injected into (%@) with userInfo (%@)\", messageName, properties.url, userInfo);",
+                    "    }];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari 17 and later, check whether the user is browsing with a profile if you need to limit any extension logic to the profile, such as fetching or storing data. To do that, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)beginRequestWithExtensionContext:(NSExtensionContext *)context {",
+            "    NSExtensionItem *item = context.inputItems.firstObject;",
+            "    NSDictionary *userInfo = item.userInfo;",
+            "    NSUUID *profileIdentifier = userInfo[SFExtensionProfileKey];",
+            "    ",
+            "    if (profileIdentifier != nil) {",
+            "        // Remember profile identifier for future method calls.",
+            "    } else {",
+            "        // Handle normal browsing. ",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, get the profile identifier from the ",
+              "type": "text"
+            },
+            {
+              "code": "context.inputItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the key. Use the profile identifier for any profile-specific logic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-messages-to-the-injected-script",
+          "level": 3,
+          "text": "Send messages to the injected script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app extension needs to send a message to an injected script, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the target page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : AnyObject]!) {",
+                    "    page.dispatchMessageToScript(withName: \"simpleMessage\", userInfo: nil)",
+                    "    page.dispatchMessageToScript(withName: \"complexMessage\", userInfo: [\"myKey\": \"myValue\"])",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)messageReceivedWithName:(NSString *)messageName fromPage:(SFSafariPage *)page userInfo:(NSDictionary<NSString *, id> *)userInfo {",
+                    "    [page dispatchMessageToScriptWithName:@\"simpleMessage\" userInfo:nil];",
+                    "    [page dispatchMessageToScriptWithName:@\"complexMessage\" userInfo:@{@\"myKey\":@\"myValue\"}];",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The message is a packaged event with a type of ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To respond to the message, the injected script registers an event listener for message events using ",
+              "type": "text"
+            },
+            {
+              "code": "safari.self.addEventListener.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "safari.self.addEventListener(\"message\", handleMessage);",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The event that passes into the event handler is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextensionmessageevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Its ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property identifies the message, and its ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property contains the dictionary of user data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "function handleMessage(event) {",
+            "    console.log(event.name);",
+            "    console.log(event.message);",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest": {
+      "abstract": [
+        {
+          "text": "Tells the extension to prepare for a host app’s request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExtensionContext)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginRequest(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling/1413395-beginrequest"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariappextension": {
+      "abstract": [
+        {
+          "text": "A class that represents your extension in a content script.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariappextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SafariAppExtension",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariappextension"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariappextension/2048642-dispatchmessage": {
+      "abstract": [
+        {
+          "text": "Dispatches a message to your app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariappextension/2048642-dispatchmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchMessage",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariappextension/2048642-dispatchmessage"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariappextensionpage": {
+      "abstract": [
+        {
+          "text": "A class that represents a web content area.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariappextensionpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SafariAppExtensionPage",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariappextensionpage"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safarieventtarget": {
+      "abstract": [
+        {
+          "text": "A base class for event dispatching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safarieventtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SafariEventTarget",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safarieventtarget"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextensionmessageevent": {
+      "abstract": [
+        {
+          "text": "A class that represents a message between the web content area and an outside script.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextensionmessageevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SafariExtensionMessageEvent",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextensionmessageevent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey": {
+      "abstract": [
+        {
+          "text": "A string the system uses as a key in a user info dictionary to identify a profile identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFExtensionProfileKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFExtensionProfileKey",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfextensionprofilekey"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler": {
+      "abstract": [
+        {
+          "text": "A base class that you subclass to handle events in your Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionHandler",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandler"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling": {
+      "abstract": [
+        {
+          "text": "A protocol for implementing event handling in a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionHandling",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/messageReceived(withName:from:userInfo:)": {
+      "abstract": [
+        {
+          "text": "A method the system calls when the extension receives a message from an injected script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messageReceived"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SFSafariPage",
+          "text": "SFSafariPage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling/messageReceived(withName:from:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "messageReceivedWithName:fromPage:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "messageReceived(withName:from:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionhandling/messagereceived(withname:from:userinfo:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager": {
+      "abstract": [
+        {
+          "text": "A class that your app uses to find out the current state of a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionManager",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionmanager"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState": {
+      "abstract": [
+        {
+          "text": "The state of a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionState"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariExtensionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariExtensionState",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafariextensionstate"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Dispatches a message from the app extension to the content script injected in this page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchMessageToScript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPage/dispatchMessageToScript(withName:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchMessageToScriptWithName:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatchMessageToScript(withName:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaripage/dispatchmessagetoscript(withname:userinfo:)"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties": {
+      "abstract": [
+        {
+          "text": "An object that captures information about a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariPageProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariPageProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariPageProperties",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaripageproperties"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage": {
+      "abstract": [
+        {
+          "text": "Inject a script that you write for a Safari app extension into a webpage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+      "kind": "article",
+      "role": "article",
+      "title": "Injecting a script into a webpage",
+      "type": "topic",
+      "url": "/documentation/safariservices/injecting-a-script-into-a-webpage"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/injecting-css-style-sheets-into-a-webpage": {
+      "abstract": [
+        {
+          "text": "Add to or override styles by injecting CSS style sheets into webpages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/injecting-css-style-sheets-into-a-webpage",
+      "kind": "article",
+      "role": "article",
+      "title": "Injecting CSS style sheets into a webpage",
+      "type": "topic",
+      "url": "/documentation/safariservices/injecting-css-style-sheets-into-a-webpage"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts": {
+      "abstract": [
+        {
+          "text": "Learn how you can affect the appearance or behavior of a webpage by using injected style sheets and scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Using injected style sheets and scripts",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-injected-style-sheets-and-scripts"
+    },
+    "media-3027374": {
+      "alt": "A diagram showing a message passing from a Safari app extension to an injected script in a webpage and back to the app extension. ",
+      "identifier": "media-3027374",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8936272251b5d55a7116403b63e2c45d/media-3027374@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a3b36299588e607d2d9c72161e8c845/media-3027374~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariappextension",
+        "doc://com.apple.documentation/documentation/safariextensions/safariappextensionpage",
+        "doc://com.apple.documentation/documentation/safariextensions/safarieventtarget",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextensionmessageevent"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Injected-style-sheets-and-scripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+        "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+        "doc://com.apple.safariservices/documentation/SafariServices/injecting-css-style-sheets-into-a-webpage",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling",
+        "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey"
+      ],
+      "title": "Injected style sheets and scripts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/safariextensions/safariappextension",
+                "doc://com.apple.documentation/documentation/safariextensions/safariappextensionpage",
+                "doc://com.apple.documentation/documentation/safariextensions/safarieventtarget",
+                "doc://com.apple.documentation/documentation/safariextensions/safariextensionmessageevent"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Injected-style-sheets-and-scripts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/using-injected-style-sheets-and-scripts",
+                "doc://com.apple.safariservices/documentation/SafariServices/injecting-a-script-into-a-webpage",
+                "doc://com.apple.safariservices/documentation/SafariServices/injecting-css-style-sheets-into-a-webpage",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandler",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionManager",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionState",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFSafariExtensionHandling",
+                "doc://com.apple.safariservices/documentation/SafariServices/SFExtensionProfileKey"
+              ],
+              "title": "Injected style sheets and scripts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling/title",
+          "value": "SFSafariExtensionHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPage~1dispatchMessageToScript(withName:userInfo:)/title",
+          "value": "dispatchMessageToScriptWithName:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPage~1dispatchMessageToScript(withName:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatchMessageToScriptWithName:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/title",
+          "value": "SFExtensionProfileKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFExtensionProfileKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFExtensionProfileKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/title",
+          "value": "SFSafariExtensionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsextensionrequesthandling~11413395-beginrequest/title",
+          "value": "beginRequestWithExtensionContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionManager/title",
+          "value": "SFSafariExtensionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/title",
+          "value": "SFSafariPageProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariPageProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariPageProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionState/title",
+          "value": "SFSafariExtensionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariExtensionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1messageReceived(withName:from:userInfo:)/title",
+          "value": "messageReceivedWithName:fromPage:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariExtensionHandling~1messageReceived(withName:from:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "messageReceivedWithName:fromPage:userInfo:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/passing-messages-between-safari-app-extensions-and-injected-scripts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/passing-messages-between-safari-app-extensions-and-injected-scripts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

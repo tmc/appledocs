@@ -1,0 +1,1198 @@
+{
+  "abstract": [
+    {
+      "text": "An enum that represents the requirement for a package dependency.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "PackageDescription",
+    "externalID": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Requirement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PackageDescription"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Requirement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "5.6",
+        "name": "SwiftPM",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "Package.Dependency.Requirement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Requirement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dependency requirement can be defined as one of three different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "version requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Decide whether your project accepts updates to a package dependency up to the next major version or up to the next minor version. To be more restrictive, select a specific version range or an exact version. Major versions tend to have more significant changes than minor versions, and may require you to modify your code when they update.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "A version-based requirement",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The version rule requires Swift packages to conform to semantic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versioning. To learn more about the semantic versioning standard, visit the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://semver.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Selecting the version requirement is the recommended way to add a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package dependency. It allows you to create a balance between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "restricting changes and obtaining improvements and features. - term A",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "branch-based requirement: Select the name of the branch for your package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependency to follow. Use branch-based dependencies when you’re",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "developing multiple packages in tandem or when you don’t want to publish",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versions of your package dependencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that packages which use branch-based dependency requirements can’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be added as dependencies to packages that use version-based dependency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements; you should remove branch-based dependency requirements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before publishing a version of your package. - term A commit-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirement: Select the commit hash for your package dependency to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "follow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choosing this option isn’t recommended, and should be limited to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exceptional cases. While pinning your package dependency to a specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commit ensures that the package dependency doesn’t change and your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remains stable, you don’t receive any updates at all. If you worry about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the stability of a remote package, consider one of the more restrictive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "options of the version-based requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that packages which use commit-based dependency requirements can’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be added as dependencies to packages that use version-based dependency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements; you should remove commit-based dependency requirements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before publishing a version of your package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/packagedescription"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package": {
+      "abstract": [
+        {
+          "text": "The configuration of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency": {
+      "abstract": [
+        {
+          "text": "A package dependency of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dependency"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Dependency"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package.Dependency",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum": {
+      "abstract": [
+        {
+          "text": "An enum that represents the requirement for a package dependency.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Requirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package.Dependency.Requirement",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/branch(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a requirement for a source control branch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "branch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/branch(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "branch(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/branch(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/branchItem(_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "branchItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/branchItem(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.Requirement.branchItem(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/branchitem(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/exact(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a requirement for the given exact version.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exact"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/exact(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exact(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/exact(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/exactItem(_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exactItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/exactItem(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.Requirement.exactItem(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/exactitem(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/localPackageItem": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localPackageItem"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/localPackageItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.Requirement.localPackageItem",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/localpackageitem"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/rangeItem(_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rangeItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/rangeItem(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.Requirement.rangeItem(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/rangeitem(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/revision(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a requirement for a source control revision such as the hash of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a commit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/revision(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revision(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/revision(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/revisionItem(_:)": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revisionItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/revisionItem(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Package.Dependency.Requirement.revisionItem(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/revisionitem(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/upToNextMajor(from:)": {
+      "abstract": [
+        {
+          "text": "A source control requirement bounded to the given version’s major version number.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "upToNextMajor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/upToNextMajor(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "upToNextMajor(from:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/uptonextmajor(from:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/upToNextMinor(from:)": {
+      "abstract": [
+        {
+          "text": "A source control requirement bounded to the given version’s minor version number.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "upToNextMinor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription7VersionV",
+          "text": "Version"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/upToNextMinor(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "upToNextMinor(from:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.enum/uptonextminor(from:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/requirement-swift.property": {
+      "abstract": [
+        {
+          "text": "The dependency requirement of the package dependency.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requirement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC11RequirementO",
+          "text": "Requirement"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/requirement-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requirement",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/requirement-swift.property"
+    },
+    "https://semver.org": {
+      "identifier": "https://semver.org",
+      "title": "Semantic Versioning 2.0.0",
+      "titleInlineContent": [
+        {
+          "text": "Semantic Versioning 2.0.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://semver.org"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Declaring-Requirements",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/requirement-swift.property"
+      ],
+      "title": "Declaring Requirements"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Enumeration-Cases",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/branchItem(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/exactItem(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/localPackageItem",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/rangeItem(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/revisionItem(_:)"
+      ],
+      "title": "Enumeration Cases"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/branch(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/exact(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/revision(_:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/upToNextMajor(from:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/Requirement-swift.enum/upToNextMinor(from:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/packagedescription/package/dependency/requirement-swift.enum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

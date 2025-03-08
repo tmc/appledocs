@@ -1,0 +1,3830 @@
+{
+  "abstract": [
+    {
+      "text": "An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPrintOperation",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPrintOperation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPrintOperation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSPrintOperation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPrintOperation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object works in conjunction with two other objects: an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which specifies how the code should be generated, and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which generates the actual code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is important to note that the majority of methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " copy the instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " passed into them. Future changes to that print info are not reflected in the print info retained by the current ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. All changes should be made to the print info before passing to the methods of this class. The only method in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which does not copy the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You should not subclass ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Methods that return a print operation object return an instance of a concrete subclass whose implementation is private.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo": {
+      "abstract": [
+        {
+          "text": "An object that stores information that’s used to generate printed output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation": {
+      "abstract": [
+        {
+          "text": "An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/PageOrder-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify the page order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PageOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/PageOrder-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PageOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintOperation.PageOrder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pageorder-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/RenderingQuality": {
+      "abstract": [
+        {
+          "text": "Constants that specify the print quality in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenderingQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/RenderingQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenderingQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrintOperation.RenderingQuality",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/renderingquality"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/accessoryView": {
+      "abstract": [
+        {
+          "text": "Returns the accessory view used by the print operation’s print panel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/accessoryView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryView"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/accessoryview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/canSpawnSeparateThread": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the print operation is allowed to spawn a separate printing thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canSpawnSeparateThread"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/canSpawnSeparateThread",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canSpawnSeparateThread"
+        }
+      ],
+      "role": "symbol",
+      "title": "canSpawnSeparateThread",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/canspawnseparatethread"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/cleanUp()": {
+      "abstract": [
+        {
+          "text": "Called at the end of a print operation to remove the print operation as the current operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cleanUp"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/cleanUp()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cleanUpOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "cleanUp()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/cleanup()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/context": {
+      "abstract": [
+        {
+          "text": "The graphics context object used for generating output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "context"
+        }
+      ],
+      "role": "symbol",
+      "title": "context",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/context"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/createContext()": {
+      "abstract": [
+        {
+          "text": "Creates the graphics context object used for drawing during the operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createContext"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGraphicsContext",
+          "text": "NSGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/createContext()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "createContext()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/createcontext()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/current": {
+      "abstract": [
+        {
+          "text": "The current print operation for this thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/current",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/current"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/currentPage": {
+      "abstract": [
+        {
+          "text": "The current page number being printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentPage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/currentPage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentPage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/currentpage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/deliverResult()": {
+      "abstract": [
+        {
+          "text": "Delivers the results of the print operation to the intended destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deliverResult"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/deliverResult()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deliverResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "deliverResult()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/deliverresult()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/destroyContext()": {
+      "abstract": [
+        {
+          "text": "Destroys the print operation’s graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destroyContext"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/destroyContext()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "destroyContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "destroyContext()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/destroycontext()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "epsOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableData",
+          "text": "NSMutableData"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EPSOperationWithView:insideRect:toData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "epsOperation(with:inside:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/epsoperation(with:inside:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:printInfo:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view using the specified print settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "epsOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableData",
+          "text": "NSMutableData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "printInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintInfo",
+          "text": "NSPrintInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:printInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EPSOperationWithView:insideRect:toData:printInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "epsOperation(with:inside:to:printInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/epsoperation(with:inside:to:printinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:toPath:printInfo:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view and write the resulting data to the specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "epsOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "printInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintInfo",
+          "text": "NSPrintInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:toPath:printInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EPSOperationWithView:insideRect:toPath:printInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "epsOperation(with:inside:toPath:printInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/epsoperation(with:inside:topath:printinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an print operation object ready to control the printing of the specified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printOperationWithView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(view:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/init(view:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:printInfo:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an print operation object ready to control the printing of the specified view using custom print settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "printInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintInfo",
+          "text": "NSPrintInfo"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:printInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printOperationWithView:printInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(view:printInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/init(view:printinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/isCopyingOperation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the print operation is an EPS or PDF copy operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCopyingOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/isCopyingOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyingOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCopyingOperation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/iscopyingoperation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobStyleHint": {
+      "abstract": [
+        {
+          "text": "The type of content that the print job is printing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "jobStyleHint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobStyleHint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "jobStyleHint"
+        }
+      ],
+      "role": "symbol",
+      "title": "jobStyleHint",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/jobstylehint"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobTitle": {
+      "abstract": [
+        {
+          "text": "The custom title of the print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jobTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "jobTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "jobTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/jobtitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageOrder-swift.property": {
+      "abstract": [
+        {
+          "text": "The print order for the pages of the operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPrintingPageOrder",
+          "text": "PageOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageOrder-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageOrder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pageorder-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageRange": {
+      "abstract": [
+        {
+          "text": "The range of pages associated with the print operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageRange",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pagerange"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new print operation object ready to control the copying of PDF graphics from the specified view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pdfOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableData",
+          "text": "NSMutableData"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFOperationWithView:insideRect:toData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pdfOperation(with:inside:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pdfoperation(with:inside:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:printInfo:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new print operation object ready to control the copying of PDF graphics from the specified view using the specified print settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pdfOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableData",
+          "text": "NSMutableData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "printInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintInfo",
+          "text": "NSPrintInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:printInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFOperationWithView:insideRect:toData:printInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pdfOperation(with:inside:to:printInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pdfoperation(with:inside:to:printinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:toPath:printInfo:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new print operation object ready to control the copying of PDF graphics from the specified view and write the resulting data to the specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pdfOperation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "printInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintInfo",
+          "text": "NSPrintInfo"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:toPath:printInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFOperationWithView:insideRect:toPath:printInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pdfOperation(with:inside:toPath:printInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pdfoperation(with:inside:topath:printinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfPanel": {
+      "abstract": [
+        {
+          "text": "The PDF panel object to use during the operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pdfPanel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPDFPanel",
+          "text": "NSPDFPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "pdfPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/pdfpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/preferredRenderingQuality": {
+      "abstract": [
+        {
+          "text": "The printing quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredRenderingQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintOperation",
+          "text": "NSPrintOperation"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPrintRenderingQuality",
+          "text": "RenderingQuality"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/preferredRenderingQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredRenderingQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredRenderingQuality",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/preferredrenderingquality"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printInfo": {
+      "abstract": [
+        {
+          "text": "The printing information associated with the print operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintInfo",
+          "text": "NSPrintInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "printInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/printinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printPanel": {
+      "abstract": [
+        {
+          "text": "The print panel object to use during the operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printPanel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPrintPanel",
+          "text": "NSPrintPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "printPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/printpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/run()": {
+      "abstract": [
+        {
+          "text": "Runs the print operation on the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/run()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "run()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/run()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/runModal(for:delegate:didRun:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Runs the print operation, calling your custom delegate method upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runModal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRun"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/runModal(for:delegate:didRun:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runOperationModalForWindow:delegate:didRunSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runModal(for:delegate:didRun:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/runmodal(for:delegate:didrun:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setAccessoryView:": {
+      "abstract": [
+        {
+          "text": "Sets the custom accessory view to be displayed by the print operation’s print panel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessoryView:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setAccessoryView:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccessoryView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setAccessoryView:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/setaccessoryview:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setJobStyleHint:": {
+      "abstract": [
+        {
+          "text": "Sets the type of content that the print job is printing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setJobStyleHint:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setJobStyleHint:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setJobStyleHint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setJobStyleHint:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/setjobstylehint:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setShowPanels:": {
+      "abstract": [
+        {
+          "text": "Sets whether the print operation should display a print panel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setShowPanels:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setShowPanels:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setShowPanels:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setShowPanels:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/setshowpanels:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showPanels": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the print panel is to be displayed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "showPanels"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showPanels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showPanels"
+        }
+      ],
+      "role": "symbol",
+      "title": "showPanels",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/showpanels"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsPrintPanel": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the print operation displays a print panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsPrintPanel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsPrintPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsPrintPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsPrintPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/showsprintpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsProgressPanel": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the print operation displays a progress panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsProgressPanel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsProgressPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsProgressPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsProgressPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/showsprogresspanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/view": {
+      "abstract": [
+        {
+          "text": "The view object that generates the actual data for the print operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperation/view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintOperationExistsException": {
+      "abstract": [
+        {
+          "text": "The name of an exception raised when there is already a print operation in process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSPrintOperationExistsException"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintOperationExistsException",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrintOperationExistsException",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintoperationexistsexception"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrinter": {
+      "abstract": [
+        {
+          "text": "An object that describes a printer’s capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPrinter"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrinter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPrinter"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPrinter",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprinter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Print-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrinter",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo"
+      ],
+      "title": "Print Information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Printing-Operation-Object",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:printInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:toPath:printInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:printInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:toPath:printInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:printInfo:)"
+      ],
+      "title": "Creating the Printing Operation Object"
+    },
+    {
+      "anchor": "Setting-the-Current-Print-Operation-for-This-Thread",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/current"
+      ],
+      "title": "Setting the Current Print Operation for This Thread"
+    },
+    {
+      "anchor": "Determining-the-Type-of-Operation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/isCopyingOperation"
+      ],
+      "title": "Determining the Type of Operation"
+    },
+    {
+      "anchor": "Modifying-the-Printing-Information",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printInfo",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo"
+      ],
+      "title": "Modifying the Printing Information"
+    },
+    {
+      "anchor": "Getting-the-View",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/view"
+      ],
+      "title": "Getting the View"
+    },
+    {
+      "anchor": "Getting-the-Printing-Quality",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/preferredRenderingQuality",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/RenderingQuality"
+      ],
+      "title": "Getting the Printing Quality"
+    },
+    {
+      "anchor": "Running-the-Print-Operation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/run()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/runModal(for:delegate:didRun:contextInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/cleanUp()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/deliverResult()"
+      ],
+      "title": "Running the Print Operation"
+    },
+    {
+      "anchor": "Modifying-the-User-Interface",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsPrintPanel",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsProgressPanel",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printPanel",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfPanel"
+      ],
+      "title": "Modifying the User Interface"
+    },
+    {
+      "anchor": "Managing-the-Drawing-Context",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/context",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/createContext()",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/destroyContext()"
+      ],
+      "title": "Managing the Drawing Context"
+    },
+    {
+      "anchor": "Managing-Page-Information",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/currentPage",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageRange",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageOrder-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/PageOrder-swift.enum"
+      ],
+      "title": "Managing Page Information"
+    },
+    {
+      "anchor": "Managing-Printing-Threads",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/canSpawnSeparateThread"
+      ],
+      "title": "Managing Printing Threads"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPrintOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-Printing-Operation-Object",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:printInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:toPath:printInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:to:printInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfOperation(with:inside:toPath:printInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/init(view:printInfo:)"
+              ],
+              "title": "Creating the Printing Operation Object"
+            },
+            {
+              "anchor": "Setting-the-Current-Print-Operation-for-This-Thread",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/current"
+              ],
+              "title": "Setting the Current Print Operation for This Thread"
+            },
+            {
+              "anchor": "Determining-the-Type-of-Operation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/isCopyingOperation"
+              ],
+              "title": "Determining the Type of Operation"
+            },
+            {
+              "anchor": "Modifying-the-Printing-Information",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printInfo",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo"
+              ],
+              "title": "Modifying the Printing Information"
+            },
+            {
+              "anchor": "Getting-the-View",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/view"
+              ],
+              "title": "Getting the View"
+            },
+            {
+              "anchor": "Getting-the-Printing-Quality",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/preferredRenderingQuality",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/RenderingQuality"
+              ],
+              "title": "Getting the Printing Quality"
+            },
+            {
+              "anchor": "Running-the-Print-Operation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/run()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/runModal(for:delegate:didRun:contextInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/cleanUp()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/deliverResult()"
+              ],
+              "title": "Running the Print Operation"
+            },
+            {
+              "anchor": "Modifying-the-User-Interface",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsPrintPanel",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showsProgressPanel",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/printPanel",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pdfPanel"
+              ],
+              "title": "Modifying the User Interface"
+            },
+            {
+              "anchor": "Managing-the-Drawing-Context",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/context",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/createContext()",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/destroyContext()"
+              ],
+              "title": "Managing the Drawing Context"
+            },
+            {
+              "anchor": "Managing-Page-Information",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/currentPage",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageRange",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/pageOrder-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/PageOrder-swift.enum"
+              ],
+              "title": "Managing Page Information"
+            },
+            {
+              "anchor": "Managing-Printing-Threads",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/canSpawnSeparateThread"
+              ],
+              "title": "Managing Printing Threads"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/jobStyleHint",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setJobStyleHint:",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/accessoryView",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setAccessoryView:",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/showPanels",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperation/setShowPanels:"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintOperationExistsException"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Print-Information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPrinter",
+                "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo"
+              ],
+              "title": "Print Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSPrintOperation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1destroyContext()/title",
+          "value": "destroyContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1destroyContext()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "destroyContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1currentPage/title",
+          "value": "currentPage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1currentPage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1runModal(for:delegate:didRun:contextInfo:)/title",
+          "value": "runOperationModalForWindow:delegate:didRunSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1runModal(for:delegate:didRun:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runOperationModalForWindow:delegate:didRunSelector:contextInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfPanel/title",
+          "value": "PDFPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfOperation(with:inside:toPath:printInfo:)/title",
+          "value": "PDFOperationWithView:insideRect:toPath:printInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfOperation(with:inside:toPath:printInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "PDFOperationWithView:insideRect:toPath:printInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1PageOrder-swift.enum/title",
+          "value": "NSPrintingPageOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1PageOrder-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintingPageOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1PageOrder-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintingPageOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pageOrder-swift.property/title",
+          "value": "pageOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pageOrder-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pageOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrinter/title",
+          "value": "NSPrinter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrinter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrinter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrinter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrinter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1epsOperation(with:inside:to:printInfo:)/title",
+          "value": "EPSOperationWithView:insideRect:toData:printInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1epsOperation(with:inside:to:printInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "EPSOperationWithView:insideRect:toData:printInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1init(view:)/title",
+          "value": "printOperationWithView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1init(view:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "printOperationWithView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation/title",
+          "value": "NSPrintOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1canSpawnSeparateThread/title",
+          "value": "canSpawnSeparateThread"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1canSpawnSeparateThread/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canSpawnSeparateThread"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1epsOperation(with:inside:to:)/title",
+          "value": "EPSOperationWithView:insideRect:toData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1epsOperation(with:inside:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "EPSOperationWithView:insideRect:toData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1preferredRenderingQuality/title",
+          "value": "preferredRenderingQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1preferredRenderingQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredRenderingQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pageRange/title",
+          "value": "pageRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pageRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pageRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1cleanUp()/title",
+          "value": "cleanUpOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1cleanUp()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cleanUpOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1createContext()/title",
+          "value": "createContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1createContext()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1init(view:printInfo:)/title",
+          "value": "printOperationWithView:printInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1init(view:printInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "printOperationWithView:printInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1deliverResult()/title",
+          "value": "deliverResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1deliverResult()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deliverResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/title",
+          "value": "NSPrintInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1epsOperation(with:inside:toPath:printInfo:)/title",
+          "value": "EPSOperationWithView:insideRect:toPath:printInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1epsOperation(with:inside:toPath:printInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "EPSOperationWithView:insideRect:toPath:printInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1current/title",
+          "value": "currentOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1current/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1showsPrintPanel/title",
+          "value": "showsPrintPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1showsPrintPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsPrintPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1isCopyingOperation/title",
+          "value": "copyingOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1isCopyingOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "copyingOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfOperation(with:inside:to:)/title",
+          "value": "PDFOperationWithView:insideRect:toData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfOperation(with:inside:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "PDFOperationWithView:insideRect:toData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1jobTitle/title",
+          "value": "jobTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1jobTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "jobTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1printPanel/title",
+          "value": "printPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1printPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1showsProgressPanel/title",
+          "value": "showsProgressPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1showsProgressPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsProgressPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1printInfo/title",
+          "value": "printInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1printInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1run()/title",
+          "value": "runOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1run()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1context/title",
+          "value": "context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1RenderingQuality/title",
+          "value": "NSPrintRenderingQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1RenderingQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintRenderingQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1RenderingQuality/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPrintRenderingQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfOperation(with:inside:to:printInfo:)/title",
+          "value": "PDFOperationWithView:insideRect:toData:printInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPrintOperation~1pdfOperation(with:inside:to:printInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "PDFOperationWithView:insideRect:toData:printInfo:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsprintoperation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsprintoperation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

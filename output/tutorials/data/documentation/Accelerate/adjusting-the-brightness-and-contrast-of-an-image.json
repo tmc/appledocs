@@ -1,0 +1,1906 @@
+{
+  "abstract": [
+    {
+      "text": "Use a gamma function to apply a linear or exponential curve.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-a-gamma-function"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adjusting the brightness and contrast of an image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses the vImage piecewise gamma function to adjust the response curve (that is, the value of an output pixel based on the value of the corresponding input pixel) of an 8-bit RGB image. Changing the shape of the response curve changes the brightness and contrast of an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a piecewise gamma function to apply either a linear or an exponential response curve to pixels in an image based on their value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app displays a sample image and uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/xcode/swiftui/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " control to apply different preset linear (labeled L1 to L4) and exponential (labeled E1 to E3) response curves. This sample code project demonstrates how different response curves affect an image by changing its brightness and contrast.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-response-curve-presets",
+          "level": 3,
+          "text": "Define response curve presets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app defines a structure, ",
+              "type": "text"
+            },
+            {
+              "code": "ResponseCurvePreset",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that contains the coefficients the linear function uses, the gamma the exponential function uses, and the boundary between the linear and exponential functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ResponseCurvePreset: Hashable, Identifiable {",
+            "    let id: String",
+            "    let boundary: Pixel_8",
+            "    let linearScale: Float",
+            "    let linearBias: Float",
+            "    let gamma: Float",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "presets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains sample presets that apply different adjustments to the sample image. When the user changes the selected value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " control, the app passes the appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "preset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure to the ",
+              "type": "text"
+            },
+            {
+              "code": "getGammaCorrectedImage(preset:source:destination:imageFormat:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. This function applies the adjustment to the image and returns the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-adjustment-parameters",
+          "level": 3,
+          "text": "Define the adjustment parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app specifies the division between linear and gamma adjustments by passing a boundary parameter to the piecewise gamma function, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The function uses the exponential curve to calculate the output value when the input value is greater than or equal to the boundary value. Otherwise, the function uses the linear curve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For 8-bit images, the boundary is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Pixel_8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " specifies that the gamma function applies the exponential adjustment to all pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "255",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " specifies that the gamma function applies the linear adjustment to all pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "127",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " specifies that the gamma function applies the linear adjustment to all pixels with a value less than one-half, and the    exponential adjustment to the remaining pixels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app passes the linear and exponential coefficients (for example, the ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "bias",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "(scale * inputvalue) + bias",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") as tuples of floating-point values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let linearCoefficients = (preset.linearScale, preset.linearBias)",
+            "",
+            "let exponentialCoefficients = (Float(1), Float(0), preset.gamma, Float(0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Remove-the-alpha-channel",
+          "level": 3,
+          "text": "Remove the alpha channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function in the sample app treats an interleaved buffer as a single plane and applies the same gamma adjustment to all channels — including any alpha channel. Adjusting the response curve of the alpha channel changes transparency properties. To avoid this, the sample app converts the RGBA source image to RGB and applies the adjustment to that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app creates the RGB version of the source image by creating a three-channel, 8-bit-per-channel format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var imageFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8 * 3,",
+            "    colorSpace: CGColorSpaceCreateDeviceRGB(),",
+            "    bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue),",
+            "    renderingIntent: .defaultIntent)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then it declares three-channel source and destination buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sourceBuffer: vImage.PixelBuffer<vImage.Interleaved8x3>",
+            "let destinationBuffer: vImage.PixelBuffer<vImage.Interleaved8x3>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, it creates the source buffer using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffer = try vImage.PixelBuffer(",
+            "    cgImage: sourceImage,",
+            "    cgImageFormat: &imageFormat,",
+            "    pixelFormat: vImage.Interleaved8x3.self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "sourceBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the red, green, and blue channels of ",
+              "type": "text"
+            },
+            {
+              "code": "sourceImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-adjustment",
+          "level": 3,
+          "text": "Apply the adjustment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply the adjustment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "source.applyGamma(linearParameters: linearCoefficients,",
+            "                  exponentialParameters: exponentialCoefficients,",
+            "                  boundary: preset.boundary,",
+            "                  destination: destination)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the image, the sample app passes the destination buffer and RGB format to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let result = destination.makeCGImage(cgImageFormat: imageFormat) {",
+            "    return result",
+            "} else {",
+            "    fatalError(\"Unable to generate output image.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections explain the presets in more detail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-linear-adjustment",
+          "level": 3,
+          "text": "Apply linear adjustment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following presets use the linear adjustment (that is, ",
+              "type": "text"
+            },
+            {
+              "code": "boundary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is 255). The output value for each pixel is calculated as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(scale * inputValue) + bias"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "L1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset returns each pixel unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"L1\",",
+            "                    boundary: 255,",
+            "                    linearScale: 1,",
+            "                    linearBias: 0,",
+            "                    gamma: 0),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "E1_L1_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "L2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset returns a washed-out image where blacks transform to grays. When the input value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the output value is ",
+              "type": "text"
+            },
+            {
+              "code": "0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"L2\",",
+            "                    boundary: 255,",
+            "                    linearScale: 0.5,",
+            "                    linearBias: 0.5,",
+            "                    gamma: 0),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "L2_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "L3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset returns an image with a lot of contrast. When the input value is less than one-third, the output value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; when the input value is greater than two-thirds, the output value is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The preset transforms input values between one-third and two-thirds to the range ",
+              "type": "text"
+            },
+            {
+              "code": "0 - 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"L3\",",
+            "                    boundary: 255,",
+            "                    linearScale: 3,",
+            "                    linearBias: -1,",
+            "                    gamma: 0),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "L3_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "L4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset returns a negative version of the image. When the input value is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the output value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; when the input value is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the output value is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"L4\",",
+            "                    boundary: 255,",
+            "                    linearScale: -1,",
+            "                    linearBias: 1,",
+            "                    gamma: 0),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "L4_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-exponential-adjustment",
+          "level": 3,
+          "text": "Apply exponential adjustment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following presets use the exponential adjustment (that is, ",
+              "type": "text"
+            },
+            {
+              "code": "boundary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is 0). The output value for each pixel is calculated as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pow((scale * inputValue) + preBias, gamma) + ",
+            "     postBias"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In these examples, ",
+              "type": "text"
+            },
+            {
+              "code": "exponentialCoefficients",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is defined as ",
+              "type": "text"
+            },
+            {
+              "code": "(1, 0, 0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the calculation can be simplified to ",
+              "type": "text"
+            },
+            {
+              "code": "pow(inputValue, gamma)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "E1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset returns each pixel unchanged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"E1\",",
+            "                    boundary: 0,",
+            "                    linearScale: 1,",
+            "                    linearBias: 0,",
+            "                    gamma: 1),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "E1_L1_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "E2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset has an overall darkening effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"E2\",",
+            "                    boundary: 0,",
+            "                    linearScale: 1,",
+            "                    linearBias: 0,",
+            "                    gamma: 2.2),"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "E2_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "E3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preset has an overall lightening effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ResponseCurvePreset(id: \"E3\",",
+            "                    boundary: 0,",
+            "                    linearScale: 1,",
+            "                    linearBias: 0,",
+            "                    gamma: 1 / 2.2)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "E3_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Correct-gamma-before-applying-operations",
+          "level": 3,
+          "text": "Correct gamma before applying operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many vImage operations — such as convolution and scaling — provide optimal results when working on images with a linear response curve. When working with nonlinear images — such as sRGB — best practice is to convert them to a linear color space by applying a reciprocal gamma (such as ",
+              "type": "text"
+            },
+            {
+              "code": "1/2.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), performing the operation, and converting them back to their original domain by applying the original gamma (such as ",
+              "type": "text"
+            },
+            {
+              "code": "2.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4046a6940d45/AdjustingTheBrightnessAndContrastOfAnImage.zip": {
+      "checksum": "4046a6940d453e8d76898496e0ba43af140f42e637cede12edd6442e31bf0f8c4966b4d3223e4815688711c34748f649a69126f8fc16aa07f5f9ac0259007673",
+      "identifier": "4046a6940d45/AdjustingTheBrightnessAndContrastOfAnImage.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4046a6940d45/AdjustingTheBrightnessAndContrastOfAnImage.zip"
+    },
+    "E1_L1_2x.png": {
+      "alt": "On the left, a graph showing the equality between input and output values. On the right, an unaffected photograph with exponential adjustment applied.",
+      "identifier": "E1_L1_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38a483dfb46bb905a21adf313a89baae/E1_L1_2x.png"
+        }
+      ]
+    },
+    "E2_2x.png": {
+      "alt": "On the left, a graph showing the nonlinear relationship between input and output values. On the right, a darkened version of the original photograph with exponential adjustment applied.",
+      "identifier": "E2_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a88ce9f1b2a803a7a4c7be8c8ca8c6f1/E2_2x.png"
+        }
+      ]
+    },
+    "E3_2x.png": {
+      "alt": "On the left, a graph showing the nonlinear relationship between input and output values. On the right, a lightened version of the original photograph with exponential adjustment applied.",
+      "identifier": "E3_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b47e11c8b15aad975aebdda5475ad642/E3_2x.png"
+        }
+      ]
+    },
+    "L2_2x.png": {
+      "alt": "On the left, a graph showing the linear relationship between input and output values. On the right, a washed-out version of the original photograph with linear adjustment applied.",
+      "identifier": "L2_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd183cbecdfc94a61c79b049137233d6/L2_2x.png"
+        }
+      ]
+    },
+    "L3_2x.png": {
+      "alt": "On the left, a graph showing the linear relationship between input and output values. On the right, a high-contrast version of the original photograph with linear adjustment applied.",
+      "identifier": "L3_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1159a998bc12e76b5ac976f4fccf8d09/L3_2x.png"
+        }
+      ]
+    },
+    "L4_2x.png": {
+      "alt": "On the left, a graph showing the linear relationship between input and output values. On the right, a negative version of the original photograph with linear adjustment applied.",
+      "identifier": "L4_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62b14410123180f4225361e3ea942312/L4_2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/Pixel_8": {
+      "abstract": [
+        {
+          "text": "A type for a planar, 8-bits-per-channel, unsigned pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pixel_8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/Pixel_8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pixel_8"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pixel_8",
+      "type": "topic",
+      "url": "/documentation/accelerate/pixel_8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to discrete luminance and chrominance channels, and apply color and contrast treatments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting saturation and applying tone mapping",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-saturation-and-applying-tone-mapping"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image": {
+      "abstract": [
+        {
+          "text": "Convert an image to L*a*b* color space and apply hue adjustment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the hue of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-hue-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images": {
+      "abstract": [
+        {
+          "text": "Use the vImage library’s polynomial transform to apply tone curve adjustments to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying tone curve adjustments to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-tone-curve-adjustments-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization and contrast stretching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing image contrast with histogram manipulation",
+      "type": "topic",
+      "url": "/documentation/accelerate/enhancing-image-contrast-with-histogram-manipulation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/histogram": {
+      "abstract": [
+        {
+          "text": "Calculate or manipulate an image’s histogram.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/histogram",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Histogram",
+      "type": "topic",
+      "url": "/documentation/accelerate/histogram"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage": {
+      "abstract": [
+        {
+          "text": "Calculate the histogram of one image, and apply it to a second image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Specifying histograms with vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/specifying-histograms-with-vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-a-gamma-function": {
+      "abstract": [
+        {
+          "text": "Use gamma functions to apply color transformations to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-a-gamma-function",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transforming with a gamma function",
+      "type": "topic",
+      "url": "/documentation/accelerate/transforming-with-a-gamma-function"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro": {
+      "abstract": [
+        {
+          "text": "Applies a piecewise gamma calculation to a 32-bit pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Format.ComponentType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyGamma"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "linearParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": (scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", bias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "exponentialParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": (scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", preBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", gamma"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", postBias"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyGamma(linearParameters:exponentialParameters:boundary:destination:)-8r0ro",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyGamma(linearParameters:exponentialParameters:boundary:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applygamma(linearparameters:exponentialparameters:boundary:destination:)-8r0ro"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns a new pixel buffer initialized from a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "InitializableFromCGImage",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:cgImageFormat:pixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/init(cgimage:cgimageformat:pixelformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics image from the pixel buffer’s contents.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCGImage(cgImageFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/makecgimage(cgimageformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Picker"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/xcode/swiftui/": {
+      "identifier": "https://developer.apple.com/xcode/swiftui/",
+      "title": "SwiftUI",
+      "titleInlineContent": [
+        {
+          "text": "SwiftUI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/xcode/swiftui/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4046a6940d45/AdjustingTheBrightnessAndContrastOfAnImage.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Color-and-Tone-Adjustment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+        "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+        "doc://com.apple.accelerate/documentation/Accelerate/histogram"
+      ],
+      "title": "Color and Tone Adjustment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1Pixel_8/title",
+          "value": "Pixel_8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1Pixel_8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Pixel_8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1Pixel_8/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Pixel_8"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,969 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents a subprocess of the current process.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nstask"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411345,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTask",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, your program can run another program as a subprocess and can monitor that program’s execution. An ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object creates a separate executable entity; it’s different from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " because it doesn’t share memory space with the process that creates it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A process operates within an environment defined by the current values for several items: the current directory, standard input, standard output, standard error, and the values of any environment variables. By default, an ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object inherits its environment from the process that launches it. If there are any values that should be different for the process (for example, if the current directory needs to change), change the value before your app launches it. Your app can’t change a process’s environment while it’s running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can only run an ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object once. Subsequent attempts raise an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In a sandboxed app, child processes you create with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSTask",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " class inherit the sandbox of the parent app. Instead, write helper apps as XPC Services because it allows you to specify different sandbox entitlements for helper apps. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1696357",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xpc/documentation/XPC",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696357": {
+      "identifier": "devLink-1696357",
+      "title": "Daemons and Services Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspipe": {
+      "abstract": [
+        {
+          "text": "A one-way communications channel between related processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspipe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPipe",
+      "type": "topic",
+      "url": "/documentation/foundation/nspipe"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsqualityofservice": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the nature and importance of work to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsqualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSQualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/nsqualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask": {
+      "abstract": [
+        {
+          "text": "An object that represents a subprocess of the current process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1407627-standardoutput": {
+      "abstract": [
+        {
+          "text": "The standard output for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1407627-standardoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1407627-standardoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1407819-resume": {
+      "abstract": [
+        {
+          "text": "Resumes execution of a suspended task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1407819-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1407819-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1408746-terminationhandler": {
+      "abstract": [
+        {
+          "text": "A completion block the system invokes when the task completes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1408746-terminationhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminationHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1408746-terminationhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1408983-arguments": {
+      "abstract": [
+        {
+          "text": "The command arguments that the system uses to launch the executable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1408983-arguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arguments",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1408983-arguments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1409412-environment": {
+      "abstract": [
+        {
+          "text": "The environment for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1409412-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1409412-environment"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1409620-terminate": {
+      "abstract": [
+        {
+          "text": "Sends a terminate signal to the receiver and all of its subtasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1409620-terminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminate",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1409620-terminate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1410874-interrupt": {
+      "abstract": [
+        {
+          "text": "Sends an interrupt signal to the receiver and all of its subtasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "interrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1410874-interrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interrupt",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1410874-interrupt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1411576-standardinput": {
+      "abstract": [
+        {
+          "text": "The standard input for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1411576-standardinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardInput",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1411576-standardinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1411590-suspend": {
+      "abstract": [
+        {
+          "text": "Suspends execution of the receiver task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspend"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1411590-suspend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspend",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1411590-suspend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1412022-processidentifier": {
+      "abstract": [
+        {
+          "text": "The receiver’s process identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1412022-processidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1412022-processidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1413110-currentdirectorypath": {
+      "abstract": [
+        {
+          "text": "Sets the current directory for the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1413110-currentdirectorypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDirectoryPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1413110-currentdirectorypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1414189-launch": {
+      "abstract": [
+        {
+          "text": "Launches the task represented by the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "launch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1414189-launch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launch",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1414189-launch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1414221-launchpath": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s executable.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1414221-launchpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1414221-launchpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1414375-launchedtaskwithlaunchpath": {
+      "abstract": [
+        {
+          "text": "Creates and launches a task with a specified executable and arguments.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchedTaskWithLaunchPath:arguments:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1414375-launchedtaskwithlaunchpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchedTaskWithLaunchPath:arguments:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1414375-launchedtaskwithlaunchpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1414916-standarderror": {
+      "abstract": [
+        {
+          "text": "The standard error for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1414916-standarderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardError",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1414916-standarderror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415605-terminationreason": {
+      "abstract": [
+        {
+          "text": "The reason the system terminated the task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415605-terminationreason",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminationReason",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415605-terminationreason"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415788-running": {
+      "abstract": [
+        {
+          "text": "A status that indicates whether the receiver is still running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415788-running",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "running",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415788-running"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415790-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized process object with the environment of the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415790-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415790-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415794-qualityofservice": {
+      "abstract": [
+        {
+          "text": "The default quality of service level the system applies to operations the task executes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415794-qualityofservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "qualityOfService",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415794-qualityofservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415801-terminationstatus": {
+      "abstract": [
+        {
+          "text": "The exit status the receiver’s executable returns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415801-terminationstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminationStatus",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415801-terminationstatus"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415808-waituntilexit": {
+      "abstract": [
+        {
+          "text": "Blocks the process until the receiver is finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitUntilExit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415808-waituntilexit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitUntilExit",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415808-waituntilexit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/2890105-launchandreturnerror": {
+      "abstract": [
+        {
+          "text": "Runs the process with the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchAndReturnError:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/2890105-launchandreturnerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchAndReturnError:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/2890105-launchandreturnerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/2890106-executableurl": {
+      "abstract": [
+        {
+          "text": "The receiver’s executable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/2890106-executableurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executableURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/2890106-executableurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/2890107-currentdirectoryurl": {
+      "abstract": [
+        {
+          "text": "The current directory for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/2890107-currentdirectoryurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDirectoryURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/2890107-currentdirectoryurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/2890108-launchedtaskwithexecutableurl": {
+      "abstract": [
+        {
+          "text": "Creates and runs a task with a specified executable and arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchedTaskWithExecutableURL:arguments:error:terminationHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/2890108-launchedtaskwithexecutableurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchedTaskWithExecutableURL:arguments:error:terminationHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/2890108-launchedtaskwithexecutableurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/4320720-launchrequirementdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/4320720-launchrequirementdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launchRequirementData",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/4320720-launchrequirementdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstaskdidterminatenotification": {
+      "abstract": [
+        {
+          "text": "Posted when the task has stopped execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstaskdidterminatenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTaskDidTerminateNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nstaskdidterminatenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstaskterminationreason": {
+      "abstract": [
+        {
+          "text": "Constants that specify the termination reason values that the system returns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstaskterminationreason",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTaskTerminationReason",
+      "type": "topic",
+      "url": "/documentation/foundation/nstaskterminationreason"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsthread": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSThread",
+      "type": "topic",
+      "url": "/documentation/foundation/nsthread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "article",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspipe"
+      ],
+      "title": "Tasks and Pipes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1669493",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/2890108-launchedtaskwithexecutableurl",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1415790-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing an NSTask Object"
+    },
+    {
+      "anchor": "1669521",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/1412022-processidentifier"
+      ],
+      "kind": "taskGroup",
+      "title": "Returning Task Information"
+    },
+    {
+      "anchor": "1669614",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/2890105-launchandreturnerror",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1410874-interrupt",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1407819-resume",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1411590-suspend",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1409620-terminate",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1415808-waituntilexit"
+      ],
+      "kind": "taskGroup",
+      "title": "Running and Stopping a Task"
+    },
+    {
+      "anchor": "1669684",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/1415788-running",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1415801-terminationstatus",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1415605-terminationreason"
+      ],
+      "kind": "taskGroup",
+      "title": "Querying the Task State"
+    },
+    {
+      "anchor": "1669744",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/1408983-arguments",
+        "doc://com.apple.documentation/documentation/foundation/nstask/2890107-currentdirectoryurl",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1409412-environment",
+        "doc://com.apple.documentation/documentation/foundation/nstask/2890106-executableurl",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1415794-qualityofservice",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1414916-standarderror",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1411576-standardinput",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1407627-standardoutput"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring an NSTask Object"
+    },
+    {
+      "anchor": "1669883",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/1408746-terminationhandler"
+      ],
+      "kind": "taskGroup",
+      "title": "Task Termination Handler"
+    },
+    {
+      "anchor": "1679438",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstaskterminationreason",
+        "doc://com.apple.documentation/documentation/foundation/nsqualityofservice"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1669938",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstaskdidterminatenotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "3900866",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/1414375-launchedtaskwithlaunchpath",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1413110-currentdirectorypath",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1414221-launchpath",
+        "doc://com.apple.documentation/documentation/foundation/nstask/1414189-launch"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "4320788",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstask/4320720-launchrequirementdata"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/process"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

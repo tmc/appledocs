@@ -1,0 +1,1492 @@
+{
+  "abstract": [
+    {
+      "text": "Use hand-tracking anchors to display a visual representation of hand transforms in visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Tracking and visualizing hand movement"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates tracking hand transforms in visionOS with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, a type within ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As the following video shows, the app displays a series of white spheres that affix themselves to each anchor point on a person’s hands and remain attached as the hands move:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app achieves this effect by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creating a hand entity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Placing white spheres on each hand-tracking anchor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tracking the person’s hand to update the hand entity’s position and orientation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Define-the-hand-tracking-anchors",
+          "level": 3,
+          "text": "Define the hand-tracking anchors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/HandSkeleton/JointName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains a total of 26 hand-tracking anchors for each hand. To identify these anchors, the sample creates a series of ",
+              "type": "text"
+            },
+            {
+              "code": "Finger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Bone",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumerations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum Finger: Int, CaseIterable {",
+            "    case forearm",
+            "    case thumb",
+            "    case index",
+            "    case middle",
+            "    case ring",
+            "    case little",
+            "}",
+            "",
+            "enum Bone: Int, CaseIterable {",
+            "    case arm",
+            "    case wrist",
+            "    case metacarpal",
+            "    case knuckle",
+            "    case intermediateBase",
+            "    case intermediateTip",
+            "    case tip",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample also defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Hand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that stores data for joints in a hand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Hand {",
+            "    /// The collection of joints in a hand.",
+            "    static let joints: [(HandSkeleton.JointName, Finger, Bone)] = [",
+            "        // Define the thumb bones.",
+            "        (.thumbKnuckle, .thumb, .knuckle),",
+            "        (.thumbIntermediateBase, .thumb, .intermediateBase),",
+            "        (.thumbIntermediateTip, .thumb, .intermediateTip),",
+            "        (.thumbTip, .thumb, .tip),",
+            "",
+            "        // ...",
+            "",
+            "        // Define wrist and arm bones.",
+            "        (.forearmWrist, .forearm, .wrist),",
+            "        (.forearmArm, .forearm, .arm)",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-the-hand-tracker",
+          "level": 3,
+          "text": "Set up the hand tracker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the ",
+              "type": "text"
+            },
+            {
+              "code": "HandTrackingComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to track the entities of the left and right hand.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It differentiates the left- and right-hand entities by configuring the component with a ",
+              "type": "text"
+            },
+            {
+              "code": "chirality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value and registering it with the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "HandTrackingSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " singleton instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HandTrackingComponent: Component {",
+            "    /// The chirality for the hand this component tracks.",
+            "    let chirality: AnchoringComponent.Target.Chirality",
+            "",
+            "    /// A lookup that maps each joint name to the entity that represents it.",
+            "    var fingers: [HandSkeleton.JointName: Entity] = [:]",
+            "",
+            "    /// Creates a new hand-tracking component.",
+            "    init(chirality: AnchoringComponent.Target.Chirality) {",
+            "        self.chirality = chirality",
+            "        HandTrackingSystem.registerSystem()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements a custom system that tracks a person’s hands with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and stores them in the ",
+              "type": "text"
+            },
+            {
+              "code": "latestLeftHand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "latestRightHand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HandTrackingSystem: System {",
+            "    /// The ARKit session for hand tracking.",
+            "    private let arSession = ARKitSession()",
+            "",
+            "    /// The provider instance for hand tracking.",
+            "    private let handTracking = HandTrackingProvider()",
+            "",
+            "    /// The most recent anchor that the provider detects on the left hand.",
+            "    @State var latestLeftHand: HandAnchor?",
+            "",
+            "    /// The most recent anchor that the provider detects on the right hand.",
+            "    @State var latestRightHand: HandAnchor?",
+            "",
+            "    init(scene: RealityKit.Scene) {",
+            "        Task { await Self.runSession() }",
+            "    }",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On initialization, the ",
+              "type": "text"
+            },
+            {
+              "code": "HandTrackingSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starts a task that calls the ",
+              "type": "text"
+            },
+            {
+              "code": "runSession()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you want to later cancel ",
+                  "type": "text"
+                },
+                {
+                  "code": "runSession()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", keep a reference to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Task",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that encapsulates it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "runSession()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method starts an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func runSession() {",
+            "    Task {",
+            "        do {",
+            "            // Attempt to run the ARKit session with the hand-tracking provider.",
+            "            try await arSession.run([handTracking])",
+            "        } catch let error as ARKitSession.Error {",
+            "            print(\"The app has encountered an error while running providers: \\(error.localizedDescription)\")",
+            "        } catch let error {",
+            "            print(\"The app has encountered an unexpected error: \\(error.localizedDescription)\")",
+            "        }",
+            "",
+            "        // Start collecting each hand-tracking anchor.",
+            "        for await anchorUpdate in handTracking.anchorUpdates {",
+            "            // Check if the anchor is on the left or right hand.",
+            "            switch anchorUpdate.anchor.chirality {",
+            "            case .left:",
+            "                self.latestLeftHand = anchorUpdate.anchor",
+            "            case .right:",
+            "                self.latestRightHand = anchorUpdate.anchor",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "code": "handTracking.anchorUpdates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stream yields new hand data from ARKit, this async method updates the ",
+              "type": "text"
+            },
+            {
+              "code": "latestLeftHand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "latestRightHand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " anchors accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-the-joints-of-a-hand-entity",
+          "level": 2,
+          "text": "Visualize the joints of a hand entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system also has an ",
+              "type": "text"
+            },
+            {
+              "code": "addJoints(to:handComponent:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that adds a sphere entity to each anchor of a hand entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The method starts by creating the sphere entity with the ",
+              "type": "text"
+            },
+            {
+              "code": "radius",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "material",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties, then it adds the sphere entity to the hand entity and updates the ",
+              "type": "text"
+            },
+            {
+              "code": "fingers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " collection for each anchor in the ",
+              "type": "text"
+            },
+            {
+              "code": "Hand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func addJoints(to handEntity: Entity, handComponent: inout HandTrackingComponent) {",
+            "    /// The size of the sphere mesh.",
+            "    let radius: Float = 0.01",
+            "",
+            "    /// The material to apply to the sphere entity.",
+            "    let material = SimpleMaterial(color: .white, isMetallic: false)",
+            "",
+            "    /// The sphere entity that represents a hand-tracking anchor.",
+            "    let sphereEntity = ModelEntity(",
+            "        mesh: .generateSphere(radius: radius),",
+            "        materials: [material]",
+            "    )",
+            "",
+            "    // For each anchor, create a sphere and attach it to the fingers.",
+            "    for bone in Hand.joints {",
+            "        let newJoint = sphereEntity.clone(recursive: false)",
+            "        handEntity.addChild(newJoint)",
+            "        handComponent.fingers[bone.0] = newJoint",
+            "    }",
+            "",
+            "    // Apply the updated hand component back to the hand entity.",
+            "    handEntity.components.set(handComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/System",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol has an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/System/update(context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the app calls for each scene update, to update its hand entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/System/update(context:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance method is required to create a custom system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app finds the hand entities for each scene update with an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that retrieves entities with a hand-tracking component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HandTrackingSystem: System {",
+            "    /// The query this system uses to find all entities with the hand-tracking component.",
+            "    static let query = EntityQuery(where: .has(HandTrackingComponent.self))",
+            "",
+            "    func update(context: SceneUpdateContext) {",
+            "        let handEntities = context.entities(matching: Self.query, updatingSystemWhen: .rendering)",
+            "",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system’s ",
+              "type": "text"
+            },
+            {
+              "code": "update(context:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets up hand-tracking anchors for each hand entity with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "addJoints(to:handComponent:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determines the hand’s anchor based on the chirality of the entity’s hand component",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updates the transform of the joints entity to match the transform of a person’s hand joint that ARKit detects",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "for entity in handEntities {",
+            "    guard var handComponent = entity.components[HandTrackingComponent.self] else { continue }",
+            "",
+            "    // Set up the finger joint entities if you haven't yet.",
+            "    if handComponent.fingers.isEmpty {",
+            "        self.addJoints(to: entity, handComponent: &handComponent)",
+            "    }",
+            "",
+            "    // Get the hand anchor for the component, depending on its chirality.",
+            "    guard let handAnchor: HandAnchor = switch handComponent.chirality {",
+            "        case .left: Self.latestLeftHand",
+            "        case .right: Self.latestRightHand",
+            "        default: nil",
+            "    } else { continue }",
+            "",
+            "    // Iterate through all of the anchors on the hand skeleton.",
+            "    if let handSkeleton = handAnchor.handSkeleton {",
+            "        for (jointName, jointEntity) in handComponent.fingers {",
+            "            /// The current transform of the person's hand joint.",
+            "            let anchorFromJointTransform = handSkeleton.joint(jointName).anchorFromJointTransform",
+            "",
+            "            // Update the joint entity to match the transform of the person's hand joint.",
+            "            jointEntity.setTransformMatrix(",
+            "                handAnchor.originFromAnchorTransform * anchorFromJointTransform,",
+            "                relativeTo: nil",
+            "            )",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-left-and-right-hand-entities",
+          "level": 3,
+          "text": "Create the left- and right-hand entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app adds hand-tracking entities to the content of the RealityKit view by calling ",
+              "type": "text"
+            },
+            {
+              "code": "makeHandEntities(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HandTrackingView: View {",
+            "    /// The main body of the view.",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            content.add(makeHandEntities())",
+            "        }",
+            "    }",
+            "",
+            "    @MainActor",
+            "    func makeHandEntities(in content: any RealityViewContentProtocol) {",
+            "        // Add the left hand.",
+            "        let leftHand = Entity()",
+            "        leftHand.components.set(HandTrackingComponent(chirality: .left))",
+            "        content.add(leftHand)",
+            "",
+            "        // Add the right hand.",
+            "        let rightHand = Entity()",
+            "        rightHand.components.set(HandTrackingComponent(chirality: .right))",
+            "        content.add(rightHand)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "makeHandEntities(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates the left- and right-hand entities, and adds a ",
+              "type": "text"
+            },
+            {
+              "code": "HandTrackingComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, each with the chirality case that correlates to its hand.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "86a01473ccc4/TrackingAndVisualizingHandMovement.zip": {
+      "checksum": "86a01473ccc4a1fdd5777a145aed7c4abb4de3348de1385f37aa3b296e1a67400d0dd75385f50034d5524902cc59954f42e2a02a88acec473bf3c62942fd981d",
+      "identifier": "86a01473ccc4/TrackingAndVisualizingHandMovement.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/86a01473ccc4/TrackingAndVisualizingHandMovement.zip"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/HandSkeleton/JointName": {
+      "abstract": [
+        {
+          "text": "The names of different hand joints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointName"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/HandSkeleton/JointName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HandSkeleton.JointName",
+      "type": "topic",
+      "url": "/documentation/ARKit/HandSkeleton/JointName"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the position of a person’s hands and hand joints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HandTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HandTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/HandTrackingProvider"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An object that retrieves entities from a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/EntityQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/RealityKit/EntityQuery"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/System": {
+      "abstract": [
+        {
+          "text": "An object that affects multiple entities in every update of a RealityKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/System",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/RealityKit/System"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/System/update(context:)": {
+      "abstract": [
+        {
+          "text": "Updates entities up to once every scene update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18SceneUpdateContextV",
+          "text": "SceneUpdateContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/System/update(context:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(context:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/System/update(context:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings": {
+      "abstract": [
+        {
+          "text": "Add a layer of mesh to objects in the real world, using scene reconstruction in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings",
+      "images": [
+        {
+          "identifier": "sample-scene-reconstruction-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying mesh to real-world surroundings",
+      "type": "topic",
+      "url": "/documentation/visionos/applying-mesh-to-real-world-surroundings"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos": {
+      "abstract": [
+        {
+          "text": "Implement a painting canvas entity, and update its mesh to represent a stroke.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos",
+      "images": [
+        {
+          "identifier": "sample-painting-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D painting space",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-painting-space-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view": {
+      "abstract": [
+        {
+          "text": "Create an entity that tracks and follows head movement in an immersive scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view",
+      "images": [
+        {
+          "identifier": "sample-head-tracking-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying an entity that follows a person’s view",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-a-3d-object-that-moves-to-stay-in-a-person's-view"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items": {
+      "abstract": [
+        {
+          "text": "Increase the realism of an immersive experience by adding entities with invisible materials  real-world objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items",
+      "images": [
+        {
+          "identifier": "sample-worldocclusion-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Obscuring virtual items in a scene behind real-world items",
+      "type": "topic",
+      "url": "/documentation/visionos/obscuring-virtual-items-in-a-scene-behind-real-world-items"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-head-tracking-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-head-tracking-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/337cbec01d13e02d7ce87083e99aa238/sample-head-tracking-1-main-view.png"
+        }
+      ]
+    },
+    "sample-painting-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-painting-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5935efa03ec190fbbe60c69bd0cd017c/sample-painting-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-scene-reconstruction-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-scene-reconstruction-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca107fadb52f294d3f7d41e02c6bd321/sample-scene-reconstruction-1-main-view.png"
+        }
+      ]
+    },
+    "sample-visualize-hand-tracking-in-visionos-with-arkit": {
+      "alt": "A video of a visionOS app with a translucent window with the label \\\"Hand Tracking Example\\\", displaying two hands with spheres that appear affixed to the person's hands, following the motion of the hands.",
+      "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit",
+      "poster": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1a9891d470408e51c94df157e807fec1/sample-visualize-hand-tracking-in-visionos-with-arkit.mov"
+        }
+      ]
+    },
+    "sample-visualize-hand-tracking-in-visionos-with-arkit-poster": {
+      "alt": null,
+      "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49cfdbaa10faf75abd68af3af7b9bbec/sample-visualize-hand-tracking-in-visionos-with-arkit-poster@2x.jpg"
+        }
+      ]
+    },
+    "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg": {
+      "alt": null,
+      "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49cfdbaa10faf75abd68af3af7b9bbec/sample-visualize-hand-tracking-in-visionos-with-arkit-poster@2x.jpg"
+        }
+      ]
+    },
+    "sample-worldocclusion-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-worldocclusion-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4da9a072fd905e705906481890384b51/sample-worldocclusion-1-main-view-card.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "86a01473ccc4/TrackingAndVisualizingHandMovement.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Integrating-ARKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view",
+        "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings",
+        "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items"
+      ],
+      "title": "Integrating ARKit"
+    }
+  ]
+}

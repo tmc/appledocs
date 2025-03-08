@@ -1,0 +1,1914 @@
+{
+  "abstract": [
+    {
+      "text": "An anchor that tracks the position and orientation of an App Clip Code in the physical environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARAppClipCodeAnchor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARAppClipCodeAnchor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARAppClipCodeAnchor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.3",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARAppClipCodeAnchor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your App Clip gives users immediate access to critical or context-specific parts of your app’s AR experience, and makes it easy for them to download and launch your full app if they choose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use physical App Clip Codes in the real world to enable users to discover your App Clip. An App Clip Code includes a unique URL and can incorporate an NFC tag. When users hold their iPhone near the code or scan it with the camera or Code Scanner in Control Center, the system offers to launch the code’s associated App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more on App Clip Codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For an app that reacts to App Clip Codes in AR, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distinguish-Between-App-Clip-Codes",
+          "level": 3,
+          "text": "Distinguish Between App Clip Codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There may be multiple App Clip Codes visible in the camera feed that share the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", so ARKit also relies on the App Clip Code’s location (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to distinguish different App Clip Codes in the physical environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the framework recognizes an App Clip Code, it initializes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passes it to the session delegate via ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If a recognized App Clip Code becomes obscured or is no longer visible in the camera feed, the framework sets the anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable/isTracked",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passes it into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-3qtt8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback. If the same App Clip Code becomes visible once again:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ARKit sets ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable/isTracked",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if the App Clip Code maintained its relative position in the physical environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ARKit intializes a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if the App Clip Code position in the physical environment changed significantly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Remove-App-Clip-Codes",
+          "level": 3,
+          "text": "Remove App Clip Codes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent App Clip Codes from accumulating in the session, ARKit removes anchors by passing them in to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didRemove:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback. ARKit removes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if all of the following conditions are true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The framework instantiates a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new anchor’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/url",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " matches one or more existing anchors with substantially different positions in the physical environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The existing anchors are untracked (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable/isTracked",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform": {
+      "abstract": [
+        {
+          "text": "A matrix encoding the position, orientation, and scale of the anchor relative to the world coordinate space of the AR session the anchor is placed in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/transform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying": {
+      "abstract": [
+        {
+          "text": "Support for custom anchor subclasses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchorCopying"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchorCopying"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchorCopying",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchorcopying"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor that tracks the position and orientation of an App Clip Code in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAppClipCodeAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAppClipCodeAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAppClipCodeAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arappclipcodeanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/URLDecodingState-swift.enum": {
+      "abstract": [
+        {
+          "text": "The states in the process of decoding an App Clip code URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLDecodingState"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/URLDecodingState-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLDecodingState"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAppClipCodeAnchor.URLDecodingState",
+      "type": "topic",
+      "url": "/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/radius": {
+      "abstract": [
+        {
+          "text": "The App Clip Code’s radius in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/radius",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "radius"
+        }
+      ],
+      "role": "symbol",
+      "title": "radius",
+      "type": "topic",
+      "url": "/documentation/arkit/arappclipcodeanchor/radius"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/url": {
+      "abstract": [
+        {
+          "text": "The URL encoded in an App Clip Code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "url"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/arkit/arappclipcodeanchor/url"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/urlDecodingState-swift.property": {
+      "abstract": [
+        {
+          "text": "A state that indicates the process of decoding an App Clip Code URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlDecodingState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAppClipCodeAnchor",
+          "text": "ARAppClipCodeAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARAppClipCodeURLDecodingState",
+          "text": "URLDecodingState"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/urlDecodingState-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "urlDecodingState"
+        }
+      ],
+      "role": "symbol",
+      "title": "urlDecodingState",
+      "type": "topic",
+      "url": "/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more anchors have been added to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didAddAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didadd:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didRemove:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more anchors have been removed from the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didRemove:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didRemoveAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didremove:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-3qtt8": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session has adjusted the properties of one or more anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-3qtt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackable": {
+      "abstract": [
+        {
+          "text": "An interface for objects that track the location of real-world objects or locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARTrackable"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackable"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARTrackable",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackable"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackable/isTracked": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the object’s transform is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTracked"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackable/isTracked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isTracked"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isTracked",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackable/istracked"
+    },
+    "doc://com.apple.documentation/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/AppClip"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar": {
+      "abstract": [
+        {
+          "text": "Display content and provide services in an AR experience with App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with App Clip Codes in AR",
+      "type": "topic",
+      "url": "/documentation/AppClip/interacting-with-app-clip-codes-in-ar"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAnchor"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAnchorCopying",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackable",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Clip-Codes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar"
+      ],
+      "title": "App Clip Codes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Decoding-the-URL",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/url",
+        "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/urlDecodingState-swift.property",
+        "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/URLDecodingState-swift.enum"
+      ],
+      "title": "Decoding the URL"
+    },
+    {
+      "anchor": "Measuring-Physical-Size",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/radius"
+      ],
+      "title": "Measuring Physical Size"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.3",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARAppClipCodeAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Decoding-the-URL",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/url",
+                "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/urlDecodingState-swift.property",
+                "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/URLDecodingState-swift.enum"
+              ],
+              "title": "Decoding the URL"
+            },
+            {
+              "anchor": "Measuring-Physical-Size",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor/radius"
+              ],
+              "title": "Measuring Physical Size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARAnchor"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARTrackable"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Clip-Codes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar"
+              ],
+              "title": "App Clip Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARAppClipCodeAnchor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ARAnchor",
+                    "text": "ARAnchor"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/title",
+          "value": "ARTrackable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didRemove:)/title",
+          "value": "session:didRemoveAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didRemove:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didRemoveAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1URLDecodingState-swift.enum/title",
+          "value": "ARAppClipCodeURLDecodingState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1URLDecodingState-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeURLDecodingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1URLDecodingState-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeURLDecodingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable~1isTracked/title",
+          "value": "isTracked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackable~1isTracked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isTracked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/title",
+          "value": "ARAnchorCopying"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchorCopying"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchorCopying/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchorCopying"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/title",
+          "value": "session:didAddAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didAddAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1urlDecodingState-swift.property/title",
+          "value": "urlDecodingState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1urlDecodingState-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "urlDecodingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-3qtt8/title",
+          "value": "session:didUpdateAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-3qtt8/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor/title",
+          "value": "ARAppClipCodeAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1url/title",
+          "value": "url"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "url"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1radius/title",
+          "value": "radius"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor~1radius/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "radius"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arappclipcodeanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arappclipcodeanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

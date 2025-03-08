@@ -1,0 +1,418 @@
+{
+  "abstract": [
+    {
+      "text": "The contents of the file wrapper as an opaque data object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system",
+        "doc://com.apple.documentation/documentation/foundation/filewrapper"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/filewrapper/1412119-serializedrepresentation"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412119,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileWrapper(py)serializedRepresentation",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "serializedRepresentation"
+      },
+      {
+        "kind": "text",
+        "text": ": Data?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "FileWrapper"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "serializedRepresentation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "serializedRepresentation"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DataV",
+              "text": "Data"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property contains a data object in the format used by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/fileContents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pasteboard type. This data object is also suitable for passing to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1407515-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property may be ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the user modifies the contents of the file system node after you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1411645-read",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1415658-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but before ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " has read the contents of the file.  You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/readingoptions/1416989-immediate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reading option to reduce the likelihood of this problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/fileContents": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboard/PasteboardType/fileContents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileContents",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboard/pasteboardtype/filecontents"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileWrapper",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper/1407515-init": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver as a regular-file file wrapper from given serialized data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "serializedRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1407515-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(serializedRepresentation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper/1407515-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper/1411645-read": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1411645-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(from:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper/1411645-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper/1412119-serializedrepresentation": {
+      "abstract": [
+        {
+          "text": "The contents of the file wrapper as an opaque data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "serializedRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1412119-serializedrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serializedRepresentation",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper/1412119-serializedrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper/1415658-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/1415658-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper/1415658-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper/readingoptions/1416989-immediate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper/readingoptions/1416989-immediate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immediate",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper/readingoptions/1416989-immediate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filewrapper/1407515-init"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilewrapper/1412119-serializedrepresentation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filewrapper/1412119-serializedrepresentation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

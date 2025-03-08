@@ -1,0 +1,1168 @@
+{
+  "abstract": [
+    {
+      "text": "Add resource files to your Swift package and access them in your code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Bundling resources with a Swift package"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you declare a Swift tools version of 5.3 or later in your package manifest, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can bundle resources with your source code as Swift packages. For example, Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "packages can contain asset catalogs, storyboards, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-resource-files",
+          "level": 3,
+          "text": "Add resource files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to source code, Xcode scopes resources to a target. Place resource files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into the folder that corresponds with the target they belong to. For example, any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resources for the ",
+              "type": "text"
+            },
+            {
+              "code": "MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target need to reside in ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consider using a subfolder for resources to distinguish them from source files. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, put all resource files into a directory named ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", resulting in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all of your resource files residing at ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary/Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add resources to a Swift package, do any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag them into the Project navigator in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the File menu in Xcode, choose Add Files to ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "[packageName]",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Finder or the Terminal app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a resource to your Swift package, Xcode detects common resource types",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for Apple platforms and treats them as a resource automatically. For example, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t need to make changes to your package manifest for the following resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interface Builder files; for example, XIB files and storyboards",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core Data files; for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcdatamodeld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asset catalogs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ".lproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folders you use to provide localized resources",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add a resource file that Xcode doesn’t treat as a resource by default, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must configure it in your package manifest, as described in the next section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explicitly-declare-or-exclude-resources",
+          "level": 3,
+          "text": "Explicitly declare or exclude resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a resource that Xcode can’t handle automatically, explicitly declare it as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a resource in your package manifest. The following example assumes that ",
+              "type": "text"
+            },
+            {
+              "code": "text.txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resides in ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and you want to include it in the ",
+              "type": "text"
+            },
+            {
+              "code": "MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To explicitly declare it as a package resource, you pass its file name to the target’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer in your package manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "targets: [",
+            "    .target(",
+            "        name: \"MyLibrary\",",
+            "        resources: [",
+            "            .process(\"text.txt\")]",
+            "    ),",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note how the example code above uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/process(_:localization:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function. When you explicitly declare a resource, you must choose one of these rules",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine how Xcode treats the resource file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For most use cases, use ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/process(_:localization:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to apply this rule and have Xcode process the resource according to the platform you’re building the package for. For example, Xcode may optimize image files for a platform that supports such optimizations. If you apply the process rule to a directory’s path, Xcode applies the rule recursively to the directory’s contents. If no special processing is available for a resource, Xcode copies the resource to the resource bundle’s top-level directory.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Process rule",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Some Swift packages may require a resource file to remain untouched or to retain a certain directory structure for resources. Use the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/copy(_:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " function to apply this rule and have Xcode copy the resource as is to the top level of the resource bundle. If you pass a directory path to the copy rule, Xcode retains the directory’s structure.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Copy rule",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a file resides inside a target’s folder and you don’t want it to be a package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resource, pass it to the target initializer’s ",
+              "type": "text"
+            },
+            {
+              "code": "exclude",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. The next example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assumes that ",
+              "type": "text"
+            },
+            {
+              "code": "instructions.md",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a Markdown file that contains documentation, resides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and shouldn’t be part of the package’s resource bundle. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code shows how you can exclude the file from the target by adding it to the list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of excluded files:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "targets: [",
+            "    .target(",
+            "        name: \"MyLibrary\",",
+            "        exclude:[\"instructions.md\"]",
+            "    ),",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, avoid placing files that aren’t resources in a target’s source folder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If that’s not feasible, avoid excluding every file individually, place all files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to exclude in a directory, and add the directory path to the array of excluded",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-a-resource-in-code",
+          "level": 3,
+          "text": "Access a resource in code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your Swift package, Xcode treats each target as a Swift module. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a target includes resources, Xcode creates a resource bundle and an internal static",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "extension on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it for each module. Use the extension to locate package resources. For example, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following to retrieve the URL of a property list you bundle with your package:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "let settingsURL = Bundle.module.url(forResource: \"settings\", withExtension: \"plist\")",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always use ",
+                  "type": "text"
+                },
+                {
+                  "code": "Bundle.module",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when you access resources. A package shouldn’t",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "make assumptions about the exact location of a resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to make a package resource available to apps that depend on your Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package, declare a public constant for it. For example, use the following to expose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a property list file to apps that use your Swift package:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "let settingsURL = Bundle.module.url(forResource: \"settings\", withExtension: \"plist\")",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode": {
+      "abstract": [
+        {
+          "text": "Bundle executable or shareable code into a standalone Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a standalone Swift package with Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-standalone-swift-package-with-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app": {
+      "abstract": [
+        {
+          "text": "Add your published Swift package as a local package to your app’s project and develop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the package and the app in tandem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a Swift package in tandem with an app",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-swift-package-in-tandem-with-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages": {
+      "abstract": [
+        {
+          "text": "Make binaries available to other developers by creating Swift packages that include",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one or more XCFrameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing binary frameworks as Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-binary-frameworks-as-swift-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources": {
+      "abstract": [
+        {
+          "text": "Ensure that your Swift package provides localized resources for many locales.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing package resources",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-package-resources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages": {
+      "abstract": [
+        {
+          "text": "Simplify maintenance, promote modularity, and encourage reuse by organizing your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app’s code into local Swift packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing your code with local packages",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-your-code-with-local-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/PackageDescription"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Resource/copy(_:)": {
+      "abstract": [
+        {
+          "text": "Applies the copy rule to a resource at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/copy(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy(_:)",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Resource/copy(_:)"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Resource/process(_:localization:)": {
+      "abstract": [
+        {
+          "text": "Applies a platform-specific rules to the resource at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV12LocalizationO",
+          "text": "Localization"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/process(_:localization:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "process(_:localization:)",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Resource/process(_:localization:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Package-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+        "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+        "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+        "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+        "doc://com.apple.documentation/documentation/PackageDescription"
+      ],
+      "title": "Package creation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,766 @@
+{
+  "abstract": [
+    {
+      "text": "A type that specifies the date to display a widget, and, optionally,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "indicates the current relevance of the widget’s content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9WidgetKit13TimelineEntryP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TimelineEntry"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TimelineEntry"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "TimelineEntry"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TimelineEntry"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates one or more timeline entries with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dates that tell WidgetKit when to display a widget. To render a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widget, WidgetKit executes the ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block of the widget’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration, passing the corresponding timeline entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you declare a structure conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "TimelineEntry",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", include any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional information that the configuration’s content block requires to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "render the widget. The following code shows a timeline entry structure for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a widget that displays a game character’s health level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetailEntry: TimelineEntry {",
+            "    var date: Date",
+            "    var healthLevel: Double",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The content block of the widget’s configuration receives the entry as a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter and then passes the relevant information to the view that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "renders your widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct CharacterDetailWidget: Widget {",
+            "    var body: some WidgetConfiguration {",
+            "        StaticConfiguration(",
+            "            kind: \"com.mygame.character-detail\",",
+            "            provider: CharacterDetailProvider()) { entry in",
+            "            CharacterDetailView(entry: entry)",
+            "        }",
+            "        .configurationDisplayName(\"Character Details\")",
+            "        .description(\"Displays a character's health and other details\")",
+            "        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App": {
+      "abstract": [
+        {
+          "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit/converting-a-clockkit-app"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/keeping-a-widget-up-to-date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline": {
+      "abstract": [
+        {
+          "text": "An object that specifies a date for WidgetKit to update a widget’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "Timeline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timeline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry": {
+      "abstract": [
+        {
+          "text": "A type that specifies the date to display a widget, and, optionally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicates the current relevance of the widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineEntry",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/date": {
+      "abstract": [
+        {
+          "text": "The date for WidgetKit to render a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/date",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry/date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/relevance": {
+      "abstract": [
+        {
+          "text": "The relevance of a widget’s content to the user.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relevance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit22TimelineEntryRelevanceV",
+          "text": "TimelineEntryRelevance"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/relevance",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "relevance",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry/relevance"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext": {
+      "abstract": [
+        {
+          "text": "An object that contains details about how a widget is rendered, including",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its size and whether it appears in the widget gallery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProviderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProviderContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProviderContext",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovidercontext"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured widgets and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading widget timelines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Timeline-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider"
+      ],
+      "title": "Timeline management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-Timeline-Entry-Properties",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/date",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry/relevance"
+      ],
+      "title": "Configuring Timeline Entry Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/timelineentry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

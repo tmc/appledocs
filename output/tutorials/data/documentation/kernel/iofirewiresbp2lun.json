@@ -1,0 +1,1056 @@
+{
+  "abstract": [
+    {
+      "text": "Provider for most drivers.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1519799,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOFireWireSBP2LUN",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOFireWireSBP2LUN"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOFireWireSBP2LUN"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOFireWireSBP2LUN objects are created by IOFireWireSBP2Target objects. Each target may have zero or more IOFireWireSBP2LUN children. The LUN object serves as the matching nub for most drivers and therefore will be the provider for most drivers. It supplies the methods that control the operation of the LUN as a whole. Methods that control the behavior and execution of an SBP2 login session are supplied in a separate IOFireWireSBP2Login object. The LUN can be used to create one of these login objects. The LUN can also create IOFireWireSBP2ManagementORBs for configuring and appending non-login related management functions. Login related management functions (ie. Login, Logout, Reconnect) are supplied by the IOFireWireSBP2Login. Finally the LUN can supply a reference to the IOFireWireUnit. This can be useful if a driver wishes to access the standard FireWire APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcnub": {
+      "abstract": [
+        {
+          "text": "nub for AVC devices",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcnub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCNub",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcnub"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunit": {
+      "abstract": [
+        {
+          "text": "nub for sub unit of AVC devices. Just for matching, calls the AVC unit for all functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCSubUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcsubunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireavcunit": {
+      "abstract": [
+        {
+          "text": "nub for AVC devices",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireavcunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireAVCUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireavcunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnode": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireLocalNode",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirelocalnode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewirenub": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewirenub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireNub",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewirenub"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun": {
+      "abstract": [
+        {
+          "text": "Provider for most drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2LUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551883-finalize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551883-finalize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551883-finalize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551884-getdiagnostics": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDiagnostics"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551884-getdiagnostics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDiagnostics",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551884-getdiagnostics"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551885-executeflushallmgmtorbs": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeFlushAllMgmtORBs"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551885-executeflushallmgmtorbs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeFlushAllMgmtORBs",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551885-executeflushallmgmtorbs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551886-staticremoveloginaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticRemoveLoginAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551886-staticremoveloginaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticRemoveLoginAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551886-staticremoveloginaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551887-staticcreatelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticCreateLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551887-staticcreatelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticCreateLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551887-staticcreatelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551888-matchpropertytable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPropertyTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551888-matchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551888-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551889-createlogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551889-createlogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551889-createlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551890-clearalltasksinset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearAllTasksInSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551890-clearalltasksinset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearAllTasksInSet",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551890-clearalltasksinset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551891-removemanagementorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeManagementORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551891-removemanagementorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeManagementORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551891-removemanagementorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551892-removeloginaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLoginAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551892-removeloginaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLoginAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551892-removeloginaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551893-staticexecuteflushallmgmtorbs": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticExecuteFlushAllMgmtORBs"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551893-staticexecuteflushallmgmtorbs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticExecuteFlushAllMgmtORBs",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551893-staticexecuteflushallmgmtorbs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551894-getfirewireunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFireWireUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551894-getfirewireunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFireWireUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551894-getfirewireunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551895-initloginwithlun": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initLoginWithLUN"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551895-initloginwithlun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initLoginWithLUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551895-initloginwithlun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551896-attach": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "attach"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551896-attach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attach",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551896-attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551897-staticremovemanagementorbaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticRemoveManagementORBAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551897-staticremovemanagementorbaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticRemoveManagementORBAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551897-staticremovemanagementorbaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551899-createloginaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createLoginAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551899-createloginaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createLoginAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551899-createloginaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551900-removemanagementorbaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeManagementORBAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551900-removemanagementorbaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeManagementORBAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551900-removemanagementorbaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551901-handleopen": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551901-handleopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551901-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551902-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551902-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551902-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551903-initmgmtorbwithlun": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initMgmtORBWithLUN"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551903-initmgmtorbwithlun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initMgmtORBWithLUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551903-initmgmtorbwithlun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551904-getlunumber": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLUNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551904-getlunumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLUNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551904-getlunumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551905-handleclose": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleClose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551905-handleclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551905-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551906-suspendednotify": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspendedNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551906-suspendednotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspendedNotify",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551906-suspendednotify"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551907-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551907-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551907-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551908-flushallmanagementorbs": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushAllManagementORBs"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551908-flushallmanagementorbs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushAllManagementORBs",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551908-flushallmanagementorbs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551909-gettarget": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551909-gettarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551909-gettarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551910-createmanagementorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createManagementORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551910-createmanagementorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createManagementORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551910-createmanagementorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551911-message": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551911-message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551911-message"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551912-terminatenotify": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminateNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551912-terminatenotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminateNotify",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551912-terminatenotify"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551913-removelogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551913-removelogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551913-removelogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551914-createmanagementorbaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createManagementORBAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551914-createmanagementorbaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createManagementORBAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551914-createmanagementorbaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551915-resumenotify": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeNotify"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551915-resumenotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumeNotify",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551915-resumenotify"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551916-staticcreatemanagementorbaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "staticCreateManagementORBAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551916-staticcreatemanagementorbaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "staticCreateManagementORBAction",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1551916-staticcreatemanagementorbaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813520-attach": {
+      "abstract": [
+        {
+          "text": "Attaches an IOService client to a provider in the registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813520-attach",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "attach",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813520-attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813525-createlogin": {
+      "abstract": [
+        {
+          "text": "Creates a new IOFireWireSBP2Login object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813525-createlogin",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813525-createlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813535-createmanagementorb": {
+      "abstract": [
+        {
+          "text": "Creates a new IOFireWireSBP2ManagementORB object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813535-createmanagementorb",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createManagementORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813535-createmanagementorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813549-getdiagnostics": {
+      "abstract": [
+        {
+          "text": "Debug-only method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813549-getdiagnostics",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDiagnostics",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813549-getdiagnostics"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813559-getfirewireunit": {
+      "abstract": [
+        {
+          "text": "Returns an IOFireWireUnit object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813559-getfirewireunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFireWireUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813559-getfirewireunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813568-getlunumber": {
+      "abstract": [
+        {
+          "text": "Returns the LUNs number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813568-getlunumber",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLUNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813568-getlunumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813576-handleclose": {
+      "abstract": [
+        {
+          "text": "Overrideable method to control the open / close behaviour of an IOService.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813576-handleclose",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleClose",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813576-handleclose"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813589-handleopen": {
+      "abstract": [
+        {
+          "text": "Overrideable method to control the open / close behaviour of an IOService.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813589-handleopen",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "handleOpen",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813589-handleopen"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813597-matchpropertytable": {
+      "abstract": [
+        {
+          "text": "Implements SBP2 specific matching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813597-matchpropertytable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2lun/1813597-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewireunit": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewireunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewireunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewirelocalnode",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcsubunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireavcnub",
+        "doc://com.apple.documentation/documentation/kernel/iofirewireunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewirenub"
+      ],
+      "title": "Nubs"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1675122",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813520-attach",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813525-createlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813535-createmanagementorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813549-getdiagnostics",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813559-getfirewireunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813568-getlunumber",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813576-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813589-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1813597-matchpropertytable"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2859426",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551896-attach",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551890-clearalltasksinset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551889-createlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551899-createloginaction",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551910-createmanagementorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551914-createmanagementorbaction",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551885-executeflushallmgmtorbs",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551883-finalize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551908-flushallmanagementorbs",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551907-free",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551884-getdiagnostics",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551894-getfirewireunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551904-getlunumber",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551902-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551909-gettarget",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551905-handleclose",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551901-handleopen",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551895-initloginwithlun",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551903-initmgmtorbwithlun",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551888-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551911-message",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551913-removelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551892-removeloginaction",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551891-removemanagementorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551900-removemanagementorbaction",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551915-resumenotify",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551906-suspendednotify",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551912-terminatenotify"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2859427",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551887-staticcreatelogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551916-staticcreatemanagementorbaction",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551893-staticexecuteflushallmgmtorbs",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551886-staticremoveloginaction",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2lun/1551897-staticremovemanagementorbaction"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofirewiresbp2lun"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

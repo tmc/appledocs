@@ -1,0 +1,816 @@
+{
+  "abstract": [
+    {
+      "text": "Duplicates the specified existing profile.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1804870,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMCopyProfile"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMCopyProfile ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef *targetProf,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   const CMProfileLocation *targetLocation,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef srcProf"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a profile reference of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". On return, points to the profile copy that was created. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetProf"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a location specification that indicates the location, such as in memory or on disk, where the ColorSync Manager is to create the copy of the profile. A profile is commonly disk-file based. However, to accommodate special requirements, you can create a handle- or pointer-based profile, you can create a profile that is accessed through a procedure provided by your application, or you can create a temporary profile that is not saved after you call the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMCloseProfile",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function. To create a temporary profile, you either specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmNoProfileBase",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as the kind of profile in the profile location structure or specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter. To specify the location, you use the data type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofilelocation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetLocation"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference to the profile to duplicate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "srcProf"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CMCopyProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function duplicates an entire open profile whose reference you specify. If you have made temporary changes to the profile, which you have not saved by calling ",
+              "type": "text"
+            },
+            {
+              "code": "CMUpdateProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", those changes are included in the duplicated profile. They are not saved to the original profile unless you call ",
+              "type": "text"
+            },
+            {
+              "code": "CMUpdateProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for that profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ColorSync Manager maintains a modified flag to track whether a profile has been modified. After copying a profile, the ",
+              "type": "text"
+            },
+            {
+              "code": "CMCopyProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function sets the value of the modified flag for that profile to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unless you are copying a profile that you created, you should not infringe on copyright protection specified by the profile creator. To obtain the copyright information, you call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", specifying the ",
+              "type": "text"
+            },
+            {
+              "code": "cmCopyrightTag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag signature for the copyright element (defined in the ",
+              "type": "text"
+            },
+            {
+              "code": "CMICCProfile.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should also check the ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the profile header structure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cm2header",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for copyright information. You can test the ",
+              "type": "text"
+            },
+            {
+              "code": "cmEmbeddedUseMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit of the flags field to determine whether the profile can be used independently. If the bit is set, you should use this profile as an embedded profile only and not copy the profile for your own purposes. The ",
+              "type": "text"
+            },
+            {
+              "code": "cmEmbeddedUseMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mask is described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1560699-x_profiles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following code snippet shows how you might perform a test using the ",
+              "type": "text"
+            },
+            {
+              "code": "cmEmbeddedUseMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mask:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (myCM2Header.flags & cmEmbeddedUseMask)",
+            "{",
+            "// profile should only be used as an embedded profile",
+            "}",
+            "else",
+            "{",
+            "// profile can be used independently",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2556179",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A calibration program, for example, might use the ",
+              "type": "text"
+            },
+            {
+              "code": "CMCopyProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to copy a device’s original profile, then modify the copy to reflect the current state of the device. Or an application might want to copy a profile after unflattening it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To copy a profile, you must obtain a reference to that profile by either opening the profile or creating it. To open a profile, use the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To create a new profile, use the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As an alternative to using the ",
+              "type": "text"
+            },
+            {
+              "code": "CMCopyProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to duplicate an entire profile, you can use the same profile reference more than once. To do so, you call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804891-cmcloneprofileref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to increment the reference count for the reference each time you reuse it. Calling the ",
+              "type": "text"
+            },
+            {
+              "code": "CMCloneProfileRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function increments the count; calling the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " decrements it. The profile remains open as long as the reference count is greater than 0, indicating at least one routine retains a reference to the profile. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1560699-x_profiles": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1560699-x_profiles",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Flag Mask Definitions for Version 2.x Profiles",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1560699-x_profiles"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cm2header": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cm2header",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CM2Header",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cm2header"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofilelocation": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofilelocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileLocation",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofilelocation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileref": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile": {
+      "abstract": [
+        {
+          "text": "Opens the specified profile and returns a reference to the profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMOpenProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804856-cmvalidateprofile": {
+      "abstract": [
+        {
+          "text": "Indicates whether the specified profile contains the minimum set of elements required by the current color management module (CMM) for color matching or color checking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804856-cmvalidateprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMValidateProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804856-cmvalidateprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile": {
+      "abstract": [
+        {
+          "text": "Decrements the reference count for the specified profile reference and, if the reference count reaches 0, frees all private memory and other resources associated with the profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMCloseProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804864-cmupdateprofile": {
+      "abstract": [
+        {
+          "text": "Saves modifications to the specified profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804864-cmupdateprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMUpdateProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804864-cmupdateprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile": {
+      "abstract": [
+        {
+          "text": "Duplicates the specified existing profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMCopyProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile#2556179": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile#2556179",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile#2556179"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804872-cmprofilemodified": {
+      "abstract": [
+        {
+          "text": "Indicates whether the specified profile has been modified since it was created or last updated.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804872-cmprofilemodified",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMProfileModified",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804872-cmprofilemodified"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804876-cmgetprofilemd5": {
+      "abstract": [
+        {
+          "text": "Gets the MD5 checksum from the profile header (message digest)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804876-cmgetprofilemd5",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileMD5",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804876-cmgetprofilemd5"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader": {
+      "abstract": [
+        {
+          "text": "Obtains the profile header for the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileHeader",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804882-cmsetprofileheader": {
+      "abstract": [
+        {
+          "text": "Sets the header for the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804882-cmsetprofileheader",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileHeader",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804882-cmsetprofileheader"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804885-cmgetprofilelocation": {
+      "abstract": [
+        {
+          "text": "Obtains the location of a profile based on the specified profile reference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804885-cmgetprofilelocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileLocation",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804885-cmgetprofilelocation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804889-ncmgetprofilelocation": {
+      "abstract": [
+        {
+          "text": "Obtains either a profile location structure for a specified profile or the size of the location structure for the profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804889-ncmgetprofilelocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMGetProfileLocation",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804889-ncmgetprofilelocation"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804891-cmcloneprofileref": {
+      "abstract": [
+        {
+          "text": "Increments the reference count for the specified profile reference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804891-cmcloneprofileref",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMCloneProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804891-cmcloneprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804894-cmgetprofilerefcount": {
+      "abstract": [
+        {
+          "text": "Obtains the current reference count for the specified profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804894-cmgetprofilerefcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileRefCount",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804894-cmgetprofilerefcount"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804897-cmflattenprofile": {
+      "abstract": [
+        {
+          "text": "Transfers a profile stored in an independent disk file to an external profile format that can be embedded in a graphics document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804897-cmflattenprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMFlattenProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804897-cmflattenprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804901-ncmunflattenprofile": {
+      "abstract": [
+        {
+          "text": "Unflattens a previously flattened profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804901-ncmunflattenprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCMUnflattenProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804901-ncmunflattenprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMNewProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804911-cmnewprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804856-cmvalidateprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804861-cmcloseprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804864-cmupdateprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804872-cmprofilemodified",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804876-cmgetprofilemd5",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804882-cmsetprofileheader",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804885-cmgetprofilelocation",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804889-ncmgetprofilelocation",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804891-cmcloneprofileref",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804894-cmgetprofilerefcount",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804897-cmflattenprofile",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804901-ncmunflattenprofile"
+      ],
+      "title": "Accessing Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1804870-cmcopyprofile"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

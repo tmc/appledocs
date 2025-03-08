@@ -1,0 +1,1776 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value indicating that the app generally supports indirect input mechanisms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.UIApplicationSupportsIndirectInputEvents",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIApplicationSupportsIndirectInputEvents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "UIApplicationSupportsIndirectInputEvents"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "UIApplicationSupportsIndirectInputEvents",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "boolean"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the value of this key is ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the user clicks an indirect pointing device, UIKit generates a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch/TouchType/indirectPointer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When pinching or rotating using an indirect touch surface, UIKit drives ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPinchGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIRotationGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with an event of type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/transform",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Currently, only certain prepackaged gestures in UIKit, like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPinchGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIRotationGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", are capable of handling this event. Other gestures may be added to this list in future releases.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gestures that may have worked previously with the simulated touches no longer work.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Be careful with certain ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs when gestures are driven by events of type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/scroll",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/transform",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/numberOfTouches",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " returns ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and",
+                      "type": "text"
+                    },
+                    {
+                      "code": " ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/location(ofTouch:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " raises an exception because there are no touches driving these gestures with those events. For the case when exceptions might be raised, use either ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/shouldReceive(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or the delegate call of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-evxd",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to determine that gesture recognizers are acting on a non-touch-based event.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the value of this key is ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the user clicks an indirect pointing device, UIKit generates a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch/TouchType/direct",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When pinching or rotating using an indirect touch surface, UIKit creates touches a fixed distance apart that simulate the gesture on the indirect touch surface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Because these are normal ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " events, they may incidentally activate other gesture recognizers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "don’t",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " include this key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS 17 and later, the system defaults to supporting indirect input events, meaning it treats your app the same as if you specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In versions of iOS earlier than iOS 17, the system defaults to not supporting indirect input events, meaning it treats your app the same as if you specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is a compatibility affordance to ease the adoption of indirect input for a UIKit application. Avoid relying on this property and prepare your app to support indirect gestures on all platforms. For visionOS, the system always supports indirect input events and doesn’t consult this key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating that the app generally supports indirect input mechanisms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/UIApplicationSupportsIndirectInputEvents",
+      "kind": "symbol",
+      "name": "UIApplicationSupportsIndirectInputEvents",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationSupportsIndirectInputEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationSupportsIndirectInputEvents",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/uiapplicationsupportsindirectinputevents"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/scroll": {
+      "abstract": [
+        {
+          "text": "The event relates to scrolling from an indirect input device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scroll"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/scroll",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIEvent.EventType.scroll",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIEvent/EventType/scroll"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/transform": {
+      "abstract": [
+        {
+          "text": "The event relates to a pointer from an indirect input device performing a transformation on a user interface element, such as scaling, rotation, or translation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIEvent/EventType/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIEvent.EventType.transform",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIEvent/EventType/transform"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The base class for concrete gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/location(ofTouch:in:)": {
+      "abstract": [
+        {
+          "text": "Returns the location of one of the gesture’s touches in the local coordinate system of a given view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofTouch"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "touchIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/location(ofTouch:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "location(ofTouch:in:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizer/location(ofTouch:in:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/numberOfTouches": {
+      "abstract": [
+        {
+          "text": "The number of touches involved in the gesture represented by the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfTouches"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/numberOfTouches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfTouches",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizer/numberOfTouches"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/shouldReceive(_:)": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIEvent",
+          "text": "UIEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizer/shouldReceive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldReceive(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizer/shouldReceive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-evxd": {
+      "abstract": [
+        {
+          "text": "Asks the delegate if a gesture recognizer should receive an object representing a touch or press event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "gestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldReceive"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIEvent",
+          "text": "UIEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-evxd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gestureRecognizer(_:shouldReceive:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIGestureRecognizerDelegate/gestureRecognizer(_:shouldReceive:)-evxd"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIPinchGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pinching gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIPinchGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPinchGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPinchGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIRotationGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets rotation gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIRotationGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRotationGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIRotationGestureRecognizer"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITouch"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITouch/TouchType/direct": {
+      "abstract": [
+        {
+          "text": "A touch resulting from direct contact with the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "direct"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch/TouchType/direct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITouch.TouchType.direct",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITouch/TouchType/direct"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITouch/TouchType/indirectPointer": {
+      "abstract": [
+        {
+          "text": "A touch resulting from a button-based, indirect input device that describes the input sequence from button press to button release.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indirectPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITouch/TouchType/indirectPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITouch.TouchType.indirectPointer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITouch/TouchType/indirectPointer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIApplicationSupportsIndirectInputEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationSupportsIndirectInputEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITouch~1TouchType~1direct/title",
+          "value": "UITouchTypeDirect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITouch~1TouchType~1direct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouchTypeDirect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1numberOfTouches/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfTouches"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIRotationGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIApplicationSupportsIndirectInputEvents/title",
+          "value": "UIApplicationSupportsIndirectInputEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1UIApplicationSupportsIndirectInputEvents/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationSupportsIndirectInputEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIEvent~1EventType~1scroll/title",
+          "value": "UIEventTypeScroll"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIEvent~1EventType~1scroll/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventTypeScroll"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIEvent~1EventType~1transform/title",
+          "value": "UIEventTypeTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIEvent~1EventType~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventTypeTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1location(ofTouch:in:)/title",
+          "value": "locationOfTouch:inView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1location(ofTouch:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGPoint",
+              "text": "CGPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationOfTouch:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "touchIndex"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "inView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "view"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIPinchGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITouch~1TouchType~1indirectPointer/title",
+          "value": "UITouchTypeIndirectPointer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITouch~1TouchType~1indirectPointer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouchTypeIndirectPointer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizerDelegate~1gestureRecognizer(_:shouldReceive:)-evxd/title",
+          "value": "gestureRecognizer:shouldReceiveEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizerDelegate~1gestureRecognizer(_:shouldReceive:)-evxd/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "gestureRecognizer:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+              "text": "UIGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "gestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldReceiveEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIEvent",
+              "text": "UIEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1shouldReceive(_:)/title",
+          "value": "shouldReceiveEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer~1shouldReceive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldReceiveEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIEvent",
+              "text": "UIEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/uiapplicationsupportsindirectinputevents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/uiapplicationsupportsindirectinputevents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

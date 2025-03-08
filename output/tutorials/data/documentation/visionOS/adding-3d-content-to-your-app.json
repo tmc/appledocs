@@ -1,0 +1,3721 @@
+{
+  "abstract": [
+    {
+      "text": "Add depth and dimension to your visionOS app and discover how",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "to incorporate your app’s content into a person’s surroundings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding 3D content to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A device with a stereoscopic display lets people experience",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "3D content in a way that feels more real. Content appears to have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "real depth, and people can view it from different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "angles, making it seem like it’s there in front of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building an app for visionOS, think about ways you might add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depth to your app’s interface. The system provides several",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ways to display 3D content, including in your existing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "windows, in a volume, and in an immersive space. Choose the options",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that work best for your app and the content you offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "window.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Window",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "volume.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Volume",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "immersive-space.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Immersive space",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        },
+        {
+          "anchor": "Add-depth-to-traditional-2D-windows",
+          "level": 3,
+          "text": "Add depth to traditional 2D windows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Windows are an important part of your app’s interface. With visionOS,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps automatically get materials with the visionOS look and feel, fully",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resizable windows with spacing tuned for eyes and hands input, and access to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "highlighting adjustments for your custom controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "3D-Objects-detail.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Incorporate depth effects into your custom views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as needed, and use 3D layout options to arrange views in your windows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/shadow(color:radius:x:y:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/visualEffect(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to the view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lift or highlight the view when someone looks at it using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lay out views using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Animate view-related changes with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/transform3DEffect(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rotate the view using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to giving 2D views more depth, you can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add static 3D models to your 2D windows. The ",
+              "type": "text"
+            },
+            {
+              "code": "Model3D",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "loads a USDZ file or other asset type and displays it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at its intrinsic size in your window. Use this in places",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where you already have the model data in your app, or can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "download it from the network. For example, a shopping app might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use this type of view to display a 3D version of a product.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-dynamic-3D-scenes-using-RealityKit",
+          "level": 3,
+          "text": "Display dynamic 3D scenes using RealityKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit is Apple’s technology for building 3D models and scenes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you update dynamically onscreen. In visionOS, use RealityKit and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI together to seamlessly couple your app’s 2D and 3D content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Load existing USDZ assets or create scenes in Reality Composer Pro that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incorporate animation, physics, lighting, sounds, and custom behaviors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your content. To use a Reality Composer Pro project in your app, add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift package to your Xcode project and import its module in your Swift file. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamic-3D-scene.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to display 3D content in your interface, use a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This SwiftUI view serves as a container for your RealityKit content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and lets you update that content using familiar SwiftUI techniques.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a view that uses a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to display a 3D sphere. The code in the view’s closure creates a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit entity for the sphere, applies a texture to the surface of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the sphere, and adds the sphere to the view’s content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " struct SphereView: View {",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            let model = ModelEntity(",
+            "                         mesh: .generateSphere(radius: 0.1),",
+            "                         materials: [SimpleMaterial(color: .white, isMetallic: true)])",
+            "            content.add(model)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When SwiftUI displays your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it executes your code once to create the entities and other content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because creating entities is relatively expensive, the view runs your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creation code only once. When you want to update the state of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entities, change the state of your view and use an update closure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to apply those changes to your content. The following example uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an update closure to change the size of the sphere when the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SphereView: View {",
+            "    var scale = false",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            let model = ModelEntity(",
+            "                         mesh: .generateSphere(radius: 0.1),",
+            "                         materials: [SimpleMaterial(color: .white, isMetallic: true)])",
+            "            content.add(model)",
+            "        } update: { content in",
+            "            if let model = content.entities.first {",
+            "                model.transform.scale = scale ? [1.2, 1.2, 1.2] : [1.0, 1.0, 1.0]",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to create content using RealityKit,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-interactions-with-RealityKit-content",
+          "level": 3,
+          "text": "Respond to interactions with RealityKit content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle interactions with the entities of your RealityKit scenes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach a gesture recognizer to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attach an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/InputTargetComponent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the entity or one of its parent entities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add collision shapes to the RealityKit entities that support interactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides a bridge between the gesture recognizer and your RealityKit content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to recognize when someone drags an entity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and add the modifier to it. When the specified gesture occurs on an entity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI executes the provided closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example adds a tap gesture recognizer to the sphere view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the previous example. The code also adds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/InputTargetComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/CollisionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "components to the shape to allow the interactions to occur. If you omit these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "components, the view doesn’t detect the interactions with your entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SphereView: View {",
+            "    @State private var scale = false",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            let model = ModelEntity(",
+            "                mesh: .generateSphere(radius: 0.1),",
+            "                materials: [SimpleMaterial(color: .white, isMetallic: true)])",
+            "",
+            "            // Enable interactions on the entity.",
+            "            model.components.set(InputTargetComponent())",
+            "            model.components.set(CollisionComponent(shapes: [.generateSphere(radius: 0.1)]))",
+            "            content.add(model)",
+            "        } update: { content in",
+            "            if let model = content.entities.first {",
+            "                model.transform.scale = scale ? [1.2, 1.2, 1.2] : [1.0, 1.0, 1.0]",
+            "            }",
+            "        }",
+            "        .gesture(TapGesture().targetedToAnyEntity().onEnded { _ in",
+            "            scale.toggle()",
+            "        })",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-3D-content-in-a-volume",
+          "level": 3,
+          "text": "Display 3D content in a volume",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A volume is a type of window that grows in three dimensions to match",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the size of the content it contains. Windows and volumes both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accommodate 2D and 3D content, and are alike in many ways. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "windows clip 3D content that extends too far from the window’s surface,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so volumes are the better choice for content that is primarily 3D.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a volume, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene to your app and set its style to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This style tells SwiftUI to create a window for 3D content. Include any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2D or 3D views you want in your volume. You can also add a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build your content using RealityKit. The following example creates a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "volume with a static 3D model of some balloons stored in the app’s bundle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            Model3D(\"balloons\")",
+            "        }.windowStyle(style: .volumetric)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Windows and volumes are a convenient way to display bounded",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2D and 3D content, but your app doesn’t control the placement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of that content in the person’s surroundings. The system sets the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initial position of each window and volume at display time. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system also adds a window bar to allow someone to reposition the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window or resize it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "window-examples.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about when to use volumes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows#visionOS",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > Windows",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > Windows",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-3D-content-in-a-persons-surroundings",
+          "level": 3,
+          "text": "Display 3D content in a person’s surroundings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need more control over the placement of your app’s content,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add that content to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An immersive space offers an unbounded area for your content, and you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "control the size and placement of content within the space. After receiving",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "permission from the user, you can also use ARKit with an immersive space",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to integrate content into their surroundings. For example, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use ARKit scene reconstruction to obtain a mesh of furniture and nearby",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects and have your content interact with that mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is a scene type that you create alongside your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s other scenes. The following example shows an app that contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an immersive space and a window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyImmersiveApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup() {",
+            "            ContentView()",
+            "        }",
+            "",
+            "        ImmersiveSpace(id: \"solarSystem\") {",
+            "            SolarSystemView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t add a style modifier to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system creates that space using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "style. This style",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays your content together with the passthrough content that shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the person’s surroundings. Other styles let you hide passthrough to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "varying degrees. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene/immersionStyle(selection:in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to specify which styles your space supports. If you specify more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than one style, you can toggle between the styles using the ",
+              "type": "text"
+            },
+            {
+              "code": "selection",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter of the modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be mindful of how much content you include in immersive scenes",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "that use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "style. Content that fills a significant portion",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of the screen, even if that content is partially transparent, can prevent",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the person from seeing potential hazards in their surroundings. If you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "want to immerse the person in your content, configure your space with",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "style. For more information, see, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember to set the position of items you place in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Position SwiftUI views using modifiers, and position a RealityKit entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using its transform component. SwiftUI places the origin of a space at a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "person’s feet initially, but can change this origin in response to other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "events. For example, the system might shift the origin to accommodate a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SharePlay activity that displays your content with Spatial Personas. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to position SwiftUI views and RealityKit entities relative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to one another, perform any needed coordinate conversions using the methods",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene, open it using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action, which you obtain from the SwiftUI environment. This action runs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronously and uses the provided information to find and initialize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your scene. The following example shows a button that opens the space with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "solarSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button(\"Show Solar System\") {",
+            "    Task {",
+            "        let result = await openImmersiveSpace(id: \"solarSystem\")",
+            "        if case .error = result {",
+            "            print(\"An error occurred\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app presents an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system hides the content of other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps to prevent visual conflicts. The other apps remain hidden while your space",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is visible but return when you dismiss it. If your app defines multiple spaces,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you must dismiss the currently visible space before displaying a different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space. If you don’t dismiss the visible space, the system issues a runtime",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "warning when you try to open the other space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "3D-Objects-detail-poster.png": {
+      "alt": null,
+      "identifier": "3D-Objects-detail-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e51affe906026a456e41dff4612c38e4/3D-Objects-detail-poster.png"
+        }
+      ]
+    },
+    "3D-Objects-detail.mp4": {
+      "alt": "A window titled “Objects in Orbit” floats in a room above a brown wooden conference table. The left side of the window contains text describing objects that orbit in space. The right side of the window contains a three dimensional satellite with eight solar panels tied to a cylindrical body and a satellite dish pointing downward. As the person walks toward the image, the window moves closer into view, and the three dimensional satellite rotates and shows depth.",
+      "identifier": "3D-Objects-detail.mp4",
+      "poster": "3D-Objects-detail-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d30560f74c5b7b932652bf510cc97d64/3D-Objects-detail.mp4"
+        }
+      ]
+    },
+    "Creating-First-visionOS-App-PageImage-card.png": {
+      "alt": "A photograph of an Apple Vision Pro from the front with a subtle glow behind it.",
+      "identifier": "Creating-First-visionOS-App-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fb80ae9e10c0b9bc1ac6bada59f41822/Creating-First-visionOS-App-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55a700fe9e5586d4615b03928dd787f6/Creating-First-visionOS-App-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-windows-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-windows-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/954d0938deaa82c77e2697bea81040da/components-windows-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cdddbeeb4c914a11ab4a384a96de036c/components-windows-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows#visionOS": {
+      "abstract": [
+        {
+          "text": "A window presents UI views and components in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/windows#visionOS",
+      "images": [
+        {
+          "identifier": "components-windows-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/windows"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/RealityKit"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/CollisionComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/InputTargetComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to receive system input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputTargetComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/InputTargetComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InputTargetComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/InputTargetComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/DragGesture": {
+      "abstract": [
+        {
+          "text": "A dragging motion that invokes an action as the drag-event sequence changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DragGesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/DragGesture"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An action that presents an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OpenImmersiveSpaceActionV",
+          "text": "OpenImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()": {
+      "abstract": [
+        {
+          "text": "Requires this gesture to target an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetedToAnyEntity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP",
+          "text": "Gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI17EntityTargetValueV",
+          "text": "EntityTargetValue"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">>\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Gesture/targetedToAnyEntity()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "targetedToAnyEntity()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Gesture/targetedToAnyEntity()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content that completely replaces passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "full"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18FullImmersionStyleV",
+          "text": "FullImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "full",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/full"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content intermixed with other app content, along with passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mixed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19MixedImmersionStyleV",
+          "text": "MixedImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mixed",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/mixed"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ImmersiveSpaceContentP",
+          "text": "ImmersiveSpaceContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Scene/immersionStyle(selection:in:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ImmersionStyleP",
+          "text": "ImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "styles"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ImmersionStyleP",
+          "text": "ImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene/immersionStyle(selection:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immersionStyle(selection:in:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Scene/immersionStyle(selection:in:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Applies a hover effect to this view, optionally adding it to a [`HoverEffectGroup`](doc://com.apple.SwiftUI/documentation/SwiftUI/HoverEffectGroup).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "effect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17CustomHoverEffectP",
+          "text": "CustomHoverEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16HoverEffectGroupV",
+          "text": "HoverEffectGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hoverEffect(_:in:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/hoverEffect(_:in:isEnabled:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)": {
+      "abstract": [
+        {
+          "text": "Renders a view’s content as if it’s rotated in three dimensions around the specified axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotation3DEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axis"
+        },
+        {
+          "kind": "text",
+          "text": ": (x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": " = .center, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchorZ"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 0, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perspective"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 1) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotation3DEffect(_:axis:anchor:anchorZ:perspective:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/rotation3DEffect(_:axis:anchor:anchorZ:perspective:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/shadow(color:radius:x:y:)": {
+      "abstract": [
+        {
+          "text": "Adds a shadow to this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shadow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": " = Color(.sRGBLinear, white: 0, opacity: 0.33), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 0, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 0) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/shadow(color:radius:x:y:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shadow(color:radius:x:y:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/shadow(color:radius:x:y:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/transform3DEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a 3D transformation to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform3DEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SPAffineTransform3D",
+          "text": "AffineTransform3D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/transform3DEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform3DEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/transform3DEffect(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/visualEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Applies effects to this view, while providing access to layout information through a geometry proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "effect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EmptyVisualEffectV",
+          "text": "EmptyVisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13GeometryProxyV",
+          "text": "GeometryProxy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12VisualEffectP",
+          "text": "VisualEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/visualEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/visualEffect(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WindowGroup": {
+      "abstract": [
+        {
+          "text": "A scene that presents a group of identically structured windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WindowGroup",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WindowGroup"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric": {
+      "abstract": [
+        {
+          "text": "A window style that creates a 3D volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumetric"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21VolumetricWindowStyleV",
+          "text": "VolumetricWindowStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumetric",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WindowStyle/volumetric"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ZStack"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/managing-files-and-folders-in-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Add new or existing files to your project, and use groups to organize the files and folders in the Project navigator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing files and folders in your Xcode project",
+      "type": "topic",
+      "url": "/documentation/Xcode/managing-files-and-folders-in-your-xcode-project"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences": {
+      "abstract": [
+        {
+          "text": "Build fully immersive experiences by combining spaces with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content you create using RealityKit or Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating fully immersive experiences in your app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-fully-immersive-experiences"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-your-first-visionos-app": {
+      "abstract": [
+        {
+          "text": "Build a new visionOS app using SwiftUI and add platform-specific features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-your-first-visionos-app",
+      "images": [
+        {
+          "identifier": "Creating-First-visionOS-App-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your first visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-your-first-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content": {
+      "abstract": [
+        {
+          "text": "Deliver text and vector images at multiple resolutions",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from custom Core Animation layers in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing sharp layer-based content in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/drawing-sharp-layer-based-content"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "dynamic-3D-scene.png": {
+      "alt": "An illustration of a room with two gray couches, each having black pillow on top. There’s a brown wall made of vertical slats of wood directly ahead. To the left is a floating window showing a score of zero, a progress indicator that is nearly complete, and a pause button. Five dark grey clouds with grumpy faces appear in the middle coming toward the person. The person’s hands are placed together to make the appearance of a heart. ",
+      "identifier": "dynamic-3D-scene.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1ed1e6e2b884fbf653f4e9450e90bf1d/dynamic-3D-scene@2x.png"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "immersive-space.png": {
+      "alt": "An illustration of a globe with a figure of a person standing in it.",
+      "identifier": "immersive-space.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbaf256af4a956be1818b5005f40bfae/immersive-space@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/271822ff242c3771b9d9a6f2774aab3e/immersive-space~dark@2x.png"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "volume.png": {
+      "alt": "An illustration of a three dimensional cube. ",
+      "identifier": "volume.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5dfa0705cd9c1f7db9f980d1201e530c/volume@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49879b26d9daad02d5b075c4f38f93f3/volume~dark@2x.png"
+        }
+      ]
+    },
+    "window-examples.png": {
+      "alt": "An illustration of a window titled “Planet Earth” that contains text describing our planet, a button titled View Globe, and an image of the earth with two satellites tracking in orbit. The window floats in a room that has a dark grey fireplace affixed to a white brick wall. A green plant in a white vase sits atop a white mantle over the fireplace, and a picture hangs on the wall perpendicular to the fireplace. Suspended on the left side of the window is a globe of the earth with markers indicating its axis of rotation, and a button bar with four buttons beneath.",
+      "identifier": "window-examples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e51011416061f44436a165e3e3d400b/window-examples@2x.png"
+        }
+      ]
+    },
+    "window.png": {
+      "alt": "An illustration of a square window that is facing to the top and right and indicating a slight depth.",
+      "identifier": "window.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/344cec64a4a472f1241823d96af51e75/window@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f4637274b5e59acf7b4b96b98ad0cab/window~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-construction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-your-first-visionos-app",
+        "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+        "doc://com.apple.visionOS/documentation/visionOS/drawing-sharp-layer-based-content",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ],
+      "title": "App construction"
+    }
+  ]
+}

@@ -1,0 +1,1482 @@
+{
+  "abstract": [
+    {
+      "text": "Configure how your app’s windows look and function in macOS to provide an",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "engaging and more coherent experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Customizing-window-styles-and-state-restoration-behavior-in-macOS"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "customizing-window-styles-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Customizing window styles and state-restoration behavior in macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS target of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "demonstrates how you can leverage the window and scene customization APIs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(available in macOS 15 and later) to tailor an app’s experience in macOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This includes changing a toolbar’s appearance and visibility, extending a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window’s drag region, participating in a window’s zoom action, and modifying a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window’s state restoration behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "WindowCustomizationDestinationVideo",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-the-title-and-background-from-the-windows-toolbar",
+          "level": 2,
+          "text": "Remove the title and background from the window’s toolbar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video uses a tab view as its main user interface component, and in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macOS, this appears similar to a two-column navigation split view. In this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration, each tab appears as an entry in the sidebar and participates in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app’s navigation. Because the sidebar provides a visual indication of where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you are in that navigation hierarchy, and the app’s content doesn’t require any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional toolbar items, a toolbar isn’t necessary. Removing the toolbar can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elevate the underlying content by letting it extend right up to the window’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "edge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove the toolbar’s background, ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackgroundVisibility(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".toolbarBackgroundVisibility(.hidden, for: .windowToolbar)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And then removes the toolbar’s title:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".toolbar(removing: .title)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this instance, the app still requires the window control buttons to close or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "minimize the window or enter full-screen mode, so it uses individual view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods to remove only the title and bar background. To remove the toolbar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entirely, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarVisibility(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view method instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Customizing-window-styles-and-state-restoration-behavior-in-macOS-before",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "A window with a toolbar background and title",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Before"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Customizing-window-styles-and-state-restoration-behavior-in-macOS-after",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "A window with the toolbar background and title removed",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "After"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to note that these are visual changes only. The system continues",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to provide the window’s title to accessibility tools such as screen readers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the app’s Window menu continues to show the title while the window is open.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extend-the-windows-drag-region",
+          "level": 2,
+          "text": "Extend the window’s drag region",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move a window in macOS, you typically drag that window’s toolbar. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you choose to remove the background from a toolbar, or hide the toolbar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "completely, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowDragGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to extend that window’s drag region and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make sure the window is still draggable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Destination Video’s ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds this gesture to a transparent overlay and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inserts the overlay between the video content and the playback controls. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enables you to safely drag the window and not interfere with the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "playback UI that AVKit provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".gesture(WindowDragGesture())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The player also uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsWindowActivationEvents(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to enable the installed window drag gesture to receive events that activate the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window — for example, if the window is in the background and you click it and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immediately drag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".allowsWindowActivationEvents(true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-the-windows-zoom-behavior",
+          "level": 2,
+          "text": "Customize the window’s zoom behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a window’s toolbar provides buttons that close the window, minimize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the window, and enter full-screen mode. If you press and hold the Option key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and click the green button, the window zooms instead of going full screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Customizing-window-styles-and-state-restoration-behavior-in-macOS-zoom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, a window zooms to either its defined maximum size, or as large as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the display permits. However, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene method to override this behavior and provide a size and position that’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more appropriate for the window’s contents. The app uses this method to provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a maximum size for the video player that maintains the video’s aspect ratio to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prevent black bars appearing above and below it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".windowIdealPlacement { proxy, context in",
+            "    let displayBounds = context.defaultDisplay.visibleRect",
+            "    let idealSize = proxy.sizeThatFits(.unspecified)",
+            "    ",
+            "    // Calculate the content's aspect ratio.",
+            "    let aspectRatio = aspectRatio(of: idealSize)",
+            "    // Determine the deltas between the display's size and the content's size.",
+            "    let deltas = deltas(of: displayBounds.size, idealSize)",
+            "    ",
+            "    // Calculate the window's zoomed size while maintaining the aspect ratio",
+            "    // of the content.",
+            "    let size = calculateZoomedSize(",
+            "        of: idealSize,",
+            "        inBounds: displayBounds,",
+            "        withAspectRatio: aspectRatio,",
+            "        andDeltas: deltas",
+            "    )",
+            "    ",
+            "    // Position the window in the center of the display and return the",
+            "    // corresponding window placement.",
+            "    let position = position(of: size, centeredIn: displayBounds)",
+            "    return WindowPlacement(position, size: size)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This implementation also ensures the zoomed window appears in the center of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display while zooming.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Modify-how-the-window-participates-in-state-restoration",
+          "level": 2,
+          "text": "Modify how the window participates in state restoration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, state restoration is optional and a person enables (or disables) it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "systemwide in System Settings. By default, your SwiftUI app respects this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting, but you can choose to override it and specify the preferred",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "restoration behavior for each of your app’s windows. For example, you may want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to opt out of state restoration for a window that represents a transient",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity, or where it’s difficult or expensive to restore the underlying state",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from a previous session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When running in macOS, Destination Video uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneRestorationBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier to disable state restoration for the video player view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".restorationBehavior(.disabled)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the app’s videos are brief, and a person’s interactions with them are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "short-lived, it doesn’t make sense to restore the video player on the next",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/visionOS/destination-video"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2024/10148"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "08bd3c5ea0b3/DestinationVideo.zip": {
+      "checksum": "08bd3c5ea0b38e44d56c175dc21897a9d25c1bea5065796a942516c7f09ea771d19f713382b4bcb0a9bf88ccef44bb3c7ea7776cb4c43951eaf0a8639eba107c",
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/08bd3c5ea0b3/DestinationVideo.zip"
+    },
+    "090F792B-C546-4145-8B87-40B8B5A52A9B": {
+      "alt": null,
+      "identifier": "090F792B-C546-4145-8B87-40B8B5A52A9B",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/090F792B-C546-4145-8B87-40B8B5A52A9B/9276_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/090F792B-C546-4145-8B87-40B8B5A52A9B/9276_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/C03E6E6D-A32A-41D0-9E50-C3C6059820AA/090F792B-C546-4145-8B87-40B8B5A52A9B/9276_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Customizing-window-styles-and-state-restoration-behavior-in-macOS-after": {
+      "alt": "A window in Destination Video with a window toolbar background and title removed.",
+      "identifier": "Customizing-window-styles-and-state-restoration-behavior-in-macOS-after",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d11658bd7b0184d21c78d22662cb0db0/Customizing-window-styles-and-state-restoration-behavior-in-macOS-after@2x.png"
+        }
+      ]
+    },
+    "Customizing-window-styles-and-state-restoration-behavior-in-macOS-before": {
+      "alt": "A window in Destination Video with a window toolbar background and title.",
+      "identifier": "Customizing-window-styles-and-state-restoration-behavior-in-macOS-before",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d5cd26341c5677e02f1eb2ef56876d95/Customizing-window-styles-and-state-restoration-behavior-in-macOS-before@2x.png"
+        }
+      ]
+    },
+    "Customizing-window-styles-and-state-restoration-behavior-in-macOS-zoom": {
+      "alt": "A screenshot showing a window's toolbar buttons. The green button has a popover pointing to it. The popover contains different options for arranging and sizing the window.",
+      "identifier": "Customizing-window-styles-and-state-restoration-behavior-in-macOS-zoom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/841259ef8e8b5a49e4673a20e199bac8/Customizing-window-styles-and-state-restoration-behavior-in-macOS-zoom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e9d183af822c7084e129cc24347c1bd8/Customizing-window-styles-and-state-restoration-behavior-in-macOS-zoom~dark@2x.png"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "WindowCustomizationDestinationVideo": {
+      "alt": "A screenshot that shows the video player window in front of Destination Video’s main window.",
+      "identifier": "WindowCustomizationDestinationVideo",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d77c8afb576082a70fb6a3a14bc495d0/WindowCustomizationDestinationVideo@2x.png"
+        }
+      ]
+    },
+    "customizing-window-styles-PageImage-card.png": {
+      "alt": null,
+      "identifier": "customizing-window-styles-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ad38e0c3283b1ac07867f22266e037f/customizing-window-styles-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33d64ed1d006ace96b27aa334aa05a93/customizing-window-styles-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)": {
+      "abstract": [
+        {
+          "text": "Provides a function which determines a placement to use when windows",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a scene zoom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowIdealPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16WindowLayoutRootV",
+          "text": "WindowLayoutRoot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WindowPlacementContextV",
+          "text": "WindowPlacementContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowPlacementV",
+          "text": "WindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowIdealPlacement(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowidealplacement(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneRestorationBehavior": {
+      "abstract": [
+        {
+          "text": "The restoration behavior for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneRestorationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneRestorationBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneRestorationBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneRestorationBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenerestorationbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsWindowActivationEvents(_:)": {
+      "abstract": [
+        {
+          "text": "Configures whether gestures in this view hierarchy can handle events",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that activate the containing window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsWindowActivationEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsWindowActivationEvents(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsWindowActivationEvents(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/allowswindowactivationevents(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackgroundVisibility(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the preferred visibility of backgrounds on a bar managed by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarBackgroundVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackgroundVisibility(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarBackgroundVisibility(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarbackgroundvisibility(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarVisibility(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the visibility of a bar managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarVisibility(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarVisibility(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarvisibility(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowDragGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes the motion of and handles dragging a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowDragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowDragGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowDragGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowDragGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowdraggesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows": {
+      "abstract": [
+        {
+          "text": "Display user interface content in a window or a collection of windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/documentation/swiftui/windows"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app": {
+      "abstract": [
+        {
+          "text": "Compose rich views by reacting to state changes and customize your app’s scene presentation and behavior on iPadOS and macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing multiple windows to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2024/10148": {
+      "abstract": [
+        {
+          "text": "Make your windows feel tailor-made for macOS. Fine-tune your app’s windows for focused purposes, ease of use, and to express functionality. Use SwiftUI to style window toolbars and backgrounds. Arrange your windows with precision, and make smart decisions about restoration and minimization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2024/10148",
+      "images": [
+        {
+          "identifier": "090F792B-C546-4145-8B87-40B8B5A52A9B",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Tailor macOS windows with SwiftUI",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2024/10148"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "08bd3c5ea0b3/DestinationVideo.zip",
+      "isActive": true,
+      "overridingTitle": "Download (1.2 GB)",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swiftui/bringing_multiple_windows_to_your_swiftui_app"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/customizing-window-styles-and-state-restoration-behavior-in-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

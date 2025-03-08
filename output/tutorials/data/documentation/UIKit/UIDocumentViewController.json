@@ -1,0 +1,3061 @@
+{
+  "abstract": [
+    {
+      "text": "A view controller that manages and presents a document stored locally or in the cloud.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIDocumentViewController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIDocumentViewController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIDocumentViewController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIDocumentViewController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presents a view that displays a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/document",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It manages opening, saving, and closing the document. You can use ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to present documents from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for instance. When you aren’t presenting documents from a ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentBrowserViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",  ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays a button that, when tapped, presents a picker a person can use to choose the document to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The document view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/document",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is an optional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". While the ",
+              "type": "text"
+            },
+            {
+              "code": "document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property value is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the document view controller displays a view depicting an empty state with the message, “No Document”. The empty state provides a prompt that reads “Select a document by tapping the ‘Documents’ button at the top.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "code": "document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property value is not ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the document view controller displays the document. You configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the document in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The navigation item automatically assigns its title menu, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, undo and redo buttons, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-o32h",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from information in the document view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "document",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also provides sharing and drag and drop support, and key-commands for common actions such as undo and redo.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-notes",
+          "level": 3,
+          "text": "Subclassing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an abstract base class that is meant to be subclassed. To create a subclass, you override two methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when someone opens the document associated with the document view controller, or when an object assigns a previously opened document to the document view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/navigationItemDidUpdate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " every time ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIDocumentViewController",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " makes changes to its navigation item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Open-and-close-documents",
+          "level": 4,
+          "text": "Open and close documents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the document view controller opens the document associated with it, or when an object assigns an already opened document to the document view controller, the system calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can populate the view controller’s views to display the content of the document in this method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func documentDidOpen() {",
+            "    configureViewForCurrentDocument()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s good practice to configure the view in its own method and call that method in both ",
+              "type": "text"
+            },
+            {
+              "code": "documentDidOpen()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". There is no guarantee of the timing between when the system calls ",
+              "type": "text"
+            },
+            {
+              "code": "documentDidOpen()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and when the system loads the view controller’s view, so check that the view loaded and the document opened before configuring your views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    configureViewForCurrentDocument()",
+            "}",
+            "",
+            "func configureViewForCurrentDocument() {",
+            "    guard let document = markdownDocument,",
+            "        !document.documentState.contains(.closed)",
+            "            && isViewLoaded else { return }",
+            "    // Configure views for document",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Customize-navigation-items",
+          "level": 4,
+          "text": "Customize navigation items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically sets the document title and other navigation items using information from the document, you can customize these items by overriding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/navigationItemDidUpdate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The system calls ",
+              "type": "text"
+            },
+            {
+              "code": "navigationItemDidUpdate()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " every time ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " makes changes to the navigation item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func navigationItemDidUpdate() {",
+            "    // Customize the navigation item.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-sharing-drag-and-drop-and-undo-and-redo",
+          "level": 4,
+          "text": "Add sharing, drag and drop, and undo and redo",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically includes drag and drop, undo and redo, and sharing support. If you want undo and redo buttons to appear in your ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/undoRedoItemGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the navigation bar and ensure that your custom ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements an undo manager. ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sets the ",
+              "type": "text"
+            },
+            {
+              "code": "hidden",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of this group, depending on the availability of an undo manager. It automatically enables or disables the buttons inside the group, as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-a-document-from-outside-the-class",
+          "level": 4,
+          "text": "Open a document from outside the class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically opens and closes its document. However, if you need to access a document from outside the document view controller, you can create a new instance of ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/openDocument(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample code, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " presents a document using a ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Open a document.",
+            "",
+            "class BrowserViewController: UIDocumentBrowserViewController {",
+            "",
+            "    func presentDocument(_ document: MarkdownDocument) {",
+            "        let documentController = UIDocumentViewController(document: document)",
+            "        documentController.openDocument { success in",
+            "            if success {",
+            "                self.present(documentController, animated: true)",
+            "            }",
+            "        }",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " makes all the necessary callbacks, such as calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and, when the document is open, it calls the completion handler you provided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-class-as-a-root-view-controller",
+          "level": 4,
+          "text": "Use the class as a root view controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "To use a UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the root view controller in an app, you need to declare the key “UIDocumentClass” for the relevant file type in your app’s info.plist. Set the document class to the ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass you are using in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there is no browser view controller in the hierarchy, ",
+              "type": "text"
+            },
+            {
+              "code": "UIDocumentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays a document button that opens a document picker in the navigation bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocument": {
+      "abstract": [
+        {
+          "text": "An abstract base class for managing discrete portions of your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocument",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocument"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for browsing and performing actions on documents that you store locally and in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentBrowserViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties": {
+      "abstract": [
+        {
+          "text": "Information that UIKit uses to generate a document header for a navigation item’s title menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentProperties",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentproperties"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages and presents a document stored locally or in the cloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/LaunchOptions-swift.class": {
+      "abstract": [
+        {
+          "text": "Options for customizing the document launch view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LaunchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/LaunchOptions-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LaunchOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentViewController.LaunchOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/launchoptions-swift.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/document": {
+      "abstract": [
+        {
+          "text": "The document that the controller presents or edits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocument",
+          "text": "UIDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/document",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "document"
+        }
+      ],
+      "role": "symbol",
+      "title": "document",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/document"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to configure the view after the system loads the controller’s document into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentDidOpen"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentDidOpen"
+        }
+      ],
+      "role": "symbol",
+      "title": "documentDidOpen()",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/documentdidopen()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/init(document:)": {
+      "abstract": [
+        {
+          "text": "Creates a document view controller with a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocument",
+          "text": "UIDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/init(document:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDocument:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(document:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/init(document:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/launchOptions-swift.property": {
+      "abstract": [
+        {
+          "text": "Options that customize a document-based app’s launch view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentViewController",
+          "text": "UIDocumentViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDocumentViewControllerLaunchOptions",
+          "text": "LaunchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/launchOptions-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "launchOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "launchOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/launchoptions-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/navigationItemDidUpdate()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to customize the navigation items after the navigation bar updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationItemDidUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/navigationItemDidUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigationItemDidUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigationItemDidUpdate()",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/navigationitemdidupdate()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/openDocument(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Opens a document in a document view controller from outside the document view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/openDocument(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDocument(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/opendocument(completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/undoRedoItemGroup": {
+      "abstract": [
+        {
+          "text": "The group that contains the undo/redo buttons that this view controller adds to the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "undoRedoItemGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItemGroup",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/undoRedoItemGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "undoRedoItemGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "undoRedoItemGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentviewcontroller/undoredoitemgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-o32h": {
+      "abstract": [
+        {
+          "text": "The delegate for renaming the navigation item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "renameDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem/renameDelegate-o32h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renameDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem/renamedelegate-o32h"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuseractivityrestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/view": {
+      "abstract": [
+        {
+          "text": "The view that the controller manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience": {
+      "abstract": [
+        {
+          "text": "Add unique elements to your app’s document launch scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-a-document-based-app-s-launch-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing a document-based app’s launch experience",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-a-document-based-app-s-launch-experience"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+        "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-document-view-controller",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/init(document:)"
+      ],
+      "title": "Creating a document view controller"
+    },
+    {
+      "anchor": "Managing-the-document-view",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/document",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/openDocument(completionHandler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()"
+      ],
+      "title": "Managing the document view"
+    },
+    {
+      "anchor": "Customizing-navigation-items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/navigationItemDidUpdate()"
+      ],
+      "title": "Customizing navigation items"
+    },
+    {
+      "anchor": "Adding-undo-and-redo-functionality",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/undoRedoItemGroup"
+      ],
+      "title": "Adding undo and redo functionality"
+    },
+    {
+      "anchor": "Customizing-the-launch-experience",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/launchOptions-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/LaunchOptions-swift.class"
+      ],
+      "title": "Customizing the launch experience"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIDocumentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-document-view-controller",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/init(document:)"
+              ],
+              "title": "Creating a document view controller"
+            },
+            {
+              "anchor": "Managing-the-document-view",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/document",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/openDocument(completionHandler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/documentDidOpen()"
+              ],
+              "title": "Managing the document view"
+            },
+            {
+              "anchor": "Customizing-navigation-items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/navigationItemDidUpdate()"
+              ],
+              "title": "Customizing navigation items"
+            },
+            {
+              "anchor": "Adding-undo-and-redo-functionality",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/undoRedoItemGroup"
+              ],
+              "title": "Adding undo and redo functionality"
+            },
+            {
+              "anchor": "Customizing-the-launch-experience",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/launchOptions-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIDocumentViewController/LaunchOptions-swift.class"
+              ],
+              "title": "Customizing the launch experience"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIDocumentViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIViewController",
+                    "text": "UIViewController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1launchOptions-swift.property/title",
+          "value": "launchOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1launchOptions-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "launchOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1undoRedoItemGroup/title",
+          "value": "undoRedoItemGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1undoRedoItemGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "undoRedoItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1document/title",
+          "value": "document"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1document/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "document"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1init(document:)/title",
+          "value": "initWithDocument:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1init(document:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDocument:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1navigationItemDidUpdate()/title",
+          "value": "navigationItemDidUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1navigationItemDidUpdate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "navigationItemDidUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1documentDidOpen()/title",
+          "value": "documentDidOpen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1documentDidOpen()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "documentDidOpen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/title",
+          "value": "UIDocumentViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentProperties/title",
+          "value": "UIDocumentProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1openDocument(completionHandler:)/title",
+          "value": "openDocumentWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1openDocument(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "openDocumentWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/title",
+          "value": "UIUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/title",
+          "value": "UIDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/title",
+          "value": "UIDocumentBrowserViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentBrowserViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentBrowserViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1LaunchOptions-swift.class/title",
+          "value": "UIDocumentViewControllerLaunchOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1LaunchOptions-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewControllerLaunchOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentViewController~1LaunchOptions-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentViewControllerLaunchOptions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uidocumentviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uidocumentviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

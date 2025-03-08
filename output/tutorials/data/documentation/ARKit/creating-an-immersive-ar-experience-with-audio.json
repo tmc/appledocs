@@ -1,0 +1,517 @@
+{
+  "abstract": [
+    {
+      "text": "Use sound effects and environmental sound layers to create an engaging AR experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/creating-an-immersive-ar-experience-with-audio"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating an immersive ar experience with audio"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses SceneKit’s node-based audio API to associate environmental sounds with a virtual object that’s placed in the real world. Because audio is 3D positional in SceneKit by default, volume is automatically mixed based on the user’s distance from a node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-started",
+          "level": 2,
+          "text": "Getting started",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This sample code supports ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Relocalization",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and therefore, it requires ARKit 1.5 (iOS 11.3) or greater",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ARKit is not available in the iOS Simulator",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Building the sample requires Xcode 9.3 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Run-an-AR-session-and-place-virtual-content",
+          "level": 2,
+          "text": "Run an AR session and place virtual content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can use audio, you need to set up a session and place the object from which to play sound. For simplicity, this sample runs a world tracking configuration and places a virtual object on the first horizontal plane that it detects. For more detail about this kind of session setup, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The object placement approach in this sample is similar to the one demonstrated in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-3D-audio-to-the-scene",
+          "level": 2,
+          "text": "Add 3D audio to the scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play audio from a given position in 3D space, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNAudioSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from an audio file. This sample loads the file from the bundle in ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidLoad",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// As an environmental sound layer, audio should play indefinitely",
+            "audioSource.loops = true",
+            "// Decode the audio from disk ahead of time to prevent a delay in playback",
+            "audioSource.load()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the audio source is configured and prepared:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// As an environmental sound layer, audio should play indefinitely",
+            "audioSource.loops = true",
+            "// Decode the audio from disk ahead of time to prevent a delay in playback",
+            "audioSource.load()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to play the sound, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNAudioPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing it the audio source:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a player from the source and add it to `objectNode`",
+            "objectNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For best results, use mono audio files. SceneKit’s audio engine uses panning to create 3D positional effects, so stereo audio sources produce less recognizable 3D audio effects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "506ffde880b4/CreatingAnImmersiveArExperienceWithAudio.zip": {
+      "checksum": "506ffde880b4208dbe887143724e8786b0b892629faa550ffe5f57a6bef12f55a6ac0ad3ce04c7778ff8057f2b3eb78f45f65d710d6ee010694abe9a8c83665b",
+      "identifier": "506ffde880b4/CreatingAnImmersiveArExperienceWithAudio.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/506ffde880b4/CreatingAnImmersiveArExperienceWithAudio.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction": {
+      "abstract": [
+        {
+          "text": "Place virtual content at tracked, real-world locations, and enable the user to interact with virtual content by using gestures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing objects and handling 3D interaction",
+      "type": "topic",
+      "url": "/documentation/arkit/placing-objects-and-handling-3d-interaction"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes": {
+      "abstract": [
+        {
+          "text": "Detect surfaces in the physical environment and visualize their shape and location in 3D space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing planes",
+      "type": "topic",
+      "url": "/documentation/arkit/tracking-and-visualizing-planes"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNAudioPlayer": {
+      "abstract": [
+        {
+          "text": "A controller for playback of a positional audio source in a SceneKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAudioPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNAudioPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNAudioPlayer",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNAudioPlayer"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNAudioSource": {
+      "abstract": [
+        {
+          "text": "A simple, reusable audio source—music or sound effects loaded from a file—for use in positional audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNAudioSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNAudioSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNAudioSource",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNAudioSource"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "506ffde880b4/CreatingAnImmersiveArExperienceWithAudio.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNAudioSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNAudioSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNAudioPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNAudioPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/creating-an-immersive-ar-experience-with-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/creating-an-immersive-ar-experience-with-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

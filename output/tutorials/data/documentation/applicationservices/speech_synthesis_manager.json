@@ -1,0 +1,2386 @@
+{
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1657423,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Speech Synthesis Manager"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Speech Synthesis Manager, formerly called the Speech Manager, is the part of macOS that provides a standardized method for Mac apps to generate synthesized speech. For example, you may want your application to incorporate the capability to speak its dialog box messages to the user. A word-processing application might use the Speech Synthesis Manager to implement a command that speaks a selected section of a document to the user. Because sound samples can take up large amounts of room on disk, using text in place of sampled sound is extremely efficient. For example, a multimedia application might use the Speech Synthesis Manager to provide a narration of a QuickTime movie instead of including sampled-sound data on a movie track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OS X v10.5 introduces native support for performing speech synthesis tasks using Core Foundation-based objects, such as speaking text represented as ",
+              "type": "text"
+            },
+            {
+              "code": "CFString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects and managing speech channel properties using a ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-based property dictionary. You should begin using these Core Foundation-based programming interfaces as soon as it’s convenient, because future synthesizers will accept Core Foundation strings and data structures directly through the speech synthesis framework. In the meantime, existing buffer-based clients and synthesizers will continue to work as before, with strings and other data structures getting automatically converted as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1679841",
+          "level": 3,
+          "text": "Gestalt Constants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can check for version and feature availability information by using the Speech Synthesis Manager selectors defined in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty": {
+      "abstract": [
+        {
+          "text": "Gets the value associated with the specified property of a speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopySpeechProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFString, UnsafeMutablePointer<CFTypeRef?>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopySpeechProperty(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459075-copyspeechproperty"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459256-setspeechproperty": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified speech-channel property.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetSpeechProperty"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFString, CFTypeRef?) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459256-setspeechproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetSpeechProperty(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459256-setspeechproperty"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl": {
+      "abstract": [
+        {
+          "text": "Registers and makes available a speech synthesizer or voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSynthesisRegisterModuleURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSynthesisRegisterModuleURL(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459780-stopspeechat": {
+      "abstract": [
+        {
+          "text": "Terminates speech delivery on a specified channel eitherimmediately or at the end of the current word or sentence.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "StopSpeechAt"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, Int32) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459780-stopspeechat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopSpeechAt(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459780-stopspeechat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459896-setspeechrate": {
+      "abstract": [
+        {
+          "text": "Sets the speech rate of a designated speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetSpeechRate"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, Fixed) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459896-setspeechrate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetSpeechRate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459896-setspeechrate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459947-countvoices": {
+      "abstract": [
+        {
+          "text": "Determines how many voices are available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CountVoices"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Int16>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459947-countvoices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CountVoices(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459947-countvoices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide": {
+      "abstract": [
+        {
+          "text": "Determines if any speech is currently being synthesizedin your application or elsewhere on the computer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechBusySystemWide"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechBusySystemWide()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460113-speechbusysystemwide"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate": {
+      "abstract": [
+        {
+          "text": "Gets a speech channel’s current speech rate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetSpeechRate"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, UnsafeMutablePointer<Fixed>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechRate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460797-getspeechrate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460918-copyphonemesfromtext": {
+      "abstract": [
+        {
+          "text": "Converts the specified text string into its equivalent phonemic representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyPhonemesFromText"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFString, UnsafeMutablePointer<CFString?>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460918-copyphonemesfromtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyPhonemesFromText(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460918-copyphonemesfromtext"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461174-pausespeechat": {
+      "abstract": [
+        {
+          "text": "Pauses speech on a speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PauseSpeechAt"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, Int32) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461174-pausespeechat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PauseSpeechAt(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461174-pausespeechat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461367-newspeechchannel": {
+      "abstract": [
+        {
+          "text": "Creates a new speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewSpeechChannel"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<VoiceSpec>?, UnsafeMutablePointer<SpeechChannel?>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461367-newspeechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewSpeechChannel(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461367-newspeechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461410-getvoiceinfo": {
+      "abstract": [
+        {
+          "text": "Gets the same information about a voice that the ",
+          "type": "text"
+        },
+        {
+          "code": "GetVoiceDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function provides,or to determine in which file and resource a voice is stored. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVoiceInfo"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<VoiceSpec>?, OSType, UnsafeMutableRawPointer) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461410-getvoiceinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetVoiceInfo(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461410-getvoiceinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461446-makevoicespec": {
+      "abstract": [
+        {
+          "text": "Sets the fields of a voice specification structure. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "MakeVoiceSpec"
+        },
+        {
+          "kind": "text",
+          "text": "(OSType, OSType, UnsafeMutablePointer<VoiceSpec>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461446-makevoicespec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MakeVoiceSpec(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461446-makevoicespec"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461621-speakcfstring": {
+      "abstract": [
+        {
+          "text": "Begins speaking a string represented as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeakCFString"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFString, CFDictionary?) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461621-speakcfstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeakCFString(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461621-speakcfstring"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel": {
+      "abstract": [
+        {
+          "text": "Disposes of an existing speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisposeSpeechChannel"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeSpeechChannel(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462081-disposespeechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion": {
+      "abstract": [
+        {
+          "text": "Determines the current version of the Speech SynthesisManager installed in the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechManagerVersion"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NumVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechManagerVersion()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462334-speechmanagerversion"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu": {
+      "abstract": [
+        {
+          "text": "Unregisters a registered speech synthesizer or voice.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSynthesisUnregisterModuleURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSynthesisUnregisterModuleURL(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462674-setspeechpitch": {
+      "abstract": [
+        {
+          "text": "Sets the speech pitch on a designated speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetSpeechPitch"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, Fixed) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462674-setspeechpitch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetSpeechPitch(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462674-setspeechpitch"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462728-continuespeech": {
+      "abstract": [
+        {
+          "text": "Resumes speech paused by the ",
+          "type": "text"
+        },
+        {
+          "code": "PauseSpeechAt",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContinueSpeech"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462728-continuespeech",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContinueSpeech(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462728-continuespeech"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462745-stopspeech": {
+      "abstract": [
+        {
+          "text": "Terminates speech immediately on the specified channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "StopSpeech"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462745-stopspeech",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopSpeech(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462745-stopspeech"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463688-usespeechdictionary": {
+      "abstract": [
+        {
+          "text": "Registers a speech dictionary with a speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "UseSpeechDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, CFDictionary) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463688-usespeechdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UseSpeechDictionary(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463688-usespeechdictionary"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463940-getvoicedescription": {
+      "abstract": [
+        {
+          "text": "Gets a description of a voice by using the ",
+          "type": "text"
+        },
+        {
+          "code": "GetVoiceDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetVoiceDescription"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<VoiceSpec>?, UnsafeMutablePointer<VoiceDescription>?, Int) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463940-getvoicedescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetVoiceDescription(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463940-getvoicedescription"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy": {
+      "abstract": [
+        {
+          "text": "Determines whether any channels of speech are currentlysynthesizing speech.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechBusy"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechBusy()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464581-speechbusy"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464595-getindvoice": {
+      "abstract": [
+        {
+          "text": "Gets a voice specification structure for a voice bypassing an index to the ",
+          "type": "text"
+        },
+        {
+          "code": "GetIndVoice",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetIndVoice"
+        },
+        {
+          "kind": "text",
+          "text": "(Int16, UnsafeMutablePointer<VoiceSpec>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464595-getindvoice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetIndVoice(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464595-getindvoice"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch": {
+      "abstract": [
+        {
+          "text": "Gets a speech channel’s current speech pitch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetSpeechPitch"
+        },
+        {
+          "kind": "text",
+          "text": "(SpeechChannel, UnsafeMutablePointer<Fixed>) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechPitch(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464774-getspeechpitch"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo": {
+      "abstract": [
+        {
+          "text": "Defines a delimiter information structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "DelimiterInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DelimiterInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/delimiterinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/phonemedescriptor": {
+      "abstract": [
+        {
+          "text": "Defines a phoneme descriptor structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhonemeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/phonemedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhonemeDescriptor",
+      "type": "topic",
+      "url": "/documentation/applicationservices/phonemedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/phonemeinfo": {
+      "abstract": [
+        {
+          "text": "Defines a structure that stores information about a phoneme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhonemeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/phonemeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhonemeInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/phonemeinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552213-control_flags_constants": {
+      "abstract": [
+        {
+          "text": "Flags that indicate which synthesizer features are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552213-control_flags_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Control Flags Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552213-control_flags_constants"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants": {
+      "abstract": [
+        {
+          "text": "Selectors that can be passed to the ",
+          "type": "text"
+        },
+        {
+          "code": "GetSpeechInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "SetSpeechInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech-Channel Information Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552231-speech_synthesis_manager_operati": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "OSType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " definitions used by the Speech Synthesis Manager.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552231-speech_synthesis_manager_operati",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager Operating System Types",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552231-speech_synthesis_manager_operati"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552233-phoneme_generation_options": {
+      "abstract": [
+        {
+          "text": "Flags that specify options for the generation of phonetic output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552233-phoneme_generation_options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Phoneme Generation Options",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552233-phoneme_generation_options"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552246-gender_constants": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the gender of the individual represented by avoice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552246-gender_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gender Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552246-gender_constants"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552254-voice_information_selectors": {
+      "abstract": [
+        {
+          "text": "The types of voice data that can be requested by the ",
+          "type": "text"
+        },
+        {
+          "code": "GetVoiceInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552254-voice_information_selectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Voice Information Selectors",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552254-voice_information_selectors"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552256-speech-channel_modes": {
+      "abstract": [
+        {
+          "text": "The available text-processing and number-processing modes for a speech channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552256-speech-channel_modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech-Channel Modes",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552256-speech-channel_modes"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552263-audio_unit_constants": {
+      "abstract": [
+        {
+          "text": "Constants that identify values in a speech synthesis audio unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552263-audio_unit_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552263-audio_unit_constants"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552264-stop_speech_locations": {
+      "abstract": [
+        {
+          "text": "Locations that indicate where speech should be paused or stopped.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552264-stop_speech_locations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Stop Speech Locations",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/1552264-stop_speech_locations"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/command_delimiter_keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "code": "kSpeechCommandDelimiterProperty",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property to specify information about the command delimiter strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/command_delimiter_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Command Delimiter Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/command_delimiter_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/current_voice_keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "code": "kSpeechCurrentVoiceProperty",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property to specify information about the current voice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/current_voice_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Current Voice Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/current_voice_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/error_callback_user-information_string": {
+      "abstract": [
+        {
+          "text": "Specifies information about the text being synthesized when an error occurs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/error_callback_user-information_string",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Callback User-Information String",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/error_callback_user-information_string"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/phoneme_symbols_keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "code": "kSpeechPhonemeSymbolsProperty",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property to provide information about the phoneme being processed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/phoneme_symbols_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Phoneme Symbols Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/phoneme_symbols_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech-channel_modes_for_core_foundation-based_functions": {
+      "abstract": [
+        {
+          "text": "The available text-processing and number-processing modes for a speech channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech-channel_modes_for_core_foundation-based_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech-Channel Modes for Core Foundation-based Functions",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/speech-channel_modes_for_core_foundation-based_functions"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech-channel_properties": {
+      "abstract": [
+        {
+          "text": "Properties used with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459256-setspeechproperty",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to get or set the characteristics of a speech channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech-channel_properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech-Channel Properties",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/speech-channel_properties"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_dictionary_keys": {
+      "abstract": [
+        {
+          "text": "Keys used in a speech dictionary to override the synthesizer’s default pronunciation of a word.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_dictionary_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/speech_dictionary_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_error_keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "code": "kSpeechErrorsProperty",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property to describe errors encountered during speech processing and production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_error_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Error Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/speech_error_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_status_keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "code": "kSpeechStatusProperty",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property to specify the status of the speech channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_status_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Status Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/speech_status_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_synthesizer_information_keys": {
+      "abstract": [
+        {
+          "text": "Keys used with the ",
+          "type": "text"
+        },
+        {
+          "code": "kSpeechSynthesizerInfoProperty",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property to get information about the synthesizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_synthesizer_information_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesizer Information Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/speech_synthesizer_information_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/synthesizer_option_keys": {
+      "abstract": [
+        {
+          "text": "Keys used to specify synthesizer options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/synthesizer_option_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Synthesizer Option Keys",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager/synthesizer_option_keys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannel": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a speech channel record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannel"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannelrecord": {
+      "abstract": [
+        {
+          "text": "Represents a speech channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechChannelRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannelrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannelRecord",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannelrecord"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechdoneprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a speech-done callback functionwhich is called when the Speech Synthesis Manager finishes speakinga buffer of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechDoneProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechdoneprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechDoneProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechdoneprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechdoneupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer (UPP) to a speech-done callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechDoneUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechdoneupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechDoneUPP",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechdoneupp"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorcfprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an error callback function that handles syntax errors within commands embedded in a ",
+          "type": "text"
+        },
+        {
+          "code": "CFString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object being processed by the Speech Synthesis Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechErrorCFProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorcfprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorCFProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorcfprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo": {
+      "abstract": [
+        {
+          "text": "Defines a speech error information structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechErrorInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an error callback functionthat handles syntax errors within commands embedded in a text bufferbeing processed by the Speech Synthesis Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechErrorProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer (UPP) to an error callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechErrorUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorUPP",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorupp"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a phoneme callback functionthat is called by the Speech Synthesis Manager before it pronouncesa phoneme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechPhonemeProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechPhonemeProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechphonemeprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechphonemeupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer (UPP) to a phoneme callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechPhonemeUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechphonemeupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechPhonemeUPP",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechphonemeupp"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechstatusinfo": {
+      "abstract": [
+        {
+          "text": "Defines a speech status information structure, which stores information about the status of a speech channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechStatusInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechstatusinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechStatusInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechstatusinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechsyncprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a synchronization callbackfunction that is called when the Speech Synthesis Manager encountersa synchronization command embedded in a text buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSyncProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechsyncprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSyncProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechsyncprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechsyncupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer (UPP) to a synchronization callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechSyncUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechsyncupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechSyncUPP",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechsyncupp"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a text-done callback functionthat is called when the Speech Synthesis Manager has finished processinga buffer of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechTextDoneProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechTextDoneProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechtextdoneprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer (UPP) to a text-done callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechTextDoneUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechTextDoneUPP",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechtextdoneupp"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechversioninfo": {
+      "abstract": [
+        {
+          "text": "Defines a speech version information structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechVersionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechversioninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechVersionInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechversioninfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechwordcfprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a Core Foundation-based word callback function that is called by the Speech Synthesis Manager before it pronounces a word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechWordCFProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechwordcfprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechWordCFProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechwordcfprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechwordprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a word callback functionthat is called by the Speech Synthesis Manager before it pronouncesa word.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechWordProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechwordprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechWordProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechwordprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechwordupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer (UPP) to a word callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechWordUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechwordupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechWordUPP",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechwordupp"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechxtnddata": {
+      "abstract": [
+        {
+          "text": "Defines a speech extension data structure. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpeechXtndData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechxtnddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechXtndData",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechxtnddata"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/voicedescription": {
+      "abstract": [
+        {
+          "text": "Defines a voice description structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoiceDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/voicedescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VoiceDescription",
+      "type": "topic",
+      "url": "/documentation/applicationservices/voicedescription"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/voicefileinfo": {
+      "abstract": [
+        {
+          "text": "Defines a voice file information structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoiceFileInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/voicefileinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VoiceFileInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/voicefileinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/voicespec": {
+      "abstract": [
+        {
+          "text": "Defines a voice specification structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "VoiceSpec"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/voicespec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VoiceSpec",
+      "type": "topic",
+      "url": "/documentation/applicationservices/voicespec"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/baddictformat": {
+      "abstract": [
+        {
+          "text": "Pronunciation dictionary format error",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "badDictFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/baddictformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badDictFormat",
+      "type": "topic",
+      "url": "/documentation/coreservices/baddictformat"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/badinputtext": {
+      "abstract": [
+        {
+          "text": "Raw phoneme text contains invalid characters",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "badInputText"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/badinputtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badInputText",
+      "type": "topic",
+      "url": "/documentation/coreservices/badinputtext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/buftoosmall": {
+      "abstract": [
+        {
+          "text": "Output buffer is too small to hold result",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufTooSmall"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/buftoosmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bufTooSmall",
+      "type": "topic",
+      "url": "/documentation/coreservices/buftoosmall"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/gestalt_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestalt Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/gestalt_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/incompatiblevoice": {
+      "abstract": [
+        {
+          "text": "Specified voice cannot be used with synthesizer",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "incompatibleVoice"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/incompatiblevoice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "incompatibleVoice",
+      "type": "topic",
+      "url": "/documentation/coreservices/incompatiblevoice"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/nosynthfound": {
+      "abstract": [
+        {
+          "text": "Could not find the specified speech synthesizer",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "noSynthFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/nosynthfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noSynthFound",
+      "type": "topic",
+      "url": "/documentation/coreservices/nosynthfound"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/synthnotready": {
+      "abstract": [
+        {
+          "text": "Speech synthesizer is still busy speaking",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "synthNotReady"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/synthnotready",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synthNotReady",
+      "type": "topic",
+      "url": "/documentation/coreservices/synthnotready"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/synthopenfailed": {
+      "abstract": [
+        {
+          "text": "Could not open another speech synthesizerchannel",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "synthOpenFailed"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/synthopenfailed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synthOpenFailed",
+      "type": "topic",
+      "url": "/documentation/coreservices/synthopenfailed"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/voicenotfound": {
+      "abstract": [
+        {
+          "text": "Voice resource not found",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "voiceNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/voicenotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "voiceNotFound",
+      "type": "topic",
+      "url": "/documentation/coreservices/voicenotfound"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ],
+      "title": "Managers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1657450",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459256-setspeechproperty",
+        "doc://com.apple.documentation/documentation/applicationservices/1462674-setspeechpitch",
+        "doc://com.apple.documentation/documentation/applicationservices/1459896-setspeechrate"
+      ],
+      "kind": "taskGroup",
+      "title": "Changing Speech Attributes"
+    },
+    {
+      "anchor": "1657490",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460918-copyphonemesfromtext"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting Text To Phonemes"
+    },
+    {
+      "anchor": "1657526",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1463688-usespeechdictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Installing a Pronunciation Dictionary"
+    },
+    {
+      "anchor": "1657580",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462081-disposespeechchannel",
+        "doc://com.apple.documentation/documentation/applicationservices/1461367-newspeechchannel"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Speech Channels"
+    },
+    {
+      "anchor": "1657603",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+        "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch",
+        "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate",
+        "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy",
+        "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide",
+        "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining Information About Speech and Speech Channels"
+    },
+    {
+      "anchor": "1657660",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459947-countvoices",
+        "doc://com.apple.documentation/documentation/applicationservices/1464595-getindvoice",
+        "doc://com.apple.documentation/documentation/applicationservices/1463940-getvoicedescription",
+        "doc://com.apple.documentation/documentation/applicationservices/1461410-getvoiceinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/1461446-makevoicespec"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About Voices"
+    },
+    {
+      "anchor": "1657703",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462728-continuespeech",
+        "doc://com.apple.documentation/documentation/applicationservices/1461174-pausespeechat",
+        "doc://com.apple.documentation/documentation/applicationservices/1461621-speakcfstring",
+        "doc://com.apple.documentation/documentation/applicationservices/1462745-stopspeech",
+        "doc://com.apple.documentation/documentation/applicationservices/1459780-stopspeechat"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting, Stopping, and Pausing Speech"
+    },
+    {
+      "anchor": "1680079",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459624-speechsynthesisregistermoduleurl",
+        "doc://com.apple.documentation/documentation/applicationservices/1462511-speechsynthesisunregistermoduleu"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering and Unregistering Synthesizers and Voices"
+    },
+    {
+      "anchor": "1657924",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/speechdoneprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorcfprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechphonemeprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechsyncprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechwordprocptr",
+        "doc://com.apple.documentation/documentation/applicationservices/speechwordcfprocptr"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1657990",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/delimiterinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/phonemedescriptor",
+        "doc://com.apple.documentation/documentation/applicationservices/phonemeinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/speechchannelrecord",
+        "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+        "doc://com.apple.documentation/documentation/applicationservices/speechdoneupp",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorupp",
+        "doc://com.apple.documentation/documentation/applicationservices/speechphonemeupp",
+        "doc://com.apple.documentation/documentation/applicationservices/speechstatusinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/speechsyncupp",
+        "doc://com.apple.documentation/documentation/applicationservices/speechtextdoneupp",
+        "doc://com.apple.documentation/documentation/applicationservices/speechversioninfo",
+        "doc://com.apple.documentation/documentation/applicationservices/speechwordupp",
+        "doc://com.apple.documentation/documentation/applicationservices/speechxtnddata",
+        "doc://com.apple.documentation/documentation/applicationservices/voicedescription",
+        "doc://com.apple.documentation/documentation/applicationservices/voicefileinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/voicespec"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1658259",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552213-control_flags_constants",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552246-gender_constants",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552263-audio_unit_constants",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552264-stop_speech_locations",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552231-speech_synthesis_manager_operati",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552256-speech-channel_modes",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech-channel_modes_for_core_foundation-based_functions",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552254-voice_information_selectors",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552228-speech-channel_information_constants",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/1552233-phoneme_generation_options",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech-channel_properties",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/synthesizer_option_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_status_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_error_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_synthesizer_information_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/phoneme_symbols_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/current_voice_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/command_delimiter_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/speech_dictionary_keys",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager/error_callback_user-information_string"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1659745",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "The most common result codes returned by Speech SynthesisManager are listed below.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/nosynthfound",
+        "doc://com.apple.documentation/documentation/coreservices/synthopenfailed",
+        "doc://com.apple.documentation/documentation/coreservices/synthnotready",
+        "doc://com.apple.documentation/documentation/coreservices/buftoosmall",
+        "doc://com.apple.documentation/documentation/coreservices/voicenotfound",
+        "doc://com.apple.documentation/documentation/coreservices/incompatiblevoice",
+        "doc://com.apple.documentation/documentation/coreservices/baddictformat",
+        "doc://com.apple.documentation/documentation/coreservices/badinputtext"
+      ],
+      "kind": "taskGroup",
+      "title": "Result Codes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/speech_synthesis_manager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/speech_synthesis_manager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

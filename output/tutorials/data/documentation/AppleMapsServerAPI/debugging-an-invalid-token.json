@@ -1,0 +1,545 @@
+{
+  "abstract": [
+    {
+      "text": "Inspect the JavaScript console logs, the token, and events to determine why a token is invalid.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging an Invalid token"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit JS requires a valid token to initialize. If the token you provide isn’t valid, MapKit JS won’t initialize and doesn’t provide a valid map to the user. When MapKit JS fails to initialize, errors are available in the JavaScript console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-errors-in-the-JavaScript-console",
+          "level": 3,
+          "text": "Identify errors in the JavaScript console",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To diagnose this situation, first check your browser’s JavaScript console for messages that describe why your token may be invalid. Reasons why a token might be invalid include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token is missing required fields.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token has all the required fields, but some values are incorrect. Verify that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " claim matches the key identifier used to sign the token, and that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " claim matches the 10-character Team ID for your Apple Developer Account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The string provided within the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " claim in your token doesn’t exactly match the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header passed by the browser. This string must match exactly, include the protocol (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "http",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), trailing slashes, and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the structure of MapKit-specific token, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-the-token",
+          "level": 3,
+          "text": "Examine the token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit JS considers a token with duplicate headers to be invalid. You can view headers of the token and check for duplicates by decoding the token at the command line. For example, the following command decodes the headers of a token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% echo \"your-token-here\" | tr \".\" \"\\n\" | head -2 | base64 -D",
+            "",
+            "// Prints",
+            "// {\"typ\":\"JWT\",\"alg\":\"ES256\",\"kid\":\"KEY_ID\",\"kid\":\"KEY_ID\"}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the above output, you can see that the token has two ",
+              "type": "text"
+            },
+            {
+              "code": "kid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " headers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you find duplicate headers in your token, review the software that you used to create the key to remove any duplicate headers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A token contains additional encrypted fields that aren’t decoded and made visible with the command above.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how to create a new token, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-the-error-event-on-MapKit-JS",
+          "level": 3,
+          "text": "Inspect the error event on MapKit JS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MapKit JS API rejects an otherwise valid token when your Apple Developer team exceeds the number of requests allowed. You can detect when your team exceeds the number of allowed requests by listening to the ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example adds an event listener to the ",
+              "type": "text"
+            },
+            {
+              "code": "mapkit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and inspects the ",
+              "type": "text"
+            },
+            {
+              "code": "status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string to see if the emitted error lists too many requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mapkit.init({ authorizationCallback: function(done) { done(\"your-token\"); }, ... });",
+            "mapkit.addEventListener(\"error\", function(event) {",
+            "    switch (event.status) {",
+            "    case \"Too Many Requests\":",
+            "        // Exceeded number of requests allowed.",
+            "        break;",
+            "    }",
+            "});"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about MapKit JS events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/handling-initialization-events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token": {
+      "abstract": [
+        {
+          "text": "Returns a JWT maps access token that you use to call the service API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate a Maps token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-token"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that API responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common objects",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/common-objects"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "abstract": [
+        {
+          "text": "Create a Maps identifier and a private key before generating tokens for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api": {
+      "abstract": [
+        {
+          "text": "Sign JSON Web Tokens to use Maps Server API and debug common signing errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and using tokens with Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-and-using-tokens-with-maps-server-api"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications": {
+      "abstract": [
+        {
+          "text": "Streamline your app’s API by moving georelated searches from inside your app to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating the Apple Maps Server API into Java server applications",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/integrating-the-apple-maps-server-api-into-java-server-applications"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/handling-initialization-events": {
+      "abstract": [
+        {
+          "text": "Respond to events that trigger when MapKit JS initializes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/handling-initialization-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling initialization events",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/handling-initialization-events"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/mapkit": {
+      "abstract": [
+        {
+          "text": "The JavaScript API for embedding Apple Maps on your website.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "interface"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "mapkit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/mapkit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi/debugging-an-invalid-token"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

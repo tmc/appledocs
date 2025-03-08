@@ -1,0 +1,2856 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that converts between integer values and their textual representations.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/integerformatstyle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3766820,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation18IntegerFormatStyleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "IntegerFormatStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Generic Structure",
+    "symbolKind": "struct",
+    "title": "IntegerFormatStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IntegerFormatStyle"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation18IntegerFormatStyleV5Valuexmfp",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation18IntegerFormatStyleV5Valuexmfp",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sz",
+              "text": "BinaryInteger"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " create localized, human-readable text from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " numbers and parse string representations of numbers into instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types. All of the Swift standard library’s integer types, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UInt32",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and therefore work with this format style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " includes two nested types, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/percent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/currency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for working with percentages and currencies. Each format style includes a configuration that determines how it represents numeric values, for things like grouping, displaying signs, and variant presentations like scientific notation. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/percent",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/currency",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/currencyformatstyleconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can customize numeric formatting for a style by adjusting its backing configuration. The system automatically caches unique configurations of a format style to enhance performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Foundation provides another format style type, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", for working with numbers that conform to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For Foundation’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " type, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4098257",
+          "level": 3,
+          "text": "Formatting integers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a string representation of an integer using the default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let formattedDefault = 123456.formatted()",
+            "// formattedDefault is \"123,456\" in en_US locale.",
+            "// Other locales may use different separator and grouping behavior."
+          ],
+          "metadata": {
+            "anchor": "4098264",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify a format style by providing an argument to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. The following example shows the number ",
+              "type": "text"
+            },
+            {
+              "code": "12345",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represented in each of the available styles, in the ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " locale:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let number = 123456",
+            "",
+            "let formattedNumber = number.formatted(.number)",
+            "// formattedNumber is \"123,456\".",
+            "",
+            "let formattedPercent = number.formatted(.percent)",
+            "// formattedPercent is \"123,456%\".",
+            "",
+            "let formattedCurrency = number.formatted(.currency(code: \"USD\"))",
+            "// formattedCurrency is \"$123,456.00\"."
+          ],
+          "metadata": {
+            "anchor": "4098256",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each style provides methods for updating its numeric configuration, including the number of significant digits, grouping length, and more. You can specify a numeric configuration by calling as many of these methods as you need in any order you choose. The following example shows the same number with default and custom configurations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let exampleNumber = 123456",
+            "",
+            "let defaultFormatting = exampleNumber.formatted(.number)",
+            "// defaultFormatting is \"125 000\" for the \"fr_FR\" locale",
+            "// defaultFormatting is \"125000\" for the \"jp_JP\" locale",
+            "// defaultFormatting is \"125,000\" for the \"en_US\" locale",
+            "",
+            "let customFormatting = exampleNumber.formatted(",
+            "    .number",
+            "    .grouping(.never)",
+            "    .sign(strategy: .always()))",
+            "// customFormatting is \"+123456\""
+          ],
+          "metadata": {
+            "anchor": "4098250",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4098260",
+          "level": 3,
+          "text": "Creating an integer format style instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previous examples use static factory methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870160-number",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create format styles within the call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can also create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance and use it to repeatedly format different values with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766888-format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let percentFormatStyle = IntegerFormatStyle<Int>.Percent()",
+            "",
+            "percentFormatStyle.format(50) // \"50%\"",
+            "percentFormatStyle.format(85) // \"85%\"",
+            "percentFormatStyle.format(100) // \"100%\""
+          ],
+          "metadata": {
+            "anchor": "4098265",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4098261",
+          "level": 3,
+          "text": "Parsing integers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to parse strings into integer values. You can define the format style within the type’s initializer or pass in a format style you create prior to calling the method, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let price = try? Int(\"$123,456\",",
+            "                     format: .currency(code: \"USD\")) // 123456",
+            "",
+            "let priceFormatStyle = IntegerFormatStyle<Int>.Currency(code: \"USD\")",
+            "let salePrice = try? Int(\"$120,000\",",
+            "                          format: priceFormatStyle) // 120000"
+          ],
+          "metadata": {
+            "anchor": "4098263",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4098253",
+          "level": 3,
+          "text": "Matching regular expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along with parsing numeric values in strings, you can use the Swift regular expression domain-specific language to match and capture numeric substrings. The following example defines a currency format style to match and capture a currency value using US dollars and ",
+              "type": "text"
+            },
+            {
+              "code": "en_US",
+              "type": "codeVoice"
+            },
+            {
+              "text": " numeric conventions. The rest of the regular expression ignores any characters prior to a ",
+              "type": "text"
+            },
+            {
+              "code": "\": \"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sequence that precedes the currency substring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RegexBuilder",
+            "",
+            "let source = \"Payment due: $123,456\"",
+            "let matcher = Regex {",
+            "    OneOrMore(.any)",
+            "    \": \"",
+            "    Capture {",
+            "        One(.localizedIntegerCurrency(code: Locale.Currency(\"USD\"),",
+            "                                      locale: Locale(identifier: \"en_US\")))",
+            "    }",
+            "}",
+            "let match = source.firstMatch(of: matcher)",
+            "let localizedInteger = match?.1 // 123456"
+          ],
+          "metadata": {
+            "anchor": "4098251",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryInteger",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted()": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted()",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger/formatted()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryInteger/formatted(_:)-73k3e",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatted(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/binaryinteger/formatted(_:)-73k3e"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomConsumingRegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/customconsumingregexcomponent"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt32": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt32",
+      "type": "topic",
+      "url": "/documentation/swift/uint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/currencyformatstyleconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/currencyformatstyleconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CurrencyFormatStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/currencyformatstyleconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting/format_style_configurations": {
+      "abstract": [
+        {
+          "text": "Behaviors for traits like numeric precision, rounding, and scale, used for formatting and parsing numeric values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting/format_style_configurations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Format Style Configurations",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting/format_style_configurations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between decimal values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decimal.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between floating-point values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPointFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "abstract": [
+        {
+          "text": "A type that converts a given data type into a representation in another type, such as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstylecapitalizationcontext": {
+      "abstract": [
+        {
+          "text": "The capitalization formatting context used when formatting dates and times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatStyleCapitalizationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstylecapitalizationcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyleCapitalizationContext",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstylecapitalizationcontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between integer values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098250": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098250",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/integerformatstyle#4098250"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098251": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098251",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/foundation/integerformatstyle#4098251"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098256": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098256",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/integerformatstyle#4098256"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098263": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098263",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/integerformatstyle#4098263"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098264": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098264",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/integerformatstyle#4098264"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098265": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle#4098265",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/integerformatstyle#4098265"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766821": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(IntegerFormatStyle<Value>, IntegerFormatStyle<Value>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766821",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766821"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766822": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(IntegerFormatStyle<Value>, IntegerFormatStyle<Value>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766822",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766822"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766886-decimalseparator": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified decimal separator display strategy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decimalSeparator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "strategy"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Value>.Configuration.DecimalSeparatorDisplayStrategy) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766886-decimalseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimalSeparator(strategy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766886-decimalseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766887-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766887-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766887-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766888-format": {
+      "abstract": [
+        {
+          "text": "Formats an integer, using this style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": "(Value) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766888-format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766888-format"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766889-grouping": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified grouping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "grouping"
+        },
+        {
+          "kind": "text",
+          "text": "(IntegerFormatStyle<Value>.Configuration.Grouping) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766889-grouping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "grouping(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766889-grouping"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766890-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of the value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766890-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766890-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766891-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766891-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766891-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766892-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766892-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766892-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766893-init": {
+      "abstract": [
+        {
+          "text": "Creates an integer format style that uses the given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766893-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766893-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766894-locale": {
+      "abstract": [
+        {
+          "text": "The locale of the format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766894-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766894-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766895-notation": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "notation"
+        },
+        {
+          "kind": "text",
+          "text": "(IntegerFormatStyle<Value>.Configuration.Notation) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766895-notation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notation(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766895-notation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766896-precision": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "precision"
+        },
+        {
+          "kind": "text",
+          "text": "(IntegerFormatStyle<Value>.Configuration.Precision) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766896-precision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "precision(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766896-precision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766897-rounded": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified rounding rule and increment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "rounded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "rule"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Value>.Configuration.RoundingRule, "
+        },
+        {
+          "kind": "identifier",
+          "text": "increment"
+        },
+        {
+          "kind": "text",
+          "text": ": Int?) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766897-rounded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rounded(rule:increment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766897-rounded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766898-scale": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified scale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": "(Double) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766898-scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766898-scale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766899-sign": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified sign display strategy for displaying or omitting sign symbols.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sign"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "strategy"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Value>.Configuration.SignDisplayStrategy) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766899-sign",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sign(strategy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3766899-sign"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3796575-list": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format a list of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<MemberStyle, Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "memberStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": MemberStyle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<MemberStyle, Base>.Width) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3796575-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(memberStyle:type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3796575-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3796576-list": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format a list of strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "list"
+        },
+        {
+          "kind": "text",
+          "text": "<Base>("
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.ListType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": ListFormatStyle<StringStyle, Base>.Width) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3796576-list",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "list(type:width:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3796576-list"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870154-attributed": {
+      "abstract": [
+        {
+          "text": "An attributed format style based on the integer format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributed"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Value>.Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870154-attributed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributed",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870154-attributed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870155-currency": {
+      "abstract": [
+        {
+          "text": "Returns a format style to use floating-point currency notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870155-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870155-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870156-currency": {
+      "abstract": [
+        {
+          "text": "Returns a format style to use integer currency notation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": "<V>("
+        },
+        {
+          "kind": "identifier",
+          "text": "code"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870156-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency(code:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870156-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870157-locale": {
+      "abstract": [
+        {
+          "text": "Modifies the format style to use the specified locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": "(Locale) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870157-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870157-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870158-measurement": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format temperature units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitTemperature>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitTemperature>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidesScaleName"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870158-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:hidesScaleName:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870158-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870159-measurement": {
+      "abstract": [
+        {
+          "text": "Returns a format style to format measurement units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<UnitType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Measurement<UnitType>.FormatStyle.UnitWidth, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MeasurementFormatUnitUsage<UnitType>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": FloatingPointFormatStyle<Double>?) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870159-measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurement(width:usage:numberFormatStyle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870159-measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870160-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with Swift’s standard integer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Int>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870160-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870160-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870161-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with unsigned integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<UInt>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870161-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870161-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870162-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 8-bit signed integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Int8>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870162-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870162-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870163-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 16-bit signed integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Int16>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870163-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870163-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870164-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 32-bit signed integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Int32>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870164-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870164-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870165-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 64-bit signed integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<Int64>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870165-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870165-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870166-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 8-bit unsigned integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<UInt8>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870166-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870166-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870167-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 16-bit unsigned integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<UInt16>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870167-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870167-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870168-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 32-bit unsigned integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<UInt32>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870168-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870168-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870169-number": {
+      "abstract": [
+        {
+          "text": "An integer format style instance for use with 64-bit unsigned integers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "number"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerFormatStyle<UInt64>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870169-number",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "number",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870169-number"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870170-parsestrategy": {
+      "abstract": [
+        {
+          "text": "The parse strategy that this format style uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "parseStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": IntegerParseStrategy<IntegerFormatStyle<Value>>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870170-parsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/3870170-parsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4020190-consuming": {
+      "abstract": [
+        {
+          "text": "Process the input string within the specified bounds, beginning at the given index, and return the end position (upper bound) of the match and the produced output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "startingAt"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": Range<String.Index>) -> ("
+        },
+        {
+          "kind": "identifier",
+          "text": "upperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": String.Index, "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": Value)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4020190-consuming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "consuming(_:startingAt:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/4020190-consuming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4020195-regex": {
+      "abstract": [
+        {
+          "text": "The regular expression represented by this component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "regex"
+        },
+        {
+          "kind": "text",
+          "text": ": Regex<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4020195-regex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regex",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/4020195-regex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4049253-localizedinteger": {
+      "abstract": [
+        {
+          "text": "Creates a localized integer format style that uses the given locale. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedInteger"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale) -> IntegerFormatStyle<Value>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4049253-localizedinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedInteger(locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/4049253-localizedinteger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/attributed": {
+      "abstract": [
+        {
+          "text": "A format style that converts integers into attributed strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.Attributed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/attributed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.Attributed",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/attributed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/configuration": {
+      "abstract": [
+        {
+          "text": "The type the format style uses for configuration settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/configuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.Configuration",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/configuration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/currency": {
+      "abstract": [
+        {
+          "text": "A format style that converts between integer currency values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.Currency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.Currency",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatinput": {
+      "abstract": [
+        {
+          "text": "The type of data to format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.FormatInput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.FormatInput",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/formatinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatoutput": {
+      "abstract": [
+        {
+          "text": "The type of the formatted data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.FormatOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.FormatOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/formatoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/percent": {
+      "abstract": [
+        {
+          "text": "A format style that converts between integer percentage values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.Percent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/percent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.Percent",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/percent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/regexoutput": {
+      "abstract": [
+        {
+          "text": "The output type when you use this format style to match substrings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.RegexOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/regexoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.RegexOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/regexoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle/strategy": {
+      "abstract": [
+        {
+          "text": "The type of parse strategy this format style uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerFormatStyle.Strategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle/strategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle.Strategy",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle/strategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerparsestrategy": {
+      "abstract": [
+        {
+          "text": "A parse strategy for creating integer values from formatted strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntegerParseStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerparsestrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerParseStrategy",
+      "type": "topic",
+      "url": "/documentation/foundation/integerparsestrategy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/listformatstyle": {
+      "abstract": [
+        {
+          "text": "A type that formats lists of items with a separator and conjunction appropriate for a given locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "ListFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ListFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/listformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurement/formatstyle": {
+      "abstract": [
+        {
+          "text": "A type that provides localized representations of measurements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "UnitType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Dimension",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Measurement.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Measurement.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/measurement/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration settings for formatting numbers of different types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumberFormatStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NumberFormatStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatstyleconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/parseableformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParseableFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/parseableformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stringstyle": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stringstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StringStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/stringstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/formatstyle": {
+      "abstract": [
+        {
+          "text": "A structure that converts between URL instances and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL.FormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/url/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomConsumingRegexComponent",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/parseableformatstyle",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+        "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/listformatstyle",
+        "doc://com.apple.documentation/documentation/foundation/stringstyle",
+        "doc://com.apple.documentation/documentation/foundation/url/formatstyle",
+        "doc://com.apple.documentation/documentation/foundation/formatstylecapitalizationcontext",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting/format_style_configurations"
+      ],
+      "title": "Data formatting in Swift"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3793375",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766893-init",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870160-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870162-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870163-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870164-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870165-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870161-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870166-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870167-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870168-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870169-number",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4049253-localizedinteger"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an integer format style"
+    },
+    {
+      "anchor": "3793376",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766888-format"
+      ],
+      "kind": "taskGroup",
+      "title": "Formatting integer values"
+    },
+    {
+      "anchor": "3793381",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766886-decimalseparator",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766889-grouping",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870157-locale",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766895-notation",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766896-precision",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766897-rounded",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766898-scale",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766899-sign",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/configuration",
+        "doc://com.apple.documentation/documentation/foundation/numberformatstyleconfiguration"
+      ],
+      "kind": "taskGroup",
+      "title": "Customizing style behavior"
+    },
+    {
+      "anchor": "3793385",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766894-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Acessing style locale"
+    },
+    {
+      "anchor": "3798517",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870156-currency",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870155-currency",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/currency"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying currency styles"
+    },
+    {
+      "anchor": "3798522",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870159-measurement",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870158-measurement",
+        "doc://com.apple.documentation/documentation/foundation/measurement/formatstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying measurement styles"
+    },
+    {
+      "anchor": "3798514",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3796575-list",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3796576-list",
+        "doc://com.apple.documentation/documentation/foundation/listformatstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying list styles"
+    },
+    {
+      "anchor": "4092533",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870154-attributed",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/attributed"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating attributed strings"
+    },
+    {
+      "anchor": "3793383",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3870170-parsestrategy",
+        "doc://com.apple.documentation/documentation/foundation/integerparsestrategy"
+      ],
+      "kind": "taskGroup",
+      "title": "Parsing integers"
+    },
+    {
+      "anchor": "4092527",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4020195-regex",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/4020190-consuming"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating integers with regular expressions"
+    },
+    {
+      "anchor": "3793382",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766892-init",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766887-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "3793379",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766890-hash",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766891-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "3793373",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766822",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/3766821"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing integer format styles"
+    },
+    {
+      "anchor": "3793372",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatinput",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/formatoutput",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/strategy",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/regexoutput",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/currency",
+        "doc://com.apple.documentation/documentation/foundation/integerformatstyle/percent"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/integerformatstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

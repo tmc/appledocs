@@ -1,0 +1,1575 @@
+{
+  "abstract": [
+    {
+      "text": "The top-level payload properties you use to configure all profiles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:TopLevel",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "TopLevel"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TopLevel"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "watchOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "TopLevel"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS",
+            "Unsupported OS: watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "TopLevel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that includes:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A key that contains the IETF BCP 47 identifier for a language, such as ",
+                          "type": "text"
+                        },
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "en",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "emphasis"
+                        },
+                        {
+                          "text": " or ",
+                          "type": "text"
+                        },
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "jp",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "emphasis"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A value that contains the agreement localized to language specified by the key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The dictionary can also contain an optional key, ",
+                  "type": "text"
+                },
+                {
+                  "code": "default",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", with its value consisting of the unlocalized (usually in ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "en",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ") agreement.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The system always displays the agreement in a dialog, and the user needs to agree before the system can install the profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The system chooses a localized version in the order of preference that the user specifies in macOS, or based on the user’s current language setting in iOS. If there’s no exact match, the system uses the default localization. If there’s no default localization, the system uses the ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "en",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " localization. If there’s no ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "en",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " localization, the system uses the first available localization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Provide a default value, if possible. The system won’t display a warning if the user’s locale doesn’t match any localization in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ConsentText",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "name": "Tip",
+              "style": "tip",
+              "type": "aside"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ConsentText",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:TopLevel.ConsentText",
+              "text": "TopLevel.ConsentText"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of seconds until the profile is automatically removed. If the ",
+                  "type": "text"
+                },
+                {
+                  "code": "RemovalDate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key is present, the system uses whichever field yields the earliest date.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "DurationUntilRemoval",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "number"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Enabled if ",
+                  "type": "text"
+                },
+                {
+                  "code": "IsEncrypted",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "EncryptedPayloadContent",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if there’s a removal passcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "HasRemovalPasscode",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the profile is encrypted.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "IsEncrypted",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The array of payload dictionaries. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "IsEncrypted",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", this array isn’t needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadContent",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/PayloadContentItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:TopLevel.PayloadContentItem",
+              "text": "TopLevel.PayloadContentItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The description of the profile, shown on the Detail screen for the profile. Make this description detailed enough to help the user decide whether to install the profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadDescription",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The human-readable name for the profile, which doesn’t need to be unique. The system displays this value on the Detail screen.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadDisplayName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date when a profile is no longer valid and the system presents an update button to the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadExpirationDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reverse-DNS style identifier (",
+                  "type": "text"
+                },
+                {
+                  "code": "com.example.myprofile",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", for example) that identifies the profile. The system uses this string to determine whether to replace an existing profile or add it as a new profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The human-readable string that contains the name of the organization that provided the profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadOrganization",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If present and set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the user can’t delete the profile unless the profile has a removal password and the user provides it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "On macOS 10.15 and later, this key only affects removal of ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "manually",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " installed profiles. If set to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and no profile removal payload is present, removing the profile requires admin auth.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "On macOS versions prior to 10.15, this key prevents admins from removing MDM installed profiles. However, as of macOS 10.15, users can never remove MDM profiles, not even the admin.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "On iOS users can’t remove a MDM profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Requires a supervised device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadRemovalDisallowed",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "System",
+                "User"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string that defines whether to install the profile for the system or the user. In many cases, it determines the location of certificate items, such as keychains. Though it’s not possible to declare different payload scopes, payloads like VPN can automatically install their items in both scopes, if needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadScope",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Configuration"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of payload. The only supported value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "Configuration",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The globally unique identifier for the profile. The actual content is unimportant. In macOS, you can use ",
+                  "type": "text"
+                },
+                {
+                  "code": "uuidgen",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to generate reasonable UUIDs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadUUID",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The version number of the profile format, which needs to be ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This number represents the version of the configuration profile as a whole, not of the individual profiles within it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadVersion",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date when the system automatically removes the profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "RemovalDate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of platform of the target device. Specifying the platform type helps prevent unintended installations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For interactive installations on iOS devices, specifying a target platform avoids interstitial alerts that prompt the user to choose a profile target when multiple targets are eligible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Allowed values:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Any/unspecified",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "iPhone/iPad/iPod Touch",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Apple Watch",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "2",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "HomePod",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "3",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Apple TV",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "4",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Mac",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "5",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Vision Pro",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "text": "6",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "TargetDeviceType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/configuring-multiple-devices-using-profiles"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Profile-Availability",
+          "level": 3,
+          "text": "Profile Availability",
+          "type": "heading"
+        },
+        {
+          "extendedData": {
+            "0_0": {
+              "colspan": 0,
+              "rowspan": 1
+            },
+            "0_1": {
+              "colspan": 0,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, Shared iPad, tvOS, watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User Channel",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Manual Install",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS, tvOS, watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires Supervision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Requires User Approved MDM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed in User Enrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Multiple Payloads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/CommonPayloadKeys": {
+      "abstract": [
+        {
+          "text": "The payload properties that are common across all profiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommonPayloadKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/CommonPayloadKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommonPayloadKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "CommonPayloadKeys",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/commonpayloadkeys"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel": {
+      "abstract": [
+        {
+          "text": "The top-level payload properties you use to configure all profiles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TopLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TopLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "TopLevel",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/toplevel"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary of consent agreements per language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TopLevel.ConsentText"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TopLevel.ConsentText"
+        }
+      ],
+      "role": "symbol",
+      "title": "TopLevel.ConsentText",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/toplevel/consenttext-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary/ConsentTextItem-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A specific pairing of language code and consent text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TopLevel.ConsentText.ConsentTextItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary/ConsentTextItem-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TopLevel.ConsentText.ConsentTextItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "TopLevel.ConsentText.ConsentTextItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/toplevel/consenttext-data.dictionary/consenttextitem-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/PayloadContentItem": {
+      "abstract": [
+        {
+          "text": "The payload-specific content for this profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TopLevel.PayloadContentItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/PayloadContentItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TopLevel.PayloadContentItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "TopLevel.PayloadContentItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/toplevel/payloadcontentitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/configuring-multiple-devices-using-profiles": {
+      "abstract": [
+        {
+          "text": "Create and deploy configuration profiles to users within your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/configuring-multiple-devices-using-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Multiple Devices Using Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/configuring-multiple-devices-using-profiles"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Top-Level",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/CommonPayloadKeys"
+      ],
+      "title": "Top Level"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Supporting-Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/ConsentText-data.dictionary/ConsentTextItem-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/TopLevel/PayloadContentItem"
+      ],
+      "title": "Supporting Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/toplevel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

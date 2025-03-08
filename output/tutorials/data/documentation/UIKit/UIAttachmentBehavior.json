@@ -1,0 +1,3088 @@
+{
+  "abstract": [
+    {
+      "text": "A relationship between two dynamic items, or between a dynamic item and an anchor point.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIAttachmentBehavior",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIAttachmentBehavior"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIAttachmentBehavior"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIAttachmentBehavior"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When two items are attached to each other, forces imparted on one item affect the movement of the other in a prescribed way. When an item is attached to an anchor point, the movement of that item is affected by its attachment to the specified anchor point. Some attachment behaviors support both two items and an anchor point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify type of attachment behavior you want at creation time. This class offers many creation and initialization methods, each of which creates a different type of attachment behavior, which cannot be changed later. However, you may change specific attributes of the attachment behavior using the properties of this class. For example, you can change the distance between two attached items or change the damping forces applied to the items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Applying-an-Attachment-Behavior-to-Dynamic-Items",
+          "level": 3,
+          "text": "Applying an Attachment Behavior to Dynamic Items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply an attachment behavior to your dynamic items, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the attachment behavior using one of the creation or initialization methods. The method you choose defines the relationship between the items and the anchor point (if any).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the attachment behavior by adding it to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator/addBehavior(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Do not add the same attachment behavior to multiple animator objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attachment behavior derives its coordinate system from the reference view of its associated dynamic animator object. For more information about the dynamic animator and the reference coordinate system, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior": {
+      "abstract": [
+        {
+          "text": "A relationship between two dynamic items, or between a dynamic item and an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAttachmentBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAttachmentBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAttachmentBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/AttachmentType": {
+      "abstract": [
+        {
+          "text": "Constants indicating the type of the attachment behavior object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttachmentType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/AttachmentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AttachmentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAttachmentBehavior.AttachmentType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/attachmenttype"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/anchorPoint": {
+      "abstract": [
+        {
+          "text": "The anchor point for the attachment behavior, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchorPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/anchorPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anchorPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "anchorPoint",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/anchorpoint"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachedBehaviorType": {
+      "abstract": [
+        {
+          "text": "The type of the attachment behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachedBehaviorType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIAttachmentBehavior",
+          "text": "UIAttachmentBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIAttachmentBehaviorType",
+          "text": "AttachmentType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachedBehaviorType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attachedBehaviorType"
+        }
+      ],
+      "role": "symbol",
+      "title": "attachedBehaviorType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/attachedbehaviortype"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachmentRange": {
+      "abstract": [
+        {
+          "text": "The range of motion for the attachment behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachmentRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@UIFloatRange",
+          "text": "UIFloatRange"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachmentRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attachmentRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "attachmentRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/attachmentrange"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/damping": {
+      "abstract": [
+        {
+          "text": "The amount of damping to apply to the attachment behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "damping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/damping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "damping"
+        }
+      ],
+      "role": "symbol",
+      "title": "damping",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/damping"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/fixedAttachment(with:attachedTo:attachmentAnchor:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an attachment behavior where the two items are fixed together through the specified anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixedAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/fixedAttachment(with:attachedTo:attachmentAnchor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fixedAttachmentWithItem:attachedToItem:attachmentAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fixedAttachment(with:attachedTo:attachmentAnchor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/fixedattachment(with:attachedto:attachmentanchor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frequency": {
+      "abstract": [
+        {
+          "text": "The frequency of oscillation for the attachment behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frequency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frequency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frequency"
+        }
+      ],
+      "role": "symbol",
+      "title": "frequency",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/frequency"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frictionTorque": {
+      "abstract": [
+        {
+          "text": "The amount of force needed to overcome rotational forces around an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frictionTorque"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frictionTorque",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frictionTorque"
+        }
+      ],
+      "role": "symbol",
+      "title": "frictionTorque",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/frictiontorque"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedTo:)": {
+      "abstract": [
+        {
+          "text": "Initializes a behavior where the centers of two dynamic items are attached to each other.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedTo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithItem:attachedToItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(item:attachedTo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/init(item:attachedto:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedToAnchor:)": {
+      "abstract": [
+        {
+          "text": "Initializes a behavior where the center of a dynamic item is attached to the specified anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedToAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedToAnchor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithItem:attachedToAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(item:attachedToAnchor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/init(item:attachedtoanchor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedTo:offsetFromCenter:)": {
+      "abstract": [
+        {
+          "text": "Initializes an attachment behavior that connects a specified point in one dynamic item to a specified point in another dynamic item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetFromCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIOffset",
+          "text": "UIOffset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetFromCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIOffset",
+          "text": "UIOffset"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedTo:offsetFromCenter:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(item:offsetFromCenter:attachedTo:offsetFromCenter:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/init(item:offsetfromcenter:attachedto:offsetfromcenter:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedToAnchor:)": {
+      "abstract": [
+        {
+          "text": "Initializes a behavior where the specified point in a dynamic item is attached to an anchor point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetFromCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIOffset",
+          "text": "UIOffset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedToAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedToAnchor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithItem:offsetFromCenter:attachedToAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(item:offsetFromCenter:attachedToAnchor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/init(item:offsetfromcenter:attachedtoanchor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/items": {
+      "abstract": [
+        {
+          "text": "The dynamic items connected by the attachment behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/items",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "items"
+        }
+      ],
+      "role": "symbol",
+      "title": "items",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/items"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/length": {
+      "abstract": [
+        {
+          "text": "The distance, in points, between the two attachment points of the attachment behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/length",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "length"
+        }
+      ],
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/length"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an attachment behavior object where two items are constrained by a maximum distance from one another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "limitAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetFromCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIOffset",
+          "text": "UIOffset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetFromCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIOffset",
+          "text": "UIOffset"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"
+        }
+      ],
+      "role": "symbol",
+      "title": "limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/limitattachment(with:offsetfromcenter:attachedto:offsetfromcenter:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/pinAttachment(with:attachedTo:attachmentAnchor:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an attachment behavior where the two items are pinned to, and move around, an anchor point",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pinAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/pinAttachment(with:attachedTo:attachmentAnchor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pinAttachmentWithItem:attachedToItem:attachmentAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pinAttachment(with:attachedTo:attachmentAnchor:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/pinattachment(with:attachedto:attachmentanchor:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an attachment behavior where two items are fixed to points that slide along the specified axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "slidingAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachedTo"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axisOfTranslation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/slidingattachment(with:attachedto:attachmentanchor:axisoftranslation:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachmentAnchor:axisOfTranslation:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns an attachment behavior where one item slides along the specified axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "slidingAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDynamicItem",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "axisOfTranslation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachmentAnchor:axisOfTranslation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "slidingAttachment(with:attachmentAnchor:axisOfTranslation:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiattachmentbehavior/slidingattachment(with:attachmentanchor:axisoftranslation:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior": {
+      "abstract": [
+        {
+          "text": "An object that confers to a specified array of dynamic items the ability to engage in collisions with each other and with the behavior’s specified boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollisionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollisionBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollisionbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator": {
+      "abstract": [
+        {
+          "text": "An object that provides physics-related capabilities and animations for its dynamic items, and provides the context for those animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicAnimator",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicanimator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator/addBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a dynamic behavior to a dynamic animator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDynamicBehavior",
+          "text": "UIDynamicBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicAnimator/addBehavior(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addBehavior:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicanimator/addbehavior(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior": {
+      "abstract": [
+        {
+          "text": "An object that confers a behavioral configuration on one or more dynamic items, for their participation in 2D animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior": {
+      "abstract": [
+        {
+          "text": "An object that applies field-based physics to dynamic items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFieldBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFieldBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFieldBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uifieldbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFloatRange": {
+      "abstract": [
+        {
+          "text": "The range of motion for attached objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFloatRange"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFloatRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFloatRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFloatRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uifloatrange"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior": {
+      "abstract": [
+        {
+          "text": "An object that applies a gravity-like force to all of its associated dynamic items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGravityBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGravityBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGravityBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uigravitybehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIOffset": {
+      "abstract": [
+        {
+          "text": "A structure that specifies an amount to offset a position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIOffset",
+      "type": "topic",
+      "url": "/documentation/uikit/uioffset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior": {
+      "abstract": [
+        {
+          "text": "A behavior that applies a continuous or instantaneous force to one or more dynamic items, causing those items to change position accordingly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPushBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPushBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPushBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uipushbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior": {
+      "abstract": [
+        {
+          "text": "A spring-like behavior whose initial motion is damped over time so that the object settles at a specific point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISnapBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISnapBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISnapBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uisnapbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/float-range-constants": {
+      "abstract": [
+        {
+          "text": "Constants for specifying standard ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/float-range-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Float range constants",
+      "type": "topic",
+      "url": "/documentation/uikit/float-range-constants"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior"
+      ],
+      "title": "Behaviors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-initializing-attachment-behavior-objects",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachmentAnchor:axisOfTranslation:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/fixedAttachment(with:attachedTo:attachmentAnchor:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/pinAttachment(with:attachedTo:attachmentAnchor:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedToAnchor:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedTo:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedToAnchor:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedTo:offsetFromCenter:)"
+      ],
+      "title": "Creating and initializing attachment behavior objects"
+    },
+    {
+      "anchor": "Getting-the-attached-items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/items"
+      ],
+      "title": "Getting the attached items"
+    },
+    {
+      "anchor": "Configuring-an-attachment-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/anchorPoint",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachedBehaviorType",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/damping",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frequency",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/length",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frictionTorque",
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachmentRange"
+      ],
+      "title": "Configuring an attachment behavior"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/AttachmentType",
+        "doc://com.apple.uikit/documentation/UIKit/UIFloatRange",
+        "doc://com.apple.uikit/documentation/UIKit/float-range-constants",
+        "doc://com.apple.uikit/documentation/UIKit/UIOffset"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIAttachmentBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-initializing-attachment-behavior-objects",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachmentAnchor:axisOfTranslation:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/fixedAttachment(with:attachedTo:attachmentAnchor:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/pinAttachment(with:attachedTo:attachmentAnchor:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedToAnchor:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:attachedTo:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedToAnchor:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/init(item:offsetFromCenter:attachedTo:offsetFromCenter:)"
+              ],
+              "title": "Creating and initializing attachment behavior objects"
+            },
+            {
+              "anchor": "Getting-the-attached-items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/items"
+              ],
+              "title": "Getting the attached items"
+            },
+            {
+              "anchor": "Configuring-an-attachment-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/anchorPoint",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachedBehaviorType",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/damping",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frequency",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/length",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/frictionTorque",
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/attachmentRange"
+              ],
+              "title": "Configuring an attachment behavior"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAttachmentBehavior/AttachmentType",
+                "doc://com.apple.uikit/documentation/UIKit/UIFloatRange",
+                "doc://com.apple.uikit/documentation/UIKit/float-range-constants",
+                "doc://com.apple.uikit/documentation/UIKit/UIOffset"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Behaviors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UICollisionBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIFieldBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIGravityBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UIPushBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UISnapBehavior"
+              ],
+              "title": "Behaviors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIAttachmentBehavior"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicBehavior",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIDynamicBehavior",
+                    "text": "UIDynamicBehavior"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1attachmentRange/title",
+          "value": "attachmentRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1attachmentRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attachmentRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:offsetFromCenter:attachedTo:offsetFromCenter:)/title",
+          "value": "initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:offsetFromCenter:attachedTo:offsetFromCenter:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1anchorPoint/title",
+          "value": "anchorPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1anchorPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "anchorPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1items/title",
+          "value": "items"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1items/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISnapBehavior/title",
+          "value": "UISnapBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISnapBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISnapBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISnapBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISnapBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGravityBehavior/title",
+          "value": "UIGravityBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGravityBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGravityBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGravityBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGravityBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOffset/title",
+          "value": "UIOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOffset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)/title",
+          "value": "slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1slidingAttachment(with:attachedTo:attachmentAnchor:axisOfTranslation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)/title",
+          "value": "limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1limitAttachment(with:offsetFromCenter:attachedTo:offsetFromCenter:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:offsetFromCenter:attachedToAnchor:)/title",
+          "value": "initWithItem:offsetFromCenter:attachedToAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:offsetFromCenter:attachedToAnchor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithItem:offsetFromCenter:attachedToAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPushBehavior/title",
+          "value": "UIPushBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPushBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPushBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPushBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPushBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1attachedBehaviorType/title",
+          "value": "attachedBehaviorType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1attachedBehaviorType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attachedBehaviorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:attachedToAnchor:)/title",
+          "value": "initWithItem:attachedToAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:attachedToAnchor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithItem:attachedToAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1frequency/title",
+          "value": "frequency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1frequency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frequency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFieldBehavior/title",
+          "value": "UIFieldBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFieldBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFieldBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFieldBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFieldBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator~1addBehavior(_:)/title",
+          "value": "addBehavior:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator~1addBehavior(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addBehavior:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFloatRange/title",
+          "value": "UIFloatRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFloatRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFloatRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFloatRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFloatRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1AttachmentType/title",
+          "value": "UIAttachmentBehaviorType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1AttachmentType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehaviorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1AttachmentType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehaviorType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:attachedTo:)/title",
+          "value": "initWithItem:attachedToItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1init(item:attachedTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithItem:attachedToItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior/title",
+          "value": "UIDynamicBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1pinAttachment(with:attachedTo:attachmentAnchor:)/title",
+          "value": "pinAttachmentWithItem:attachedToItem:attachmentAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1pinAttachment(with:attachedTo:attachmentAnchor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "pinAttachmentWithItem:attachedToItem:attachmentAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior/title",
+          "value": "UIAttachmentBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAttachmentBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1fixedAttachment(with:attachedTo:attachmentAnchor:)/title",
+          "value": "fixedAttachmentWithItem:attachedToItem:attachmentAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1fixedAttachment(with:attachedTo:attachmentAnchor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fixedAttachmentWithItem:attachedToItem:attachmentAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1frictionTorque/title",
+          "value": "frictionTorque"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1frictionTorque/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frictionTorque"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator/title",
+          "value": "UIDynamicAnimator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicAnimator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior/title",
+          "value": "UICollisionBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollisionBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollisionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1length/title",
+          "value": "length"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1length/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1slidingAttachment(with:attachmentAnchor:axisOfTranslation:)/title",
+          "value": "slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1slidingAttachment(with:attachmentAnchor:axisOfTranslation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1damping/title",
+          "value": "damping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAttachmentBehavior~1damping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "damping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiattachmentbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiattachmentbehavior"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+{
+  "abstract": [
+    {
+      "text": "Create an Intents UI app extension to customize the interfaces displayed by Siri and Maps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/IntentsUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/creating-an-intents-ui-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "IntentsUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Creating an Intents UI Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For some intents, Siri and Maps display details of the response provided by your Intents app extension. When displaying this information, Siri and Maps place the data that you provided into a standard system interface. For example, the default ride-booking interface includes a map of the user’s location and information about the booked ride. You can customize this interface using an Intents UI app extension, which is a peer of the Intents app extension that you use to handle intents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SiriKit offers different levels of customization for its interface:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS 11 and later, you can use intent parameters to customize every portion of the Siri or Maps interface, making it possible to replace the default interface entirely.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can provide a single custom view controller for SiriKit to display with the rest of the default interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "watchOS doesn’t support Intents UI app extensions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentSetImageKeyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentSetImageKeyPath",
+      "type": "topic",
+      "url": "/documentation/intents/inintentsetimagekeypath"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INParameter": {
+      "abstract": [
+        {
+          "text": "A parameter of an interaction object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "INParameter",
+      "type": "topic",
+      "url": "/documentation/intents/inparameter"
+    },
+    "doc://com.apple.sirikit/documentation/IntentsUI": {
+      "abstract": [
+        {
+          "text": "Customize content in the interface for Siri and Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/IntentsUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IntentsUI",
+      "type": "topic",
+      "url": "/documentation/intentsui"
+    },
+    "doc://com.apple.sirikit/documentation/IntentsUI/INUIHostedViewControlling": {
+      "abstract": [
+        {
+          "text": "Methods for presenting custom content in the Siri and Maps interfaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INUIHostedViewControlling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/IntentsUI/INUIHostedViewControlling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INUIHostedViewControlling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INUIHostedViewControlling",
+      "type": "topic",
+      "url": "/documentation/intentsui/inuihostedviewcontrolling"
+    },
+    "doc://com.apple.sirikit/documentation/IntentsUI/INUIHostedViewSiriProviding": {
+      "abstract": [
+        {
+          "text": "Methods for hiding portions of the default interfaces that Siri provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INUIHostedViewSiriProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/IntentsUI/INUIHostedViewSiriProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INUIHostedViewSiriProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "INUIHostedViewSiriProviding",
+      "type": "topic",
+      "url": "/documentation/intentsui/inuihostedviewsiriproviding"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface": {
+      "abstract": [
+        {
+          "text": "Configure your view controller to replace or augment the default interface in Siri or Maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the View Controller for Your Custom Interface",
+      "type": "topic",
+      "url": "/documentation/sirikit/configuring-the-view-controller-for-your-custom-interface"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/configuring-your-intents-ui-app-extension-target": {
+      "abstract": [
+        {
+          "text": "Configure your Xcode project to include an Intents UI app extension that you use to customize the Siri and Maps interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/configuring-your-intents-ui-app-extension-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Your Intents UI App Extension Target",
+      "type": "topic",
+      "url": "/documentation/sirikit/configuring-your-intents-ui-app-extension-target"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-UI-for-Siri-and-Maps",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/IntentsUI/INUIHostedViewControlling",
+        "doc://com.apple.sirikit/documentation/IntentsUI/INUIHostedViewSiriProviding",
+        "doc://com.apple.sirikit/documentation/Intents/INParameter",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentSetImageKeyPath"
+      ],
+      "title": "Custom UI for Siri and Maps"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuration",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/configuring-your-intents-ui-app-extension-target",
+        "doc://com.apple.sirikit/documentation/SiriKit/configuring-the-view-controller-for-your-custom-interface"
+      ],
+      "title": "Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1IntentsUI~1INUIHostedViewSiriProviding/title",
+          "value": "INUIHostedViewSiriProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1IntentsUI~1INUIHostedViewSiriProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUIHostedViewSiriProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1IntentsUI~1INUIHostedViewSiriProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUIHostedViewSiriProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1IntentsUI~1INUIHostedViewControlling/title",
+          "value": "INUIHostedViewControlling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1IntentsUI~1INUIHostedViewControlling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUIHostedViewControlling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1IntentsUI~1INUIHostedViewControlling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INUIHostedViewControlling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INParameter/title",
+          "value": "INParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INParameter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

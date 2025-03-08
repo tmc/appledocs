@@ -1,0 +1,373 @@
+{
+  "abstract": [
+    {
+      "text": "Explicitly synchronizes in-memory keys and values with those stored on disk.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/preferences",
+        "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415989,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUbiquitousKeyValueStore(im)synchronize",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "synchronize"
+      },
+      {
+        "kind": "text",
+        "text": "() -> Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSUbiquitousKeyValueStore"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "synchronize()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "synchronize"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if the in-memory and on-disk keys and values were synchronized, or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if an error occurred. For example, this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " if an app was not built with the proper entitlement requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The only recommended time to call this method is upon app launch, or upon returning to the foreground, to ensure that the in-memory key-value store representation is up-to-date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes you make to the key-value store are saved to memory. The system then synchronizes the in-memory keys and values with the local on-disk cache, automatically and at appropriate times. For example, it synchronizes the keys when your app is put into the background, when changes are received from iCloud, and when your app makes changes to a key but does not call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method for several seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method does not force new keys and values to be written to iCloud. Rather, it lets iCloud know that new keys and values are available to be uploaded. Do not rely on your keys and values being available on other devices immediately. The system controls when those keys and values are uploaded. The frequency of upload requests for key-value storage is limited to several per minute. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During synchronization between memory and disk, this method updates your in-memory set of keys and values with changes previously received from iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore": {
+      "abstract": [
+        {
+          "text": "An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user's connected devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize": {
+      "abstract": [
+        {
+          "text": "Explicitly synchronizes in-memory keys and values with those stored on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsubiquitouskeyvaluestore/1415989-synchronize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

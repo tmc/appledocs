@@ -1,0 +1,811 @@
+{
+  "abstract": [
+    {
+      "text": "The response from managing licenses.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-apps:vpp:ManageVppLicensesByAdamIdResponse",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ManageVppLicensesByAdamIdResponse"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ManageVppLicensesByAdamIdResponse"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "ManageVppLicensesByAdamIdResponse"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: VPP License Management"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ManageVppLicensesByAdamIdResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for a product in the iTunes Store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "adamIdStr",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of dictionaries representing successful and failed associations. If an association succeeds, its dictionary contains the license and either a client-user ID or the serial number of the device associated with the license. If an association fails, its dictionary contains the error message and number, and either the client-user ID or the serial number of the device that couldn’t be associated with the license.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "associations",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:VppAssociation",
+              "text": "VppAssociation"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value currently associated with the provided sToken. This field is only included in the response when a value has been set via the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "clientContext",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of dictionaries representing successful and failed disassociations. If a disassociation succeeds, its dictionary contains a license and either a client-user ID or the serial number of the device disassociated. The license may not be the license ID that was just disassociated; rather the license ID is any currently available license at the time of disassociation. If the disassociation fails, its dictionary contains the error message and number, and either the client-user ID or the serial number of the device that couldn’t be disassociated from the license.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "disassociations",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:VppAssociation",
+              "text": "VppAssociation"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The human-readable explanation of the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "errorMessage",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The numeric code of the error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "errorNumber",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UNIX epoch timestamp, in milliseconds, when the account’s sToken or password expires (whichever is earlier).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "expirationMillis",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", licenses for the specified product can’t be revoked and reassigned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "isIrrevocable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The location associated with the provided sToken. This field is only returned when a location token is used with an Apple School Manager account.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "location",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLocation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:VppLocation",
+              "text": "VppLocation"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The quality of a product in the iTunes Store. Possible values are:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "STDQ: Standard quality",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "PLUS: High quality",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pricingParam",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of a product. Possible values are:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "7 = macOS software",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "8 = iOS or macOS app from the App Store",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "10 = Book",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "productTypeId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of the product type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "productTypeName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The status code for the response. Possible values are:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " = Success. All requested associations and disassociations have succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "-1 = Failure. All requested associations and disassociations have failed. An errorNumber, errorCode, and errorMessage is returned for each failed association and disassociation. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "-3",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " = The licenses can’t be changed as requested. Some of the requested associations and disassociations have succeeded and others have failed. An errorNumber, errorCode, and errorMessage is returned for each failed association and disassociation. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int32"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique library identifier. When querying records using multiple tokens that may share libraries, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "uId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field to filter duplicates. In this way, you can avoid double-counting records when duplicate tokens are uploaded by different content managers.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "uId",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration": {
+      "abstract": [
+        {
+          "text": "Store client-specific information on the server.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Client-Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Client Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Client Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/client-configuration"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest": {
+      "abstract": [
+        {
+          "text": "The request to manage licenses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManageVppLicensesByAdamIdRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managevpplicensesbyadamidrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse": {
+      "abstract": [
+        {
+          "text": "The response from managing licenses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManageVppLicensesByAdamIdResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managevpplicensesbyadamidresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation": {
+      "abstract": [
+        {
+          "text": "An association between a license and a user or device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppAssociation"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppAssociation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppAssociation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppAssociation",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vppassociation"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLocation": {
+      "abstract": [
+        {
+          "text": "A location used for managing purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VppLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VppLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VppLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VppLocation",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpplocation"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes": {
+      "abstract": [
+        {
+          "text": "Investigate service request errors and troubleshoot solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/interpreting-error-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting Error Codes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/interpreting-error-codes"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account": {
+      "abstract": [
+        {
+          "text": "Ensure a Volume Purchase Program (VPP) account is not managed or reset by another product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/protecting-your-vpp-account",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting Your VPP Account",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/protecting-your-vpp-account"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Request-and-Response",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/managevpplicensesbyadamidresponse"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

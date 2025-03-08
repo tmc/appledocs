@@ -1,0 +1,494 @@
+{
+  "abstract": [
+    {
+      "text": "Get information about a user on your team, such as name, roles, and app visibility.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/Read-User-Information"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-users-{}",
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Read User Information"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Read User Information"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.enterprise.developer.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/users/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque resource ID that uniquely identifies the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "firstName",
+                "lastName",
+                "roles",
+                "username"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Fields to return for included related types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[users]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/UserResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:UserResponse",
+              "text": "UserResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://qa.api.adep.ase.apple.com/v1/users/345bb7dc-a653-43ff-acee-a4817cd28479"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "\"data\": {",
+                    "\"type\": \"users\",",
+                    "\"id\": \"345bb7dc-a653-43ff-acee-a4817cd28479\",",
+                    "\"attributes\": {",
+                    "\"username\": \"ifuko+6env3@apple.com\",",
+                    "\"firstName\": \"Ildiko\",",
+                    "\"lastName\": \"Ln6Env3\",",
+                    "\"roles\": [",
+                    "\"ADMIN\"",
+                    "]",
+                    "},",
+                    "\"links\": {",
+                    "\"self\": \"https://qa.api.adep.ase.apple.com/v1/users/345bb7dc-a653-43ff-acee-a4817cd28479\"",
+                    "}",
+                    "},",
+                    "\"links\": {",
+                    "\"self\": \"https://qa.api.adep.ase.apple.com/v1/users/345bb7dc-a653-43ff-acee-a4817cd28479\"",
+                    "}",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/errorresponse"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/List-Users": {
+      "abstract": [
+        {
+          "text": "Get a list of the users on your team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/List-Users",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List Users"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Users",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/list-users"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/Read-User-Information": {
+      "abstract": [
+        {
+          "text": "Get information about a user on your team, such as name, roles, and app visibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/Read-User-Information",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Read User Information"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read User Information",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/read-user-information"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/UserResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Users resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/UserResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/userresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-User-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/List-Users"
+      ],
+      "title": "Getting User Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/read-user-information"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

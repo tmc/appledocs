@@ -1,0 +1,681 @@
+{
+  "abstract": [
+    {
+      "text": "Configure an iOS device’s built-in microphones to add stereo-recording capabilities to your app.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfoundation",
+        "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/avfaudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones"
+  },
+  "kind": "article",
+  "legacy_identifier": 3563777,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Capturing stereo audio from built-in microphones"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Stereo audio uses two channels to create the illusion of multidirectional sound, which adds greater depth and dimension to your audio and results in an immersive listening experience. iOS provides several ways to record audio from the built-in microphones, but prior to iOS 14 you were limited to recording mono audio only. In iOS 14 and later, you can capture stereo audio using the built-in microphones on supported devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a user can hold an iOS device in a variety of ways, you need to specify the orientation of the right and left channels in the stereo field. You set the built-in microphone’s directionality by configuring the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Polar pattern. The system represents the individual device microphones, and beamformers that use multiple microphones, as data sources. Select the front or back data source and set its polar pattern to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".stereo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Input orientation. When recording video, set the input orientation to match the video orientation. When recording audio only, set the input orientation to match the user interface orientation. In both cases, don’t change the orientation during recording.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to configure your app to record stereo audio, and helps you visualize changes to the input orientation and data-source selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to run the sample app on a supported physical device running iOS 14 or later. To determine whether a device supports stereo recording, query the audio session’s selected data source to see if its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionDataSourceDescription/supportedPolarPatterns",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " array contains the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/PolarPattern/stereo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " polar pattern.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4181780",
+          "level": 3,
+          "text": "Configure the audio session category",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Recording stereo audio requires the app’s audio session to use either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Category-swift.struct/record",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Category-swift.struct/playAndRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " category. The sample app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "playAndRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " category so it can do both. It also passes the ",
+              "type": "text"
+            },
+            {
+              "code": "defaultToSpeaker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "allowBluetooth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options to route the audio to the speaker instead of the receiver, as welll as Bluetooth headphones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupAudioSession() {",
+            "    do {",
+            "        let session = AVAudioSession.sharedInstance()",
+            "        try session.setCategory(.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])",
+            "        try session.setActive(true)",
+            "    } catch {",
+            "        fatalError(\"Failed to configure and activate session.\")",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4181773",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4181781",
+          "level": 3,
+          "text": "Select and configure a built-in microphone",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iOS device’s built-in microphone input consists of an array of physical microphones and beamformers, each represented as an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AVAudioSessionDataSourceDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sample app finds the built-in microphone input by querying the available inputs for the one where the port type equals the built-in microphone, and sets it as the preferred input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func enableBuiltInMic() {",
+            "    // Get the shared audio session.",
+            "    let session = AVAudioSession.sharedInstance()",
+            "    ",
+            "    // Find the built-in microphone input.",
+            "    guard let availableInputs = session.availableInputs,",
+            "          let builtInMicInput = availableInputs.first(where: { $0.portType == .builtInMic }) else {",
+            "        print(\"The device must have a built-in microphone.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    // Make the built-in microphone input the preferred input.",
+            "    do {",
+            "        try session.setPreferredInput(builtInMicInput)",
+            "    } catch {",
+            "        print(\"Unable to set the built-in mic as the preferred input.\")",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4181775",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4181782",
+          "level": 3,
+          "text": "Configure the microphone input’s directionality",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the microphone input’s directionality, the sample app sets its data source’s preferred polar pattern and the session’s input orientation. It performs this configuration in its ",
+              "type": "text"
+            },
+            {
+              "code": "selectRecordingOption(_:orientation:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which it calls whenever the user rotates the device or changes the recording option selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func selectRecordingOption(_ option: RecordingOption, orientation: Orientation, completion: (StereoLayout) -> Void) {",
+            "    ",
+            "    // Get the shared audio session.",
+            "    let session = AVAudioSession.sharedInstance()",
+            "    ",
+            "    // Find the built-in microphone input's data sources,",
+            "    // and select the one that matches the specified name.",
+            "    guard let preferredInput = session.preferredInput,",
+            "          let dataSources = preferredInput.dataSources,",
+            "          let newDataSource = dataSources.first(where: { $0.dataSourceName == option.dataSourceName }),",
+            "          let supportedPolarPatterns = newDataSource.supportedPolarPatterns else {",
+            "        completion(.none)",
+            "        return",
+            "    }",
+            "    ",
+            "    do {",
+            "        isStereoSupported = supportedPolarPatterns.contains(.stereo)",
+            "        // If the data source supports stereo, set it as the preferred polar pattern.",
+            "        if isStereoSupported {",
+            "            // Set the preferred polar pattern to stereo.",
+            "            try newDataSource.setPreferredPolarPattern(.stereo)",
+            "        }",
+            "",
+            "        // Set the preferred data source and polar pattern.",
+            "        try preferredInput.setPreferredDataSource(newDataSource)",
+            "        ",
+            "        // Update the input orientation to match the current user interface orientation.",
+            "        try session.setPreferredInputOrientation(orientation.inputOrientation)",
+            "",
+            "    } catch {",
+            "        fatalError(\"Unable to select the \\(option.dataSourceName) data source.\")",
+            "    }",
+            "    ",
+            "    // Call the completion handler with the updated stereo layout.",
+            "    completion(StereoLayout(orientation: newDataSource.orientation!,",
+            "                            stereoOrientation: session.inputOrientation))",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4181777",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "selectRecordingOption(_:orientation:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " finds the data source with the selected name, sets its preferred polar pattern to ",
+              "type": "text"
+            },
+            {
+              "code": ".stereo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and then sets it as the input’s preferred data source. Finally, it sets the preferred input orientation to match the device’s user interface orientation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Category-swift.struct/playAndRecord": {
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Category-swift.struct/playAndRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAndRecord",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/category-swift.struct/playandrecord"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Category-swift.struct/record": {
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/Category-swift.struct/record",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "record",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/category-swift.struct/record"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/PolarPattern/stereo": {
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/PolarPattern/stereo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stereo",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/polarpattern/stereo"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionDataSourceDescription/supportedPolarPatterns": {
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSessionDataSourceDescription/supportedPolarPatterns",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportedPolarPatterns",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosessiondatasourcedescription/supportedpolarpatterns"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls": {
+      "abstract": [
+        {
+          "text": "Provide a more accessible experience by adding your app’s audio to a call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding synthesized speech to calls",
+      "type": "topic",
+      "url": "/documentation/avfaudio/adding-synthesized-speech-to-calls"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones": {
+      "abstract": [
+        {
+          "text": "Configure an iOS device’s built-in microphones to add stereo recording capabilities to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing stereo audio from built-In microphones",
+      "type": "topic",
+      "url": "/documentation/avfaudio/capturing-stereo-audio-from-built-in-microphones"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling audio interruptions",
+      "type": "topic",
+      "url": "/documentation/avfaudio/handling-audio-interruptions"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to route changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to audio route changes",
+      "type": "topic",
+      "url": "/documentation/avfaudio/responding-to-audio-route-changes"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudioapplication": {
+      "abstract": [
+        {
+          "text": "An object that manages one or more audio sessions that belong to an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudioapplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioApplication",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudioroutingarbiter": {
+      "abstract": [
+        {
+          "text": "An object for configuring macOS apps to participate in AirPods Automatic Switching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudioroutingarbiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/avaudiosession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/avaudiosession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones": {
+      "abstract": [
+        {
+          "text": "Configure an iOS device’s built-in microphones to add stereo-recording capabilities to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing stereo audio from built-in microphones",
+      "type": "topic",
+      "url": "/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181773": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181773",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181773"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181775": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181775",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181775"
+    },
+    "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181777": {
+      "identifier": "doc://com.apple.documentation/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181777",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones#4181777"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing": {
+      "identifier": "doc://com.apple.documentation/documentation/avfoundation/audio-playback-recording-and-processing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio playback, recording, and processing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/audio-playback-recording-and-processing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/9be3622ecc/CapturingStereoAudioFromBuiltInMicrophones.zip": {
+      "checksum": "2ab4e2e4951703eac62ebaefc8884ef40d57cd221eddfff79d988662e66bfa975cf252ddc4470f932a8d76445a4bdf6d63203b4de75e1a6ff7c0217f747bbfdc",
+      "identifier": "https://docs-assets.developer.apple.com/published/9be3622ecc/CapturingStereoAudioFromBuiltInMicrophones.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9be3622ecc/CapturingStereoAudioFromBuiltInMicrophones.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/9be3622ecc/CapturingStereoAudioFromBuiltInMicrophones.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudiosession",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudioapplication",
+        "doc://com.apple.documentation/documentation/avfaudio/avaudioroutingarbiter"
+      ],
+      "title": "System audio"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones",
+        "documentation/avfoundation/audio_playback_recording_and_processing/capturing_stereo_audio_from_built-in_microphones"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/avfaudio/capturing_stereo_audio_from_built-in_microphones",
+        "documentation/avfoundation/audio_playback_recording_and_processing/capturing_stereo_audio_from_built-in_microphones"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

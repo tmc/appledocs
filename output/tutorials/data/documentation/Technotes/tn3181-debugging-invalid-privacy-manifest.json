@@ -1,0 +1,1736 @@
+{
+  "abstract": [
+    {
+      "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3181: Debugging an invalid privacy manifest"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting November 12, 2024, apps you submit for review in App Store Connect must contain a valid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "privacy manifest file. If you upload an app to App Store Connect that contains invalid privacy manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files, you’ll receive an email that includes the name and path of the invalid files in your app bundle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ITMS-91056: Invalid privacy manifest - The PrivacyInfo.xcprivacy file from the following path",
+            "is invalid: \"PrivacyInfo.xcprivacy\". Keys and values in your app's privacy manifests must be",
+            "valid. For more details about privacy manifest files, visit: ",
+            "https://developer.apple.com/documentation/bundleresources/privacy_manifest_files."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An invalid privacy manifest is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A property list file that contains invalid keys or values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An improperly formatted property list file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+              "isActive": true,
+              "overridingTitle": "Privacy manifest files",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Privacy manifest files",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to learn about the keys you can include in a privacy manifest. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "document lists possible reasons for invalid privacy tracking and accessed API values in your privacy",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manifest. Validate your privacy manifest to determine why your privacy manifest is malformed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-tracking-domain",
+          "level": 2,
+          "text": "Configure a tracking domain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A tracking domain is a string that identifies an internet domain your app or third-party SDK connects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to that engages in tracking. You set the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTrackingDomains",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to a list of tracking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "domains in your privacy manifest. The value of the string meets the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Includes the top-level domain or subdomain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains no path and query components.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains no trailing slash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Possible-reason-for-an-invalid-tracking-value",
+          "level": 2,
+          "text": "Possible reason for an invalid tracking value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is invalid if the value is any other type than a ",
+              "type": "text"
+            },
+            {
+              "code": "Boolean",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In your privacy manifest, change the type of the key to ",
+              "type": "text"
+            },
+            {
+              "code": "Boolean",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Possible-reasons-for-an-invalid-tracking-domains-value",
+          "level": 2,
+          "text": "Possible reasons for an invalid tracking domains value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTrackingDomains",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is invalid if the value is any other type than an array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of strings. In your privacy manifest, change the type of the key to ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then add one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tracking domains to the array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest#Configure-a-tracking-domain",
+              "isActive": true,
+              "overridingTitle": "Configure a tracking domain",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Configure a tracking domain",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create an invalid privacy manifest when you use both ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTrackingDomains",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reason",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTracking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTrackingDomains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is an empty array of strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill the array with one or more tracking domains your app or third-party SDK connects to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTracking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTrackingDomains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is an array of strings, but some entries are improperly formatted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm you configure each tracking domain in the array as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest#Configure-a-tracking-domain",
+                      "isActive": true,
+                      "overridingTitle": "Configure a tracking domain",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Configure a tracking domain",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTracking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTrackingDomains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key contains some entries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyTrackingDomains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key from your privacy manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app or third-party SDK doesn’t connect, or no longer connects to any tracking domains,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "remove both ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSPrivacyTrackingDomains",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSPrivacyTracking",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " keys from your privacy manifest. Alternatively,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "set the value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSPrivacyTracking",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and remove ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSPrivacyTrackingDomains",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " from your privacy manifest.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Possible-reasons-for-an-invalid-accessed-API-type-value",
+          "level": 2,
+          "text": "Possible reasons for an invalid accessed API type value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists reasons why a value for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyAccessedAPIType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is invalid:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reason",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is any other type than a string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the type of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your privacy manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an empty string, or a string whose value doesn’t match a category of required reason APIs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to a string that exactly matches a category of required reason APIs your app uses. For possible values, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-use-of-required-reason-api",
+                      "isActive": true,
+                      "overridingTitle": "Describing use of required reason API",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Describing use of required reason API",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Possible-reasons-for-an-invalid-accessed-API-type-reasons-value",
+          "level": 2,
+          "text": "Possible reasons for an invalid accessed API type reasons value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists reasons why a value for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyAccessedAPITypeReasons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is invalid:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reason",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is any other type than an array of strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the type of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPITypeReasons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Array",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your privacy manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an empty array of strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dictionary that contains the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPITypeReasons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, check the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Add one or more reason strings to the array whose value exactly matches a value associated with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an array of strings, but some entries don’t match the expected values for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key you provide.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dictionary that contains the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPITypeReasons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, check the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. Confirm each reason string in the array exactly matches a value associated with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app or third-party SDK doesn’t use, or no longer uses a specific required reason API,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "remove its related dictionary from the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSPrivacyAccessedAPITypes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSPrivacyAccessedAPITypes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "empty, remove it from the privacy manifest.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Possible-reasons-for-an-invalid-accessed-API-types-value",
+          "level": 2,
+          "text": "Possible reasons for an invalid accessed API types value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists reasons why a value for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrivacyAccessedAPITypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is invalid:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reason",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Solution",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is any other type than an array of dictionaries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the type of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPITypes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Array",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in your privacy manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an empty array of dictionaries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a dictionary that includes information about a required reason API your app or third-party SDK uses, then add the dictionary to the array. Repeat the process for all required reason APIs your app or third-party SDK uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value is an array of dictionaries, but some of the dictionaries are invalid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirm each dictionary in the array contains a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPIType",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key and a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrivacyAccessedAPITypeReasons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, and both keys contain valid values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Validate-your-privacy-manifest-file",
+          "level": 2,
+          "text": "Validate your privacy manifest file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "plutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command to ensure your privacy manifest is a properly formatted plist file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To validate your privacy manifest, run ",
+              "type": "text"
+            },
+            {
+              "code": "plutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "-lint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option in Terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -lint /path/to/PrivacyInfo.xcprivacy"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the privacy manifest is a valid plist, the command prints a message similar to the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -lint PrivacyInfo.xcprivacy",
+            "~/Documents/SampleApp/PrivacyInfo.xcprivacy: OK"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the privacy manifest is malformed, an error message appears in Terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% plutil -lint PrivacyInfo.xcprivacy",
+            "~/Documents/SampleApp/PrivacyInfo.xcprivacy: Encountered unexpected character ",
+            "`a` on line 8 while looking for close tag "
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix the errors, open your privacy manifest in a text editor or Xcode to address them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your privacy manifest is a valid plist, check its keys and values. Your privacy manifest",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "could still be invalid if its keys and values don’t match the values App Store Connect expects. For",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "more information about the keys and values App Store Connect expects, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+                  "isActive": true,
+                  "overridingTitle": "Privacy manifest files",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Privacy manifest files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-11-12",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/describing-use-of-required-reason-api": {
+      "abstract": [
+        {
+          "text": "Ensure your use of covered API is consistent with policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/describing-use-of-required-reason-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing use of required reason API",
+      "type": "topic",
+      "url": "/documentation/BundleResources/describing-use-of-required-reason-api"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files": {
+      "abstract": [
+        {
+          "text": "Describe the data your app or third-party SDK collects and the reasons required APIs it uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/privacy-manifest-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Privacy manifest files",
+      "type": "topic",
+      "url": "/documentation/BundleResources/privacy-manifest-files"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues": {
+      "abstract": [
+        {
+          "text": "Identify software preventing Xcode 15 from connecting to Apple devices, and modify your configuration to allow these connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3158: Resolving Xcode 15 device connection issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest#Configure-a-tracking-domain": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest#Configure-a-tracking-domain",
+      "kind": "section",
+      "title": "Configure a tracking domain",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest#Configure-a-tracking-domain"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+        "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

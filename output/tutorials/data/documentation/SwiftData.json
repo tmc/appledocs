@@ -1,0 +1,2587 @@
+{
+  "abstract": [
+    {
+      "text": "Write your model code declaratively to add managed persistence and efficient",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "model fetching.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "SwiftData",
+    "images": [
+      {
+        "identifier": "swiftData-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "SwiftData"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combining Core Data’s proven persistence technology and Swift’s modern",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "concurrency features, SwiftData enables you to add persistence to your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "quickly, with minimal code and no external dependencies. Using modern language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features like macros, SwiftData enables you to write code that is fast,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "efficient, and safe, enabling you to describe the entire model layer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(or object graph) for your app. The framework handles storing the underlying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model data, and optionally, syncing that data across multiple devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData has uses beyond persisting locally created content. For example, an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app that fetches data from a remote web service might use SwiftData to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement a lightweight caching mechanism and provide limited offline",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functionality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "swiftdata-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftData is unintrusive by design and supplements your app’s existing model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classes. Attach the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro to any model class to make it persistable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Customize the behavior of that model’s properties with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macros. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to insert, update, and delete instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of that model, and to write unsaved changes to disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display models in a SwiftUI view, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro and specify a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "predicate or fetch descriptor. SwiftData performs the fetch when the view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appears, and tells SwiftUI about any subsequent changes to the fetched models",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so the view can update accordingly. You can access the model context in any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI view using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/modelContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment value, and specify a particular model container or context for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContext(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Adding-and-editing-persistent-data-PageImage-card.png": {
+      "alt": "A black Swift logo above a background of brightly colored binary ones and zeros.",
+      "identifier": "Adding-and-editing-persistent-data-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55f9d5ea6318d04e82430d30e7408e20/Adding-and-editing-persistent-data-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2cc079c877d85ebed68522b2ec1bd0ff/Adding-and-editing-persistent-data-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app": {
+      "abstract": [
+        {
+          "text": "Create a data entry form for collecting and changing data managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app",
+      "images": [
+        {
+          "identifier": "Adding-and-editing-persistent-data-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding and editing persistent data in your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/adding-and-editing-persistent-data-in-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros": {
+      "abstract": [
+        {
+          "text": "Supplementary macros that enable you to narrow query results and tell SwiftData",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "how to sort and order those results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Additional query macros",
+      "type": "topic",
+      "url": "/documentation/swiftdata/additionalquerymacros"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the custom behavior that SwiftData applies to the annotated property",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when managing the owning class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC9AttributeC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Attribute(_:originalName:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/attribute(_:originalname:hashmodifier:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport": {
+      "abstract": [
+        {
+          "text": "Types you use to access model attributes and perform storage-related tasks in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a safe and isolated way.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Concurrency support",
+      "type": "topic",
+      "url": "/documentation/swiftdata/concurrencysupport"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DataStore": {
+      "abstract": [
+        {
+          "text": "An interface that enables SwiftData to read and write model data without",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "knowledge of the underlying storage mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataStore"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DataStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataStore",
+      "type": "topic",
+      "url": "/documentation/swiftdata/datastore"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreBatching": {
+      "abstract": [
+        {
+          "text": "An interface that enables a custom data store to support batch requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataStoreBatching"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreBatching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataStoreBatching"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataStoreBatching",
+      "type": "topic",
+      "url": "/documentation/swiftdata/datastorebatching"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreError": {
+      "abstract": [
+        {
+          "text": "A type that describes a data store error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataStoreError"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataStoreError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataStoreError",
+      "type": "topic",
+      "url": "/documentation/swiftdata/datastoreerror"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreSnapshotCodingKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataStoreSnapshotCodingKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreSnapshotCodingKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataStoreSnapshotCodingKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataStoreSnapshotCodingKey",
+      "type": "topic",
+      "url": "/documentation/swiftdata/datastoresnapshotcodingkey"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryDelete": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryDelete"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryDelete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultHistoryDelete",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaulthistorydelete"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryInsert": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryInsert"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryInsert",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryInsert"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultHistoryInsert",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaulthistoryinsert"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryToken": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryToken"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultHistoryToken",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaulthistorytoken"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryTransaction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultHistoryTransaction",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaulthistorytransaction"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryUpdate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultHistoryUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultHistoryUpdate",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaulthistoryupdate"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore": {
+      "abstract": [
+        {
+          "text": "A data store that uses Core Data as its undelying storage mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultStore"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultStore",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defaultstore"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Defining-data-relationships-with-enumerations-and-model-classes": {
+      "abstract": [
+        {
+          "text": "Create relationships for static and dynamic data stored in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Defining-data-relationships-with-enumerations-and-model-classes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Defining data relationships with enumerations and model classes",
+      "type": "topic",
+      "url": "/documentation/swiftdata/defining-data-relationships-with-enumerations-and-model-classes"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app": {
+      "abstract": [
+        {
+          "text": "Explore different ways to use SwiftData to delete persistent data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Deleting persistent data from your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/deleting-persistent-data-from-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor": {
+      "abstract": [
+        {
+          "text": "A type that describes the criteria, sort order, and any additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "configuration to use when performing a fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "FetchDescriptor",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes": {
+      "abstract": [
+        {
+          "text": "Track all inserts, updates, and deletes that occur in a data store and process",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them as a series of chronological transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+      "images": [
+        {
+          "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching and filtering time-based model changes",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetching-and-filtering-time-based-model-changes"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data": {
+      "abstract": [
+        {
+          "text": "Manage data store presentation using predicates and dynamic queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Filtering and sorting persistent data",
+      "type": "topic",
+      "url": "/documentation/swiftdata/filtering-and-sorting-persistent-data"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryChange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryChange"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryChange",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historychange"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryDelete": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryDelete"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryDelete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryDelete",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historydelete"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historydescriptor"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryInsert": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryInsert"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryInsert",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryInsert"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryInsert",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historyinsert"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryProviding": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryProviding",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historyproviding"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryToken": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryToken"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryToken",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historytoken"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryTombstone": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryTombstone"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryTombstone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryTombstone"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryTombstone",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historytombstone"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryTransaction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryTransaction",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historytransaction"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/HistoryUpdate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/HistoryUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryUpdate",
+      "type": "topic",
+      "url": "/documentation/swiftdata/historyupdate"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-74ia2": {
+      "abstract": [
+        {
+          "text": "Specifies the key-paths that SwiftData uses to create one or more binary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indices for the associated model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-74ia2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Index(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/index(_:)-74ia2"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-7d4z0": {
+      "abstract": [
+        {
+          "text": "Specifies the key-paths that SwiftData uses to create one or more indicies for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the associated model, where each index is either binary or R-tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC5IndexC",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC5IndexC5TypesO",
+          "text": "Types"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-7d4z0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Index(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/index(_:)-7d4z0"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data": {
+      "abstract": [
+        {
+          "text": "Create and update a persistent store to cache read-only network data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Maintaining a local copy of server data",
+      "type": "topic",
+      "url": "/documentation/swiftdata/maintaining-a-local-copy-of-server-data"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Model()": {
+      "abstract": [
+        {
+          "text": "Converts a Swift class into a stored model that’s managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Model()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/model()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s schema and model storage configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContainer",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext": {
+      "abstract": [
+        {
+          "text": "An object that enables you to fetch, insert, and delete models, and save any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContext",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelDocument": {
+      "abstract": [
+        {
+          "text": "A document type that uses SwiftData to manage its storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDocument",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modeldocument"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Preserving-your-apps-model-data-across-launches": {
+      "abstract": [
+        {
+          "text": "Describe your model classes to SwiftData using the framework’s macros, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "store instances of those models so they exist beyond the app’s runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Preserving-your-apps-model-data-across-launches",
+      "kind": "article",
+      "role": "article",
+      "title": "Preserving your app’s model data across launches",
+      "type": "topic",
+      "url": "/documentation/swiftdata/preserving-your-apps-model-data-across-launches"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query": {
+      "abstract": [
+        {
+          "text": "A type that fetches models using the specified criteria, and manages those",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "models so they remain in sync with the underlying data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Query"
+        }
+      ],
+      "role": "symbol",
+      "title": "Query",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query()": {
+      "abstract": [
+        {
+          "text": "Fetches all instances of the attached model type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Query()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)": {
+      "abstract": [
+        {
+          "text": "Specifies the options that SwiftData needs to manage the annotated property as",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a relationship between two models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Relationship"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC",
+          "text": "Relationship"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deleteRule"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC",
+          "text": "Schema"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC",
+          "text": "Relationship"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData6SchemaC12RelationshipC10DeleteRuleO",
+          "text": "DeleteRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumModelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumModelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "originalName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inverse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10AnyKeyPathC",
+          "text": "AnyKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "hashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/relationship(_:deleterule:minimummodelcount:maximummodelcount:originalname:inverse:hashmodifier:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager": {
+      "abstract": [
+        {
+          "text": "Automatically record data change operations that people perform in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI app, and let them undo and redo those changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+      "kind": "article",
+      "role": "article",
+      "title": "Reverting data changes using the undo manager",
+      "type": "topic",
+      "url": "/documentation/swiftdata/reverting-data-changes-using-the-undo-manager"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/SwiftDataError": {
+      "abstract": [
+        {
+          "text": "A type that describes a SwiftData error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SwiftDataError"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/SwiftDataError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SwiftDataError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SwiftDataError",
+      "type": "topic",
+      "url": "/documentation/swiftdata/swiftdataerror"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices": {
+      "abstract": [
+        {
+          "text": "Add the required capabilities and define a compatible schema to enable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftData to automatically sync your app’s model data using iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing model data across a person’s devices",
+      "type": "topic",
+      "url": "/documentation/swiftdata/syncing-model-data-across-a-persons-devices"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Transient()": {
+      "abstract": [
+        {
+          "text": "Tells SwiftData not to persist the annotated property when managing the owning",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transient"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Transient()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transient()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/transient()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Unique(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the key-paths that SwiftData uses to enforce the uniqueness of model",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Unique"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s14PartialKeyPathC",
+          "text": "PartialKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">]...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Unique(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Unique(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/unique(_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/adopting-swiftdata-for-a-core-data-app": {
+      "abstract": [
+        {
+          "text": "Persist data in your app intuitively with the Swift native persistence framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/adopting-swiftdata-for-a-core-data-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting SwiftData for a Core Data app",
+      "type": "topic",
+      "url": "/documentation/CoreData/adopting-swiftdata-for-a-core-data-app"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData": {
+      "abstract": [
+        {
+          "text": "Code along with the WWDC presenter to transform an app with SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document-based app using SwiftData",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/modelContext": {
+      "abstract": [
+        {
+          "text": "The SwiftData model context that will be used for queries and other model operations within this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData12ModelContextC",
+          "text": "ModelContext"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/modelContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContext",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/modelContext"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the model container and associated model context in this view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/modelContainer(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/modelContext(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the model context in this view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "modelContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData12ModelContextC",
+          "text": "ModelContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContext(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContext(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/modelContext(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Updates/SwiftData": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/SwiftData",
+      "kind": "article",
+      "role": "article",
+      "title": "SwiftData updates",
+      "type": "topic",
+      "url": "/documentation/Updates/SwiftData"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "fetching-and-filtering-time-based-models-PageImage-card.png": {
+      "alt": "A light blue Swift logo above a background of clock icons and binary ones and zeros.",
+      "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/075a7852ebc042773b65c445265171ee/fetching-and-filtering-time-based-models-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/511dbb1cea4900702d613a33524b1ff9/fetching-and-filtering-time-based-models-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "swiftdata-hero": {
+      "alt": "A white Swift logo containing ones and zeros on a blueprint-style background.",
+      "identifier": "swiftdata-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aa99d190da3e4c58796b4201d5e7b4c7/swiftdata-hero@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6ab7cf460fb2c8217219cca82c65140/swiftdata-hero~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Preserving-your-apps-model-data-across-launches",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app",
+        "doc://com.apple.documentation/documentation/CoreData/adopting-swiftdata-for-a-core-data-app",
+        "doc://com.apple.documentation/documentation/Updates/SwiftData"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Model-definition",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Attribute(_:originalName:hashModifier:)",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Unique(_:)",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-74ia2",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Index(_:)-7d4z0",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Defining-data-relationships-with-enumerations-and-model-classes",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Relationship(_:deleteRule:minimumModelCount:maximumModelCount:originalName:inverse:hashModifier:)",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Transient()"
+      ],
+      "title": "Model definition"
+    },
+    {
+      "anchor": "Model-life-cycle",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport"
+      ],
+      "title": "Model life cycle"
+    },
+    {
+      "anchor": "Model-fetch",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+        "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Query",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor"
+      ],
+      "title": "Model fetch"
+    },
+    {
+      "anchor": "Model-storage",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultStore",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DataStore",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreBatching",
+        "doc://com.apple.documentation/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelDocument"
+      ],
+      "title": "Model storage"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/SwiftDataError",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryDelete",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryInsert",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryProviding",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryToken",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryTransaction",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryUpdate"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryDelete",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryInsert",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryToken",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryTransaction",
+        "doc://com.apple.SwiftData/documentation/SwiftData/DefaultHistoryUpdate",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryDescriptor",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryTombstone"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/DataStoreSnapshotCodingKey",
+        "doc://com.apple.SwiftData/documentation/SwiftData/HistoryChange"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

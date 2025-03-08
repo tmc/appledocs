@@ -1,0 +1,961 @@
+{
+  "abstract": [
+    {
+      "text": "An object that creates and configures chains of individual image filters. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1438106,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilterGenerator",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIFilterGenerator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIFilterGenerator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIFilterGenerator"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides methods for creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object by chaining together existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to create complex effects. (A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "filter chain",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " refers to the ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects that are connected in the ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilterGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.) The complex effect can be encapsulated as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object and saved as a file so that it can be used again. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "filter generator file",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " contains an archived instance  of all the ",
+              "type": "text"
+            },
+            {
+              "code": "CIFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects that are chained together. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any filter generator files that you copy to ",
+              "type": "text"
+            },
+            {
+              "code": "/Library/Graphics/Image Units/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are loaded when any of the loading methods provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciplugin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class are invoked. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is registered by its filename or, if present, by a class attribute that you supply in its description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object  programmatically, using the methods provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class, or by using the editor view provided by Core Image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor": {
+      "abstract": [
+        {
+          "text": "A general interface for objects that produce ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterConstructor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterConstructor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilterconstructor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator": {
+      "abstract": [
+        {
+          "text": "An object that creates and configures chains of individual image filters. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterGenerator",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437742-init": {
+      "abstract": [
+        {
+          "text": "Initializes a filter generator object with the contents of a filter generator file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437742-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1437742-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437855-classattributes": {
+      "abstract": [
+        {
+          "text": "The class attributes associated with the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "classAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437855-classattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classAttributes",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1437855-classattributes"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437891-registerfiltername": {
+      "abstract": [
+        {
+          "text": "Registers the name associated with a filter chain. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerFilterName"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437891-registerfiltername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerFilterName(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1437891-registerfiltername"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437955-exportedkeys": {
+      "abstract": [
+        {
+          "text": "Returns an array of the exported keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportedKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437955-exportedkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportedKeys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1437955-exportedkeys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438044-filter": {
+      "abstract": [
+        {
+          "text": "Creates a filter object based on the filter chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CIFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438044-filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438044-filter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438069-setattributes": {
+      "abstract": [
+        {
+          "text": "Sets a dictionary of attributes for an exported key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "([AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forExportedKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438069-setattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributes(_:forExportedKey:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438069-setattributes"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438075-disconnectobject": {
+      "abstract": [
+        {
+          "text": "Removes the connection between two objects in the filter chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "disconnectObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438075-disconnectobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disconnectObject(_:withKey:to:withKey:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438075-disconnectobject"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438155-exportkey": {
+      "abstract": [
+        {
+          "text": "Exports an input or output key of an object in the filter chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "exportKey"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438155-exportkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exportKey(_:from:withName:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438155-exportkey"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438159-connect": {
+      "abstract": [
+        {
+          "text": "Adds an object to the filter chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438159-connect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connect(_:withKey:to:withKey:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438159-connect"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438179-write": {
+      "abstract": [
+        {
+          "text": "Archives a filter generator object to a filter generator file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438179-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:atomically:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438179-write"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438191-removeexportedkey": {
+      "abstract": [
+        {
+          "text": "Removes a key that was previously exported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeExportedKey"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438191-removeexportedkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeExportedKey(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/1438191-removeexportedkey"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/exported_keys": {
+      "abstract": [
+        {
+          "text": "Keys for the exported parameters of a filter generator object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/exported_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exported Keys",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator/exported_keys"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciplugin": {
+      "abstract": [
+        {
+          "text": "The mechanism for loading image units in macOS. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIPlugIn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciplugin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIPlugIn",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciplugin"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cipluginregistration": {
+      "abstract": [
+        {
+          "text": "The interface for loading Core Image image units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIPlugInRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cipluginregistration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIPlugInRegistration",
+      "type": "topic",
+      "url": "/documentation/coreimage/cipluginregistration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciplugin",
+        "doc://com.apple.documentation/documentation/coreimage/cipluginregistration",
+        "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor"
+      ],
+      "title": "Image Units"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1677197",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437742-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a Filter Generator Object"
+    },
+    {
+      "anchor": "1677219",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438159-connect",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438075-disconnectobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Connecting and Disconnecting Objects"
+    },
+    {
+      "anchor": "1677244",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437955-exportedkeys",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438155-exportkey",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438191-removeexportedkey",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438069-setattributes"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Exported Keys"
+    },
+    {
+      "anchor": "1677284",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437855-classattributes"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting and Getting Class Attributes"
+    },
+    {
+      "anchor": "1677297",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438179-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Archiving a Filter Generator Object"
+    },
+    {
+      "anchor": "1677306",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1437891-registerfiltername"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering a Filter Chain"
+    },
+    {
+      "anchor": "1677313",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/1438044-filter"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Filter from a Filter Chain"
+    },
+    {
+      "anchor": "1677321",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator/exported_keys"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifiltergenerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifiltergenerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

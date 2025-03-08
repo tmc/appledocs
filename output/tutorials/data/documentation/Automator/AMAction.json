@@ -1,0 +1,2463 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that defines the interface and general characteristics of Automator actions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automator/documentation/Automator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automator/documentation/Automator/AMAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AMAction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AMAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Automator"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AMAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AMAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Automator is an Apple app that allows users to construct and execute workflows consisting of a sequence of discrete modules called actions. An action performs a specific task, such as copying a file or cropping an image, and passes its output to Automator to give to the next action in the workflow. Actions are currently implemented as loadable bundles owned by objects of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The critically important method declared by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When Automator executes a workflow, it sends this message to each action object in the workflow (in workflow sequence), in most cases passing in the output of the previous action as input. The action object performs its task in this method and ends by returning an output object for the next action in the workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is not recommended. For most situations requiring an enhancement to the Automator framework, it is sufficient to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.automator/documentation/Automator": {
+      "abstract": [
+        {
+          "text": "Develop actions that the Automator app can load and run. View, edit, and run Automator workflows in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automator",
+      "type": "topic",
+      "url": "/documentation/automator"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface and general characteristics of Automator actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMAction"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMAction",
+      "type": "topic",
+      "url": "/documentation/automator/amaction"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/activated()": {
+      "abstract": [
+        {
+          "text": "Allows the action to synchronize its information with settings in another app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activated"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/activated()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activated"
+        }
+      ],
+      "role": "symbol",
+      "title": "activated()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/activated()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/closed()": {
+      "abstract": [
+        {
+          "text": "Invoked by Automator when the receiving action is removed from a workflow, allowing it to perform cleanup operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "closed"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/closed()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "closed"
+        }
+      ],
+      "role": "symbol",
+      "title": "closed()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/closed()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/didFinishRunningWithError:": {
+      "abstract": [
+        {
+          "text": "Sent by the action to itself when it has finished running asynchronously.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFinishRunningWithError:"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/didFinishRunningWithError:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didFinishRunningWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didFinishRunningWithError:",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/didfinishrunningwitherror:"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/finishRunningWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Causes the action to stop running and return an error, which, in turn, causes the workflow to stop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishRunningWithError"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/finishRunningWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishRunningWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishRunningWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/finishrunningwitherror(_:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/ignoresInput": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the action acts upon its input or the input is ignored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/ignoresInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ignoresInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "ignoresInput",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/ignoresinput"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/init(contentsOf:)": {
+      "abstract": [
+        {
+          "text": "Loads an Automator action from a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/init(contentsOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/init(contentsof:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/init(definition:fromArchive:)": {
+      "abstract": [
+        {
+          "text": "Initializes the action with the specified definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "definition"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromArchive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/init(definition:fromArchive:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDefinition:fromArchive:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(definition:fromArchive:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/init(definition:fromarchive:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/isStopped": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user clicked the stop button on the parent workflow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStopped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/isStopped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopped"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStopped",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/isstopped"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/logMessageWithLevel:format:": {
+      "abstract": [
+        {
+          "text": "Displays a message in Automator’s log area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "logMessageWithLevel:format:"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/logMessageWithLevel:format:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "logMessageWithLevel:format:"
+        }
+      ],
+      "role": "symbol",
+      "title": "logMessageWithLevel:format:",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/logmessagewithlevel:format:"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/name": {
+      "abstract": [
+        {
+          "text": "The name of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/name"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/opened()": {
+      "abstract": [
+        {
+          "text": "Allows the action to initialize its user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opened"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/opened()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "opened"
+        }
+      ],
+      "role": "symbol",
+      "title": "opened()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/opened()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/output": {
+      "abstract": [
+        {
+          "text": "The action’s output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "output"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/output",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "output"
+        }
+      ],
+      "role": "symbol",
+      "title": "output",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/output"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/parametersUpdated()": {
+      "abstract": [
+        {
+          "text": "Requests the action to update its user interface from its stored parameters, which have changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parametersUpdated"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/parametersUpdated()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parametersUpdated"
+        }
+      ],
+      "role": "symbol",
+      "title": "parametersUpdated()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/parametersupdated()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/progressValue": {
+      "abstract": [
+        {
+          "text": "A float value between 0 and 1, which indicates how far along the action is while processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/progressValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "progressValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "progressValue",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/progressvalue"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/reset()": {
+      "abstract": [
+        {
+          "text": "Resets the action to its initial state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/reset()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)": {
+      "abstract": [
+        {
+          "text": "Requests the action to perform its task using the specified input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithInput:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(withInput:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/run(withinput:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/runAsynchronously(withInput:)": {
+      "abstract": [
+        {
+          "text": "Causes Automator to wait for notification that the action has completed execution, which allows the action to perform an asynchronous operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runAsynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/runAsynchronously(withInput:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runAsynchronouslyWithInput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runAsynchronously(withInput:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/runasynchronously(withinput:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/runWithInput:fromAction:error:": {
+      "abstract": [
+        {
+          "text": "Requests the action to perform its task using the specified input from the specified action.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "runWithInput:fromAction:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/runWithInput:fromAction:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithInput:fromAction:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runWithInput:fromAction:error:",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/runwithinput:fromaction:error:"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/selectedInputType": {
+      "abstract": [
+        {
+          "text": "The type of input, in UTI format, of the input received by the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedInputType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/selectedInputType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedInputType"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedInputType",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/selectedinputtype"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/selectedOutputType": {
+      "abstract": [
+        {
+          "text": "The type of output, in UTI format, of the output to be produced by the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedOutputType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/selectedOutputType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedOutputType"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedOutputType",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/selectedoutputtype"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/stop()": {
+      "abstract": [
+        {
+          "text": "Stops the action from running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/stop()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/stop()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/updateParameters()": {
+      "abstract": [
+        {
+          "text": "Requests the action to update its stored set of parameters from the settings in the action’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateParameters"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/updateParameters()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateParameters()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/updateparameters()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/willFinishRunning()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity for an action to perform cleanup operations, such as closing windows and deallocating memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willFinishRunning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/willFinishRunning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willFinishRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "willFinishRunning()",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/willfinishrunning()"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMAction/write(to:)": {
+      "abstract": [
+        {
+          "text": "Examines the parameters and other configuration information specified in the passed dictionary and adds its own information to it if appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMutableDictionary",
+          "text": "NSMutableDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMAction/write(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writeToDictionary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "write(to:)",
+      "type": "topic",
+      "url": "/documentation/automator/amaction/write(to:)"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMBundleAction": {
+      "abstract": [
+        {
+          "text": "An object that represents an Automator action that’s a loadable bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMBundleAction"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMBundleAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMBundleAction",
+      "type": "topic",
+      "url": "/documentation/automator/ambundleaction"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMLogLevel": {
+      "abstract": [
+        {
+          "text": "Logging levels that Automator supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMLogLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMLogLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMLogLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMLogLevel",
+      "type": "topic",
+      "url": "/documentation/automator/amloglevel"
+    },
+    "doc://com.apple.automator/documentation/Automator/AMShellScriptAction": {
+      "abstract": [
+        {
+          "text": "An object that represents Automator actions whose runtime behavior is driven by a shell script or by a Perl or Python script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AMShellScriptAction"
+        }
+      ],
+      "identifier": "doc://com.apple.automator/documentation/Automator/AMShellScriptAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AMShellScriptAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AMShellScriptAction",
+      "type": "topic",
+      "url": "/documentation/automator/amshellscriptaction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMBundleAction"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+        "doc://com.apple.automator/documentation/Automator/AMShellScriptAction"
+      ],
+      "title": "Actions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-and-Encoding",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAction/init(definition:fromArchive:)",
+        "doc://com.apple.automator/documentation/Automator/AMAction/init(contentsOf:)",
+        "doc://com.apple.automator/documentation/Automator/AMAction/write(to:)"
+      ],
+      "title": "Initializing and Encoding"
+    },
+    {
+      "anchor": "Controlling-the-Action",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)",
+        "doc://com.apple.automator/documentation/Automator/AMAction/runAsynchronously(withInput:)",
+        "doc://com.apple.automator/documentation/Automator/AMAction/finishRunningWithError(_:)",
+        "doc://com.apple.automator/documentation/Automator/AMAction/willFinishRunning()",
+        "doc://com.apple.automator/documentation/Automator/AMAction/stop()",
+        "doc://com.apple.automator/documentation/Automator/AMAction/reset()"
+      ],
+      "title": "Controlling the Action"
+    },
+    {
+      "anchor": "Initializing-and-Synchronizing-the-Action-User-Interface",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAction/activated()",
+        "doc://com.apple.automator/documentation/Automator/AMAction/opened()"
+      ],
+      "title": "Initializing and Synchronizing the Action User Interface"
+    },
+    {
+      "anchor": "Performing-Logging",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMLogLevel"
+      ],
+      "title": "Performing Logging"
+    },
+    {
+      "anchor": "Updating-Action-Parameters",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAction/parametersUpdated()",
+        "doc://com.apple.automator/documentation/Automator/AMAction/updateParameters()"
+      ],
+      "title": "Updating Action Parameters"
+    },
+    {
+      "anchor": "Getting-Action-Information",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAction/name",
+        "doc://com.apple.automator/documentation/Automator/AMAction/progressValue",
+        "doc://com.apple.automator/documentation/Automator/AMAction/ignoresInput",
+        "doc://com.apple.automator/documentation/Automator/AMAction/output",
+        "doc://com.apple.automator/documentation/Automator/AMAction/selectedInputType",
+        "doc://com.apple.automator/documentation/Automator/AMAction/selectedOutputType",
+        "doc://com.apple.automator/documentation/Automator/AMAction/isStopped"
+      ],
+      "title": "Getting Action Information"
+    },
+    {
+      "anchor": "Performing-Cleanup-Operations",
+      "identifiers": [
+        "doc://com.apple.automator/documentation/Automator/AMAction/closed()"
+      ],
+      "title": "Performing Cleanup Operations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AMAction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.automator/documentation/Automator"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-and-Encoding",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/init(definition:fromArchive:)",
+                "doc://com.apple.automator/documentation/Automator/AMAction/init(contentsOf:)",
+                "doc://com.apple.automator/documentation/Automator/AMAction/write(to:)"
+              ],
+              "title": "Initializing and Encoding"
+            },
+            {
+              "anchor": "Controlling-the-Action",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/run(withInput:)",
+                "doc://com.apple.automator/documentation/Automator/AMAction/runAsynchronously(withInput:)",
+                "doc://com.apple.automator/documentation/Automator/AMAction/finishRunningWithError(_:)",
+                "doc://com.apple.automator/documentation/Automator/AMAction/willFinishRunning()",
+                "doc://com.apple.automator/documentation/Automator/AMAction/stop()",
+                "doc://com.apple.automator/documentation/Automator/AMAction/reset()"
+              ],
+              "title": "Controlling the Action"
+            },
+            {
+              "anchor": "Initializing-and-Synchronizing-the-Action-User-Interface",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/activated()",
+                "doc://com.apple.automator/documentation/Automator/AMAction/opened()"
+              ],
+              "title": "Initializing and Synchronizing the Action User Interface"
+            },
+            {
+              "anchor": "Performing-Logging",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/logMessageWithLevel:format:",
+                "doc://com.apple.automator/documentation/Automator/AMLogLevel"
+              ],
+              "title": "Performing Logging"
+            },
+            {
+              "anchor": "Updating-Action-Parameters",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/parametersUpdated()",
+                "doc://com.apple.automator/documentation/Automator/AMAction/updateParameters()"
+              ],
+              "title": "Updating Action Parameters"
+            },
+            {
+              "anchor": "Getting-Action-Information",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/name",
+                "doc://com.apple.automator/documentation/Automator/AMAction/progressValue",
+                "doc://com.apple.automator/documentation/Automator/AMAction/ignoresInput",
+                "doc://com.apple.automator/documentation/Automator/AMAction/output",
+                "doc://com.apple.automator/documentation/Automator/AMAction/selectedInputType",
+                "doc://com.apple.automator/documentation/Automator/AMAction/selectedOutputType",
+                "doc://com.apple.automator/documentation/Automator/AMAction/isStopped"
+              ],
+              "title": "Getting Action Information"
+            },
+            {
+              "anchor": "Performing-Cleanup-Operations",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/closed()"
+              ],
+              "title": "Performing Cleanup Operations"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMAction/runWithInput:fromAction:error:",
+                "doc://com.apple.automator/documentation/Automator/AMAction/didFinishRunningWithError:"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMBundleAction"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Actions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.automator/documentation/Automator/AMBundleAction",
+                "doc://com.apple.automator/documentation/Automator/AMShellScriptAction"
+              ],
+              "title": "Actions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AMAction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1run(withInput:)/title",
+          "value": "runWithInput:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1run(withInput:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithInput:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1selectedInputType/title",
+          "value": "selectedInputType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1selectedInputType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedInputType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1opened()/title",
+          "value": "opened"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1opened()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "opened"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1updateParameters()/title",
+          "value": "updateParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1updateParameters()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1ignoresInput/title",
+          "value": "ignoresInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1ignoresInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ignoresInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1output/title",
+          "value": "output"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1output/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "output"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMBundleAction/title",
+          "value": "AMBundleAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMBundleAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMBundleAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMBundleAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMBundleAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMLogLevel/title",
+          "value": "AMLogLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMLogLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMLogLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMLogLevel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMLogLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1stop()/title",
+          "value": "stop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1stop()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1init(contentsOf:)/title",
+          "value": "initWithContentsOfURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1init(contentsOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithContentsOfURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1parametersUpdated()/title",
+          "value": "parametersUpdated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1parametersUpdated()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "parametersUpdated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1isStopped/title",
+          "value": "stopped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1isStopped/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stopped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction/title",
+          "value": "AMAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1progressValue/title",
+          "value": "progressValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1progressValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "progressValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1init(definition:fromArchive:)/title",
+          "value": "initWithDefinition:fromArchive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1init(definition:fromArchive:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDefinition:fromArchive:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1willFinishRunning()/title",
+          "value": "willFinishRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1willFinishRunning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willFinishRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1closed()/title",
+          "value": "closed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1closed()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "closed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1activated()/title",
+          "value": "activated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1activated()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1runAsynchronously(withInput:)/title",
+          "value": "runAsynchronouslyWithInput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1runAsynchronously(withInput:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runAsynchronouslyWithInput:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1write(to:)/title",
+          "value": "writeToDictionary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1write(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writeToDictionary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMShellScriptAction/title",
+          "value": "AMShellScriptAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMShellScriptAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMShellScriptAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMShellScriptAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AMShellScriptAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1selectedOutputType/title",
+          "value": "selectedOutputType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1selectedOutputType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedOutputType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1finishRunningWithError(_:)/title",
+          "value": "finishRunningWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automator~1documentation~1Automator~1AMAction~1finishRunningWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishRunningWithError:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automator/amaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automator/amaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

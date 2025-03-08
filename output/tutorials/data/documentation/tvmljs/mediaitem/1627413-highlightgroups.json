@@ -1,0 +1,386 @@
+{
+  "abstract": [
+    {
+      "text": "An array of highlight groups, with each group containing a list of highlights.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/tvmljs",
+        "doc://com.apple.documentation/documentation/tvmljs/mediaitem"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627413-highlightgroups"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1627413,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "instp/MediaItem/highlightGroups",
+    "modules": [
+      {
+        "name": "TVMLKit JS"
+      }
+    ],
+    "parent": {
+      "title": "MediaItem"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "highlightGroups"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "attribute"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Array"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "highlightGroups"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "highlightGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property enables you to show several groups of highlights from a stream. Each highlight group in the array contains a list of highlights. Each highlight is an object with the following properties: ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "duration",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "imageURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "starttime",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Highlight objects are ad-hoc JSON objects and there are no explicit classes for these types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A good way to envision how the ",
+              "type": "text"
+            },
+            {
+              "code": "highlightGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property works is to think of a video of a baseball game. During the game, several home runs are hit. You can create a highlight group containing the video for each of these highlights and put the highlight group into the ",
+              "type": "text"
+            },
+            {
+              "code": "highlightGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627413-highlightgroups#1943542",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " shows a complete example of how to set up a highlight group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var baseURL;",
+            " ",
+            "App.onLaunch = function(options) {",
+            "    baseURL = options.BASEURL;",
+            "    var documentPath = \"path to file on server/baseball.m3u8\";",
+            "    var videourl = baseURL + documentPath;",
+            " ",
+            "    var singleVideo = new MediaItem('video', videourl);",
+            "    var highlights = [{",
+            "        name: \"Home Runs\",",
+            "        highlights: [{",
+            "            name: \"Johnny Appleseed 1st inning\",",
+            "            description: \"Johnny's 1st Homerun\",",
+            "            starttime: 10,",
+            "            duration: 10,",
+            "            imageURL: \"path to server/images/Car_Movie_90x90_A.png\"",
+            "            },",
+            "        {",
+            "            name: \"Johnny Appleseed 5th inning\",",
+            "            description: \"Johnny's 2nd Homerun\",",
+            "            starttime: 60,",
+            "            duration: 10,",
+            "            imageURL: \"path to server/images/Car_Movie_90x90_B.png\"",
+            "            }",
+            "        ]",
+            "    }];",
+            "    singleVideo.highlightGroups = highlights;",
+            "    var videoList = new Playlist();",
+            "    videoList.push(singleVideo);",
+            "    var myPlayer = new Player();",
+            "    myPlayer.playlist = videoList;",
+            "    myPlayer.play();",
+            "}",
+            " ",
+            "App.onExit = function() {",
+            "    console.log(\"exited\");",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "highlightGroups.js example",
+                "type": "text"
+              }
+            ],
+            "anchor": "1943542",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can only have one set of highlights associated with a media item.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit JS",
+      "type": "topic",
+      "url": "/documentation/tvmljs"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/mediaitem": {
+      "abstract": [
+        {
+          "text": "A single audio or video item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/mediaitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MediaItem",
+      "type": "topic",
+      "url": "/documentation/tvmljs/mediaitem"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627341-interstitials": {
+      "abstract": [
+        {
+          "text": "An array of ",
+          "type": "text"
+        },
+        {
+          "code": "interstitial",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627341-interstitials",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interstitials",
+      "type": "topic",
+      "url": "/documentation/tvmljs/mediaitem/1627341-interstitials"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627400-resumetime": {
+      "abstract": [
+        {
+          "text": "The number of seconds from the beginning of the item at which the item begins playing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627400-resumetime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumeTime",
+      "type": "topic",
+      "url": "/documentation/tvmljs/mediaitem/1627400-resumetime"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627413-highlightgroups": {
+      "abstract": [
+        {
+          "text": "An array of highlight groups, with each group containing a list of highlights.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627413-highlightgroups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highlightGroups",
+      "type": "topic",
+      "url": "/documentation/tvmljs/mediaitem/1627413-highlightgroups"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627413-highlightgroups#1943542": {
+      "abstract": [
+        {
+          "text": "highlightGroups.js example",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627413-highlightgroups#1943542",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/tvmljs/mediaitem/1627413-highlightgroups#1943542"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627341-interstitials",
+        "doc://com.apple.documentation/documentation/tvmljs/mediaitem/1627400-resumetime"
+      ],
+      "title": "Setting Timing Options"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/tvmljs/mediaitem/1627413-highlightgroups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

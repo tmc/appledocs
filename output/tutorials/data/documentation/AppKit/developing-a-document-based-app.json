@@ -1,0 +1,1422 @@
+{
+  "abstract": [
+    {
+      "text": "Write an app that creates, manages, edits, and saves text documents.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/developing-a-document-based-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Developing a Document-Based App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to use the Cocoa document architecture to manage documents. A document is a body of information, such as pages of text, stored in a file locally or in iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Cocoa document architecture, your document is represented by a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides most of the behavior for managing your document. In your subclass, you override or fine-tune this behavior by providing custom code for reading and writing document data. A document’s data is called the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "data model",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Each ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has its own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which in turn creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for displaying the document content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a document-based app handles multiple documents that are open at the same time, it uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to manage them. Cocoa provides most of the infrastructure for managing your documents. With file coordination, version management, and conflict resolution among other documents, it provides the easiest path to using iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "documentbasedapp-diagram1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-the-Document-Type",
+          "level": 3,
+          "text": "Declare the Document Type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps must use Xcode’s Document Types editor to define the types of documents they can open. When Xcode builds your app, it places the document type information in your app’s information property list (",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") file. When users install your app, the system uses that information to determine how to send your app the files to be opened.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app declares its document type as a uniform type identifier (UTI), which is a name that identifies a data format. There are two types of UTIs: system UTIs, which are predefined identifiers known to all systems, and user-defined UTIs, which are custom identifiers you can provide for your custom data formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DocumentBasedApp sample has one document type for files containing plain text. Because text is a standard data format, the sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "public.plain-text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " system UTI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values in the Document Types editor for this sample as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name = Plain Text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifier = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.plain-text",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Class = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$(PRODUCT_MODULE_NAME).Document",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Role = Editor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bundle = Unchecked",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a human-readable description of the document type, shown in the Finder when users inspect your document type. ",
+              "type": "text"
+            },
+            {
+              "code": "Class",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the name of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass that handles this document type. Because this sample edits plain-text documents, its ",
+              "type": "text"
+            },
+            {
+              "code": "Role",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this document type is an editor. ",
+              "type": "text"
+            },
+            {
+              "code": "Bundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is turned off because plain-text files aren’t distributed as bundles or packages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A UTI also specifies which file extension is used by files of this type.  The ",
+              "type": "text"
+            },
+            {
+              "code": "public.plain-text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " UTI specifies extension ",
+              "type": "text"
+            },
+            {
+              "code": ".txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so the document files that this sample opens or creates have the ",
+              "type": "text"
+            },
+            {
+              "code": ".txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension at the end of the filename.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Design-the-Document-Content",
+          "level": 3,
+          "text": "Design the Document Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app is a text editor, implementing a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " called ",
+              "type": "text"
+            },
+            {
+              "code": "Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a data model called ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object encapsulates the document’s data into a single package. Putting all of the document’s data into a single ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object simplifies data management. For example, it’s easier to add new data elements to the document later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object contains a single attribute called ",
+              "type": "text"
+            },
+            {
+              "code": "contentString",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is made up of a single ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class Content: NSObject {",
+            "    @objc dynamic var contentString = \"\"",
+            "    ",
+            "    public init(contentString: String) {",
+            "        self.contentString = contentString",
+            "    }",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Cocoa document architecture uses the Objective-C runtime, and document-based apps often use Objective-C technologies such as key-value coding (KVC), key-value observing (KVO), Cocoa bindings, and Cocoa archiving (",
+                  "type": "text"
+                },
+                {
+                  "code": "NSCoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "). Therefore, the model classes in your app should be Objective-C classes (subclasses of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSObject",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "), and the properties and methods in those classes should be Objective-C compatible (declared ",
+                  "type": "text"
+                },
+                {
+                  "code": "@objc",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "). In addition, their properties should be declared ",
+                  "type": "text"
+                },
+                {
+                  "code": "dynamic",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in Swift, which tells the compiler to use dynamic dispatch to access that attribute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using a centralized ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object encapsulates the document’s data model into a single package. If you need to add new data elements to your data model later, you’ll also place them within the ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model. The model object is therefore responsible for encoding and decoding its content for reading and writing to disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Design-the-Document-User-Interface",
+          "level": 3,
+          "text": "Design the Document User Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample follows the Model–View–Controller design pattern by separating its data from the user interface.  The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "model",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " portion is the ",
+              "type": "text"
+            },
+            {
+              "code": "Content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "view",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " portion is document’s ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " plus the ",
+              "type": "text"
+            },
+            {
+              "code": "NSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " hierarchy it contains, and the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "controller",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " portion is divided among various controller objects, including your ",
+              "type": "text"
+            },
+            {
+              "code": "Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. The document’s ",
+              "type": "text"
+            },
+            {
+              "code": "NSWindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and the view hierarchy of ",
+              "type": "text"
+            },
+            {
+              "code": "NSViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects descend from the window controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "contentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create your ",
+              "type": "text"
+            },
+            {
+              "code": "Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass, you determine which window controller the document will use by implementing the ",
+              "type": "text"
+            },
+            {
+              "code": "makeWindowControllers()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. This function also sets a reference to the document object as the ",
+              "type": "text"
+            },
+            {
+              "code": "contentViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s ",
+              "type": "text"
+            },
+            {
+              "code": "representedObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", allowing the user interface elements to bind the document’s data model. Hence the user interface elements get their values through the ",
+              "type": "text"
+            },
+            {
+              "code": "representedObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func makeWindowControllers() {",
+            "    // Returns the storyboard that contains your document window.",
+            "    let storyboard = NSStoryboard(name: NSStoryboard.Name(\"Main\"), bundle: nil)",
+            "    if let windowController =",
+            "        storyboard.instantiateController(",
+            "            withIdentifier: NSStoryboard.SceneIdentifier(\"Document Window Controller\")) as? NSWindowController {",
+            "        addWindowController(windowController)",
+            "        ",
+            "        // Set the view controller's represented object as your document.",
+            "        if let contentVC = windowController.contentViewController as? ViewController {",
+            "            contentVC.representedObject = content",
+            "            contentViewController = contentVC",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you organize the user interface into groups of view controllers called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "child view controllers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " passes down its ",
+              "type": "text"
+            },
+            {
+              "code": "representedObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to all of its children.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override var representedObject: Any? {",
+            "    didSet {",
+            "        // Pass down the represented object to all of the child view controllers.",
+            "        for child in children {",
+            "            child.representedObject = representedObject",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " containing the plain text is bound to the document’s data model using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/cocoa-bindings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to keep the text view’s data in sync with the data model. The ",
+              "type": "text"
+            },
+            {
+              "code": "Value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binding of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to the following key path of its view controller:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "representedObject.contentString",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "documentbasedapp-diagram2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-the-Document-Content",
+          "level": 3,
+          "text": "Read the Document Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, the ",
+              "type": "text"
+            },
+            {
+              "code": "Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "read(from:ofType:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to read in the data of a specified type from a file. This overridden function ignores the ",
+              "type": "text"
+            },
+            {
+              "code": "typeName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter because this sample handles documents of a single known type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func read(from data: Data, ofType typeName: String) throws {",
+            "    content.read(from: data)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Write-the-Document-Content",
+          "level": 3,
+          "text": "Write the Document Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, the ",
+              "type": "text"
+            },
+            {
+              "code": "Document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "data(ofType:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to write the plain text to a file. This overridden function ignores the ",
+              "type": "text"
+            },
+            {
+              "code": "typeName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter because this sample handles documents of a single known type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func data(ofType typeName: String) throws -> Data {",
+            "    return content.data()!",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "493c3c9bab1a/DevelopingADocumentBasedApp.zip": {
+      "checksum": "493c3c9bab1abbc801f8e8dd32bd4c72dbedf694bf6cc904e8e2a4ac309c985af009f586a8a9629740b91ff2917bc1c4094adf91b56c3963f2af433ca6f4c074",
+      "identifier": "493c3c9bab1a/DevelopingADocumentBasedApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/493c3c9bab1a/DevelopingADocumentBasedApp.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for macOS documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocumentController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument": {
+      "abstract": [
+        {
+          "text": "A document object that can integrate with Core Data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nspersistentdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a window, usually a window stored in a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowController",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/cocoa-bindings": {
+      "abstract": [
+        {
+          "text": "Automatically synchronize your data model with your app’s interface using Cocoa Bindings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/cocoa-bindings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cocoa Bindings",
+      "type": "topic",
+      "url": "/documentation/appkit/cocoa-bindings"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard": {
+      "abstract": [
+        {
+          "text": "Organize your app’s data and preferences, and share that data on the pasteboard or in iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/documents-data-and-pasteboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents, Data, and Pasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/documents-data-and-pasteboard"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "documentbasedapp-diagram1": {
+      "alt": "Cocoa document architecture diagram showing the relationships between NSDocumentController and its list of NSDocument objects, and between NSDocument and its NSWindowController.",
+      "identifier": "documentbasedapp-diagram1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/091174066bde587c3b6954d1ab290902/documentbasedapp-diagram1@2x.png"
+        }
+      ]
+    },
+    "documentbasedapp-diagram2": {
+      "alt": "Cocoa document architecture diagram showing how text view data is synced with the data model object through its view controller’s representedObject.",
+      "identifier": "documentbasedapp-diagram2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4214157cfa8878403b1f09489234f939/documentbasedapp-diagram2@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "493c3c9bab1a/DevelopingADocumentBasedApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Documents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+        "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument"
+      ],
+      "title": "Documents"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Documents",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+                "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument"
+              ],
+              "title": "Documents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/title",
+          "value": "NSWindowController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/title",
+          "value": "NSDocumentController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPersistentDocument/title",
+          "value": "NSPersistentDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPersistentDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPersistentDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/title",
+          "value": "NSWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/title",
+          "value": "NSDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/developing-a-document-based-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/developing-a-document-based-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

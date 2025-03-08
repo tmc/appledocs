@@ -1,0 +1,2221 @@
+{
+  "abstract": [
+    {
+      "text": "An application shortcut item, also called a Home Screen dynamic quick action, that specifies a user-initiated action for your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIApplicationShortcutItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIApplicationShortcutItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIApplicationShortcutItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIApplicationShortcutItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On a device that supports 3D Touch, a person invokes the quick action by pressing your app’s icon on the Home Screen and then selecting the quick action’s title. Your app delegate receives and handles the quick action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must specify the characteristics of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances during initialization, before you register them with your app object. The quick actions you’ve registered with your app object are immutable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-an-array-of-dynamic-quick-actions-with-your-app",
+          "level": 3,
+          "text": "Register an array of dynamic quick actions with your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register an array of Home Screen dynamic quick actions, set the value of your shared app object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance containing your defined dynamic Home Screen quick actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-your-apps-dynamic-quick-actions",
+          "level": 3,
+          "text": "Change your app’s dynamic quick actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change your app’s Home Screen dynamic quick actions, replace your app object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array by setting a new value for the property. As a convenience for working with registered quick actions, this class has a mutable subclass, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following code snippet illustrates one way to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, along with mutable quick actions, to change the title of a dynamic Home Screen quick action:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var shortcutItems = UIApplication.shared.shortcutItems ?? []",
+                    "if let existingShortcutItem = shortcutItems.first {",
+                    "    guard let mutableShortcutItem = existingShortcutItem.mutableCopy() as? UIMutableApplicationShortcutItem",
+                    "        else { preconditionFailure(\"Expected a UIMutableApplicationShortcutItem\") }",
+                    "    guard let index = shortcutItems.index(of: existingShortcutItem)",
+                    "        else { preconditionFailure(\"Expected a valid index\") }",
+                    "",
+                    "    mutableShortcutItem.localizedTitle = \"New Title\"",
+                    "    shortcutItems[index] = mutableShortcutItem",
+                    "    UIApplication.shared.shortcutItems = shortcutItems",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "    NSArray <UIApplicationShortcutItem *> *existingShortcutItems = [[UIApplication sharedApplication] shortcutItems];",
+                    "    UIApplicationShortcutItem *existingShortcutItem = [existingShortcutItems firstObject];",
+                    "    NSMutableArray <UIApplicationShortcutItem *> *updatedShortcutItems = [existingShortcutItems mutableCopy];",
+                    "    UIMutableApplicationShortcutItem *mutableShortcutItem = [existingShortcutItem mutableCopy];",
+                    "    NSInteger index = [existingShortcutItems indexOfObject:existingShortcutItem];",
+                    "    [mutableShortcutItem setLocalizedTitle: @\"New Title\"];",
+                    "    [updatedShortcutItems replaceObjectAtIndex: index withObject: mutableShortcutItem];",
+                    "    [[UIApplication sharedApplication] setShortcutItems: updatedShortcutItems];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Dynamic-and-static-quick-actions",
+          "level": 3,
+          "text": "Dynamic and static quick actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although immutable, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance is considered ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dynamic",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to distinguish it from a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "static",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " quick action you specify at build time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define Home Screen ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "dynamic",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " quick actions using this class. Your code creates dynamic quick actions, and registers them with your app object, at runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define Home Screen ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "static",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " quick actions in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " array in your Xcode project’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, as described in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " chapter in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The system registers your static quick actions when your app is installed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system limits the number of quick actions displayed when a user presses a Home Screen app icon. Within the limited set of displayed quick action titles, your static quick actions are shown first, starting at the topmost position in the list. If your static items don’t consume the permissible number for display and you’ve also defined dynamic quick actions using this class, then one or more of your dynamic quick actions is displayed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "App-launch-and-app-update-considerations-for-quick-actions",
+          "level": 3,
+          "text": "App launch and app update considerations for quick actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user chooses one of your Home Screen quick actions, the system launches or resumes your app and UIKit calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:performActionFor:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in your app delegate. Be sure to read the description of that method in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information on how to ensure the method is called only when it should be.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a user first installs your app and before they first launch it, pressing your Home Screen icon displays only the app’s static quick actions. After first launch, your dynamic quick actions (if you’ve defined any and there’s room in the list to accommodate them) are displayed as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a user installs an update for your app but hasn’t yet launched the update, pressing your Home Screen icon shows the dynamic quick actions for the previously installed version. One way to gracefully handle this scenario is to provide app version information in the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary of a quick action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy": {
+      "abstract": [
+        {
+          "text": "Returns the object returned by  where the zone is `nil`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableCopy"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418978-mutablecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableCopy()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418978-mutablecopy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems": {
+      "abstract": [
+        {
+          "text": "The Home screen dynamic quick actions for your app; available on devices that support 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shortcutItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplicationShortcutItem",
+          "text": "UIApplicationShortcutItem"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/shortcutItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shortcutItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "shortcutItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/shortcutitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods to manage shared behaviors for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:performActionFor:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user selected a Home screen quick action for your app, except when you’ve intercepted the interaction in a launch method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performActionFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplicationShortcutItem",
+          "text": "UIApplicationShortcutItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:performActionFor:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:performActionForShortcutItem:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:performActionFor:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:performactionfor:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon": {
+      "abstract": [
+        {
+          "text": "An image you can optionally associate with a Home Screen quick action to improve its appearance and usability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutIcon"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutIcon"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationShortcutIcon",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcuticon"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem": {
+      "abstract": [
+        {
+          "text": "An application shortcut item, also called a Home Screen dynamic quick action, that specifies a user-initiated action for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationShortcutItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationShortcutItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/icon": {
+      "abstract": [
+        {
+          "text": "The optional icon for the Home Screen dynamic quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplicationShortcutIcon",
+          "text": "UIApplicationShortcutIcon"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/icon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "icon"
+        }
+      ],
+      "role": "symbol",
+      "title": "icon",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/icon"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:)": {
+      "abstract": [
+        {
+          "text": "Creates an immutable Home Screen dynamic quick action with a user-visible title and no icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithType:localizedTitle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(type:localizedTitle:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/init(type:localizedtitle:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:localizedSubtitle:icon:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Creates an immutable Home Screen dynamic quick action with user-visible title, icon, and user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizedSubtitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplicationShortcutIcon",
+          "text": "UIApplicationShortcutIcon"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:localizedSubtitle:icon:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(type:localizedTitle:localizedSubtitle:icon:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/init(type:localizedtitle:localizedsubtitle:icon:userinfo:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedSubtitle": {
+      "abstract": [
+        {
+          "text": "The optional, user-visible subtitle for the Home Screen dynamic quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedSubtitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedSubtitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedSubtitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedSubtitle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/localizedsubtitle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedTitle": {
+      "abstract": [
+        {
+          "text": "The required, user-visible title for the Home Screen dynamic quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedTitle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/localizedtitle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/targetContentIdentifier": {
+      "abstract": [
+        {
+          "text": "The object that determines which scene handles the quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetContentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/targetContentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetContentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetContentIdentifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/targetcontentidentifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type": {
+      "abstract": [
+        {
+          "text": "A required, app-specific string that you employ to identify the type of quick action to perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/type"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo": {
+      "abstract": [
+        {
+          "text": "Optional, app-specific information that you can provide for use when your app performs the Home screen quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSecureCoding",
+          "text": "NSSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationshortcutitem/userinfo"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem": {
+      "abstract": [
+        {
+          "text": "A mutable Home Screen dynamic quick action, which is an item that specifies a configurable user-initiated action for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableApplicationShortcutItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableApplicationShortcutItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableApplicationShortcutItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutableapplicationshortcutitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/add-home-screen-quick-actions": {
+      "abstract": [
+        {
+          "text": "Expose commonly used functionality with static or dynamic 3D Touch Home Screen quick actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/add-home-screen-quick-actions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Add Home Screen quick actions",
+      "type": "topic",
+      "url": "/documentation/uikit/add-home-screen-quick-actions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252",
+      "title": "iOS Keys",
+      "titleInlineContent": [
+        {
+          "text": "iOS Keys",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36",
+      "title": "UIApplicationShortcutItems",
+      "titleInlineContent": [
+        {
+          "text": "UIApplicationShortcutItems",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247",
+      "title": "Information Property List Key Reference",
+      "titleInlineContent": [
+        {
+          "text": "Information Property List Key Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Home-Screen-quick-actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/add-home-screen-quick-actions",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem"
+      ],
+      "title": "Home Screen quick actions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Home-Screen-dynamic-quick-action",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:localizedSubtitle:icon:userInfo:)"
+      ],
+      "title": "Creating a Home Screen dynamic quick action"
+    },
+    {
+      "anchor": "Inspecting-a-Home-Screen-dynamic-quick-action",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedTitle",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedSubtitle",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/icon",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo"
+      ],
+      "title": "Inspecting a Home Screen dynamic quick action"
+    },
+    {
+      "anchor": "Designating-the-scene-to-activate",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/targetContentIdentifier"
+      ],
+      "title": "Designating the scene to activate"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIApplicationShortcutItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Home-Screen-dynamic-quick-action",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/init(type:localizedTitle:localizedSubtitle:icon:userInfo:)"
+              ],
+              "title": "Creating a Home Screen dynamic quick action"
+            },
+            {
+              "anchor": "Inspecting-a-Home-Screen-dynamic-quick-action",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedTitle",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/localizedSubtitle",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/type",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/icon",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/userInfo"
+              ],
+              "title": "Inspecting a Home Screen dynamic quick action"
+            },
+            {
+              "anchor": "Designating-the-scene-to-activate",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutItem/targetContentIdentifier"
+              ],
+              "title": "Designating the scene to activate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Home-Screen-quick-actions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/add-home-screen-quick-actions",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationShortcutIcon",
+                "doc://com.apple.uikit/documentation/UIKit/UIMutableApplicationShortcutItem"
+              ],
+              "title": "Home Screen quick actions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIApplicationShortcutItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1localizedTitle/title",
+          "value": "localizedTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1localizedTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedTitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1shortcutItems/title",
+          "value": "shortcutItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1shortcutItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shortcutItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableApplicationShortcutItem/title",
+          "value": "UIMutableApplicationShortcutItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableApplicationShortcutItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableApplicationShortcutItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1targetContentIdentifier/title",
+          "value": "targetContentIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1targetContentIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "targetContentIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1localizedSubtitle/title",
+          "value": "localizedSubtitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1localizedSubtitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedSubtitle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:performActionFor:completionHandler:)/title",
+          "value": "application:performActionForShortcutItem:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:performActionFor:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:performActionForShortcutItem:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutIcon/title",
+          "value": "UIApplicationShortcutIcon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutIcon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutIcon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1init(type:localizedTitle:localizedSubtitle:icon:userInfo:)/title",
+          "value": "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1init(type:localizedTitle:localizedSubtitle:icon:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/title",
+          "value": "UIApplicationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1icon/title",
+          "value": "icon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1icon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "icon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11418978-mutablecopy/title",
+          "value": "mutableCopy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem/title",
+          "value": "UIApplicationShortcutItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationShortcutItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1init(type:localizedTitle:)/title",
+          "value": "initWithType:localizedTitle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationShortcutItem~1init(type:localizedTitle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithType:localizedTitle:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiapplicationshortcutitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiapplicationshortcutitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

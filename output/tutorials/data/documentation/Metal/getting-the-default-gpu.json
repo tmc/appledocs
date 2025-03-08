@@ -1,0 +1,368 @@
+{
+  "abstract": [
+    {
+      "text": "Select the system’s default GPU device on which to run your Metal code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/getting-the-default-gpu"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting the Default GPU"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the Metal framework, start by getting a GPU device. All of the objects your app needs to interact with Metal come from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you acquire at runtime. Some devices, such as those with iOS and tvOS have a single GPU that you can access by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if(!(device = MTLCreateSystemDefaultDevice()))",
+            "{",
+            "    NSLog(@\"Failed to get the system's default Metal device.\");",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS devices that have multiple GPUs, such as a MacBook Pro, the system default is the discrete GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()": {
+      "abstract": [
+        {
+          "text": "Returns the device instance Metal selects as the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCreateSystemDefaultDevice()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcreatesystemdefaultdevice()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions": {
+      "abstract": [
+        {
+          "text": "Use the device object’s properties to determine how you perform tasks in Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting GPU Features and Metal Software Versions",
+      "type": "topic",
+      "url": "/documentation/metal/detecting-gpu-features-and-metal-software-versions"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Locating-and-Inspecting-a-GPU-Device",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+        "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+        "doc://com.apple.metal/documentation/Metal/MTLDevice",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ],
+      "title": "Locating and Inspecting a GPU Device"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Locating-and-Inspecting-a-GPU-Device",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+                "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+                "doc://com.apple.metal/documentation/Metal/MTLDevice",
+                "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+              ],
+              "title": "Locating and Inspecting a GPU Device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/title",
+          "value": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCreateSystemDefaultDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/getting-the-default-gpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/getting-the-default-gpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

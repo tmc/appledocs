@@ -1,0 +1,893 @@
+{
+  "abstract": [
+    {
+      "text": "Perform operations on vectors that contain half-precision floating-point elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/simd-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-vectors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Half-precision floating-point vectors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simd library provides many functions in this group, in three variants:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default variant—for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_rsqrt(_:)-i5ka",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The precise variant—for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_precise_rsqrt(_:)-136bw",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The fast variant—for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_fast_rsqrt(_:)-8p6tk",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The precise variants are accurate to a few units in the last place (ULPs). The fast variants provide greater speed but may have as little as 8 bits of accuracy for half-precision functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler flag defines the behavior of the default variant. Ordinarily, the compiler resolves the default variants to their precise counterparts. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "-ffast-math",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler flag to specify that the default variants of the functions resolve to the fast variants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain double-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Double-precision floating-point vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/double-precision-floating-point-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/simd-library": {
+      "abstract": [
+        {
+          "text": "Perform computations on small vectors and matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/simd-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "simd",
+      "type": "topic",
+      "url": "/documentation/accelerate/simd-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain single-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Single-precision floating-point vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/single-precision-floating-point-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors": {
+      "abstract": [
+        {
+          "text": "Use vectors to calculate geometric values, calculate dot products and cross products, and interpolate between values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/working-with-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_fast_rsqrt(_:)-8p6tk": {
+      "abstract": [
+        {
+          "text": "Returns the fast reciprocal square root of each element in a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_fast_rsqrt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_double4",
+          "text": "simd_double4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_double4",
+          "text": "simd_double4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_fast_rsqrt(_:)-8p6tk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_fast_rsqrt"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_fast_rsqrt(_:)",
+      "type": "topic",
+      "url": "/documentation/simd/simd_fast_rsqrt(_:)-8p6tk"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half1": {
+      "abstract": [
+        {
+          "text": "A vector of one 16-bit floating-point element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half1"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half1"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half1",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half1"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half16": {
+      "abstract": [
+        {
+          "text": "A vector of sixteen 16-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half16"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half16"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half16",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half16"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half2": {
+      "abstract": [
+        {
+          "text": "A vector of two 16-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half2"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half2"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half2",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half2"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half3": {
+      "abstract": [
+        {
+          "text": "A vector of three 16-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half3"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half3",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half3"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half32": {
+      "abstract": [
+        {
+          "text": "A vector of thirty-two 16-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half32"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half32",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half32"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half4": {
+      "abstract": [
+        {
+          "text": "A vector of four 16-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half4"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half4",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half4"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_half8": {
+      "abstract": [
+        {
+          "text": "A vector of eight 16-bit floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_half8"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_half8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_half8"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_half8",
+      "type": "topic",
+      "url": "/documentation/simd/simd_half8"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_precise_rsqrt(_:)-136bw": {
+      "abstract": [
+        {
+          "text": "Returns the precise reciprocal square root of each element in a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_precise_rsqrt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_double4",
+          "text": "simd_double4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_double4",
+          "text": "simd_double4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_precise_rsqrt(_:)-136bw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_precise_rsqrt"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_precise_rsqrt(_:)",
+      "type": "topic",
+      "url": "/documentation/simd/simd_precise_rsqrt(_:)-136bw"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_rsqrt(_:)-i5ka": {
+      "abstract": [
+        {
+          "text": "Returns the reciprocal square root of each element in a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_rsqrt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_double4",
+          "text": "simd_double4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_double4",
+          "text": "simd_double4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_rsqrt(_:)-i5ka",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_rsqrt"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_rsqrt(_:)",
+      "type": "topic",
+      "url": "/documentation/simd/simd_rsqrt(_:)-i5ka"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Floating-Point-Vectors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-vectors"
+      ],
+      "title": "Floating-Point Vectors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Vector-data-types",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/simd/simd_half1",
+        "doc://com.apple.accelerate/documentation/simd/simd_half2",
+        "doc://com.apple.accelerate/documentation/simd/simd_half3",
+        "doc://com.apple.accelerate/documentation/simd/simd_half4",
+        "doc://com.apple.accelerate/documentation/simd/simd_half8",
+        "doc://com.apple.accelerate/documentation/simd/simd_half16",
+        "doc://com.apple.accelerate/documentation/simd/simd_half32"
+      ],
+      "title": "Vector data types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half2/title",
+          "value": "simd_half2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half8/title",
+          "value": "simd_half8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half8/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_fast_rsqrt(_:)-8p6tk/title",
+          "value": "simd_fast_rsqrt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_fast_rsqrt(_:)-8p6tk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_fast_rsqrt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_precise_rsqrt(_:)-136bw/title",
+          "value": "simd_precise_rsqrt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_precise_rsqrt(_:)-136bw/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_precise_rsqrt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half4/title",
+          "value": "simd_half4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half16/title",
+          "value": "simd_half16"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half16/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half16/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half16"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half1/title",
+          "value": "simd_half1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half1/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half32/title",
+          "value": "simd_half32"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half32/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half32/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half32"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half3/title",
+          "value": "simd_half3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_half3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_half3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_rsqrt(_:)-i5ka/title",
+          "value": "simd_rsqrt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_rsqrt(_:)-i5ka/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_rsqrt"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

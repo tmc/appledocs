@@ -1,0 +1,2502 @@
+{
+  "abstract": [
+    {
+      "text": "Improve the clarity of your chart by configuring the appearance of its axes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Charts/documentation/Charts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Charts/documentation/Charts/Customizing-axes-in-Swift-Charts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Charts"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Customizing axes in Swift Charts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Charts automatically configures the axes in your charts based on the data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you specify. Sometimes you can communicate the data more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clearly by customizing the axis configuration. For example, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify a range for an axis.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the specific values — like categories, dates, or numbers —",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the axes display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the visual style of grid lines, ticks, or labels that represent each",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article demonstrates how to use these features to create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the following chart that displays battery levels over the course of a day:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-1-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance about charts and their axes, see the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/content/charts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-with-default-axes",
+          "level": 3,
+          "text": "Start with default axes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generating a chart using the framework default axis configuration typically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides a good foundation to start from. For example, the following code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates a basic battery chart from an array of data points:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct BatteryData {",
+            "    let date: Date",
+            "    let level: Double",
+            "",
+            "    static let data: [BatteryData] = /* Array of BatteryData instances */",
+            "}",
+            "",
+            "Chart(BatteryData.data, id: \\.date) {",
+            "    BarMark(",
+            "        // Create one bar for every 1800 seconds (30 minutes).",
+            "        x: .value(\"Time\", $0.date ..< $0.date.advanced(by: 1800)),",
+            "        y: .value(\"Battery Level\", $0.level)",
+            "    )",
+            "    .foregroundStyle(.green)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework chooses a default axis configuration that’s sensible for the data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The data fills the available space without overflowing in any dimension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Both axes have labels that indicate the values that the chart’s content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represents. The following chart displays the default axis configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-2-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, given that batteries have a maximum capacity of 100 percent and that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "people typically charge their phones once per day, you can improve this chart",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by configuring the axes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-domain-of-an-axis",
+          "level": 3,
+          "text": "Set the domain of an axis",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Battery levels always fall within a range of 0 to 100 percent. Being able to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visually compare a given value against the whole range helps people to better",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "understand how the current battery state compares to a full battery.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So it makes sense to fix the range of the y-axis to the full possible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "range, regardless of the range of the data in the current data set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set a range for the y-axis using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartYScale(domain:type:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartYScale(domain: [0, 100])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-3-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-axis-values",
+          "level": 3,
+          "text": "Specify axis values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Charts chooses a default number of grid lines and labels to display on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each axis. You can specify a different number of values by using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartYAxis(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier, which takes one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances in its ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter. Request a specific number of values by initializing the axis",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "marks instance with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarkValues/automatic(desiredCount:roundLowerBound:roundUpperBound:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value. For example, you can request that the axis have three values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartYAxis {",
+            "    AxisMarks(values: .automatic(desiredCount: 3))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the battery chart, this creates labels at ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-4-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The actual number of values that the framework uses might differ from",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the value that you request. For example, if you request four values in the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "above example, the framework uses five instead to avoid displaying fractional",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "labels.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can indicate exact values to mark on the axis using an array",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartYAxis {",
+            "    AxisMarks(values: [0, 50, 100])",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Format-values",
+          "level": 3,
+          "text": "Format values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add clarity to any chart by properly formatting its axis values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The values on the y-axis in the battery chart represent percentages, so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can pass the ",
+              "type": "text"
+            },
+            {
+              "code": "format",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the axis marks initializer to apply an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate formatting:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartYAxis {",
+            "    AxisMarks(",
+            "        format: Decimal.FormatStyle.Percent.percent.scale(1),",
+            "        values: [0, 50, 100]",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-5-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compose-axis-marks",
+          "level": 3,
+          "text": "Compose axis marks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add more complex styling, compose axis marks inside the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier’s ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure. For example, to add more horizontal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "grid lines without adding more labels, use two separate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances to render the grid lines and labels separately:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartYAxis {",
+            "    AxisMarks(",
+            "        values: [0, 50, 100]",
+            "    ) {",
+            "        AxisValueLabel(format: Decimal.FormatStyle.Percent.percent.scale(1))",
+            "    }",
+            "    ",
+            "    AxisMarks(",
+            "        values: [0, 25, 50, 75, 100]",
+            "    ) {",
+            "        AxisGridLine()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AxisMarks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializers in the above code each take a ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that’s an axis builder indicating which elements the marks apply to.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the builder to compose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisGridLine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisTick",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisValueLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " elements. The above example renders grid lines at ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "25",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "75",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but places labels only at ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "50",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-6-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional customization, apply the styling methods that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides. For example, you can adjust the font of the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "labels by applying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMark/font(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisValueLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Conditionally-format-labels",
+          "level": 3,
+          "text": "Conditionally format labels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the specified data, the battery chart marks every sixth hour along the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "x-axis and includes the AM or PM indicator with each hour by default.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can make the chart more readable by including a mark every three hours, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displaying the AM or PM indicator only when it changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartXAxis(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier to configure the x-axis, much like you use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartYAxis(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier for the y-axis. The following code passes a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarkValues/stride(by:count:roundLowerBound:roundUpperBound:calendar:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to control the frequency of marks, and uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conditional formatting to show AM or PM only at noon and midnight:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartXAxis {",
+            "    AxisMarks(values: .stride(by: .hour, count: 3)) { value in",
+            "        if let date = value.as(Date.self) {",
+            "            let hour = Calendar.current.component(.hour, from: date)",
+            "            switch hour {",
+            "            case 0, 12:",
+            "                AxisValueLabel(format: .dateTime.hour())",
+            "            default:",
+            "                AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .omitted)))",
+            "        }",
+            "        ",
+            "        AxisGridLine()",
+            "        AxisTick()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-7-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Style-grid-lines-and-ticks",
+          "level": 3,
+          "text": "Style grid lines and ticks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide people reading this chart with additional context by displaying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the date below the first value label and for subsequent labels where the date",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes. Create a stack of text views in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/AxisValueLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " builder, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the value’s index combined with the hour to conditionally display the date:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartXAxis {",
+            "    AxisMarks(values: .stride(by: .hour, count: 3)) { value in",
+            "        if let date = value.as(Date.self) {",
+            "            let hour = Calendar.current.component(.hour, from: date)",
+            "            AxisValueLabel {",
+            "                VStack(alignment: .leading) {",
+            "                    switch hour {",
+            "                    case 0, 12:",
+            "                        Text(date, format: .dateTime.hour())",
+            "                    default:",
+            "                        Text(date, format: .dateTime.hour(.defaultDigits(amPM: .omitted)))",
+            "                    }",
+            "                    if value.index == 0 || hour == 0 {",
+            "                        Text(date, format: .dateTime.month().day())",
+            "                    }",
+            "                }",
+            "            }",
+            "",
+            "            if hour == 0 {",
+            "                AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))",
+            "                AxisTick(stroke: StrokeStyle(lineWidth: 0.5))",
+            "            } else {",
+            "                AxisGridLine()",
+            "                AxisTick()",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For the condition ",
+                  "type": "text"
+                },
+                {
+                  "code": "(hour==0)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to work, ensure that your data starts at",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "an hour that’s divisible by the stride. For the above example with a stride",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of three, the data can start at ",
+                  "type": "text"
+                },
+                {
+                  "code": "3",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "6",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "9",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "12",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", either AM or PM.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above code also helps to clarify the date boundaries by using a solid grid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "line and tick at midnight, including at both the beginning and end of the chart:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CustomizingAxes-8-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compare this chart with the one at the beginning of this article that uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the default axis configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "CustomizingAxes-1-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents percentages, ranging from 0 to 100, with labels at 0, 50, and 100. There are also two additional horizontal grid lines without labels at 25 and 75. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every three hours, and AM and PM markers at midnight and noon, respectively. The month and day appear below the first time label, aligned with the leading edge of the chart. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-1-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cb882ff325e0baa36ede540fe0d54a7/CustomizingAxes-1-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b08424bdf4cdff764202a6b2e392daa8/CustomizingAxes-1-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-2-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents integers, ranging from 0 to 40, with labels at 0, 10, 20, 30, and 40. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every six hours, and AM or PM markers on all the labels. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-2-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ee74d5a053b0ee11dfb7765716a30da3/CustomizingAxes-2-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b11876dcf883060eb6024dcb6d3328c2/CustomizingAxes-2-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-3-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents integers, ranging from 0 to 100, with labels at 0, 25, 50, 75, and 100. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every six hours, and AM or PM markers on all the labels. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-3-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d613e7d9021320744ff64d3007bd002e/CustomizingAxes-3-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/573cccf300747c0389145c61ec9a8a7d/CustomizingAxes-3-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-4-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents integers, ranging from 0 to 100, with labels at 0, 50, and 100. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every six hours, and AM or PM markers on all the labels. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-4-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81712f6f010460e5aec20ba364c418bd/CustomizingAxes-4-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a8f8574da4901eb97d1efa7204df642/CustomizingAxes-4-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-5-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents percentages, ranging from 0 to 100, with labels at 0, 50, and 100. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every six hours, and AM or PM markers on all the labels. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-5-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/398c5adaf6514bf637ee7701cf9d4248/CustomizingAxes-5-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1269a5b643d554ed7f219c3982cb2a31/CustomizingAxes-5-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-6-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents percentages, ranging from 0 to 100, with labels at 0, 50, and 100. There are also two additional horizontal grid lines without labels at 25 and 75. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every six hours, and AM or PM markers on all the labels. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-6-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5f811f6ac2e43d9a0077370a75c80dd/CustomizingAxes-6-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6d8596bef165be0c39fee5426b72d32/CustomizingAxes-6-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-7-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents percentages, ranging from 0 to 100, with labels at 0, 50, and 100. There are also two additional horizontal grid lines without labels at 25 and 75. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every three hours, and AM and PM markers at midnight and noon, respectively. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-7-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/adcaecfb904c0a0aecd8e33761a1dbd0/CustomizingAxes-7-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/630f0b6540f6786d7480779dbfa0e7c1/CustomizingAxes-7-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "CustomizingAxes-8-macOS": {
+      "alt": "A bar chart that has 48 vertical bars, with each bar shorter than the previous one by a small amount. The y-axis represents percentages, ranging from 0 to 100, with labels at 0, 50, and 100. There are also two additional horizontal grid lines without labels at 25 and 75. The x-axis represents time, starting at 12 AM, spanning one 24 hour period, with labels every three hours, and AM and PM markers at midnight and noon, respectively. The month and day appear below the first time label, aligned with the leading edge of the chart. The first bar has a height of 40, while the last has a height of about 10.",
+      "identifier": "CustomizingAxes-8-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cb882ff325e0baa36ede540fe0d54a7/CustomizingAxes-8-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b08424bdf4cdff764202a6b2e392daa8/CustomizingAxes-8-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "abstract": [
+        {
+          "text": "Construct and customize charts on every Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AnyAxisContent": {
+      "abstract": [
+        {
+          "text": "A type-erased element of a chart’s axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyAxisContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AnyAxisContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyAxisContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyAxisContent",
+      "type": "topic",
+      "url": "/documentation/charts/anyaxiscontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisContent": {
+      "abstract": [
+        {
+          "text": "A type that represents the elements you use to build a chart’s axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisContent",
+      "type": "topic",
+      "url": "/documentation/charts/axiscontent"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisContentBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that constructs axis content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisContentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisContentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisContentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisContentBuilder",
+      "type": "topic",
+      "url": "/documentation/charts/axiscontentbuilder"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisGridLine": {
+      "abstract": [
+        {
+          "text": "A line that a chart draws across its plot area to indicate a reference point",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "along a particular axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisGridLine"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisGridLine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisGridLine"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisGridLine",
+      "type": "topic",
+      "url": "/documentation/charts/axisgridline"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisMark": {
+      "abstract": [
+        {
+          "text": "A type that serves as the basic building block for the elements of an axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisMark"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisMark",
+      "type": "topic",
+      "url": "/documentation/charts/axismark"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisMark/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in this axis content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts8AxisMarkP",
+          "text": "AxisMark"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMark/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/charts/axismark/font(_:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisMarkValues/automatic(desiredCount:roundLowerBound:roundUpperBound:)": {
+      "abstract": [
+        {
+          "text": "Automatically determines the values for the markers,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "approximating the target number of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "desiredCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roundLowerBound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roundUpperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14AxisMarkValuesV",
+          "text": "AxisMarkValues"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarkValues/automatic(desiredCount:roundLowerBound:roundUpperBound:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic(desiredCount:roundLowerBound:roundUpperBound:)",
+      "type": "topic",
+      "url": "/documentation/charts/axismarkvalues/automatic(desiredcount:roundlowerbound:roundupperbound:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisMarkValues/stride(by:count:roundLowerBound:roundUpperBound:calendar:)": {
+      "abstract": [
+        {
+          "text": "Creates values with the given calendar unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8CalendarV",
+          "text": "Calendar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8CalendarV9ComponentO",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roundLowerBound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roundUpperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8CalendarV",
+          "text": "Calendar"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts14AxisMarkValuesV",
+          "text": "AxisMarkValues"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarkValues/stride(by:count:roundLowerBound:roundUpperBound:calendar:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stride(by:count:roundLowerBound:roundUpperBound:calendar:)",
+      "type": "topic",
+      "url": "/documentation/charts/axismarkvalues/stride(by:count:roundlowerbound:roundupperbound:calendar:)"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisMarks": {
+      "abstract": [
+        {
+          "text": "A group of visual marks that a chart draws to indicate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "composition of a chart’s axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisMarks"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisMarks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisMarks"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisMarks",
+      "type": "topic",
+      "url": "/documentation/charts/axismarks"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisTick": {
+      "abstract": [
+        {
+          "text": "A mark that a chart draws on an axis to indicate a reference point along that axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisTick"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisTick",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisTick"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisTick",
+      "type": "topic",
+      "url": "/documentation/charts/axistick"
+    },
+    "doc://com.apple.Charts/documentation/Charts/AxisValueLabel": {
+      "abstract": [
+        {
+          "text": "A label that describes the value for an axis mark.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisValueLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/AxisValueLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AxisValueLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "AxisValueLabel",
+      "type": "topic",
+      "url": "/documentation/charts/axisvaluelabel"
+    },
+    "doc://com.apple.Charts/documentation/Charts/ChartAxisContent": {
+      "abstract": [
+        {
+          "text": "A view that represents a chart’s axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartAxisContent"
+        }
+      ],
+      "identifier": "doc://com.apple.Charts/documentation/Charts/ChartAxisContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartAxisContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartAxisContent",
+      "type": "topic",
+      "url": "/documentation/charts/chartaxiscontent"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/chartXAxis(content:)": {
+      "abstract": [
+        {
+          "text": "Configures the x-axis for charts in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chartXAxis"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:6Charts18AxisContentBuilderV",
+          "text": "AxisContentBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts11AxisContentP",
+          "text": "AxisContent"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartXAxis(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "chartXAxis(content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/chartXAxis(content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/chartYAxis(content:)": {
+      "abstract": [
+        {
+          "text": "Configures the y-axis for charts in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chartYAxis"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:6Charts18AxisContentBuilderV",
+          "text": "AxisContentBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts11AxisContentP",
+          "text": "AxisContent"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartYAxis(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "chartYAxis(content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/chartYAxis(content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/chartYScale(domain:type:)": {
+      "abstract": [
+        {
+          "text": "Configures the y scale for charts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chartYScale"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Domain"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Domain"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts9ScaleTypeV",
+          "text": "ScaleType"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Domain"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts11ScaleDomainP",
+          "text": "ScaleDomain"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/chartYScale(domain:type:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "chartYScale(domain:type:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/chartYScale(domain:type:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/content/charts": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/content/charts",
+      "title": "Charts",
+      "titleInlineContent": [
+        {
+          "text": "Charts",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/content/charts"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Axes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Charts/documentation/Charts/ChartAxisContent",
+        "doc://com.apple.Charts/documentation/Charts/AxisContent",
+        "doc://com.apple.Charts/documentation/Charts/AxisMarks",
+        "doc://com.apple.Charts/documentation/Charts/AnyAxisContent",
+        "doc://com.apple.Charts/documentation/Charts/AxisContentBuilder"
+      ],
+      "title": "Axes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/charts/customizing-axes-in-swift-charts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1273 @@
+{
+  "abstract": [
+    {
+      "text": "Declare the user interface groupings that make up the parts of your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Scenes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scene represents a part of your app’s user interface that has a life cycle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the system manages. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance presents the scenes it contains,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " acts as the root element of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scenes-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system presents scenes in different ways depending on the type of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene, the platform, and the context. A scene might fill the entire display,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "part of the display, a window, a tab in a window, or something else. In some",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cases, your app might also be able to display more than one instance of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene at a time, like when a user simultaneously opens multiple windows based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration in your app. For more information about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the primary built-in scene types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure scenes using modifiers, similar to how you configure views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can adjust the appearance of the window that contains a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene — if the scene happens to appear in a window — using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. Similarly, you can add menu commands that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "become available when the scene is in the foreground on certain platforms using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system, like",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding a Widget.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-extensions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents": {
+      "abstract": [
+        {
+          "text": "Enable people to open and manage documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents",
+      "type": "topic",
+      "url": "/documentation/swiftui/documents"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openSettings": {
+      "abstract": [
+        {
+          "text": "A Settings presentation action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openSettings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18OpenSettingsActionV",
+          "text": "OpenSettingsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openSettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openSettings",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/opensettings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scenePhase": {
+      "abstract": [
+        {
+          "text": "The current phase of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ScenePhaseO",
+          "text": "ScenePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scenePhase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scenePhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/scenephase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces": {
+      "abstract": [
+        {
+          "text": "Display unbounded content in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Immersive spaces",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersive-spaces"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtra": {
+      "abstract": [
+        {
+          "text": "A scene that renders itself as a persistent control in the system menu bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MenuBarExtra"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtra",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MenuBarExtra"
+        }
+      ],
+      "role": "symbol",
+      "title": "MenuBarExtra",
+      "type": "topic",
+      "url": "/documentation/swiftui/menubarextra"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtraStyle": {
+      "abstract": [
+        {
+          "text": "A specification for the appearance and behavior of a menu bar extra scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MenuBarExtraStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtraStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MenuBarExtraStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MenuBarExtraStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/menubarextrastyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations": {
+      "abstract": [
+        {
+          "text": "Present content in a separate view that offers focused interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modal presentations",
+      "type": "topic",
+      "url": "/documentation/swiftui/modal-presentations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenSettingsAction": {
+      "abstract": [
+        {
+          "text": "An action that presents the settings scene for an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenSettingsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenSettingsAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenSettingsAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpenSettingsAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/opensettingsaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene": {
+      "abstract": [
+        {
+          "text": "A part of an app’s user interface with a life cycle managed by the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)": {
+      "abstract": [
+        {
+          "text": "Adds commands to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commands"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commands(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commands(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/menuBarExtraStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for menu bar extra created by this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuBarExtraStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/menuBarExtraStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuBarExtraStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/menubarextrastyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for windows created by this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder for composing a collection of scenes into a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "composite scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenebuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase": {
+      "abstract": [
+        {
+          "text": "An indication of a scene’s operational state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScenePhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenephase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings": {
+      "abstract": [
+        {
+          "text": "A scene that presents an interface for viewing and modifying an app’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Settings"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "Settings",
+      "type": "topic",
+      "url": "/documentation/swiftui/settings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SettingsLink": {
+      "abstract": [
+        {
+          "text": "A view that opens the Settings scene defined by an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingsLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SettingsLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingsLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingsLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/settingslink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKNotificationScene": {
+      "abstract": [
+        {
+          "text": "A scene which appears in response to receiving the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "category of remote or local notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKNotificationScene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKNotificationScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKNotificationScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKNotificationScene",
+      "type": "topic",
+      "url": "/documentation/swiftui/wknotificationscene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup": {
+      "abstract": [
+        {
+          "text": "A scene that presents a group of identically structured windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows": {
+      "abstract": [
+        {
+          "text": "Display user interface content in a window or a collection of windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/documentation/swiftui/windows"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "scenes-hero": {
+      "alt": null,
+      "identifier": "scenes-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0ae322d333458f9341bc3aa57f4e8250/scenes-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-scenes",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneBuilder"
+      ],
+      "title": "Creating scenes"
+    },
+    {
+      "anchor": "Monitoring-scene-life-cycle",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scenePhase",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase"
+      ],
+      "title": "Monitoring scene life cycle"
+    },
+    {
+      "anchor": "Managing-a-settings-window",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SettingsLink",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenSettingsAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openSettings"
+      ],
+      "title": "Managing a settings window"
+    },
+    {
+      "anchor": "Creating-a-menu-bar-extra",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtra",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/menuBarExtraStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtraStyle"
+      ],
+      "title": "Creating a menu bar extra"
+    },
+    {
+      "anchor": "Creating-watch-notifications",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKNotificationScene"
+      ],
+      "title": "Creating watch notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/scenes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

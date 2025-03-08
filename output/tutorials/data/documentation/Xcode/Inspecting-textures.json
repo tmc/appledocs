@@ -1,0 +1,1494 @@
+{
+  "abstract": [
+    {
+      "text": "Discover issues in your textures by examining their content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting textures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger allows you to view the contents of a texture in the Texture viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, flip the texture to the correct orientation and adjust the colors to ensure accuracy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, check for pixel issues like infinite values, not-a-number values, or any values that exceed the current EDR headroom of your display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Hover over pixels within the texture to inspect their values, then find any anomalies by selecting a pixel and comparing it with others.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finally, compare across mipmap levels to check for visual issues.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Navigate-your-texture",
+          "level": 3,
+          "text": "Navigate your texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Texture viewer contains several controls for interacting with and displaying your texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your texture contains multiple slices, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the controls in the title bar are disabled until you click a texture image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The active texture image has a system accent color border.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-hero.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Groups of texture slices that contain related content, such as the faces for a texture of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/typeCube",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", are part of the same texture image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Flip-your-texture",
+          "level": 3,
+          "text": "Flip your texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your renderer is using a different coordinate system and your texture image is upside down or flipped horizontally, you can flip it to the correct orientation in the Texture viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the texture actions button, then choose Flip Horizontally or Flip Vertically.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode flips groups of related texture slices, such as cubemaps, as a whole, and it flips unrelated texture slices independently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-flip.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-texture-rendering",
+          "level": 3,
+          "text": "Configure texture rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically configures the color properties based on your texture, but you can configure them manually by clicking the Colors button in the title bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You configure texture rendering on a per-texture-image basis. Follow these guidelines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the color space to the one that the device display uses.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, use sRGB if you’re debugging an iPhone workload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using a display that supports extended dynamic range, you can enable the Extended Dynamic Range Content option to render the texture with extended range.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "When this option is enabled, Xcode draws hatching on any pixels containing values above your display EDR headroom.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Consider lowering the brightness of your display to increase the available headroom.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode shows additional controls to manually configure rendering if you select Default (No color-match) as the color space.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can then configure the range of visible colors, channel swizzling, and whether the alpha is premultiplied.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-colors.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-texture-properties",
+          "level": 3,
+          "text": "View texture properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can view properties for the active texture image, such as width and height, by clicking the Info button in the title bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-properties.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-texture-issues",
+          "level": 3,
+          "text": "View texture issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Issues button in the title bar becomes active if your texture contains any pixels (or samples) with values that are infinite, are not-a-number, or exceed the current EDR headroom of your display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can click the Issues button to see more information, and then click the Jump button to focus on a pixel (or sample) causing the issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-issues.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-select-and-compare-pixel-values",
+          "level": 3,
+          "text": "Inspect, select, and compare pixel values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Move the pointer over a pixel (or a sample if your texture is of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DMultisample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DMultisampleArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to inspect its value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-inspect-pixel.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, you can select the pixel by clicking it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can click and hold so that Xcode selects the pixel, zooms in, and immediately opens the value inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also select a pixel using the coordinate input controls on the right of the control bar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Type in the coordinates for the pixel you want, such as ",
+              "type": "text"
+            },
+            {
+              "code": "X: 100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Y: 100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on your texture configuration, Xcode may show additional controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-selection.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Jump button in the control bar to zoom in to the selected pixel or sample.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode automatically focuses when you click the stepper to the right of each text field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-selection-jump.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also move the pointer over a different pixel (or sample) to compare the values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the selected pixel is to the left of the pixel beneath the pointer, the values of the selected pixel appear on the left of the inspector.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If it’s to the right, the values appear on the right.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode highlights the coordinates for the selected pixel in the inspector to show which values correspond to which pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-compare.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you open multiple Attachments viewers or Texture viewers, you can compare pixels across different textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information on configuring editors within your Xcode workspace, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-the-xcode-project-window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compare-mipmap-levels",
+          "level": 3,
+          "text": "Compare mipmap levels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the Texture viewer shows all of your texture’s mipmap levels side by side.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, if you want to visually compare different mipmap levels, you can enable stacking.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the texture actions button, and then choose Stack Mips.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-stack-mips.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag the slice slider in the control bar to visually compare different mipmap levels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-tv-scrub.gif",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, the Texture viewer stacks 3D textures, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type3D",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", using the z-coordinate.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can disable stacking to see the depth slices side by side.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your 3D texture has multiple mipmap levels, you can choose either Stack Mips or Stack Z.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting acceleration structures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-acceleration-structures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers": {
+      "abstract": [
+        {
+          "text": "Confirm your buffer formats by examining buffer content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states": {
+      "abstract": [
+        {
+          "text": "Determine how your render and compute passes behave by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting pipeline states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-pipeline-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states": {
+      "abstract": [
+        {
+          "text": "Verify your sampler state configurations by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting sampler states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-sampler-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DArray": {
+      "abstract": [
+        {
+          "text": "An array of two-dimensional texture images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type2DArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2DArray",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureType/type2DArray"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DMultisample": {
+      "abstract": [
+        {
+          "text": "A two-dimensional texture image that uses more than one sample for each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type2DMultisample"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DMultisample",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2DMultisample",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureType/type2DMultisample"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DMultisampleArray": {
+      "abstract": [
+        {
+          "text": "An array of two-dimensional texture images that use more than one sample for each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type2DMultisampleArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type2DMultisampleArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2DMultisampleArray",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureType/type2DMultisampleArray"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type3D": {
+      "abstract": [
+        {
+          "text": "A three-dimensional texture image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type3D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/type3D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type3D",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureType/type3D"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTextureType/typeCube": {
+      "abstract": [
+        {
+          "text": "A cube texture with six two-dimensional images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeCube"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTextureType/typeCube",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.typeCube",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTextureType/typeCube"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-the-xcode-project-window": {
+      "abstract": [
+        {
+          "text": "Configure the appearance of Xcode project windows by showing and hiding editors, inspectors, and navigation content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-the-xcode-project-window",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the Xcode project window",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-the-xcode-project-window"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-tv-colors.png": {
+      "alt": "A screenshot of the Texture Image Color Options popover. It consists of controls for color space, tone mapping, and color sizzling.",
+      "identifier": "gputools-metal-debugger-tv-colors.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bad8765b0b069ad32de262147700435/gputools-metal-debugger-tv-colors.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ceab9321fa28b543a351c977b4d2f3b7/gputools-metal-debugger-tv-colors@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09db34c741c92c55de1b0b610195ec69/gputools-metal-debugger-tv-colors~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d534ffa40ded9e560073844caf4d1d8/gputools-metal-debugger-tv-colors~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-compare.png": {
+      "alt": "A screenshot of the value inspector comparing the pixel values beneath the pointer and at the selection. The pointer is hovering over pixel 2080, 919, and the selection is at pixel 2094, 919.",
+      "identifier": "gputools-metal-debugger-tv-compare.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c9d573b64712635e131c94e61237813/gputools-metal-debugger-tv-compare.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f940d75a6431c7b5da7e2f6311a4ae97/gputools-metal-debugger-tv-compare@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30b4388094b594771cb1be205a45f02a/gputools-metal-debugger-tv-compare~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b1ea049ebacf00a00ba06a3b463163f/gputools-metal-debugger-tv-compare~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-flip.png": {
+      "alt": "A screenshot of the actions menu. The Flip Horizontally menu item is highlighted.",
+      "identifier": "gputools-metal-debugger-tv-flip.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c912d707a8cb36ae5823a30b544f7e96/gputools-metal-debugger-tv-flip.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0618d64df88f164c33e5820b04ba61c2/gputools-metal-debugger-tv-flip@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a6401c26c1655e6c638a3f0fd0710432/gputools-metal-debugger-tv-flip~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e729729f8071931af5177c43fb4a20a/gputools-metal-debugger-tv-flip~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-hero.png": {
+      "alt": "A screenshot of the Texture viewer, which consists of a title bar, a canvas, and a control bar. It shows a texture with three slices, with the first texture slice selected.",
+      "identifier": "gputools-metal-debugger-tv-hero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bf5d73cdb94eb55d376867c3aafaa979/gputools-metal-debugger-tv-hero.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aef59499184046924bee608515d79e72/gputools-metal-debugger-tv-hero@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96f50660c388126df5c7b91fc22dd5ad/gputools-metal-debugger-tv-hero~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fede6faafa07b0abe3a635f9fc2f3d5d/gputools-metal-debugger-tv-hero~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-inspect-pixel.png": {
+      "alt": "A screenshot of the value inspector when the pointer is hovering over pixel 2077, 919.",
+      "identifier": "gputools-metal-debugger-tv-inspect-pixel.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a09459eb72eb43b854f50d80c8ec2d06/gputools-metal-debugger-tv-inspect-pixel.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/16d0579fff64823ea7331af582fd78e5/gputools-metal-debugger-tv-inspect-pixel@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/558db3aecf102eef4120afb4d9833138/gputools-metal-debugger-tv-inspect-pixel~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4c1344d6e406b6e1e457488c7bcf39c/gputools-metal-debugger-tv-inspect-pixel~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-issues.png": {
+      "alt": "A screenshot of the Issues popover indicating that there are pixels exceeding the display EDR headroom. There’s a button next to the message for jumping to one such pixel.",
+      "identifier": "gputools-metal-debugger-tv-issues.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3cf91998d7c8a3496834d48f56b3175/gputools-metal-debugger-tv-issues.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5ba81e16d5fa50bd047fe39c71e1292/gputools-metal-debugger-tv-issues@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7636d416a688a870199272280ba98ae5/gputools-metal-debugger-tv-issues~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6f5bc24c375282f0e88f7612f0acd9c/gputools-metal-debugger-tv-issues~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-properties.png": {
+      "alt": "A screenshot of the Texture Image Properties popover.",
+      "identifier": "gputools-metal-debugger-tv-properties.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/849e9d867646c0fe17358cee5ffdfa5d/gputools-metal-debugger-tv-properties.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd564f48112f63176408df569cf94800/gputools-metal-debugger-tv-properties@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/970d8ed876bd9adad6048d655fa3c478/gputools-metal-debugger-tv-properties~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e4d42862971acaa4dcb1f87b814c608/gputools-metal-debugger-tv-properties~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-scrub.gif": {
+      "alt": "A screen recording of the Texture viewer visualizing the different mipmap levels of a texture as the user moves the pointer along the slider.",
+      "identifier": "gputools-metal-debugger-tv-scrub.gif",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11e396c43ca42edc07fdc25f7ee4a038/gputools-metal-debugger-tv-scrub.gif"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-selection-jump.png": {
+      "alt": "A screenshot of the control bar highlighting the Jump button.",
+      "identifier": "gputools-metal-debugger-tv-selection-jump.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/612eba4f17f4579ef9c3a3df8dcd37cf/gputools-metal-debugger-tv-selection-jump.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1602e8352aa88fd5b382e6d3cd9f035/gputools-metal-debugger-tv-selection-jump@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90b2459fc643f728926d88cb47b87cbf/gputools-metal-debugger-tv-selection-jump~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0472e1548f62ea006da3a06a434a052/gputools-metal-debugger-tv-selection-jump~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-selection.png": {
+      "alt": "A screenshot of the control bar highlighting the coordinate input controls.",
+      "identifier": "gputools-metal-debugger-tv-selection.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/400d7b17c433a474b9cd5ae09cba35c1/gputools-metal-debugger-tv-selection.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65094c24c991cd75d62168e2a1a1b22f/gputools-metal-debugger-tv-selection@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c9997df5abfed90de6262d1494a3f49/gputools-metal-debugger-tv-selection~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f57d4feca83bf695059e504b43c42137/gputools-metal-debugger-tv-selection~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-tv-stack-mips.png": {
+      "alt": "A screenshot of the Texture viewer showing a mipmapped cubemap texture. The actions menu is open and the Stack Mips menu item is highlighted.",
+      "identifier": "gputools-metal-debugger-tv-stack-mips.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93a9dd863eeba3a4fc20985822b0b01b/gputools-metal-debugger-tv-stack-mips.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/641bf77f28363f8449f98946265d6a41/gputools-metal-debugger-tv-stack-mips@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7677bed725d3f7e8f0a6bf98195d0a7/gputools-metal-debugger-tv-stack-mips~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1eb54e807a4edd658be32c3e20fa33c/gputools-metal-debugger-tv-stack-mips~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-resource-inspection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders"
+      ],
+      "title": "Metal resource inspection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DMultisampleArray/title",
+          "value": "MTLTextureType2DMultisampleArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DMultisampleArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType2DMultisampleArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1typeCube/title",
+          "value": "MTLTextureTypeCube"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1typeCube/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureTypeCube"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DArray/title",
+          "value": "MTLTextureType2DArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType2DArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DMultisample/title",
+          "value": "MTLTextureType2DMultisample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type2DMultisample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType2DMultisample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type3D/title",
+          "value": "MTLTextureType3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTextureType~1type3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType3D"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

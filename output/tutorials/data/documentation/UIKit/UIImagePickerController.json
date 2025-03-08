@@ -1,0 +1,5422 @@
+{
+  "abstract": [
+    {
+      "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIImagePickerController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIImagePickerController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIImagePickerController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIImagePickerController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An image picker controller manages user interactions and delivers the results of those interactions to a delegate object. The role and appearance of an image picker controller depend on the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source type",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " you assign to it before you present it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/camera",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides a user interface for taking a new picture or movie (on devices that support media capture).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/photoLibrary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/savedPhotosAlbum",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides a user interface for choosing among saved pictures and movies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use an image picker controller containing its default controls, perform these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the device is capable of picking content from the desired source. Do this by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isSourceTypeAvailable(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class method, providing a constant from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " enumeration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check which media types are available for the source type you’re using, by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableMediaTypes(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class method. This lets you distinguish between a camera that can be used for video recording and one that can be used only for still images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tell the image picker controller to adjust the UI according to the media types you want to make available — still images, movies, or both — by setting the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Present the user interface. On iPhone or iPod touch, do this modally (full screen) by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the currently active view controller, passing your configured image picker controller as the new view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPad, the correct way to present an image picker depends on its source type, as summarized in this table:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Photo Library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Saved Photos Album",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use full screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Must use a popover",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Must use a popover",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The table indicates that on iPad, if you specify a source type of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/photoLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/savedPhotosAlbum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you must present the image picker using a popover controller (to learn how to do this, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). If you attempt to present an image picker modally (full screen) for choosing among saved pictures and movies, the system raises an exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPad, if you specify a source type of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/camera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can present the image picker modally (full screen) or by using a popover. However, Apple recommends that you present the camera interface only full screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the user taps a button to pick a newly captured or saved image or movie, or cancels the operation, dismiss the image picker using your delegate object. For newly captured media, your delegate can then save it to the photo library on the device. For previously saved media, your delegate can then use the image data according to the purpose of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 5,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on these steps, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Articles/TakingPicturesAndMovies.html#//apple_ref/doc/uid/TP40010406",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize an image picker controller to manage user interactions yourself. To do this, provide an overlay view containing the controls you want to display, and use the methods described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController#Capturing-still-images-or-movies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can display your custom overlay view in addition to, or instead of, the default controls. Custom overlay views for the ",
+              "type": "text"
+            },
+            {
+              "code": "UIImagePickerController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class are available in iOS 3.1 and later by way of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. For a code example, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-an-image-picker-controller",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "UIImagePickerController",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " class supports portrait mode only. This class is intended to be used as-is and doesn’t support subclassing. The view hierarchy for this class is private and must not be modified, with one exception. You can assign a custom view to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property and use that view to present additional information or manage the interactions between the camera interface and your code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Provide-a-delegate-object",
+          "level": 3,
+          "text": "Provide a delegate object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use an image picker controller, you must provide a delegate that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Starting in iOS 4.1, you can use the delegate to save still-image metadata to the photo library along with the image. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Observe-required-viewing-standards",
+          "level": 3,
+          "text": "Observe required viewing standards",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a view controller that renders on top of your app for the temporary purpose of selecting images, the picker controller expects your app to keep its contents visible as a prerequisite to operation. In iOS 17 and later, the picker controller ignores touch events while its opacity is anything other than fully opaque. If your app alters the controller’s visibility, such as by adjusting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of its view’s layer, the picker controller disables user interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adjust-flash-mode",
+          "level": 3,
+          "text": "Adjust flash mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 4.0 and later, you can provide custom controls to let the user adjust flash mode (on devices that have a flash LED), pick which camera to use (on devices that have a front and rear camera), and switch between still image and movie capture. You can also manage these settings programmatically. You can also manipulate the flash directly to provide effects, such as a strobe light. Present a picker interface set to use video capture mode. Then, turn the flash LED on or off by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraFlashMode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum/on",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum/off",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Work-with-movies",
+          "level": 3,
+          "text": "Work with movies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Movie capture has a default duration limit of 10 minutes but can be adjusted using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoMaximumDuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. When a person taps the Share button to send a movie to MMS, YouTube, or another destination, the system applies duration and video quality limitations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default camera interface supports editing movies in the photo library. Editing involves trimming from the start or end of the movie, then saving the trimmed movie. To display an interface dedicated to movie editing, rather than one that also supports recording new movies, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class instead of this one. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Work-with-Live-Photos",
+          "level": 3,
+          "text": "Work with Live Photos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Live Photos is a Camera app feature on supported devices, enabling a picture to be not just a single moment in time but to include motion and sound from the moments just before and after its capture. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Photos/PHLivePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object represents a Live Photo, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PHLivePhotoView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a system-standard, interactive user interface for displaying a Live Photo and playing back its content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although Live Photos include sound and motion, they remain photos. When you use an image picker controller to capture or choose still images (by including only the ",
+              "type": "text"
+            },
+            {
+              "code": "kUTTypeImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array), assets that were captured as Live Photos continue to appear in the picker. However, when the user chooses an asset, your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object receives only a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object containing a still-image representation of the Live Photo.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain the full motion and sound content when the user chooses a Live Photo with the image picker, you must include ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "both",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the ",
+              "type": "text"
+            },
+            {
+              "code": "kUTTypeImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "kUTTypeLivePhoto",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey/livePhoto",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-fully-customized-media-capture-and-browsing",
+          "level": 3,
+          "text": "Perform fully customized media capture and browsing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform fully customized image or movie capture, instead use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW10",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Camera access using the AVFoundation framework is available starting in iOS 4.0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a fully customized image picker for browsing the photo library, use classes from the Photos framework. For example, you could create a custom image picker that displays larger thumbnail images generated and cached by iOS, that makes use of image metadata including timestamp and location information, or that integrates with other features such as MapKit and iCloud Photo Sharing. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotoKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Media browsing using the Photos framework is available starting in iOS 8.0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/PhotoKit"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHLivePhoto": {
+      "abstract": [
+        {
+          "text": "A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHLivePhoto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHLivePhoto",
+      "type": "topic",
+      "url": "/documentation/Photos/PHLivePhoto"
+    },
+    "doc://com.apple.documentation/documentation/PhotosUI/PHLivePhotoView": {
+      "abstract": [
+        {
+          "text": "A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PHLivePhotoView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHLivePhotoView",
+      "type": "topic",
+      "url": "/documentation/PhotosUI/PHLivePhotoView"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity": {
+      "abstract": [
+        {
+          "text": "The opacity of the receiver. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer/opacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opacity",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer/opacity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController#Capturing-still-images-or-movies": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController#Capturing-still-images-or-movies",
+      "kind": "section",
+      "title": "Capturing still images or movies",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller#Capturing-still-images-or-movies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraCaptureMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify the category of media for the camera to capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraCaptureMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraCaptureMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraCaptureMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.CameraCaptureMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraDevice-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify the camera to use for image or movie capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraDevice-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.CameraDevice",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameradevice-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that specify the flash mode to use with the active camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraFlashMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraFlashMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.CameraFlashMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum/off": {
+      "abstract": [
+        {
+          "text": "Specifies that flash illumination is always off, no matter what the ambient light conditions are.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "off"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum/off",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerCameraFlashModeOff"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.CameraFlashMode.off",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/off"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum/on": {
+      "abstract": [
+        {
+          "text": "Specifies that flash illumination is always on, no matter what the ambient light conditions are.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "on"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum/on",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerCameraFlashModeOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.CameraFlashMode.on",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/on"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/ImageURLExportPreset": {
+      "abstract": [
+        {
+          "text": "Constants that indicate how to export images to the client app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageURLExportPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/ImageURLExportPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageURLExportPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.ImageURLExportPreset",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/imageurlexportpreset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey/livePhoto": {
+      "abstract": [
+        {
+          "text": "The Live Photo representation of the selected or captured photo.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "livePhoto"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIImagePickerControllerInfoKey",
+          "text": "InfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/InfoKey/livePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerLivePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "livePhoto",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/infokey/livephoto"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/QualityType": {
+      "abstract": [
+        {
+          "text": "Constants that describe video quality settings for movies that are recorded with the built-in camera, or that are transcoded when they’re displayed in the image picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QualityType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/QualityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QualityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.QualityType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/qualitytype"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the source to use when picking an image or when determining available media types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.SourceType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/camera": {
+      "abstract": [
+        {
+          "text": "Specifies the device’s built-in camera as the source for the image picker controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "camera"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/camera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerSourceTypeCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.SourceType.camera",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/camera"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/photoLibrary": {
+      "abstract": [
+        {
+          "text": "Specifies the device’s photo library as the source for the image picker controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/photoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerSourceTypePhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.SourceType.photoLibrary",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/photolibrary"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/savedPhotosAlbum": {
+      "abstract": [
+        {
+          "text": "Specifies the device’s Camera Roll album as the source for the image picker controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "savedPhotosAlbum"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum/savedPhotosAlbum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerSourceTypeSavedPhotosAlbum"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerController.SourceType.savedPhotosAlbum",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/savedphotosalbum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsEditing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user is allowed to edit a selected still image or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsEditing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsEditing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsEditing"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsEditing",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/allowsediting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsImageEditing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user is allowed to edit a selected image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "allowsImageEditing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsImageEditing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsImageEditing",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/allowsimageediting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableCaptureModes(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the capture modes supported by the specified camera device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableCaptureModes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerCameraDevice",
+          "text": "CameraDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableCaptureModes(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableCaptureModesForCameraDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableCaptureModes(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/availablecapturemodes(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableMediaTypes(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the available media types for the specified source type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableMediaTypes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerSourceType",
+          "text": "SourceType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableMediaTypes(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableMediaTypesForSourceType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableMediaTypes(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/availablemediatypes(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraCaptureMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The capture mode used by the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraCaptureMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerCameraCaptureMode",
+          "text": "CameraCaptureMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraCaptureMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraCaptureMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraCaptureMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraDevice-swift.property": {
+      "abstract": [
+        {
+          "text": "The camera used by the image picker controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerCameraDevice",
+          "text": "CameraDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraDevice-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraDevice",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameradevice-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraFlashMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The flash mode used by the active camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraFlashMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerCameraFlashMode",
+          "text": "CameraFlashMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraFlashMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraFlashMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraFlashMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView": {
+      "abstract": [
+        {
+          "text": "The view to display on top of the default image picker interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraOverlayView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraOverlayView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraoverlayview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform": {
+      "abstract": [
+        {
+          "text": "The transform to apply to the camera’s preview image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraViewTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraViewTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraViewTransform",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/cameraviewtransform"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate": {
+      "abstract": [
+        {
+          "text": "The image picker’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIImagePickerControllerDelegate",
+          "text": "UIImagePickerControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UINavigationControllerDelegate",
+          "text": "UINavigationControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/imageExportPreset": {
+      "abstract": [
+        {
+          "text": "The preset to use when preparing images for export to your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageExportPreset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerImageURLExportPreset",
+          "text": "ImageURLExportPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/imageExportPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageExportPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageExportPreset",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/imageexportpreset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isCameraDeviceAvailable(_:)": {
+      "abstract": [
+        {
+          "text": "Queries whether the specified camera is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraDeviceAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerCameraDevice",
+          "text": "CameraDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isCameraDeviceAvailable(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isCameraDeviceAvailable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraDeviceAvailable(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/iscameradeviceavailable(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isFlashAvailable(for:)": {
+      "abstract": [
+        {
+          "text": "Queries whether the specified camera has flash illumination capability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFlashAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerCameraDevice",
+          "text": "CameraDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isFlashAvailable(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isFlashAvailableForCameraDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFlashAvailable(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/isflashavailable(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isSourceTypeAvailable(_:)": {
+      "abstract": [
+        {
+          "text": "Queries whether the device supports picking media using the specified source type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSourceTypeAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerSourceType",
+          "text": "SourceType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isSourceTypeAvailable(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isSourceTypeAvailable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSourceTypeAvailable(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/issourcetypeavailable(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes": {
+      "abstract": [
+        {
+          "text": "An array that indicates the media types to access by the media picker controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaTypes",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/mediatypes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the image picker displays the default camera controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsCameraControls"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsCameraControls"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsCameraControls",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/showscameracontrols"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property": {
+      "abstract": [
+        {
+          "text": "The type of picker interface to be displayed by the controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerSourceType",
+          "text": "SourceType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceType"
+        }
+      ],
+      "role": "symbol",
+      "title": "sourceType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/sourcetype-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/startVideoCapture()": {
+      "abstract": [
+        {
+          "text": "Starts video capture using the camera specified by the camera device property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startVideoCapture"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/startVideoCapture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startVideoCapture"
+        }
+      ],
+      "role": "symbol",
+      "title": "startVideoCapture()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/startvideocapture()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/stopVideoCapture()": {
+      "abstract": [
+        {
+          "text": "Stops video capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopVideoCapture"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/stopVideoCapture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopVideoCapture"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopVideoCapture()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/stopvideocapture()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()": {
+      "abstract": [
+        {
+          "text": "Captures a still image using the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "takePicture"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "takePicture"
+        }
+      ],
+      "role": "symbol",
+      "title": "takePicture()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/takepicture()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoExportPreset": {
+      "abstract": [
+        {
+          "text": "The preset to use when preparing video for export to your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoExportPreset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoExportPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoExportPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoExportPreset",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/videoexportpreset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoMaximumDuration": {
+      "abstract": [
+        {
+          "text": "The maximum duration, in seconds, for a video recording.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoMaximumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoMaximumDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoMaximumDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoMaximumDuration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/videomaximumduration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoQuality": {
+      "abstract": [
+        {
+          "text": "The video recording and transcoding quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "videoQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImagePickerController",
+          "text": "UIImagePickerController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImagePickerControllerQualityType",
+          "text": "QualityType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "videoQuality",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller/videoquality"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that your delegate object must implement to interact with the image picker interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImagePickerControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationController": {
+      "abstract": [
+        {
+          "text": "An object that manages the display of content in a popover.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopoverpresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuseractivityrestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interface for trimming video frames and encoding a previously recorded movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVideoEditorController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIVideoEditorController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIVideoEditorController",
+      "type": "topic",
+      "url": "/documentation/uikit/uivideoeditorcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Presents a view controller modally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/present(_:animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentViewController:animated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "present(_:animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/present(_:animated:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/customizing-an-image-picker-controller": {
+      "abstract": [
+        {
+          "text": "Manage user interactions and present custom information when taking pictures by adding an overlay view to your image picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/customizing-an-image-picker-controller",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing an image picker controller",
+      "type": "topic",
+      "url": "/documentation/uikit/customizing-an-image-picker-controller"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW10": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW10",
+      "title": "Still and Video Media Capture",
+      "titleInlineContent": [
+        {
+          "text": "Still and Video Media Capture",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW10"
+    },
+    "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Articles/TakingPicturesAndMovies.html#//apple_ref/doc/uid/TP40010406": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Articles/TakingPicturesAndMovies.html#//apple_ref/doc/uid/TP40010406",
+      "title": "Taking Pictures and Movies",
+      "titleInlineContent": [
+        {
+          "text": "Taking Pictures and Movies",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Articles/TakingPicturesAndMovies.html#//apple_ref/doc/uid/TP40010406"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+        "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Images-and-video",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController"
+      ],
+      "title": "Images and video"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-interactions-with-the-picker",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate"
+      ],
+      "title": "Responding to interactions with the picker"
+    },
+    {
+      "anchor": "Setting-the-picker-source",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableMediaTypes(for:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isSourceTypeAvailable(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum"
+      ],
+      "title": "Setting the picker source"
+    },
+    {
+      "anchor": "Configuring-the-picker",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsEditing"
+      ],
+      "title": "Configuring the picker"
+    },
+    {
+      "anchor": "Configuring-the-video-capture-options",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoQuality",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/QualityType",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoMaximumDuration"
+      ],
+      "title": "Configuring the video capture options"
+    },
+    {
+      "anchor": "Customizing-the-camera-controls",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/customizing-an-image-picker-controller",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform"
+      ],
+      "title": "Customizing the camera controls"
+    },
+    {
+      "anchor": "Capturing-still-images-or-movies",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/startVideoCapture()",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/stopVideoCapture()"
+      ],
+      "title": "Capturing still images or movies"
+    },
+    {
+      "anchor": "Configuring-the-camera-to-use",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isCameraDeviceAvailable(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraDevice-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraDevice-swift.enum"
+      ],
+      "title": "Configuring the camera to use"
+    },
+    {
+      "anchor": "Configuring-the-camera-capture-mode",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableCaptureModes(for:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraCaptureMode-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraCaptureMode-swift.enum"
+      ],
+      "title": "Configuring the camera capture mode"
+    },
+    {
+      "anchor": "Configuring-the-flash-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isFlashAvailable(for:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraFlashMode-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum"
+      ],
+      "title": "Configuring the flash behavior"
+    },
+    {
+      "anchor": "Configuring-the-export-presets",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/imageExportPreset",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/ImageURLExportPreset",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoExportPreset"
+      ],
+      "title": "Configuring the export presets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIImagePickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-interactions-with-the-picker",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/delegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerControllerDelegate"
+              ],
+              "title": "Responding to interactions with the picker"
+            },
+            {
+              "anchor": "Setting-the-picker-source",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableMediaTypes(for:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isSourceTypeAvailable(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/sourceType-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/SourceType-swift.enum"
+              ],
+              "title": "Setting the picker source"
+            },
+            {
+              "anchor": "Configuring-the-picker",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/mediaTypes",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsEditing",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/allowsImageEditing"
+              ],
+              "title": "Configuring the picker"
+            },
+            {
+              "anchor": "Configuring-the-video-capture-options",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoQuality",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/QualityType",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoMaximumDuration"
+              ],
+              "title": "Configuring the video capture options"
+            },
+            {
+              "anchor": "Customizing-the-camera-controls",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/customizing-an-image-picker-controller",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/showsCameraControls",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraOverlayView",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraViewTransform"
+              ],
+              "title": "Customizing the camera controls"
+            },
+            {
+              "anchor": "Capturing-still-images-or-movies",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/takePicture()",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/startVideoCapture()",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/stopVideoCapture()"
+              ],
+              "title": "Capturing still images or movies"
+            },
+            {
+              "anchor": "Configuring-the-camera-to-use",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isCameraDeviceAvailable(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraDevice-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraDevice-swift.enum"
+              ],
+              "title": "Configuring the camera to use"
+            },
+            {
+              "anchor": "Configuring-the-camera-capture-mode",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/availableCaptureModes(for:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraCaptureMode-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraCaptureMode-swift.enum"
+              ],
+              "title": "Configuring the camera capture mode"
+            },
+            {
+              "anchor": "Configuring-the-flash-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/isFlashAvailable(for:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/cameraFlashMode-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/CameraFlashMode-swift.enum"
+              ],
+              "title": "Configuring the flash behavior"
+            },
+            {
+              "anchor": "Configuring-the-export-presets",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/imageExportPreset",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/ImageURLExportPreset",
+                "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController/videoExportPreset"
+              ],
+              "title": "Configuring the export presets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Images-and-video",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIVideoEditorController"
+              ],
+              "title": "Images and video"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIImagePickerController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UINavigationController",
+                    "text": "UINavigationController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1imageExportPreset/title",
+          "value": "imageExportPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1imageExportPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageExportPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1videoExportPreset/title",
+          "value": "videoExportPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1videoExportPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoExportPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraViewTransform/title",
+          "value": "cameraViewTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraViewTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraViewTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraOverlayView/title",
+          "value": "cameraOverlayView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraOverlayView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/title",
+          "value": "UINavigationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1isSourceTypeAvailable(_:)/title",
+          "value": "isSourceTypeAvailable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1isSourceTypeAvailable(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isSourceTypeAvailable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum/title",
+          "value": "UIImagePickerControllerSourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerSourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerSourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1QualityType/title",
+          "value": "UIImagePickerControllerQualityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1QualityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerQualityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1QualityType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerQualityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum~1savedPhotosAlbum/title",
+          "value": "UIImagePickerControllerSourceTypeSavedPhotosAlbum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum~1savedPhotosAlbum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerSourceTypeSavedPhotosAlbum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1availableMediaTypes(for:)/title",
+          "value": "availableMediaTypesForSourceType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1availableMediaTypes(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableMediaTypesForSourceType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1startVideoCapture()/title",
+          "value": "startVideoCapture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1startVideoCapture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startVideoCapture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/title",
+          "value": "UIImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationController/title",
+          "value": "UIPopoverPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum~1photoLibrary/title",
+          "value": "UIImagePickerControllerSourceTypePhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum~1photoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerSourceTypePhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHLivePhoto/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum~1off/title",
+          "value": "UIImagePickerControllerCameraFlashModeOff"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum~1off/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraFlashModeOff"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1isCameraDeviceAvailable(_:)/title",
+          "value": "isCameraDeviceAvailable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1isCameraDeviceAvailable(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isCameraDeviceAvailable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate/title",
+          "value": "UIImagePickerControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraFlashMode-swift.property/title",
+          "value": "cameraFlashMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraFlashMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraFlashMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1showsCameraControls/title",
+          "value": "showsCameraControls"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1showsCameraControls/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsCameraControls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1takePicture()/title",
+          "value": "takePicture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1takePicture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "takePicture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraDevice-swift.property/title",
+          "value": "cameraDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraDevice-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1allowsEditing/title",
+          "value": "allowsEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1allowsEditing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsEditing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVideoEditorController/title",
+          "value": "UIVideoEditorController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVideoEditorController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVideoEditorController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVideoEditorController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVideoEditorController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/title",
+          "value": "presentViewController:animated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1present(_:animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentViewController:animated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1mediaTypes/title",
+          "value": "mediaTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1mediaTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraCaptureMode-swift.enum/title",
+          "value": "UIImagePickerControllerCameraCaptureMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraCaptureMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraCaptureMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraCaptureMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraCaptureMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/title",
+          "value": "UIImagePickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1sourceType-swift.property/title",
+          "value": "sourceType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1sourceType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum~1on/title",
+          "value": "UIImagePickerControllerCameraFlashModeOn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum~1on/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraFlashModeOn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraDevice-swift.enum/title",
+          "value": "UIImagePickerControllerCameraDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraDevice-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraDevice-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1videoQuality/title",
+          "value": "videoQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1videoQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum~1camera/title",
+          "value": "UIImagePickerControllerSourceTypeCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1SourceType-swift.enum~1camera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerSourceTypeCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1videoMaximumDuration/title",
+          "value": "videoMaximumDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1videoMaximumDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "videoMaximumDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer~1opacity/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "opacity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1PhotosUI~1PHLivePhotoView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey~1livePhoto/title",
+          "value": "UIImagePickerControllerLivePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1InfoKey~1livePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerLivePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/title",
+          "value": "UIUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1ImageURLExportPreset/title",
+          "value": "UIImagePickerControllerImageURLExportPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1ImageURLExportPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerImageURLExportPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1ImageURLExportPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerImageURLExportPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1availableCaptureModes(for:)/title",
+          "value": "availableCaptureModesForCameraDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1availableCaptureModes(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "availableCaptureModesForCameraDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1stopVideoCapture()/title",
+          "value": "stopVideoCapture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1stopVideoCapture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopVideoCapture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraCaptureMode-swift.property/title",
+          "value": "cameraCaptureMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1cameraCaptureMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraCaptureMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1isFlashAvailable(for:)/title",
+          "value": "isFlashAvailableForCameraDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1isFlashAvailable(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isFlashAvailableForCameraDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum/title",
+          "value": "UIImagePickerControllerCameraFlashMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraFlashMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImagePickerController~1CameraFlashMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerControllerCameraFlashMode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiimagepickercontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiimagepickercontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

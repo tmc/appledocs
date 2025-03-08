@@ -1,0 +1,495 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_2-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Ventura 13.2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 13.1 SDK provides support to develop apps for Mac computers running macOS Ventura 13.2. The SDK comes bundled with Xcode 14.2, available from the Mac App Store. For information on the compatibility requirements for Xcode 14.2, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_2-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "ServiceManagement",
+          "level": 3,
+          "text": "ServiceManagement",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a regression in Ventura 13.1 that prevented daemons from being registered with SMAppService. Also fixed, toggling items on or off in Login Items may cause items to be ungrouped or deleted. (102938063)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Feature",
+          "level": 4,
+          "text": "New Feature",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications written using Swift App Lifecycle can now support scriptable application properties and elements.  Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@NSApplicationDelegateAdaptor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to bridge to your custom application delegate, then implement ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "application(_:delegateHandlesKey:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the necessary KVC accessors as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:delegateHandlesKey:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_implement/SAppsImplement.html#//apple_ref/doc/uid/20000037-BBCJEEEC",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (102218233)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:delegateHandlesKey:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates if the app supports the specified scripting key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegateHandlesKey"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:delegateHandlesKey:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:delegateHandlesKey:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/application(_:delegateHandlesKey:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-14_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 14.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-14_2-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Ventura 13.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-13_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_implement/SAppsImplement.html#//apple_ref/doc/uid/20000037-BBCJEEEC": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_implement/SAppsImplement.html#//apple_ref/doc/uid/20000037-BBCJEEEC",
+      "title": "Implementing a Scriptable Application",
+      "titleInlineContent": [
+        {
+          "text": "Implementing a Scriptable Application",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_implement/SAppsImplement.html#//apple_ref/doc/uid/20000037-BBCJEEEC"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-13",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-13-release-notes"
+      ],
+      "title": "macOS 13"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:delegateHandlesKey:)/title",
+          "value": "application:delegateHandlesKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:delegateHandlesKey:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sender"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "delegateHandlesKey:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "key"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

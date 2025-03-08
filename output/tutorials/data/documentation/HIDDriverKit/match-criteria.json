@@ -1,0 +1,424 @@
+{
+  "abstract": [
+    {
+      "text": "Specify the criteria that the system uses to match your driver to a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/match-criteria"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Match Criteria"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system detects a new device, it looks for drivers that match the device’s features and capabilities. You specify the features and capabilities that your driver supports using the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key contains the array of driver personality dictionaries, the keys of which correspond to device-specific attributes. For example, you might specify the HID usage types that your driver supports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys below are constants defined in the ",
+              "type": "text"
+            },
+            {
+              "code": "IOHIDDeviceKeys.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file of HIDDriverKit. To match against a specific key, include the value of the key in the personality dictionary. For example, to match against ",
+              "type": "text"
+            },
+            {
+              "code": "kIOHIDPrimaryUsageKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", include the ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit/kiohidcountrycodekey": {
+      "abstract": [
+        {
+          "text": "A key that specifies the country code or region of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidcountrycodekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDCountryCodeKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidcountrycodekey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagekey": {
+      "abstract": [
+        {
+          "text": "A key that specifies a usage type of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDDeviceUsageKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohiddeviceusagekey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagepagekey": {
+      "abstract": [
+        {
+          "text": "A key that specifies a usage page of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagepagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDDeviceUsagePageKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohiddeviceusagepagekey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagepairskey": {
+      "abstract": [
+        {
+          "text": "A key that contains the top-level usages of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagepairskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDDeviceUsagePairsKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohiddeviceusagepairskey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidlocationidkey": {
+      "abstract": [
+        {
+          "text": "A key that specifies the location ID of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidlocationidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDLocationIDKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidlocationidkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidmanufacturerkey": {
+      "abstract": [
+        {
+          "text": "A key that specifies the manufacturer of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidmanufacturerkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDManufacturerKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidmanufacturerkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidprimaryusagekey": {
+      "abstract": [
+        {
+          "text": "A key that specifies the primary usage type of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidprimaryusagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDPrimaryUsageKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidprimaryusagekey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidprimaryusagepagekey": {
+      "abstract": [
+        {
+          "text": "A key that specifies the primary usage page of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidprimaryusagepagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDPrimaryUsagePageKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidprimaryusagepagekey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidproductidkey": {
+      "abstract": [
+        {
+          "text": "A key for specifying the product identifier of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidproductidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDProductIDKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidproductidkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidproductkey": {
+      "abstract": [
+        {
+          "text": "A key that describes the product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidproductkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDProductKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidproductkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidserialnumberkey": {
+      "abstract": [
+        {
+          "text": "A key that specifies the device's serial number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidserialnumberkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDSerialNumberKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidserialnumberkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidtransportkey": {
+      "abstract": [
+        {
+          "text": "A key for specifying the transport mechanism of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidtransportkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDTransportKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidtransportkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidvendoridkey": {
+      "abstract": [
+        {
+          "text": "A key for specifying the vendor ID of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidvendoridkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDVendorIDKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidvendoridkey"
+    },
+    "doc://com.apple.documentation/documentation/iokit/kiohidversionnumberkey": {
+      "abstract": [
+        {
+          "text": "A key for specifying the version number of the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/kiohidversionnumberkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOHIDVersionNumberKey",
+      "type": "topic",
+      "url": "/documentation/iokit/kiohidversionnumberkey"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hid-usage-tables": {
+      "abstract": [
+        {
+          "text": "Identify the types of data that HID devices can report to your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hid-usage-tables",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HID Usage Tables",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/hid-usage-tables"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "HID-Usage-Tables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hid-usage-tables"
+      ],
+      "title": "HID Usage Tables"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Manufacturer-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/iokit/kiohidtransportkey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidvendoridkey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidproductidkey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidversionnumberkey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidmanufacturerkey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidproductkey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidserialnumberkey"
+      ],
+      "title": "Manufacturer Keys"
+    },
+    {
+      "anchor": "Location-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/iokit/kiohidcountrycodekey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidlocationidkey"
+      ],
+      "title": "Location Keys"
+    },
+    {
+      "anchor": "Usage-Keys",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagekey",
+        "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagepagekey",
+        "doc://com.apple.documentation/documentation/iokit/kiohiddeviceusagepairskey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidprimaryusagekey",
+        "doc://com.apple.documentation/documentation/iokit/kiohidprimaryusagepagekey"
+      ],
+      "title": "Usage Keys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/match-criteria"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

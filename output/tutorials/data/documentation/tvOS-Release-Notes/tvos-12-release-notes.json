@@ -1,0 +1,791 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvOS-Release-Notes/documentation/tvos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "tvOS 12 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tvOS 12 SDK provides support for developing tvOS apps for Apple TV devices running tvOS 12. For information about new features in tvOS 12, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/tvos/whats-new/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The SDK comes bundled with Xcode 10 available from the Mac App Store. For information about Xcode 10, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dolby-Atmos",
+          "level": 3,
+          "text": "Dolby Atmos",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some iTunes Store movies are now available with Dolby Atmos. If you encounter any issues when playing Atmos-capable titles, file a bug that includes a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?platform=tvos&name=sysdiagnose",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and a detailed description of your development hardware configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Network-Based-Device-Pairing",
+          "level": 3,
+          "text": "Network-Based Device Pairing",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PIN pairing with a remote Apple TV might not successfully establish the connection on the first attempt. (40228498)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Exit and reenter the Remotes and Devices pairing screen on Apple TV, then reattempt the pair request in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "URLSession",
+          "level": 3,
+          "text": "URLSession",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " HTTP/2 implementation has been updated to support HTTP/2 connection reuse per RFC 7540 Section 9.1.1. This requires an HTTP/2 server to present a certificate which covers more than one server hostname. The certificate may use the Subject Alternative Name extension or wildcarded domain names. In addition, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requires name resolution to resolve the different hostnames to the same IP address. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " might reuse HTTP/2 connections across different domain names when these conditions are satisfied. (37507838)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ftp://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "file://",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " URL schemes for Proxy Automatic Configuration (PAC) are deprecated. HTTP and HTTPS are the only supported URL schemes for PAC. This affects all PAC configurations including, but not limited to, configurations set via Settings, System Preferences, profiles, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (37811761)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "On-Demand-Resources",
+          "level": 3,
+          "text": "On-Demand Resources",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The new build system in Xcode doesn’t support On Demand Resources (ODR). (31508570)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use the legacy build system for projects requiring ODR (File > Project/Workspace Settings).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Downloads a proxy autoconfiguration script and executes it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "proxyAutoConfigURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "targetURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "cb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+          "text": "CFProxyAutoConfigurationResultCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "clientContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamClientContext",
+          "text": "CFStreamClientContext"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+          "text": "CFRunLoopSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-10-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary containing information about the proxy to use within this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionProxyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionProxyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_1_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_1_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "tvOS 12.1.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/tvos-release-notes/tvos-12_1_1-release-notes"
+    },
+    "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_1_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_1_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "tvOS 12.1.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/tvos-release-notes/tvos-12_1_2-release-notes"
+    },
+    "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "tvOS 12.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/tvos-release-notes/tvos-12_2-release-notes"
+    },
+    "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_4-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "tvOS 12.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/tvos-release-notes/tvos-12_4-release-notes"
+    },
+    "doc://com.apple.tvOS-Release-Notes/documentation/tvos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the tvOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvOS-Release-Notes/documentation/tvos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "tvOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/tvos-release-notes"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/?platform=tvos&name=sysdiagnose": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?platform=tvos&name=sysdiagnose",
+      "title": "sysdiagnose",
+      "titleInlineContent": [
+        {
+          "text": "sysdiagnose",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/?platform=tvos&name=sysdiagnose"
+    },
+    "https://developer.apple.com/tvos/whats-new/": {
+      "identifier": "https://developer.apple.com/tvos/whats-new/",
+      "title": "What’s New in tvOS",
+      "titleInlineContent": [
+        {
+          "text": "What’s New in tvOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tvos/whats-new/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "tvOS-12",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_4-release-notes",
+        "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_2-release-notes",
+        "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_1_2-release-notes",
+        "doc://com.apple.tvOS-Release-Notes/documentation/tvOS-Release-Notes/tvos-12_1_1-release-notes"
+      ],
+      "title": "tvOS 12"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/title",
+          "value": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+              "text": "CFRunLoopSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "proxyAutoConfigURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+              "text": "CFProxyAutoConfigurationResultCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cb"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CFStreamClientContext",
+              "text": "CFStreamClientContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "clientContext"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

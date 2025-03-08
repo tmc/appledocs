@@ -1,0 +1,1817 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize your app’s 3D augmented reality content to render efficiently on visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-RealityKit-content-on-visionOS"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reducing the rendering cost of RealityKit content on visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The complexity of the assets and features you use in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " have a big impact on the work your app and the render server do to render each frame. On visionOS, the system continuously renders 3D content in response to changes in head position and also incorporates any changes you make through system updates. Performance bottlenecks that prevent timely rendering and responsive feedback interfere with the spatial experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify any performance bottlenecks, use the RealityKit Trace template to profile your app. The RealityKit Metrics instrument that it includes collects data on 3D mesh rendering, spatial systems, entity commits, animations, physics, and particles effects work. If you encounter performance bottlenecks in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scenes, attempt to reduce the overhead in the bottleneck area to improve the rendering and responsiveness of your app. With careful balancing, your app can maintain utility and realism without exhausting the resources available on the system. Minimize overhead in less noticeable areas while prioritizing aspects of your app that provide critical functionality and an engaging experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how input propagates through the system and updates content on visionOS, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on using the RealityKit Trace template in Instruments to profile your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10099: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10099",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10100: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10100",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10274: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10274",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10160: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10160/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10080: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10080/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Reduce-the-complexity-of-meshes-and-materials",
+          "level": 3,
+          "text": "Reduce the complexity of meshes and materials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce the render server’s CPU overhead, lower draw call counts. One way to do this is to combine parts of your mesh that share a material. The render server performs a draw call for each individual part and uses the CPU to setup each call it sends to the GPU. While combining parts can improve performance, avoid combining parts that are far apart in your scene or that become too large to stay in the field of view when combined. The system renders the entire mesh for a part that is only partially in the field of view. It doesn’t render a part that completely falls outside the field of view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce both the CPU time the render server spends to create data for the draw calls and rendering work on the GPU, lower vertex and triangle counts, and optimize your meshes for overdraw. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Overdraw",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is drawing pixels multiple times to produce the final result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify areas of complex mesh rendering, check the RealityKit Metrics instrument for 3D Render Encoding (CPU), 3D Render GPU (GPU), and GPU Work Stall (CPU) bottlenecks. The instrument collects metrics on the number of 3D Mesh Draw calls, 3D Mesh Triangles, and 3D Mesh Vertices. Expand the view of the RealityKit Metrics instrument in the timeline pane to reveal graphs of this data under the 3D Render section. Select the section to view these metrics under Summary: Reality Module Metrics in the detail pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-render-complexity",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, use less than:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "250 draw calls in the Shared Space (or 500 in a Full Space)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "250k vertices and 250k triangles in the Shared Space (or 500k in a Full Space)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Find a balance between the other work your app needs to complete and the features of your 3D meshes. Complex meshes and materials in addition to frequent mesh draw calls can create CPU performance bottlenecks. The GPU overhead of visual effects the system applies to 3D content can make the effects of these complexities worse.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Under certain conditions, the system applies visual effects automatically, for example, when an app’s scenes overlap a scene from another app or a person’s surroundings. In these cases, you can turn off other effects, such as grounding shadows. To turn off grounding shadows, toggle the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/GroundingShadowComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " setting in Reality Composer Pro. You can efficiently use Physically Based materials in Reality Composer Pro for smaller, fully opaque content. For larger content or content you choose to make transparent, the environmental lighting these materials use is expensive. Consider using a custom material with an unlit surface and add lighting textures or other less expensive effects to produce a similar effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-assets-efficiently",
+          "level": 3,
+          "text": "Load assets efficiently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complex assets take a long time to load, contribute to longer app launches, and can trigger expensive render updates. To reduce asset loading times and their impact:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Export files from Reality Composer Pro to use in your visionOS project. Reality Composer Pro optimizes the content in these files for fast loading and lower memory costs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimize the number and size of expensive file types in your assets, such as textures, meshes, audio, and video files. Reality Composer Pro performs texture compression automatically when you use it to export your assets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimize the number of entities, textures, and primitives that USD models contain and the number of distinct and custom materials they use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preload assets that contain custom materials compiling shaders at runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use asynchronous loading APIs to avoid blocking the main thread. This can be especially useful when you need to load multiple assets together.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reuse assets as much as possible for entities that can share the same resources. Entities that use the same assets and models can load the file once and share instances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The complexity of an asset is primarily depends on its size and the amount of sub-assets it contains. When a RealityView loads an asset, your app’s process performs the work to load the asset but the system still registers the asset entities with the render server. The RealityKit Metrics instrument might detect a bottleneck, or stall, in the render server while loading an expensive asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Minimize-updates",
+          "level": 3,
+          "text": "Minimize updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your custom systems modify entities and audio components, your app uses the CPU to encode the update. Then the render server performs additional work on the CPU to decode it and apply the changes to your content. To reduce the number of updates that your 3D RealityKit scenes make per frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimize the amount of entity creation and destruction that your app does per frame, especially for attachments. Create entities in advance, and hide or show them as needed by adding or removing them from the hierarchy or toggling the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/isEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform work in custom systems only when you require it, rather than on every single frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change properties deliberately and avoid altering them unnecessarily.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce the number of entities your app updates in response to events and actions. One way to accomplish this is to flatten your mesh entity hierarchies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lower the update rates of code based animations and reduce the number of entities that animations update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid triggering excessive ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " redraw when updating RealityKit entities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Certain actions initiate updates indirectly. For example, a physics simulation might cause transform updates.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify areas of frequent and complex updates, check the RealityKit Metrics instrument for Entity Commits (CPU) and  Custom RealityKit Systems (CPU) bottlenecks. The instrument collects metrics on the number of app updates the render server receives and the number of entities that it creates and destroys. Expand the view of the RealityKit Metrics instrument in the timeline pane to reveal graphs of this data under the Entity Commits section. Select the section to view a summary of these metrics in the detail pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-entity-commits",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of updates the render server gets from all apps over a particular interval.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "App Updates Received",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of entities the render server creates and destroys across frames.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Shared Entities",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Depending on the type of content, you might see additional bottlenecks that result from these updates. Transform updates, animations, material updates, asset loading, and view hierarchy updates also cause the render server to redraw 3D content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Optimize-animations",
+          "level": 3,
+          "text": "Optimize animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Minimize the CPU overhead of your animations and the total number of entities your animation affects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For transform and material animations, minimize the number of entities you impact to lower the cost your app incurs. For example, you might use a custom RealityKit system to trigger and run these animations and call  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/HasTransform/move(to:relativeTo:)-6lohd",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or make changes to materials, rotation, scale and transform properties in your app’s update loop. Each entity you impact adds to the work your custom systems do and results in additional entity commits between your app and the render server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For code based animations, synchronize updates with the device’s display refresh rate. Inconsistent animation update intervals create a poor visual experience. Avoid creating material animations by generating a sequence of new materials at runtime. Instead, use a single material and animate a set of parameters using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ParameterSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MaterialParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Retain a copy of the material structs in your app to reuse across frames. This approach avoids redundant allocations and unnecessary overhead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Skeletal animations, reduce the total number of vertices in mesh geometries, weights per vertex, and separate the animations in content where possible. The render server does most of the work to implement these animations running shader deformers on the GPU. Limiting the cost of these operations is important; their overhead is greater when operating on more complex mesh geometries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify areas of frequent and complex updates, check the RealityKit Metrics instrument for RealityKit Animations (GPU) and RealityKit Animations (CPU) bottlenecks. The RealityKit Metrics instrument collects metrics on number of skeletal animations running. Expand the view of the RealityKit Metrics instrument in the timeline pane to reveal graphs of this data under the RealityKit Animation section. Select the section to view a summary of these metrics in the detail pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-animations",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-collisions",
+          "level": 3,
+          "text": "Reduce collisions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collisions between objects in the Shared Space result in expensive physics calculations. To reduce the number of collisions and the work the system performs to compute collisions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove colliders and dynamic rigid bodies from a scene that aren’t necessary to produce the experience you want to create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Space objects apart or organize objects into groups to avoid clustering. For example, 200 rigid bodies bouncing about in a single box results in more collisions than 50 rigid bodies bouncing around in 4 separate boxes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Try different shapes. Choose collision shapes that minimize contact. Simpler shapes require less compute time. Avoid using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when you can pick a simple shape. This function might create a more complex shape to fit a mesh.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimize the number of colliders. Using collider components for tap interactions is expensive when you create a lot of colliders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce the number of physics objects stacked on top of one another. Stacked and overlapping physics shapes require more memory to track the overlapping contact pairs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Take into account a mesh’s structure when you use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to generate physics shapes. This function recursively generates shapes for the meshes, but the shapes might be inefficient for collisions. Set ",
+                  "type": "text"
+                },
+                {
+                  "code": "isStatic",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to true to generate static colliders that are more efficient.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify areas with high CPU overhead resulting from collisions and physics calculations, check the RealityKit Metrics instrument for RealityKit Physics (CPU) bottlenecks. Expand the RealityKit Metrics instrument in the timeline pane to reveal graphs of this data under the RealityKit Physics section. Select the section to view a summary of this data in the detail pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitykit-metrics-physics",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Lower-the-impact-of-particle-effects",
+          "level": 3,
+          "text": "Lower the impact of particle effects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reduce the overhead of particle systems and the number of draw calls they generate, minimize the the total number of particles you have in your app. Often, you can create a similar effects with fewer particles. Without increasing the total number of particles, try to produce more particles per particle emitter rather than running several particle emitters synchronously with a small number of particles each. Loading particle effects is also an expensive operation, so preload them whenever possible and avoid loading several at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Experiment with different particle effects, shapes, and shaders when attempting to reduce the overhead of your particles on the GPU. The total number of vertices and triangles for all particles, and their material and transparency, affect the amount of GPU work and overdraw the particles require and the number of pixels your effects take up.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify areas with high GPU overhead resulting from particle effects simulation, check the RealityKit Metrics instrument for 3D Render GPU bottlenecks. To identify areas with high CPU overhead, check for Particles Update (CPU) bottlenecks. The instrument collects metrics on the number of Particle Draw Calls, Particle Triangles, and Particle Vertices. Expand the RealityKit Metrics instrument in the timeline pane to reveal graphs of this data under the 3D Render section. Select the section to view a summary of this data in the detail pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-scene-statistics-in-Reality-Composer-Pro",
+          "level": 3,
+          "text": "View scene statistics in Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take advantage of the statistics Reality Composer Pro provides when you use it to author RealityKit scenes. To view this data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the project’s Reality Composer Pro (",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".realitycomposerpro",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") file in Reality Composer Pro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To select a scene to inspect, click on its tab at the top of the project window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose View > Statistics to display the statistics at the bottom of the window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reality-composer-pro-metrics",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tool provides information about entity counts, physics, animations, particle emitters, materials, lighting effects, and mesh geometry that effect rendering overhead. For more information about Reality Composer Pro, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/RealityKit"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)": {
+      "abstract": [
+        {
+          "text": "Creates the shape used to detect collisions between two entities that have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateCollisionShapes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateCollisionShapes(recursive:static:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity/generateCollisionShapes(recursive:static:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean that you set to enable or disable the entity and its descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/isEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity/isEnabled"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/GroundingShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s grounding shadow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/GroundingShadowComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroundingShadowComponent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/GroundingShadowComponent"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/HasTransform/move(to:relativeTo:)-6lohd": {
+      "abstract": [
+        {
+          "text": "Moves an entity instantly to a new location given by a transform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "referenceEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/HasTransform/move(to:relativeTo:)-6lohd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "move(to:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/HasTransform/move(to:relativeTo:)-6lohd"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MaterialParameters": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MaterialParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MaterialParameters",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MaterialParameters"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ParameterSet": {
+      "abstract": [
+        {
+          "text": "A reference to general-purpose entity parameters for animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ParameterSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParameterSet",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ParameterSet"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Use the RealityKit Trace template in Instruments to evaluate and improve the performance of your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/analyzing-the-performance-of-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app": {
+      "abstract": [
+        {
+          "text": "Identify your app’s performance and power goals and create a plan to measure and assess them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a performance plan for your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-performance-plan-for-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS": {
+      "abstract": [
+        {
+          "text": "Optimize your 2D user interface rendering on visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the rendering cost of your UI on visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/reducing-the-rendering-cost-of-your-ui-on-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline": {
+      "abstract": [
+        {
+          "text": "Compare how visionOS handles events and manages its rendering loop differently from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the visionOS render pipeline",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-visionos-render-pipeline"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10080/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10080/",
+      "title": "Build spatial experiences with RealityKit",
+      "titleInlineContent": [
+        {
+          "text": "Build spatial experiences with RealityKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10080/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10099": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10099",
+      "title": "Meet RealityKit Trace",
+      "titleInlineContent": [
+        {
+          "text": "Meet RealityKit Trace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10099"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10100": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10100",
+      "title": "Optimize app power and performance for spatial computing",
+      "titleInlineContent": [
+        {
+          "text": "Optimize app power and performance for spatial computing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10100"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10160/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10160/",
+      "title": "Demystify SwiftUI performance",
+      "titleInlineContent": [
+        {
+          "text": "Demystify SwiftUI performance",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10160/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10274": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10274",
+      "title": "Create 3D models for Quick Look spatial experiences",
+      "titleInlineContent": [
+        {
+          "text": "Create 3D models for Quick Look spatial experiences",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10274"
+    },
+    "reality-composer-pro-metrics": {
+      "alt": "A Reality Composer Pro document window displays a 3D asset at the top and a list of metrics for physics, animations, particle emitters, audio, materials, geometry, lighting, and textures in the detail view at the bottom.",
+      "identifier": "reality-composer-pro-metrics",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb839dcb723a3172bc8fd6c5628c6c6f/reality-composer-pro-metrics@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-animations": {
+      "alt": "A screenshot that contains part of an Instruments trace document. It displays a vertical stack of timelines for RealityKit Metrics instrument. The metrics are expanded to display additional timelines for Entity Commits, RealityKit Animations, and RealityKit Physics metrics. The timeline for RealityKit Animations metrics is highlighted with an overlay. Below the timeline is an an outline view containing a Summary information for the RealityKit Module metrics.",
+      "identifier": "realitykit-metrics-animations",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d69d3cdffceeb4ca8d5798dc519ad5be/realitykit-metrics-animations@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9ade43f3eaef15b2bc8722fca5933ab2/realitykit-metrics-animations~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-entity-commits": {
+      "alt": "A screenshot that contains part of an Instruments trace document. It displays a vertical stack of timelines for RealityKit Metrics instrument. The metrics are expanded to display additional timelines for 3D Render, Core Animation Render, and Entity Commits metrics. The timeline for Entity Commits metrics is highlighted with an overlay. Below the timeline is an an outline view containing a Summary information for the Entity Commit metrics.",
+      "identifier": "realitykit-metrics-entity-commits",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/12500cbace572b1a24b4295ee54f6e39/realitykit-metrics-entity-commits@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8cea46b457e67d9e218f5d76d15a6c6d/realitykit-metrics-entity-commits~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-physics": {
+      "alt": "A screenshot that contains part of an Instruments trace document. It displays a vertical stack of timelines for RealityKit Metrics instrument. The metrics are expanded to display additional timelines for Entity Commits, RealityKit Animations, and RealityKit Physics metrics. The timeline for RealityKit Physics metrics is highlighted with an overlay. Below the timeline is an an outline view containing a Summary information for the RealityKit Physics metrics.",
+      "identifier": "realitykit-metrics-physics",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72906ae70f93b452acccb59c54880717/realitykit-metrics-physics@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1bec013ab8fd9592313f61760e0546e/realitykit-metrics-physics~dark@2x.png"
+        }
+      ]
+    },
+    "realitykit-metrics-render-complexity": {
+      "alt": "A screenshot that contains part of an Instruments trace document. It displays a vertical stack of timelines for RealityKit Metrics instrument. The metrics are expanded to display additional timelines for 3D Render and Core Animation metrics. A portion of the timeline for 3D Render metrics is highlighted with an overlay around 3D Mesh Draw Calls, 3D Mesh Triangles, and 3D Mesh Vertices. Below the timeline is an an outline view containing a Summary information for the 3D Render metrics with 3D Mesh Triangles from a list including many other metrics.",
+      "identifier": "realitykit-metrics-render-complexity",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0383cc8f29822be5ebbb707b150b8dab/realitykit-metrics-render-complexity@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7eac210fc12756b932de3427ed5ab39/realitykit-metrics-render-complexity~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-a-performance-plan-for-visionos-app",
+        "doc://com.apple.visionOS/documentation/visionOS/analyzing-the-performance-of-your-visionOS-app",
+        "doc://com.apple.visionOS/documentation/visionOS/reducing-the-rendering-cost-of-your-UI-on-visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-visionos-render-pipeline"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

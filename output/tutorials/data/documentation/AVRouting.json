@@ -1,0 +1,851 @@
+{
+  "abstract": [
+    {
+      "text": "Display custom destinations to stream media in the system route picker.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avrouting/documentation/AVRouting"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AVRouting",
+    "modules": [
+      {
+        "name": "AVRouting"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "AVRouting"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the AVRouting framework to add third-party devices and protocols to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This enables a user to stream AV content through a third-party protocol using the same system menu as AirPlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user taps the view, the system presents a popover that lists the available media receivers. If your app’s bundle includes an extension with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement, the system runs the extension and adds its associated third-party protocol to the picker, if the device resides nearby.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4084674",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-custom-route-to-the-system-device-picker-view",
+          "level": 3,
+          "text": "Add a custom route to the system device-picker view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate your app’s intent to search for a nearby third-party media receiver, set a custom routing controller (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") on the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct DevicePickerView: UIViewRepresentable {",
+            "    func makeUIView(context: Context) -> UIView {",
+            "        let routePickerView = AVRoutePickerView()",
+            "        routePickerView.delegate = context.coordinator",
+            "        routePickerView.customRoutingController = RouteManager.shared.customRoutingController"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, let the view know which particular device your app intends to add. Each device requires a unique device discovery extension, which distinguishes itself through a uniform type identifier in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Add a custom routing action (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to the identifier and pass the item to the controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/customActionItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVRoutePickerView) {",
+            "    if let type = UTType(\"com.example.apple-DataAccessDemo.menu\") {",
+            "        let customRow1 = AVCustomRoutingActionItem()",
+            "        customRow1.type = type",
+            "        RouteManager.shared.customRoutingController?.customActionItems = [customRow1]",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the extension finds the device at runtime, it passes the device to the system for display in the picker. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a complete sample code project that routes media through a custom protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avrouting/documentation/AVRouting": {
+      "abstract": [
+        {
+          "text": "Display custom destinations to stream media in the system route picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVRouting",
+      "type": "topic",
+      "url": "/documentation/avrouting"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem": {
+      "abstract": [
+        {
+          "text": "An object that represents a custom action item to display in a device route picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingActionItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingActionItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCustomRoutingActionItem",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingactionitem"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem/type": {
+      "abstract": [
+        {
+          "text": "A type with an identifier that matches a value in the app’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UTType",
+          "text": "UTType"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingactionitem/type"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController": {
+      "abstract": [
+        {
+          "text": "An object that manages the connection from a device to a destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingController"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCustomRoutingController",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingcontroller"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/customActionItems": {
+      "abstract": [
+        {
+          "text": "An array of custom action items to add to a route picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customActionItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCustomRoutingActionItem",
+          "text": "AVCustomRoutingActionItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController/customActionItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customActionItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "customActionItems",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingcontroller/customactionitems"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol for delegates of a custom routing controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCustomRoutingControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingcontrollerdelegate"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents an event that occurs on a route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCustomRoutingEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCustomRoutingEvent",
+      "type": "topic",
+      "url": "/documentation/avrouting/avcustomroutingevent"
+    },
+    "doc://com.apple.avrouting/documentation/AVRouting/AVROUTING_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AVROUTING_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.avrouting/documentation/AVRouting/AVROUTING_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVROUTING_EXTERN",
+      "type": "topic",
+      "url": "/documentation/avrouting/avrouting_extern"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView": {
+      "abstract": [
+        {
+          "text": "A view that presents a list of nearby media receivers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVRoutePickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVRoutePickerView",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVRoutePickerView"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension": {
+      "abstract": [
+        {
+          "text": "An entitlement for an app extension that adds a specific third-party media receiver to a system device-picker UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Media Device Discovery Extension",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension"
+    },
+    "doc://com.apple.documentation/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device": {
+      "abstract": [
+        {
+          "text": "Build an extension that streams media to a server app in iOS or macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Discovering a third-party media-streaming device",
+      "type": "topic",
+      "url": "/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4084674": {
+      "alt": "A screenshot of a popover with a list of items. The top item is an iPad icon with a check mark to the right. Below that is the title Speakers and TVs with a list of six subitems. The first subitem says Third-party device, followed by AirPlay and Third-party protocol. The remaining subitems are Sunset Beach with an Apple TV icon on the left, Link with TV code with a globe icon on the left, and Show more. ",
+      "identifier": "media-4084674",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d9b9665560d183b359bbdc62fe3f340/media-4084674@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df75179315733491d9b915dcfc7a6af/media-4084674~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Media-routing",
+      "identifiers": [
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController",
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingControllerDelegate",
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingEvent",
+        "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem"
+      ],
+      "title": "Media routing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Media-routing",
+              "identifiers": [
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingController",
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingControllerDelegate",
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingEvent",
+                "doc://com.apple.avrouting/documentation/AVRouting/AVCustomRoutingActionItem"
+              ],
+              "title": "Media routing"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avrouting/documentation/AVRouting/AVROUTING_EXTERN"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController~1customActionItems/title",
+          "value": "customActionItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController~1customActionItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "customActionItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingActionItem/title",
+          "value": "AVCustomRoutingActionItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingActionItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingActionItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingActionItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingActionItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingActionItem~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingActionItem~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingEvent/title",
+          "value": "AVCustomRoutingEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingControllerDelegate/title",
+          "value": "AVCustomRoutingControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController/title",
+          "value": "AVCustomRoutingController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avrouting~1documentation~1AVRouting~1AVCustomRoutingController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCustomRoutingController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVRoutePickerView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVRoutePickerView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avrouting"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avrouting"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

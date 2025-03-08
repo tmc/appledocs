@@ -1,0 +1,1448 @@
+{
+  "abstract": [
+    {
+      "text": "Animate a filtered image to a Metal view in a SwiftUI app using a Core Image Render Destination.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination"
+  },
+  "kind": "article",
+  "legacy_identifier": 3922585,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.5",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.5",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Generating an animation with a Core Image Render Destination"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to assemble a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app that displays a Metal view with animated images that you generate procedurally from Core Image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To accomplish this, the sample sets up a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a single content view. The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and initializes a ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using a closure to vend a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It then adds a ",
+              "type": "text"
+            },
+            {
+              "code": "MetalView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with the instantiated ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to the content ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample combines view update and state changes to produce the animation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For view update, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MetalView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " structure conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol of the SwiftUI life cycle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For state changes, the Renderer is a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StateObject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " conforming to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/ObservableObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4083857",
+          "level": 3,
+          "text": "Generate an animation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class generates an image for an animation frame by conforming to the MetalKit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate protocol. The protocol’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKViewDelegate/draw(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function commits render destination work to the GPU using a render task in a Metal command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about drawing with MetalKit see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MetalKit calls the ",
+              "type": "text"
+            },
+            {
+              "code": "draw(in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delegate function of the ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "final class Renderer: NSObject, MTKViewDelegate, ObservableObject {"
+          ],
+          "metadata": {
+            "anchor": "4083843",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An image-supplying function parameterized by both timestamp and scale factor initializes the ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This function combines checkerboard and hue-adjustment filters to generate animated checkerboard pattern images cropped to a fixed size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a Metal view with its own renderer.",
+            "let renderer = Renderer(imageProvider: { (time: CFTimeInterval, scaleFactor: CGFloat, headroom: CGFloat) -> CIImage in",
+            "    ",
+            "    var image: CIImage",
+            "    ",
+            "    // Animate a shifting red and yellow checkerboard pattern.",
+            "    let pointsShiftPerSecond = 25.0",
+            "    let checkerFilter = CIFilter.checkerboardGenerator()",
+            "    checkerFilter.width = 20.0 * Float(scaleFactor)",
+            "    checkerFilter.color0 = CIColor.red",
+            "    checkerFilter.color1 = CIColor.yellow",
+            "    checkerFilter.center = CGPoint(x: time * pointsShiftPerSecond, y: time * pointsShiftPerSecond)",
+            "    image = checkerFilter.outputImage ?? CIImage.empty()",
+            "    ",
+            "    // Animate the hue of the image with time.",
+            "    let colorFilter = CIFilter.hueAdjust()",
+            "    colorFilter.inputImage = image",
+            "    colorFilter.angle = Float(time)",
+            "    image = colorFilter.outputImage ?? CIImage.empty()"
+          ],
+          "metadata": {
+            "anchor": "4083844",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample initializes the ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " makes a command buffer and gets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKView/currentDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let commandBuffer = commandQueue.makeCommandBuffer() {",
+            "    ",
+            "    // Add a completion handler that signals `inFlightSemaphore` when Metal and the GPU have fully",
+            "    // finished processing the commands that the app encoded for this frame.",
+            "    // This completion indicates that Metal and the GPU no longer need the dynamic buffers that",
+            "    // Core Image writes to in this frame.",
+            "    // Therefore, the CPU can overwrite the buffer contents without corrupting any rendering operations.",
+            "    let semaphore = inFlightSemaphore",
+            "    commandBuffer.addCompletedHandler { (_ commandBuffer)-> Swift.Void in",
+            "        semaphore.signal()",
+            "    }",
+            "    ",
+            "    if let drawable = view.currentDrawable {"
+          ],
+          "metadata": {
+            "anchor": "4083845",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " then configures a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the command buffer, ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrawable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", dimensions, and pixel format, along with a closure that returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable/texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "currentDrawable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a destination the Core Image context uses to render to the drawable's Metal texture.",
+            "let destination = CIRenderDestination(width: Int(dSize.width),",
+            "                                      height: Int(dSize.height),",
+            "                                      pixelFormat: view.colorPixelFormat,",
+            "                                      commandBuffer: commandBuffer,",
+            "                                      mtlTextureProvider: { () -> MTLTexture in",
+            "    // Core Image calls the texture provider block lazily when starting a task to render to the destination.",
+            "    return drawable.texture",
+            "})"
+          ],
+          "metadata": {
+            "anchor": "4083846",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the render destination to create an animation frame at a specific timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the sample composites the render destination’s centered image on a background and submits work to the GPU to render and present the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a displayable image for the current time.",
+            "let time = CFTimeInterval(CFAbsoluteTimeGetCurrent() - self.startTime)",
+            "var image = self.imageProvider(time, contentScaleFactor, headroom)",
+            "",
+            "// Center the image in the view's visible area.",
+            "let iRect = image.extent",
+            "let backBounds = CGRect(x: 0, y: 0, width: dSize.width, height: dSize.height)",
+            "let shiftX = round((backBounds.size.width + iRect.origin.x - iRect.size.width) * 0.5)",
+            "let shiftY = round((backBounds.size.height + iRect.origin.y - iRect.size.height) * 0.5)",
+            "image = image.transformed(by: CGAffineTransform(translationX: shiftX, y: shiftY))",
+            "",
+            "// Blend the image over an opaque background image.",
+            "// This is needed if the image is smaller than the view, or if it has transparent pixels.",
+            "image = image.composited(over: self.opaqueBackground)",
+            "",
+            "// Start a task that renders to the texture destination.",
+            "_ = try? self.cicontext.startTask(toRender: image, from: backBounds,",
+            "                                  to: destination, at: CGPoint.zero)",
+            "",
+            "// Insert a command to present the drawable when the buffer has been scheduled for execution.",
+            "commandBuffer.present(drawable)",
+            "",
+            "// Commit the command buffer so that the GPU executes the work that the Core Image Render Task issues.",
+            "commandBuffer.commit()"
+          ],
+          "metadata": {
+            "anchor": "4083847",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4083858",
+          "level": 3,
+          "text": "Add an EDR effect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample adds an EDR effect, a shiny ripple with a bright specular highlight, to the rendered checkerboard animation in three steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Opt into EDR support for the view and set an accommodating color space and pixel format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Query the EDR headroom for each frame and pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "headroom",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the image provider closure for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Renderer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the peak specular highlight value to the maximum value of white with respect to the current headroom, or a reasonable default value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about adding an EDR effect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4083596",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4083859",
+          "level": 3,
+          "text": "Configure the view for EDR support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MetalView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " opts into EDR support setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to true on the backing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When enabled, the layer uses a wide gamut ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to render colors beyond SDR range. Similarly, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sets a wide gamut ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to render the generated EDR image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let layer = view.layer as? CAMetalLayer {",
+            "    // Enable EDR with a color space that supports values greater than SDR.",
+            "    if #available(iOS 16.0, *) {",
+            "        layer.wantsExtendedDynamicRangeContent = true",
+            "    }",
+            "    layer.colorspace = CGColorSpace(name: CGColorSpace.extendedLinearDisplayP3)",
+            "    // Ensure the render view supports pixel values in EDR.",
+            "    view.colorPixelFormat = MTLPixelFormat.rgba16Float",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4083850",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4083860",
+          "level": 3,
+          "text": "Query EDR headroom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Renderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " queries the current EDR headroom for each draw call using either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScreen/maximumPotentialExtendedDynamicRangeColorComponentValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/currentEDRHeadroom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). If EDR headroom is unavailable the sample sets ",
+              "type": "text"
+            },
+            {
+              "code": "headroom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " clamping to SDR.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "                // Determine EDR headroom and fallback to SDR, as needed.",
+            "                // Note: The headroom must be determined every frame to include changes in environmental lighting conditions.",
+            "                let screen = view.window?.screen",
+            "#if os(iOS)",
+            "                var headroom = CGFloat(1.0)",
+            "                if #available(iOS 16.0, *) {",
+            "                    headroom = screen?.currentEDRHeadroom ?? 1.0",
+            "                }",
+            "#else",
+            "                let headroom = screen?.maximumExtendedDynamicRangeColorComponentValue ?? 1.0",
+            "#endif"
+          ],
+          "metadata": {
+            "anchor": "4083852",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4083861",
+          "level": 3,
+          "text": "Leverage EDR headroom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ripple effect takes a gradient ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirippletransition/3228695-shadingimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to shade the contor of the ripple so that it appears to reflect light from the upper-left corner. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cilineargradient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " generates the gradient shading image between the current maximum RGB white, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cilineargradient/3228542-color0",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a fully transparent clear color, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cilineargradient/3228543-color1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Compute a shading image for the ripple effect below.",
+            "// Cast light on the upper-left corner of the shading gradient image.",
+            "let angle = 135.0 * (.pi / 180.0)",
+            "let gradient = CIFilter.linearGradient()",
+            "// Create a bright white color for a specular highlight with the current",
+            "// maximum possible pixel component values within headroom",
+            "// or a reasonable alternative.",
+            "let maxRGB = min(headroom, 8.0)",
+            "gradient.color0 = CIColor(red: maxRGB, green: maxRGB, blue: maxRGB,",
+            "                          colorSpace: CGColorSpace(name: CGColorSpace.extendedLinearSRGB)!)!",
+            "gradient.color1 = CIColor.clear",
+            "gradient.point0 = CGPoint(x: sin(angle) * 90.0 + 100.0,",
+            "                          y: cos(angle) * 90.0 + 100.0)",
+            "gradient.point1 = CGPoint(x: sin(angle) * 85.0 + 100.0,",
+            "                          y: cos(angle) * 85.0 + 100.0)",
+            "let shading = gradient.outputImage?.cropped(to: CGRect(x: 0, y: 0,",
+            "                                                       width: 200, height: 200))",
+            "",
+            "// Add a shiny ripple effect to the image.",
+            "let ripple = CIFilter.rippleTransition()",
+            "ripple.inputImage = image",
+            "ripple.targetImage = image",
+            "ripple.center = CGPoint(x: 256.0 * scaleFactor,",
+            "                        y: 192.0 * scaleFactor)",
+            "ripple.time = Float(fmod(time * 0.25, 1.0))",
+            "ripple.shadingImage = shading",
+            "image = ripple.outputImage ?? CIImage()",
+            "",
+            "return image.cropped(to: CGRect(x: 0, y: 0,",
+            "                                width: 512.0 * scaleFactor,",
+            "                                height: 384.0 * scaleFactor))"
+          ],
+          "metadata": {
+            "anchor": "4083854",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Combine/documentation/Combine/ObservableObject": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ObservableObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/combine/observableobject"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "kind": "article",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/body-8kl5o",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/body-8kl5o"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WindowGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowgroup"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScreen": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScreen",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscreen"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScreen/maximumPotentialExtendedDynamicRangeColorComponentValue": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScreen/maximumPotentialExtendedDynamicRangeColorComponentValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumPotentialExtendedDynamicRangeColorComponentValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscreen/maximumpotentialextendeddynamicrangecolorcomponentvalue"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cilineargradient": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cilineargradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CILinearGradient",
+      "type": "topic",
+      "url": "/documentation/coreimage/cilineargradient"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cilineargradient/3228542-color0": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cilineargradient/3228542-color0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color0",
+      "type": "topic",
+      "url": "/documentation/coreimage/cilineargradient/3228542-color0"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cilineargradient/3228543-color1": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cilineargradient/3228543-color1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color1",
+      "type": "topic",
+      "url": "/documentation/coreimage/cilineargradient/3228543-color1"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination": {
+      "abstract": [
+        {
+          "text": "A specification for configuring all attributes of a render task's destination and issuing asynchronous render tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderDestination",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode": {
+      "abstract": [
+        {
+          "text": "Different ways of representing alpha.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderDestinationAlphaMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderDestinationAlphaMode",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestinationalphamode"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderinfo": {
+      "abstract": [
+        {
+          "text": "An encapsulation of a render task's timing, passes, and pixels processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderInfo",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirendertask": {
+      "abstract": [
+        {
+          "text": "A single render task issued in conjunction with ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIRenderTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirendertask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderTask",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirendertask"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirippletransition/3228695-shadingimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirippletransition/3228695-shadingimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shadingImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirippletransition/3228695-shadingimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination": {
+      "abstract": [
+        {
+          "text": "Animate a filtered image to a Metal view in a SwiftUI app using a Core Image Render Destination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating an animation with a Core Image Render Destination",
+      "type": "topic",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083843": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083843",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083843"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083844": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083844",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083844"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083845": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083845",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083845"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083846": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083846",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083846"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083847": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083847",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083847"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083850": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083850",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083850"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083852": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083852",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083852"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083854": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083854",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/coreimage/generating_an_animation_with_a_core_image_render_destination#4083854"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metalkit/documentation/MetalKit/MTKView": {
+      "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/metalkit/mtkview"
+    },
+    "doc://com.apple.metalkit/documentation/MetalKit/MTKView/currentDrawable": {
+      "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKView/currentDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDrawable",
+      "type": "topic",
+      "url": "/documentation/metalkit/mtkview/currentdrawable"
+    },
+    "doc://com.apple.metalkit/documentation/MetalKit/MTKViewDelegate": {
+      "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKViewDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/metalkit/mtkviewdelegate"
+    },
+    "doc://com.apple.metalkit/documentation/MetalKit/MTKViewDelegate/draw(in:)": {
+      "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKViewDelegate/draw(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:)",
+      "type": "topic",
+      "url": "/documentation/metalkit/mtkviewdelegate/draw(in:)"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable/texture": {
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable/texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldrawable/texture"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer": {
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace": {
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "colorspace",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/colorspace"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat": {
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/pixelformat"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent": {
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wantsExtendedDynamicRangeContent",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/wantsextendeddynamicrangecontent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIScreen",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen/currentEDRHeadroom": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/currentEDRHeadroom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEDRHeadroom",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen/currentedrheadroom"
+    },
+    "https://docs-assets.developer.apple.com/published/5c0055c447/GeneratingAnAnimationWithACoreImageRenderDestination.zip": {
+      "checksum": "44ab9b6ca3686794ff3745ec98d2fd46f13ee8ed8dc7c9455844062a94b357bbd9fe22341e21bd6ae5152a71705052086f2852db6b097e12d6bc84579bd3da43",
+      "identifier": "https://docs-assets.developer.apple.com/published/5c0055c447/GeneratingAnAnimationWithACoreImageRenderDestination.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5c0055c447/GeneratingAnAnimationWithACoreImageRenderDestination.zip"
+    },
+    "link-4083596": {
+      "identifier": "link-4083596",
+      "kind": "article",
+      "role": "link",
+      "title": "Display EDR content with Core Image, Metal, and SwiftUI",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10114/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/5c0055c447/GeneratingAnAnimationWithACoreImageRenderDestination.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderinfo",
+        "doc://com.apple.documentation/documentation/coreimage/cirendertask",
+        "doc://com.apple.documentation/documentation/coreimage/cirenderdestinationalphamode"
+      ],
+      "title": "Custom Render Destination"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/generating_an_animation_with_a_core_image_render_destination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

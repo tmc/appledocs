@@ -1,0 +1,617 @@
+{
+  "abstract": [
+    {
+      "text": "Create a developer token to access weather data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI/request-authentication-for-weatherkit-rest-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WeatherKit REST API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Request authentication for WeatherKit REST API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make requests to the WeatherKit REST API, authorize yourself as a trusted developer and member of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (ADP). The header of every WeatherKit REST API request requires a signed developer token to identify the authorized ADP member and application or service making the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-private-key-and-Service-ID",
+          "level": 3,
+          "text": "Create a private key and Service ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a WeatherKit identifier and private key so you can use a developer token to authenticate yourself as a trusted developer and member of the Apple Developer Program.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin, go to your Apple Developer Account, then navigate to Certificates, Identifiers & Profiles. Select the Keys menu to create and download a WeatherKit key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create a Service ID from the Identifiers menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click + to add, select Services IDs, and then Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set a description and the identifier you wish to use, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.weatherkit-client",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Continue, then Register to register the identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Generate-the-web-token",
+          "level": 3,
+          "text": "Generate the web token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WeatherKit supports the JSON Web Token (JWT) specification, and allows you to pass statements and metadata called claims. For more information about JWT, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". There are a variety of open source libraries available online for creating and signing JWT tokens. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://jwt.io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Construct a developer token as a JSON object with a header that contains the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The algorithm with which to sign the token. Set the value to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ES256",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "alg",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 10-character key identifier you obtain from your developer account.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kid",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An identifier that consists of your 10-character Team ID and Service ID, separated by a period.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WeatherKit only supports developer tokens signed with the ES256 algorithm, and rejects unsecured developer tokens or developer tokens signed with other algorithms. These rejections result in a 401 error code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Ensure that the token contains only the claims listed below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the claims payload of the token, include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The issuer claim key. This value is your 10-character Team ID from your developer account.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iss",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The issued-at claim key. This value indicates the time at which the token was generated. The value is the number of seconds since epoch in Universal Coordinated Time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iat",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The expiration time claim key. This value indicates the time after which the token is not accepted by the server. The value is the number of seconds since epoch in Universal Coordinated Time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "exp",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The subject public claim key. This value is your registered Service ID.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "sub",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A decoded developer token has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"alg\": \"ES256\",",
+            "    \"kid\": \"ABC123DEFG\",",
+            "    \"id\": \"DEF123GHIJ.com.example.weatherkit-client\"",
+            "}",
+            "{",
+            "    \"iss\": \"DEF123GHIJ\",",
+            "    \"iat\": 1437179036,",
+            "    \"exp\": 1493298100,",
+            "    \"sub\": \"com.example.weatherkit-client\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create the token, sign it with your WeatherKit private key using the ES256 algorithm, which is the JSON Web Algorithms (JWA) name for the Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve and the SHA-256 hash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these guidelines whenever you use signed JWTs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Never distribute your private key. If you need to create tokens for apps or websites, create an authenticated service to create and sign your own tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Be mindful of token expiration times. Longer times require less overhead, but shorter times ensure a higher level of security.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your token has an extended time before expiring, be sure to store it securely.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Authorize-requests",
+          "level": 3,
+          "text": "Authorize requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the developer token as a parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "Authorization: Bearer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header in each request. Here’s an example of a request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -H 'Authorization: Bearer [developer token]' \"https://weatherkit.apple.com/api/v1/availability/37.323/122.032?country=US\""
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI": {
+      "abstract": [
+        {
+          "text": "Obtain historical, current, and predictive weather for your app or service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.weatherkitrestapi/documentation/WeatherKitRESTAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WeatherKit REST API",
+      "type": "topic",
+      "url": "/documentation/weatherkitrestapi"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7519": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7519",
+      "title": "JWT specification",
+      "titleInlineContent": [
+        {
+          "text": "JWT specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7519"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    },
+    "https://jwt.io": {
+      "identifier": "https://jwt.io",
+      "title": "JWT.io",
+      "titleInlineContent": [
+        {
+          "text": "JWT.io",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://jwt.io"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/weatherkitrestapi/request-authentication-for-weatherkit-rest-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

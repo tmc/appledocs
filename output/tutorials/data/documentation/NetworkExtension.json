@@ -1,0 +1,1313 @@
+{
+  "abstract": [
+    {
+      "text": "Customize and extend core networking features.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "NetworkExtension",
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Network Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the NetworkExtension framework, you can customize and extend the system’s core networking features. Specifically, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the system’s Wi-Fi configuration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integrate your app with the hotspot network subsystem (Hotspot Helper)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and manage VPN configurations, using the built-in VPN protocols (Personal VPN) or a custom VPN protocol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and manage network relay configurations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement an on-device content filter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and manage system-wide DNS configurations, using the built-in DNS protocols or a custom on-device DNS proxy",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The NetworkExtension framework is available in macOS, iOS, tvOS, and visionOS, but not all features are available on all platforms and some features have specific restrictions (for example, some features only work on supervised iOS devices). The documentation for each feature describes these restrictions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Options-for-implementing-VPN",
+          "level": 3,
+          "text": "Options for implementing VPN",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The NetworkExtension framework has extensive support for virtual private networks (VPN).  A VPN is a form of network tunnel, where a VPN client uses the public Internet to create a connection to a VPN server and then passes private network traffic over that connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VPNs have many different uses.  For example, an enterprise might set up a VPN to give remote employees access to enterprise network resources that are not available on the public Internet.  Or a consumer wanting to access the Internet from an untrusted network, such as the free Wi-Fi at an airport, might set up VPN to secure their traffic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The supported operating systems include a number of different VPN APIs, distinguished by the protocols they support:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to create and manage a VPN configuration that uses one of the built-in VPN protocols (IPsec or IKEv2).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to implement a VPN client for a packet-oriented, custom VPN protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to implement a VPN client for a flow-oriented, custom VPN protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "About-Always-on-VPN",
+          "level": 3,
+          "text": "About Always-on VPN",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS supports Always-on VPN to ensure all IP traffic is tunneled back to the organization. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/deployment-reference-ios/always-on-vpn-iore8b083096/1/web/1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information about how to configure Always-on VPN.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAPPPROXYFLOW_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEAPPPROXYFLOW_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAPPPROXYFLOW_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEAPPPROXYFLOW_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAPPPUSH_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEAPPPUSH_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAPPPUSH_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEAPPPUSH_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/neapppush_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlowHandling": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlowHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlowHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlowHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyUDPFlowHandling",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyudpflowhandling"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NECOPYNULLABLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NECOPYNULLABLE"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NECOPYNULLABLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NECOPYNULLABLE",
+      "type": "topic",
+      "url": "/documentation/networkextension/necopynullable"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSPROXY_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSPROXY_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSPROXY_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEDNSPROXY_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednsproxy_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSETTINGS_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSSETTINGS_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSETTINGS_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEDNSSETTINGS_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednssettings_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettingsConfigurationDidChangeNotification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSSettingsConfigurationDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettingsConfigurationDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEDNSSettingsConfigurationDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednssettingsconfigurationdidchangenotification"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFILTER_DATA_PROVIDER_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEFILTER_DATA_PROVIDER_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFILTER_DATA_PROVIDER_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEFILTER_DATA_PROVIDER_EXTERN",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilter_data_provider_extern"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFILTER_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEFILTER_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFILTER_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEFILTER_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilter_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHSCFG_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEHSCFG_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHSCFG_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEHSCFG_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehscfg_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEHS_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEHS_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEHS_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEHS_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nehs_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NERELAY_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NERELAY_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NERELAY_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NERELAY_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nerelay_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayClientErrorDomain": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NERelayClientErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayClientErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NERelayClientErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "NERelayClientErrorDomain",
+      "type": "topic",
+      "url": "/documentation/networkextension/nerelayclienterrordomain"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayConfigurationDidChangeNotification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NERelayConfigurationDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayConfigurationDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NERelayConfigurationDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/networkextension/nerelayconfigurationdidchangenotification"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayManagerClientError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NERelayManagerClientError"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayManagerClientError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NERelayManagerClientError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NERelayManagerClientError",
+      "type": "topic",
+      "url": "/documentation/networkextension/nerelaymanagerclienterror"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETUNNELPROVIDER_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NETUNNELPROVIDER_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETUNNELPROVIDER_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NETUNNELPROVIDER_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderError-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error that the tunnel provider encounters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderError"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderError",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidererror-swift.struct"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNError-swift.struct": {
+      "abstract": [
+        {
+          "text": "Information about an error encountered while configuring or using a VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNError"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNError",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnerror-swift.struct"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNIKEv2PPKConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNIKEv2PPKConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNIKEv2PPKConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNIKEv2PPKConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNIKEv2PPKConfiguration",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnikev2ppkconfiguration"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPN_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NEVPN_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPN_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEVPN_EXPORT",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpn_export"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpointArray": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NWEndpointArray"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpointArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWEndpointArray",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwendpointarray"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a flow-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App proxy provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/app-proxy-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/configuring-a-wi-fi-accessory-to-join-a-network": {
+      "abstract": [
+        {
+          "text": "Associate an iOS device with an accessory’s network to deliver network configuration information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/configuring-a-wi-fi-accessory-to-join-a-network",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Configuring a Wi-Fi accessory to join a network",
+      "type": "topic",
+      "url": "/documentation/networkextension/configuring-a-wi-fi-accessory-to-join-a-network"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/content-filter-providers": {
+      "abstract": [
+        {
+          "text": "Create an on-device network content filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/content-filter-providers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content filter providers",
+      "type": "topic",
+      "url": "/documentation/networkextension/content-filter-providers"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/dns-proxy-provider": {
+      "abstract": [
+        {
+          "text": "Create an on-device DNS proxy using a custom protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/dns-proxy-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DNS proxy provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/dns-proxy-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings": {
+      "abstract": [
+        {
+          "text": "Create and manage a system-wide DNS configuration that uses built-in encrypted DNS protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DNS settings",
+      "type": "topic",
+      "url": "/documentation/networkextension/dns-settings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/filtering-network-traffic": {
+      "abstract": [
+        {
+          "text": "Use the Network Extension framework to allow or deny network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/filtering-network-traffic",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Filtering Network Traffic",
+      "type": "topic",
+      "url": "/documentation/networkextension/filtering-network-traffic"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper": {
+      "abstract": [
+        {
+          "text": "Integrate your app with the iOS hotspot network subsystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hotspot helper",
+      "type": "topic",
+      "url": "/documentation/networkextension/hotspot-helper"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity": {
+      "abstract": [
+        {
+          "text": "Provide functionality similar to Apple Push Notification Service when access to the wider internet is unavailable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Local push connectivity",
+      "type": "topic",
+      "url": "/documentation/networkextension/local-push-connectivity"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a packet-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Packet tunnel provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/packet-tunnel-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn": {
+      "abstract": [
+        {
+          "text": "Create and manage a VPN configuration that uses one of the built-in VPN protocols (IPsec or IKEv2).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Personal VPN",
+      "type": "topic",
+      "url": "/documentation/networkextension/personal-vpn"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/relays": {
+      "abstract": [
+        {
+          "text": "Create and manage a system-wide network relay configuration that uses built-in proxying for TCP and UDP traffic over HTTP/3 and HTTP/2.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/relays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Relays",
+      "type": "topic",
+      "url": "/documentation/networkextension/relays"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic": {
+      "abstract": [
+        {
+          "text": "Configure your VPN to include and exclude some network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic",
+      "kind": "article",
+      "role": "article",
+      "title": "Routing your VPN network traffic",
+      "type": "topic",
+      "url": "/documentation/networkextension/routing-your-vpn-network-traffic"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/wi-fi-configuration": {
+      "abstract": [
+        {
+          "text": "Add persistent Wi-Fi configurations, or temporarily move the device to a specific Wi-Fi network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/wi-fi-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Wi-Fi configuration",
+      "type": "topic",
+      "url": "/documentation/networkextension/wi-fi-configuration"
+    },
+    "https://support.apple.com/guide/deployment-reference-ios/always-on-vpn-iore8b083096/1/web/1": {
+      "identifier": "https://support.apple.com/guide/deployment-reference-ios/always-on-vpn-iore8b083096/1/web/1",
+      "title": "iOS Deployment Reference",
+      "titleInlineContent": [
+        {
+          "text": "iOS Deployment Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/deployment-reference-ios/always-on-vpn-iore8b083096/1/web/1"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Wi-Fi-management",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/wi-fi-configuration",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/configuring-a-wi-fi-accessory-to-join-a-network",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper"
+      ],
+      "title": "Wi-Fi management"
+    },
+    {
+      "anchor": "Virtual-private-networks",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+      ],
+      "title": "Virtual private networks"
+    },
+    {
+      "anchor": "Network-relays",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/relays"
+      ],
+      "title": "Network relays"
+    },
+    {
+      "anchor": "Content-filters",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/content-filter-providers",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/filtering-network-traffic"
+      ],
+      "title": "Content filters"
+    },
+    {
+      "anchor": "DNS-configurations",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/dns-proxy-provider"
+      ],
+      "title": "DNS configurations"
+    },
+    {
+      "anchor": "Local-networking",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity"
+      ],
+      "title": "Local networking"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNIKEv2PPKConfiguration"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlowHandling"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderError-swift.struct",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNError-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayClientErrorDomain"
+      ],
+      "title": "Variables"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayManagerClientError"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Wi-Fi-management",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/wi-fi-configuration",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/configuring-a-wi-fi-accessory-to-join-a-network",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/hotspot-helper"
+              ],
+              "title": "Wi-Fi management"
+            },
+            {
+              "anchor": "Virtual-private-networks",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+              ],
+              "title": "Virtual private networks"
+            },
+            {
+              "anchor": "Network-relays",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/relays"
+              ],
+              "title": "Network relays"
+            },
+            {
+              "anchor": "Content-filters",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/content-filter-providers"
+              ],
+              "title": "Content filters"
+            },
+            {
+              "anchor": "DNS-configurations",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/dns-proxy-provider"
+              ],
+              "title": "DNS configurations"
+            },
+            {
+              "anchor": "Local-networking",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/local-push-connectivity"
+              ],
+              "title": "Local networking"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNIKEv2PPKConfiguration"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettingsConfigurationDidChangeNotification",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayClientErrorDomain",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayConfigurationDidChangeNotification"
+              ],
+              "title": "Variables"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAPPPROXYFLOW_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAPPPUSH_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NECOPYNULLABLE",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSPROXY_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSETTINGS_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFILTER_DATA_PROVIDER_EXTERN",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFILTER_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHSCFG_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEHS_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NERELAY_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETUNNELPROVIDER_EXPORT",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPN_EXPORT"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Type-Aliases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NWEndpointArray"
+              ],
+              "title": "Type Aliases"
+            },
+            {
+              "anchor": "Enumerations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NERelayManagerClientError"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NERelayClientErrorDomain/title",
+          "value": "NERelayClientErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NERelayClientErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NERelayClientErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NERelayManagerClientError/title",
+          "value": "NERelayManagerClientError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NERelayManagerClientError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NERelayManagerClientError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NERelayManagerClientError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NERelayManagerClientError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNIKEv2PPKConfiguration/title",
+          "value": "NEVPNIKEv2PPKConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNIKEv2PPKConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNIKEv2PPKConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNIKEv2PPKConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNIKEv2PPKConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

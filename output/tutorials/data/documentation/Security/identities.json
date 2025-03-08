@@ -1,0 +1,1416 @@
+{
+  "abstract": [
+    {
+      "text": "Combine certificates and cryptographic keys into identities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/identities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Identities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An identity consists of a private key packaged with the certificate that contains and vouches for the corresponding public key. You use the certificate, key, and trust services API to create an identity from a private key and its certificate, or to import an identity from a password-protected PKCS #12 file. You then use the API to extract the key and certificate from the identity. You can also use the keychain services API to store the identity to or retrieve it from a keychain, much as you would the certificate or key by itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Network/creating-an-identity-for-local-network-tls": {
+      "abstract": [
+        {
+          "text": "Learn how to create and use a digital identity in your application for local network TLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/creating-an-identity-for-local-network-tls",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Identity for Local Network TLS",
+      "type": "topic",
+      "url": "/documentation/Network/creating-an-identity-for-local-network-tls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/OpaqueSecIdentityRef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OpaqueSecIdentityRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/OpaqueSecIdentityRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpaqueSecIdentityRef",
+      "type": "topic",
+      "url": "/documentation/security/opaquesecidentityref"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentity": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentity",
+      "type": "topic",
+      "url": "/documentation/security/secidentity"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityCopyCertificate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a certificate associated with an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityCopyCertificate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentityCopyCertificate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitycopycertificate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityCopyPreference": {
+      "abstract": [
+        {
+          "text": "Returns the preferred identity for the specified name and key use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityCopyPreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentityCopyPreference",
+      "type": "topic",
+      "url": "/documentation/security/secidentitycopypreference"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityCopyPreferred(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the preferred identity for the specified name and key use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyPreferred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityCopyPreferred(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyPreferred"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentityCopyPreferred(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitycopypreferred(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityCopyPrivateKey(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the private key associated with an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyPrivateKey"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityCopyPrivateKey(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopyPrivateKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentityCopyPrivateKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitycopyprivatekey(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityCopySystemIdentity(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the system identity associated with a specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopySystemIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityCopySystemIdentity(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCopySystemIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentityCopySystemIdentity(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitycopysystemidentity(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityCreateWithCertificate(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new identity for a certificate and its associated private key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCreateWithCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCertificateRef",
+          "text": "SecCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityCreateWithCertificate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityCreateWithCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentityCreateWithCertificate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitycreatewithcertificate(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentityGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which an identity object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentityGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentityGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentityGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentityGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secidentitygettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearch": {
+      "abstract": [
+        {
+          "text": "Contains information about an identity search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearch"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentitySearch",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearch"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext": {
+      "abstract": [
+        {
+          "text": "Finds the next identity matching specified search criteria",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearchCopyNext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySearchCopyNext",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearchcopynext"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearchCreate": {
+      "abstract": [
+        {
+          "text": "Creates a search object for finding identities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearchCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySearchCreate",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearchcreate"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySearchGetTypeID": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a ",
+          "type": "text"
+        },
+        {
+          "code": "SecIdentitySearch",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySearchGetTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySearchGetTypeID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySearchGetTypeID",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysearchgettypeid"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySetPreference": {
+      "abstract": [
+        {
+          "text": "Sets the preferred identity for the specified name and key use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetPreference"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySetPreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecIdentitySetPreference",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysetpreference"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySetPreferred(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the identity that should be preferred for the specified name and key use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetPreferred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySetPreferred(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetPreferred"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentitySetPreferred(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysetpreferred(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)": {
+      "abstract": [
+        {
+          "text": "Assigns the system identity to be associated with a specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetSystemIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecIdentityRef",
+          "text": "SecIdentity"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecIdentitySetSystemIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecIdentitySetSystemIdentity(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secidentitysetsystemidentity(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPKCS12Import(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the identities and certificates in a PKCS #12-formatted blob.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPKCS12Import"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPKCS12Import(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPKCS12Import"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPKCS12Import(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secpkcs12import(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/creating-an-identity": {
+      "abstract": [
+        {
+          "text": "Create an identity from a certificate and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/creating-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Identity",
+      "type": "topic",
+      "url": "/documentation/security/creating-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/importing-an-identity": {
+      "abstract": [
+        {
+          "text": "Learn how to import an identity from file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/importing-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing an Identity",
+      "type": "topic",
+      "url": "/documentation/security/importing-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-import-and-export-options": {
+      "abstract": [
+        {
+          "text": "Use these constants when you pass dictionary-based arguments to import and export functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-import-and-export-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain Import and Export Options",
+      "type": "topic",
+      "url": "/documentation/security/keychain-import-and-export-options"
+    },
+    "doc://com.apple.security/documentation/Security/parsing-an-identity": {
+      "abstract": [
+        {
+          "text": "Extract the private key and certificate from an identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/parsing-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Parsing an Identity",
+      "type": "topic",
+      "url": "/documentation/security/parsing-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/pkcs-12-import-item-keys": {
+      "abstract": [
+        {
+          "text": "Recognized the dictionary keys returned by an import operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/pkcs-12-import-item-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PKCS #12 Import Item Keys",
+      "type": "topic",
+      "url": "/documentation/security/pkcs-12-import-item-keys"
+    },
+    "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Securely store an identity in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing an Identity in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-an-identity-in-the-keychain"
+    },
+    "doc://com.apple.security/documentation/Security/system-identity-domains": {
+      "abstract": [
+        {
+          "text": "Set or obtain a system identity for domains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/system-identity-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Identity Domains",
+      "type": "topic",
+      "url": "/documentation/security/system-identity-domains"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/creating-an-identity",
+        "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain",
+        "doc://com.apple.security/documentation/Security/SecIdentityCreateWithCertificate(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecIdentity",
+        "doc://com.apple.security/documentation/Security/SecIdentityGetTypeID()"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Identity-Import",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/importing-an-identity",
+        "doc://com.apple.security/documentation/Security/SecPKCS12Import(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/keychain-import-and-export-options",
+        "doc://com.apple.security/documentation/Security/pkcs-12-import-item-keys"
+      ],
+      "title": "Identity Import"
+    },
+    {
+      "anchor": "Identity-Components",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/parsing-an-identity",
+        "doc://com.apple.security/documentation/Security/SecIdentityCopyCertificate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecIdentityCopyPrivateKey(_:_:)"
+      ],
+      "title": "Identity Components"
+    },
+    {
+      "anchor": "System-Identities",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecIdentityCopySystemIdentity(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)",
+        "doc://com.apple.security/documentation/Security/system-identity-domains"
+      ],
+      "title": "System Identities"
+    },
+    {
+      "anchor": "Identity-Naming",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecIdentitySetPreferred(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecIdentityCopyPreferred(_:_:_:)"
+      ],
+      "title": "Identity Naming"
+    },
+    {
+      "anchor": "Identity-Search",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecIdentitySearch"
+      ],
+      "title": "Identity Search"
+    },
+    {
+      "anchor": "Creating-an-Identity-for-Local-Network-TLS",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Network/creating-an-identity-for-local-network-tls"
+      ],
+      "title": "Creating an Identity for Local Network TLS"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/creating-an-identity",
+                "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain",
+                "doc://com.apple.security/documentation/Security/SecIdentityCreateWithCertificate(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecIdentity",
+                "doc://com.apple.security/documentation/Security/SecIdentityGetTypeID()"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Identity-Import",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/importing-an-identity",
+                "doc://com.apple.security/documentation/Security/SecPKCS12Import(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/keychain-import-and-export-options",
+                "doc://com.apple.security/documentation/Security/pkcs-12-import-item-keys"
+              ],
+              "title": "Identity Import"
+            },
+            {
+              "anchor": "Identity-Components",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/parsing-an-identity",
+                "doc://com.apple.security/documentation/Security/SecIdentityCopyCertificate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecIdentityCopyPrivateKey(_:_:)"
+              ],
+              "title": "Identity Components"
+            },
+            {
+              "anchor": "System-Identities",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecIdentityCopySystemIdentity(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecIdentitySetSystemIdentity(_:_:)",
+                "doc://com.apple.security/documentation/Security/system-identity-domains"
+              ],
+              "title": "System Identities"
+            },
+            {
+              "anchor": "Identity-Naming",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecIdentitySetPreferred(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecIdentityCopyPreferred(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecIdentityCopyPreference",
+                "doc://com.apple.security/documentation/Security/SecIdentitySetPreference"
+              ],
+              "title": "Identity Naming"
+            },
+            {
+              "anchor": "Identity-Search",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecIdentitySearch",
+                "doc://com.apple.security/documentation/Security/SecIdentitySearchCopyNext",
+                "doc://com.apple.security/documentation/Security/SecIdentitySearchCreate",
+                "doc://com.apple.security/documentation/Security/SecIdentitySearchGetTypeID"
+              ],
+              "title": "Identity Search"
+            },
+            {
+              "anchor": "Legacy-Symbols",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/OpaqueSecIdentityRef"
+              ],
+              "title": "Legacy Symbols"
+            },
+            {
+              "anchor": "Creating-an-Identity-for-Local-Network-TLS",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Network/creating-an-identity-for-local-network-tls"
+              ],
+              "title": "Creating an Identity for Local Network TLS"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySearch/title",
+          "value": "SecIdentitySearchRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySearch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySearch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySearchRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopyPrivateKey(_:_:)/title",
+          "value": "SecIdentityCopyPrivateKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopyPrivateKey(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityCopyPrivateKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySetSystemIdentity(_:_:)/title",
+          "value": "SecIdentitySetSystemIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySetSystemIdentity(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySetSystemIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/title",
+          "value": "SecIdentityRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCreateWithCertificate(_:_:_:)/title",
+          "value": "SecIdentityCreateWithCertificate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCreateWithCertificate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityCreateWithCertificate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityGetTypeID()/title",
+          "value": "SecIdentityGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopyPreferred(_:_:_:)/title",
+          "value": "SecIdentityCopyPreferred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopyPreferred(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityCopyPreferred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPKCS12Import(_:_:_:)/title",
+          "value": "SecPKCS12Import"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPKCS12Import(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPKCS12Import"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopyCertificate(_:_:)/title",
+          "value": "SecIdentityCopyCertificate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopyCertificate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityCopyCertificate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopySystemIdentity(_:_:_:)/title",
+          "value": "SecIdentityCopySystemIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentityCopySystemIdentity(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentityCopySystemIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySetPreferred(_:_:_:)/title",
+          "value": "SecIdentitySetPreferred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecIdentitySetPreferred(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecIdentitySetPreferred"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/identities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/identities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

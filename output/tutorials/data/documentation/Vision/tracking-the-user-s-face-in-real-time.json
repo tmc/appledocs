@@ -1,0 +1,1084 @@
+{
+  "abstract": [
+    {
+      "text": "Detect and track faces from the selfie cam feed in real time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/tracking-the-user-s-face-in-real-time"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Tracking the User’s Face in Real Time"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework can detect and track rectangles, faces, and other salient objects across a sequence of images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to create requests to track human faces and interpret the results of those requests.  In order to visualize the geometry of observed facial features, the code draws paths around the primary detected face and its most prominent features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app applies computer vision algorithms to find a face in the provided image. Once it finds a face, it attempts to track that face across subsequent frames of the video. Finally, it draws a green box around the observed face, as well as yellow paths outlining facial features, on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/quartzcore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " layers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see this sample app in action, build and run the project on iOS 11.  Grant the app permission to use the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Camera-to-Capture-Video",
+          "level": 3,
+          "text": "Configure the Camera to Capture Video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This section shows how to set up a camera capture session using delegates to prepare images for Vision. Configuring the camera involves the following steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "First, create a new ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to represent video capture. Channel its output through ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+                      "isActive": true,
+                      "overridingTitle": "AVCaptureVideoDataOutput",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "AVCaptureVideoDataOutput",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Query the user’s input device and configure it for video data output by specifying its resolution and camera.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Next, create a serial dispatch queue. This queue ensures that video frames, received asynchronously through delegate callback methods, are delivered in order. Establish a capture session with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/avfoundation/avmediatype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " video and set its device and resolution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finally, designate the video’s preview layer and add it to your view hierarchy, so the camera knows where to display video frames as they are captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most of this code is boilerplate setup that enables you to handle video input properly. Tweak the values only if you choose a different camera arrangement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Parse-Face-Detection-Results",
+          "level": 3,
+          "text": "Parse Face Detection Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide a completion handler for a Vision request handler to execute when it finishes. The completion handler indicates whether the request succeeded or resulted in an error. If the request succeeded, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains data specific to the type of request that you can use to identify the object’s location and bounding box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For face rectangle requests, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnfaceobservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provided via callback includes a bounding box for each detected face. The sample uses this bounding box to draw paths around each of the detected face landmarks on top of the preview image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in",
+            "    ",
+            "    if error != nil {",
+            "        print(\"FaceDetection error: \\(String(describing: error)).\")",
+            "    }",
+            "    ",
+            "    guard let faceDetectionRequest = request as? VNDetectFaceRectanglesRequest,",
+            "          let results = faceDetectionRequest.results else {",
+            "            return",
+            "    }",
+            "    DispatchQueue.main.async {",
+            "        // Add the observations to the tracking list",
+            "        for observation in results {",
+            "            let faceTrackingRequest = VNTrackObjectRequest(detectedObjectObservation: observation)",
+            "            requests.append(faceTrackingRequest)",
+            "        }",
+            "        self.trackingRequests = requests",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to drawing paths on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/quartzcore/calayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to visualize the feature, you can access specific facial-feature data such as eye, pupil, nose, and lip classifications in the face observation’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnfaceobservation/2867250-landmarks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Your app can leverage this information to track the user’s face and apply custom effects. For a face landmarks request, the face rectangle detector will also run implicitly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preprocess-Images",
+          "level": 3,
+          "text": "Preprocess Images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Perform any image preprocessing in the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturefileoutputdelegate/1390096-captureoutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this delegate method, create a pixel buffer to hold image contents, determine the device’s orientation, and check whether you have a face to track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the Vision framework can track an object, it must first know which object to track. Determine which face to track by creating a  ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passing it a still image frame. In the case of video, submit individual frames to the request handler as they arrive in the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturefileoutputdelegate/1390096-captureoutput",
+              "isActive": true,
+              "overridingTitle": "captureOutput:didOutputSampleBuffer:fromConnection:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "captureOutput:didOutputSampleBuffer:fromConnection:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer,",
+            "                                                orientation: exifOrientation,",
+            "                                                options: requestHandlerOptions)",
+            "",
+            "do {",
+            "    guard let detectRequests = self.detectionRequests else {",
+            "        return",
+            "    }",
+            "    try imageRequestHandler.perform(detectRequests)",
+            "} catch let error as NSError {",
+            "    NSLog(\"Failed to perform FaceRectangleRequest: %@\", error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+              "isActive": true,
+              "overridingTitle": "VNImageRequestHandler",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "VNImageRequestHandler",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " handles detection of faces and objects in still images, but it doesn’t carry information from one frame to the next.  For tracking an object, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which can handle ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntrackobjectrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Track-the-Detected-Face",
+          "level": 3,
+          "text": "Track the Detected Face",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have an observation from the image request handler’s face detection, input it to the sequence request handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try self.sequenceRequestHandler.perform(requests,",
+            "                                         on: pixelBuffer,",
+            "                                         orientation: exifOrientation)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the detector hasn’t found a face, create an image request handler to detect a face. Once that detection succeeds, and you have a face observation, track it by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntrackobjectrequest",
+              "isActive": true,
+              "overridingTitle": "VNTrackObjectRequest",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "VNTrackObjectRequest",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Setup the next round of tracking.",
+            "var newTrackingRequests = [VNTrackObjectRequest]()",
+            "for trackingRequest in requests {",
+            "    ",
+            "    guard let results = trackingRequest.results else {",
+            "        return",
+            "    }",
+            "    ",
+            "    guard let observation = results[0] as? VNDetectedObjectObservation else {",
+            "        return",
+            "    }",
+            "    ",
+            "    if !trackingRequest.isLastFrame {",
+            "        if observation.confidence > 0.3 {",
+            "            trackingRequest.inputObservation = observation",
+            "        } else {",
+            "            trackingRequest.isLastFrame = true",
+            "        }",
+            "        newTrackingRequests.append(trackingRequest)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then call the sequence handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. This method runs synchronously, so use a background queue to avoid blocking the main queue as it executes, and call back to the main queue only if you need to perform UI updates such as path drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "16781da1bbec/TrackingTheUsersFaceInRealTime.zip": {
+      "checksum": "16781da1bbecea4ab4aeb1fece349e9da3cff80308882e76e9d49c8e152c7f458713323c8eb4ca701eee9d33f2da94ab43d1a69a27cc54db6e03808a67cd97cf",
+      "identifier": "16781da1bbec/TrackingTheUsersFaceInRealTime.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/16781da1bbec/TrackingTheUsersFaceInRealTime.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectedObjectObservation": {
+      "abstract": [
+        {
+          "text": "An observation that provides the position and extent of an image feature that an image- analysis request detects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectedObjectObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectedObjectObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectedObjectObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectedObjectObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vndetectedobjectobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTrackObjectRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that tracks the movement of a previously identified object across multiple images or video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTrackObjectRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTrackObjectRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTrackObjectRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTrackObjectRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntrackobjectrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTrackRectangleRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that tracks movement of a previously identified rectangular object across multiple images or video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTrackRectangleRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTrackRectangleRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTrackRectangleRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTrackRectangleRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntrackrectanglerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTrackingRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for image-analysis requests that track unique features across multiple images or video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTrackingRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTrackingRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTrackingRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTrackingRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntrackingrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "doc://com.apple.vision/documentation/Vision/tracking-multiple-objects-or-rectangles-in-video": {
+      "abstract": [
+        {
+          "text": "Apply Vision algorithms to track objects or rectangles throughout a video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/tracking-multiple-objects-or-rectangles-in-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking Multiple Objects or Rectangles in Video",
+      "type": "topic",
+      "url": "/documentation/vision/tracking-multiple-objects-or-rectangles-in-video"
+    },
+    "https://developer.apple.com/documentation/avfoundation/avcapturefileoutputdelegate/1390096-captureoutput": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturefileoutputdelegate/1390096-captureoutput",
+      "title": "captureOutput:didOutputSampleBuffer:fromConnection:",
+      "titleInlineContent": [
+        {
+          "code": "captureOutput:didOutputSampleBuffer:fromConnection:",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/avcapturefileoutputdelegate/1390096-captureoutput"
+    },
+    "https://developer.apple.com/documentation/avfoundation/avcapturesession": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/avcapturesession",
+      "title": "AVCaptureSession",
+      "titleInlineContent": [
+        {
+          "code": "AVCaptureSession",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/avcapturesession"
+    },
+    "https://developer.apple.com/documentation/avfoundation/avmediatype": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/avmediatype",
+      "title": "AVMediaType",
+      "titleInlineContent": [
+        {
+          "code": "AVMediaType",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/avmediatype"
+    },
+    "https://developer.apple.com/documentation/quartzcore": {
+      "identifier": "https://developer.apple.com/documentation/quartzcore",
+      "title": "Core Animation",
+      "titleInlineContent": [
+        {
+          "text": "Core Animation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/quartzcore"
+    },
+    "https://developer.apple.com/documentation/quartzcore/calayer": {
+      "identifier": "https://developer.apple.com/documentation/quartzcore/calayer",
+      "title": "CALayer",
+      "titleInlineContent": [
+        {
+          "code": "CALayer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/quartzcore/calayer"
+    },
+    "https://developer.apple.com/documentation/vision": {
+      "identifier": "https://developer.apple.com/documentation/vision",
+      "title": "Vision",
+      "titleInlineContent": [
+        {
+          "text": "Vision",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision"
+    },
+    "https://developer.apple.com/documentation/vision/vnfaceobservation": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnfaceobservation",
+      "title": "VNFaceObservation",
+      "titleInlineContent": [
+        {
+          "code": "VNFaceObservation",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnfaceobservation"
+    },
+    "https://developer.apple.com/documentation/vision/vnfaceobservation/2867250-landmarks": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnfaceobservation/2867250-landmarks",
+      "title": "landmarks",
+      "titleInlineContent": [
+        {
+          "code": "landmarks",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnfaceobservation/2867250-landmarks"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler",
+      "title": "VNImageRequestHandler",
+      "titleInlineContent": [
+        {
+          "code": "VNImageRequestHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler"
+    },
+    "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform",
+      "title": "perform(_:)",
+      "titleInlineContent": [
+        {
+          "code": "perform(_:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnimagerequesthandler/2880297-perform"
+    },
+    "https://developer.apple.com/documentation/vision/vnrequest/2867238-results": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results",
+      "title": "results",
+      "titleInlineContent": [
+        {
+          "code": "results",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnrequest/2867238-results"
+    },
+    "https://developer.apple.com/documentation/vision/vnsequencerequesthandler": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler",
+      "title": "VNSequenceRequestHandler",
+      "titleInlineContent": [
+        {
+          "code": "VNSequenceRequestHandler",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnsequencerequesthandler"
+    },
+    "https://developer.apple.com/documentation/vision/vntrackobjectrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntrackobjectrequest",
+      "title": "VNTrackObjectRequest",
+      "titleInlineContent": [
+        {
+          "code": "VNTrackObjectRequest",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntrackobjectrequest"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "16781da1bbec/TrackingTheUsersFaceInRealTime.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Object-tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/tracking-multiple-objects-or-rectangles-in-video",
+        "doc://com.apple.vision/documentation/Vision/VNTrackingRequest",
+        "doc://com.apple.vision/documentation/Vision/VNTrackRectangleRequest",
+        "doc://com.apple.vision/documentation/Vision/VNTrackObjectRequest",
+        "doc://com.apple.vision/documentation/Vision/VNDetectedObjectObservation"
+      ],
+      "title": "Object tracking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Object-tracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/tracking-multiple-objects-or-rectangles-in-video",
+                "doc://com.apple.vision/documentation/Vision/VNTrackingRequest",
+                "doc://com.apple.vision/documentation/Vision/VNTrackRectangleRequest",
+                "doc://com.apple.vision/documentation/Vision/VNTrackObjectRequest",
+                "doc://com.apple.vision/documentation/Vision/VNDetectedObjectObservation"
+              ],
+              "title": "Object tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectedObjectObservation/title",
+          "value": "VNDetectedObjectObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectedObjectObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectedObjectObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectedObjectObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectedObjectObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackingRequest/title",
+          "value": "VNTrackingRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackingRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackingRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackingRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackingRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackRectangleRequest/title",
+          "value": "VNTrackRectangleRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackRectangleRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackRectangleRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackRectangleRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackRectangleRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackObjectRequest/title",
+          "value": "VNTrackObjectRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackObjectRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackObjectRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackObjectRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackObjectRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/tracking-the-user-s-face-in-real-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/tracking-the-user-s-face-in-real-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

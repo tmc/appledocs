@@ -1,0 +1,566 @@
+{
+  "abstract": [
+    {
+      "text": "The rules, as JSON data, that the system applies when it displays a message.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mailkit/documentation/MailKit",
+        "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker/contentRulesJSON()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MEContentBlocker(im)contentRulesJSON",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "contentRulesJSON"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation4DataV",
+        "text": "Data"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MailKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "contentRulesJSON"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "contentRulesJSON()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentRulesJSON"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DataV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DataV",
+              "text": "Data"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A data object that contains valid JSON content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MailKit relies on WebKit to block content. Therefore, the JSON structure is the same that a content blocker extension for Safari uses. For details about the structure of the JSON to specify the content-blocking rules, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/blog/3476/content-blockers-first-look/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of a content blocker that uses a rule to hide all links from a specific domain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func contentRulesJSON() -> Data {",
+            "    // A single rule that visually hides all links to example.com.",
+            "    let rules = [",
+            "        [",
+            "            \"action\": [",
+            "                \"type\": \"css-display-none\",",
+            "                \"selector\": \"a[href*='example.com']\"",
+            "            ],",
+            "            \"trigger\": [ \"url-filter\": \".*\" ]",
+            "        ]",
+            "    ]",
+            "    ",
+            "    // Serialize the array of rules to JSON.",
+            "    let data = try? JSONSerialization.data(withJSONObject: rules, options: [])",
+            "    ",
+            "    // Return the encoded rules, or an empty data if encoding failed.",
+            "    return data ?? Data()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit": {
+      "abstract": [
+        {
+          "text": "Secure, customize, and act on email messages that users send and receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MailKit",
+      "type": "topic",
+      "url": "/documentation/mailkit"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker": {
+      "abstract": [
+        {
+          "text": "An object that provides a set of rules to block content when displaying a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEContentBlocker"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEContentBlocker"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEContentBlocker",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecontentblocker"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker/contentRulesJSON()": {
+      "abstract": [
+        {
+          "text": "The rules, as JSON data, that the system applies when it displays a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentRulesJSON"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker/contentRulesJSON()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentRulesJSON"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "contentRulesJSON()",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecontentblocker/contentrulesjson()"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation4DataV": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DataV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "https://webkit.org/blog/3476/content-blockers-first-look/": {
+      "identifier": "https://webkit.org/blog/3476/content-blockers-first-look/",
+      "title": "Introduction to WebKit Content Blockers",
+      "titleInlineContent": [
+        {
+          "text": "Introduction to WebKit Content Blockers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/3476/content-blockers-first-look/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "contentRulesJSON"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentRulesJSON"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mailkit/documentation/MailKit",
+                "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSData",
+                    "text": "NSData"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "contentRulesJSON"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A data object that contains valid JSON content.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEContentBlocker~1contentRulesJSON()/title",
+          "value": "contentRulesJSON"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEContentBlocker~1contentRulesJSON()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentRulesJSON"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEContentBlocker/title",
+          "value": "MEContentBlocker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEContentBlocker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEContentBlocker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEContentBlocker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEContentBlocker"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mailkit/mecontentblocker/contentrulesjson()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mailkit/mecontentblocker/contentrulesjson()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

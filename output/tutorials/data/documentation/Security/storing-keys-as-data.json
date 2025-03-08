@@ -1,0 +1,911 @@
+{
+  "abstract": [
+    {
+      "text": "Create an external representation of a key for transmission.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/storing-keys-as-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Storing Keys as Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a key that you want to send somewhere, you package it in a form that’s suitable for transmission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-the-Key-as-a-Data-Instance",
+          "level": 3,
+          "text": "Export the Key as a Data Instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a data instance representing a key using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let key = <# a key #>",
+                    "var error: Unmanaged<CFError>?",
+                    "guard let data = SecKeyCopyExternalRepresentation(key, &error) as Data else {",
+                    "    throw error!.takeRetainedValue() as Error",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecKeyRef key = <# a key #>;",
+                    "CFErrorRef error = NULL;",
+                    "NSData* keyData = (NSData*)CFBridgingRelease(  // ARC takes ownership",
+                    "                       SecKeyCopyExternalRepresentation(key, &error)",
+                    "                   );",
+                    "if (!keyData) {",
+                    "    NSError *err = CFBridgingRelease(error);  // ARC takes ownership",
+                    "    // Handle the error. . .",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data instance returned from this function can then be sent across a network, through the file system, or by any other means, so long as the data’s content is preserved exactly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method works for both public and private keys. However, it doesn’t work for all keys. For example, if a key is bound to a smart card or to the Secure Enclave, you can’t export it this way. Also, in macOS, a key that has the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecKeyExtractable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute set to false is ineligible for export. In these cases, or if any other error occurs, the returned data is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the error object indicates the reason for failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an error does occur, you become responsible for the error object’s memory. In Objective-C, you transfer ownership to Automatic Reference Counting (ARC) using a call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1587932-cfbridgingrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In Swift, you convert the unmanaged ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to a managed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a cast.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format of the returned data depends on the kind of key you are exporting:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For an RSA key, the function returns data in the PKCS #1 format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For an elliptic curve public key, the format follows the ANSI X9.63 standard using a byte string of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "04 || X || Y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For an elliptic curve private key, the output is formatted as the public key concatenated with the big endian encoding of the secret scalar, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "04 || X || Y || K",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of these representations use constant size integers, including leading zeros as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid insecure distribution of cryptographic keys, and pay special attention to private keys. You can distribute a public key freely, although you do need to ensure trust—can the receiver be sure this is the public key that you sent? Trust is typically established with a signed certificate, but if you are working in a closed system, or enforce trust in some other way, you can export and send public keys as data. Use extra caution, however, when exporting private keys, because they must remain absolutely secret to be of value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If there’s even a possibility that an untrusted entity has gained access to your private key, it is compromised and you should stop using it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Restore-a-Key-from-a-Data-Instance",
+          "level": 3,
+          "text": "Restore a Key from a Data Instance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to restore the data instance back into a key, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateWithData(_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let options: [String: Any] = [kSecAttrKeyType as String: kSecAttrKeyTypeRSA,",
+                    "                              kSecAttrKeyClass as String: kSecAttrKeyClassPublic]",
+                    "var error: Unmanaged<CFError>?",
+                    "guard let key = SecKeyCreateWithData(data as CFData,",
+                    "                                     options as CFDictionary,",
+                    "                                     &error) else {",
+                    "                                        throw error!.takeRetainedValue() as Error",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// The key is assumed to be public, 2048-bit RSA",
+                    "NSDictionary* options = @{(id)kSecAttrKeyType: (id)kSecAttrKeyTypeRSA,",
+                    "                          (id)kSecAttrKeyClass: (id)kSecAttrKeyClassPublic",
+                    "                         };",
+                    "CFErrorRef error = NULL;",
+                    "SecKeyRef key = SecKeyCreateWithData((__bridge CFDataRef)data,",
+                    "                                     (__bridge CFDictionaryRef)options,",
+                    "                                     &error);",
+                    "if (!key) {",
+                    "    NSError *err = CFBridgingRelease(error);  // ARC takes ownership",
+                    "    // Handle the error. . .",
+                    "} else { <# Use key #> }",
+                    " ",
+                    "if (key) { CFRelease(key); }  // After you are done with it"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, you use an options dictionary to inform the function about certain characteristics of the key. At a minimum, you indicate the key’s type and class, which means you need to communicate this information along with the key data or establish it ahead of time. If the function returns an empty key reference, check the error object for indications of failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, you release the key object’s memory after you’re done using it. You also transfer ownership of the error object, if it exists, to ARC. In Swift, the key object’s memory is already managed by the system, but you transfer ownership of the unmanaged ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the system with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and recast it as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Error",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before throwing it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/Error": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()": {
+      "abstract": [
+        {
+          "text": "Gets the value of this unmanaged reference as a managed reference and consumes an unbalanced retain of it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "takeRetainedValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Unmanaged/takeRetainedValue()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "takeRetainedValue()",
+      "type": "topic",
+      "url": "/documentation/Swift/Unmanaged/takeRetainedValue()"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "article",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1587932-cfbridgingrelease": {
+      "abstract": [
+        {
+          "text": "Moves a non-Objective-C pointer to Objective-C and also transfers ownership to ARC.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1587932-cfbridgingrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBridgingRelease",
+      "type": "topic",
+      "url": "/documentation/foundation/1587932-cfbridgingrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns an external representation of the given key suitable for the key’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCopyExternalRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCopyExternalRepresentation(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCopyExternalRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCopyExternalRepresentation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycopyexternalrepresentation(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyCreateWithData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Restores a key from an external representation of that key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateWithData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeyRef",
+          "text": "SecKey"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyCreateWithData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyCreateWithData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyCreateWithData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeycreatewithdata(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/kSecKeyExtractable": {
+      "abstract": [
+        {
+          "text": "Type uint32; value is nonzero. This key can be wrapped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecKeyExtractable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecKeyExtractable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecKeyExtractable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecKeyExtractable",
+      "type": "topic",
+      "url": "/documentation/security/kseckeyextractable"
+    },
+    "doc://com.apple.security/documentation/Security/keys": {
+      "abstract": [
+        {
+          "text": "Generate, store, and use cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys",
+      "type": "topic",
+      "url": "/documentation/security/keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateWithData(_:_:_:)/title",
+          "value": "SecKeyCreateWithData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCreateWithData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCreateWithData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecKeyExtractable/title",
+          "value": "kSecKeyExtractable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecKeyExtractable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecKeyExtractable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCopyExternalRepresentation(_:_:)/title",
+          "value": "SecKeyCopyExternalRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyCopyExternalRepresentation(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyCopyExternalRepresentation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/storing-keys-as-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/storing-keys-as-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1780 @@
+{
+  "abstract": [
+    {
+      "text": "Information about a form of payment supported by your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INPaymentMethod",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INPaymentMethod"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INPaymentMethod"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INPaymentMethod"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object describes a way in which a user can pay for services. A payment method object stores information that you can display to the user when choosing payment options. Specifically, the object stores information about the type of payment, the name of the payment service, and an icon for any related brand information. Typical payment methods include credit cards and bank accounts. For example, you would use a payment method object to specify information about a brand of credit card that you support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create payment method objects as needed and include them in any appropriate response objects. The names of payment methods in a single response should be different to avoid confusion, but their types may still be the same. For example, you can have multiple credit card payment methods as long as each one has a unique name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You do not use payment methods to process actual payments from the user. You are responsible for handling any financial transactions from your app or Intents extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAccountType": {
+      "abstract": [
+        {
+          "text": "Constants indicating the type of account involved in a financial transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAccountType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAccountType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAccountType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAccountType",
+      "type": "topic",
+      "url": "/documentation/intents/inaccounttype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount": {
+      "abstract": [
+        {
+          "text": "An amount of money to transfer during a financial transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCurrencyAmount",
+      "type": "topic",
+      "url": "/documentation/intents/incurrencyamount"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount": {
+      "abstract": [
+        {
+          "text": "A user account that provides the funds when making a payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccount"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccount"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAccount",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentaccount"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount": {
+      "abstract": [
+        {
+          "text": "The amount of money to apply to a bill payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAmount",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentamount"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod": {
+      "abstract": [
+        {
+          "text": "Information about a form of payment supported by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentMethod",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/applePay()": {
+      "abstract": [
+        {
+          "text": "Creates and returns a payment method object that represents payment through Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applePay"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/applePay()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applePayPaymentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "applePay()",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod/applepay()"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/icon": {
+      "abstract": [
+        {
+          "text": "The image representing the payment method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INImage",
+          "text": "INImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/icon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "icon"
+        }
+      ],
+      "role": "symbol",
+      "title": "icon",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod/icon"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/identificationHint": {
+      "abstract": [
+        {
+          "text": "The hint for identifying the payment method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identificationHint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/identificationHint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identificationHint"
+        }
+      ],
+      "role": "symbol",
+      "title": "identificationHint",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod/identificationhint"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/init(type:name:identificationHint:icon:)": {
+      "abstract": [
+        {
+          "text": "Initializes the payment method object with the specified type and descriptive information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INPaymentMethodType",
+          "text": "INPaymentMethodType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identificationHint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "icon"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INImage",
+          "text": "INImage"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/init(type:name:identificationHint:icon:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithType:name:identificationHint:icon:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(type:name:identificationHint:icon:)",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod/init(type:name:identificationhint:icon:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/name": {
+      "abstract": [
+        {
+          "text": "The name of this payment type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod/name"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/type": {
+      "abstract": [
+        {
+          "text": "The type of account used as the source of funds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INPaymentMethodType",
+          "text": "INPaymentMethodType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethod/type"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodType": {
+      "abstract": [
+        {
+          "text": "Constants describing the available payment options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethodType"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethodType"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentMethodType",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethodtype"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord": {
+      "abstract": [
+        {
+          "text": "Detailed information about a financial transaction made between two users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentRecord",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentrecord"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating the state of the financial transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentStatus",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentstatus"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPerson": {
+      "abstract": [
+        {
+          "text": "Information about a person participating in a SiriKit interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPerson",
+      "type": "topic",
+      "url": "/documentation/intents/inperson"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAccountType",
+        "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus",
+        "doc://com.apple.sirikit/documentation/Intents/INPerson"
+      ],
+      "title": "Data Objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Payment-Object",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/init(type:name:identificationHint:icon:)",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/applePay()"
+      ],
+      "title": "Initializing a Payment Object"
+    },
+    {
+      "anchor": "Getting-the-Payment-Information",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/type",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodType",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/name",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/identificationHint",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/icon"
+      ],
+      "title": "Getting the Payment Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INPaymentMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Payment-Object",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/init(type:name:identificationHint:icon:)",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/applePay()"
+              ],
+              "title": "Initializing a Payment Object"
+            },
+            {
+              "anchor": "Getting-the-Payment-Information",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/type",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodType",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/name",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/identificationHint",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethod/icon"
+              ],
+              "title": "Getting the Payment Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-Objects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INAccountType",
+                "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmount",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentAccount",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentAmount",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentRecord",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentStatus",
+                "doc://com.apple.sirikit/documentation/Intents/INPerson"
+              ],
+              "title": "Data Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INPaymentMethod"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1init(type:name:identificationHint:icon:)/title",
+          "value": "initWithType:name:identificationHint:icon:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1init(type:name:identificationHint:icon:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithType:name:identificationHint:icon:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodType/title",
+          "value": "INPaymentMethodType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethodType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethodType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmount/title",
+          "value": "INPaymentAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/title",
+          "value": "INPerson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPerson/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentRecord/title",
+          "value": "INPaymentRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmount/title",
+          "value": "INCurrencyAmount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1icon/title",
+          "value": "icon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1icon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "icon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccount/title",
+          "value": "INPaymentAccount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1applePay()/title",
+          "value": "applePayPaymentMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1applePay()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "applePayPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1identificationHint/title",
+          "value": "identificationHint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1identificationHint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identificationHint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatus/title",
+          "value": "INPaymentStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountType/title",
+          "value": "INAccountType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod/title",
+          "value": "INPaymentMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethod~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/inpaymentmethod"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/inpaymentmethod"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

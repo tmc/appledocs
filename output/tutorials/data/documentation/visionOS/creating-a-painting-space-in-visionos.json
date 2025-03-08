@@ -1,0 +1,1670 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a painting canvas entity, and update its mesh to represent a stroke.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-painting-1-main-view-card.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a 3D painting space"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to create a painting space so that people can pinch-to-draw in an augmented reality space. To achieve this, the app uses hand-tracking technology that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides to monitor a person’s hand movements. To capture and display each stroke, the app creates collision boxes within the environment, stores the person’s drawing points through a pinch gesture, and then updates the mesh at those points to represent the stroke, as the following video shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-painting-1-main-view.mov",
+          "type": "video"
+        },
+        {
+          "anchor": "Add-a-system-and-component-to-enable-real-time-updates",
+          "level": 3,
+          "text": "Add a system and component to enable real-time updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses a custom system and component to handle updates for entities over time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct ClosureComponent: Component {",
+            "    /// The closure that takes the time interval since the last update.",
+            "    let closure: (TimeInterval) -> Void",
+            "",
+            "    init(closure: @escaping (TimeInterval) -> Void) {",
+            "        self.closure = closure",
+            "        ClosureSystem.registerSystem()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The component contains the ",
+              "type": "text"
+            },
+            {
+              "code": "closure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to track the time. On initialization, it registers ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the reality view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constructs a query using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve all entities with the ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the scene. Then it passes the delta time, which is the elapsed time since the last update, to the ",
+              "type": "text"
+            },
+            {
+              "code": "closure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable for each entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct ClosureSystem: System {",
+            "    /// The query to find entities that contain `ClosureComponent`.",
+            "    static let query = EntityQuery(where: .has(ClosureComponent.self))",
+            "",
+            "    init(scene: RealityKit.Scene) {}",
+            "",
+            "    /// Update entities with `ClosureComponent` at each render frame.",
+            "    func update(context: SceneUpdateContext) {",
+            "        for entity in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {",
+            "            guard let comp = entity.components[ClosureComponent.self] else { continue }",
+            "            comp.closure(context.deltaTime)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-hand-tracking-for-painting-action",
+          "level": 3,
+          "text": "Set up hand tracking for painting action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates ",
+              "type": "text"
+            },
+            {
+              "code": "PaintingHandTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to track the person’s hand with ARKit and store the latest detected hand anchors in the ",
+              "type": "text"
+            },
+            {
+              "code": "latestLeftHand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "latestRightHand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "import ARKit",
+            "",
+            "@MainActor class PaintingHandTracking: ObservableObject {",
+            "    /// The ARKit session for hand tracking.",
+            "    let arSession = ARKitSession()",
+            "",
+            "    /// The `HandTrackingProvider` for hand tracking.",
+            "    let handTracking = HandTrackingProvider()",
+            "",
+            "    /// The current left hand anchor that the app detects.",
+            "    @Published var latestLeftHand: HandAnchor?",
+            "",
+            "    /// The current right hand anchor that the app detects.",
+            "    @Published var latestRightHand: HandAnchor?",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "startTracking()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method checks device compatibility for hand tracking and starts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", while handling potential errors. It continuously waits for anchor updates and assigns the latest left or right hand based on the chirality value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import RealityKit",
+            "import ARKit",
+            "",
+            "@MainActor class PaintingHandTracking: ObservableObject {",
+            "    // ...",
+            "",
+            "    /// Check whether the device supports hand tracking, and start the ARKit session.",
+            "    func startTracking() async {",
+            "        guard HandTrackingProvider.isSupported else {",
+            "            print(\"HandTrackingProvider is not supported on this device.\")",
+            "            return",
+            "        }",
+            "",
+            "        do {",
+            "            try await arSession.run([handTracking])",
+            "        } catch let error as ARKitSession.Error {",
+            "            print(\"Encountered an error while running providers: \\(error.localizedDescription)\")",
+            "        } catch let error {",
+            "            print(\"Encountered an unexpected error: \\(error.localizedDescription)\")",
+            "        }",
+            "",
+            "        // Assign the left and right hand based on the anchor updates.",
+            "        for await anchorUpdate in handTracking.anchorUpdates {",
+            "            switch anchorUpdate.anchor.chirality {",
+            "            case .left:",
+            "                self.latestLeftHand = anchorUpdate.anchor",
+            "            case .right:",
+            "                self.latestRightHand = anchorUpdate.anchor",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-the-structural-representation-of-a-stroke",
+          "level": 3,
+          "text": "Implement the structural representation of a stroke",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates the ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure to represent the current stroke the person creates with the drag gesture input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct Stroke {",
+            "    /// The stroke that represents the stroke.",
+            "    var entity = Entity()",
+            "",
+            "    /// The collection of points in 3D space that represent the stroke.",
+            "    var points: [SIMD3<Float>] = []",
+            "",
+            "    /// The maximum radius of the stroke.",
+            "    let maxRadius: Float = 1E-2",
+            "",
+            "    /// The number of points in each ring of the mesh.",
+            "    let pointsPerRing = 8",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update the mesh of the stroke, use ",
+              "type": "text"
+            },
+            {
+              "code": "updateMesh()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. This method uses the initial point as the center and initializes the ",
+              "type": "text"
+            },
+            {
+              "code": "positions",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "normal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "triangle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indices from ",
+              "type": "text"
+            },
+            {
+              "code": "generateMeshData()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which iterates through the ",
+              "type": "text"
+            },
+            {
+              "code": "points",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array to construct a path for the mesh:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateMesh() {",
+            "    // The starting point where the stroke mesh begins.",
+            "    guard let center = points.first else { return }",
+            "",
+            "    /// The position, normals, and triangle indices that the points generate.",
+            "    let (positions, normals, triangles) = generateMeshData()",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method creates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Contents-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to represent the content of the mesh that the stroke updates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateMesh() {",
+            "    // ...",
+            "",
+            "    /// The `MeshResource.Contents` instance.",
+            "    var contents = MeshResource.Contents()",
+            "    ",
+            "    // Create and assign an instance to `contents`.",
+            "    contents.instances = [MeshResource.Instance(id: \"main\", model: \"model\")]",
+            "",
+            "    // Create the part for the model, and set the vertex positions, triangle indices, and normals.",
+            "    var part = MeshResource.Part(id: \"part\", materialIndex: 0)",
+            "    part.positions = MeshBuffer(positions)",
+            "    part.triangleIndices = MeshBuffer(triangles)",
+            "    part.normals = MeshBuffer(normals)",
+            "",
+            "    // Create and assign a model that consists of the `part`.",
+            "    contents.models = [MeshResource.Model(id: \"model\", parts: [part])]",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Instance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then define a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Part",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the model, where ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " assigns vertex positions, triangle indices, and normals. Finally, it creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "part",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and assigns to ",
+              "type": "text"
+            },
+            {
+              "code": "contents",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method either updates an existing mesh component on the entity, or creates a new mesh. If a mesh component already exists, it updates it with the ",
+              "type": "text"
+            },
+            {
+              "code": "contents",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; otherwise, it generates a new mesh with ",
+              "type": "text"
+            },
+            {
+              "code": "contents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and assigns it to the entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateMesh() {",
+            "    // ...",
+            "",
+            "    // Replace the mesh with `contents` if there is a mesh component on the entity.",
+            "    if let mesh = entity.model?.mesh {",
+            "        do {",
+            "            try mesh.replace(with: contents)",
+            "        } catch {",
+            "            print(\"Error replacing mesh: \\(error.localizedDescription)\")",
+            "        }",
+            "    } else {",
+            "        /// The new mesh that generates with `content`.",
+            "        guard let mesh = try? MeshResource.generate(from: contents) else {",
+            "        print(\"Error generating mesh\")",
+            "            return",
+            "        }",
+            "",
+            "        // Set the model component to the new mesh and assign a simple material.",
+            "        entity.components.set(ModelComponent(",
+            "            mesh: mesh,",
+            "            materials: [SimpleMaterial(color: .white, roughness: 1.0, isMetallic: false)]",
+            "        ))",
+            "",
+            "        // Set the entity's transform and position.",
+            "        entity.setTransformMatrix(.identity, relativeTo: nil)",
+            "        entity.setPosition(center, relativeTo: nil)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-painting-canvas-to-store-strokes",
+          "level": 3,
+          "text": "Create the painting canvas to store strokes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the 3D painting environment, the sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "PaintingCanvas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to set up ",
+              "type": "text"
+            },
+            {
+              "code": "root",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which represents the painting canvas, and ",
+              "type": "text"
+            },
+            {
+              "code": "currentStroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which represents the stroke the person creates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "class PaintingCanvas {",
+            "    /// The main root entity for the painting canvas.",
+            "    let root = Entity()",
+            "",
+            "    /// The stroke the person creates.",
+            "    var currentStroke: Stroke?",
+            "",
+            "    /// The distance for the box that extends in the positive direction.",
+            "    let big: Float = 1E2",
+            "",
+            "    /// The distance for the box that extends in the negative direction.",
+            "    let small: Float = 1E-2",
+            "",
+            "    init() {",
+            "        root.addChild(addBox(size: [big, big, small], position: [0, 0, -0.5 * big]))",
+            "        root.addChild(addBox(size: [big, big, small], position: [0, 0, +0.5 * big]))",
+            "        ",
+            "        // ...",
+            "    }",
+            "",
+            "    /// Create a collision box that takes in user input with the drag gesture.",
+            "    private func addBox(size: SIMD3<Float>, position: SIMD3<Float>) -> Entity {",
+            "        let box = Entity()",
+            "        box.components.set(InputTargetComponent())",
+            "        box.components.set(CollisionComponent(shapes: [.generateBox(size: size)], isStatic: true))",
+            "        box.position = position",
+            "        return box",
+            "    }",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the initialization of the class, the app sets up the root by adding six boxes to represent the canvas. User input can target these boxes, and the boxes can interact with other collision entities, stacking along the x, y, and z-axes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "addPoint(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add the points that the person targets into the ",
+              "type": "text"
+            },
+            {
+              "code": "currentStroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and update the stroke’s mesh to display the stroke on the painting canvas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class PaintingCanvas {",
+            "    // ...",
+            "",
+            "    func addPoint(_ position: SIMD3<Float>) {",
+            "        /// The maximum distance between two points before requiring a new point.",
+            "        let threshold: Float = 1E-9",
+            "",
+            "        // Start a new stroke if no stroke exists.",
+            "        if currentStroke == nil {",
+            "            currentStroke = Stroke()",
+            "",
+            "            // Add the stroke to the root.",
+            "            root.addChild(currentStroke!.entity)",
+            "        }",
+            "",
+            "        // Check if the length between the current hand position and the previous point meets the threshold.",
+            "        if let previousPoint = currentStroke?.points.last, length(position - previousPoint) < threshold {",
+            "            return",
+            "        }",
+            "",
+            "        // Add the current position to the stroke.",
+            "        currentStroke?.points.append(position)",
+            "",
+            "        // Update the current stroke mesh.",
+            "        currentStroke?.updateMesh()",
+            "    }",
+            "",
+            "    func finishStroke() {",
+            "        if let stroke = currentStroke {",
+            "            // Trigger the update mesh operation.",
+            "            stroke.updateMesh()",
+            "",
+            "            // Clear the current stroke.",
+            "            currentStroke = nil",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the person ends a painting action, ",
+              "type": "text"
+            },
+            {
+              "code": "finishStroke()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " updates the stroke’s mesh and sets the ",
+              "type": "text"
+            },
+            {
+              "code": "currentStroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to nil, to mark the end of the stroke.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-the-painting-space",
+          "level": 3,
+          "text": "Set up the painting space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a ",
+              "type": "text"
+            },
+            {
+              "code": "PaintingView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to combine the hand tracking, painting canvas, and drag gesture detection. It creates the instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "PaintingHandTracking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, the instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "PaintingCanvas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, and the ",
+              "type": "text"
+            },
+            {
+              "code": "lastIndexPose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to store the last position of the index finger:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "import ARKit",
+            "",
+            "struct PaintingView: View {",
+            "    /// The `PaintingHandTracking` class instance.",
+            "    var paintingHandTracking = PaintingHandTracking()",
+            "",
+            "    /// The instance of the `PaintingCanvas` class to handle painting operations.",
+            "    @State var canvas = PaintingCanvas()",
+            "",
+            "    /// The last position of the index finger.",
+            "    @State var lastIndexPose: SIMD3<Float>?",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within the main body of the view, the app attaches a ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the root entity, allowing the hand anchors to update over time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    RealityView { content in",
+            "        /// The root entity from the painting canvas.",
+            "        let root = canvas.root",
+            "        content.add(root)",
+            "",
+            "        root.components.set(ClosureComponent(closure: { deltaTime in",
+            "            /// The collection of `HandAnchor` instances.",
+            "            var anchors = [HandAnchor]()",
+            "",
+            "            if let latestLeftHand = paintingHandTracking.latestLeftHand {",
+            "                anchors.append(latestLeftHand)",
+            "            }",
+            "            if let latestRightHand = paintingHandTracking.latestRightHand {",
+            "                anchors.append(latestRightHand)",
+            "            }",
+            "",
+            "            // Loop through each anchor that the app detects.",
+            "            for anchor in anchors {",
+            "                guard let handSkeleton = anchor.handSkeleton else {",
+            "                    continue",
+            "                }",
+            "",
+            "                let thumbPos = (anchor.originFromAnchorTransform * handSkeleton.joint(.thumbTip).anchorFromJointTransform).translation()",
+            "                let indexPos = (anchor.originFromAnchorTransform * handSkeleton.joint(.indexFingerTip).anchorFromJointTransform).translation()",
+            "",
+            "                /// The threshold to check whether the index and thumb are close.",
+            "                let pinchThreshold: Float = 0.05",
+            "                if length(thumbPos - indexPos) < pinchThreshold {",
+            "                    lastIndexPose = indexPos",
+            "                }",
+            "            }",
+            "        }))",
+            "    }",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " iterates through the collection of hand anchors and attempts to retrieve the hand skeleton with each anchor. Then it calculates the distance between the tip of the thumb and the tip of the index finger, using the data from the hand skeleton. If this distance is less than the defined threshold for a pinch gesture, it updates the last known index finger position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app attaches the main body view to the ",
+              "type": "text"
+            },
+            {
+              "code": ".gesture()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier, to recognize user inputs. When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " recognizes an ",
+              "type": "text"
+            },
+            {
+              "code": ".onChanged",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action, it interprets this as the person initiating a painting action, adding a point to the canvas. When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " recognizes an ",
+              "type": "text"
+            },
+            {
+              "code": ".onEnded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action, it interprets this as the person finishing a painting action, ending the stroke on the canvas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".gesture(",
+            "    DragGesture(minimumDistance: 0)",
+            "    // Enable the gesture to target an entity.",
+            "    .targetedToAnyEntity()",
+            "    .onChanged({ _ in",
+            "        // Get the current position.",
+            "        if let pos = lastIndexPose {",
+            "            // Add a point at the current position.",
+            "            canvas.addPoint(pos)",
+            "        }",
+            "    })",
+            "    .onEnded({ _ in",
+            "        // End the current stroke when the drag gesture ends.",
+            "        canvas.finishStroke()",
+            "    })",
+            ")",
+            ".task {",
+            "    // Enable hand tracking when the view starts.",
+            "    await paintingHandTracking.startTracking()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app starts the hand-tracking sesson within the ",
+              "type": "text"
+            },
+            {
+              "code": ".task()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier, which allows the app to enable hand tracking asynchronously before the view appears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+            "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement",
+            "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view",
+            "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "95fb0d2bec32/CreatingA3DPaintingSpaceInVisionOS.zip": {
+      "checksum": "95fb0d2bec3232f28afcb2783c855b6e83f55418fa0bbf9f1c663730f403ac6fd34b93664e17b5c6f000a4c88aeba382106ab113c0b733bff5a128d4fc1b5133",
+      "identifier": "95fb0d2bec32/CreatingA3DPaintingSpaceInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/95fb0d2bec32/CreatingA3DPaintingSpaceInVisionOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the position of a person’s hands and hand joints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HandTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/HandTrackingProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HandTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/HandTrackingProvider"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An object that retrieves entities from a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/EntityQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/RealityKit/EntityQuery"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshBuffer": {
+      "abstract": [
+        {
+          "text": "Mesh buffer containing elements of any type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshBuffer",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshBuffer"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Contents-swift.struct": {
+      "abstract": [
+        {
+          "text": "Value of the contents of the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Contents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Contents-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshResource.Contents",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/Contents-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Instance": {
+      "abstract": [
+        {
+          "text": "An object that transforms a model to a location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instance"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Instance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshResource.Instance",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/Instance"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Model": {
+      "abstract": [
+        {
+          "text": "A model consists of a list of parts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Model",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshResource.Model",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/Model"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Part": {
+      "abstract": [
+        {
+          "text": "A part of a model consisting of a single material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshResource/Part",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshResource.Part",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshResource/Part"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/DragGesture": {
+      "abstract": [
+        {
+          "text": "A dragging motion that invokes an action as the drag-event sequence changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DragGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DragGesture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DragGesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/DragGesture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings": {
+      "abstract": [
+        {
+          "text": "Add a layer of mesh to objects in the real world, using scene reconstruction in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings",
+      "images": [
+        {
+          "identifier": "sample-scene-reconstruction-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying mesh to real-world surroundings",
+      "type": "topic",
+      "url": "/documentation/visionos/applying-mesh-to-real-world-surroundings"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view": {
+      "abstract": [
+        {
+          "text": "Create an entity that tracks and follows head movement in an immersive scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view",
+      "images": [
+        {
+          "identifier": "sample-head-tracking-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying an entity that follows a person’s view",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-a-3d-object-that-moves-to-stay-in-a-person's-view"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement": {
+      "abstract": [
+        {
+          "text": "Use hand-tracking anchors to display a visual representation of hand transforms in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement",
+      "images": [
+        {
+          "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing hand movement",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-and-visualizing-hand-movement"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-head-tracking-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-head-tracking-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/337cbec01d13e02d7ce87083e99aa238/sample-head-tracking-1-main-view.png"
+        }
+      ]
+    },
+    "sample-painting-1-main-view-card.png": {
+      "alt": null,
+      "identifier": "sample-painting-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5935efa03ec190fbbe60c69bd0cd017c/sample-painting-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-painting-1-main-view.mov": {
+      "alt": "A video of a visionOS app with a translucent window labeled Painting Example. The app reacts to pinch-and-drag gestures to draw the word Hello.",
+      "identifier": "sample-painting-1-main-view.mov",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6c01bd5c7dd9ba5536ec0f79a1459d2/sample-painting-1-main-view.mov"
+        }
+      ]
+    },
+    "sample-scene-reconstruction-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-scene-reconstruction-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca107fadb52f294d3f7d41e02c6bd321/sample-scene-reconstruction-1-main-view.png"
+        }
+      ]
+    },
+    "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg": {
+      "alt": "A screenshot of a visionOS app with a translucent window with the label 'Hand Tracking Example', displaying two hands with spheres that appear affixed to each bone joint.",
+      "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49cfdbaa10faf75abd68af3af7b9bbec/sample-visualize-hand-tracking-in-visionos-with-arkit-poster@2x.jpg"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "95fb0d2bec32/CreatingA3DPaintingSpaceInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

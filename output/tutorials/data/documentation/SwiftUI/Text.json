@@ -1,0 +1,4691 @@
+{
+  "abstract": [
+    {
+      "text": "A view that displays one or more lines of read-only text.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI4TextV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Text"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Text"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Text"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Text"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Reducing-View-Modifier-Maintenance"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A text view draws a string in your app’s user interface using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/body",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " font that’s appropriate for the current platform. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "choose a different standard font, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/caption",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"Hamlet\")",
+            "    .font(.title)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Text-title.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need finer control over the styling of the text, you can use the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to configure a system font or choose a custom font. You can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apply view modifiers like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to further",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adjust the formatting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"by William Shakespeare\")",
+            "    .font(.system(size: 12, weight: .light, design: .serif))",
+            "    .italic()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Text-font.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply styling within specific portions of the text, you can create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the text view from an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which in turn allows you to use Markdown to style runs of text. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mix string attributes and SwiftUI modifiers, with the string attributes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "taking priority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let attributedString = try! AttributedString(",
+            "    markdown: \"_Hamlet_ by William Shakespeare\")",
+            "",
+            "var body: some View {",
+            "    Text(attributedString)",
+            "        .font(.system(size: 12, weight: .light, design: .serif))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Text-attributed.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A text view always uses exactly the amount of space it needs to display its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rendered contents, but you can affect the view’s layout. For example, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to propose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific dimensions to the view. If the view accepts the proposal but the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text doesn’t fit into the available space, the view uses a combination of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrapping, tightening, scaling, and truncation to make it fit. With a width",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points but no constraint on the height, a text view might wrap a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "long string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"To be, or not to be, that is the question:\")",
+            "    .frame(width: 100)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Text-split.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use modifiers like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/lineLimit(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsTightening(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/minimumScaleFactor(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/truncationMode(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configure how the view handles space constraints. For example, combining a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fixed width and a line limit of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " results in truncation for text that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t fit in that space:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"Brevity is the soul of wit.\")",
+            "    .frame(width: 100)",
+            "    .lineLimit(1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-Text-truncated.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localizing-strings",
+          "level": 3,
+          "text": "Localizing strings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you initialize a text view with a string literal, the view uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, which interprets the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "string as a localization key and searches for the key in the table you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify, or in the default table if you don’t specify one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"pencil\") // Searches the default table in the main bundle."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an app localized in both English and Spanish, the above view displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“pencil” and “lápiz” for English and Spanish users, respectively. If the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view can’t perform localization, it displays the key instead. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if the same app lacks Danish localization, the view displays “pencil” for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "users in that locale. Similarly, an app that lacks any localization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information displays “pencil” in any locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To explicitly bypass localization for a string literal, use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(verbatim:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(verbatim: \"pencil\") // Displays the string \"pencil\" in any locale."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you intialize a text view with a variable value, the view uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)-9d1g4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, which doesn’t localize the string. However,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can request localization by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first, which triggers the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Don't localize a string variable...",
+            "Text(writingImplement)",
+            "",
+            "// ...unless you explicitly convert it to a localized string key.",
+            "Text(LocalizedStringKey(writingImplement))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When localizing a string variable, you can use the default table by omitting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the optional initialization parameters — as in the above example — just like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might for a string literal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-Text-attributed.png": {
+      "alt": "A text view showing Hamlet by William Shakespeare in a 12 point, light,",
+      "identifier": "SwiftUI-Text-attributed.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddb3ef16d3bec75a55f66268a153531b/SwiftUI-Text-attributed@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c6359c018a778a280b918e2b3fc742d/SwiftUI-Text-attributed~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-Text-font.png": {
+      "alt": "A text view showing by William Shakespeare in a 12 point, light, italic,",
+      "identifier": "SwiftUI-Text-font.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6398423bafcaae5f2c2daccf3057e5e/SwiftUI-Text-font@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2a9642eab0875be8b646da9b8c91202/SwiftUI-Text-font~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-Text-split.png": {
+      "alt": "A text view showing a quote from Hamlet split over three",
+      "identifier": "SwiftUI-Text-split.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/122fc95483e6058c08280430279ba688/SwiftUI-Text-split@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b13c7790f715c10035c1a32124e31fc/SwiftUI-Text-split~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-Text-title.png": {
+      "alt": "A text view showing the name “Hamlet” in a title",
+      "identifier": "SwiftUI-Text-title.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43b5a30d2c1d2176fe1cc88aa2c567ac/SwiftUI-Text-title@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9d37806f6bf6d321d08de862f794196/SwiftUI-Text-title~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-Text-truncated.png": {
+      "alt": "A text view showing a truncated quote from Hamlet starting Brevity is t",
+      "identifier": "SwiftUI-Text-truncated.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0f08188d0c13dc6fba6acb532579cf8/SwiftUI-Text-truncated@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78a2c9311f6d3937ddf78ecc46366a6e/SwiftUI-Text-truncated~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app": {
+      "abstract": [
+        {
+          "text": "Present an interface that people can use to search for content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a search interface to your app",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-a-search-interface-to-your-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Compose complex layouts from primitive container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Building layouts with stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-layouts-with-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views": {
+      "abstract": [
+        {
+          "text": "Adjust the characteristics of a view by applying view modifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Configuring-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring views",
+      "type": "topic",
+      "url": "/documentation/swiftui/configuring-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View": {
+      "abstract": [
+        {
+          "text": "Define views and assemble them into a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Declaring-a-Custom-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring a custom view",
+      "type": "topic",
+      "url": "/documentation/swiftui/declaring-a-custom-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists": {
+      "abstract": [
+        {
+          "text": "Visualize collections of data with platform-appropriate appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Displaying-Data-in-Lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying data in lists",
+      "type": "topic",
+      "url": "/documentation/swiftui/displaying-data-in-lists"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/body": {
+      "abstract": [
+        {
+          "text": "A font with the body text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/body",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/body"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/caption": {
+      "abstract": [
+        {
+          "text": "A font with the caption text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "caption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/caption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "caption",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/caption"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title": {
+      "abstract": [
+        {
+          "text": "A font with the title text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/title"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Split content into logical sections inside lazy stack views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Grouping data with lazy stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/grouping-data-with-lazy-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/swiftui/label"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View": {
+      "abstract": [
+        {
+          "text": "Create a view layout by adjusting the size of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Laying out a simple view",
+      "type": "topic",
+      "url": "/documentation/swiftui/laying-out-a-simple-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey": {
+      "abstract": [
+        {
+          "text": "The key used to look up an entry in a strings file or strings dictionary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalizedStringKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation": {
+      "abstract": [
+        {
+          "text": "Update search results based on search text and optional tokens that you store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a search operation",
+      "type": "topic",
+      "url": "/documentation/swiftui/performing-a-search-operation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization": {
+      "abstract": [
+        {
+          "text": "Specify hints and add strings to localize your SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing views for localization",
+      "type": "topic",
+      "url": "/documentation/swiftui/preparing-views-for-localization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Reducing-View-Modifier-Maintenance": {
+      "abstract": [
+        {
+          "text": "Bundle view modifiers that you regularly reuse into a custom view modifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Reducing-View-Modifier-Maintenance",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing view modifier maintenance",
+      "type": "topic",
+      "url": "/documentation/swiftui/reducing-view-modifier-maintenance"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms": {
+      "abstract": [
+        {
+          "text": "Provide suggestions to people searching for content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms",
+      "kind": "article",
+      "role": "article",
+      "title": "Suggesting search terms",
+      "type": "topic",
+      "url": "/documentation/swiftui/suggesting-search-terms"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/+(_:_:)": {
+      "abstract": [
+        {
+          "text": "Concatenates the text in two text views in a new text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "+"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/+(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "+(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/+(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Case": {
+      "abstract": [
+        {
+          "text": "A scheme for transforming the capitalization of characters within text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Case"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Case",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Case"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.Case",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/case"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/DateStyle": {
+      "abstract": [
+        {
+          "text": "A predefined style used to display a ",
+          "type": "text"
+        },
+        {
+          "code": "Date",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/DateStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.DateStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/datestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Layout": {
+      "abstract": [
+        {
+          "text": "A value describing the layout and custom attributes of a tree",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of ",
+          "type": "text"
+        },
+        {
+          "code": "Text",
+          "type": "codeVoice"
+        },
+        {
+          "text": " views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.Layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/LayoutKey": {
+      "abstract": [
+        {
+          "text": "A preference key that provides the ",
+          "type": "text"
+        },
+        {
+          "code": "Text.Layout",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values for all",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "text views in the queried subtree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayoutKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/LayoutKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayoutKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.LayoutKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/layoutkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/LineStyle": {
+      "abstract": [
+        {
+          "text": "Description of the style used to draw the line for ",
+          "type": "text"
+        },
+        {
+          "code": "StrikethroughStyleAttribute",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": "UnderlineStyleAttribute",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/LineStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.LineStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/linestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Scale": {
+      "abstract": [
+        {
+          "text": "Defines text scales",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scale"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Scale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scale"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.Scale",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/scale"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/TruncationMode": {
+      "abstract": [
+        {
+          "text": "The type of truncation to apply to a line of text when it’s too long to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "fit in the available space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TruncationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/TruncationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TruncationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text.TruncationMode",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/truncationmode"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityHeading(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the accessibility level of this heading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHeading"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25AccessibilityHeadingLevelO",
+          "text": "AccessibilityHeadingLevel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityHeading(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHeading(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/accessibilityheading(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a label to the view that describes its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/accessibilitylabel(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityTextContentType(_:)": {
+      "abstract": [
+        {
+          "text": "Sets an accessibility text content type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityTextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28AccessibilityTextContentTypeV",
+          "text": "AccessibilityTextContentType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityTextContentType(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityTextContentType(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/accessibilitytextcontenttype(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/baselineOffset(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the vertical offset for the text relative to its baseline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baselineOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/baselineOffset(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baselineOffset(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/baselineoffset(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold()": {
+      "abstract": [
+        {
+          "text": "Applies a bold font weight to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bold"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bold()",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/bold()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold(_:)": {
+      "abstract": [
+        {
+          "text": "Applies a bold font weight to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bold"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bold(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/bold(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/customAttribute(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom attribute to the text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/customAttribute(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customAttribute(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/customattribute(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/font(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontDesign(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the font design of the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontDesign"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6DesignO",
+          "text": "Design"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontDesign(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fontDesign(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/fontdesign(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontWeight(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the font weight of the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontWeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6WeightV",
+          "text": "Weight"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontWeight(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fontWeight(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/fontweight(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontWidth(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the font width of the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV5WidthV",
+          "text": "Width"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontWidth(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fontWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/fontwidth(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/foregroundColor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the color of the text displayed by this view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/foregroundColor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundColor(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/foregroundcolor(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/foregroundStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style of the text displayed by this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/foregroundStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/foregroundstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays styled attributed content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)-9d1g4": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays a stored string without localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)-9d1g4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:)-9d1g4"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:format:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays the formatted representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a nonstring type supported by a corresponding format style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:format:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:format:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:format:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:formatter:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays the formatted representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a Foundation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatter"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:formatter:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatter"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:formatter:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:formatter:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:style:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance that displays localized dates and times using a specific style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9DateStyleV",
+          "text": "DateStyle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:style:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:style:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:style:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays localized content identified by a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tableName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:tableName:bundle:comment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:tablename:bundle:comment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(timerInterval:pauseTime:countsDown:showsHours:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance that displays a timer counting within the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "timerInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SN",
+          "text": "ClosedRange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pauseTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "countsDown"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "showsHours"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(timerInterval:pauseTime:countsDown:showsHours:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(timerInterval:pauseTime:countsDown:showsHours:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(timerinterval:pausetime:countsdown:showshours:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(verbatim:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays a string literal without localization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "verbatim"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(verbatim:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(verbatim:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(verbatim:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic()": {
+      "abstract": [
+        {
+          "text": "Applies italics to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "italic"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "italic()",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/italic()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic(_:)": {
+      "abstract": [
+        {
+          "text": "Applies italics to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "italic"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "italic(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/italic(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/kerning(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the spacing, or kerning, between characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kerning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/kerning(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kerning(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/kerning(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/monospaced(_:)": {
+      "abstract": [
+        {
+          "text": "Modifies the font of the text to use the fixed-width variant",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the current font, if possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monospaced"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/monospaced(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "monospaced(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/monospaced(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/monospacedDigit()": {
+      "abstract": [
+        {
+          "text": "Modifies the text view’s font to use fixed-width digits, while leaving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "other characters proportionally spaced.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monospacedDigit"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/monospacedDigit()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "monospacedDigit()",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/monospaceddigit()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAdjustedPitch(_:)": {
+      "abstract": [
+        {
+          "text": "Raises or lowers the pitch of spoken text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechAdjustedPitch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAdjustedPitch(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speechAdjustedPitch(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/speechadjustedpitch(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAlwaysIncludesPunctuation(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether VoiceOver should always speak all punctuation in the text",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechAlwaysIncludesPunctuation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAlwaysIncludesPunctuation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speechAlwaysIncludesPunctuation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/speechalwaysincludespunctuation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAnnouncementsQueued(_:)": {
+      "abstract": [
+        {
+          "text": "Controls whether to queue pending announcements behind existing speech",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rather than interrupting speech in progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechAnnouncementsQueued"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAnnouncementsQueued(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speechAnnouncementsQueued(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/speechannouncementsqueued(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechSpellsOutCharacters(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether VoiceOver should speak the contents of the text view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "character by character.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechSpellsOutCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechSpellsOutCharacters(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speechSpellsOutCharacters(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/speechspellsoutcharacters(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/strikethrough(_:color:)": {
+      "abstract": [
+        {
+          "text": "Applies a strikethrough to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strikethrough"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/strikethrough(_:color:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strikethrough(_:color:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/strikethrough(_:color:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/strikethrough(_:pattern:color:)": {
+      "abstract": [
+        {
+          "text": "Applies a strikethrough to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "strikethrough"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9LineStyleV",
+          "text": "LineStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9LineStyleV7PatternV",
+          "text": "Pattern"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/strikethrough(_:pattern:color:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "strikethrough(_:pattern:color:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/strikethrough(_:pattern:color:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/textScale(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Applies a text scale to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textScale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV5ScaleV",
+          "text": "Scale"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/textScale(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textScale(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/textscale(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/textVariant(_:)": {
+      "abstract": [
+        {
+          "text": "Controls the way text size variants are chosen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textVariant"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/textVariant(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textVariant(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/textvariant(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/tracking(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the tracking for the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracking"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/tracking(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tracking(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/tracking(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/typesettingLanguage(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Specifies the language for typesetting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typesettingLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/typesettingLanguage(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typesettingLanguage(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/typesettinglanguage(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/underline(_:color:)": {
+      "abstract": [
+        {
+          "text": "Applies an underline to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "underline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/underline(_:color:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underline(_:color:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/underline(_:color:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/underline(_:pattern:color:)": {
+      "abstract": [
+        {
+          "text": "Applies an underline to the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "underline"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pattern"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9LineStyleV",
+          "text": "LineStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV9LineStyleV7PatternV",
+          "text": "Pattern"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/underline(_:pattern:color:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underline(_:pattern:color:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/underline(_:pattern:color:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsTightening(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether text in this view can compress the space between characters",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when necessary to fit text in a line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsTightening"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/allowsTightening(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsTightening(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/allowstightening(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/font(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(width:height:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(width:height:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for labels within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labelStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/labelstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/lineLimit(_:)": {
+      "abstract": [
+        {
+          "text": "Sets to a closed range the number of lines that text can occupy in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineLimit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/lineLimit(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lineLimit(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/linelimit(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/minimumScaleFactor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the minimum amount that text in this view scales down to fit in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "available space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumScaleFactor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/minimumScaleFactor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumScaleFactor(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/minimumscalefactor(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/truncationMode(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the truncation mode for lines of text that are too long to fit in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the available space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "truncationMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV14TruncationModeO",
+          "text": "TruncationMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/truncationMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "truncationMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/truncationmode(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Displaying-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/labelStyle(_:)"
+      ],
+      "title": "Displaying text"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-text-view",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(verbatim:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:style:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:format:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:formatter:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(timerInterval:pauseTime:countsDown:showsHours:)"
+      ],
+      "title": "Creating a text view"
+    },
+    {
+      "anchor": "Choosing-a-font",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/font(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontWeight(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontDesign(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/fontWidth(_:)"
+      ],
+      "title": "Choosing a font"
+    },
+    {
+      "anchor": "Styling-the-views-text",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/foregroundStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/bold(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/italic(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/strikethrough(_:color:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/strikethrough(_:pattern:color:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/underline(_:color:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/underline(_:pattern:color:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/monospaced(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/monospacedDigit()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/kerning(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/tracking(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/baselineOffset(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Case",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/DateStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/LineStyle"
+      ],
+      "title": "Styling the view’s text"
+    },
+    {
+      "anchor": "Fitting-text-into-available-space",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/textScale(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Scale",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/TruncationMode"
+      ],
+      "title": "Fitting text into available space"
+    },
+    {
+      "anchor": "Localizing-text",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/typesettingLanguage(_:isEnabled:)"
+      ],
+      "title": "Localizing text"
+    },
+    {
+      "anchor": "Configuring-voiceover",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAdjustedPitch(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAlwaysIncludesPunctuation(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechAnnouncementsQueued(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/speechSpellsOutCharacters(_:)"
+      ],
+      "title": "Configuring voiceover"
+    },
+    {
+      "anchor": "Providing-accessibility-information",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityHeading(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityLabel(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/accessibilityTextContentType(_:)"
+      ],
+      "title": "Providing accessibility information"
+    },
+    {
+      "anchor": "Combining-text-views",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/+(_:_:)"
+      ],
+      "title": "Combining text views"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/foregroundColor(_:)"
+      ],
+      "title": "Deprecated symbols"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/Layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/LayoutKey"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/customAttribute(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/textVariant(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

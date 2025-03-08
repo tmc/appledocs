@@ -1,0 +1,691 @@
+{
+  "abstract": [
+    {
+      "text": "This object implements a relay to an ATA Bus where a drive is attached.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/ata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioatadevice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1436264,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOATADevice",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOATADevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOATADevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOATADevice is the superclass which represents a particular device attached to a particular IOATAController (bus). IOATADevice is the provider for ATA mass-storage device drivers.IOATADevice is the factory for all IOATACommand objects and is responsible for creating and freeing IOATACommands. IOATAControllers will create an instance of IOATADevice for each device physically connected to the ata bus. IOATADevice is virtual and specific subclass should be implemented for particular types of IOATAController. In this manner, controller-specifc IOATACommands may be paired with the proper type of controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atadevicenub": {
+      "abstract": [
+        {
+          "text": "ATADeviceNub is a concrete implementation of IOATADevice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atadevicenub",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATADeviceNub",
+      "type": "topic",
+      "url": "/documentation/kernel/atadevicenub"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice": {
+      "abstract": [
+        {
+          "text": "This object implements a relay to an ATA Bus where a drive is attached.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATADevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436258-alloccommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436258-alloccommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436258-alloccommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436260-selectconfig": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436260-selectconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436260-selectconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436261-freecommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "freeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436261-freecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "freeCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436261-freecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436262-getdevicetype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436262-getdevicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDeviceType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436262-getdevicetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436263-matchpropertytable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPropertyTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436263-matchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436263-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436265-getunitid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUnitID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436265-getunitid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnitID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436265-getunitid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436266-notifyevent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "notifyEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436266-notifyevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notifyEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436266-notifyevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436267-providebusinfo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "provideBusInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436267-providebusinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "provideBusInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436267-providebusinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436268-executecommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436268-executecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436268-executecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436270-matchlocation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436270-matchlocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436270-matchlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436271-provideconfig": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "provideConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436271-provideconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "provideConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436271-provideconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436272-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436272-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1436272-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813891-alloccommand": {
+      "abstract": [
+        {
+          "text": "create IOATACommands. Device drivers should allocate command objects only through this method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813891-alloccommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813891-alloccommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813893-executecommand": {
+      "abstract": [
+        {
+          "text": "Submit IO requests",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813893-executecommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "executeCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813893-executecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813895-freecommand": {
+      "abstract": [
+        {
+          "text": "release a command object that is no longer needed. Do not free an object in use and do not release the object anymore times than you have retained it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813895-freecommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "freeCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813895-freecommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813897-getdevicetype": {
+      "abstract": [
+        {
+          "text": "Find out what kind of device this nub is (ata or atapi)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813897-getdevicetype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDeviceType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813897-getdevicetype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813899-getunitid": {
+      "abstract": [
+        {
+          "text": "Determine whether this device is number 0 or 1 (ie, primary/secondary)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813899-getunitid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getUnitID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813899-getunitid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813901-matchlocation": {
+      "abstract": [
+        {
+          "text": "matching stuff for IOBSDInit and so on.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813901-matchlocation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "matchLocation",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813901-matchlocation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813903-matchpropertytable": {
+      "abstract": [
+        {
+          "text": "matching stuff for IOBSDInit and so on.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813903-matchpropertytable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "matchPropertyTable(OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813903-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813905-matchpropertytable": {
+      "abstract": [
+        {
+          "text": "matching stuff for IOBSDInit and so on.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813905-matchpropertytable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "matchPropertyTable(OSDictionary *, SInt32 *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813905-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813907-notifyevent": {
+      "abstract": [
+        {
+          "text": "called by controllers when they need to send a message to client (disk) drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813907-notifyevent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "notifyEvent",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813907-notifyevent"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813909-providebusinfo": {
+      "abstract": [
+        {
+          "text": "Find out the bus capability so the client can choose the features to set and commands to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813909-providebusinfo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "provideBusInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813909-providebusinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813911-provideconfig": {
+      "abstract": [
+        {
+          "text": "Find out what speed the bus has configured for this unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813911-provideconfig",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "provideConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813911-provideconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813913-selectconfig": {
+      "abstract": [
+        {
+          "text": "Tell the bus what speed to use for your device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813913-selectconfig",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "selectConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/1813913-selectconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/3516513-matchpropertytable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchPropertyTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/3516513-matchpropertytable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchPropertyTable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/3516513-matchpropertytable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevice/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevice/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevice/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/atadevicenub"
+      ],
+      "title": "Devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818845",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813891-alloccommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813893-executecommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813895-freecommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813897-getdevicetype",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813899-getunitid",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813901-matchlocation",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813903-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813905-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813907-notifyevent",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813909-providebusinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813911-provideconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1813913-selectconfig"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818855",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818858",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2861536",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436258-alloccommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436268-executecommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436261-freecommand",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436262-getdevicetype",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436272-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436265-getunitid",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436270-matchlocation",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436263-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/3516513-matchpropertytable",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436266-notifyevent",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436267-providebusinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436271-provideconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevice/1436260-selectconfig"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioatadevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

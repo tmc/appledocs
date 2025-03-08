@@ -1,0 +1,3495 @@
+{
+  "abstract": [
+    {
+      "text": "Choose and implement the appropriate Calendar access level in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.eventkit/documentation/EventKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.eventkit/documentation/EventKit/accessing-calendar-using-eventkit-and-eventkitui"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "EventKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Accessing Calendar using EventKit and EventKitUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to iOS 17, your app needs to include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+              "isActive": true,
+              "overridingTitle": "NSCalendarsUsageDescription",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSCalendarsUsageDescription",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and request authorization from the user before it can access the user’s calendar data. ",
+              "type": "text"
+            },
+            {
+              "code": "NSCalendarsUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates how your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app intends to use calendar data. If the user approves the request, the app gets full access to all events on all the user’s calendars,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including the ones the app didn’t create. If the user denies the request, the app gets no access to the user’s data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 17, your app should only request the specific level of access it requires to complete its calendar data tasks. The iOS 17 SDK introduces",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "new calendar usage description strings, the ability to add events to Calendar without prompting the user for access, and a new write-only access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store",
+              "isActive": true,
+              "overridingTitle": "Accessing the event store",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Accessing the event store",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample consists of three targets that illustrate how to implement Calendar access level using EventKit and EventKitUI. The ",
+              "type": "text"
+            },
+            {
+              "code": "DropInLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "builds an app that saves events to Calendar without prompting the user for authorization. The ",
+              "type": "text"
+            },
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target, which implements the write-only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access feature, builds an app that saves events directly to Calendar with user permission. The ",
+              "type": "text"
+            },
+            {
+              "code": "MonthlyEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target, which illustrates the full-access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "feature, builds an app that fetches and displays all events occuring within a month in all the user’s calendars.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10052/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with Xcode 15 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the top-level Calendar Access project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the three targets, choose your team from the Team menu in the Signing & Capabilities pane to let Xcode automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the target you wish to build, then build and run it in the Simulator, in Mac Catalyst, or on a device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Save-events-without-prompting-the-user-for-access",
+          "level": 3,
+          "text": "Save events without prompting the user for access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 17, your app can add events to Calendar without prompting the user for access using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController",
+              "isActive": true,
+              "overridingTitle": "EKEventEditViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKEventEditViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the purpose of your app is to create, configure, and present calendar events in an editor UI, consider saving events to Calendar without",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prompting the user for authorization in your app following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build your app with Xcode 15 and link against the iOS 17 SDK.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app includes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+                      "isActive": true,
+                      "overridingTitle": "NSCalendarsUsageDescription",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NSCalendarsUsageDescription",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", remove this key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app requests permission using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/requestaccess",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestAccess(to:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", remove these instance methods from your source code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DropInLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app writes data to Calendar without performing any other operations on the user’s events. Because its workflow doesn’t interact",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the user’s calendar data, the app isn’t required to include any calendar usage strings or prompt the user for access. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore",
+              "isActive": true,
+              "overridingTitle": "EKEventStore",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKEventStore",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " allows apps to request permission from the user, and read and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write data to Calendar. ",
+              "type": "text"
+            },
+            {
+              "code": "DropInLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates an instance of the event store, ",
+              "type": "text"
+            },
+            {
+              "code": "store",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var store = EKEventStore()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user schedules a lesson, ",
+              "type": "text"
+            },
+            {
+              "code": "DropInLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates a ",
+              "type": "text"
+            },
+            {
+              "code": "selectedEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then presents an event edit view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    .sheet(isPresented: $showEventEditViewController,",
+            "           onDismiss: didDismissEventEditController, content: {",
+            "       EventEditViewController(event: $selectedEvent, eventStore: store)",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app creates ",
+              "type": "text"
+            },
+            {
+              "code": "selectedEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the event store, adds it to the default calendar for the store, then configures ",
+              "type": "text"
+            },
+            {
+              "code": "selectedEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the selected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lesson’s details. The view controller takes ",
+              "type": "text"
+            },
+            {
+              "code": "selectedEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let controller = EKEventEditViewController()",
+            "controller.eventStore = eventStore",
+            "controller.event = event",
+            "controller.editViewDelegate = context.coordinator"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "DropInLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relinquishes control once the editor is presented. Because the event edit view controller renders its content out of process, it has",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "full access to all the user’s calendars on the device, regardless of the access granted to the app. This allows the user to get a full-featured editing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "experience, such as choosing another calendar to save the selected lesson or changing presented information in the editor. However, the app isn’t aware",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of any of these changes. When the user taps the Add button in the UI, the system saves the lesson to the user’s selected or default calendar, then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dismisses the editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {",
+            "    parent.presentationMode.wrappedValue.dismiss()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the calendar edits happen out of process, inspecting the properties of the dismissed ",
+              "type": "text"
+            },
+            {
+              "code": "controller",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController/event",
+              "isActive": true,
+              "overridingTitle": "event",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "event",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", to determine what the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "added to Calendar doesn’t return any useful information. The app isn’t aware of the changes, which naturally means it can’t see them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-write-only-access",
+          "level": 3,
+          "text": "Request write-only access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 17, an app with write-only access can create and save events to Calendar, display events using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController",
+              "isActive": true,
+              "overridingTitle": "EKEventEditViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKEventEditViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and allow the user to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select another calendar using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser",
+              "isActive": true,
+              "overridingTitle": "EKCalendarChooser",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKCalendarChooser",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". If your app needs to write",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data directly, consider implementing write-only access in your app following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build your app with Xcode 15 and link against the iOS 17 SDK.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSCalendarsWriteOnlyAccessUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the target building your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To request write-only access to events, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestWriteOnlyAccessToEvents(completion:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestWriteOnlyAccessToEvents()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "EKEventEditViewController",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "EKCalendarChooser",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " require write-only or full access. ",
+                  "type": "text"
+                },
+                {
+                  "code": "EKEventEditViewController",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " doesn’t require any user permission.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays a list of recurring lessons and a “Select calendar” button in the toolbar. The app offers the lessons on specific dates and times",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and doesn’t fetch any events from the user’s calendars. ",
+              "type": "text"
+            },
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can’t let the user or the system make any changes to these events. Because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of these reasons, the app requires write-only access so it can control the date and time of every event added to Calendar. When the user selects a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lesson, then taps the booking button, the app first checks whether it has authorization to access the user’s calendar data. If the authorization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "overridingTitle": ".notDetermined",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".notDetermined",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the app uses an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore",
+              "isActive": true,
+              "overridingTitle": "EKEventStore",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKEventStore",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "eventStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to prompt the user for write-only access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "return try await eventStore.requestWriteOnlyAccessToEvents()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes ",
+              "type": "text"
+            },
+            {
+              "code": "NSCalendarsWriteOnlyAccessUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and uses its value when showing an alert. The alert",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prompts the user for write-only acess to save repeating lessons to a calendar that the user chooses. If the user grants the request, the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receives a ",
+              "type": "text"
+            },
+            {
+              "code": ".writeOnly",
+              "type": "codeVoice"
+            },
+            {
+              "text": " authorization status, creates a recurring event using the selected lesson’s details, then saves it to Calendar without the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user making any changes to this event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try self.eventStore.save(newEvent, span: .futureEvents)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The “Select calendar” button in the toolbar allows the user to choose another calendar to save the recurring events using ",
+              "type": "text"
+            },
+            {
+              "code": "EKCalendarChooser",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The app turns off the button by default. The app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "turns it on when the user grants write-only or full access to the app. When the user taps the button, ",
+              "type": "text"
+            },
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presents a calendar chooser",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKCalendar",
+              "isActive": true,
+              "overridingTitle": "EKCalendar",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKCalendar",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "calendar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which keeps track of calendars the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chooses in the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".sheet(isPresented: $showCalendarChooser) {",
+            "    CalendarChooser(calendar: $calendar)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDisplayStyle",
+              "isActive": true,
+              "overridingTitle": "displayStyle",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "displayStyle",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "EKCalendarChooser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether to display writable calendars only or all calendars. In write-only access apps, the calendar chooser ignores the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "displayStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting and this setting always behaves as if it’s set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDisplayStyle/writableCalendarsOnly",
+              "isActive": true,
+              "overridingTitle": ".writableCalendarsOnly",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".writableCalendarsOnly",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a result, the app only allows the user to select a single writable calendar from the list presented in the calendar chooser.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initializes a calendar chooser that allows the user to select a single calendar from a list of writable calendars only.",
+            "let calendarChooser = EKCalendarChooser(selectionStyle: .single,",
+            "                                        displayStyle: .writableCalendarsOnly,",
+            "                                        entityType: .event,",
+            "                                        eventStore: storeManager.store)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser/selectedCalendars",
+              "isActive": true,
+              "overridingTitle": "selectedCalendars",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "selectedCalendars",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of ",
+              "type": "text"
+            },
+            {
+              "code": "EKCalendarChooser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "calendar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is empty when the user hasn’t selected a calendar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "    Set up the selected calendars property. If the user previously selected a calendar from the view controller, update the property with it.",
+            "    Otherwise, update selected calendars with an empty set.",
+            "*/",
+            "if let calendar = calendar {",
+            "    let selectedCalendar: Set<EKCalendar> = [calendar]",
+            "    calendarChooser.selectedCalendars = selectedCalendar",
+            "} else {",
+            "    calendarChooser.selectedCalendars = []",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configures the chooser to show the Done and Cancel buttons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "calendarChooser.delegate = context.coordinator",
+            "// Configure the chooser to display Done and Cancel buttons.",
+            "calendarChooser.showsDoneButton = true",
+            "calendarChooser.showsCancelButton = true",
+            "return UINavigationController(rootViewController: calendarChooser)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user chooses a calendar from the view controller, ",
+              "type": "text"
+            },
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds recurring events to that calendar. If the user doesn’t make any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selection, the app saves the events to the user’s default calendar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-full-access",
+          "level": 3,
+          "text": "Request full access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 17, an app with full access can create, edit, save, delete, and fetch all events on all the user’s calendars. Additionally, the app can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display events using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventViewController",
+              "isActive": true,
+              "overridingTitle": "EKEventViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKEventViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and allow the user to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select another calendar using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser",
+              "isActive": true,
+              "overridingTitle": "EKCalendarChooser",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKCalendarChooser",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Implement full access if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app needs to read and write data to Calendar. If your app only needs to write data directly to Calendar, implement write-only access instead. If your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app only uses EventKit APIs to create and set up events, consider saving events to Calendar without prompting the user for authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement full access in your app, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build your app with Xcode 15 and link against the iOS 17 SDK.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSCalendarsFullAccessUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the target building your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To request full access to events, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestFullAccessToEvents(completion:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestFullAccessToEvents()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon its first launch, the ",
+              "type": "text"
+            },
+            {
+              "code": "MonthlyEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " app registers for ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/nsnotification/name/ekeventstorechanged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to listen for any changes to the event store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let center = NotificationCenter.default",
+            "let notifications = center.notifications(named: .EKEventStoreChanged).map({ (notification: Notification) in notification.name })",
+            "for await _ in notifications {",
+            "    guard await dataStore.isFullAccessAuthorized else { return }",
+            "    await self.fetchLatestEvents()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the app checks whether it’s authorized to access the user’s calendar data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let status = EKEventStore.authorizationStatus(for: .event)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the authorization status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "overridingTitle": ".notDetermined",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".notDetermined",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", the app uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore",
+              "isActive": true,
+              "overridingTitle": "EKEventStore",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EKEventStore",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "eventStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to prompt the user for full access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "return try await eventStore.requestFullAccessToEvents()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "MonthlyEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes ",
+              "type": "text"
+            },
+            {
+              "code": "NSCalendarsFullAccessUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and uses its value when showing an alert. The alert  prompts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user for  full access to fetch events in all the user’s calendars and delete the ones the user selects in the app. If the user grants the request, the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receives a ",
+              "type": "text"
+            },
+            {
+              "code": ".fullAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " authorization status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "EKEventStore.authorizationStatus(for: .event) == .fullAccess"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the app fetches and displays all events occuring within a month in all the user’s calendars sorted by start date in ascending order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let start = Date.now",
+            "let end = start.oneMonthOut",
+            "let predicate = eventStore.predicateForEvents(withStart: start, end: end, calendars: nil)",
+            "return eventStore.events(matching: predicate).sortedEventByAscendingDate()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user denies the request, the app does nothing. In subsequent launches, the app displays a message prompting the user to grant the app full",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access in Settings on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the user authorized the app for full access, the user can additionally select and delete one or more events in ",
+              "type": "text"
+            },
+            {
+              "code": "MonthlyEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iterates through an array of events that the user chose to delete. It calls and sets the ",
+              "type": "text"
+            },
+            {
+              "code": "commit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/remove(_:span:commit:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to batch the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deletion of each event in the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try self.eventStore.remove(event, span: .thisEvent, commit: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the app commits the changes once it’s done iterating through the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try eventStore.commit()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you assign ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "commit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to immediately save or remove the event in your app, the event store automatically rolls back any changes if the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "commit operation fails. However, if you set ",
+              "type": "text"
+            },
+            {
+              "code": "commit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and your app successfully removes some events and fails removing others, this can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "result in a later commit failing. Every subsequent commit fails until you roll back the changes. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/reset()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to manually roll back the changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eventStore.reset()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Run-apps-on-operating-system-earlier-than-iOS-17",
+          "level": 3,
+          "text": "Run apps on operating system earlier than iOS 17",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build your app with Xcode 15, link it against the iOS 17 SDK, and need to run it on systems earlier than iOS 17:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+                      "isActive": true,
+                      "overridingTitle": "NSCalendarsUsageDescription",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NSCalendarsUsageDescription",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the target building your app. If your app that’s linked on iOS 10 through iOS 16 doesn’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "include ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSCalendarsUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", your app crashes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To request access to events, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestAccess(to:completion:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "requestAccess(to: .event)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To determine whether your app is authorized to access the user’s calendar data, confirm that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/authorizationstatus",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus",
+                      "isActive": true,
+                      "overridingTitle": ".authorized",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": ".authorized",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The new request methods are unavailable on systems earlier than iOS 17, which may cause your app to crash when running on these versions. Check",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "that these methods are available in the iOS version that you wish to run your app on before calling them in your app. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DropInLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "MonthlyEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " targets in the sample project have a deployment target of iOS 16.4, meaning their apps can run on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices running iOS 16.4 and later. These apps include ",
+              "type": "text"
+            },
+            {
+              "code": "NSCalendarsUsageDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in their ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and use ",
+              "type": "text"
+            },
+            {
+              "code": "requestAccess(to: .event",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") when requesting permission from the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Fall back on earlier versions.",
+            "return try await eventStore.requestAccess(to: .event)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In iOS 17, calling ",
+                  "type": "text"
+                },
+                {
+                  "code": "requestAccess(to: .event)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "requestAccess(to:completion:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " doesn’t prompt the user for access and throws an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "MonthlyEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "RepeatingLessons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " confirm that they have an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus",
+              "isActive": true,
+              "overridingTitle": ".authorized",
+              "overridingTitleInlineContent": [
+                {
+                  "code": ".authorized",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " authorization status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Fall back on earlier versions.",
+            "EKEventStore.authorizationStatus(for: .event) == .authorized"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8e3d82696aa8/AccessingCalendarUsingEventKitAndEventKitUI.zip": {
+      "checksum": "8e3d82696aa8a5aa04300d1deae81c38d574426d508279f50cab6615beb4b4e335995df0b0d63b15241be37b69f3b2eda45aeeea61fc6bd1ce0d65245367b646",
+      "identifier": "8e3d82696aa8/AccessingCalendarUsingEventKitAndEventKitUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8e3d82696aa8/AccessingCalendarUsingEventKitAndEventKitUI.zip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to their calendar data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendarsUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The current authorization status for a specific entity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKAuthorizationStatus"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "The person hasn’t chosen whether the app may access the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKAuthorizationStatus/notDetermined"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKCalendar": {
+      "abstract": [
+        {
+          "text": "A class that represents a calendar in EventKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKCalendar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKCalendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKCalendar",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKCalendar"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore": {
+      "abstract": [
+        {
+          "text": "An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKEventStore",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store": {
+      "abstract": [
+        {
+          "text": "Request access to a person’s calendar data through the event store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/accessing-the-event-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the event store",
+      "type": "topic",
+      "url": "/documentation/EventKit/accessing-the-event-store"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser": {
+      "abstract": [
+        {
+          "text": "A view controller for determining whether a user may select one or more calendars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKCalendarChooser"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKCalendarChooser",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKCalendarChooser"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser/selectedCalendars": {
+      "abstract": [
+        {
+          "text": "The calendars selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedCalendars"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKCalendar",
+          "text": "EKCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "> { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser/selectedCalendars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedCalendars",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKCalendarChooser/selectedCalendars"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDisplayStyle": {
+      "abstract": [
+        {
+          "text": "Indicates whether to display all calendars or writable calendars only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKCalendarChooserDisplayStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDisplayStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKCalendarChooserDisplayStyle",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKCalendarChooserDisplayStyle"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDisplayStyle/writableCalendarsOnly": {
+      "abstract": [
+        {
+          "text": "Displays writable calendars only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writableCalendarsOnly"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDisplayStyle/writableCalendarsOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKCalendarChooserDisplayStyle.writableCalendarsOnly",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKCalendarChooserDisplayStyle/writableCalendarsOnly"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for creating, editing, and deleting calendar events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventEditViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKEventEditViewController",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKEventEditViewController"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController/event": {
+      "abstract": [
+        {
+          "text": "The event the user creates or edits using this view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKEvent",
+          "text": "EKEvent"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController/event",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "event",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKEventEditViewController/event"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKEventViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for displaying existing calendar and reminder events, and for optionally editing those events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKEventViewController",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKEventViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit": {
+      "abstract": [
+        {
+          "text": "Create, view, and edit calendar and reminder events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "EventKit",
+      "type": "topic",
+      "url": "/documentation/eventkit"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore": {
+      "abstract": [
+        {
+          "text": "An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventStore"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKEventStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKEventStore",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/remove(_:span:commit:)": {
+      "abstract": [
+        {
+          "text": "Removes an event or recurring events from the event store by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKEvent",
+          "text": "EKEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "span"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKSpan",
+          "text": "EKSpan"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/remove(_:span:commit:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeEvent:span:commit:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:span:commit:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore/remove(_:span:commit:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestAccess(to:completion:)": {
+      "abstract": [
+        {
+          "text": "Prompts the person using your app to grant or deny access to event or reminder data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKEntityType",
+          "text": "EKEntityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@EKEventStoreRequestAccessCompletionHandler",
+          "text": "EKEventStoreRequestAccessCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestAccess(to:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAccessToEntityType:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAccess(to:completion:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore/requestaccess(to:completion:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/reset()": {
+      "abstract": [
+        {
+          "text": "Reverts the event store to its saved state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore/reset()"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/accessing-the-event-store": {
+      "abstract": [
+        {
+          "text": "Request access to a person’s calendar data through the event store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/accessing-the-event-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the event store",
+      "type": "topic",
+      "url": "/documentation/eventkit/accessing-the-event-store"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/authorizationstatus": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/authorizationstatus",
+      "title": "authorizationStatus(for:)",
+      "titleInlineContent": [
+        {
+          "code": "authorizationStatus(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/authorizationstatus"
+    },
+    "https://developer.apple.com/documentation/eventkit/ekeventstore/requestaccess": {
+      "identifier": "https://developer.apple.com/documentation/eventkit/ekeventstore/requestaccess",
+      "title": "requestAccess(to:completion:)",
+      "titleInlineContent": [
+        {
+          "code": "requestAccess(to:completion:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit/ekeventstore/requestaccess"
+    },
+    "https://developer.apple.com/documentation/foundation/nsnotification/name/ekeventstorechanged": {
+      "identifier": "https://developer.apple.com/documentation/foundation/nsnotification/name/ekeventstorechanged",
+      "title": "EKEventStoreChanged",
+      "titleInlineContent": [
+        {
+          "code": "EKEventStoreChanged",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/nsnotification/name/ekeventstorechanged"
+    },
+    "https://developer.apple.com/wwdc23/10052/": {
+      "identifier": "https://developer.apple.com/wwdc23/10052/",
+      "title": "10052: Discover Calendar and EventKit",
+      "titleInlineContent": [
+        {
+          "text": "10052: Discover Calendar and EventKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10052/"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language",
+      "title": "Declaration Attributes",
+      "titleInlineContent": [
+        {
+          "text": "Declaration Attributes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8e3d82696aa8/AccessingCalendarUsingEventKitAndEventKitUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/accessing-the-event-store",
+        "doc://com.apple.eventkit/documentation/EventKit/EKEventStore"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooserDisplayStyle/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKCalendarChooserDisplayStyle"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooser/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKCalendarChooser"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooser~1selectedCalendars/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<EKCalendar *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectedCalendars"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKAuthorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKEventEditViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKEventEditViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestAccess(to:completion:)/title",
+          "value": "requestAccessToEntityType:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestAccess(to:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccessToEntityType:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKEventViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKEventViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKAuthorizationStatus~1notDetermined/title",
+          "value": "EKAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKCalendar/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKCalendar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKObject",
+              "text": "EKObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore/title",
+          "value": "EKEventStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKEventStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKEventStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1remove(_:span:commit:)/title",
+          "value": "removeEvent:span:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1remove(_:span:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeEvent:span:commit:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKEventEditViewController~1event/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "retain"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKEvent",
+              "text": "EKEvent"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooserDisplayStyle~1writableCalendarsOnly/title",
+          "value": "EKCalendarChooserDisplayWritableCalendarsOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooserDisplayStyle~1writableCalendarsOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKCalendarChooserDisplayWritableCalendarsOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKEventStore"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/eventkit/accessing-calendar-using-eventkit-and-eventkitui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,724 @@
+{
+  "abstract": [
+    {
+      "text": "Get information about a specific Xcode Cloud build.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-ciBuildRuns-{}",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/ciBuildRuns/{id}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.5",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Read Xcode Cloud Build Information"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/ciBuildRuns/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The opaque resource ID that uniquely identifies the Build Runs resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "number",
+                "createdDate",
+                "startedDate",
+                "finishedDate",
+                "sourceCommit",
+                "destinationCommit",
+                "isPullRequestBuild",
+                "issueCounts",
+                "executionProgress",
+                "completionStatus",
+                "startReason",
+                "cancelReason",
+                "builds",
+                "workflow",
+                "product",
+                "sourceBranchOrTag",
+                "destinationBranch",
+                "actions",
+                "pullRequest"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional fields to include for the Build Runs resource returned by the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[ciBuildRuns]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "builds",
+                "workflow",
+                "product",
+                "sourceBranchOrTag",
+                "destinationBranch",
+                "pullRequest"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The relationship data to include in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximum",
+              "value": "50"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of included Build Runs resources to return if the builds relationship is included.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit[builds]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "version",
+                "uploadedDate",
+                "expirationDate",
+                "expired",
+                "minOsVersion",
+                "lsMinimumSystemVersion",
+                "computedMinMacOsVersion",
+                "iconAssetToken",
+                "processingState",
+                "buildAudienceType",
+                "usesNonExemptEncryption",
+                "preReleaseVersion",
+                "individualTesters",
+                "betaGroups",
+                "betaBuildLocalizations",
+                "appEncryptionDeclaration",
+                "betaAppReviewSubmission",
+                "app",
+                "buildBetaDetail",
+                "appStoreVersion",
+                "icons",
+                "buildBundles",
+                "perfPowerMetrics",
+                "diagnosticSignatures"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional fields to include for the Build Runs resource returned by the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[builds]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request completed successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:CiBuildRunResponse",
+              "text": "CiBuildRunResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example request below retrieves detailed information for a specific build. Use the data provided in the response to display detailed build information on a dashboard or to access related information for each action Xcode Cloud performed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": {",
+                    "        \"type\": \"ciBuildRuns\",",
+                    "        \"id\": \"56c512e6-111e-4067-8e88-640c28ce91a7\",",
+                    "        \"attributes\": {",
+                    "            \"number\": 1,",
+                    "            \"createdDate\": \"2021-08-17T17:48:11.806Z\",",
+                    "            \"startedDate\": null,",
+                    "            \"finishedDate\": null,",
+                    "            \"sourceCommit\": {",
+                    "                \"commitSha\": \"SHA\",",
+                    "                \"message\": \"Summary Message.\\n\\nSome more details about the commit.\",",
+                    "                \"author\": {",
+                    "                    \"displayName\": \"Source Author\",",
+                    "                    \"avatarUrl\": \"\"",
+                    "                },",
+                    "                \"committer\": {",
+                    "                    \"displayName\": \"Source Committer\",",
+                    "                    \"avatarUrl\": \"\"",
+                    "                },",
+                    "                \"webUrl\": \"https://example.com/commit/abc123\"",
+                    "            },",
+                    "            \"destinationCommit\": {",
+                    "                \"commitSha\": \"A commit hash.\",",
+                    "                \"message\": \"BASE MESSAGE\",",
+                    "                \"author\": {",
+                    "                    \"displayName\": \"Base Author\",",
+                    "                    \"avatarUrl\": \"https://example.com/user/avatar/author.png\"",
+                    "                },",
+                    "                \"committer\": {",
+                    "                    \"displayName\": \"Base Committer\",",
+                    "                    \"avatarUrl\": \"https://example.com/user/avatar/author.png\"",
+                    "                },",
+                    "                \"webUrl\": \"https://example.com/commit/xyz987\"",
+                    "            },",
+                    "            \"isPullRequestBuild\": false,",
+                    "            \"issueCounts\": null,",
+                    "            \"executionProgress\": \"PENDING\",",
+                    "            \"completionStatus\": null,",
+                    "            \"startReason\": \"MANUAL\",",
+                    "            \"cancelReason\": null",
+                    "        },",
+                    "        \"relationships\": {",
+                    "            \"builds\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/relationships/builds\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/builds\"",
+                    "                }",
+                    "            },",
+                    "            \"actions\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/relationships/actions\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7/actions\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        \"links\": {",
+                    "            \"self\": \"https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7\"",
+                    "        }",
+                    "    },",
+                    "    \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/ciBuildRuns/56c512e6-111e-4067-8e88-640c28ce91a7\"",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Build Runs resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiBuildRunResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiBuildRunResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiBuildRunResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/cibuildrunresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific Xcode Cloud build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildRuns/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Xcode Cloud Build Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildruns-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_-actions": {
+      "abstract": [
+        {
+          "text": "List all actions Xcode Cloud performed during a specific build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_-actions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildRuns/{id}/actions"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Actions for an Xcode Cloud Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildruns-_id_-actions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_-builds": {
+      "abstract": [
+        {
+          "text": "List All App Store Connect and TestFlight Builds when it performed a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_-builds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildRuns/{id}/builds"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Builds Xcode Cloud Created in App Store Connect",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildruns-_id_-builds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Build-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_-actions",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildRuns-_id_-builds"
+      ],
+      "title": "Getting Build Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/get-v1-cibuildruns-_id_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

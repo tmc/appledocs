@@ -1,0 +1,263 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to an idle function. ",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "There is no replacement; this callback function was included to facilitate porting legacy applications to macOS, but it serves no useful purpose.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/core_printing/pmidleprocptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805805,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "tdef",
+    "title": "PMIdleProcPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "typedef void (*PMIdleProcPtr) (void);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You would declare your idle function like this if you were to name it ",
+              "type": "text"
+            },
+            {
+              "code": "MyPrintIdleCallback",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819541",
+          "level": 3,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you install an idle function using the function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionSetIdleProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the printing system calls your idle function periodically during your print loop. Your idle function can display application status while printing, but it should not duplicate information displayed by the printing system or the printer driver. If you don’t install an idle function, you get the standard dialog for the current driver in Mac OS 8 and 9.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your idle function must check whether the user has pressed Command-period, in which case your application should stop its printing operation. If your status dialog contains a button to cancel the printing operation, your idle function should also check for clicks in the button and respond accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a pointer to your idle function, you create a universal procedure pointer (UPP) of type ",
+              "type": "text"
+            },
+            {
+              "code": "PMIdleUPP",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", using the function ",
+              "type": "text"
+            },
+            {
+              "code": "NewPMIdleUPP",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can do so with code similar to the following: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PMIdleUPP MyPrintIdleUPP;",
+            "MyPrintIdleUPP = NewPMIdleUPP (&MyPrintIdleCallback);"
+          ],
+          "metadata": {
+            "anchor": "2556178",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your print job is completed, you should use the function ",
+              "type": "text"
+            },
+            {
+              "code": "DisposePMIdleUPP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to dispose of the universal procedure pointer associated with your idle function. However, if you will use the same idle function in subsequent print jobs, you can reuse the same UPP, rather than dispose of it and later create a new UPP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819542",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your idle function is not called in macOS. It’s only called in Mac OS 8 and 9.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/pmidleprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an idle function. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/pmidleprocptr",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMIdleProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/pmidleprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/pmidleprocptr#2556178": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/pmidleprocptr#2556178",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/applicationservices/core_printing/pmidleprocptr#2556178"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/core_printing/pmidleprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

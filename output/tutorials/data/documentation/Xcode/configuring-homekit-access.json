@@ -1,0 +1,1187 @@
+{
+  "abstract": [
+    {
+      "text": "Discover compatible accessories and communicate with configured accessories and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "services to perform actions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-homekit-access"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring HomeKit access"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that integrate with HomeKit can securely connect to a user’s home",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automation network and access compatible accessories. After an app connects to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an accessory, it can read and update that accessory’s state, for example, by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changing the ambient color of a smart light bulb.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable your app to control the user’s compatible accessories, you must add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the HomeKit capability to your app’s target and include a short description of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app’s functionality in its target’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-HomeKit-capability-to-your-target",
+          "level": 3,
+          "text": "Add the HomeKit capability to your target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add the capability to your app’s target; be sure to select the HomeKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "capability from Xcode’s Capabilities library. For watchOS apps with separate WatchKit extensions, you must add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the capability to the WatchKit Extension target. The capability isn’t available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "homekit",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add the HomeKit capability, Xcode links the ",
+              "type": "text"
+            },
+            {
+              "code": "HomeKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your target and updates its entitlements file to include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If Xcode automatically manages the signing of your app, it also enables HomeKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your app’s App ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-access-to-a-home-automation-network",
+          "level": 3,
+          "text": "Request access to a home automation network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help protect the security and privacy of the user’s home automation network,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app requires the user’s explicit permission before it can control HomeKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessories on that network. The system prompts the user for their permission",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the first time your app uses the HomeKit framework, which is when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialize ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HomeKit/HMHomeManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store requires your app to include a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "purpose string",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which accurately",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and concisely describes the reasons the app needs access to the user’s network.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system displays this information to the user when requesting their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "permission, which helps them make an informed decision. Follow these steps to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add the purpose string to your target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, select your target’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the mouse pointer over the “Information Property List” key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) that appears.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose “Privacy - HomeKit Usage Description” from the drop-down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click the Value column to the right of the key and enter your app’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "purpose string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "homekit-purpose-string",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apps that enable Homekit but don’t include a purpose string crash",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "when attempting to use the framework’s APIs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember that the user can revoke their permission at any time in the Settings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, and your app must respond to this accordingly. You can check your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current authorization status by accessing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HomeKit/HMHomeManager/authorizationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. HomeKit also returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HomeKit/HMError/homeAccessNotAuthorized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "error if your app attempts to make an unauthorized call to any of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework’s APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Install-the-HomeKit-accessory-simulator",
+          "level": 3,
+          "text": "Install the HomeKit accessory simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Integrating with HomeKit doesn’t require you to have physical access to each of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the accessories that your app supports. Instead, you can install the HomeKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Accessory Simulator and simulate each of those accessories. To install the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulator, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Signing & Capabilities tab in your target’s project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the HomeKit capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Download HomeKit Simulator button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/download/all",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " webpage",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that opens, find and download the latest “Additional Tools for Xcode” DMG file.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Your browser may ask you to sign in to your Apple developer account first.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After the DMG file downloads, double-click it to mount the disk image in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Finder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Hardware folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the HomeKit Accessory Simulator app to your Mac’s Applications folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "homekit-simulator",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the simulator to add and remove simulated HomeKit accessories, services,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and characteristics, and to simulate networked cameras and video doorbells by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leveraging your Mac’s camera. For more information, see the Add Accessories,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Services, and Characteristics section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/homekit/testing_your_app_with_the_homekit_accessory_simulator#3087266",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+      "kind": "section",
+      "title": "Add a capability",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Add-a-capability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-healthkit-access": {
+      "abstract": [
+        {
+          "text": "Read and write health and activity data in the Health app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-healthkit-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring HealthKit access",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-healthkit-access"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether users of the app may manage HomeKit-compatible accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HomeKit Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.homekit"
+    },
+    "doc://com.apple.documentation/documentation/HomeKit/HMError/homeAccessNotAuthorized": {
+      "abstract": [
+        {
+          "text": "An error indicating access to the home is not authorized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeAccessNotAuthorized"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11HMErrorCodeLeV",
+          "text": "HMError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMErrorCode",
+          "text": "Code"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HomeKit/HMError/homeAccessNotAuthorized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "homeAccessNotAuthorized",
+      "type": "topic",
+      "url": "/documentation/HomeKit/HMError/homeAccessNotAuthorized"
+    },
+    "doc://com.apple.documentation/documentation/HomeKit/HMHomeManager": {
+      "abstract": [
+        {
+          "text": "The manager for a collection of one or more of a user’s homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HomeKit/HMHomeManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HMHomeManager",
+      "type": "topic",
+      "url": "/documentation/HomeKit/HMHomeManager"
+    },
+    "doc://com.apple.documentation/documentation/HomeKit/HMHomeManager/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "The current state of the app’s access to home data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMHomeManagerAuthorizationStatus",
+          "text": "HMHomeManagerAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HomeKit/HMHomeManager/authorizationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/HomeKit/HMHomeManager/authorizationStatus"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "homekit": {
+      "alt": "A screenshot of Xcode’s Capabilities library with a list of available capabilities on the left and an information pane on the right. The list shows a range of capabilities from HomeKit to Multipath, and the HomeKit capability is in a selected state. The text on the information pane explains that, by enabling HomeKit, your app can interact with HomeKit accessories and create home configurations.",
+      "identifier": "homekit",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ead28854e6fa05b5326e440a170aabf5/homekit@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8e2b319b06c70d92e1db111d2a6a981/homekit~dark@2x.png"
+        }
+      ]
+    },
+    "homekit-purpose-string": {
+      "alt": "A screenshot of a target’s Info.plist file open in Xcode’s Property List Editor. The file contains the Privacy - HomeKit Usage Description key and an example purpose string as its value.",
+      "identifier": "homekit-purpose-string",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a32536c027e35c8bca348465786e9e5b/homekit-purpose-string@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ede7c149fd68bbcd2201dd92f7efe5f/homekit-purpose-string~dark@2x.png"
+        }
+      ]
+    },
+    "homekit-simulator": {
+      "alt": "A screenshot of Finder showing the contents of the Hardware folder from the downloaded disk image. The HomeKit Accessory Simulator is in a selected state.",
+      "identifier": "homekit-simulator",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/468df0b637e9332a52220c7369fbd819/homekit-simulator@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6089f86a19e3b788a0bf15ca6658dcfe/homekit-simulator~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/homekit/testing_your_app_with_the_homekit_accessory_simulator#3087266": {
+      "identifier": "https://developer.apple.com/documentation/homekit/testing_your_app_with_the_homekit_accessory_simulator#3087266",
+      "title": "Testing Your App with the HomeKit Accessory Simulator",
+      "titleInlineContent": [
+        {
+          "text": "Testing Your App with the HomeKit Accessory Simulator",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/homekit/testing_your_app_with_the_homekit_accessory_simulator#3087266"
+    },
+    "https://developer.apple.com/download/all": {
+      "identifier": "https://developer.apple.com/download/all",
+      "title": "More Downloads",
+      "titleInlineContent": [
+        {
+          "text": "More Downloads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/all"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-healthkit-access"
+      ],
+      "title": "User data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1HomeKit~1HMHomeManager~1authorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@HMHomeManagerAuthorizationStatus",
+              "text": "HMHomeManagerAuthorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1HomeKit~1HMHomeManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

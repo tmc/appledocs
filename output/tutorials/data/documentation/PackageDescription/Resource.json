@@ -1,0 +1,893 @@
+{
+  "abstract": [
+    {
+      "text": "A resource to bundle with the Swift package.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18PackageDescription8ResourceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Resource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PackageDescription"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Resource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.3",
+        "name": "SwiftPM",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Resource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Resource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a Swift package declares a Swift tools version of 5.3 or later, it can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "include resource files. Similar to source code, Swift Package Manager scopes resources to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target, so you must put them into the folder that corresponds to the target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they belong to. For example, any resources for the ",
+              "type": "text"
+            },
+            {
+              "code": "MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reside in ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use subdirectories to organize your resource",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files in a way that simplifies file identification and management. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, put all resource files into a directory named ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reside at ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/MyLibrary/Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Swift Package Manager handles common resources types for Apple platforms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically. For example, you don’t need to declare XIB files,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storyboards, Core Data file types, and asset catalogs as resources in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package manifest. However, you must explicitly declare other file types — for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, image files — as resources using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/process(_:localization:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/copy(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " rules.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, exclude resource files from a target by passing them to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target initializer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/exclude",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about package resources, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doc:bundling-resources-with-a-swift-package",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/packagedescription"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource": {
+      "abstract": [
+        {
+          "text": "A resource to bundle with the Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/packagedescription/resource"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/Localization": {
+      "abstract": [
+        {
+          "text": "Defines the explicit type of localization for resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Localization"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/Localization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Localization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource.Localization",
+      "type": "topic",
+      "url": "/documentation/packagedescription/resource/localization"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/copy(_:)": {
+      "abstract": [
+        {
+          "text": "Applies the copy rule to a resource at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/copy(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/resource/copy(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/embedInCode(_:)": {
+      "abstract": [
+        {
+          "text": "Applies the embed rule to a resource at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "embedInCode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/embedInCode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "embedInCode(_:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/resource/embedincode(_:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/process(_:localization:)": {
+      "abstract": [
+        {
+          "text": "Applies a platform-specific rules to the resource at the given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "process"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV12LocalizationO",
+          "text": "Localization"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/process(_:localization:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "process(_:localization:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/resource/process(_:localization:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/exclude": {
+      "abstract": [
+        {
+          "text": "The paths to source and resource files that you don’t want to include in the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exclude"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/exclude",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exclude",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/exclude"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/path": {
+      "abstract": [
+        {
+          "text": "The path of the target, relative to the package root.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "path",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/path"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/publicHeadersPath": {
+      "abstract": [
+        {
+          "text": "The path to the directory that contains public headers of a C-family target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "publicHeadersPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/publicHeadersPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publicHeadersPath",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/publicheaderspath"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/resources": {
+      "abstract": [
+        {
+          "text": "The explicit list of resource files in the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription8ResourceV",
+          "text": "Resource"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/resources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resources",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/resources"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/sources": {
+      "abstract": [
+        {
+          "text": "The source files in this target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/sources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sources",
+      "type": "topic",
+      "url": "/documentation/packagedescription/target/sources"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-File-Locations",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/path",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/exclude",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/sources",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/resources",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Target/publicHeadersPath"
+      ],
+      "title": "Configuring File Locations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Applying-Rules",
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/process(_:localization:)",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/Localization",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/copy(_:)"
+      ],
+      "title": "Applying Rules"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Resource/embedInCode(_:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/packagedescription/resource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1417 @@
+{
+  "abstract": [
+    {
+      "text": "The properties of a subscription store control that includes the list of auto-renewable subscriptions to merchandise.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SubscriptionStoreControlStyleConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SubscriptionStoreControlStyleConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SubscriptionStoreControlStyleConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SubscriptionStoreControlStyleConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you define a custom subscription store control style by creating a type that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, you implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. That method takes a ",
+              "type": "text"
+            },
+            {
+              "code": "SubscriptionStoreControlStyleConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, which has the information necessary to define the behavior and interactions of a subscription store view’s primary controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Decide whether your style supports dividing options into sections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you support sections, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to preserve the structure and accessory views you declare using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionSection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you don’t support sections, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to have a flattened array of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " values to merchandise.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a control that enables customers to subscribe to each option in either the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "sections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To hide and sort the subscription options that your view displays, use the initializer of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, you can initialize the subscription store to contain only the subscription options that upgrade the customer’s current subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display only the subscription options that appear in either the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "sections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties. For example, declaring ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances can hide certain subscription options from a control. To access information about other subscription options, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In cases where a customer is actively subscribed, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value of the subscription product that renews at the next billing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)": {
+      "abstract": [
+        {
+          "text": "Sets the control style and control placement for subscription store views within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP9PlacementQa",
+          "text": "Placement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP",
+          "text": "SubscriptionStoreControlStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionStoreControlStyle(_:placement:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/storekit/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroup": {
+      "abstract": [
+        {
+          "text": "A group of subscription options that includes optional views for labels and marketing content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionOptionGroup",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionoptiongroup"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionSection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionSection"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionOptionSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionOptionSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionOptionSection",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionoptionsection"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement": {
+      "abstract": [
+        {
+          "text": "A type that specifies the placement of a subscription control in a subscription store view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlPlacement",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolplacement"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle": {
+      "abstract": [
+        {
+          "text": "A type that specifies the appearance and interaction of controls in the subscription store view instances within the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyle",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a view that represents the body of a subscription store control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBody"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP13Configurationa",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA12ControlStyleP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle/makeBody(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeBody(configuration:)",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyle/makebody(configuration:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of a subscription store control that includes the list of auto-renewable subscriptions to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Icon": {
+      "abstract": [
+        {
+          "text": "A type-erased icon of a subscription option.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Icon"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Icon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Icon"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration.Icon",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/icon"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option": {
+      "abstract": [
+        {
+          "text": "Properties of an auto-renewable subscription option to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Option"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration.Option",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/option"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/PickerOption": {
+      "abstract": [
+        {
+          "text": "The properties of a picker option to use for selecting a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PickerOption"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/PickerOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PickerOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration.PickerOption",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/pickeroption"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Section": {
+      "abstract": [
+        {
+          "text": "The properties of a section of subscription options within a subscription store control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreControlStyleConfiguration.Section",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/section"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions": {
+      "abstract": [
+        {
+          "text": "All subscription options in the subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allOptions",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/alloptions"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference": {
+      "abstract": [
+        {
+          "text": "The auto-renewable subscripton product that renews at the next billing cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoRenewPreference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoRenewPreference",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/autorenewpreference"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/descriptionVisibility": {
+      "abstract": [
+        {
+          "text": "The visibility of product descriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptionVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/descriptionVisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptionVisibility",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/descriptionvisibility"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/groupDisplayName": {
+      "abstract": [
+        {
+          "text": "The localized display name of the subscription group that the subscription store view merchandises.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupDisplayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/groupDisplayName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupDisplayName",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/groupdisplayname"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options": {
+      "abstract": [
+        {
+          "text": "An array of subscription options for the subscription store view to merchandise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV6OptionV",
+          "text": "Option"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/options"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections": {
+      "abstract": [
+        {
+          "text": "The subscription options to merchandise by sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV",
+          "text": "SubscriptionStoreControlStyleConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV",
+          "text": "Section"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sections",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstorecontrolstyleconfiguration/sections"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView": {
+      "abstract": [
+        {
+          "text": "A view that merchandises a collection of auto-renewable subscription options that belong to the same subscription group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStoreView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStoreView",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstoreview"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styling-subscription-store-controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:)",
+        "doc://com.apple.documentation/documentation/SwiftUI/View/subscriptionStoreControlStyle(_:placement:)",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyle",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlPlacement"
+      ],
+      "title": "Styling subscription store controls"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-subscription-options-to-merchandise",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/options",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/sections",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Option",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/PickerOption",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Section",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/Icon"
+      ],
+      "title": "Getting subscription options to merchandise"
+    },
+    {
+      "anchor": "Getting-subscription-group-properties",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/groupDisplayName",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/autoRenewPreference",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/allOptions"
+      ],
+      "title": "Getting subscription group properties"
+    },
+    {
+      "anchor": "Getting-subscription-description-visibility",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStoreControlStyleConfiguration/descriptionVisibility"
+      ],
+      "title": "Getting subscription description visibility"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/subscriptionstorecontrolstyleconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

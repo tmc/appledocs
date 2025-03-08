@@ -1,0 +1,1789 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the arrangement of seats, equipment, and counters around the game table.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11TabletopKit10TableSetupV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TableSetup"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TabletopKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TableSetup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "TableSetup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TableSetup"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a ",
+              "type": "text"
+            },
+            {
+              "code": "TableSetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, pass an object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-4cfut",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer. For example, implement a ",
+              "type": "text"
+            },
+            {
+              "code": "Table",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "EntityTabletop",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and pass an instance of it to the initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let table = Table()",
+            "root = createRootEntity(table: table.entity)",
+            "var setup = TableSetup(tabletop: table)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the protocol properties, such as ",
+              "type": "text"
+            },
+            {
+              "code": "shape",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "entity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties for the ",
+              "type": "text"
+            },
+            {
+              "code": "EntityTabletop",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, in the initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Table: EntityTabletop {",
+            "    var shape: TabletopShape",
+            "    var entity: Entity",
+            "    var id: EquipmentIdentifier",
+            "    ",
+            "    init() {",
+            "        self.entity = try! Entity.load(named: \"table/table\", in: contentBundle)",
+            "        self.shape = .round(entity: entity)",
+            "        self.id = .table",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then add seats, equipment, and counters to the ",
+              "type": "text"
+            },
+            {
+              "code": "TableSetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To represent seats, create structures that conform to a seat protocol. To render seats using RealityKit, conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTableSeat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-4alrc",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a similar method to add seats. Otherwise, conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-a9qw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a similar method to add seats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "setup.add(seat: Seat(index: 0, position: .init(x: 0, z: -0.5)))",
+            "setup.add(seat: Seat(index: 1, position: .init(x: 0, z: +0.5)))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To represent equipment, create structures that conform to an equipment protocol. To render equipment using RealityKit, conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityEquipment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-24tv6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a similar method to add equipment. Otherwise, conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-29pef",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a similar method to add equipment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "setup.add(equipment: Piece(position: .init(x: 0, z: 0.1)))",
+            "setup.add(equipment: Card(index: 0, faceUp: true, position: .init(x: -0.1, z: 0)))",
+            "setup.add(equipment: Card(index: 1, faceUp: true, position: .init(x: +0.1, z: 0)))",
+            "setup.add(equipment: Die(index: 0, position: .init(x: 0, z: 0.2)))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some equipment can represent a group, such as a player’s hand in a card game. To organize equipment hierarchically, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentState/parentID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment/State",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property during gameplay. In your equipment structure implementation, you can override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment/layoutChildren(for:visualState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to lay out the containing equipment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, add one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/ScoreCounter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to the ",
+              "type": "text"
+            },
+            {
+              "code": "TableSetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to keep score of the game. Use either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counter:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counters:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to add score counters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, create the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance from the ",
+              "type": "text"
+            },
+            {
+              "code": "TableSetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object by passing it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "game = TabletopGame(tableSetup: setup)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-tabletop-games-PageImage-card.png": {
+      "alt": "An illustration that depicts a tabletop game showing chess pieces on a grid.",
+      "identifier": "creating-tabletop-games-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f5f59743df3d9b99dcf78117bc482672/creating-tabletop-games-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/216dff3d0207d0d68fd8841437084f04/creating-tabletop-games-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit": {
+      "abstract": [
+        {
+          "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabletopKit",
+      "type": "topic",
+      "url": "/documentation/tabletopkit"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityEquipment": {
+      "abstract": [
+        {
+          "text": "A protocol for equipment in a game that you render using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityEquipment"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityEquipment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityEquipment"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityEquipment",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entityequipment"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTableSeat": {
+      "abstract": [
+        {
+          "text": "A protocol for seats at the table that you render using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityTableSeat"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTableSeat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityTableSeat"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityTableSeat",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entitytableseat"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game when you render it using RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityTabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityTabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/entitytabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment": {
+      "abstract": [
+        {
+          "text": "A protocol for equipment that players directly interact with in a game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equipment"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equipment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equipment",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipment"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment/State": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit14EquipmentStateP",
+          "text": "EquipmentState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment/State",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "State",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipment/state"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment/layoutChildren(for:visualState:)": {
+      "abstract": [
+        {
+          "text": "This function provides the layout of the direct children of this equipment and is called whenever the snapshot changes.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Override it to provide a custom layout.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The output of this function is considered to be only a function of its inputs. Reaching out to data outside what is provided might result in undefined behavior.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutChildren"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit13TableSnapshotV",
+          "text": "TableSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "visualState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit16TableVisualStateV",
+          "text": "TableVisualState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit15EquipmentLayoutP",
+          "text": "EquipmentLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Equipment/layoutChildren(for:visualState:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "layoutChildren(for:visualState:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipment/layoutchildren(for:visualstate:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentState/parentID": {
+      "abstract": [
+        {
+          "text": "The identifier for the parent equipment that holds or contains this equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/EquipmentState/parentID",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "parentID",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/equipmentstate/parentid"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/ScoreCounter": {
+      "abstract": [
+        {
+          "text": "An object that keeps a score in a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScoreCounter"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/ScoreCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScoreCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScoreCounter",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/scorecounter"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat": {
+      "abstract": [
+        {
+          "text": "A protocol for seats at the table that players occupy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSeat"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSeat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSeat"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSeat",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tableseat"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup": {
+      "abstract": [
+        {
+          "text": "An object that represents the arrangement of seats, equipment, and counters around the game table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSetup"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSetup",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counter:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "counter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit12ScoreCounterV",
+          "text": "ScoreCounter"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counter:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(counter:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(counter:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counters:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "counters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit12ScoreCounterV",
+          "text": "ScoreCounter"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(counters:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(counters:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-24tv6": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:020_TabletopKit_RealityB015EntityEquipmentP",
+          "text": "EntityEquipment"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-24tv6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(equipment:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(equipment:)-24tv6"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-29pef": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit9EquipmentP",
+          "text": "Equipment"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-29pef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(equipment:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(equipment:)-29pef"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-4k6m6": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-4k6m6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(equipment:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(equipment:)-4k6m6"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-9syh2": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equipment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-9syh2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(equipment:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(equipment:)-9syh2"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-4alrc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "seat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:020_TabletopKit_RealityB015EntityTableSeatP",
+          "text": "EntityTableSeat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-4alrc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(seat:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(seat:)-4alrc"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-a9qw": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "seat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit9TableSeatP",
+          "text": "TableSeat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-a9qw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(seat:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(seat:)-a9qw"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seats:)-4068d": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "seats"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seats:)-4068d",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(seats:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(seats:)-4068d"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seats:)-4asnu": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "seats"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seats:)-4asnu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(seats:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/add(seats:)-4asnu"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-4cfut": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tabletop"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A0P",
+          "text": "Tabletop"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-4cfut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tabletop:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/init(tabletop:)-4cfut"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-7ima6": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tabletop"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:020_TabletopKit_RealityB006EntityA0P",
+          "text": "EntityTabletop"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-7ima6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tabletop:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesetup/init(tabletop:)-7ima6"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop": {
+      "abstract": [
+        {
+          "text": "A protocol for the table surface in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tabletop"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tabletop",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletop"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame": {
+      "abstract": [
+        {
+          "text": "An object that manages the setup and gameplay of a tabletop game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopGame"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopGame",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)": {
+      "abstract": [
+        {
+          "text": "Creates a tabletop game with the specified table configuration and version of rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "tableSetup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit10TableSetupV",
+          "text": "TableSetup"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/init(tableSetup:version:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tableSetup:version:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/init(tablesetup:version:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample": {
+      "abstract": [
+        {
+          "text": "Develop a spatial board game where multiple players interact with pieces on a table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample",
+      "images": [
+        {
+          "identifier": "creating-tabletop-games-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating tabletop games",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopkitsample"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape": {
+      "abstract": [
+        {
+          "text": "An object that represents the physical properties of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopShape",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopshape"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopKitSample",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/Tabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/EntityTabletop",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopShape"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-setup-object-from-a-table",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-4cfut",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/init(tabletop:)-7ima6"
+      ],
+      "title": "Creating a setup object from a table"
+    },
+    {
+      "anchor": "Adding-seats-to-place-players",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-a9qw",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seat:)-4alrc",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seats:)-4068d",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(seats:)-4asnu"
+      ],
+      "title": "Adding seats to place players"
+    },
+    {
+      "anchor": "Adding-equipment-for-gameplay",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-29pef",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-24tv6",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-4k6m6",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(equipment:)-9syh2"
+      ],
+      "title": "Adding equipment for gameplay"
+    },
+    {
+      "anchor": "Adding-counters-to-keep-score",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counter:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSetup/add(counters:)"
+      ],
+      "title": "Adding counters to keep score"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabletopkit/tablesetup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

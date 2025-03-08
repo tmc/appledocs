@@ -1,0 +1,1366 @@
+{
+  "abstract": [
+    {
+      "text": "A mechanism in which to measure time, and delay work until a given point",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "in time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Clock"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:12_Concurrency5ClockP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Clock"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Clock"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Clock"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Clock"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/Duration",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12_Concurrency5ClockP8DurationQa",
+              "text": "Duration"
+            },
+            {
+              "kind": "text",
+              "text": "> : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Types that conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "Clock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol define a concept of “now” which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is the specific instant in time that property is accessed. Any pair of calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "code": "now",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property may have a minimum duration between them - this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "minimum resolution is exposed by the ",
+              "type": "text"
+            },
+            {
+              "code": "minimumResolution",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to inform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any user of the type the expected granularity of accuracy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One of the primary uses for clocks is to schedule task sleeping. This method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resumes the calling task after a given deadline has been met or passed with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a given tolerance value. The tolerance is expected as a leeway around the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deadline. The clock may reschedule tasks within the tolerance to ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "efficient execution of resumptions by reducing potential operating system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wake-ups. If no tolerance is specified (i.e. nil is passed in) the sleep",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function is expected to schedule with a default tolerance strategy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about specific clocks see ",
+              "type": "text"
+            },
+            {
+              "code": "ContinuousClock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "SuspendingClock",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock": {
+      "abstract": [
+        {
+          "text": "A mechanism in which to measure time, and delay work until a given point",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Clock"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clock"
+        }
+      ],
+      "role": "symbol",
+      "title": "Clock",
+      "type": "topic",
+      "url": "/documentation/swift/clock"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/Duration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/Duration",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/clock/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/Instant": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15InstantProtocolP",
+          "text": "InstantProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/Instant",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Instant",
+      "type": "topic",
+      "url": "/documentation/swift/clock/instant"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/continuous": {
+      "abstract": [
+        {
+          "text": "A clock that measures time that always increments but does not stop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "incrementing while the system is asleep.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ContinuousClock",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "continuous"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency15ContinuousClockV",
+          "text": "ContinuousClock"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/continuous",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "continuous",
+      "type": "topic",
+      "url": "/documentation/swift/clock/continuous"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/measure(_:)": {
+      "abstract": [
+        {
+          "text": "Measure the elapsed time to execute a closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "measure"
+        },
+        {
+          "kind": "text",
+          "text": "(() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15InstantProtocolP8DurationQa",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/measure(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measure(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/clock/measure(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/measure(isolation:_:)": {
+      "abstract": [
+        {
+          "text": "Measure the elapsed time to execute an asynchronous closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "measure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15InstantProtocolP8DurationQa",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/measure(isolation:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measure(isolation:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/clock/measure(isolation:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/minimumResolution": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumResolution"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP8DurationQa",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/minimumResolution",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "minimumResolution",
+      "type": "topic",
+      "url": "/documentation/swift/clock/minimumresolution"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/now": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "now"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/now",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "now",
+      "type": "topic",
+      "url": "/documentation/swift/clock/now"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/sleep(for:tolerance:)": {
+      "abstract": [
+        {
+          "text": "Suspends for the given duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15InstantProtocolP8DurationQa",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15InstantProtocolP8DurationQa",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/sleep(for:tolerance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleep(for:tolerance:)",
+      "type": "topic",
+      "url": "/documentation/swift/clock/sleep(for:tolerance:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/sleep(until:tolerance:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleep"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency5ClockP7InstantQa",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15InstantProtocolP8DurationQa",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/sleep(until:tolerance:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "sleep(until:tolerance:)",
+      "type": "topic",
+      "url": "/documentation/swift/clock/sleep(until:tolerance:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Clock/suspending": {
+      "abstract": [
+        {
+          "text": "A clock that measures time that always increments but stops incrementing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "while the system is asleep.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "SuspendingClock",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspending"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency15SuspendingClockV",
+          "text": "SuspendingClock"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Clock/suspending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspending",
+      "type": "topic",
+      "url": "/documentation/swift/clock/suspending"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ContinuousClock": {
+      "abstract": [
+        {
+          "text": "A clock that measures time that always increments and does not stop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "incrementing while the system is asleep.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContinuousClock"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ContinuousClock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContinuousClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContinuousClock",
+      "type": "topic",
+      "url": "/documentation/swift/continuousclock"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SuspendingClock": {
+      "abstract": [
+        {
+          "text": "A clock that measures time that always increments but stops incrementing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "while the system is asleep.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SuspendingClock"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SuspendingClock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SuspendingClock"
+        }
+      ],
+      "role": "symbol",
+      "title": "SuspendingClock",
+      "type": "topic",
+      "url": "/documentation/swift/suspendingclock"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ContinuousClock",
+        "doc://com.apple.Swift/documentation/Swift/SuspendingClock"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Clocks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ContinuousClock",
+        "doc://com.apple.Swift/documentation/Swift/SuspendingClock"
+      ],
+      "title": "Clocks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Clock/Duration",
+        "doc://com.apple.Swift/documentation/Swift/Clock/Instant"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Clock/minimumResolution",
+        "doc://com.apple.Swift/documentation/Swift/Clock/now"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Clock/measure(_:)",
+        "doc://com.apple.Swift/documentation/Swift/Clock/measure(isolation:_:)",
+        "doc://com.apple.Swift/documentation/Swift/Clock/sleep(for:tolerance:)",
+        "doc://com.apple.Swift/documentation/Swift/Clock/sleep(until:tolerance:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Clock/continuous",
+        "doc://com.apple.Swift/documentation/Swift/Clock/suspending"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/clock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1753 @@
+{
+  "abstract": [
+    {
+      "text": "Create Custom Modelers with the CLIPS language and learn how the embedded rules engine works.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-custom-modelers-for-intelligent-instruments"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.2",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating custom modelers for intelligent instruments"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/421",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this sample code project to step through the process of building a custom modeler for GoatList, an app that displays and modifies a list of goats. The GoatList app makes use of a ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pattern to break down a goal, such as sorting a list, into smaller subgoals. The subgoals execute at ",
+              "type": "text"
+            },
+            {
+              "code": "stops",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", locations where preconditions are met before execution continues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Instruments Distribution Package target within the Xcode project uses incrementally more sophisticated modeling logic, written in the CLIPS language, to build an Instrument that visualizes the different moving pieces of the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pattern as it is used within GoatList.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample requires Xcode 11 or later and iOS 12 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select GoatList from the target choices in Xcode to run the sample app in the iOS Simulator or on an iOS device. When the app launches, select a Modeling target to run on your Mac. The Modeling target launches Instruments. Next, select the Blank template and click the Add (+) button in the upper-right corner to search for the Instrument that was created when building the target. Searching for “Mobile Agent” should reveal the Custom Instrument. Once you select the proper device and target process within Instruments, you’re ready to record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Design-a-Custom-Modeler-for-MobileAgent-Activity",
+          "level": 3,
+          "text": "Design a Custom Modeler for MobileAgent Activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "os_signpost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API lets you mark important events or intervals in your app and attach optional messages, and offers an effective and powerful way to get data into Instruments. The ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pattern implemented by this sample app uses just three ",
+              "type": "text"
+            },
+            {
+              "code": "os_signpost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " messages, yet they are vastly functional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rules in the ",
+              "type": "text"
+            },
+            {
+              "code": "ExecutionModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  (",
+              "type": "text"
+            },
+            {
+              "code": "mobile-agent-modeling.clp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") target rely on the ",
+              "type": "text"
+            },
+            {
+              "code": "os_signpost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data emitted by the GoatList app to generate intervals, during which a ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " actively executes at a stop. The target uses the  ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Exec",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost to generate the execution intervals in two steps: first, it determines which ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is executing; and second, it tracks when a ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " begins executing. The modeling rules handle this bookkeeping by asserting facts into working memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the sample app emits a ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Moved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost, the modeling logic checks for execution interval facts associated with the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that emitted the ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Moved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost. If the execution interval facts exist, the execution is considered complete, and the ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module consumes the output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Incorporate-MobileAgent-Transitions",
+          "level": 3,
+          "text": "Incorporate MobileAgent Transitions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also transitions, an event that occurs when the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " moves from one stop to another to execute its next subgoal. You can use this movement to set up an execution environment for a ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", wait until certain conditions are satisfied before letting the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " execute at a stop, or signal failure status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Moved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost marks transitions; it’s the same signpost the ",
+              "type": "text"
+            },
+            {
+              "code": "ExecutionModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target uses to determine the end of an execution interval. In ",
+              "type": "text"
+            },
+            {
+              "code": "ExecutionAndTransitionModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", this signpost plays a new role. In addition to serving as the end of an execution interval, it determines when a transition has begun. Similarly, the ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Exec",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost also takes on a new role: it signals the end of a transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, there are four possible logical steps the modeler must consider when processing a signpost:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If it’s a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Mobile Agent Exec",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signpost, assert a new execution bookkeeping fact.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If it’s a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Mobile Agent Exec",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signpost ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "and",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " a previous ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "transition",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " bookkeeping fact is present in working memory, then close the transition interval.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If it’s a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Mobile Agent Moved",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signpost, assert a new transition bookkeeping fact.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If it’s a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Mobile Agent Moved",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " signpost ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "and",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " a previous ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "execution",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " bookkeeping fact is present in working memory, then close the execution interval.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementing the four steps requires the use of CLIPS Conditional Elements (CEs). Examples of CEs include ",
+              "type": "text"
+            },
+            {
+              "code": "and",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "or",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "not",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". As the names imply, these CEs activate when all, any, or none of their input expressions are satisfied, respectively. ",
+              "type": "text"
+            },
+            {
+              "code": "ExecutionAndTransitionModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses these CEs to build rules that match the four possible cases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compress-Signpost-Data",
+          "level": 3,
+          "text": "Compress Signpost Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "code": "os_signpost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is convenient for getting data into Instruments, consider compressing that data to reduce the burden imposed on the recording technology. For example, in GoatList, the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pattern sends integer codes, known as kind-codes, representing the type of ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgentStop",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of a descriptive string in the signpost message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the modeling side, these codes expand into their longer string representations. Every target in the ",
+              "type": "text"
+            },
+            {
+              "code": "Modelers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder contains facts that map an integer kind-code back to a string representation. When the signposts send a kind-code, the modeling rules map the codes to their string representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prevent-Incomplete-Facts-from-Reaching-the-Recorder",
+          "level": 3,
+          "text": "Prevent Incomplete Facts from Reaching the Recorder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Modelers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " targets contain several rules for annotating and augmenting the working memory facts into a complete fact that is viable for the ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module to output into your data tables. As the ",
+              "type": "text"
+            },
+            {
+              "code": "MODELER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module outputs the facts, it’s important to prevent the ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module’s rules from seeing an incomplete fact and inserting it into the data tables. There are different mechanisms at work that make sure your modeling logic executes fully before being passed down to the ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rules, two of which are described below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first mechanism involves how CLIPS determines which rules to fire next. CLIPS ensures that all activated rules in the ",
+              "type": "text"
+            },
+            {
+              "code": "MODELER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module execute before any rules in the ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module execute. In other words, a ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rule isn’t interleaved with the execution of rules in the ",
+              "type": "text"
+            },
+            {
+              "code": "MODELER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module. All viable ",
+              "type": "text"
+            },
+            {
+              "code": "MODELER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rules execute before any viable ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rule executes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Further, you can place restrictions on the ",
+              "type": "text"
+            },
+            {
+              "code": "LHS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of a rule to determine when it’s appropriate to fire. For example, a ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rule can specify that it requires a ",
+              "type": "text"
+            },
+            {
+              "code": "mobile-agent-execution-interval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fact to have a nonempty description of the stop in which the execution occurred. Thus, even if the kind-code to string mapping rules didn’t have a chance to fire during an execution cycle, and CLIPS considers which ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rules are ready to fire, the nonempty restriction implies that the kind-code to string resolution occurs before the data tables record any data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-Overlapping-Intervals",
+          "level": 3,
+          "text": "Avoid Overlapping Intervals",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Storing all of the execution intervals on a single track may lead to UI stutters, which occur when your modeler commits overlapping intervals onto the same lane. The overlapping intervals make it ambiguous as to which interval should be displayed on the lane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, however, it’s necessary to have overlapping segments, such as if ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " execute concurrently on different threads. To remedy this problem, you need to somehow distinguish between the sets of data so they can be displayed on separate lanes or tracks. If you have multiple agents running in parallel, they can be distinguished by the thread they’re running on. You can use a plot-template to distinguish between agents. A plot-template serves as a cookie cutter to stamp out plots for each unique instance of a distinguishing feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the multithreaded MobileAgent example from the previous paragraph, a plot-template can be constructed that creates a plot per thread. Since the plots for each thread are distinct, the overlapping intervals won’t contend for the same lane. The ",
+              "type": "text"
+            },
+            {
+              "code": "PlotTemplatesModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target within this Xcode project uses a plot-template to resolve this problem. For more information and an example of constructing a plot-template, please refer to the ",
+              "type": "text"
+            },
+            {
+              "code": "PlotTemplatesModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Speculation-Rules",
+          "level": 3,
+          "text": "Use Speculation Rules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many interesting modeling problems deal with intervals at some point or another, and certain modeling constructs must be implemented to support immediate mode when dealing with intervals. Immediate mode in Instruments displays data on the Standard UI as soon as it is available, instead of processing the data as a large batch and rendering it once the trace completes. Instruments such as ",
+              "type": "text"
+            },
+            {
+              "code": "Time Profiler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Core Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " support immediate mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support immediate mode, you must take the concept of ",
+              "type": "text"
+            },
+            {
+              "code": "Speculation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into consideration when building your modeler. For instance, in the case of a long-running ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the modeler rules assert the initial execution bookkeeping fact, but they have no way of knowing when the interval comes to a close. A ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may be delayed in its execution or it may be executing an expensive task. In either case, there’s an indeterminate amount of time between the initial ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Exec",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost and the closing ",
+              "type": "text"
+            },
+            {
+              "code": "Mobile Agent Moved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signpost. Without special rules, the Instruments UI will be forced to either remodel your events after the trace completes or stutter the UI in order to insert the new interval. If an interval is incomplete before the trace ends, the interval will also be omitted from the trace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remedy this, create a  ",
+              "type": "text"
+            },
+            {
+              "code": "speculation rule",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "Analysis Core",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks your modeler to speculate about the end of an interval in order to render the interval’s progress before it closes, as well as give your modelers a chance to infer how an interval might close once the trace ends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "speculation rule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operates very similarly to other rules within the ",
+              "type": "text"
+            },
+            {
+              "code": "RECORDER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module. It too outputs entries into a data table, but only temporarily. The ",
+              "type": "text"
+            },
+            {
+              "code": "speculation rule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also doesn’t have the complete information about an interval. For example, consider the ",
+              "type": "text"
+            },
+            {
+              "code": "mobile-agent-recording.clp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the ",
+              "type": "text"
+            },
+            {
+              "code": "SpeculationModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target. The ",
+              "type": "text"
+            },
+            {
+              "code": "speculation rule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requires the presence of a ",
+              "type": "text"
+            },
+            {
+              "code": "speculate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fact in the working memory. The fact includes a slot for the time at which speculation was requested.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(defrule RECORDER::speculatively-record-execution",
+            "    (speculate (event-horizon ?end))",
+            "    (table (table-id ?output) (side append))",
+            "    (table-attribute (table-id ?output) (has schema mobile-agent-activity))",
+            "    (mobile-agent-execution-started (start ?start)",
+            "    (instance ?instance) (stop-kind ?stop-kind&~sentinel))",
+            "    ",
+            "    =>",
+            "    (bind ?duration (- ?end ?start))",
+            "    (create-new-row ?output)",
+            "    (set-column start ?start)",
+            "    (set-column duration ?duration)",
+            "    (set-column instance ?instance)",
+            "    (set-column state \"Executing\")",
+            "    (set-column activity-type \"Green\")",
+            "    (set-column stop-kind ?stop-kind)",
+            "    (set-column-narrative activity \"Executing at stop %string%\" ?stop-kind)",
+            ")"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although this rule doesn’t have the complete information about the ",
+              "type": "text"
+            },
+            {
+              "code": "mobile-agent-execution-interval",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it does have the initial ",
+              "type": "text"
+            },
+            {
+              "code": "mobile-agent-execution-started",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bookkeeping fact, as well as the time at which speculation was requested. These two times can be used to determine a speculative duration. The rest of the speculative data table is filled out with any information that could be gathered at the time of speculation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the speculation rule in place, the ",
+              "type": "text"
+            },
+            {
+              "code": "Analysis Core",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can now query the modeler when it needs to perform any speculation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-Engineering-Type-Tracks",
+          "level": 3,
+          "text": "Specify  Engineering Type Tracks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instruments 11 and later include support for engineering type tracks. When combined with augmentations, engineering type tracks allow you to specify an engineering type to add in the Instruments UI dynamically alongside your other instruments’ tracks as your data tables populate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if there are multiple threads executing the ",
+              "type": "text"
+            },
+            {
+              "code": "MobileAgents",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the responsible threads can be displayed as tracks in the UI, with customizable lanes and titles. The engineering type tracks effectively promote ordinary engineering types into first-class citizens within the Instruments UI. Augmentations then work with these promoted types to visually render them onto the Instruments UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EngineeringTypeTracksModeling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target uses these features to display visited stops as separate tracks in the UI. The activity of the MobileAgents displays within these tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "CLIPS-Modeler-Functions",
+          "level": 3,
+          "text": "CLIPS Modeler Functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Building a custom modeler requires the use of the CLIPS language. Included with Xcode, the CLIPS distribution provides a rich set of functions for extracting and deducing information from your facts. This sample project made extensive use of CLIPS functions, but not every single one had a use for modeling GoatList. To that end, a broad variety of CLIPS functions are documented below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Data-Output-Actions",
+          "level": 3,
+          "text": "Data Output Actions",
+          "type": "heading"
+        },
+        {
+          "anchor": "create-new-row",
+          "level": 3,
+          "text": "`create-new-row`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creates a new row in an output table that is bound to the modeler. The only parameter is the INTEGER ",
+              "type": "text"
+            },
+            {
+              "code": "table-id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the bound table. This is typically matched as part of the rule, using the table schema and attributes to locate the table-id. Once the row has been created, ",
+              "type": "text"
+            },
+            {
+              "code": "set-column",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be used to fill in each column of the new row. Columns that are not filled out assume a default value, which is typically the sentinel for that engineering type if one is defined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(table (side append) (table-id ?output))",
+            "(table-attribute (table-id ?output) (has schema example))",
+            " =>",
+            "(create-new-row ?output)   ;; create the row before trying to set columns"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "set-column",
+          "level": 3,
+          "text": "`set-column`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sets the specified column of the most recently created row in the RHS of the rule. The first parameter is the column mnemonic, as defined in the schema, and the second parameter is the value to set. Conversion from the implementation type (e.g. INTEGER, STRING, FLOAT, EXTERNAL-ADDRESS) to the engineering type of the column will be done automatically when possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(set-column size-column ?example-size) ;; Sets size-column to the value ?example-size "
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "set-column-narrative",
+          "level": 3,
+          "text": "`set-column-narrative`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "set-column-narrative",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is similar to ",
+              "type": "text"
+            },
+            {
+              "code": "set-column",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", except that it applies a format string to create an engineering value of type ",
+              "type": "text"
+            },
+            {
+              "code": "narrative",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Narratives are like long text strings; however, each piece of the narrative is preserved and tagged with the engineering type specified in the format string. This information allows the UI to break the string down later for a richer presentation. The first argument is the column mnemonic, followed by the format string, followed by the series of arguments, as in a printf-style format string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format string argument contains tokens surrounded by ‘%’, such as: ",
+              "type": "text"
+            },
+            {
+              "code": "Some text with a %thread% in the middle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The value of the token must be a valid engineering type identifier. This example is a “thread” engineering type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(set-column-narrative narrative-column \"Some text with a %thread% in the middle\" ?thread-value)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Data-Transformation",
+          "level": 3,
+          "text": "Data Transformation",
+          "type": "heading"
+        },
+        {
+          "anchor": "process-from-thread",
+          "level": 3,
+          "text": "`process-from-thread`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The “thread” engineering type is associated with a particular process. This function takes a thread value as an argument and produces the process object with which it is associated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(bind ?proc (process-from-thread ?thread)) ;;  Extracts the process object from ?thread and store it in ?proc",
+            "(set-column process ?proc) ;; set the process column to the value ?proc"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "pid-from-process",
+          "level": 3,
+          "text": "`pid-from-process`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extracts the INTEGER pid from its argument, which must be a ",
+              "type": "text"
+            },
+            {
+              "code": "process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " engineering type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(bind ?process (process-from-thread ?thread))",
+            "(bind ?pid (pid-from-process ?process))"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "bit-test",
+          "level": 3,
+          "text": "`bit-test`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Boolean return function that tests the nth bit of the first argument, and returns true if it is set, false otherwise. The second argument supplies the bit index to test. The bit index ranges from [0-63], where bit 0 is the least significant bit of the INTEGER.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(bit-test ?value-to-test 63) ;  returns true if the most significant bit in ?value-to-test is set"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "extract-bits",
+          "level": 3,
+          "text": "`extract-bits`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns an INTEGER by extracting a range of bits from the first argument. The return value has been shifted over such that the lowest bit in the extracted range becomes bit 0. Bit 0 is the least significant bit. The second and third arguments hold the range of bits to extract, inclusively. Conventionally, the highest bit in the range is the second argument, but if they are reversed, the function still works as expected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(extract-bits ?integer-value 63 32) ; extracts the most significant 32-bits and shifts them to the right by 32 bits."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "make-int64",
+          "level": 3,
+          "text": "`make-int64`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Takes two 32-bit INTEGER arguments and concatenates them to create a single 64-bit INTEGER return value. This function takes the upper 32 bits of the first argument and place them into the upper 32 bits of the return value, and takes the lower 32 bits of the second argument and places them into the lower 32 bits of the return value. This function is typically useful for reconstructing a 64-bit value that has been broken apart into multiple fields. Even though the return and argument values are signed INTEGERs, they are treated as unsigned bit patterns internally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(make-int64 ?msb ?lsb)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "memory-to-string",
+          "level": 3,
+          "text": "`memory-to-string`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Treats its INTEGER arguments as a run of continuous memory values and extracts a UTF8 encoded string from it. The function automatically detects if the run of INTEGERs are 32-bit or 64-bit, assuming that the run is consistently one or the other, but ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " a mixture of both. The UTF8 encoding convention allows us to reliably make that determination with little overhead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note: you cannot pass a multifield value in as a single argument. On failure, this function will return the symbol ",
+              "type": "text"
+            },
+            {
+              "code": "sentinel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(memory-to-string ?part1 ?part2 ?part3) ; treats the three INTEGER arguments as a run of INTEGERs and returns the string value for it."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Miscellaneous",
+          "level": 3,
+          "text": "Miscellaneous",
+          "type": "heading"
+        },
+        {
+          "anchor": "log-narrative",
+          "level": 3,
+          "text": "`log-narrative`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Analysis Core has been configured with the extra logging enabled through the Instruments Inspector, a modeler-log table is created that is written to with this function. The function does nothing when logging is disabled, although there is still a small amount of overhead in the call. The first argument is a format string, and the following arguments are interpreted like a printf-style argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(log-narrative \"Resolved stop kind code %uint64% to %string%\" ?stop-kind-code ?kind)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "new-integer-array",
+          "level": 3,
+          "text": "`(new integer-array)`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creates an empty ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and returns it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An EXTERNAL-ADDRESS type of ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has been built in that allows the modeler to bypass having to save runs of integer data in multifields. Multifields are generally efficient, but with a high rate data or when you don’t want changes to the array to cause rule activation, you may want to create an object of this type and use it in place of a multifield value. ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": "s are typically useful when your modeler needs to accumulate long lists of identifiers that it will emit as a single array at the end of modeling, or some other periodic event like a “tick”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "add-integer",
+          "level": 3,
+          "text": "`add-integer`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Appends the second argument to the ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the first argument. Does not cause rule activation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "nth-integer",
+          "level": 3,
+          "text": "`nth-integer`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns the nth integer of the ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the first argument. The second argument is n. Follows CLIPS index convention where 1 is the first element, and not 0 like in many other languages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "length-of-array",
+          "level": 3,
+          "text": "`length-of-array`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns the nth integer of the ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the first argument. The second argument is n. Follows CLIPS index convention where 1 is the first element, and not 0 like in many other languages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "sort-array",
+          "level": 3,
+          "text": "`sort-array`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sorts the ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the first argument. Does not cause rule activation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "duplicate-array",
+          "level": 3,
+          "text": "`duplicate-array`",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Copies the ",
+              "type": "text"
+            },
+            {
+              "code": "integer-array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the first argument and returns the EXTERNAL-ADDRESS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "58a236c85443/CreatingCustomModelersForIntelligentInstruments.zip": {
+      "checksum": "58a236c85443d5bb5e47d6d4856284f75e941b5eb5d4f3b980ae3adeda528b7a2cfed2ba81662d229286c896a9defae0ec7800f59432ec57ba0c8a823fa580ad",
+      "identifier": "58a236c85443/CreatingCustomModelersForIntelligentInstruments.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/58a236c85443/CreatingCustomModelersForIntelligentInstruments.zip"
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/421": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/421",
+      "title": "421: Modeling in Custom Instruments",
+      "titleInlineContent": [
+        {
+          "text": "421: Modeling in Custom Instruments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/421"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "58a236c85443/CreatingCustomModelersForIntelligentInstruments.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

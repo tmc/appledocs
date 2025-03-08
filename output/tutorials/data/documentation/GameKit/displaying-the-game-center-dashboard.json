@@ -1,0 +1,1177 @@
+{
+  "abstract": [
+    {
+      "text": "Provide an interface for players to navigate to their Game Center data from your game.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/displaying-the-game-center-dashboard"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying the Game Center dashboard"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dashboard",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " provides a central location from which players can browse and manage their Game Center data. The player can access information about their profile, as well as leaderboards, achievements, and challenges. The dashboard also displays highlights in these areas as the players navigate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3678721",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to present the dashboard in a specific state — such as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "main dashboard",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ",_ _from which the player can navigate to any area, including the player profile or a list of leaderboards. For visionOS games, the dashboard appears anchored to the window, scene, or view relative to where you present the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, to add the access point to a fixed location in your game that allows the player to open the dashboard whenever they want, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center#Custom-dashboard-links",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-the-main-dashboard",
+          "level": 3,
+          "text": "Present the main dashboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the main dashboard, pass ",
+              "type": "text"
+            },
+            {
+              "code": "dashboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the state parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController/init(state:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method when you create the view controller, set the delegate of the view controller to your object, and then present it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Display the dashboard.",
+            "let viewController = GKGameCenterViewController(state: .dashboard)",
+            "viewController.gameCenterDelegate = self",
+            "present(viewController, animated: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-the-players-profile",
+          "level": 3,
+          "text": "Show the player’s profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the profile area, the player can see their achievements, find friends, and see what games their friends are playing. They can also edit their Game Center settings, such as their nickname and avatar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3678724",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present the local player’s profile, pass ",
+              "type": "text"
+            },
+            {
+              "code": "localPlayerProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the state parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController/init(state:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Display the player's profile.",
+            "let viewController = GKGameCenterViewController(state: .localPlayerProfile)",
+            "viewController.gameCenterDelegate = self",
+            "present(viewController, animated: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-the-list-of-leaderboards",
+          "level": 3,
+          "text": "Present the list of leaderboards",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can display a list of leaderboards in the dashboard that allows the player to navigate to the leaderboards they want to see. When the player selects a leaderboard, the dashboard displays the details for that leaderboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3678722",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present a list of leaderboards, pass ",
+              "type": "text"
+            },
+            {
+              "code": "leaderboards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the state parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController/init(state:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Display a list of leaderboards.",
+            "let viewController = GKGameCenterViewController(state: .leaderboards)",
+            "viewController.gameCenterDelegate = self",
+            "present(viewController, animated: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-a-single-leaderboard",
+          "level": 3,
+          "text": "Display a single leaderboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can present a specific leaderboard in the dashboard that allows players to see how they rank against friends, players with whom they played recently, and players from all over the world. They can use the filter in the header area to adjust the scope of the leaderboard by a time period, or show a specific occurrence of a recurring leaderboard. They can scroll to the top of the list by tapping on the name in the header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3678725",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present a single leaderboard, pass the leaderboard ID (the identifier you entered in App Store Connect when creating the leaderboard) along with the player scope and time scope when you create the view controller:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Display scores for a specific leaderboard.",
+            "let viewController = GKGameCenterViewController(",
+            "                leaderboardID: \"grp.xyz.laketahoe\",",
+            "                playerScope: .global,",
+            "                timeScope: .allTime)",
+            "viewController.gameCenterDelegate = self",
+            "present(viewController, animated: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The player can filter and scope scores by player (Friends, Recent, or Global) and time period (for example, All Time).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-players-achievements",
+          "level": 3,
+          "text": "Display the player’s achievements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can show the player a list of achievements they received and achievements they’ve yet to complete. An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "achievement",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a collectible item indicating that the player successfully reached a particular goal in your game. In the dashboard, an achievement appears as either locked, in-progress, completed, or hidden.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3729931",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present the achievements, pass ",
+              "type": "text"
+            },
+            {
+              "code": "achievements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the state parameter to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController/init(state:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Display a list of achievements.",
+            "let viewController = GKGameCenterViewController(state: .achievements)",
+            "viewController.gameCenterDelegate = self",
+            "present(viewController, animated: true, completion: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Dismiss-the-dashboard",
+          "level": 3,
+          "text": "Dismiss the dashboard",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterControllerDelegate/gameCenterViewControllerDidFinish(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to dismiss the dashboard when the player closes it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {",
+            "    // Dismiss the view controller.",
+            "    gameCenterViewController.dismiss(animated:true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint": {
+      "abstract": [
+        {
+          "text": "An object that allows players to view and manage their Game Center information from within your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAccessPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAccessPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAccessPoint",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkaccesspoint"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKDialogController": {
+      "abstract": [
+        {
+          "text": "An object that provides the ability to present the dashboard in macOS games.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKDialogController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKDialogController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKDialogController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKDialogController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkdialogcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate that GameKit calls when the player dismisses the dashboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGameCenterControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamecentercontrollerdelegate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterControllerDelegate/gameCenterViewControllerDidFinish(_:)": {
+      "abstract": [
+        {
+          "text": "Handles when the player dismisses the dashboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gameCenterViewControllerDidFinish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKGameCenterViewController",
+          "text": "GKGameCenterViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterControllerDelegate/gameCenterViewControllerDidFinish(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gameCenterViewControllerDidFinish:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "gameCenterViewControllerDidFinish(_:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamecentercontrollerdelegate/gamecenterviewcontrollerdidfinish(_:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController": {
+      "abstract": [
+        {
+          "text": "The dashboard that allows players to access their Game Center data in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKGameCenterViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKGameCenterViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamecenterviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController/init(state:)": {
+      "abstract": [
+        {
+          "text": "Creates a view controller that presents the specified Game Center content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKGameCenterViewControllerState",
+          "text": "GKGameCenterViewControllerState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController/init(state:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(state:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkgamecenterviewcontroller/init(state:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner": {
+      "abstract": [
+        {
+          "text": "A Game Center-style banner that displays a message to the local player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKNotificationBanner"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKNotificationBanner"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKNotificationBanner",
+      "type": "topic",
+      "url": "/documentation/gamekit/gknotificationbanner"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKViewController": {
+      "abstract": [
+        {
+          "text": "The abstract base protocol adopted by GameKit view controller classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game": {
+      "abstract": [
+        {
+          "text": "Provide your users a convenient connection to the Game Center dashboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an access point to your game",
+      "type": "topic",
+      "url": "/documentation/gamekit/adding-an-access-point-to-your-game"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/game-center#Custom-dashboard-links": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/game-center#Custom-dashboard-links",
+      "title": "Human Interface Guidelines > Technologies > Game Center > Custom dashboard links",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Technologies > Game Center > Custom dashboard links",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/game-center#Custom-dashboard-links"
+    },
+    "media-3678721": {
+      "alt": "Image of an iPhone screen in landscape layout, showing the dashboard with three sections, including icons and text, for navigating to the player’s profile, achievements, and leaderboards.",
+      "identifier": "media-3678721",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7300ae7964e4061207ae14afc4b1795e/media-3678721@2x.png"
+        }
+      ]
+    },
+    "media-3678722": {
+      "alt": "Image of an iPhone in landscape mode, showing the dashboard that displays leaderboards for the game.",
+      "identifier": "media-3678722",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13649c99eaebea89da0e177b48486dea/media-3678722@2x.png"
+        }
+      ]
+    },
+    "media-3678724": {
+      "alt": "Image of an iPhone in landscape mode, showing the dashboard that displays the player’s profile.",
+      "identifier": "media-3678724",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/100df426b285d711b3d63686901ae752/media-3678724@2x.png"
+        }
+      ]
+    },
+    "media-3678725": {
+      "alt": "Image of an iPhone in landscape mode, showing the dashboard that displays a single leaderboard containing ranked player scores.",
+      "identifier": "media-3678725",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d3d69cf494a3bb1b3b8546d0e650d57/media-3678725@2x.png"
+        }
+      ]
+    },
+    "media-3729931": {
+      "alt": "Image of an iPhone in landscape mode, showing the dashboard that displays the player’s achievements in a game.",
+      "identifier": "media-3729931",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae95236da22d2a840c22fac2b1e99bee/media-3729931@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Game-Center-interfaces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game",
+        "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+        "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKDialogController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner"
+      ],
+      "title": "Game Center interfaces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Game-Center-interfaces",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/adding-an-access-point-to-your-game",
+                "doc://com.apple.gamekit/documentation/GameKit/GKAccessPoint",
+                "doc://com.apple.gamekit/documentation/GameKit/GKGameCenterViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKDialogController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKNotificationBanner"
+              ],
+              "title": "Game Center interfaces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController~1init(state:)/title",
+          "value": "initWithState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController~1init(state:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKDialogController/title",
+          "value": "GKDialogController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKDialogController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDialogController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKDialogController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKDialogController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint/title",
+          "value": "GKAccessPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAccessPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAccessPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAccessPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterControllerDelegate~1gameCenterViewControllerDidFinish(_:)/title",
+          "value": "gameCenterViewControllerDidFinish:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterControllerDelegate~1gameCenterViewControllerDidFinish(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "gameCenterViewControllerDidFinish:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterControllerDelegate/title",
+          "value": "GKGameCenterControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/title",
+          "value": "GKGameCenterViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKGameCenterViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKGameCenterViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKViewController/title",
+          "value": "GKViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKNotificationBanner/title",
+          "value": "GKNotificationBanner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKNotificationBanner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKNotificationBanner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKNotificationBanner/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKNotificationBanner"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/displaying-the-game-center-dashboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/displaying-the-game-center-dashboard"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,947 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize performance by examining counters for individual passes and commands.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing non-Apple GPU performance using counter statistics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Counters viewer feature isn’t applicable to Apple GPUs.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For Apple GPUs, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Counters viewer shows performance counters from your app’s passes or commands in the GPU trace.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These counters measure hardware-related activities on the GPU, ranging from memory bandwidth to the number of vertices, the number of rasterized fragments, and the texture-filtering limiter and utilization percentages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-cg-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger collects data from the passes running without overlap, so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only one pass runs at a time on the device when the profiler measures the performance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, it includes deterministic counters that don’t vary by time, such as the number of vertices in a render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-different-counter-sets-for-passes-or-commands",
+          "level": 3,
+          "text": "View different counter sets for passes or commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the top of the graph, you can click the Encoder or the Draw tab to choose to view the counters by pass or command granularity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, you can choose which counter set to use for viewing the collection of counters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-a-pass-with-high-shader-GPU-time",
+          "level": 3,
+          "text": "Find a pass with high shader GPU time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The height of the orange bar for each pass represents its shader GPU time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The tallest bar corresponds to the pass that took the longest time to complete.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Minimize the duration of the long-running passes to optimize your app’s performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-cg-gpu-time.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are three render passes in the screenshot above, with the tallest bar for shader GPU time at the GBuffer Generation pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can move the pointer over the bar to view the time and other information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the screenshot above, the shader GPU time for the GBuffer Generation pass reads 657.69 microseconds (μs).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-performance-counters-in-the-assistant-editor",
+          "level": 3,
+          "text": "View performance counters in the assistant editor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assistant editor allows you to see additional information for individual passes and commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can enable the assistant editor by clicking the Adjust Editor Options button and choosing the Assistant option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-cg-menu-enable-assistant-editor.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Selecting a pass or command shows its performance counters in the assistant editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you see something other than performance counters, you can select Performance from the drop-down menu at the top left of the editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-ct-assistant-menu-performance.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The performance counters in the assistant editor let you inspect all the counters for a specific pass or command.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By analyzing values that may be hotspots, counters can suggest a specific cause of your app’s performance problem.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if the number of vertices is twice as high as you expect, it’s likely that your code has duplicate meshes or render encoder draw calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-cg-performance.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-pipeline-statistics-for-a-command",
+          "level": 3,
+          "text": "View pipeline statistics for a command",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Selecting a command allows you to look at its pipeline statistics in the assistant editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can select Pipeline Statistics from the Assistant Editor drop-down menu to view information about the pipeline state and its performance statistics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-ct-assistant-menu-pipeline-statistics.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pipeline statistics in the assistant editor let you look at compiler statistics and runtime profiling statistics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The top portion of the assistant editor area lists the time each pipeline stage took to complete in separate categories.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below, it lists the commands that use the same pipeline stage, as well as their shader GPU time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-cg-pipeline-statistics.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, counters data may only hint at a problem, and you can benefit by leveraging additional Metal tools.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if your fragment shader time is unexpectedly high, you can use the Shader editor to discover which specific lines in your fragment shader are slowing down the execution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline": {
+      "abstract": [
+        {
+          "text": "Locate performance issues using the Performance timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using a visual timeline",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-a-visual-timeline"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3": {
+      "abstract": [
+        {
+          "text": "Gain insights to SIMD group performance by inspecting source code execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance with performance heat maps",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-performance-heatmaps-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3": {
+      "abstract": [
+        {
+          "text": "Discover potential shader performance issues by examining pipeline states.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using the shader cost graph",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-shader-cost-graph-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining pipeline statistics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with pipeline statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies": {
+      "abstract": [
+        {
+          "text": "Avoid unnecessary work in your Metal app by understanding the relationships between resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing resource dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-resource-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload": {
+      "abstract": [
+        {
+          "text": "Investigate your app’s workload, dependencies, performance, and memory impact using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing your Metal workload",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-your-metal-workload"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-cg-gpu-time.png": {
+      "alt": "A screenshot of the per-pass counters timeline. The pass with the longest shader GPU time is selected.",
+      "identifier": "gputools-metal-debugger-cg-gpu-time.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0134fd54247ff3854b4eb773cc6a3228/gputools-metal-debugger-cg-gpu-time.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f871c426a724014f50044dde3874e846/gputools-metal-debugger-cg-gpu-time@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/916e17054168c1c3dc19bf2745e510f4/gputools-metal-debugger-cg-gpu-time~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1309c1e4052a8d6deeb4a673c7f3a43/gputools-metal-debugger-cg-gpu-time~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-cg-menu-enable-assistant-editor.png": {
+      "alt": "A screenshot of the Adjust Editor Options menu highlighting the Assistant menu item.",
+      "identifier": "gputools-metal-debugger-cg-menu-enable-assistant-editor.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc520b461ce1b453781fdad268fe8296/gputools-metal-debugger-cg-menu-enable-assistant-editor.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/911dcbdabb78263180376f773de3943f/gputools-metal-debugger-cg-menu-enable-assistant-editor@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d594820eb04b447d7907cfed317e273/gputools-metal-debugger-cg-menu-enable-assistant-editor~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bafb1ca7da077df8a1ca22a69cbb157d/gputools-metal-debugger-cg-menu-enable-assistant-editor~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-cg-overview.png": {
+      "alt": "A screenshot of the Counters viewer, consisting of a counters timeline and a table for either passes or commands.",
+      "identifier": "gputools-metal-debugger-cg-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a83fecd954688709a233db4924db1ea/gputools-metal-debugger-cg-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/080dc9cc88071641b45ac6b4fa49df86/gputools-metal-debugger-cg-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31ffb2676c733391569f90a80ea99999/gputools-metal-debugger-cg-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/419c743518e0f2049cb811cce7121c68/gputools-metal-debugger-cg-overview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-cg-performance.png": {
+      "alt": "A screenshot of the Metal debugger showing the Counters viewer and the Performance Statistics viewer side by side.",
+      "identifier": "gputools-metal-debugger-cg-performance.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13085a95f7d4ffa0eda7ceed2df31ef1/gputools-metal-debugger-cg-performance.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5e835e74f9444d6f12808b75d075141/gputools-metal-debugger-cg-performance@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9c53534716d51effa4fc846bd7f5593/gputools-metal-debugger-cg-performance~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58213482ff5aab1e7952f0d7c35715c3/gputools-metal-debugger-cg-performance~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-cg-pipeline-statistics.png": {
+      "alt": "A screenshot of the Metal debugger showing the Counters viewer and the Pipeline Statistics viewer side by side.",
+      "identifier": "gputools-metal-debugger-cg-pipeline-statistics.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/594462f28d3026986bca6a6b4e069ad5/gputools-metal-debugger-cg-pipeline-statistics.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6a9052cfd46b81ec845e0795c1631239/gputools-metal-debugger-cg-pipeline-statistics@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/91c0a63f05728d0ed7689b5109d051cd/gputools-metal-debugger-cg-pipeline-statistics~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f90a07ddfb01219e7916e5a03e1f0167/gputools-metal-debugger-cg-pipeline-statistics~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-ct-assistant-menu-performance.png": {
+      "alt": "A screenshot of the assistant editor drop-down menu highlighting the Performance menu item.",
+      "identifier": "gputools-metal-debugger-ct-assistant-menu-performance.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffe588f5587d735494c5e4fc9c9a4bae/gputools-metal-debugger-ct-assistant-menu-performance.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c40e29da58eb1abde53d13d6a0966d1/gputools-metal-debugger-ct-assistant-menu-performance@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4325494798079fc391942e7698933f77/gputools-metal-debugger-ct-assistant-menu-performance~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/286be8b9d2fd75546cb176e34bd9c997/gputools-metal-debugger-ct-assistant-menu-performance~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-ct-assistant-menu-pipeline-statistics.png": {
+      "alt": "A screenshot of the assistant editor drop-down menu highlighting the Pipeline Statistics menu item.",
+      "identifier": "gputools-metal-debugger-ct-assistant-menu-pipeline-statistics.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b8b44998f992af413b5477d26d2becd/gputools-metal-debugger-ct-assistant-menu-pipeline-statistics.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d41466b27f19c9e62f834757a388492b/gputools-metal-debugger-ct-assistant-menu-pipeline-statistics@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff4dc0973d7b298632fc42128f98c40c/gputools-metal-debugger-ct-assistant-menu-pipeline-statistics~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e4c428a4023677e8eb25d56dbf2845f/gputools-metal-debugger-ct-assistant-menu-pipeline-statistics~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-workload-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3"
+      ],
+      "title": "Metal workload analysis"
+    }
+  ]
+}

@@ -1,0 +1,1663 @@
+{
+  "abstract": [
+    {
+      "text": "Understand and address the common reasons apps crash.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/reading-an-exception-message"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reading an exception message"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Frameworks detect common errors associated with using their APIs and raise exceptions when they occur. If your app doesn’t handle those errors, for example by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1409609-nssetuncaughtexceptionhandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to install an exception handler, then it crashes. The operating system records a crash report that contains information about the app’s state at the time of the crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections each describe common mistakes in using framework APIs and the exception messages that appear in your app’s crash reports when it encounters these cases. In each case, the exception thread trace in the crash report shows the location in your code where your app crashed. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-adding-a-null-object-to-a-collection",
+          "level": 3,
+          "text": "Address a crash caused by adding a null object to a collection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Foundation",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s collection classes like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", its mutable subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "CoreFoundation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " counterparts like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarrayref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can’t contain ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a value. Additionally, dictionary collections — ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionaryref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — can’t contain ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a key. If your app adds ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a mutable collection, it crashes, and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to add an object to a ",
+              "type": "text"
+            },
+            {
+              "code": "Foundation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "CoreFoundation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " collection class that represents a lack of any valid value, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull/1520557-null",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Otherwise, test an object’s value before you add it to a collection and don’t add it if the object is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-using-a-null-object-in-APIs-that-require-non-null-parameters",
+          "level": 3,
+          "text": "Address a crash caused by using a null object in APIs that require non-null parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many APIs expect their parameters to be non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and throw exceptions if they receive ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requires both its ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to be non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If your app adds a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to an attributed string, it crashes, and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'NSConcreteMutableAttributedString addAttribute:value:range:: nil value'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Determine an appropriate non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to use instead; otherwise, avoid setting the attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "APIs that require non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters include nullability designations, and you can add nullability designations to your own methods, blocks, and functions. The compiler detects when you use an object that’s potentially ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in situations where a non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is required, and emits a warning. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/designating-nullability-in-objective-c-apis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-sending-an-unrecognized-selector-to-a-class-or-object",
+          "level": 3,
+          "text": "Address a crash caused by sending an unrecognized selector to a class or object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You often send messages to Objective-C classes and objects by writing the method name into your source code; for example, you send ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by typing ",
+              "type": "text"
+            },
+            {
+              "code": "[myAttributedString addAttribute:aName value:aValue range:aRange];",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". There are situations where you construct a method name — also known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "selector",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — dynamically and send that to the class or object. A common example is setting the name of a controller method as an action in a storyboard file. If the object or class receiving the message doesn’t respond to the selector and can’t forward it to another object, your app crashes and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSCFBoolean insertObject:atIndex:]: unrecognized selector sent to instance 0x1e75db6c0'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check that the method selector is spelled correctly, including colons to indicate each of the arguments. Verify that the class of the receiving object implements the requested method or forwards it to an object that implements it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-inserting-replacing-or-deleting-an-object-in-an-immutable-collection-or-sequence",
+          "level": 3,
+          "text": "Address a crash caused by inserting, replacing, or deleting an object in an immutable collection or sequence",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of the common ",
+              "type": "text"
+            },
+            {
+              "code": "Foundation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " collections has an immutable class, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a corresponding mutable subclass, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These Objective-C classes are interchangeable with the corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "CoreFoundation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarrayref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearrayref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It’s an error to try to change the contents of an immutable collection, for example, by appending an object. If your app tries to change the contents of an immutable collection, it crashes and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: '-[__NSCFArray insertObject:atIndex:]: mutating method sent to immutable object'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to modify a collection that you share with other code, the source of the original collection needs to initialize a mutable collection. If you need to make changes to a local copy of the original collection, which remains immutable, use ",
+              "type": "text"
+            },
+            {
+              "code": "-mutableCopy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a local, mutable version. Otherwise, remove the code that modifies the collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A common cause of this exception is incorrectly interchanging ",
+                  "type": "text"
+                },
+                {
+                  "code": "Foundation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "CoreFoundation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " collection classes, for example, casting a ",
+                  "type": "text"
+                },
+                {
+                  "code": "CFArrayRef",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to Objective-C using ",
+                  "type": "text"
+                },
+                {
+                  "code": "(__bridge NSMutableArray *)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". When you use toll-free bridging to interchange ",
+                  "type": "text"
+                },
+                {
+                  "code": "Foundation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "CoreFoundation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " collection classes, ensure that the bridged types of Objective-C variables match the types of their ",
+                  "type": "text"
+                },
+                {
+                  "code": "CoreFoundation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " counterparts, including their mutability.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-using-an-index-range-or-position-thats-out-of-bounds",
+          "level": 3,
+          "text": "Address a crash caused by using an index, range, or position that’s out of bounds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "APIs that take a parameter indicating the position of an object or other data in an ordered collection or a sequence raise an exception if that position is outside the containing collection. APIs that take a parameter indicating a range of values in a sequence raise an exception if either the start or end of the range is outside the containing collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The special value ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " isn’t meant to be used as a position in a collection or sequence and will cause an out-of-range exception if you use it this way in your code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app tries to access the content of a collection or sequence outside of its range, it crashes and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[__NSArrayM objectAtIndex:]: index 12 beyond bounds [0 .. 0]'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the special case of requesting an object at a particular index in an empty array, the exception message is similar to this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[__NSArray0 objectAtIndex:]: index 12 beyond bounds for empty array'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check that your app is using an up-to-date value for the collection’s size, and that the code that calculates the position or range is correct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-requesting-a-range-that-overflows-the-integer-type",
+          "level": 3,
+          "text": "Address a crash caused by requesting a range that overflows the integer type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure uses the same type (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") for both its location and its length, which is also the type that collection classes use to represent indexes into the collection. It’s possible to create a range where the end of the range is beyond the values that can be represented as indexes into the collection that’s using the range. When a collection or sequence detects this case, your app crashes and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSRangeException', reason: '*** -[NSConcreteMutableData subdataWithRange:]: range {20, 18446744073709551605} causes integer overflow'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check that your app is using an up-to-date value for the collection’s size, and that the code that calculates the range is correct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-incorrectly-initializing-a-dictionary",
+          "level": 3,
+          "text": "Address a crash caused by incorrectly initializing a dictionary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you initialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the initializer method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you have to supply an equal number of keys and objects. If you supply arrays with different lengths, your app crashes and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[NSDictionary initWithObjects:forKeys:]: count of objects (1) differs from count of keys (2)'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check your code to determine which array you pass — the keys or the objects — is incorrect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-a-crash-caused-by-attempting-to-encode-or-decode-an-object-that-isnt-codable",
+          "level": 3,
+          "text": "Address a crash caused by attempting to encode or decode an object that isn’t codable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To serialize or deserialize an object using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", whether to store it in a file, or send it to another process or over the network, the object must conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app attempts to encode or decode an object that doesn’t conform to ",
+              "type": "text"
+            },
+            {
+              "code": "NSCoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it crashes and an exception message like this example is included in the crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[MyClass encodeWithCoder:]: unrecognized selector sent to instance 0x600002090040'"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Replace the object with one that conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "NSCoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or add ",
+              "type": "text"
+            },
+            {
+              "code": "NSCoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to the object’s class or to a category on that class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "While collection classes such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSArray",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSDictionary",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " are codable, each object in the collection must also conform to ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSCoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for a collection to encode itself correctly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-crashes-from-swift-runtime-errors": {
+      "abstract": [
+        {
+          "text": "Identify the signs of a Swift runtime error, and address the crashes runtime errors",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "cause.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-crashes-from-swift-runtime-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing crashes from Swift runtime errors",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-crashes-from-swift-runtime-errors"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes": {
+      "abstract": [
+        {
+          "text": "Identify the signs of a language exception, and address the crashes caused by uncaught",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "language exceptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing language exception crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-language-exception-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.documentation/documentation/Swift/designating-nullability-in-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use nullability annotations or mark regions as annotated to control how Objective-C declarations are imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/designating-nullability-in-objective-c-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Designating Nullability in Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/Swift/designating-nullability-in-objective-c-apis"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarrayref": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable array object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarrayref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFArrayRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarrayref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionaryref": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionaryref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionaryRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionaryref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearrayref": {
+      "abstract": [
+        {
+          "text": "A reference to a mutable array object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearrayref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableArrayRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearrayref"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfnull": {
+      "abstract": [
+        {
+          "text": "The singleton CFNull object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFNull"
+        },
+        {
+          "kind": "text",
+          "text": ": CFNull!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfnull"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409609-nssetuncaughtexceptionhandler": {
+      "abstract": [
+        {
+          "text": "Changes the top-level error handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSetUncaughtExceptionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(((NSException) -> Void)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409609-nssetuncaughtexceptionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSetUncaughtExceptionHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1409609-nssetuncaughtexceptionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "abstract": [
+        {
+          "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a static collection of key-value pairs, for use instead of a  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjects:forKeys:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1410010-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic ordered collection, for use instead of an  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute": {
+      "abstract": [
+        {
+          "text": "Adds an attribute with the given name and value to the characters in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAttributedString.Key, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1417080-addattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAttribute(_:value:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1417080-addattribute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic collection of key-value pairs, for use instead of a  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnull/1520557-null": {
+      "abstract": [
+        {
+          "text": "Returns the singleton instance of `NSNull`.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull/1520557-null",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "null",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnull/1520557-null"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrange": {
+      "abstract": [
+        {
+          "text": "A structure used to describe a portion of a series, such as characters in a string or objects in an array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrange"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsuinteger": {
+      "abstract": [
+        {
+          "text": "Describes an unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/addressing-crashes-from-swift-runtime-errors",
+        "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes"
+      ],
+      "title": "Runtime errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutablearray/abstract",
+          "value": [
+            {
+              "text": "A dynamic ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutabledictionary/abstract",
+          "value": [
+            {
+              "text": "A dynamic collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutableattributedstring~11417080-addattribute/title",
+          "value": "addAttribute:value:range:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdictionary/abstract",
+          "value": [
+            {
+              "text": "A static collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~11409609-nssetuncaughtexceptionhandler/title",
+          "value": "NSSetUncaughtExceptionHandler"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfdictionaryref/title",
+          "value": "CFDictionary"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfdictionaryref/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfmutablearrayref/title",
+          "value": "CFMutableArray"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfmutablearrayref/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFMutableArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfarrayref/title",
+          "value": "CFArray"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfarrayref/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdictionary~11410010-initwithobjects/title",
+          "value": "init(objects:forKeys:)"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdictionary~11410010-initwithobjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "init"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "identifier",
+              "text": "objects"
+            },
+            {
+              "kind": "text",
+              "text": ": [Any], "
+            },
+            {
+              "kind": "identifier",
+              "text": "forKeys"
+            },
+            {
+              "kind": "text",
+              "text": ": [any NSCopying])"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

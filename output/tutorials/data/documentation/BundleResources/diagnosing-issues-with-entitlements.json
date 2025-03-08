@@ -1,0 +1,580 @@
+{
+  "abstract": [
+    {
+      "text": "Verify your app’s entitlements at every stage of development to track down errors during distribution.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/diagnosing-issues-with-entitlements"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Diagnosing Issues with Entitlements"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error referencing an entitlement occurs during iOS development you can check your entitlements at different stages of your app’s build process to determine where you need to make corrections. Use the following set of steps to find out where you need to fix problems with your entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Necessary-Entitlements-Only",
+          "level": 3,
+          "text": "Enable Necessary Entitlements Only",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before submitting your app for review, limit entitlements to the minimum required for your application to function. Remove any unnecessary entitlements that your app isn’t using. Do this by turning off Capabilities in your Xcode project that your app is not using and by removing unused entitlements from your entitlements file. Depending on what entitlements you are removing, the cleanup involved may be as simple as turning off a Capability in your project or it may involve manually editing your entitlements file or files. In special cases, cleanup may include contacting the group at Apple that worked with you to add specific entitlements to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-Target-Capabilities",
+          "level": 3,
+          "text": "Check Target Capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding Capabilities to your Xcode project will sometimes add entries into your project’s entitlements files. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In those cases, you may need to manually edit your entitlements file after you turn off those Capabilities to remove the corresponding entries from your entitlements file in cases where Xcode is unable to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your Capabilities tab, make sure you’ve only enabled the minimum set of capabilities needed for your app to function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-Your-Entitlements-Files",
+          "level": 3,
+          "text": "Check Your Entitlements Files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each target in your app may have its own entitlements file. To locate the entitlements file associated with a particular target, look at the the Code Signing Entitlements file setting inside of the Signing settings displayed in your Build Settings. If you see errors in your build log related to an entitlement that you added to one of your entitlements files, check to make sure those entries are correct.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, error messages involving entitlements may not be specific. If the an error message references an invalid or malformed entitlement and you’ve manually edited your entitlement file or files, check your entitlements files for incorrect entries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-Your-Provisioning-Profile",
+          "level": 3,
+          "text": "Check Your Provisioning Profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can inspect the entitlements associated with your provisioning profile inside of Xcode by clicking the info button (a small, gray disk with a lowercase “i” in the center) next to the Provisioning Profile field in the Signing editor, in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " online, or by downloading your provisioning profile and viewing its contents using a command-line tool in the Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every App ID listed in your developer account can have a number of capabilities associated with it and some of those capabilities are paired with entitlements. Compare the capabilities listed for your App ID with the capabilities selected in your app’s Signing & Capabilities tab and the entitlements appearing in your app’s entitlements file or files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provisioning profiles have entitlements associated with them.  You can download any of your provisioning profiles from your developer account and inspect its entitlements by running a command-line tool. For example, if you downloaded a provisioning profile named ",
+              "type": "text"
+            },
+            {
+              "code": "iOSTeamProfile.mobileprovison",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you’d use the following command to get a list of the entitlements for a provisioning profile:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% security cms -D -i iOSTeamProfile.mobileprovision | xmllint --xpath \"/plist/dict/key[text()='Entitlements']/following-sibling::dict[position()=1]\" -",
+            ""
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run this command, the ",
+              "type": "text"
+            },
+            {
+              "code": "security",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool returns a ",
+              "type": "text"
+            },
+            {
+              "code": "plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that describes the entire contents of the provisioning profile and the ",
+              "type": "text"
+            },
+            {
+              "code": "xmllint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command runs an ",
+              "type": "text"
+            },
+            {
+              "code": "xpath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query to pull out the dictionary that lists the entitlements. In that list you will see all the entitlements specifically encoded in your provisioning profile. For example, here is a sample of output from the command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<dict>",
+            "",
+            "<key>application-identifier</key>",
+            "<string>Z3P45X123C.*</string>",
+            "",
+            "<key>keychain-access-groups</key>",
+            "<array>",
+            "<string>Z3P45X123C.*</string>",
+            "</array>",
+            "",
+            "<key>get-task-allow</key>",
+            "<true/>",
+            "",
+            "<key>com.apple.developer.sample</key>",
+            "<string>Z3P45X123C</string>",
+            "",
+            "</dict>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Check-the-Entitlements-In-Your-Build-Log-and-App",
+          "level": 3,
+          "text": "Check the Entitlements In Your Build Log and App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verify that Xcode is using the provisioning profile you expect when building your app by inspecting the signing step in your build log. You’ll find the name of the provisioning profile Xcode used to sign your app in the invocation of the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool’s command-line parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve build your app, inspect the entitlements built into your app by running the following command in the terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display --entitlements :- YourApp.app"
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command prints a ",
+              "type": "text"
+            },
+            {
+              "code": "plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains all of the entitlements built into the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-Entitlements-When-Submitting-Your-App",
+          "level": 3,
+          "text": "Check the Entitlements When Submitting Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you submit your app to Apple, Xcode displays a list of entitlements associated with your app in the confirmation window for uploading your app. Verify that all of the entitlements shown are consistent with the entitlements you’ve selected in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fix-Installation-Failure-Entitlement-Issues",
+          "level": 3,
+          "text": "Fix Installation-Failure Entitlement Issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can remove following entitlements from your entitlements file if they are present and cause an error during installation. These may be present in older projects for legacy reasons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "application-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; this entitlement is defined by the provisioning profile instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "get-task-allow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; this entitlement is defined by the provisioning profile instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you receive the error message “Upgrade’s application-identifier entitlement string [….] does not match installed application’s application-identifier string [….]; rejecting upgrade.” and you’ve changed your application’s id, then you need to add a previous-application-identifiers entitlement to your provisioning profile. Contact Apple Developer programs for assistance using your account’s Developer Contact page > Membership > Enrollment and Account > Apple Developer Program Support form.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fix-Problems-With-Special-Entitlements",
+          "level": 3,
+          "text": "Fix Problems With Special Entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you received authorization to use a specific entitlement from a group at Apple and you’re having difficulty with that entitlement, contact that group for troubleshooting assistance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement": {
+      "abstract": [
+        {
+          "text": "Wrap a daemon in an app-like structure to use an entitlement thatʼs authorized by a provisioning profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing a daemon with a restricted entitlement",
+      "type": "topic",
+      "url": "/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "developer account",
+      "titleInlineContent": [
+        {
+          "text": "developer account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/signing-a-daemon-with-a-restricted-entitlement"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/diagnosing-issues-with-entitlements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/diagnosing-issues-with-entitlements"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

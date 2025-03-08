@@ -1,0 +1,1209 @@
+{
+  "abstract": [
+    {
+      "text": "Build a distributable pass.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building a Pass"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pass you distribute to a user is a signed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains the JSON description of the pass, images, and optional localizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build a pass, you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the source files for a pass. To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a pass type identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a signing certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a digital signature for the pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the signed bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-Pass-Type-Identifier",
+          "level": 3,
+          "text": "Create a Pass Type Identifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You build one or more groups of related passes, such as the tickets for different events. Each group has a unique pass type identifier, a reverse DNS string that identifies your organization, the kind of pass, and the group, such as ",
+              "type": "text"
+            },
+            {
+              "code": "com.example-company.passes.ticket.event-4631A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identify the individual passes in a group by assigning each a serial number. Each combination of pass identifier and serial number is one unique pass. Adding a pass with the same pass identifier and serial number as one that already exists on a users’ device overwrites the old one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create your pass type identifier in the Certificates, Identifiers & Profiles area of your Apple Developer account:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Identifiers and then click Add (+).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the next screen, choose Pass Type IDs and click Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a description and the reverse DNS string to create the identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on signing in to your account and creating identifiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the ",
+              "type": "text"
+            },
+            {
+              "code": "passTypeIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "pass.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to the identifier. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "serialNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the unique serial number for that identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-Signing-Certificate",
+          "level": 3,
+          "text": "Generate a Signing Certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Signing a pass requires a signing certificate for the pass type identifier. Before you can generate a signing certificate you need a certificate signing request (CSR). To learn how to generate a CSR, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generate the signing certificate in the Certificates, Identifiers & Profiles area of the Apple Developer portal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Certificates, and then click Add (+).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the next screen, choose Pass Type ID Certificate and click Continue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a name for the certificate and select the pass type ID from the dropdown menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click continue and upload the certificate signing request (CSR).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After uploading the CSR, generate the certificate and download it to the machine used for signing the pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on signing into your account and creating signing certificates, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/",
+              "isActive": true,
+              "overridingTitle": "Developer Account Help",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Developer Account Help",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sign-the-Pass-and-Create-the-Bundle",
+          "level": 3,
+          "text": "Sign the Pass and Create the Bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign the pass, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a manifest of the source files for a pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write the manifest object to a new file called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "manifest.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the top-level directory of the source for the pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a PKCS #7 detached signature for the manifest that uses the private key of the pass identifier signing certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the signature to the top level of the pass in a file called ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "signature",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zip the resulting directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the file extension of the resulting archive from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".zip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".pkpass",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t include metadata files that aren’t part of the pass format, such as the ",
+                  "type": "text"
+                },
+                {
+                  "code": ".DS_Store",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file in the manifest or distributable pass.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The manifest is a JSON object that contains a dictionary of the SHA1 hashes for each of the source files for the pass. The dictionary key is the pathname of the file relative to the top level of the pass, and the value is the SHA1 hash. For example, the code below shows the manifest.json file for a pass that’s localized for English and Simplified Chinese:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"icon.png\" : \"2a1625e1e1b3b38573d086b5ec158f72f11283a0\",",
+            "   \"icon@2x.png\" : \"7321a3b7f47d1971910db486330c172a720c3e4b\",",
+            "   \"icon@3x.png\" : \"7321a3b7f47d1971910db486330c172a720c3e4b\",",
+            "   \"pass.json\" : \"ef3f648e787a16ac49fff2c0daa8615e1fa15df9\",",
+            "   \"strip.png\" : \"25b737727194b5c7b26a86d57e859a054eada240\",",
+            "   \"en.lproj\\/logo.png\" : \"cff02680b9041b7bf637960f9f2384738c935347\",",
+            "   \"en.lproj\\/logo@2x.png\" : \"0e12af882204c3661fd937f6594c6b5ffc6b8a49\",",
+            "   \"en.lproj\\/logo@3x.png\" : \"1f103c8a07fb979ea33adfbfd031e26305fd616b\",",
+            "   \"en.lproj\\/pass.strings\" : \"aaf7d9598f6a792755be71f492a3523d507bc212\",",
+            "   \"zh-Hans.lproj\\/logo.png\" : \"eca86d8a474ccd33978f6aaf98a564669d45c7ae\",",
+            "   \"zh-Hans.lproj\\/logo@2x.png\" : \"b6556bc2fa795d11262f17cdff04f80350398f5f\",",
+            "   \"zh-Hans.lproj\\/logo@3x.png\" : \"124f8381721b44b2b57bf33e30b8a9a2e0404bce\",",
+            "   \"zh-Hans.lproj\\/pass.strings\" : \"b0b4499ba7369e4cc15bad45c251e7b9bbcad6a4\",",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test your pass by dropping it onto an iPhone that’s running on Simulator. Wallet shows the add pass dialog if it’s valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3737826",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Common-Problems",
+          "level": 3,
+          "text": "Common Problems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your pass doesn’t build correctly, check whether the following are all true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file contains all the required keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "passTypeIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file matches the pass type identifier of the signing certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "teamIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file matches the Apple Developer account of the signing certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The machine signing the pass has a copy of the signing certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The certificate isn’t expired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "manifest.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains all the source files, including those in subdirectories.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The source contains all required images.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The images are in the correct format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "manifest.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files use the correct JSON syntax.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Strings that require value formats are correct, such as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attributedValue",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " which require an ISO 8601 date.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The names of localization folders use the correct language and region identifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each localization folder contains all localized image files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each localization folder contain the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for passes with localized strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files use the correct syntax.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The keys for localized strings in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file match those used in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pass.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each pass.strings file contains the same number of localized strings and uses the same keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Pass": {
+      "abstract": [
+        {
+          "text": "An object that represents a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent": {
+      "abstract": [
+        {
+          "text": "An object that represents the information to display in a field on a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFieldContent"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFieldContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFieldContent",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfieldcontent"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass": {
+      "abstract": [
+        {
+          "text": "Create the directory structure and add source files and images to define a pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating the Source for a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/creating-the-source-for-a-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass": {
+      "abstract": [
+        {
+          "text": "Distribute a pass to your users or update an existing pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing and updating a pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/distributing-and-updating-a-pass"
+    },
+    "https://developer.apple.com/help/account/": {
+      "identifier": "https://developer.apple.com/help/account/",
+      "title": "Developer Account Help",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/"
+    },
+    "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request": {
+      "identifier": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request",
+      "title": "Create a certificate signing request",
+      "titleInlineContent": [
+        {
+          "text": "Create a certificate signing request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request"
+    },
+    "media-3737826": {
+      "alt": "A graphic that show the add pass sheet on an iPhone 12 running in Simulator. ",
+      "identifier": "media-3737826",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b81267345d99cafb42bae4aac6f02c4d/media-3737826@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/distributing-and-updating-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Pass"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/building-a-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

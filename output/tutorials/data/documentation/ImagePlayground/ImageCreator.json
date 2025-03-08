@@ -1,0 +1,780 @@
+{
+  "abstract": [
+    {
+      "text": "Generates images programmatically from the description and style information",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "you specify.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ImagePlayground/documentation/ImagePlayground"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15ImagePlayground0A7CreatorC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ImageCreator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Image Playground"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ImageCreator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "2.4",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ImageCreator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ImageCreator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "code": "ImageCreator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to generate images programmatically from your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on devices that support the capability. You provide a description of the image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content, as a text string or as a combination of text and images. The system’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generative models use that information to generate one or more images and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return them to your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "code": "ImageCreator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and use its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/images(for:style:limit:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to start the image generation process. Image generation occurs asynchronously,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delivering results back to your code using an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground": {
+      "abstract": [
+        {
+          "text": "Present a system interface to generate images based on descriptive information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground",
+      "images": [
+        {
+          "identifier": "image-playground-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Image Playground",
+      "type": "topic",
+      "url": "/documentation/imageplayground"
+    },
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator": {
+      "abstract": [
+        {
+          "text": "Generates images programmatically from the description and style information",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you specify.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageCreator"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageCreator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCreator",
+      "type": "topic",
+      "url": "/documentation/imageplayground/imagecreator"
+    },
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/CreatedImage": {
+      "abstract": [
+        {
+          "text": "A structure that stores a programmatically generated image.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreatedImage"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/CreatedImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CreatedImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCreator.CreatedImage",
+      "type": "topic",
+      "url": "/documentation/imageplayground/imagecreator/createdimage"
+    },
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/Error": {
+      "abstract": [
+        {
+          "text": "Errors that can occur during the image generation process.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCreator.Error",
+      "type": "topic",
+      "url": "/documentation/imageplayground/imagecreator/error"
+    },
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/availableStyles": {
+      "abstract": [
+        {
+          "text": "The set of styles you can apply to the images you create.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableStyles"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ImagePlayground0aB5StyleV",
+          "text": "ImagePlaygroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/availableStyles",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableStyles",
+      "type": "topic",
+      "url": "/documentation/imageplayground/imagecreator/availablestyles"
+    },
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/images(for:style:limit:)": {
+      "abstract": [
+        {
+          "text": "Starts the creation of images based on the description and style",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "information you provide.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "images"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ImagePlayground0aB7ConceptV",
+          "text": "ImagePlaygroundConcept"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ImagePlayground0aB5StyleV",
+          "text": "ImagePlaygroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "limit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ImagePlayground0A7CreatorC",
+          "text": "ImageCreator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ImagePlayground0A7CreatorC07CreatedA0V",
+          "text": "CreatedImage"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">\n"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/images(for:style:limit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "images(for:style:limit:)",
+      "type": "topic",
+      "url": "/documentation/imageplayground/imagecreator/images(for:style:limit:)"
+    },
+    "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new image creator object for you to use in your app.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/imageplayground/imagecreator/init()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AsyncSequence": {
+      "abstract": [
+        {
+          "text": "A type that provides asynchronous, sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "image-playground-PageImage-card.png": {
+      "alt": "An illustration of creating a new image using the image playground UI.",
+      "identifier": "image-playground-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/951ffef6a939daffb3726161b05a5ca4/image-playground-PageImage-card@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-object",
+      "identifiers": [
+        "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/init()"
+      ],
+      "title": "Creating the object"
+    },
+    {
+      "anchor": "Generating-images",
+      "identifiers": [
+        "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/images(for:style:limit:)",
+        "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/availableStyles",
+        "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/CreatedImage",
+        "doc://com.apple.ImagePlayground/documentation/ImagePlayground/ImageCreator/Error"
+      ],
+      "title": "Generating images"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/imageplayground/imagecreator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

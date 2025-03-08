@@ -1,0 +1,515 @@
+{
+  "abstract": [
+    {
+      "text": "Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1574190,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDictionary(im)initWithObjectsAndKeys:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSDictionary"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "initWithObjectsAndKeys:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "instancetype"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithObjectsAndKeys:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "firstObject"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "internalParam",
+              "text": "..."
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The first value to add to the new dictionary.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "firstObj"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "First the key for ",
+                  "type": "text"
+                },
+                {
+                  "code": "firstObj",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", then a null-terminated list of alternating values and keys. If any key is ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvalidargumentexception",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is raised.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "..."
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", differing only in the way in which the key-value pairs are specified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:",
+            "    @\"value1\", @\"key1\", @\"value2\", @\"key2\", nil];"
+          ],
+          "metadata": {
+            "anchor": "2555603",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "abstract": [
+        {
+          "text": "A static collection of objects associated with unique keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithObjects:forKeys:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjects:forKeys:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1410010-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-initwithobjects": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithObjects:forKeys:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-initwithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjects:forKeys:count:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1412631-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414965-dictionarywithobject": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary containing a given key and value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryWithObject:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414965-dictionarywithobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryWithObject:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1414965-dictionarywithobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary containing entries constructed from the specified set of values and keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryWithObjectsAndKeys:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryWithObjectsAndKeys:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574183-dictionarywithobjects": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary containing entries constructed from the contents of an array of keys and an array of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryWithObjects:forKeys:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574183-dictionarywithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryWithObjects:forKeys:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1574183-dictionarywithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574184-dictionarywithobjects": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary containing a specified number of objects from a C array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryWithObjects:forKeys:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574184-dictionarywithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryWithObjects:forKeys:count:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1574184-dictionarywithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithObjectsAndKeys:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjectsAndKeys:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys#2555603": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys#2555603",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys#2555603"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvalidargumentexception": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvalidargumentexception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInvalidArgumentException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvalidargumentexception"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574183-dictionarywithobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574184-dictionarywithobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-initwithobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-initwithobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414965-dictionarywithobject"
+      ],
+      "title": "Creating a Dictionary from Objects and Keys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdictionary/1574190-initwithobjectsandkeys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

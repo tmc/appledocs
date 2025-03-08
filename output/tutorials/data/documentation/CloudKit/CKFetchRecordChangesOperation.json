@@ -1,0 +1,1866 @@
+{
+  "abstract": [
+    {
+      "text": "An operation that reports on the changed and deleted records in the specified record zone.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKFetchRecordChangesOperation",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CKFetchRecordChangesOperation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKFetchRecordChangesOperation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.0",
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.0",
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.12",
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.0",
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "3.0",
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "renamed": "CKFetchRecordZoneChangesOperation",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKFetchRecordChangesOperation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordChangesOperation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this type of operation object to optimize fetch operations for locally managed sets of records. Specifically, use it when you maintain a local cache of your record data and need to synchronize that cache periodically with the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the most benefit out of a ",
+              "type": "text"
+            },
+            {
+              "code": "CKFetchRecordChangesOperation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, you must maintain a local cache of the records from the specified zone. Each time you fetch changes from that zone, the server provides a token that identifies your request. With each subsequent fetch request, you initialize the operation object with the token from the previous request, and the server returns only the records with changes since that request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The blocks you assign to process the fetched records execute serially on an internal queue that the operation manages. Your blocks must be capable of executing on a background thread, so any tasks that require access to the main thread must redirect accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you assign a completion block to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1408085-completionblock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the operation object, the system calls the completion block after the operation executes and returns its results to you. You can use a completion block to perform housekeeping tasks for the operation, but don’t use it to process the results of the operation. Any completion block you specify should handle the failure of the operation to complete its task, whether due to an error or an explicit cancellation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation": {
+      "abstract": [
+        {
+          "text": "The abstract base class for operations that act upon databases in CloudKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabaseOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabaseOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabaseoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation": {
+      "abstract": [
+        {
+          "text": "An operation that uses the device’s contacts to search for discoverable iCloud users.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDiscoverAllUserIdentitiesOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDiscoverAllUserIdentitiesOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDiscoverAllUserIdentitiesOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdiscoveralluseridentitiesoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverUserIdentitiesOperation": {
+      "abstract": [
+        {
+          "text": "An operation that uses the provided criteria to search for discoverable iCloud users.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDiscoverUserIdentitiesOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverUserIdentitiesOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDiscoverUserIdentitiesOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDiscoverUserIdentitiesOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdiscoveruseridentitiesoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation": {
+      "abstract": [
+        {
+          "text": "An operation that reports on the changed and deleted records in the specified record zone.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchRecordChangesOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchRecordChangesOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchRecordChangesOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys": {
+      "abstract": [
+        {
+          "text": "The fields to fetch for the requested records.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "desiredKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "desiredKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "desiredKeys",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock": {
+      "abstract": [
+        {
+          "text": "The block to execute when the system finishes processing all changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchRecordChangesCompletionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKServerChangeToken",
+          "text": "CKServerChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchRecordChangesCompletionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchRecordChangesCompletionBlock",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/fetchrecordchangescompletionblock"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty fetch record changes operation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/init()"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init(recordZoneID:previousServerChangeToken:)": {
+      "abstract": [
+        {
+          "text": "Creates an operation for fetching changes in the specified record zone.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordZoneID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZone",
+          "text": "CKRecordZone"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZoneID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "previousServerChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKServerChangeToken",
+          "text": "CKServerChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init(recordZoneID:previousServerChangeToken:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordZoneID:previousServerChangeToken:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(recordZoneID:previousServerChangeToken:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/init(recordzoneid:previousserverchangetoken:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/moreComing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether more results are available.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moreComing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/moreComing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moreComing"
+        }
+      ],
+      "role": "symbol",
+      "title": "moreComing",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/previousServerChangeToken": {
+      "abstract": [
+        {
+          "text": "The token that identifies the starting point for retrieving changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previousServerChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKServerChangeToken",
+          "text": "CKServerChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/previousServerChangeToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previousServerChangeToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "previousServerChangeToken",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/previousserverchangetoken"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordChangedBlock": {
+      "abstract": [
+        {
+          "text": "The block to execute with the contents of a changed record.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordChangedBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordChangedBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recordChangedBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "recordChangedBlock",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/recordchangedblock"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordWithIDWasDeletedBlock": {
+      "abstract": [
+        {
+          "text": "The block to execute with the ID of a deleted record.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordWithIDWasDeletedBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordWithIDWasDeletedBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recordWithIDWasDeletedBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "recordWithIDWasDeletedBlock",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/recordwithidwasdeletedblock"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID": {
+      "abstract": [
+        {
+          "text": "The ID of the record zone with the records you want to fetch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordZoneID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZone",
+          "text": "CKRecordZone"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZoneID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recordZoneID"
+        }
+      ],
+      "role": "symbol",
+      "title": "recordZoneID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/recordzoneid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit": {
+      "abstract": [
+        {
+          "text": "The maximum number of changed records to report with this operation object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultsLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resultsLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "resultsLimit",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation": {
+      "abstract": [
+        {
+          "text": "An operation that fetches record zone changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchRecordZoneChangesOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchRecordZoneChangesOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchRecordZoneChangesOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchrecordzonechangesoperation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1408085-completionblock": {
+      "abstract": [
+        {
+          "text": "The block to execute after the operation’s main task is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> Void)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1408085-completionblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completionBlock",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1408085-completionblock"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverUserIdentitiesOperation"
+      ],
+      "title": "Deprecated classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Fetch-Record-Changes-Operation",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init(recordZoneID:previousServerChangeToken:)",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init()"
+      ],
+      "title": "Creating the Fetch Record Changes Operation"
+    },
+    {
+      "anchor": "Configuring-the-Fetch-Record-Changes-Operation",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/previousServerChangeToken",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/moreComing"
+      ],
+      "title": "Configuring the Fetch Record Changes Operation"
+    },
+    {
+      "anchor": "Processing-the-Fetch-Record-Changes-Results",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordChangedBlock",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordWithIDWasDeletedBlock",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock"
+      ],
+      "title": "Processing the Fetch Record Changes Results"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.0",
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.0",
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.1",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.12",
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "1.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "3.0",
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CKFetchRecordChangesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.cloudkit/documentation/CloudKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-Fetch-Record-Changes-Operation",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init(recordZoneID:previousServerChangeToken:)",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/init()"
+              ],
+              "title": "Creating the Fetch Record Changes Operation"
+            },
+            {
+              "anchor": "Configuring-the-Fetch-Record-Changes-Operation",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/previousServerChangeToken",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/moreComing"
+              ],
+              "title": "Configuring the Fetch Record Changes Operation"
+            },
+            {
+              "anchor": "Processing-the-Fetch-Record-Changes-Results",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordChangedBlock",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/recordWithIDWasDeletedBlock",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock"
+              ],
+              "title": "Processing the Fetch Record Changes Results"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated-classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDiscoverUserIdentitiesOperation"
+              ],
+              "title": "Deprecated classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CKFetchRecordChangesOperation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabaseOperation",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CKDatabaseOperation",
+                    "text": "CKDatabaseOperation"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchRecordZoneChangesOperation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1fetchRecordChangesCompletionBlock/title",
+          "value": "fetchRecordChangesCompletionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1fetchRecordChangesCompletionBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fetchRecordChangesCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordZoneChangesOperation/title",
+          "value": "CKFetchRecordZoneChangesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordZoneChangesOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordZoneChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordZoneChangesOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordZoneChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1recordChangedBlock/title",
+          "value": "recordChangedBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1recordChangedBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recordChangedBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1previousServerChangeToken/title",
+          "value": "previousServerChangeToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1previousServerChangeToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previousServerChangeToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1init(recordZoneID:previousServerChangeToken:)/title",
+          "value": "initWithRecordZoneID:previousServerChangeToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1init(recordZoneID:previousServerChangeToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithRecordZoneID:previousServerChangeToken:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1resultsLimit/title",
+          "value": "resultsLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1resultsLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resultsLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1recordZoneID/title",
+          "value": "recordZoneID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1recordZoneID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recordZoneID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation/title",
+          "value": "CKFetchRecordChangesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchRecordChangesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDiscoverUserIdentitiesOperation/title",
+          "value": "CKDiscoverUserIdentitiesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDiscoverUserIdentitiesOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDiscoverUserIdentitiesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDiscoverUserIdentitiesOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDiscoverUserIdentitiesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1desiredKeys/title",
+          "value": "desiredKeys"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1desiredKeys/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "desiredKeys"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseOperation/title",
+          "value": "CKDatabaseOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabaseOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabaseOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1moreComing/title",
+          "value": "moreComing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1moreComing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "moreComing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1recordWithIDWasDeletedBlock/title",
+          "value": "recordWithIDWasDeletedBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchRecordChangesOperation~1recordWithIDWasDeletedBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recordWithIDWasDeletedBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDiscoverAllUserIdentitiesOperation/title",
+          "value": "CKDiscoverAllUserIdentitiesOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDiscoverAllUserIdentitiesOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDiscoverAllUserIdentitiesOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDiscoverAllUserIdentitiesOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDiscoverAllUserIdentitiesOperation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/ckfetchrecordchangesoperation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/ckfetchrecordchangesoperation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

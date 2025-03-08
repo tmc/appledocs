@@ -1,0 +1,378 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_5-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Mojave 10.14.5 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 10.14.4 SDK provides support for developing apps for Macs running macOS Mojave 10.14.5. The SDK comes bundled with Xcode 10.2.1 available from the Mac App Store. For information on the compatibility requirements for Xcode 10.2.1, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accessibility",
+          "level": 3,
+          "text": "Accessibility",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Accessibility Events switch was removed, because related aspects of the W3C AOM effort are no longer applicable. (49784417)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Date-and-Time",
+          "level": 3,
+          "text": "Date and Time",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for the Reiwa (令和) era of the Japanese calendar, which began on May 1, 2019, is now available. The first year of Japanese-calendar era is represented as  “元年” (“Gannen”) instead of “1年”, except in the shorter numeric-style formats which typically also use the narrow era name; for example: “R1/05/01”. (27323929)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Security",
+          "level": 3,
+          "text": "Security",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kernel extensions signed after April 7, 2019 must be notarized in order to load on macOS 10.14.5. (50016570)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system fails to register tickets stapled to installer packages not scanned by Gatekeeper, which causes newly installed kernel extensions to fail to load if Internet access isn’t available. This can occur if a user launches installation from a local folder or an enterprise uses automated tools to deploy an installer. This issue doesn’t affect stapled disk images, apps, or kext bundles. (50205533)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " In a new folder, create a shell script named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "preinstall",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to register the stapled ticket during install:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "#!/bin/sh",
+                    "if [[ `/usr/bin/sw_vers -productVersion` == 10.14.5 ]]; then",
+                    "    /usr/sbin/spctl -a -vvv -t install \"$PACKAGE_PATH\"; fi"
+                  ],
+                  "syntax": "bash",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then, when creating the flat package installer using either the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pkgbuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "productbuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tool, pass the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--scripts <path to folder containing preinstall>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option to embed the preinstall script into the finalized installer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 10.2.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-10_2_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Mojave 10.14 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave-10_14_6-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave_10_14_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave_10_14_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Mojave 10.14.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-mojave_10_14_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-1014",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_6-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave_10_14_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-mojave-10_14-release-notes"
+      ],
+      "title": "macOS 10.14"
+    }
+  ]
+}

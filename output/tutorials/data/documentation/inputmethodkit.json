@@ -1,0 +1,683 @@
+{
+  "abstract": [
+    {
+      "text": "Develop input methods and manage communication with client applications, candidates windows, and input method modes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.inputmethodkit/documentation/InputMethodKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "InputMethodKit",
+    "modules": [
+      {
+        "name": "InputMethodKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.5",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "InputMethodKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Input Method Kit, introduced in OS X v10.5, provides a streamlined programming interface that lets you develop input methods with far less code than older Mac programming interfaces. It is fully integrated with the Text Services Manager. The Input Method Kit allows 32-bit applications to work with 64-bit applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Input Method Kit provides classes and protocols for managing communication with client applications, candidates windows, and input method modes. Input methods supply text from a conversion engine (written in any language, such as C, C++, Objective-C, Python, and so on), key bindings and optional event handling, and information about your input method in an extended ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. You also have the option to provide menu items that support input-method-specific commands or preferences settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit": {
+      "abstract": [
+        {
+          "text": "Develop input methods and manage communication with client applications, candidates windows, and input method modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "InputMethodKit",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class presents candidates to users and notifies the appropriate ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object when the user selects a candidate. ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Candidates",
+              "type": "text"
+            }
+          ],
+          "type": "strong"
+        },
+        {
+          "text": " are alternate characters for a given input sequence. The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class supports using a candidates window  in your input method; using ",
+          "type": "text"
+        },
+        {
+          "code": "IMKCandidates",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is optional. Not all input methods require them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKCandidates"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKCandidates"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKCandidates",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkcandidates"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKInputController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides a base class for custom input controller classes. The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "  class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding ",
+          "type": "text"
+        },
+        {
+          "code": "IMKInputController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKInputController"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKInputController"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKInputController",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkinputcontroller"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKMouseHandling",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods that your input method can implement to handle mouse events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKMouseHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKMouseHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKMouseHandling",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkmousehandling"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKServer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class manages client connections to your input method.  When you write the main function for your input method, you create an ",
+          "type": "text"
+        },
+        {
+          "code": "IMKServer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.  You should never need to override this class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKServer"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKServer"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKServer",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkserver"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKStateSetting",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods for setting or accessing values that indicate the state of an input method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKStateSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKStateSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKStateSetting",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkstatesetting"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkserverinput": {
+      "abstract": [
+        {
+          "code": "IMKServerInput",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is an informal protocol that defines methods for receiving text events. This is intentionally not a formal protocol because there are three ways to receive events. An input method chooses one of the following approaches and implements the appropriate methods:",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkserverinput",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IMKServerInput",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkserverinput"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "InputMethodKit Constants",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/inputmethodkit-constants"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-data_types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "InputMethodKit Data Types",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/inputmethodkit-data_types"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "InputMethodKit Enumerations",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/inputmethodkit-enumerations"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Protocols",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkserverinput",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-enumerations",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-constants",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-data_types"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKCandidates",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKInputController",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKServer"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Protocols",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkserverinput",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-enumerations",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-constants",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/inputmethodkit-data_types"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKServer/title",
+          "value": "IMKServer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKServer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKServer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKServer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKServer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKInputController/title",
+          "value": "IMKInputController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKInputController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKInputController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKInputController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKInputController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKMouseHandling/title",
+          "value": "IMKMouseHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKMouseHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKMouseHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKMouseHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKMouseHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates/title",
+          "value": "IMKCandidates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKCandidates/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKCandidates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKStateSetting/title",
+          "value": "IMKStateSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKStateSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKStateSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKStateSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKStateSetting"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/inputmethodkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/inputmethodkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

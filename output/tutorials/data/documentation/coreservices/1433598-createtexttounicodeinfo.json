@@ -1,0 +1,495 @@
+{
+  "abstract": [
+    {
+      "text": "Creates and returns a Unicode converter object containinginformation required for converting strings from a non-Unicode encodingto Unicode. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1433598-createtexttounicodeinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1433598,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CreateTextToUnicodeInfo",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CreateTextToUnicodeInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CreateTextToUnicodeInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/constunicodemappingptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ConstUnicodeMappingPtr",
+              "text": "ConstUnicodeMappingPtr"
+            },
+            {
+              "kind": "text",
+              "text": " iUnicodeMapping, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/texttounicodeinfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextToUnicodeInfo",
+              "text": "TextToUnicodeInfo"
+            },
+            {
+              "kind": "text",
+              "text": " *oTextToUnicodeInfo);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a structure of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "UnicodeMapping",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Your application provides this structure to identify the mapping to use for the conversion. You must supply a value of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextEncoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the  ",
+                  "type": "text"
+                },
+                {
+                  "code": "unicodeEncoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field of this structure. A ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextEncoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is a  triple composed of an encoding base, an encoding variant, and a format. You can  obtain a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodemapping",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " value by calling the function ",
+                  "type": "text"
+                },
+                {
+                  "code": "CreateTextEncoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iUnicodeMapping"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, the Unicode converter object holds mapping table information you supplied as the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UnicodeMapping",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter and state information related to the conversion. This information is required for conversion of a text stream in a non-Unicode encoding to Unicode. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oTextToUnicodeInfo"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You pass a Unicode converter object returned from the functionCreateTextToUnicodeInfo to the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433517-convertfromtexttounicode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  or  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433483-convertfrompstringtounicode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to identify the information to be used for the conversion. Thesetwo functions modify the contents of the object. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You pass a Unicode converter object returned from ",
+              "type": "text"
+            },
+            {
+              "code": "CreateTextToUnicodeInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tothe function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433518-truncatefortexttounicode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to identify the information to be used to truncate the string. Thisfunction does not modify the contents of the Unicode converter object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error is returned, the Unicode converter object is invalid. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433483-convertfrompstringtounicode": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433483-convertfrompstringtounicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromPStringToUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433483-convertfrompstringtounicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433487-changetexttounicodeinfo": {
+      "abstract": [
+        {
+          "text": "Changes the mapping information for the specified Unicodeconverter object used to convert text to Unicode to the new mappingyou provide. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433487-changetexttounicodeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ChangeTextToUnicodeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433487-changetexttounicodeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433517-convertfromtexttounicode": {
+      "abstract": [
+        {
+          "text": "Converts a string from any encoding to Unicode. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433517-convertfromtexttounicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromTextToUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433517-convertfromtexttounicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433518-truncatefortexttounicode": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433518-truncatefortexttounicode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TruncateForTextToUnicode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433518-truncatefortexttounicode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433526-resettexttounicodeinfo": {
+      "abstract": [
+        {
+          "text": "Reinitializes all state information kept by the contextobjects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433526-resettexttounicodeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ResetTextToUnicodeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433526-resettexttounicodeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433560-createtexttounicodeinfobyencodin": {
+      "abstract": [
+        {
+          "text": "Based on the given text encoding specification, createsand returns a Unicode converter object containing information requiredfor converting strings from the specified non-Unicode encoding toUnicode. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433560-createtexttounicodeinfobyencodin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateTextToUnicodeInfoByEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433560-createtexttounicodeinfobyencodin"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433598-createtexttounicodeinfo": {
+      "abstract": [
+        {
+          "text": "Creates and returns a Unicode converter object containinginformation required for converting strings from a non-Unicode encodingto Unicode. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433598-createtexttounicodeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateTextToUnicodeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433598-createtexttounicodeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433669-disposetexttounicodeinfo": {
+      "abstract": [
+        {
+          "text": "Releases the memory allocated for the specified Unicodeconverter object. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433669-disposetexttounicodeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeTextToUnicodeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433669-disposetexttounicodeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/constunicodemappingptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/constunicodemappingptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConstUnicodeMappingPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/constunicodemappingptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/texttounicodeinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/texttounicodeinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextToUnicodeInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/texttounicodeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodemapping": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodemapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeMapping",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodemapping"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1433487-changetexttounicodeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1433517-convertfromtexttounicode",
+        "doc://com.apple.documentation/documentation/coreservices/1433560-createtexttounicodeinfobyencodin",
+        "doc://com.apple.documentation/documentation/coreservices/1433669-disposetexttounicodeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1433526-resettexttounicodeinfo"
+      ],
+      "title": "Converting to Unicode"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1433598-createtexttounicodeinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

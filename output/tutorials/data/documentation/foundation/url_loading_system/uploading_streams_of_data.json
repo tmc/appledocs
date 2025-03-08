@@ -1,0 +1,1351 @@
+{
+  "abstract": [
+    {
+      "text": "Send a stream of data to a server.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data"
+  },
+  "kind": "article",
+  "legacy_identifier": 3037350,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Uploading streams of data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Streaming media apps and long-running apps that send continual updates use an ongoing stream to upload data, rather than sending a single block of data or a flat file. You can configure an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to work with a stream that you provide, and then fill this stream with data indefinitely.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The task gets the stream by calling your session’s delegate, so you need to create a session and set your own code as its delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3081174",
+          "level": 3,
+          "text": "Create a URL session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by creating a URLSession and providing it with a delegate. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3081173",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates a URL session with the default ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sets ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the delegate. You’ll implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " later, in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037344",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "lazy var session: URLSession = URLSession(configuration: .default,",
+            "                                          delegate: self,",
+            "                                          delegateQueue: .main)",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a URLSession with a delegate",
+                "type": "text"
+              }
+            ],
+            "anchor": "3081173",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3037348",
+          "level": 3,
+          "text": "Create a streaming upload task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the upload task with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifying the URL you want to upload to, along with other parameters. You start the task by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037347",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows how to create and start an upload task, connecting to a server on the local machine (",
+              "type": "text"
+            },
+            {
+              "code": "127.0.0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") listening on port ",
+              "type": "text"
+            },
+            {
+              "code": "12345",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string: \"http://127.0.0.1:12345\")!",
+            "var request = URLRequest(url: url,",
+            "                         cachePolicy: .reloadIgnoringLocalCacheData,",
+            "                         timeoutInterval: 10)",
+            "request.httpMethod = \"POST\"",
+            "let uploadTask = session.uploadTask(withStreamedRequest: request)",
+            "uploadTask.resume()"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating an upload task",
+                "type": "text"
+              }
+            ],
+            "anchor": "3037347",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3037352",
+          "level": 3,
+          "text": "Use a bound pair of streams to provide an input stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide the streaming data to the upload task as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The task reads data from this stream and uploads it to the destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A good way to provide data to the input stream is to use a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bound pair",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of streams. The bound pair contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you write data to. Thanks to the binding of the streams, the data you write to the output stream is made available to the input stream, which the task can then read from. ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-media-3037791",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows this arrangement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3037791",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Providing data to an upload task with a bound pair of streams",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "3037791",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037346",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows a structure called ",
+              "type": "text"
+            },
+            {
+              "code": "Streams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that consists of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The listing creates a property of this type, called ",
+              "type": "text"
+            },
+            {
+              "code": "boundStreams",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/1412683-getboundstreams",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, passing in in-out references for the input and output streams.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Streams {",
+            "    let input: InputStream",
+            "    let output: OutputStream",
+            "}",
+            "lazy var boundStreams: Streams = {",
+            "    var inputOrNil: InputStream? = nil",
+            "    var outputOrNil: OutputStream? = nil",
+            "    Stream.getBoundStreams(withBufferSize: 4096,",
+            "                           inputStream: &inputOrNil,",
+            "                           outputStream: &outputOrNil)",
+            "    guard let input = inputOrNil, let output = outputOrNil else {",
+            "        fatalError(\"On return of `getBoundStreams`, both `inputStream` and `outputStream` will contain non-nil streams.\")",
+            "    }",
+            "    // configure and open output stream",
+            "    output.delegate = self",
+            "    output.schedule(in: .current, forMode: .default)",
+            "    output.open()",
+            "    return Streams(input: input, output: output)",
+            "}()",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a bound pair of input and output streams",
+                "type": "text"
+              }
+            ],
+            "anchor": "3037346",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create the bound pair, make sure you specify a buffer size large enough to hold any data you write to the output stream, prior to the data being read from the input stream. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037346",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " uses a 4096-byte buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The listing also sets ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the output stream’s delegate. Declare that your class implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol in order to receive events that indicate when the output stream is ready to receive new data. You’ll provide the implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " later, in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037342",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your implementations of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " may be in the same class or in different classes, whichever makes more sense for your app’s architecture.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3037344",
+          "level": 3,
+          "text": "Provide the stream to the upload task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide the input stream to the upload task in your implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1410001-urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", which is called after you start the upload task by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". The callback passes in a completion handler, which you call directly, passing in the ",
+              "type": "text"
+            },
+            {
+              "code": "boundStreams.input",
+              "type": "codeVoice"
+            },
+            {
+              "text": " stream you created earlier. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037340",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows an implementation of this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func urlSession(_ session: URLSession, task: URLSessionTask,",
+            "                needNewBodyStream completionHandler: @escaping (InputStream?) -> Void) {",
+            "    completionHandler(boundStreams.input)",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Providing the input stream to the upload task in the delegate callback",
+                "type": "text"
+              }
+            ],
+            "anchor": "3037340",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3037342",
+          "level": 3,
+          "text": "Write data to the stream when it’s ready",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Write data to an output stream only when the stream is ready for it. You get notified of the stream’s readiness in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate/1410079-stream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When this callback sends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as its ",
+              "type": "text"
+            },
+            {
+              "code": "eventCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, the stream is ready to accept more data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not ready to write while handling the event, and would prefer to write on your own schedule, you can set a flag variable and check it later to determine whether it’s is safe to write to the stream. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037351",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " illustrates this technique. It handles the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event by just setting a private ",
+              "type": "text"
+            },
+            {
+              "code": "canWrite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to",
+              "type": "text"
+            },
+            {
+              "code": " true.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While handling stream events, also check whether ",
+              "type": "text"
+            },
+            {
+              "code": "eventCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1414980-erroroccurred",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This means that the stream has failed. When this happens, close the streams and abandon the upload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func stream(_ aStream: Stream, handle eventCode: Stream.Event) {",
+            "    guard aStream == boundStreams.output else {",
+            "        return",
+            "    }",
+            "    if eventCode.contains(.hasSpaceAvailable) {",
+            "        canWrite = true",
+            "    }",
+            "    if eventCode.contains(.errorOccurred) {",
+            "        // Close the streams and alert the user that the upload failed.",
+            "    }",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Handling StreamDelegate events",
+                "type": "text"
+              }
+            ],
+            "anchor": "3037351",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’re handling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event, you can write to the stream whenever you know it’s ready to receive more data. You write to the stream by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, providing a reference to the raw bytes to be written, and the maximum number of bytes to write.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037345",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses a timer to wait for the private ",
+              "type": "text"
+            },
+            {
+              "code": "canWrite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to become true. Once this is the case, the code creates a string representing the current date and converts it to raw bytes. The listing then calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to send these bytes to the output stream. Because this output stream is bound to an input stream, the upload task can then automatically read these bytes from the input stream and send them to the destination URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {",
+            "    [weak self] timer in",
+            "    guard let self = self else { return }",
+            "",
+            "    if self.canWrite {",
+            "        let message = \"*** \\(Date())\\r\\n\"",
+            "        guard let messageData = message.data(using: .utf8) else { return }",
+            "        let messageCount = messageData.count",
+            "        let bytesWritten: Int = messageData.withUnsafeBytes() { (buffer: UnsafePointer<UInt8>) in",
+            "            self.canWrite = false",
+            "            return self.boundStreams.output.write(buffer, maxLength: messageCount)",
+            "        }",
+            "        if bytesWritten < messageCount {",
+            "            // Handle writing less data than expected.",
+            "        }",
+            "    }",
+            "}",
+            ""
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a timer to write to the output stream when the stream has space available",
+                "type": "text"
+              }
+            ],
+            "anchor": "3037345",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the data you want to stream is coming from an asynchronous process, like callbacks from a media capture device, you still have to wait for the output stream to be ready before you write to it. In these situations, you can use a circular buffer to hold your data until the stream is ready to accept it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you write to the output stream, you can’t write again until your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " receives a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " event. This example enforces this constraint by setting the class’ ",
+              "type": "text"
+            },
+            {
+              "code": "canWrite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It will be reset to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " event is received by the output stream's delegate, as shown earlier in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037351",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream/1410720-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(_:maxLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream/1410720-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stream",
+      "type": "topic",
+      "url": "/documentation/foundation/stream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream/1412683-getboundstreams": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream/1412683-getboundstreams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBoundStreams(withBufferSize:inputStream:outputStream:)",
+      "type": "topic",
+      "url": "/documentation/foundation/stream/1412683-getboundstreams"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream/event/1414980-erroroccurred": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1414980-erroroccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorOccurred",
+      "type": "topic",
+      "url": "/documentation/foundation/stream/event/1414980-erroroccurred"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream/event/1416046-hasspaceavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasSpaceAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/stream/event/1416046-hasspaceavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streamdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StreamDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/streamdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streamdelegate/1410079-stream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate/1410079-stream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stream(_:handle:)",
+      "type": "topic",
+      "url": "/documentation/foundation/streamdelegate/1410079-stream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads": {
+      "abstract": [
+        {
+          "text": "Pause and resume an upload without starting over, even when the connection is interrupted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming uploads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website": {
+      "abstract": [
+        {
+          "text": "Post data from your app to servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading data to a website",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data": {
+      "abstract": [
+        {
+          "text": "Send a stream of data to a server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading streams of data",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037340": {
+      "abstract": [
+        {
+          "text": "Providing the input stream to the upload task in the delegate callback",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037340",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037340"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037342": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037342",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Write data to the stream when it’s ready",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037342"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037344": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037344",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Provide the stream to the upload task",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037344"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037345": {
+      "abstract": [
+        {
+          "text": "Creating a timer to write to the output stream when the stream has space available",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037345",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037345"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037346": {
+      "abstract": [
+        {
+          "text": "Creating a bound pair of input and output streams",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037346",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037346"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037347": {
+      "abstract": [
+        {
+          "text": "Creating an upload task",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037347",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037347"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037351": {
+      "abstract": [
+        {
+          "text": "Handling StreamDelegate events",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3037351",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037351"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3081173": {
+      "abstract": [
+        {
+          "text": "Creating a URLSession with a delegate",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data#3081173",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3081173"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1410934-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(withStreamedRequest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1410934-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1410001-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/1410001-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:task:needNewBodyStream:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/1410001-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionUploadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3037791": {
+      "identifier": "link-media-3037791",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data#3037791"
+    },
+    "media-3037791": {
+      "abstract": [
+        {
+          "text": "Providing data to an upload task with a bound pair of streams",
+          "type": "text"
+        }
+      ],
+      "alt": "Flow diagram showing how data written by an app to the output stream of a bound pair goes into a buffer, then to the bound pair's input stream, then to the upload task, which sends it to the destination.",
+      "identifier": "media-3037791",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/da31e34bc2/a29fb2be-5f7f-4c56-9ef6-4090ecfbae82.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+      ],
+      "title": "Uploading"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/uploading_streams_of_data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/uploading_streams_of_data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

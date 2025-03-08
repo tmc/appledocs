@@ -1,0 +1,1165 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to a function that convertsa Unicode text element for which there is no destination encodingequivalent in the appropriate mapping table to the fallback character sequencedefined by your fallback handler, and returns the converted charactersequence to the Unicode Converter.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1433591,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@UnicodeToTextFallbackProcPtr",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "UnicodeToTextFallbackProcPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "symbol-1480124",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " (*"
+            },
+            {
+              "kind": "identifier",
+              "text": "UnicodeToTextFallbackProcPtr"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UniChar",
+              "text": "UniChar"
+            },
+            {
+              "kind": "text",
+              "text": " *iSrcUniStr, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " iSrcUniStrLen, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " *oSrcConvLen, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextPtr",
+              "text": "TextPtr"
+            },
+            {
+              "kind": "text",
+              "text": " oDestStr, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " iDestStrLen, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " *oDestConvLen, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@LogicalAddress",
+              "text": "LogicalAddress"
+            },
+            {
+              "kind": "text",
+              "text": " iInfoPtr, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/constunicodemappingptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ConstUnicodeMappingPtr",
+              "text": "ConstUnicodeMappingPtr"
+            },
+            {
+              "kind": "text",
+              "text": " iUnicodeMappingPtr);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a single UTF-16 character to be mapped by the fallback handler. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iSrcUniStr"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length in bytes of the UTF-16 character indicated by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "iSrcUniStr",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. Usually this is 2 bytes, but it could be 4 bytes for a non-BMP character. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iSrcUniStrLen"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to the length in bytes of the portion of the Unicode character that was actually processed by your fallback handler. Your fallback handler returns this value. It should set this to 0 if none of the text was handled, or 2 or 4 if the Unicode character was handled. This value is initialized to 0 before the fallback handler is called.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oSrcConvLen"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the output buffer where your handler should place any converted text. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oDestStr"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum size in bytes of the buffer provided by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "oDestStr",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iDestStrLen"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to the length in bytes of the fallback character sequence generated by your fallback handler. Your handler should return this length. It is initialized to 0 (zero)before the fallback handler is called.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oDestConvLen"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a block of memory allocated by your application, which can be used by your fallback handler in any way that you like. This is the same pointer passed as the last parameter of ",
+                  "type": "text"
+                },
+                {
+                  "code": "SetFallbackUnicodeToText",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "SetFallbackUnicodeToTextRun",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". How you use the data passed to you in this memory block is particular to your handler. This is similar in use to a reference constant(refcon). ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iInfoPtr"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant pointer to a structure of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodemapping",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This structure identifies a Unicode encoding specification and a particular base encoding specification. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iUnicodeMappingPtr"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your handler should return ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ifit can handle the fallback, or ",
+              "type": "text"
+            },
+            {
+              "code": "kTECUnmappableElementErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ifit cannot. It can return other errors for exceptional conditions,such as when the output buffer is too small. If your handler returns ",
+              "type": "text"
+            },
+            {
+              "code": "kTECUnmappableElementErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",then ",
+              "type": "text"
+            },
+            {
+              "code": "oSrcConvLen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "oDestConvLen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " areignored because either the default handler will be called or thedefault fallback sequence will be used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Unicode Converter calls your fallback handler when itcannot convert a text string using the mapping table specified bythe Unicode converter object passed to either ",
+              "type": "text"
+            },
+            {
+              "code": "ConvertFromUnicodeToText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "ConvertFromUnicodeToPString",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".The control flags you set for the ",
+              "type": "text"
+            },
+            {
+              "code": "controlFlags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameterof the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " orthe ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " stipulatewhich fallback handler the Unicode Converter should call and whichone to try first if both can be used. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the Unicode Converter calls your handler, it passes toit the Unicode character to be converted and its length, a bufferfor the converted string you return and the buffer length, and apointer to a block of memory containing the data your applicationsupplied to be passed on to your fallback handler. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you convert the Unicode text segment to fallback characters,you return the fallback character sequence of the converted textin the buffer provided to you and the length in bytes of this fallbackcharacter sequence. You also return the length in bytes of the portion ofthe source Unicode text element that your handler actually processed. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide a fallback-handler function for use with the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433550-createunicodetotextinfobyencodin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433581-convertfromunicodetopstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".You associate an application-defined fallback handler with a particularUnicode converter object you intend to pass to the conversion functionwhen you call it. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Text converted from UTF-8 will already have been convertedto UTF-16 before the fallback handler is called to process it. Yourfallback handler should do all of its processing on text encodedin UTF-16. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application-defined fallback handler should not movememory or call any toolbox function that would move memory. If itneeds memory, the memory should be allocated before the call to ",
+              "type": "text"
+            },
+            {
+              "code": "SetFallbackUnicodeToText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "SetFallbackUnicodeToTextRun",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",and a memory reference should be passed either directly as ",
+              "type": "text"
+            },
+            {
+              "code": "iInfoPtr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " orin the data referenced by ",
+              "type": "text"
+            },
+            {
+              "code": "iInfoPtr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To associate a fallback-handler function with a Unicode converterobject you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions.For these functions, you must pass a universal procedure pointer(",
+              "type": "text"
+            },
+            {
+              "code": "UniversalProcPtr",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Thisis derived from a pointer to your function by using the predefinedmacro ",
+              "type": "text"
+            },
+            {
+              "code": "NewUnicodeToTextFallbackProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For versions of the Unicode Converter prior to 1.2, the fallbackhandler may receive a multiple character text element, so the sourcestring length value could be greater than 2 and the fallback handlermay set ",
+              "type": "text"
+            },
+            {
+              "code": "srcConvLen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " toa value greater than 2. In versions earlier than 1.2.1, the ",
+              "type": "text"
+            },
+            {
+              "code": "srcConvLen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "destConvLen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variablesare not initialized to 0; both values are ignored unless the fallbackhandler returns ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to install an application-definedfallback handler. You can name your application-defined fallbackhandler anything you choose. The name, ",
+              "type": "text"
+            },
+            {
+              "code": "MyUnicodeToTextFallbackProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",used in this example is not significant. However, you must adhereto the parameters, the return type, and the calling convention asexpressed in this example, which follows the prototype, becausea pointer to this function must be of type ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeToTextFallbackProcPtr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asdefined in the ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeConverter.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " headerfile. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeConverter.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " headerfile also defines the ",
+              "type": "text"
+            },
+            {
+              "code": "UnicodeToTextFallbackUPP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " typeand the ",
+              "type": "text"
+            },
+            {
+              "code": "NewUnicodeToTextFallbackProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToTextRun",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433511-convertfromunicodetotextrun"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433550-createunicodetotextinfobyencodin": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433550-createunicodetotextinfobyencodin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextInfoByEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433550-createunicodetotextinfobyencodin"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433581-convertfromunicodetopstring": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433581-convertfromunicodetopstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToPString",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433581-convertfromunicodetopstring"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433614-setfallbackunicodetotext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetFallbackUnicodeToText",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433614-setfallbackunicodetotext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433644-setfallbackunicodetotextrun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetFallbackUnicodeToTextRun",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433644-setfallbackunicodetotextrun"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToScriptCodeRun",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/constunicodemappingptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/constunicodemappingptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConstUnicodeMappingPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/constunicodemappingptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginclearcontextinfoptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that resets aconverter object to its initial state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginclearcontextinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginClearContextInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginclearcontextinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginclearsniffercontextinfoptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that resets asniffer object to its initial settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginclearsniffercontextinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginClearSnifferContextInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginclearsniffercontextinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginconverttextencodingptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that convertsstream of text from a source encoding to a destination encoding,using the conversion path specified by the converter object you supply.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginconverttextencodingptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginConvertTextEncodingPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginconverttextencodingptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingconverterptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that disposesof a converter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingconverterptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginDisposeEncodingConverterPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugindisposeencodingconverterptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingsnifferptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that disposesof a sniffer object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingsnifferptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginDisposeEncodingSnifferPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugindisposeencodingsnifferptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginflushconversionptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that flushesout any data in a converter object’s temporary buffers and resetsthe converter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginflushconversionptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginFlushConversionPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginflushconversionptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailablesniffersptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that counts andreturns the number of sniffers available in all installed plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailablesniffersptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountAvailableSniffersPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountavailablesniffersptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe available text encoding pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountAvailableTextEncodingPairsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe available text encodings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountAvailableTextEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountavailabletextencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that counts andreturns the number of destination encodings to which a specifiedsource encoding can be converted in one step.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountDestinationTextEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountmailencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe text encodings available for email.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountmailencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountMailEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountmailencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountsubtextencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe text encoding specifications for the subencodings the encodingscheme supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountsubtextencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountSubTextEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountsubtextencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountwebencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe available web text encodings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountwebencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountWebEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountwebencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetplugindispatchtableptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that returnsa pointer to a plug-in dispatch table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetplugindispatchtableptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetPluginDispatchTablePtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetplugindispatchtableptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodingfrominternetnameptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe text encoding for an Internet text encoding name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodingfrominternetnameptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetTextEncodingFromInternetNamePtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingettextencodingfrominternetnameptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodinginternetnameptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe Internet text encoding name for a text encoding specification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodinginternetnameptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetTextEncodingInternetNamePtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingettextencodinginternetnameptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingconverterptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that determinesa conversion path for a source and destination encoding, then createsa text encoding converter object and returns a pointer to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingconverterptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginNewEncodingConverterPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginnewencodingconverterptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingsnifferptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that createsa sniffer object and returns a reference to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingsnifferptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginNewEncodingSnifferPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginnewencodingsnifferptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginsnifftextencodingptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer toa function that analyzes a text stream and returns the probable encodingsin a ranked list, based on an array of possible encodings you supply;it also returns the number of errors and features for each encoding. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginsnifftextencodingptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginSniffTextEncodingPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginsnifftextencodingptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/textptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodemapping": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodemapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeMapping",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodemapping"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that convertsa Unicode text element for which there is no destination encodingequivalent in the appropriate mapping table to the fallback character sequencedefined by your fallback handler, and returns the converted charactersequence to the Unicode Converter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeToTextFallbackProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodetotextfallbackprocptr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetplugindispatchtableptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingconverterptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginclearcontextinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginconverttextencodingptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginflushconversionptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingconverterptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingsnifferptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginclearsniffercontextinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginsnifftextencodingptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingsnifferptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountsubtextencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailablesniffersptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountwebencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountmailencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodinginternetnameptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodingfrominternetnameptr"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/unicodetotextfallbackprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

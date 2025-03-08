@@ -1,0 +1,548 @@
+{
+  "abstract": [
+    {
+      "text": "Defines the signature for a block object used for comparison operations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nsarray"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscomparator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1395139,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@NSComparator",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "NSComparator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonresult",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSComparisonResult",
+              "text": "NSComparisonResult"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "identifier",
+              "text": "NSComparator"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " obj1, "
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " obj2);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The arguments to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1737716",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are two objects to compare. The block returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonresult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to denote the ordering of the two objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "code": "NSComparator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " blocks in comparison operations such as ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarrayusingcomparator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSArray *sortedArray = [array sortedArrayUsingComparator: ^(id obj1, id obj2) {",
+            " ",
+            "    if ([obj1 integerValue] > [obj2 integerValue]) {",
+            "        return (NSComparisonResult)NSOrderedDescending;",
+            "    }",
+            " ",
+            "    if ([obj1 integerValue] < [obj2 integerValue]) {",
+            "        return (NSComparisonResult)NSOrderedAscending;",
+            "    }",
+            "    return (NSComparisonResult)NSOrderedSame;",
+            "}];"
+          ],
+          "metadata": {
+            "anchor": "2555920",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1737716": {
+      "identifier": "devLink-1737716",
+      "title": "Block object",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Block.html#//apple_ref/doc/uid/TP40008195-CH3"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408213-sortedarrayusingfunction": {
+      "abstract": [
+        {
+          "text": "Returns a new array that lists the receiving array’s elements in ascending order as defined by the comparison function ",
+          "type": "text"
+        },
+        {
+          "code": "comparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayUsingFunction:context:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408213-sortedarrayusingfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayUsingFunction:context:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408213-sortedarrayusingfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1410025-sortedarrayusingselector": {
+      "abstract": [
+        {
+          "text": "Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayUsingSelector:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1410025-sortedarrayusingselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayUsingSelector:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1410025-sortedarrayusingselector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarrayusingcomparator": {
+      "abstract": [
+        {
+          "text": "Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSComparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayUsingComparator:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarrayusingcomparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayUsingComparator:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411195-sortedarrayusingcomparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1413063-sortedarrayhint": {
+      "abstract": [
+        {
+          "text": "Analyzes the array and returns a “hint” that speeds the sorting of the array when the hint is supplied to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarrayusingfunction",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1413063-sortedarrayhint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayHint",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1413063-sortedarrayhint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarrayusingfunction": {
+      "abstract": [
+        {
+          "text": "Returns a new array that lists the receiving array’s elements in ascending order as defined by the comparison function ",
+          "type": "text"
+        },
+        {
+          "code": "comparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayUsingFunction:context:hint:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarrayusingfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayUsingFunction:context:hint:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414839-sortedarrayusingfunction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarrayusingdescriptors": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the receiving array sorted as specified by a given array of sort descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayUsingDescriptors:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarrayusingdescriptors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayUsingDescriptors:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415069-sortedarrayusingdescriptors"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417804-sortedarraywithoptions": {
+      "abstract": [
+        {
+          "text": "Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSComparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayWithOptions:usingComparator:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417804-sortedarraywithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayWithOptions:usingComparator:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417804-sortedarraywithoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparator": {
+      "abstract": [
+        {
+          "text": "Defines the signature for a block object used for comparison operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparator#2555920": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparator#2555920",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nscomparator#2555920"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonresult": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonResult",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonresult"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1413063-sortedarrayhint",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408213-sortedarrayusingfunction",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarrayusingfunction",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarrayusingdescriptors",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1410025-sortedarrayusingselector",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarrayusingcomparator",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417804-sortedarraywithoptions"
+      ],
+      "title": "Sorting"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscomparator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/comparator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

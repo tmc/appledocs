@@ -1,0 +1,662 @@
+{
+  "abstract": [
+    {
+      "text": "Monitor progress through the playback queue.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:sirikit_media_api:post:queues-updateActivity",
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "updateActivity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Report Playback Progress and Activity"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://cloudextension-testservice.local/api/"
+        },
+        {
+          "kind": "path",
+          "text": "queues/updateActivity"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client’s current user interface language. Respond with localized content for this language, if available.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Accept-Language",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "250"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/AppleCloudExtension/([0-9]+\\.[0-9]+\\.[0-9]+) *.*/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The extension protocol running on the client. This is an RFC 7231-compliant string that contains the product name ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AppleCloudExtension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and the SiriKit Extension library version running on the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "User-Agent",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of previous requests from the client. The client omits this header on the first attempt.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-retry-count",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "1"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant session identifier to include in each request and response. Respond to each request with the session ID the client sends in that request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-session-id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:sirikit_media_api:UpdateActivityRequest",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The most recent state of the client’s playback queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request succeeds, and the response includes an updated ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:UpdateActivityResponse",
+              "text": "UpdateActivityResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request succeeds, and the client can continue to use its current ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and playback queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "No Content",
+          "status": 204,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request requires authorization. The client may attempt to reauthorize and then retry.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " doesn’t match any current queue, or is permanently expired. The client may still use its current ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to request a new queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Not Found",
+          "status": 404,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is permanently expired and invalid for requesting a queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Gone",
+          "status": 410,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue": {
+      "abstract": [
+        {
+          "text": "A sequence of media content for playback, with links to the previous and next segments of a full playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queue"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent": {
+      "abstract": [
+        {
+          "text": "An event that occurs during content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueActivityReportEvent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueactivityreportevent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueIdentifier": {
+      "abstract": [
+        {
+          "text": "A stable identifier for a playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueIdentifier",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueidentifier"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest": {
+      "abstract": [
+        {
+          "text": "A report of the client’s current playback state and recent user interaction, and an opportunity for your service to modify the client’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse": {
+      "abstract": [
+        {
+          "text": "Updates to the client’s queue and user activity in response to a report of playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity": {
+      "abstract": [
+        {
+          "text": "The context for playing a media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/useractivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity": {
+      "abstract": [
+        {
+          "text": "Monitor progress through the playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Report Playback Progress and Activity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity": {
+      "abstract": [
+        {
+          "text": "Record the user’s preference for a specific media item or a broader category of media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateMediaAffinity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Update Media Affinity Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity"
+      ],
+      "title": "Playback Events"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/updateactivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,604 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app for simple enhanced buffering to stream content faster to AirPlay-enabled devices and supported CarPlay vehicles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-simple-enhanced-buffering-for-your-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing simple enhanced buffering for your content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes provide the simplest way to enhance buffering for your content with AirPlay 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement simple enhanced buffering, complete the following steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a player.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "let player = AVQueuePlayer()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify a URL that points to local or cloud content that you want to play.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance with a URL, and then create an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance with that asset.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "let url = URL(string: \"http://www.examplecontenturl.com\")!",
+            "let asset = AVAsset(url: url)",
+            "let item = AVPlayerItem(asset: asset)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give the player item to the player.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 4,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "player.insert(item, after: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start playback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 5,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "player.play()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset": {
+      "abstract": [
+        {
+          "text": "An object that models timed audiovisual media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsset",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasset"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer": {
+      "abstract": [
+        {
+          "text": "An object that plays a sequence of player items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVQueuePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVQueuePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVQueuePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVQueuePlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avqueueplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-flexible-enhanced-buffering-for-your-content": {
+      "abstract": [
+        {
+          "text": "Configure your app for flexible enhanced buffering to stream content faster to AirPlay-enabled devices and supported CarPlay vehicles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-flexible-enhanced-buffering-for-your-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing flexible enhanced buffering for your content",
+      "type": "topic",
+      "url": "/documentation/avfoundation/implementing-flexible-enhanced-buffering-for-your-content"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/integrating-airplay-for-long-form-video-apps": {
+      "abstract": [
+        {
+          "text": "Integrate AirPlay features and implement a dedicated external playback experience by preparing the routing system for long-form video playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/integrating-airplay-for-long-form-video-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating AirPlay for Long-Form Video Apps",
+      "type": "topic",
+      "url": "/documentation/avfoundation/integrating-airplay-for-long-form-video-apps"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay": {
+      "abstract": [
+        {
+          "text": "Stream content wirelessly to other devices using AirPlay, and handle requests involving FairPlay-protected assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streaming and AirPlay",
+      "type": "topic",
+      "url": "/documentation/avfoundation/streaming-and-airplay"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Buffered-playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-flexible-enhanced-buffering-for-your-content",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/integrating-airplay-for-long-form-video-apps"
+      ],
+      "title": "Buffered playback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Buffered-playback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-flexible-enhanced-buffering-for-your-content"
+              ],
+              "title": "Buffered playback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/title",
+          "value": "AVPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/title",
+          "value": "AVAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/title",
+          "value": "AVQueuePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVQueuePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVQueuePlayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/implementing-simple-enhanced-buffering-for-your-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/implementing-simple-enhanced-buffering-for-your-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

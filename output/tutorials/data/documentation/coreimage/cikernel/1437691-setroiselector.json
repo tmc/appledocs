@@ -1,0 +1,740 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the selector Core Image uses to query the region of interest for image processing with the kernel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cikernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437691,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIKernel(im)setROISelector:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "setROISelector"
+      },
+      {
+        "kind": "text",
+        "text": "(Selector)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIKernel"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "setROISelector(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setROISelector"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "method"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/selector",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+              "text": "Selector"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A selector name. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aMethod"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This method is not supported in iOS, and not recommended in macOS 10.11 and later. Supply and use a block-based ROI callback instead using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. The discussion below applies only to OS X v10.10 and earlier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When applying a filter kernel, the region of interest (ROI) is the area of source image pixels that must be processed to produce a given area of destination image pixels. For a more detailed definition, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1720908",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "aMethod",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument must use the signature that is defined for the ",
+              "type": "text"
+            },
+            {
+              "code": "regionOf:destRect:userInfo:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "- (CGRect) regionOf:(int)samplerIndex destRect:(CGRect)r userInfo:obj;",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "samplerIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " defines the sampler to query",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "destRect",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the extent of the region, in working space coordinates, to render.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "userInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the object associated with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kCIApplyOptionUserInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option when the kernel is applied to its arguments (with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object using the kernel). The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "userInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is important because instance variables can’t be used by the defining class. Instance variables must be passed through the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "userInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " argument.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "regionOf:destRect:userInfo:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the CIFilter object is called by the framework. This method returns the rectangle that contains the region of the sampler that the kernel needs to render the specified destination rectangle. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sample ",
+              "type": "text"
+            },
+            {
+              "code": "regionOf:destRect:userInfo:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method might look as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (CGRect)regionOf:(int)sampler destRect:(CGRect)r userInfo:params",
+            "{",
+            "  float scale = fabs ([params X]);",
+            "  return CGRectInset (r, scale * -1.3333, scale * -1.3333);",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555507",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your kernel does not need the image at ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to produce output in the rectangle ",
+              "type": "text"
+            },
+            {
+              "code": "rect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your method should return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgrectnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the filter code, you set the selector using the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "[kernel setROISelector:@selector(regionOf:destRect:userInfo:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": "]",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to directly apply a kernel to create an output image, specifying the ROI callback as a block or closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720908": {
+      "identifier": "devLink-1720908",
+      "title": "The Region of Interest",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_advanced_concepts/ci.advanced_concepts.html#//apple_ref/doc/uid/TP30001185-CH9-SW12"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgrectnull": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgrectnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRectNull",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgrectnull"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply": {
+      "abstract": [
+        {
+          "text": "Produces a ",
+          "type": "text"
+        },
+        {
+          "text": " object by applying arguments to a kernel function and using options to control how the kernel function is evaluated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "(CIKernel, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?) -> CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(_:arguments:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1438077-apply"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector": {
+      "abstract": [
+        {
+          "text": "Sets the selector Core Image uses to query the region of interest for image processing with the kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setROISelector"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setROISelector(_:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1437691-setroiselector"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector#2555507": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1437691-setroiselector#2555507",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cikernel/1437691-setroiselector#2555507"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply": {
+      "abstract": [
+        {
+          "text": "Creates a new image using the kernel and specified arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "roiCallback"
+        },
+        {
+          "kind": "text",
+          "text": ": CIKernelROICallback, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]) -> CIImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(extent:roiCallback:arguments:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel/1438243-apply"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/selector": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/selector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/objectivec/selector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel/1438243-apply",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/1438077-apply"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cikernel/1437691-setroiselector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cikernel/1437691-setroiselector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

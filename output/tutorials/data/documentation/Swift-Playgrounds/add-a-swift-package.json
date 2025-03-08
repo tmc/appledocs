@@ -1,0 +1,726 @@
+{
+  "abstract": [
+    {
+      "text": "Extend the functionality of your app playground by finding and adding a publicly available Swift package.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Swift package to your app playground"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift packages solve the problem of sharing code and resources between projects — and with other developers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use the same code in more than one playground without having to maintain multiple copies.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can write a powerful app without having to write it all yourself building on work shared by others.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift packages are portable containers for code and resources that your app playground can access by URL in Xcode or in Swift Playgrounds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple provides a selection of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you can link to from your app playgrounds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift Playgrounds uses the Swift Package Manager to locate, download, and integrate all the packages included in your app playground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an example, you’ll use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/example-package-deckofplayingcards",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Swift package.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This package includes Swift code that describes a deck of playing cards that you’ll use to build a card game in SwiftUI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package includes enumerations and functions for the playing cards, including their rank (numbered 2 through 10, Jack, Queen, King, and Ace) and suit (clubs, diamonds, hearts, and spades), and functions for shuffling and dealing the cards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the URL to your app playground:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap or click the Add Document button (+) in the toolbar above the project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap or click the menu and choose Swift Package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the text field that appears, enter the URL for the Swift package to use in your app playground, then tap or click Return.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Playgrounds uses the Swift Package Manager to locate the requested package, including details like the package version and what functionality the package offers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package provides a single product.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select it with the toggle switch in the figure below and tap or click “Add to Project”.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then Swift Package Manager downloads the selected version.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package appears in the Packages section of the project navigator below your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "add-a-package-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the Swift package added to your app playground, you’ll need to import its code and resources for use in your own code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " package contains two modules – pieces of functionality – of interest for this sample, the ",
+              "type": "text"
+            },
+            {
+              "code": "PlayingCard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modules.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can review the code for ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "Deck",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the package’s ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": " source directory in the Project navigator.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Deck",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code contains the following functions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "standard52CardDeck()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Specifies a standard 52 card deck.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "shuffle()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Reorders the cards in the deck.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "deal()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Removes the last card in the deck returning it to the caller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playing card drawing app playground’s ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation imports ",
+              "type": "text"
+            },
+            {
+              "code": "PlayingCard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "DeckOfPlayingCards",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When SwiftUI calls the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls the ",
+              "type": "text"
+            },
+            {
+              "code": "hand()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "hand()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates and shuffles a standard 52 card deck and returns an array of the last three cards, “dealing” them to the ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These three cards are passed to a custom ",
+              "type": "text"
+            },
+            {
+              "code": "CardView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for drawing to the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import PlayingCard",
+            "import DeckOfPlayingCards",
+            "",
+            "struct ContentView: View {",
+            "    func hand() -> [PlayingCard] {",
+            "        var deck = Deck.standard52CardDeck()",
+            "        ",
+            "        deck.shuffle()",
+            "        ",
+            "        return (0..<3).compactMap { _ in deck.deal() }",
+            "    }",
+            "    ",
+            "    var body: some View {",
+            "        VStack {",
+            "            ForEach(hand(), id: \\.self) { card in",
+            "                CardView(card: card)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "add-a-package-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "add-a-package-1": {
+      "alt": "A screenshot showing the Add Package settings in Swift Playgrounds. The settings contain an editable DeckOfPlayingCards package url, version and update method pickers, and an enabled DeckOfPlayingCards switch in the Products To Add section. The panel also includes two buttons: Cancel and Add to Project.",
+      "identifier": "add-a-package-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/630e672f33e81d2a161de7030476fe60/add-a-package-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9963ae23f3291414da13c942cc41b91d/add-a-package-1~dark@2x.png"
+        }
+      ]
+    },
+    "add-a-package-2": {
+      "alt": "The completed Card app in Swift Playgrounds. There are three vertical views in the app. The left column is the Project Navigator, which lists the Code files for the app project and any package dependencies is in the Packages section. In the Code section, the ContentView file is selected. The code from the ContentView file is shown in the center view. The right view shows the App Preview, with three playing cards that were dealt. The cards displayed in the App Preview are, from top to bottom, the four of diamonds, the king of spades, and the five of hearts.",
+      "identifier": "add-a-package-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5086db84d81532aff4a91f3e102fd55e/add-a-package-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57d1c8cf394e09c89bd84aad32f8841b/add-a-package-2~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging": {
+      "abstract": [
+        {
+          "text": "Learn different methods to debug your code using console output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging an App Playground using the Console",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/console-print-debugging"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview": {
+      "abstract": [
+        {
+          "text": "Use the canvas in Swift Playgrounds to see a live preview of the SwiftUI views in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing SwiftUI views in Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/live-preview"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities": {
+      "abstract": [
+        {
+          "text": "Request access for your app to protected resources, services, or device hardware such as sensors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to capabilities for your app playground",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/project-capabilities"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects": {
+      "abstract": [
+        {
+          "text": "Learn how to bring sample code into your app playground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing sample content into user app playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-content-in-user-projects"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://github.com/apple": {
+      "identifier": "https://github.com/apple",
+      "title": "Swift packages on GitHub",
+      "titleInlineContent": [
+        {
+          "text": "Swift packages on GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple"
+    },
+    "https://github.com/apple/example-package-deckofplayingcards": {
+      "identifier": "https://github.com/apple/example-package-deckofplayingcards",
+      "title": "Deck of Playing Cards",
+      "titleInlineContent": [
+        {
+          "text": "Deck of Playing Cards",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/example-package-deckofplayingcards"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-playgrounds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects"
+      ],
+      "title": "App playgrounds"
+    }
+  ]
+}

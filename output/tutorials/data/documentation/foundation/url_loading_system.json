@@ -1,0 +1,950 @@
+{
+  "abstract": [
+    {
+      "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2877756,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "URL Loading System"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The URL Loading System provides access to resources identified by URLs, using standard protocols like ",
+              "type": "text"
+            },
+            {
+              "code": "https",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or custom protocols you create. Loading is performed asynchronously, so your app can remain responsive and handle incoming data or errors as they arrive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances, which can fetch and return data to your app, download files, or upload data and files to remote locations. To configure a session, you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which controls behavior like how to use caches and cookies, or whether to allow connections on a cellular network. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use one session repeatedly to create tasks. For example, a web browser might have separate sessions for regular and private browsing use, where the private session doesn’t cache its data. ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-media-2927983",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows how two sessions with these configurations can then create multiple tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2927983",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Creating tasks from URL sessions",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2927983",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each session is associated with a delegate to receive periodic updates (or errors). The default delegate calls a completion handler block that you provide; if you choose to provide your own custom delegate, this block is not called.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure a session to run in the background, so that while the app is suspended, the system can download data on its behalf and wake up the app to deliver the results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bonjour": {
+      "abstract": [
+        {
+          "text": "Advertise services for easy discovery on local networks, or discover services advertised by others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bonjour",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bonjour",
+      "type": "topic",
+      "url": "/documentation/foundation/bonjour"
+    },
+    "doc://com.apple.documentation/documentation/foundation/cachedurlresponse": {
+      "abstract": [
+        {
+          "text": "A cached response to a URL request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CachedURLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/cachedurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CachedURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/cachedurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookie": {
+      "abstract": [
+        {
+          "text": "A representation of an HTTP cookie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPCookie"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookie",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage": {
+      "abstract": [
+        {
+          "text": "A container that manages the storage of cookies. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPCookieStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookieStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpurlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to an HTTP protocol URL load request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPURLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/httpurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/accessing_cached_data": {
+      "abstract": [
+        {
+          "text": "Control how URL requests make use of previously cached data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/accessing_cached_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing cached data",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/accessing_cached_data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites": {
+      "abstract": [
+        {
+          "text": "Download files directly to the filesystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files from websites",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_from_websites"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background": {
+      "abstract": [
+        {
+          "text": "Create tasks that download files while your app is inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in the background",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory": {
+      "abstract": [
+        {
+          "text": "Receive data directly into memory by creating a data task from a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching website data into memory",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge": {
+      "abstract": [
+        {
+          "text": "Respond appropriately when a server demands authentication for a URL request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling an authentication challenge",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/handling_an_authentication_challenge"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems": {
+      "abstract": [
+        {
+          "text": "Migrate your code away from using these legacy objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy URL Loading Systems",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads": {
+      "abstract": [
+        {
+          "text": "Allow the user to resume a download without starting over.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming downloads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_downloads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads": {
+      "abstract": [
+        {
+          "text": "Pause and resume an upload without starting over, even when the connection is interrupted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming uploads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website": {
+      "abstract": [
+        {
+          "text": "Post data from your app to servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading data to a website",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data": {
+      "abstract": [
+        {
+          "text": "Send a stream of data to a server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading streams of data",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/url_loading_system_error_info_keys": {
+      "abstract": [
+        {
+          "text": "Recognize these keys from the user info dictionary of error objects produced by URL Loading APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/url_loading_system_error_info_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System error info keys",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/url_loading_system_error_info_keys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge": {
+      "abstract": [
+        {
+          "text": "A challenge from a server requiring authentication from the client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLAuthenticationChallenge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLAuthenticationChallenge",
+      "type": "topic",
+      "url": "/documentation/foundation/urlauthenticationchallenge"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcache": {
+      "abstract": [
+        {
+          "text": "An object that maps URL requests to cached response objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCache"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCache",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredential": {
+      "abstract": [
+        {
+          "code": "A",
+          "type": "codeVoice"
+        },
+        {
+          "text": "n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredential",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredential"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage": {
+      "abstract": [
+        {
+          "text": "The manager of a shared credentials cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLCredentialStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredentialStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/urlcredentialstorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlerror": {
+      "abstract": [
+        {
+          "text": "Error codes returned by URL loading APIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLError",
+      "type": "topic",
+      "url": "/documentation/foundation/urlerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlprotectionspace": {
+      "abstract": [
+        {
+          "text": "A server or an area on a server, commonly referred to as a realm, that requires authentication. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLProtectionSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlprotectionspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLProtectionSpace",
+      "type": "topic",
+      "url": "/documentation/foundation/urlprotectionspace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "abstract": [
+        {
+          "text": "A URL load request that is independent of protocol or URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to a URL load request, independent of protocol and URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/urlresponse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "abstract": [
+        {
+          "text": "A task, like downloading a specific resource, performed in a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity": {
+      "abstract": [
+        {
+          "text": "Control whether the App Privacy Report attributes network traffic to the app or to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Indicating the source of network activity",
+      "type": "topic",
+      "url": "/documentation/network/indicating-the-source-of-network-activity"
+    },
+    "doc://com.apple.network/documentation/Network/inspecting-app-activity-data": {
+      "abstract": [
+        {
+          "text": "Verify that your app accesses only the user data and network resources that you expect it to access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting app activity data",
+      "type": "topic",
+      "url": "/documentation/network/inspecting-app-activity-data"
+    },
+    "link-media-2927983": {
+      "identifier": "link-media-2927983",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system#2927983"
+    },
+    "media-2927983": {
+      "abstract": [
+        {
+          "text": "Creating tasks from URL sessions",
+          "type": "text"
+        }
+      ],
+      "alt": "Figure showing two scenarios, default browsing and private browsing, each with a URL Session creating multiple URL Session Tasks. In the default browsing case, the URL Session contains a default configuration. In the private browsing case, it contains an ephemeral configuration.",
+      "identifier": "media-2927983",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/101eccff3f/rendered2x-1708707877.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/820ac3b814/renderedDark2x-1708707879.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/bonjour"
+      ],
+      "title": "Networking"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Configure and create sessions, then use them to create tasks that interact with URLs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "2878017",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontask"
+      ],
+      "kind": "taskGroup",
+      "title": "Essentials"
+    },
+    {
+      "anchor": "2878015",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlrequest",
+        "doc://com.apple.documentation/documentation/foundation/urlresponse",
+        "doc://com.apple.documentation/documentation/foundation/httpurlresponse"
+      ],
+      "kind": "taskGroup",
+      "title": "Requests and responses"
+    },
+    {
+      "anchor": "3038363",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+      ],
+      "kind": "taskGroup",
+      "title": "Uploading"
+    },
+    {
+      "anchor": "3038364",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_from_websites",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_downloads",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/downloading_files_in_the_background"
+      ],
+      "kind": "taskGroup",
+      "title": "Downloading"
+    },
+    {
+      "anchor": "2878019",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/accessing_cached_data",
+        "doc://com.apple.documentation/documentation/foundation/cachedurlresponse",
+        "doc://com.apple.documentation/documentation/foundation/urlcache"
+      ],
+      "kind": "taskGroup",
+      "title": "Cache behavior"
+    },
+    {
+      "anchor": "2878020",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/handling_an_authentication_challenge",
+        "doc://com.apple.documentation/documentation/foundation/urlauthenticationchallenge",
+        "doc://com.apple.documentation/documentation/foundation/urlcredential",
+        "doc://com.apple.documentation/documentation/foundation/urlcredentialstorage",
+        "doc://com.apple.documentation/documentation/foundation/urlprotectionspace"
+      ],
+      "kind": "taskGroup",
+      "title": "Authentication and credentials"
+    },
+    {
+      "anchor": "3864755",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+        "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity"
+      ],
+      "kind": "taskGroup",
+      "title": "Network activity attribution"
+    },
+    {
+      "anchor": "2920820",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/httpcookie",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage"
+      ],
+      "kind": "taskGroup",
+      "title": "Cookies"
+    },
+    {
+      "anchor": "2879020",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlerror",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/url_loading_system_error_info_keys"
+      ],
+      "kind": "taskGroup",
+      "title": "Errors"
+    },
+    {
+      "anchor": "2878016",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+      ],
+      "kind": "taskGroup",
+      "title": "Legacy"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

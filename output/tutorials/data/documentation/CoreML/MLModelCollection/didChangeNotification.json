@@ -1,0 +1,859 @@
+{
+  "abstract": [
+    {
+      "text": "The notification the framework sends when it receives an update to a model collection.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/MLModelCollection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/MLModelCollection/didChangeNotification"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CoreML",
+    "externalID": "c:@MLModelCollectionDidChangeNotification",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "didChangeNotification"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSNotification",
+        "text": "NSNotification"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSNotificationName",
+        "text": "Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLModelCollectionDidChangeNotification"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "message": "Use Background Assets or NSURLSession instead.",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "message": "Use Background Assets or NSURLSession instead.",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.4",
+        "introducedAt": "14.0",
+        "message": "Use Background Assets or NSURLSession instead.",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "1.1",
+        "introducedAt": "1.0",
+        "message": "Use Background Assets or NSURLSession instead.",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "didChangeNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didChangeNotification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register your app to get notifications when a model collection update is available by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let center = NotificationCenter.default",
+            "var token: NSObjectProtocol?",
+            "",
+            "token = center.addObserver(forName: MLModelCollection.didChangeNotification,",
+            "                           object: nil,",
+            "                           queue: nil) { [unowned self] note in",
+            "    guard let modelCollection = note.object as? MLModelCollection else {",
+            "        print(\"Model Collection notification's object is not a model collection\")",
+            "        return",
+            "    }",
+            "",
+            "    // Use updated model collection ...",
+            "    self.receivedUpdatedModelCollection(modelCollection)",
+            "",
+            "    // Clean up notification registration.",
+            "    center.removeObserver(token!)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you register for model collection notifications when your app needs to use the newest models as soon as the collection is available. Your app can always get the newest model collection by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelCollection/beginAccessingModelCollectionWithIdentifier:completionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelCollection": {
+      "abstract": [
+        {
+          "text": "A set of Core ML models from a model deployment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelCollection",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelcollection"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelCollection/beginAccessingModelCollectionWithIdentifier:completionHandler:": {
+      "abstract": [
+        {
+          "text": "Requests access to a model collection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginAccessingModelCollectionWithIdentifier:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelCollection/beginAccessingModelCollectionWithIdentifier:completionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginAccessingModelCollectionWithIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginAccessingModelCollectionWithIdentifier:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelcollection/beginaccessingmodelcollectionwithidentifier:completionhandler:"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelCollection/didChangeNotification": {
+      "abstract": [
+        {
+          "text": "The notification the framework sends when it receives an update to a model collection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelCollection/didChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelCollectionDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didChangeNotification",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelcollection/didchangenotification"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/BackgroundAssets"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver": {
+      "abstract": [
+        {
+          "text": "Adds an entry to the notification center to receive notifications that passed to the provided block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": OperationQueue?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Notification) -> Void) -> any NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1411723-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(forName:object:queue:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1411723-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSNotificationName": {
+      "abstract": [
+        {
+          "text": "A structure that defines the name of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification": {
+      "abstract": [
+        {
+          "text": "An object containing information broadcast to registered observers that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "17.4",
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "1.1",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MLModelCollectionDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelCollectionDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coreml/documentation/CoreML"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSNotificationName",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSNotificationName",
+                    "text": "NSNotificationName"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MLModelCollectionDidChangeNotification"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection/title",
+          "value": "MLModelCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSNotificationName/title",
+          "value": "NSNotificationName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection~1didChangeNotification/title",
+          "value": "MLModelCollectionDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection~1didChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelCollectionDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter~11411723-addobserver/title",
+          "value": "addObserverForName:object:queue:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSNotification/abstract",
+          "value": [
+            {
+              "text": "A container for information broadcast through a notification center to all registered observers.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/mlmodelcollection/didchangenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/mlmodelcollection/didchangenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

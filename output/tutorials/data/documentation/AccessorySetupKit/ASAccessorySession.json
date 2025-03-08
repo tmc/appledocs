@@ -1,0 +1,2184 @@
+{
+  "abstract": [
+    {
+      "text": "A class to coordinate accessory discovery.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ASAccessorySession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ASAccessorySession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AccessorySetupKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ASAccessorySession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ASAccessorySession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "ASAccessorySession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to interact with the AccessorySetupKit framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start the session by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and pass in a dispatch queue and an event-handling closure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "AccessorySetupKit calls back to your event handler as the discovery session processes events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With your event-handler prepared, create an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances to describe accessories your app can set up.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Pass this array to the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to allow someone using your app to choose a discovered accessory to set up.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your event handler receives events as the picker appears and dismisses, as well as when the person using the app adds an accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Starting in iOS 18.4, apps can use AccessorySetupKit for discovery and setup of Bluetooth LE devices that conform to the Human Interface Device (HID) service, such as keyboard and mouse accessories. The HID accessory needs to advertise a custom service besides the HID service. Add the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/SupportOptions/bluetoothHID",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " option to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/supportedOptions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and configure the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to discover the custom service instead of the HID service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "authorizing-a-bluetooth-accessory-PageImage-card.png": {
+      "alt": "An illustration of a die over a background patterned with the Bluetooth logo.",
+      "identifier": "authorizing-a-bluetooth-accessory-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7888823e893746ded65d008246db50b5/authorizing-a-bluetooth-accessory-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac870df192b194e8124f2d548bfe0de9/authorizing-a-bluetooth-accessory-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "discovering-configuring-accessories-PageImage-card.png": {
+      "alt": "An illustration that shows Bluetooth and Wi-Fi devices communicating.",
+      "identifier": "discovering-configuring-accessories-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab9450c2b7948ffea221e483d1b210d3/discovering-configuring-accessories-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50cc817a2ebceed40a67b891238dd603/discovering-configuring-accessories-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit": {
+      "abstract": [
+        {
+          "text": "Enable privacy-preserving discovery and configuration of accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AccessorySetupKit",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/RenameOptions": {
+      "abstract": [
+        {
+          "text": "Options that affect the behavior of an accessory renaming operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenameOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/RenameOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenameOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessory.RenameOptions",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessory/renameoptions"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/SupportOptions/bluetoothHID": {
+      "abstract": [
+        {
+          "text": "The accessory supports Bluetooth Low Energy HID service.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothHID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAccessorySupportOptions",
+          "text": "SupportOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/SupportOptions/bluetoothHID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySupportBluetoothHID"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothHID",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothhid"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession": {
+      "abstract": [
+        {
+          "text": "A class to coordinate accessory discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySession"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessorySession",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories": {
+      "abstract": [
+        {
+          "text": "An array of previously-selected accessories for this application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessories",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/accessories"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Activate the session and start delivering events to an event handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessoryEvent",
+          "text": "ASAccessoryEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activateWithQueue:eventHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate(on:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/activate(on:eventhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/failAuthorization(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "End authorization of a partially-configured accessory as a failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/failAuthorization(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "failAuthorization:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "failAuthorization(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/failauthorization(for:completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/finishAuthorization(for:settings:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finish authorization of a partially-setup accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "settings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessorySettings",
+          "text": "ASAccessorySettings"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/finishAuthorization(for:settings:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishAuthorization:settings:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishAuthorization(for:settings:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/finishauthorization(for:settings:completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidate the session by stopping any operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/invalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/invalidate()"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/removeAccessory(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Removes an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/removeAccessory(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAccessory:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAccessory(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/removeaccessory(_:completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/renameAccessory(_:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Displays a view to rename an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renameAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAccessoryRenameOptions",
+          "text": "RenameOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/renameAccessory(_:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renameAccessory:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renameAccessory(_:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/renameaccessory(_:options:completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Present a picker that shows accessories managed by a Device Discovery Extension in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showPickerWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showPicker(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/showpicker(completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Present a picker that shows discovered accessories matching an array of display items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPickerDisplayItem",
+          "text": "ASPickerDisplayItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showPickerForDisplayItems:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showPicker(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/showpicker(for:completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySettings": {
+      "abstract": [
+        {
+          "text": "Properties of an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySettings"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessorySettings",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysettings"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor": {
+      "abstract": [
+        {
+          "text": "Descriptive traits used to discover accessories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASDiscoveryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASDiscoveryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASDiscoveryDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/supportedOptions": {
+      "abstract": [
+        {
+          "text": "Options supported by an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportedOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAccessorySupportOptions",
+          "text": "SupportOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/supportedOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportedOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportedOptions",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/supportedoptions"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem": {
+      "abstract": [
+        {
+          "text": "An accessory as presented by the discovery picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASPickerDisplayItem"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASPickerDisplayItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASPickerDisplayItem",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/aspickerdisplayitem"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll": {
+      "abstract": [
+        {
+          "text": "Discover, select, and set up a specific Bluetooth accessory without requesting permission to use Bluetooth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll",
+      "images": [
+        {
+          "identifier": "authorizing-a-bluetooth-accessory-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Authorizing a Bluetooth accessory to share a dice roll",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories": {
+      "abstract": [
+        {
+          "text": "Detect nearby accessories and facilitate their setup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories",
+      "images": [
+        {
+          "identifier": "discovering-configuring-accessories-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Discovering and configuring accessories",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/discovering-and-configuring-accessories"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-the-session-life-cycle",
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/invalidate()"
+      ],
+      "title": "Managing the session life cycle"
+    },
+    {
+      "anchor": "Displaying-an-accessory-picker",
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(completionHandler:)",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)"
+      ],
+      "title": "Displaying an accessory picker"
+    },
+    {
+      "anchor": "Accessing-discovered-accessories",
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories"
+      ],
+      "title": "Accessing discovered accessories"
+    },
+    {
+      "anchor": "Managing-accessories",
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/renameAccessory(_:options:completionHandler:)",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/RenameOptions",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/removeAccessory(_:completionHandler:)"
+      ],
+      "title": "Managing accessories"
+    },
+    {
+      "anchor": "Managing-authorization",
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/finishAuthorization(for:settings:completionHandler:)",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySettings",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/failAuthorization(for:completionHandler:)"
+      ],
+      "title": "Managing authorization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iPadOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ASAccessorySession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-the-session-life-cycle",
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/invalidate()"
+              ],
+              "title": "Managing the session life cycle"
+            },
+            {
+              "anchor": "Displaying-an-accessory-picker",
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(completionHandler:)",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)"
+              ],
+              "title": "Displaying an accessory picker"
+            },
+            {
+              "anchor": "Accessing-discovered-accessories",
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories"
+              ],
+              "title": "Accessing discovered accessories"
+            },
+            {
+              "anchor": "Managing-accessories",
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/renameAccessory(_:options:completionHandler:)",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/RenameOptions",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/removeAccessory(_:completionHandler:)"
+              ],
+              "title": "Managing accessories"
+            },
+            {
+              "anchor": "Managing-authorization",
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/finishAuthorization(for:settings:completionHandler:)",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySettings",
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/failAuthorization(for:completionHandler:)"
+              ],
+              "title": "Managing authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ASAccessorySession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1failAuthorization(for:completionHandler:)/title",
+          "value": "failAuthorization:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1failAuthorization(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "failAuthorization:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1RenameOptions/title",
+          "value": "ASAccessoryRenameOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1RenameOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryRenameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1RenameOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryRenameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1accessories/title",
+          "value": "accessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1accessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1showPicker(completionHandler:)/title",
+          "value": "showPickerWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1showPicker(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showPickerWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySettings/title",
+          "value": "ASAccessorySettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1SupportOptions~1bluetoothHID/title",
+          "value": "ASAccessorySupportBluetoothHID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1SupportOptions~1bluetoothHID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySupportBluetoothHID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor/title",
+          "value": "ASDiscoveryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASDiscoveryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASDiscoveryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1renameAccessory(_:options:completionHandler:)/title",
+          "value": "renameAccessory:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1renameAccessory(_:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renameAccessory:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1finishAuthorization(for:settings:completionHandler:)/title",
+          "value": "finishAuthorization:settings:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1finishAuthorization(for:settings:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishAuthorization:settings:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1supportedOptions/title",
+          "value": "supportedOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1supportedOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportedOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1showPicker(for:completionHandler:)/title",
+          "value": "showPickerForDisplayItems:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1showPicker(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showPickerForDisplayItems:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/title",
+          "value": "ASAccessorySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1removeAccessory(_:completionHandler:)/title",
+          "value": "removeAccessory:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1removeAccessory(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAccessory:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem/title",
+          "value": "ASPickerDisplayItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASPickerDisplayItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASPickerDisplayItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1activate(on:eventHandler:)/title",
+          "value": "activateWithQueue:eventHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1activate(on:eventHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activateWithQueue:eventHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessorysetupkit/asaccessorysession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessorysetupkit/asaccessorysession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

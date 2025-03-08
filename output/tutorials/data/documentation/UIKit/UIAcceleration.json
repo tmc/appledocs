@@ -1,0 +1,1647 @@
+{
+  "abstract": [
+    {
+      "text": "An acceleration event that represents immediate, three-dimensional acceleration data.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/CoreMotion",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " framework instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIAcceleration",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UIAcceleration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIAcceleration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "5.0",
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "5.0",
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIAcceleration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAcceleration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive accelerometer events, register an application object as a delegate of the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each acceleration event includes simultaneous acceleration readings along the three axes of the device, as shown in the following image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1965794",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device accelerometer reports values for each axis in units of g-force, where a value of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents acceleration of about +1 g along a given axis. When a device is laying still with its back on a horizontal surface, each acceleration event has approximately the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "x: 0",
+            "y: 0",
+            "z: -1"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Individual acceleration values are of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerationValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", equivalent to a ",
+              "type": "text"
+            },
+            {
+              "code": "double",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Values can range over the accelerations found in normal use of a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Acceleration event values are approximate—don’t attempt to use them to make precise measurements. Apple recommends that you average accelerometer values over time to derive usable data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to detect specific types of motion as gestures—specifically, shaking motions—use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class and its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/EventType/motion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event type. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/HandlingTapandLongPressGestures.html#//apple_ref/doc/uid/TP40009541-CH4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/CoreMotion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAcceleration": {
+      "abstract": [
+        {
+          "text": "An acceleration event that represents immediate, three-dimensional acceleration data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIAcceleration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAcceleration",
+      "type": "topic",
+      "url": "/documentation/uikit/uiacceleration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/timestamp": {
+      "abstract": [
+        {
+          "text": "The relative time at which the acceleration event occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/timestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/uikit/uiacceleration/timestamp"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/x": {
+      "abstract": [
+        {
+          "text": "The acceleration value for the x axis of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "x"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "x",
+      "type": "topic",
+      "url": "/documentation/uikit/uiacceleration/x"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/y": {
+      "abstract": [
+        {
+          "text": "The acceleration value for the y axis of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "y"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/y",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "y",
+      "type": "topic",
+      "url": "/documentation/uikit/uiacceleration/y"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/z": {
+      "abstract": [
+        {
+          "text": "The acceleration value for the z axis of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "z"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/z",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "z",
+      "type": "topic",
+      "url": "/documentation/uikit/uiacceleration/z"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccelerationValue": {
+      "abstract": [
+        {
+          "text": "The amount of acceleration in a single linear direction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccelerationValue"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerationValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccelerationValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccelerationValue",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccelerationvalue"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer": {
+      "abstract": [
+        {
+          "text": "An object that lets you register to receive acceleration-related data from the onboard hardware.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIAccelerometer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccelerometer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccelerometer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheet": {
+      "abstract": [
+        {
+          "text": "A view that presents a set of alternatives for how to proceed with a task.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActionSheet"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActionSheet"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActionSheet",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheet"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertView": {
+      "abstract": [
+        {
+          "text": "A view that displays an alert message.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertView",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController": {
+      "abstract": [
+        {
+          "text": "A list of all the available document providers for a given file type and mode, in addition to custom menu items that you add.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDocumentMenuViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDocumentMenuViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDocumentMenuViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentmenuviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single user interaction with your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEvent",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent/EventType/motion": {
+      "abstract": [
+        {
+          "text": "The event relates to motion of the device, such as when a person shakes it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "motion"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/EventType/motion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEventTypeMotion"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEvent.EventType.motion",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent/eventtype/motion"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILocalNotification": {
+      "abstract": [
+        {
+          "text": "A notification that an app can schedule for presentation at a specific date and time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILocalNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILocalNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILocalNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uilocalnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuController": {
+      "abstract": [
+        {
+          "text": "The menu interface for the Cut, Copy, Paste, Select, Select All, and Delete commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuController",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenucontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMenuItem": {
+      "abstract": [
+        {
+          "text": "A custom item in the editing menu managed by the menu controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMenuItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMenuItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMenuItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMenuItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uimenuitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction": {
+      "abstract": [
+        {
+          "text": "A modifiable version of the user notification action class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableUserNotificationAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutableusernotificationaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory": {
+      "abstract": [
+        {
+          "text": "Information about custom actions that your app can perform in response to a local or push notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIMutableUserNotificationCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIMutableUserNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uimutableusernotificationcategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverController": {
+      "abstract": [
+        {
+          "text": "An object that manages the presentation of content in a popover.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopovercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction": {
+      "abstract": [
+        {
+          "text": "A preview action, or ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "peek quick action",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ", that displays below a peek when a user swipes the peek upward.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup": {
+      "abstract": [
+        {
+          "text": "A group of one or more child quick actions, each an instance of the preview action class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewActionGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewactiongroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController": {
+      "abstract": [
+        {
+          "text": "An object that manages the display of a search bar, along with a table view that displays search results.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchDisplayController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchdisplaycontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue": {
+      "abstract": [
+        {
+          "text": "A specific type of segue for presenting content in a popover.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardPopoverSegue"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStoryboardPopoverSegue"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStoryboardPopoverSegue",
+      "type": "topic",
+      "url": "/documentation/uikit/uistoryboardpopoversegue"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction": {
+      "abstract": [
+        {
+          "text": "A custom action that your app can perform in response to a remote or local notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserNotificationAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiusernotificationaction"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/HandlingTapandLongPressGestures.html#//apple_ref/doc/uid/TP40009541-CH4": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/HandlingTapandLongPressGestures.html#//apple_ref/doc/uid/TP40009541-CH4",
+      "title": "Handling Tap and Long-Press Gestures",
+      "titleInlineContent": [
+        {
+          "text": "Handling Tap and Long-Press Gestures",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/HandlingTapandLongPressGestures.html#//apple_ref/doc/uid/TP40009541-CH4"
+    },
+    "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541",
+      "title": "Event Handling Guide for UIKit Apps",
+      "titleInlineContent": [
+        {
+          "text": "Event Handling Guide for UIKit Apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541"
+    },
+    "media-1965794": {
+      "alt": "Orientation of the device axes",
+      "identifier": "media-1965794",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/614980e5d60f5c9a782ec7014d8f522f/media-1965794.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccelerometer",
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheet",
+        "doc://com.apple.uikit/documentation/UIKit/UIAlertView",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentMenuViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuController",
+        "doc://com.apple.uikit/documentation/UIKit/UIMenuItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIMutableUserNotificationCategory",
+        "doc://com.apple.uikit/documentation/UIKit/UIPopoverController",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayController",
+        "doc://com.apple.uikit/documentation/UIKit/UIStoryboardPopoverSegue",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserNotificationAction"
+      ],
+      "title": "Deprecated classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-the-acceleration-values",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/x",
+        "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/y",
+        "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/z",
+        "doc://com.apple.uikit/documentation/UIKit/UIAcceleration/timestamp"
+      ],
+      "title": "Accessing the acceleration values"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccelerationValue"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalNotification/title",
+          "value": "UILocalNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILocalNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILocalNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/title",
+          "value": "UIPreviewAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuItem/title",
+          "value": "UIMenuItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentMenuViewController/title",
+          "value": "UIDocumentMenuViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentMenuViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentMenuViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDocumentMenuViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDocumentMenuViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1EventType~1motion/title",
+          "value": "UIEventTypeMotion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1EventType~1motion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventTypeMotion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverController/title",
+          "value": "UIPopoverController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayController/title",
+          "value": "UISearchDisplayController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/title",
+          "value": "UIEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController/title",
+          "value": "UIMenuController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMenuController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMenuController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/title",
+          "value": "UIPreviewActionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardPopoverSegue/title",
+          "value": "UIStoryboardPopoverSegue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardPopoverSegue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardPopoverSegue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStoryboardPopoverSegue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStoryboardPopoverSegue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerationValue/title",
+          "value": "UIAccelerationValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerationValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccelerationValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerationValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccelerationValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationAction/title",
+          "value": "UIMutableUserNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationCategory/title",
+          "value": "UIMutableUserNotificationCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIMutableUserNotificationCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIMutableUserNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertView/title",
+          "value": "UIAlertView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationAction/title",
+          "value": "UIUserNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet/title",
+          "value": "UIActionSheet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheet"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiacceleration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

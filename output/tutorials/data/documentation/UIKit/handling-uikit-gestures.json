@@ -1,0 +1,1667 @@
+{
+  "abstract": [
+    {
+      "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Handling UIKit gestures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gesture recognizers are the simplest way to handle touch or press events in your views. You can attach one or more gesture recognizers to any view. Gesture recognizers encapsulate all of the logic needed to process and interpret incoming events for that view and match them to a known pattern. When a match is detected, the gesture recognizer notifies its assigned target object, which can be a view controller, the view itself, or any other object in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gesture recognizers use the target-action design pattern to send notifications. When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object detects a single-finger tap in the view, it calls an action method of the view’s view controller, which you use to provide a response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004401",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gesture recognizers come in two types: discrete and continuous. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "discrete gesture recognizer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " calls your action method exactly once after the gesture is recognized. After its initial recognition criteria are met, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "continuous gesture recognizer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " performs calls your action method many times, notifying you whenever the information in the gesture’s event changes. For example, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object calls your action method each time the touch position changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interface Builder includes objects for each of the standard UIKit gesture recognizers. It also includes a custom gesture recognizer object that you can use to represent your custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-a-gesture-recognizer",
+          "level": 3,
+          "text": "Configuring a gesture recognizer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure a gesture recognizer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your storyboard, drag the gesture recognizer onto your view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement an action method to be called when the gesture is recognized; see the following code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect your action method to the gesture recognizer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create this connection in Interface Builder by right-clicking the gesture recognizer and connecting its Sent Action selector to the appropriate object in your interface. You can also configure the action method programmatically using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/addTarget(_:action:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the gesture recognizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the generic format for the action method of a gesture recognizer. If you prefer, you can change the parameter type to match a specific gesture recognizer subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBAction func myActionMethod(_ sender: UIGestureRecognizer)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (IBAction)myActionMethod:(UIGestureRecognizer*)sender"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Responding-to-gestures",
+          "level": 3,
+          "text": "Responding to gestures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The action method associated with a gesture recognizer provides your app’s response to that gesture. For discrete gestures, your action method is similar to the action method for a button. Once the action method is called, you perform whatever task is appropriate for that gesture. For continuous gestures, your action method can respond to the recognition of the gesture, but it can also track events before the gesture is recognized. Tracking events lets you create a more interactive experience. For example, you might use the updates from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to reposition content in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a gesture recognizer communicates the object’s current state of recognition. For continuous gestures, the gesture recognizer updates the value of this property from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/cancelled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your action methods use this property to determine an appropriate course of action. For example, you might use the began and changed states to make temporary changes to your content, use the ended state to make those changes permanent, and use the cancelled state to discard the changes. Always check the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a gesture recognizer before taking actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For examples of how to handle specific types of gestures, see the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about gesture recognizer states and how they affect your code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The base class for concrete gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touch objects recognized as a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "began"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/began",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateBegan"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.began",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/began"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/cancelled": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches resulting in the cancellation of a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelled"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/cancelled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateCancelled"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.cancelled",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/cancelled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as a change to a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changed"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/changed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.changed",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/changed"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has received touches recognized as the end of a continuous gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ended"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/State-swift.enum/ended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerStateEnded"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer.State.ended",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.enum/ended"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/addTarget(_:action:)": {
+      "abstract": [
+        {
+          "text": "Adds a target and an action to a gesture-recognizer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/addTarget(_:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTarget:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTarget(_:action:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/addtarget(_:action:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current state of the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGestureRecognizerState",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/state-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/state-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pointer movement over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHoverGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uihovergesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets long-press gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uilongpressgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pinching gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPinchGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipinchgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets rotation gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRotationGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uirotationgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures that start near an edge of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScreenEdgePanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreenedgepangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets swiping gestures in one or more directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwipeGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwipeGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwipeGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswipegesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets single or multiple taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitapgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Enhance user feedback for your iPadOS app with a hover preview for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pencil input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting hover support for Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-hover-support-for-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers": {
+      "abstract": [
+        {
+          "text": "Discover how to use multiple gesture recognizers on the same view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Coordinating multiple gesture recognizers",
+      "type": "topic",
+      "url": "/documentation/uikit/coordinating-multiple-gesture-recognizers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures": {
+      "abstract": [
+        {
+          "text": "Detect extended duration taps on the screen, and use them to reveal contextually relevant content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling long-press gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-long-press-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures": {
+      "abstract": [
+        {
+          "text": "Trace the movement of fingers around the screen, and apply that movement to your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling pan gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-pan-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures": {
+      "abstract": [
+        {
+          "text": "Track the distance between two fingers and use that information to scale or zoom your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling pinch gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-pinch-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures": {
+      "abstract": [
+        {
+          "text": "Measure the relative rotation of two fingers on the screen, and use that motion to rotate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling rotation gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-rotation-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures": {
+      "abstract": [
+        {
+          "text": "Detect a horizontal or vertical swipe motion on the screen, and use it to trigger navigation through your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling swipe gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-swipe-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures": {
+      "abstract": [
+        {
+          "text": "Use brief taps on the screen to implement button-like interactions with your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling tap gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-tap-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer": {
+      "abstract": [
+        {
+          "text": "Discover when and how to build your own gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing a custom gesture recognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-a-custom-gesture-recognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Enrich your app’s user experience by supporting standard and custom gesture interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting gesture interaction in your apps",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-gesture-interaction-in-your-apps"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004401": {
+      "alt": "A diagram demonstrating how a gesture recognizer links user interactions with your view controller action methods.",
+      "identifier": "media-3004401",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4f8ab2ce69f156de01ba25b662eb7c6/media-3004401@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+        "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer"
+      ],
+      "title": "Standard gestures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Gestures",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+      ],
+      "title": "Gestures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Gestures",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-tap-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-long-press-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-pan-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-swipe-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-pinch-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/handling-rotation-gestures"
+              ],
+              "title": "Gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Standard-gestures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+                "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer"
+              ],
+              "title": "Standard gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/title",
+          "value": "UIPinchGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/title",
+          "value": "UIHoverGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1cancelled/title",
+          "value": "UIGestureRecognizerStateCancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1cancelled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateCancelled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1state-swift.property/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1state-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer/title",
+          "value": "UIGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1ended/title",
+          "value": "UIGestureRecognizerStateEnded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1ended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateEnded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/title",
+          "value": "UISwipeGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1began/title",
+          "value": "UIGestureRecognizerStateBegan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1began/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateBegan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/title",
+          "value": "UIRotationGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1addTarget(_:action:)/title",
+          "value": "addTarget:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1addTarget(_:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTarget:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/title",
+          "value": "UIGestureRecognizerStateChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1State-swift.enum~1changed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerStateChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/title",
+          "value": "UILongPressGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/title",
+          "value": "UITapGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/title",
+          "value": "UIScreenEdgePanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/title",
+          "value": "UIPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-uikit-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-uikit-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

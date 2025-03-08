@@ -1,0 +1,610 @@
+{
+  "abstract": [
+    {
+      "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Workgroup Management"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Real-time audio rendering often requires coordination between the threads of an app, the system, and the threads of any active Audio Unit plug-ins. Workgroups provide the mechanism to coordinate the efforts of these different processes, and ensure that they execute on the same schedule. In an Audio Unit, use a render context observer to retrieve the workgroup that the host app uses for real-time audio rendering. In an app, fetch the workgroup for a Core Audio device directly from the device or from your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has real-time rendering threads that operate on their own deadlines, create your own workgroup using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. Use your custom workgroup to set and update the rendering schedule for your threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit": {
+      "abstract": [
+        {
+          "text": "A class that defines a host’s interface to an audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUAudioUnit",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/auaudiounit"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AURenderContextObserver": {
+      "abstract": [
+        {
+          "text": "A custom block that tells the audio unit which thread context to use for the next render cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AURenderContextObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AURenderContextObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AURenderContextObserver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/aurendercontextobserver"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext": {
+      "abstract": [
+        {
+          "text": "A structure that contains thread context information for a real-time rendering operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioUnitRenderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioUnitRenderContext",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiounitrendercontext"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate": {
+      "abstract": [
+        {
+          "text": "Creates a new interval workgroup for managing real-time audio threads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioWorkIntervalCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioWorkIntervalCreate",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioworkintervalcreate"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Optimize system performance by adding real-time audio threads that run asynchronously to the I/O thread to custom audio workgroups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Asynchronous Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-asynchronous-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "If your Audio Unit plug-in creates auxiliary real-time rendering threads, add them to the host app’s audio workgroup so the system can schedule them appropriately.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Audio Unit Auxiliary Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Optimize the performance of real-time audio threads that run in sync with the I/O thread by adding them to the audio device workgroup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Parallel Real-Time Threads to Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/adding-parallel-real-time-threads-to-audio-workgroups"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments": {
+      "abstract": [
+        {
+          "text": "Ensure a smooth and immersive audio experience in your apps using Audio System Trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing audio performance with Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/analyzing-audio-performance-with-instruments"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec": {
+      "abstract": [
+        {
+          "text": "Translate audio data from one format to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-codec"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services": {
+      "abstract": [
+        {
+          "text": "Convert between linear PCM audio formats, and between linear PCM and compressed formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-converter-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support": {
+      "abstract": [
+        {
+          "text": "Describe the properties that you associate with audio sessions and audio routes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Support",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-session-support"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging": {
+      "abstract": [
+        {
+          "text": "Obtain the internal state of Core Audio objects during the development and debugging of your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Toolbox Debugging",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-toolbox-debugging"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities": {
+      "abstract": [
+        {
+          "text": "Manage time-related information associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clock Utilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/clock-utilities"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup": {
+      "abstract": [
+        {
+          "text": "The workgroup associated with the audio device underlying this Audio Unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_OSWorkgroup"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_OSWorkgroup",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_osworkgroup"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver": {
+      "abstract": [
+        {
+          "text": "The block that the system calls when the rendering context changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAudioUnitProperty_RenderContextObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioUnitProperty_RenderContextObserver",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiounitproperty_rendercontextobserver"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups": {
+      "abstract": [
+        {
+          "text": "Learn how to optimize real-time rendering performance with the Audio Workgroups API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding Audio Workgroups",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/understanding-audio-workgroups"
+    },
+    "doc://com.apple.documentation/documentation/CoreAudio/kAudioDevicePropertyIOThreadOSWorkgroup": {
+      "abstract": [
+        {
+          "text": "The device’s workgroup object, which you use to coordinate your threads with the threads of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioDevicePropertyIOThreadOSWorkgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectPropertySelector",
+          "text": "AudioObjectPropertySelector"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreAudio/kAudioDevicePropertyIOThreadOSWorkgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioDevicePropertyIOThreadOSWorkgroup",
+      "type": "topic",
+      "url": "/documentation/CoreAudio/kAudioDevicePropertyIOThreadOSWorkgroup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Utilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Device-Workgroup",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/CoreAudio/kAudioDevicePropertyIOThreadOSWorkgroup"
+      ],
+      "title": "Device Workgroup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/understanding-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-parallel-real-time-threads-to-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-asynchronous-real-time-threads-to-audio-workgroups",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/adding-audio-unit-auxiliary-real-time-threads-to-audio-workgroups"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Host-App-Workgroup",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioUnitProperty_RenderContextObserver",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AURenderContextObserver",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioUnitRenderContext"
+              ],
+              "title": "Host App Workgroup"
+            },
+            {
+              "anchor": "Device-Workgroup",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/CoreAudio/kAudioDevicePropertyIOThreadOSWorkgroup",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup"
+              ],
+              "title": "Device Workgroup"
+            },
+            {
+              "anchor": "Custom-Workgroups",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioWorkIntervalCreate"
+              ],
+              "title": "Custom Workgroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Utilities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/title",
+          "value": "AUAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreAudio~1kAudioDevicePropertyIOThreadOSWorkgroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioDevicePropertyIOThreadOSWorkgroup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/workgroup-management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/workgroup-management"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

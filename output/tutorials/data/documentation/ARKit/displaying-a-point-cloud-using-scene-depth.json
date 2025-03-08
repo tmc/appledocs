@@ -1,0 +1,3065 @@
+{
+  "abstract": [
+    {
+      "text": "Present a visualization of the physical environment by placing points based a scene’s depth data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/environmental-analysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying a point cloud using scene depth"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depth Cloud is an app that uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display a camera feed by placing a collection of points in the physical environment, according to depth information from the device’s LiDAR Scanner. For every distance sample in the session’s periodic depth reading ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app places a virtual dot at that location in the physical environment, with the final result resembling a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "point cloud",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Depth Cloud colors the cloud according to ARKit’s camera image ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For every entry in the depth map — and therefore, for every dot in the cloud — the sample app checks the corresponding pixel in the camera image and assigns the pixel’s color to the dot. When the user views the point cloud straight on, the app’s display appears nearly identical to a camera feed. To demonstrate the cloud’s 3D shape, the sample app continuously rotates the cloud to change its viewing angle with respect to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure illustrates a point cloud from a single frame of data, rotated on the y-axis to reveal a dark area behind the apple where the current sensor readings lack color and depth information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "point-cloud-from-scene-depth-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app cycles through depth ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "confidence",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " values (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", enlarges the depth buffer, and toggles ARKit’s smooth depth option ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By applying the user’s selections to the point cloud live, the user can see the difference that the settings make throughout the experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "WWDC20 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc20/10611/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " references a prior version of this sample app that accumulates points in a cloud. For the original version of the app as shown in the session, clone the initial commit from the Git repository in the download’s root folder.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a practical application of ARKit’s depth data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-a-camera-feed",
+          "level": 2,
+          "text": "Set up a camera feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a camera feed, the sample project defines a SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene/body-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains a single window. To abstract view code from window code, the sample project wraps all of its display in a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " called ",
+              "type": "text"
+            },
+            {
+              "code": "MetalDepthView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct PointCloudDepthSample: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            MetalDepthView()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Depth Cloud draws graphics using Metal, the sample project displays the camera feed by defining custom GPU code. The sample project accesses ARKit’s camera feed in its ",
+              "type": "text"
+            },
+            {
+              "code": "ARReceiver.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and wraps it in a custom ",
+              "type": "text"
+            },
+            {
+              "code": "ARData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for eventual transfer to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arData.colorImage = frame.capturedImage"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Ensure-device-support-and-start-a-session",
+          "level": 2,
+          "text": "Ensure device support and start a session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices require the LiDAR Scanner to access the scene’s depth. In the depth-visualization view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene/body-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " definition, the app prevents running an unsupported configuration by checking if the device supports scene depth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if !ARWorldTrackingConfiguration.supportsFrameSemantics([.sceneDepth, .smoothedSceneDepth]) {",
+            "    Text(\"Unsupported Device: This app requires the LiDAR Scanner to access the scene's depth.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To separate data acquisition from its display, the sample app wraps ARKit calls in its ",
+              "type": "text"
+            },
+            {
+              "code": "ARProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var arProvider: ARProvider = ARProvider()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The AR provider runs a world-tracking configuration and requests information about the scene’s depth by configuring the scene-depth frame semantics (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let config = ARWorldTrackingConfiguration()",
+            "config.frameSemantics = [.sceneDepth, .smoothedSceneDepth]",
+            "arSession.run(config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-the-scenes-depth",
+          "level": 2,
+          "text": "Access the scene’s depth",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to the configuration’s scene-depth frame semantics, the framework defines the frame’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". on the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didUpdate frame: ARFrame) {",
+            "    if(frame.sceneDepth != nil) && (frame.smoothedSceneDepth != nil) {",
+            "        arData.depthImage = frame.sceneDepth?.depthMap",
+            "        arData.depthSmoothImage = frame.smoothedSceneDepth?.depthMap"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample project draws its graphics using Metal, the app’s CPU code bundles up data that its GPU code needs to display the experience. To model the physical environment with a point cloud, the app needs camera capture data to color each point and depth data to position them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project positions each point in GPU code, so the CPU side packages the depth data in a Metal texture for use on the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "depthContent.texture = lastArData?.depthImage?.texture(withFormat: .r32Float, planeIndex: 0, addToCache: textureCache!)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project colors each point in GPU code, so the CPU side packages the camera data for use on the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "colorYContent.texture = lastArData?.colorImage?.texture(withFormat: .r8Unorm,",
+            "                                                        planeIndex: 0,",
+            "                                                        addToCache: textureCache!)!",
+            "colorCbCrContent.texture = lastArData?.colorImage?.texture(withFormat: .rg8Unorm,",
+            "                                                           planeIndex: 1,",
+            "                                                           addToCache: textureCache!)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Convert-camera-data",
+          "level": 2,
+          "text": "Convert camera data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "pointCloudVertexShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function (see the sample project’s ",
+              "type": "text"
+            },
+            {
+              "code": "shaders.metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file), the sample project creates a point for every value in the depth texture and determines the point’s color by sampling that depth-texture value’s position in the camera image. Each vertex calculates its ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " location in the camera image by converting its position in the one-dimensional vertex array, to a 2D position in the depth texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uint2 pos;",
+            "// Count the rows that are depth-texture-width wide to determine the y-value.",
+            "pos.y = vertexID / depthTexture.get_width();",
+            "",
+            "// The x-position is the remainder of the y-value division.",
+            "pos.x = vertexID % depthTexture.get_width();"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system’s camera-capture pipeline represents data in YUV format, which the sample project models using a luminance map (",
+              "type": "text"
+            },
+            {
+              "code": "colorYtexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and a blue versus red chromaticity map (",
+              "type": "text"
+            },
+            {
+              "code": "colorCbCrtexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). The GPU color format is RGBA, which requires the sample project to convert the camera data to display it. The shader samples the luminance and chromaticity textures at the vertex’s ",
+              "type": "text"
+            },
+            {
+              "code": "x,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " position and applies a static conversion factor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constexpr sampler textureSampler (mag_filter::linear,",
+            "                                  min_filter::linear);",
+            "out.coor = { pos.x / (depthTexture.get_width() - 1.0f), pos.y / (depthTexture.get_height() - 1.0f) };",
+            "half y = colorYtexture.sample(textureSampler, out.coor).r;",
+            "half2 uv = colorCbCrtexture.sample(textureSampler, out.coor).rg - half2(0.5h, 0.5h);",
+            "// Convert YUV to RGB inline.",
+            "half4 rgbaResult = half4(y + 1.402h * uv.y, y - 0.7141h * uv.y - 0.3441h * uv.x, y + 1.772h * uv.x, 1.0h);"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For brevity, the sample project demonstrates YUV to RGB conversion inline. To see an example that extracts static conversion factors to a 4 x 4 matrix, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-up-the-point-cloud-view",
+          "level": 2,
+          "text": "Set up the point cloud view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a camera feed by using a point cloud, the project defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, ",
+              "type": "text"
+            },
+            {
+              "code": "MetalPointCloud",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that displays Metal content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MetalPointCloud: UIViewRepresentable {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project inserts the point cloud view into the view hierarchy by embedding it within the ",
+              "type": "text"
+            },
+            {
+              "code": "MetalDepthView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HStack() {",
+            "    Spacer()",
+            "    MetalPointCloud(arData: arProvider,",
+            "                    confSelection: $selectedConfidence,",
+            "                    scaleMovement: $scaleMovement).zoomOnTapModifier(",
+            "                        height: geometry.size.width / 2 / sizeW * sizeH,",
+            "                        width: geometry.size.width / 2, title: \"\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As representable of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the Metal texture view defines a coordinator, ",
+              "type": "text"
+            },
+            {
+              "code": "CoordinatorPointCloud",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeCoordinator() -> CoordinatorPointCloud {",
+            "    return CoordinatorPointCloud(arData: arData, confSelection: $confSelection, scaleMovement: $scaleMovement)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The point cloud coordinator extends ",
+              "type": "text"
+            },
+            {
+              "code": "MTKCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which the sample shares across its other views that display Metal content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "final class CoordinatorPointCloud: MTKCoordinator {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "MTKCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handles relevant events that occur throughout the Metal view life cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MTKCoordinator: NSObject, MTKViewDelegate {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "UIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representable’s ",
+              "type": "text"
+            },
+            {
+              "code": "makeUIView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation, the sample project assigns the coordinator as the view’s delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func makeUIView(context: UIViewRepresentableContext<MetalPointCloud>) -> MTKView {",
+            "    let mtkView = MTKView()",
+            "    mtkView.delegate = context.coordinator"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, the display link then calls the Metal coordinator’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate/draw(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation to issue CPU-side rendering commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func draw(in view: MTKView) {",
+            "    content = arData.depthContent",
+            "    let confidence = (arData.isToUpsampleDepth) ? arData.upscaledConfidence:arData.confidenceContent",
+            "    guard arData.lastArData != nil else {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-point-cloud-with-gpu-code",
+          "level": 2,
+          "text": "Display the point cloud with gpu code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project draws the point cloud on the GPU. The point cloud view packages up several textures that its corresponding GPU code requires as input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "encoder.setVertexTexture(content.texture, index: 0)",
+            "encoder.setVertexTexture(confidence.texture, index: 1)",
+            "encoder.setVertexTexture(arData.colorYContent.texture, index: 2)",
+            "encoder.setVertexTexture(arData.colorCbCrContent.texture, index: 3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, the point cloud view packages up several calculated properties that its corresponding GPU code requires as input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "encoder.setVertexBytes(&pmv, length: MemoryLayout<matrix_float4x4>.stride, index: 0)",
+            "encoder.setVertexBytes(&cameraIntrinsics, length: MemoryLayout<matrix_float3x3>.stride, index: 1)",
+            "encoder.setVertexBytes(&confSelection, length: MemoryLayout<Int>.stride, index: 2)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To call into the GPU functions that draw the point cloud, the sample defines a pipeline state that queues up its ",
+              "type": "text"
+            },
+            {
+              "code": "pointCloudVertexShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "pointCloudFragmentShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Metal functions (see the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "shaders.metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pipelineDescriptor.vertexFunction = library.makeFunction(name: \"pointCloudVertexShader\")",
+            "pipelineDescriptor.fragmentFunction = library.makeFunction(name: \"pointCloudFragmentShader\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the GPU, the point cloud vertex shader determines each point’s color and position on the screen. In the function signature, the vertex shader receives the input textures and properties sent by the CPU code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vertex ParticleVertexInOut pointCloudVertexShader(",
+            "    uint vertexID [[ vertex_id ]],",
+            "    texture2d<float, access::read> depthTexture [[ texture(0) ]],",
+            "    texture2d<float, access::read> confTexture [[ texture(1) ]],",
+            "    constant float4x4& viewMatrix [[ buffer(0) ]],",
+            "    constant float3x3& cameraIntrinsics [[ buffer(1) ]],",
+            "    constant int &confFilterMode [[ buffer(2) ]],",
+            "    texture2d<half> colorYtexture [[ texture(2) ]],",
+            "    texture2d<half> colorCbCrtexture [[ texture(3) ]]",
+            "    )",
+            "{ // ..."
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code bases the point’s world position on its location and depth in the camera feed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float xrw = ((int)pos.x - cameraIntrinsics[2][0]) * depth / cameraIntrinsics[0][0];",
+            "float yrw = ((int)pos.y - cameraIntrinsics[2][1]) * depth / cameraIntrinsics[1][1];",
+            "float4 xyzw = { xrw, yrw, depth, 1.f };"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The point’s screen position is a product of its world position and the argument projection matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float4 vecout = viewMatrix * xyzw;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vertex function outputs the point’s screen position, along with the point’s color as a converted RGB result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "out.color = rgbaResult;",
+            "out.clipSpacePosition = vecout;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fragment shader receives the vertex function output in its function signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment half4 pointCloudFragmentShader(",
+            "    ParticleVertexInOut in [[stage_in]])"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After filtering any points that are too close to the device’s camera, the fragment shader queues the remaining points for display by returning the color of each vertex.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (in.depth < 1.0f)",
+            "    discard_fragment();",
+            "else",
+            "{",
+            "    return in.color;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-the-clouds-orientation-to-convey-depth",
+          "level": 2,
+          "text": "Change the cloud’s orientation to convey depth",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user views the point cloud straight on, it appears visually equivalent to the 2D camera image. But, when the sample app rotates the point cloud slightly, the 3D shape of the point cloud becomes apparent to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "perspective-change",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The point cloud’s screen position is a factor of its projection matrix. In the sample project’s ",
+              "type": "text"
+            },
+            {
+              "code": "calcCurrentPMVMatrix",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function (see ",
+              "type": "text"
+            },
+            {
+              "code": "MetalPointCloud.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), the function sets up a basic matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func calcCurrentPMVMatrix(viewSize: CGSize) -> matrix_float4x4 {",
+            "    let projection: matrix_float4x4 = makePerspectiveMatrixProjection(fovyRadians: Float.pi / 2.0,",
+            "                                                                      aspect: Float(viewSize.width) / Float(viewSize.height),",
+            "                                                                      nearZ: 10.0, farZ: 8000.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To adjust the point cloud’s orientation with respect to the user, the sample app conversely sets up translation and rotation offsets for the camera’s pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Randomize the camera scale.",
+            "translationCamera.columns.3 = [150 * sinf, -150 * cossqr, -150 * scaleMovement * sinsqr, 1]",
+            "// Randomize the camera movement.",
+            "cameraRotation = simd_quatf(angle: staticAngle, axis: SIMD3(x: -sinsqr / 3, y: -cossqr / 3, z: 0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project applies the camera pose offset to the original projection matrix before returning the adjusted result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let rotationMatrix: matrix_float4x4 = matrix_float4x4(cameraRotation)",
+            "let pmv = projection * rotationMatrix * translationCamera * translationOrig * orientationOrig",
+            "return pmv",
+            "//#-end-code-li"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enlarge-the-depth-buffer",
+          "level": 2,
+          "text": "Enlarge the depth buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit’s depth map contains precise, low-resolution depth values for objects in the camera feed. To create the illusion of a high-resolution depth map, the sample app offers UI to enlarge the depth map using Metal Performance Shaders (MPS). By filling in gaps in the framework’s depth information, the enlarged depth buffer creates the illusion of more depth information in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "point-cloud-from-enlarged-scene-depth-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project uses MPS to enlarge the depth buffer; see the ",
+              "type": "text"
+            },
+            {
+              "code": "ARDataProvider.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The ",
+              "type": "text"
+            },
+            {
+              "code": "ARProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class initializer creates a guided filter to enlarge the depth buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guidedFilter = MPSImageGuidedFilter(device: metalDevice, kernelDiameter: guidedFilterKernelDiameter)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To align the sizes of the related visuals — the camera image and confidence texture \u001f\u001f\u001f\u001f— the AR provider uses an MPS bilinear scale filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mpsScaleFilter = MPSImageBilinearScale(device: metalDevice)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "processLastARData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " routine, the AR provider creates an additional Metal command buffer for a compute pass that enlarges the depth buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if isToUpsampleDepth {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The AR provider converts the input depth data to RGB format, as required by the guided filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let convertYUV2RGBFunc = lib.makeFunction(name: \"convertYCbCrToRGBA\")",
+            "pipelineStateCompute = try metalDevice.makeComputePipelineState(function: convertYUV2RGBFunc!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After encoding the bilinear scale and guided filters, the AR provider sets the enlarged depth buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "depthContent.texture = destDepthTexture"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-depth-and-confidence",
+          "level": 2,
+          "text": "Display depth and confidence",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the point cloud visualization, the sample app adds simultaneous depth distance and confidence visualizations. The user refers to either visualization at any time during the experience to better grasp the accuracy of the LiDAR Scanner’s reading of the physical environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "depth-and-confidence-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the depth and confidence visualizations, Depth Cloud defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, ",
+              "type": "text"
+            },
+            {
+              "code": "MetalTextureView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that displays Metal content (see the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "MetalTextureView.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file). This setup is similar to ",
+              "type": "text"
+            },
+            {
+              "code": "MetalDepthView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", except that the sample app stores the view’s displayable content in a single texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "encoder.setFragmentTexture(content.texture, index: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project inserts the depth visualization view into the view hierarchy by embedding it within the ",
+              "type": "text"
+            },
+            {
+              "code": "MetalDepthView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " layout in the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "MetalViewSample.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.horizontal) {",
+            "    HStack() {",
+            "        MetalTextureViewDepth(content: arProvider.depthContent, confSelection: $selectedConfidence)",
+            "            .zoomOnTapModifier(height: sizeH, width: sizeW, title: isToUpsampleDepth ? \"Upscaled Depth\" : \"Depth\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The depth visualization view’s contents consist of a texture that contains depth data from the AR session’s current frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "depthContent.texture = lastArData?.depthImage?.texture(withFormat: .r32Float, planeIndex: 0, addToCache: textureCache!)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The depth-texture view’s coordinator, ",
+              "type": "text"
+            },
+            {
+              "code": "CoordinatorDepth",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", assigns a shader that fills the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pipelineDescriptor.fragmentFunction = library.makeFunction(name: \"planeFragmentShaderDepth\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "planeFragmentShaderDepth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader (see ",
+              "type": "text"
+            },
+            {
+              "code": "shaders.metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") converts the depth values into RGB, as required to display them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment half4 planeFragmentShaderDepth(ColorInOut in [[stage_in]], texture2d<float, access::sample> textureDepth [[ texture(0) ]])",
+            "{",
+            "    constexpr sampler colorSampler(address::clamp_to_edge, filter::nearest);",
+            "    float4 s = textureDepth.sample(colorSampler, in.texCoord);",
+            "    ",
+            "    // Size the color gradient to a maximum distance of 2.5 meters.",
+            "    // The LiDAR Scanner supports a value no larger than 5.0; the",
+            "    // sample app uses a value of 2.5 to better distinguish depth",
+            "    // in smaller environments.",
+            "    half val = s.r / 2.5h;",
+            "    half4 res = getJetColorsFromNormalizedVal(val);",
+            "    return res;"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, the project inserts the confidence visualization view into the view hierarchy by embedding it within the ",
+              "type": "text"
+            },
+            {
+              "code": "MetalDepthView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " layout in the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "MetalViewSample.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MetalTextureViewConfidence(content: arProvider.confidenceContent)",
+            "    .zoomOnTapModifier(height: sizeH, width: sizeW, title: \"Confidence\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The confidence visualization view’s contents consist of a texture that contains confidence data from the AR session’s current frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "confidenceContent.texture = lastArData?.confidenceImage?.texture(withFormat: .r8Unorm, planeIndex: 0, addToCache: textureCache!)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The confidence-texture view’s coordinator, ",
+              "type": "text"
+            },
+            {
+              "code": "CoordinatorConfidence",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", assigns a shader that fills the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pipelineDescriptor.fragmentFunction = library.makeFunction(name: \"planeFragmentShaderConfidence\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "planeFragmentShaderConfidence",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader (see ",
+              "type": "text"
+            },
+            {
+              "code": "shaders.metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") converts the depth values into RGB, as required to display them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment half4 planeFragmentShaderConfidence(ColorInOut in [[stage_in]], texture2d<float, access::sample> textureIn [[ texture(0) ]])",
+            "{",
+            "    constexpr sampler colorSampler(address::clamp_to_edge, filter::nearest);",
+            "    float4 s = textureIn.sample(colorSampler, in.texCoord);",
+            "    float res = round( 255.0f*(s.r) ) ;",
+            "    int resI = int(res);",
+            "    half4 color = half4(0.0h, 0.0h, 0.0h, 0.0h);",
+            "    if (resI == 0)",
+            "        color = half4(1.0h, 0.0h, 0.0h, 1.0h);",
+            "    else if (resI == 1)",
+            "        color = half4(0.0h, 1.0h, 0.0h, 1.0h);",
+            "    else if (resI == 2)",
+            "        color = half4(0.0h, 0.0h, 1.0h, 1.0h);",
+            "    return color;",
+            "}"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "86c67991e91e/DisplayingAPointCloudUsingSceneDepth.zip": {
+      "checksum": "86c67991e91ed436695d5416fe6ae89050a2eb8c0d69afa22871233a6c5fc813fa825bfa522c08027369879fb7487204efc8253260b93a067f45bb8389c8e3c4",
+      "identifier": "86c67991e91e/DisplayingAPointCloudUsingSceneDepth.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/86c67991e91e/DisplayingAPointCloudUsingSceneDepth.zip"
+    },
+    "depth-and-confidence-annotated": {
+      "alt": "A figure that shows three different app views. An image on the left, labeled \\\"Point cloud,\\\" depicts a stippling of dots on a black background that models the look of the physical environment; an apple rests on a desk by a window with blinds that are half open. An image in the middle, labeled \\\"Depth visualization,\\\" displays the features of the environment using a range of colors. Features close to the camera are dark blue, such as the close edge of the desk and the blinds. Further away features are light blue, such as the wall and window. The most distant environment features are yellow and red, such as the obscured areas beyond the window. An image on the right, labeled \\\"Confidence visualization,\\\" depicts the features of the physical environment using three colors. The desk and wall areas are blue, indicating the app's confidence in their depth accuracy. The blinds are green, indicating a slight doubt in their depth accuracy. The areas extending beyond the window are red, indicating the most doubt in depth value accuracy.]",
+      "identifier": "depth-and-confidence-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/944576bdd031dd02065817066890862b/depth-and-confidence-annotated.jpg"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth": {
+      "abstract": [
+        {
+          "text": "An option that provides the distance from the device to real-world objects viewed through the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/sceneDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrameSemanticSceneDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct/scenedepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth": {
+      "abstract": [
+        {
+          "text": "An option that provides the distance from the device to real-world objects, averaged across several frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smoothedSceneDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/smoothedSceneDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrameSemanticSmoothedSceneDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "smoothedSceneDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct/smoothedscenedepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData": {
+      "abstract": [
+        {
+          "text": "An object that describes the distance to regions of the real world from the plane of the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARDepthData",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap": {
+      "abstract": [
+        {
+          "text": "The framework’s confidence in the accuracy of the depth-map data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confidenceMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/confidenceMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confidenceMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "confidenceMap",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata/confidencemap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap": {
+      "abstract": [
+        {
+          "text": "The estimated distance from the device to its environment, in meters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData/depthMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthMap",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata/depthmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame": {
+      "abstract": [
+        {
+          "text": "A video image captured as part of a session with position-tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage": {
+      "abstract": [
+        {
+          "text": "A pixel buffer containing the image captured by the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturedImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturedImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturedImage",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/capturedimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPointCloud": {
+      "abstract": [
+        {
+          "text": "A collection of points in the world coordinate space of the AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPointCloud"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPointCloud"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPointCloud",
+      "type": "topic",
+      "url": "/documentation/arkit/arpointcloud"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame": {
+      "abstract": [
+        {
+          "text": "The most recent still frame captured by the active camera feed, including ARKit’s interpretation of it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/currentframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth": {
+      "abstract": [
+        {
+          "text": "Apply virtual fog to the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a fog effect using scene depth",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-fog-effect-using-scene-depth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal": {
+      "abstract": [
+        {
+          "text": "Control rendering of your app’s virtual content on top of a camera feed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying an AR Experience with Metal",
+      "type": "topic",
+      "url": "/documentation/arkit/displaying-an-ar-experience-with-metal"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/environmental-analysis": {
+      "abstract": [
+        {
+          "text": "Analyze the video from the cameras and the accompanying data, and use ray-casting and depth-map information to determine the location of items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/environmental-analysis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Environmental Analysis",
+      "type": "topic",
+      "url": "/documentation/arkit/environmental-analysis"
+    },
+    "doc://com.apple.documentation/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/Metal"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for responding to a MetalKit view’s drawing and resizing events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKViewDelegate",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKViewDelegate"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate/draw(in:)": {
+      "abstract": [
+        {
+          "text": "Draws the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTKView",
+          "text": "MTKView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate/draw(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:)",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKViewDelegate/draw(in:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Scene": {
+      "abstract": [
+        {
+          "text": "A part of an app’s user interface with a life cycle managed by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Scene"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Scene/body-swift.property": {
+      "abstract": [
+        {
+          "text": "The content and behavior of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI12SceneBuilderV",
+          "text": "SceneBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Scene/body-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Scene/body-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIViewRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc20/10611/": {
+      "identifier": "https://developer.apple.com/wwdc20/10611/",
+      "title": "10611: Explore ARKit 4",
+      "titleInlineContent": [
+        {
+          "text": "10611: Explore ARKit 4",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10611/"
+    },
+    "perspective-change": {
+      "alt": "A figure that compares the look of the point cloud from different angles. An image on the left, labeled \\\"Viewing the point cloud straight on,\\\" depicts a stippling of dots on a black background that models the look of the physical environment; an apple rests on a desk by a window with blinds that are half open. An image in the middle, labeled \\\"Rotating the point cloud clockwise about the y-axis,\\\" depicts the stippling tipped 45 degrees clockwise to reveal a dark area cast to the right of the apple that contains no dots. An image on the right, labeled \\\"Rotating the point cloud counter clockwise about the y-axis,\\\" depicts the stippling tipped 45 degrees counter clockwise to reveal a dark area cast to the left of the apple that contains no dots.",
+      "identifier": "perspective-change",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dcd36cf03f6cd85a0527ce094c8e3380/perspective-change.jpg"
+        }
+      ]
+    },
+    "point-cloud-from-enlarged-scene-depth-annotated": {
+      "alt": "A figure that compares the look of the point cloud before and after enlarging the depth buffer. An image on the left, labeled \\\"Point cloud from scene depth,\\\" depicts a stippling of dots on a black background that models the look of the physical environment; an apple rests on a desk by a window with blinds that are half open. The stippling tips 45 degrees counter clockwise to reveal a dark area cast to the left of the apple that contains no dots. An image on the right, labeled \\\"Point cloud from enlarged scene depth,\\\" depicts a similar scene. More dots compose the stippling, which fills in gaps in the drawing. The dark area to the left of the apple is much less prominent.",
+      "identifier": "point-cloud-from-enlarged-scene-depth-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a993e48d4e5f5ada213cfdcef32db30/point-cloud-from-enlarged-scene-depth-annotated.jpg"
+        }
+      ]
+    },
+    "point-cloud-from-scene-depth-annotated": {
+      "alt": "A figure that compares the look of the physical environment with the app's display. An image on the left, labeled \\\"Camera image,\\\" depicts the physical environment as viewed by the device's camera; an apple rests on a desk by a window with blinds that are half open. An image on the right, labeled \\\"Point cloud from scene depth,\\\" depicts a stippling of dots on a black background that models the look of the physical environment. The stippling tips 45 degrees around the y-axis to reveal an area behind the apple that's dark because it contains no dots.",
+      "identifier": "point-cloud-from-scene-depth-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63d903acc3cd3bc8a8627b8fd1b641bf/point-cloud-from-scene-depth-annotated.jpg"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "86c67991e91e/DisplayingAPointCloudUsingSceneDepth.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Video-Frame-Analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+        "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+        "doc://com.apple.arkit/documentation/ARKit/ARDepthData"
+      ],
+      "title": "Video Frame Analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Video-Frame-Analysis",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+                "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+                "doc://com.apple.arkit/documentation/ARKit/ARDepthData"
+              ],
+              "title": "Video Frame Analysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1confidenceMap/title",
+          "value": "confidenceMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1confidenceMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "confidenceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/title",
+          "value": "ARPointCloud"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPointCloud"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPointCloud"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1smoothedSceneDepth/title",
+          "value": "ARFrameSemanticSmoothedSceneDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1smoothedSceneDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemanticSmoothedSceneDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedImage/title",
+          "value": "capturedImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "capturedImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1sceneDepth/title",
+          "value": "ARFrameSemanticSceneDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1sceneDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemanticSceneDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKViewDelegate~1draw(in:)/title",
+          "value": "drawInMTKView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKViewDelegate~1draw(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawInMTKView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MTKView",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "view"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1depthMap/title",
+          "value": "depthMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData~1depthMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1currentFrame/title",
+          "value": "currentFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1currentFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKViewDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/title",
+          "value": "ARDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/displaying-a-point-cloud-using-scene-depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/displaying-a-point-cloud-using-scene-depth"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

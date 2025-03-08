@@ -1,0 +1,896 @@
+{
+  "abstract": [
+    {
+      "text": "Internationalize your app’s strings, images, and other resource types to prepare for the translation process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/supporting-multiple-languages-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "supporting-multiple-languages-in-your-app-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting multiple languages in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multilingual apps are apps that can run in more than one language and region. Making your app multilingual doesn’t only enable your app to run natively in more regions of the world, it gives your customers a better overall experience, while bringing your app to a wider audience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "supporting-multiple-languages-in-your-app-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your app multilingual, you first need to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "internationalize",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " it. This process involves preparing assets in your app so that a localizer can translate them into different languages and regional conventions. For example, dates in some countries appear in a day-month-year format, while in others, the month comes first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you internationalize your app, you need to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "localize",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " it. Localization is the process of translating your assets into other languages for various regions. During this process, you export the relevant strings and other resources from your app, and give them to a localizer for translation. The localizer gives you back translated versions of your assets, which you import into your app. You then test the translations in your app to make sure everything works.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Internationalize-your-code",
+          "level": 2,
+          "text": "Internationalize your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step to making your app multilingual is to internationalize your code to handle different languages and regional conventions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This process involves writing your code in such a way that your app can automatically extract the language resources it needs based on the current language settings of your user’s device. The Foundation framework, along with other Apple frameworks, supports this internationalization process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When writing code for internationalization, consider the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "User-facing text",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". People are more comfortable using apps when the text appears in the language and region of their device. Use localized versions of the string formatters to prepare your app’s text for localization. For more information about user-facing text, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10155/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Dates, currencies, and numbers",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Different regions have different formats for dates, currencies, and numbers. Use  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the Foundation framework to translate these strings correctly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Pluralization",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Languages have different grammatical rules for handling plurals of nouns and units. Use a string catalog to localize formatted strings that contain variable amounts. For more information about pluralization, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Device type",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". The device your app runs on affects the text it displays. The display on an Apple Watch differs from that on a Mac. Vary the text you present depending upon the device your app is running on. For more information about localizing text for a device type, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Grammatical agreement",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Many languages rely on gender for their grammar. Without knowing the subject’s gender or pronoun preferences, some localized strings may have grammatical errors, resulting in a poor user experience. Use the automatic grammar agreement APIs in Foundation, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", to represent grammatical gender in localized text. For more information about grammatical agreement, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10153/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Text direction",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". European languages read left to right, and languages like Arabic and Hebrew read right to left. Use the layout tools in SwiftUI and Xcode to control text and UI element orientation, and to flip image direction when necessary. For more information about text direction, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10107/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Tall languages",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Languages like Arabic, Hindi, and Thai require significantly more vertical space for their characters than Latin languages do. Additionally, Chinese, German, Japanese, and Korean have language-specific conventions for wrapping and hyphenation. To prevent clipping of words and letters, and to ensure proper spacing of text, use Dynamic Type. For more information about Dynamic Type, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/uikit/uifont/scaling_fonts_automatically/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10058/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Sounds, images and assets",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". App assets like sounds, images, and colors can vary across language and region. Use an asset catalog to localize colors, images, and sounds in your app. For more information about adding resources to asset catalogs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-resources-to-localizations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-assets-in-a-catalog",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localize-your-assets",
+          "level": 2,
+          "text": "Localize your assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you internationalize your app, it’s ready for localization. To localize your assets, export localizable text from Xcode using standard file formats and submit them to a localization team for translation into your app’s supported languages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To localize your app, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Export your app assets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Translate those assets into other languages and regional conventions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import the translated assets into your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about exporting and importing app assets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10155/",
+              "isActive": true,
+              "overridingTitle": "Discover String Catalogs",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Discover String Catalogs",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-translations",
+          "level": 2,
+          "text": "Test your translations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you localize your app’s assets, you need to test the translations. Run your app in each language, and for each region you support, to thoroughly test the localized assets. For more information about testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-resources-to-localizations": {
+      "abstract": [
+        {
+          "text": "Include more resources in the localizations you add to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-resources-to-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding resources to localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-resources-to-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog": {
+      "abstract": [
+        {
+          "text": "Use a string catalog to translate text, handle plurals, and vary the text your app displays on specific devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing and varying text with a string catalog",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-and-varying-text-with-a-string-catalog"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-assets-in-a-catalog": {
+      "abstract": [
+        {
+          "text": "Use asset catalogs to localize colors, images, symbols, watch complications, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-assets-in-a-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing assets in a catalog",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-assets-in-a-catalog"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app": {
+      "abstract": [
+        {
+          "text": "Run your app in each language and region you support to thoroughly test your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-localizations-when-running-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing localizations when running your app",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-localizations-when-running-your-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that converts between dates and their textual representations. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numberformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that converts between numeric values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumberFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NumberFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/termofaddress": {
+      "abstract": [
+        {
+          "text": "The type for representing grammatical gender in localized text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "TermOfAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/termofaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TermOfAddress",
+      "type": "topic",
+      "url": "/documentation/foundation/termofaddress"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/uikit/uifont/scaling_fonts_automatically/": {
+      "identifier": "https://developer.apple.com/documentation/uikit/uifont/scaling_fonts_automatically/",
+      "title": "Scaling fonts automatically",
+      "titleInlineContent": [
+        {
+          "text": "Scaling fonts automatically",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/uikit/uifont/scaling_fonts_automatically/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10107/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10107/",
+      "title": "Get it right (to left)",
+      "titleInlineContent": [
+        {
+          "text": "Get it right (to left)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10107/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10058/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10058/",
+      "title": "What’s new with text and text interactions",
+      "titleInlineContent": [
+        {
+          "text": "What’s new with text and text interactions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10058/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10153/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10153/",
+      "title": "Unlock the power of grammatical agreement",
+      "titleInlineContent": [
+        {
+          "text": "Unlock the power of grammatical agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10153/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10155/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10155/",
+      "title": "Discover String Catalogs",
+      "titleInlineContent": [
+        {
+          "text": "Discover String Catalogs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10155/"
+    },
+    "supporting-multiple-languages-in-your-app-PageImage-card.png": {
+      "alt": null,
+      "identifier": "supporting-multiple-languages-in-your-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6435d4bd1a0089892c22e32a0af69482/supporting-multiple-languages-in-your-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b83ed8b6f3e89b9c97aae4e676aef5b6/supporting-multiple-languages-in-your-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "supporting-multiple-languages-in-your-app-hero": {
+      "alt": "A banner containing the word hello in multiple languages.",
+      "identifier": "supporting-multiple-languages-in-your-app-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f20b079e42434eb7c69037ff6c920b61/supporting-multiple-languages-in-your-app-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1dateformatter/title",
+          "value": "NSDateFormatter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1termofaddress/title",
+          "value": "NSTermOfAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1numberformatter/title",
+          "value": "NSNumberFormatter"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,619 @@
+{
+  "abstract": [
+    {
+      "text": "Create executable bundles to extend the functionality of other apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ExtensionFoundation",
+    "modules": [
+      {
+        "name": "ExtensionFoundation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.4",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.1",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ExtensionFoundation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensions are executable code bundles, in one app that perform functions in a second, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "host",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " app. Host apps declare ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "extension points",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that control the kinds of functionality its extensions can implement. Extensions allow iOS and Mac apps to include code that runs inside system apps. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Messages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides extension points so apps can create ",
+              "type": "text"
+            },
+            {
+              "code": "iMessage apps",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Messages automatically finds extension bundles that target its extension points and makes them available in its app drawer. A Mac app can also declare its own extension points so that other apps can extend the Mac app’s functionality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prior to macOS 13, apps use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property lists to declare and configure extensions. ExtensionKit supports this approach, but also adds the ability to configure extensions and extension points entirely in Swift code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extensions come in two basic forms: UI and non-UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Vend remote views and view controllers that the host app adds to its own view hierarchy.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "UI extensions",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Present no user interface, but perform some work on behalf of the host app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Non-UI extensions",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iMessage app, which can include sophisticated user interfaces — even entire games — is an example of a UI extension. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app intents, which gives people the ability to interact with your app using Siri, is an example of a non-UI extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ExtensionFoundation by itself to create extensions and extension points that don’t present a user interface. Use ExtensionFoundation in combination with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ExtensionKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create extensions that vend remote view controllers to the host app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension": {
+      "abstract": [
+        {
+          "text": "The properties of an app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtension",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension"
+    },
+    "doc://com.apple.documentation/documentation/ExtensionKit": {
+      "abstract": [
+        {
+          "text": "Create executable bundles to extend the functionality of other apps by presenting a user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExtensionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ExtensionKit",
+      "type": "topic",
+      "url": "/documentation/ExtensionKit"
+    },
+    "doc://com.apple.documentation/documentation/Messages": {
+      "abstract": [
+        {
+          "text": "Create app extensions that allow users to send text, stickers, media files, and interactive messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Messages",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Messages",
+      "type": "topic",
+      "url": "/documentation/Messages"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation": {
+      "abstract": [
+        {
+          "text": "Create executable bundles to extend the functionality of other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ExtensionFoundation",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtension": {
+      "abstract": [
+        {
+          "text": "Declares a type used by app extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppExtension",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/appextension"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that holds configuration options for an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/appextensionconfiguration"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionIdentity": {
+      "abstract": [
+        {
+          "text": "An object that uniquely identifies an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppExtensionIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppExtensionIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppExtensionIdentity",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/appextensionidentity"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionProcess": {
+      "abstract": [
+        {
+          "text": "An object that represents a running app extension process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppExtensionProcess"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionProcess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppExtensionProcess"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppExtensionProcess",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/appextensionprocess"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EXTENSIONKIT_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EXTENSIONKIT_EXPORT",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/extensionkit_export"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EXTENSIONKIT_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EXTENSIONKIT_EXTERN",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/extensionkit_extern"
+    },
+    "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_IMPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "EXTENSIONKIT_IMPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_IMPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EXTENSIONKIT_IMPORT",
+      "type": "topic",
+      "url": "/documentation/extensionfoundation/extensionkit_import"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "App-Extensions",
+      "identifiers": [
+        "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionIdentity",
+        "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtension",
+        "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionConfiguration"
+      ],
+      "title": "App Extensions"
+    },
+    {
+      "anchor": "Host-Apps",
+      "identifiers": [
+        "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/AppExtensionProcess"
+      ],
+      "title": "Host Apps"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_EXPORT",
+                "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_EXTERN",
+                "doc://com.apple.extensionfoundation/documentation/ExtensionFoundation/EXTENSIONKIT_IMPORT"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/extensionfoundation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/extensionfoundation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2699 @@
+{
+  "abstract": [
+    {
+      "text": "Iterate designs quickly and preview your apps’ displays across different Apple devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/previewing-your-apps-interface-in-xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Previewing your app’s interface in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Xcode previews, you can make changes to your app’s views in code, and see the result of those changes quickly in the preview canvas. Add previews to your SwiftUI, UIKit, and AppKit views using the preview macro. Then configure how you want your previews to display using Xcode’s preview canvas, or programmatically in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-preview-to-your-view-using-the-preview-macro",
+          "level": 3,
+          "text": "Add a preview to your view using the preview macro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a view in Xcode, you can display it in the preview canvas. The preview canvas shows how your view appears on different devices in a variety of configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamically-previewing-1-preview-macro",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift preview macro is a snippet of code that makes and configures your view. You use one of the preview macros — such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:body:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — to tell Xcode what to display. To manually show or hide the preview canvas, select Editor > Canvas from the Xcode menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// A SwiftUI preview.",
+                    "#Preview {",
+                    "    // The view to preview.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// A UIKIt preview.",
+                    "#Preview {",
+                    "    // The view or view controller to preview.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// An AppKit preview.",
+                    "#Preview {",
+                    "    // The view or view controller to preview.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a preview macro to your view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the source file of the view you want to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#Preview",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " macro to the view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and return an instance of the view configuration you want to display in the body of the trailing closure of the macro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct ContentView: View {",
+                    "    var body: some View {",
+                    "        // ...",
+                    "    }",
+                    "}",
+                    "",
+                    "// A SwiftUI preview.",
+                    "#Preview {",
+                    "    ContentView()",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "class WeatherViewController: UIViewController {",
+                    "    // ...",
+                    "}",
+                    "",
+                    "// A UIKit UIViewController preview.",
+                    "#Preview {",
+                    "    let viewController = WeatherViewController()",
+                    "    viewController.title = \"Current Weather\"",
+                    "    return viewController",
+                    "}",
+                    "",
+                    "class WeatherView: UIView {",
+                    "    var icon: UIImage?",
+                    "}",
+                    "",
+                    "// A UIKit UIView preview.",
+                    "#Preview {",
+                    "    let view = WeatherView()",
+                    "    if let image = UIImage(systemName: \"sun.max.fill\") {",
+                    "        view.icon = image",
+                    "    }",
+                    "    return view",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "class WeatherViewController: NSViewController {",
+                    "    // ...",
+                    "}",
+                    "",
+                    "// An AppKit NSViewController preview.",
+                    "#Preview {",
+                    "    let viewController = WeatherViewController()",
+                    "    viewController.title = \"Current Weather\"",
+                    "    return viewController",
+                    "}",
+                    "",
+                    "class WeatherView: NSView {",
+                    "    var icon: NSImage?",
+                    "}",
+                    "",
+                    "// An AppKit NSView preview.",
+                    "#Preview {",
+                    "    let view = WeatherView()",
+                    "    view.icon = NSImage(symbolName: \"sun.max.fill\", variableValue: 0.0)",
+                    "    return view",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Interact-with-your-view-in-live-mode",
+          "level": 3,
+          "text": "Interact with your view in live mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select the live or interactive preview option, your view appears and interacts just like it would on a device or simulator. Use this mode of preview to test control logic, animations, and text entry as well as responses to asynchronous code. When you select this mode, a single device preview appears in the canvas. This is the default mode for new previews you display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "dynamically-previewing-2-live-mode.mp4",
+          "type": "video"
+        },
+        {
+          "anchor": "Try-out-new-designs-quickly-with-select-mode",
+          "level": 3,
+          "text": "Try out new designs quickly with select mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In select mode, the preview displays a snapshot of your view so you can interact with your view’s UI elements in the canvas. Selecting a control in the preview highlights the corresponding line of code in the source editor. Double-clicking certain text views, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", moves focus to the source editor so you can make changes quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamically-previewing-3-select-mode",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-how-your-previews-display-with-device-settings",
+          "level": 3,
+          "text": "Control how your previews display with device settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Device settings to control how a preview displays for a specific device. For example, to see how your view looks in Dark Mode, in a landscape right orientation, with extra large text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Device settings option at the bottom of the preview canvas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Color Scheme toggle to on, and select the Dark Appearance option under Color Scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Orientation toggle to on, and select the Landscape Right option under the Orientation header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Dynamic Type toggle to on, and drag the Dynamic Type slider to the X Large text setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamically-previewing-6-device-settings",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-different-view-configurations",
+          "level": 3,
+          "text": "Test different view configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use variant mode to see how your view appears in different variations for a given configuration. For example, to test how well your view supports accessibility, select Variant mode from the bottom of the preview canvas, and select the Dynamic Type Variants option. Xcode displays your view with different sizes of text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamically-previewing-4-variant-mode",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Preview canvas supports the following variations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Displays a light and dark preview of your view.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Color Scheme Variants",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Displays your view in all the different portrait and landscape orientations.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Orientation Variants",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Displays your view in all the accessibility text sizes for your app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Dynamic Type Variants",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because variant mode shows all the values for a given device setting, you can override what variant mode displays by making further changes in Device settings. For example, to see how your view appears in different sizes of text in Dark Mode, select the Dynamic Type Variants option from Variant mode, and then enable the Dark Mode color scheme in Device settings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Experiment",
+          "style": "experiment",
+          "type": "aside"
+        },
+        {
+          "anchor": "Preview-on-a-specific-device",
+          "level": 3,
+          "text": "Preview on a specific device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see how your view displays on a specific device, select the Preview destination picker option, and then select the device you want your preview to display. When you do, Xcode displays a preview of your view on that device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamically-previewing-5-preview-destination",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Capture-specific-previews-in-code",
+          "level": 3,
+          "text": "Capture specific previews in code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the preview options Xcode provides, you can also customize and configure previews you want to reuse programmatically in code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can add a name to more easily track what each preview displays. When you pass the name of your preview as a string into the preview macro, the name appears in the title of the preview in the preview canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A preview with an assigned name.",
+            "#Preview(\"2x2 Grid Portrait\") {",
+            "   Content()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also control how your preview displays by passing one or more configuration traits as a variadic argument list into the preview macro. For example, to display your view in the landscape left orientation, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeveloperToolsSupport/PreviewTrait/landscapeLeft",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type property into the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeveloperToolsSupport/Preview/init(_:traits:body:)-8pemr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " preview initializer to tell Xcode which orientation to display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// A SwiftUI preview with name and orientation.",
+                    "#Preview(\"2x2 grid\", traits: .landscapeLeft) {",
+                    "    CollageView(layout: .twoByTwoGrid)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// A UIKit preview with name and orientation.",
+                    "#Preview(\"Camera setting sunning day\", traits: .landscapeLeft) {",
+                    "    let viewController = CameraViewController()",
+                    "    if let image = UIImage(systemName: \"sun.max.fill\") {",
+                    "        viewController.lastImage = image",
+                    "    }",
+                    "    return viewController",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// An AppKit preview with name and orientation.",
+                    "#Preview(\"Camera setting sunning day\", traits: .landscapeLeft) {",
+                    "    let viewController = CameraViewController()",
+                    "    viewController.lastImage = NSImage(symbolName: \"sun.max.fill\", variableValue: 0.0)",
+                    "    return viewController",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Use-inline-dynamic-properties-with-Previewable",
+          "level": 3,
+          "text": "Use inline dynamic properties with Previewable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a view depends on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper, you can create a functional binding for that property and pass it into your preview using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Previewable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro. This macro works on any variable conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DynamicProperty",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlayButton: View {",
+            "    @Binding var isPlaying: Bool",
+            "",
+            "    var body: some View {",
+            "        Button(action: {",
+            "            self.isPlaying.toggle()",
+            "        }) {",
+            "            Image(systemName: isPlaying ? \"pause.circle\" : \"play.circle\")",
+            "            .resizable()",
+            "            .scaledToFit()",
+            "            .frame(maxWidth: 80)",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "#Preview {",
+            "    // Tag the dynamic property with `Previewable`.",
+            "    @Previewable @State var isPlaying = true",
+            "",
+            "    // Pass it into your view.",
+            "    PlayButton(isPlaying: $isPlaying)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tagging a dynamic property with the ",
+              "type": "text"
+            },
+            {
+              "code": "Previewable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro gets rid of the need to create wrapper views in previews.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Previewable()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is a SwiftUI only macro and doesn’t apply to UIKit or AppKit previews.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Make-complex-objects-reusable-with-a-preview-modifier",
+          "level": 3,
+          "text": "Make complex objects reusable with a preview modifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid recreating expensive objects for every preview that needs them, in SwiftUI you can create these objects once with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then pass the preview modifier into your preview using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:traits:_:body:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Expensive objects — such as objects that make network calls, perform disk access, or just take considerable time and effort to setup — can make your previews take longer to load. By creating these expensive objects once, and sharing them across all your previews, you make your previews more efficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you have an app with an expensive ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Observable",
+            "class AppState {",
+            "    // An expensive, complex, bulky object.",
+            "    var expensiveObject = \"Some expensive object\"",
+            "}",
+            "",
+            "@main",
+            "struct MyApp: App {",
+            "    @State private var appState = AppState()",
+            "",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ComplexView()",
+            "                .environment(appState)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You reuse that expensive object across multiple views in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ComplexView: View {",
+            "    @Environment(AppState.self) var appState",
+            "",
+            "    var body: some View {",
+            "        Text(\"\\(appState.expensiveObject)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For every view you want to preview, you recreate and pass in that expensive object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#Preview {",
+            "    ComplexView()",
+            "        // Potentially expensive if `AppState` is large or complex.",
+            "        .environment(AppState())",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead, define the expensive object once and share it across multiple previews using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define a structure conforming to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PreviewModifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the static ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier/makeSharedContext()-4zi8r",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function returning the object with the expensive state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inject that shared context into the view you want to preview using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier/body(content:context:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the modifier to the preview using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:traits:_:body:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " macro.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "// Create a struct conforming to the PreviewModifier protocol.",
+            "struct SampleData: PreviewModifier {",
+            "",
+            "    // Define the object to share and return it as a shared context.",
+            "    static func makeSharedContext() async throws -> AppState {",
+            "        let appState = AppState()",
+            "        appState.expensiveObject = \"An expensive object to reuse in previews\"",
+            "        return appState",
+            "    }",
+            "",
+            "    func body(content: Content, context: AppState) -> some View {",
+            "        // Inject the object into the view to preview.",
+            "        content",
+            "            .environment(context)",
+            "    }",
+            "}",
+            "",
+            "// Add the modifier to the preview.",
+            "#Preview(traits: .modifier(SampleData())) {",
+            "    ComplexView()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Pass-views-only-the-data-they-need",
+          "level": 3,
+          "text": "Pass views only the data they need",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating views, pass in only the data the view needs to display. Avoid passing in objects that fetch data; objects make setting up a view’s preview more complicated and less performant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead, create views with the minimal amount of data they need, favoring simpler, immutable data types. Creating views this way makes testing and previewing your views easier and helps them perform better.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how simple data types, like ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "enum",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", can be used to preview a view in various ways using the preview macro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct CollaboratorCell: View {",
+                    "    // Construct your view with only the data it needs.",
+                    "    let name: String",
+                    "    let image: Image?",
+                    "    let connectionStatus: ConnectionStatus",
+                    "    ",
+                    "    enum ConnectionStatus {",
+                    "        case online",
+                    "        case offline",
+                    "    }",
+                    "",
+                    "    // ...",
+                    "}",
+                    "",
+                    "#Preview(\"Supported cell combinations\", traits: .sizeThatFitsLayout) {",
+                    "    let image = Image(systemName: \"person.circle\")",
+                    "    return VStack {",
+                    "        // Then test each scenario in your preview macro.",
+                    "        CollaboratorCell(name: \"Tom Clark\", image: nil, connectionStatus: .offline)",
+                    "        CollaboratorCell(name: \"Tom Clark\", image: image, connectionStatus: .offline)",
+                    "        CollaboratorCell(name: \"Tom Clark\", image: nil, connectionStatus: .online)",
+                    "        CollaboratorCell(name: \"Tom Clark\", image: image, connectionStatus: .online)",
+                    "        CollaboratorCell(name: \"Tom Long Middle Clark\", image: nil, connectionStatus: .offline)",
+                    "        CollaboratorCell(name: \"Tom Long Middle Clark\", image: image, connectionStatus: .online)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "class CollaboratorCell: UIView {",
+                    "    // Construct your view with only the data it needs.",
+                    "    let name: String",
+                    "    let image: UIImage?",
+                    "    let connectionStatus: ConnectionStatus",
+                    "    ",
+                    "    enum ConnectionStatus {",
+                    "        case online",
+                    "        case offline",
+                    "    }",
+                    "    ",
+                    "    // ...",
+                    "}",
+                    "",
+                    "#Preview(\"Supported cell combinations\", traits: .sizeThatFitsLayout) {",
+                    "    let image = UIImage(systemName: \"person.circle\")",
+                    "    ",
+                    "    // Then test each scenario in your preview macro.",
+                    "    let cell1 = CollaboratorCell(name: \"Tom Clark\", image: nil, connectionStatus: .offline)",
+                    "    let cell2 = CollaboratorCell(name: \"Tom Clark\", image: image, connectionStatus: .offline)",
+                    "    let cell3 = CollaboratorCell(name: \"Tom Clark\", image: nil, connectionStatus: .online)",
+                    "    let cell4 = CollaboratorCell(name: \"Tom Clark\", image: image, connectionStatus: .online)",
+                    "    let cell5 = CollaboratorCell(name: \"Tom Long Middle Clark\", image: nil, connectionStatus: .offline)",
+                    "    let cell6 = CollaboratorCell(name: \"Tom Long Middle Clark\", image: image, connectionStatus: .online)",
+                    "    ",
+                    "    // Create a test harness to display.",
+                    "    let stackView = UIStackView()",
+                    "    stackView.axis = .vertical",
+                    "    stackView.spacing = 8.0",
+                    "",
+                    "    stackView.addArrangedSubview(cell1)",
+                    "    stackView.addArrangedSubview(cell2)",
+                    "    stackView.addArrangedSubview(cell3)",
+                    "    stackView.addArrangedSubview(cell4)",
+                    "    stackView.addArrangedSubview(cell5)",
+                    "    stackView.addArrangedSubview(cell6)",
+                    "",
+                    "    return stackView",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "UIKit"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "class CollaboratorCell: NSView {",
+                    "    // Construct your view with only the data it needs.",
+                    "    let name: String",
+                    "    let image: NSImage?",
+                    "    let connectionStatus: ConnectionStatus",
+                    "",
+                    "    enum ConnectionStatus {",
+                    "        case online",
+                    "        case offline",
+                    "    }",
+                    "",
+                    "    // ...",
+                    "}",
+                    "",
+                    "#Preview(\"Supported cell combinations\", traits: .sizeThatFitsLayout) {",
+                    "    let image = NSImage(systemSymbolName: \"person.circle\", accessibilityDescription: \"A person symbol inside the outline of a circle.\")",
+                    "",
+                    "    // Then test each scenario in your preview macro.",
+                    "    let cell1 = CollaboratorCell(name: \"Tom Clark\", image: nil, connectionStatus: .offline)",
+                    "    let cell2 = CollaboratorCell(name: \"Tom Clark\", image: image, connectionStatus: .offline)",
+                    "    let cell3 = CollaboratorCell(name: \"Tom Clark\", image: nil, connectionStatus: .online)",
+                    "    let cell4 = CollaboratorCell(name: \"Tom Clark\", image: image, connectionStatus: .online)",
+                    "    let cell5 = CollaboratorCell(name: \"Tom Long Middle Clark\", image: nil, connectionStatus: .offline)",
+                    "    let cell6 = CollaboratorCell(name: \"Tom Long Middle Clark\", image: image, connectionStatus: .online)",
+                    "",
+                    "    // Create a test harness to display.",
+                    "    let stackView = NSStackView()",
+                    "    stackView.orientation = .vertical",
+                    "    stackView.spacing = 8.0",
+                    "",
+                    "    stackView.addArrangedSubview(cell1)",
+                    "    stackView.addArrangedSubview(cell2)",
+                    "    stackView.addArrangedSubview(cell3)",
+                    "    stackView.addArrangedSubview(cell4)",
+                    "    stackView.addArrangedSubview(cell5)",
+                    "    stackView.addArrangedSubview(cell6)",
+                    "",
+                    "    return stackView",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "AppKit"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dynamically-previewing-7-minimal-data",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-your-app-size-with-development-assets",
+          "level": 3,
+          "text": "Reduce your app size with development assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access resources in your previews, without shipping them in the final version of your app, use development assets. Development assets give you access to resources such as images, video, JSON data, and code files in your previews and Simulator, without increasing the overall size of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add items to the Development Assets of a project target as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the project folder in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the target you want to add the development assets to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the General tab, scroll down to Development Assets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the lower-left corner, click the Add items button (+).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the dialog that appears, select the items that you want to add and click Add.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-and-running-an-app": {
+      "abstract": [
+        {
+          "text": "Compile your source files and assemble an app bundle to run on a device or simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-and-running-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building and running an app",
+      "type": "topic",
+      "url": "/documentation/xcode/building-and-running-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app": {
+      "abstract": [
+        {
+          "text": "Start developing your app by creating an Xcode project from a template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Xcode project for an app",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-an-xcode-project-for-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Develop apps in SwiftUI with an interactive preview that keeps the code and layout",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in sync.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your app’s interface with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-your-app-s-interface-with-swiftui"
+    },
+    "doc://com.apple.documentation/documentation/DeveloperToolsSupport/Preview/init(_:traits:body:)-8pemr": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeveloperToolsSupport/Preview/init(_:traits:body:)-8pemr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:traits:body:)",
+      "type": "topic",
+      "url": "/documentation/DeveloperToolsSupport/Preview/init(_:traits:body:)-8pemr"
+    },
+    "doc://com.apple.documentation/documentation/DeveloperToolsSupport/PreviewTrait/landscapeLeft": {
+      "abstract": [
+        {
+          "text": "The device is in landscape mode, with the top of the device on the left.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "landscapeLeft"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": "> { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeveloperToolsSupport/PreviewTrait/landscapeLeft",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "landscapeLeft",
+      "type": "topic",
+      "url": "/documentation/DeveloperToolsSupport/PreviewTrait/landscapeLeft"
+    },
+    "doc://com.apple.documentation/documentation/Observation/Observable()": {
+      "abstract": [
+        {
+          "text": "Defines and implements conformance of the Observable protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(member, names: named(_$observationRegistrar), named(access), named(withMutation)) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(memberAttribute) "
+        },
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(extension, conformances: "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Observation10ObservableP",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Observation/Observable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Observable()",
+      "type": "topic",
+      "url": "/documentation/Observation/Observable()"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@dynamicMemberLookup"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Binding"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/DynamicProperty": {
+      "abstract": [
+        {
+          "text": "An interface for a stored variable that updates an external property of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DynamicProperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DynamicProperty",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/DynamicProperty"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Label"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:body:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@freestanding"
+        },
+        {
+          "kind": "text",
+          "text": "(declaration) "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:body:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Preview(_:body:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:traits:_:body:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view using the specified traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@freestanding"
+        },
+        {
+          "kind": "text",
+          "text": "(declaration) "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "additionalTraits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Preview(_:traits:_:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:traits:_:body:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Preview(_:traits:_:body:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier": {
+      "abstract": [
+        {
+          "text": "A type that defines an environment in which previews can appear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PreviewModifier",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PreviewModifier"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier/body(content:context:)": {
+      "abstract": [
+        {
+          "text": "Modify a preview by applying the shared context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15PreviewModifierP7Contenta",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15PreviewModifierP7ContextQa",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15PreviewModifierP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier/body(content:context:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body(content:context:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PreviewModifier/body(content:context:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier/makeSharedContext()-4zi8r": {
+      "abstract": [
+        {
+          "text": "Create shared context to apply to previews. The context returned here will be cached and passed into the `body` method for every preview that applies a modifier of this type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeSharedContext"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15PreviewModifierP7ContextQa",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewModifier/makeSharedContext()-4zi8r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeSharedContext()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PreviewModifier/makeSharedContext()-4zi8r"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Previewable()": {
+      "abstract": [
+        {
+          "text": "Tag allowing a dynamic property to appear inline in a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@attached"
+        },
+        {
+          "kind": "text",
+          "text": "(peer) "
+        },
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Previewable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Previewable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Previewable()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Previewable()"
+    },
+    "doc://com.apple.documentation/documentation/Updates/Xcode": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode updates",
+      "type": "topic",
+      "url": "/documentation/Updates/Xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "dynamically-previewing-1-preview-macro": {
+      "alt": "A screenshot of Xcode with the project navigator on the left, the code editor in the middle, and the preview canvas on the right. A callout in the code area in the middle points to the preview macro. A callout at the bottom on the right points to the preview canvas area.",
+      "identifier": "dynamically-previewing-1-preview-macro",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6c2a3bbe5212fe617b52eb138290fec/dynamically-previewing-1-preview-macro@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/13f7a20e88b8fb3257a1056fdaa341e5/dynamically-previewing-1-preview-macro~dark@2x.png"
+        }
+      ]
+    },
+    "dynamically-previewing-2-live-mode.mp4": {
+      "alt": "A video showing an open instance of Xcode with the project navigator on the left, the code editor in the middle, and the preview canvas on the right. When the movie runs, the mouse circles the live preview button indicating that the live preview mode is active. The mouse then clicks though multiple views in the Backyards app showing how to interact with your app in the live preview mode.",
+      "identifier": "dynamically-previewing-2-live-mode.mp4",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78c75a10533f03867572e4d745464106/dynamically-previewing-2-live-mode.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b705e8f8eeae0e4f9bf01e974604d9f/dynamically-previewing-2-live-mode~dark.mp4"
+        }
+      ]
+    },
+    "dynamically-previewing-3-select-mode": {
+      "alt": "A screenshot of Xcode with the code editor in the middle, and a preview on the right. The select mode button at the bottom of the preview canvas is active. The preview canvas displays a preview of the view in the select mode.",
+      "identifier": "dynamically-previewing-3-select-mode",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bf5e199e91846e224d9f08586d70d2b9/dynamically-previewing-3-select-mode@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ce344b5985d0a6f3a2358527c95d7927/dynamically-previewing-3-select-mode~dark@2x.png"
+        }
+      ]
+    },
+    "dynamically-previewing-4-variant-mode": {
+      "alt": "A screenshot of the Xcode preview canvas. The variant mode button at the bottom of the preview canvas is active. The preview canvas displays a preview of the view for each variant of dynamic size. Six previews are visible each displaying the view with a different size of text.",
+      "identifier": "dynamically-previewing-4-variant-mode",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24fcbb9c9cc40e677bd29acde42ce9e9/dynamically-previewing-4-variant-mode@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6981a8e99dd2a9643a6f0079b2e3b5c6/dynamically-previewing-4-variant-mode~dark@2x.png"
+        }
+      ]
+    },
+    "dynamically-previewing-5-preview-destination": {
+      "alt": "A screenshot of the Xcode preview canvas. The preview destination mode button at the bottom of the preview canvas is active, set to iPad. The preview canvas displays a preview of the view on an iPad.",
+      "identifier": "dynamically-previewing-5-preview-destination",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4010f14c748099f82bbb9d7ea74aecd/dynamically-previewing-5-preview-destination@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/00b52c7f44f3ce345a84fc6189336c17/dynamically-previewing-5-preview-destination~dark@2x.png"
+        }
+      ]
+    },
+    "dynamically-previewing-6-device-settings": {
+      "alt": "A screenshot of the Xcode preview canvas. The Device settings mode button at the bottom of the preview canvas is active. The preview canvas displays a preview of the view in Dark Mode, in a landscape right orientation, with extra large text on an iPad.",
+      "identifier": "dynamically-previewing-6-device-settings",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18378e0001627e196d19f14adf33317f/dynamically-previewing-6-device-settings@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf64203dfa7b978c4ba3d129e12cb009/dynamically-previewing-6-device-settings~dark@2x.png"
+        }
+      ]
+    },
+    "dynamically-previewing-7-minimal-data": {
+      "alt": "A screenshot of the preview canvas displaying six previews of a data row view in various test scenario configurations. The preview canvas displays view variations for online offline status, with and without an avatar image, and long and short display names.",
+      "identifier": "dynamically-previewing-7-minimal-data",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56f22860fb71dc79905ddbd2df95e955/dynamically-previewing-7-minimal-data@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f8395ee148e0ec451e67e54289fccf06/dynamically-previewing-7-minimal-data~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app",
+        "doc://com.apple.Xcode/documentation/Xcode/creating-your-app-s-interface-with-swiftui",
+        "doc://com.apple.Xcode/documentation/Xcode/building-and-running-an-app",
+        "doc://com.apple.documentation/documentation/Updates/Xcode"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

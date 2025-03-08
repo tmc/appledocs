@@ -1,0 +1,832 @@
+{
+  "abstract": [
+    {
+      "text": "Add spatial metadata to stereo photos and videos to create spatial media for viewing on Apple Vision Pro.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.imageio/documentation/ImageIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.imageio/documentation/ImageIO/Creating-spatial-photos-and-videos-with-spatial-metadata"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Image I/O"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating spatial photos and videos with spatial metadata"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iPhone 15 Pro and Apple Vision Pro can capture spatial photos and videos, a new type of stereoscopic content that immerses people in a moment and gives them a greater sense of presence in a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial photos and videos are stereo media with additional spatial metadata:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "spatial photo",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is a multi-image HEIC file containing a left-eye image and a right-eye image, a stereo pair group, plus spatial metadata.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "spatial video",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is a QuickTime movie with a stereo MV-HEVC video track, plus spatial metadata.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add spatial metadata to stereo photos or videos created by your app to prompt Apple platforms to consider that media as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "spatial",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " instead of just stereo. Doing so enables presentation of that media in two complementary viewing modes on Apple Vision Pro that provide alternate viewing methods for the same content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By default, spatial photos and videos present in a window, with the stereoscopic content inset.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People can also choose to fully immerse themselves in a spatial photo or video by tapping the Immersive button to present the stereo scene at real-world scale.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both modes contain visual treatments that can help minimize common causes of stereo viewing discomfort.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-spatial-photos-and-videos-from-your-own-media",
+          "level": 3,
+          "text": "Create spatial photos and videos from your own media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While people can use devices like iPhone 15 Pro and Apple Vision Pro to capture spatial media, you can also create and write spatial photos and videos in your own apps. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A stereo camera app can export camera captures as spatial media.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A video editing app can import, edit, and export spatial videos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A 3D game can export spatial screenshots or gameplay videos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A 3D rendering engine can render spatial images or video sequences of a 3D scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial photos and videos both use the same spatial metadata, but encode it in different ways. For examples of how to write spatial metadata to stereo photos and videos your app creates, check out ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.imageio/documentation/ImageIO/writing-spatial-photos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-camera-properties",
+          "level": 3,
+          "text": "Specify camera properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For visionOS to consider a stereo photo or video as spatial, the media must include three properties of the cameras that captured it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The horizontal field of view of each camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The baseline of the cameras",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The projection of the captured images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "horizontal field of view",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " defines how much of the scene in front of each camera is visible across the width of each image. The horizontal field of view must be the same for both cameras.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "baseline",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " defines how far apart the centers of the cameras were (also known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "interaxial distance",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). Baselines that approximate the average distance between human eyes (64 mm) produce content that feels “real-world size” when viewed with immersive presentation. However, a wide range of baselines can produce compelling results. For example, the cameras used to capture spatial videos on iPhone 15 Pro have a baseline of 19.2 mm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "projection",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " defines the relationship between objects in the world and pixels in the image. Spatial photos and videos always use a rectilinear projection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-horizontal-disparity-adjustment",
+          "level": 3,
+          "text": "Choose a horizontal disparity adjustment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial media must also define a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "horizontal disparity adjustment",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (also known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "convergence adjustment",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). This modifies the perceived stereo depth of the scene by shifting the left- and right-eye images horizontally when you present them in a window in visionOS. As the two images shift horizontally, the perceived 3D scene shifts in depth along the z-axis, with a negative value making content appear closer, and a positive value pushing it farther away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Horizontal disparity adjustment is expressed as a positive or negative fraction of the image’s width. A positive value pushes the left image to the left, and the right image to the right; a negative value pushes them in the opposite direction. Each image is shifted by half of the provided adjustment value, so a positive adjustment of 2 percent moves the left image 1 percent to the left, and the right image 1 percent to the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When writing your own spatial media, choose a disparity adjustment value that pushes the closest objects just behind the front of the window, to avoid depth conflicts with other content and UI, while maintaining a sense of depth. The ideal horizontal disparity adjustment value depends on the distance of objects from the camera at capture-time, plus the field of view and aspect ratio of the media. A positive horizontal disparity adjustment of 2 percent typically provides a good default adjustment for many types of stereo media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Decide-when-to-create-spatial-media",
+          "level": 3,
+          "text": "Decide when to create spatial media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Determining whether to create spatial media in your app depends on the source content and the experience you want to create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can experience spatial media immersively at true scale. Consider adding spatial metadata to stereo content that benefits from the viewer being “in the moment,” such as reliving a memory at the same size and scale as the original experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial metadata needs to reflect the true camera properties. Ensure you know enough about the capture-time characteristics of the left- and right-eye cameras to provide accurate spatial metadata for them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Camera properties in spatial videos need to be constant throughout the duration of the video. Don’t write spatial metadata to a stereo video if the baseline, horizontal field of view, or recommended disparity adjustment of your stereo video varies over time. For example, a movie or TV show that was captured on multiple stereo cameras with different fields of view might not have consistent spatial metadata across its entire duration, and might not be appropriate for spatial presentation. For this kind of content, prefer ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/VideoPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for stereo playback presentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial media is always rectilinear, typically with a field of view less than 90 degrees. If your content uses an equirectangular, fisheye, or other non-rectilinear projection, don’t encode it as spatial media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video": {
+      "abstract": [
+        {
+          "text": "Create video content for visionOS by converting an existing 3D HEVC file to a multiview HEVC format, optionally adding spatial metadata to create a spatial video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Converting side-by-side 3D video to multiview HEVC and spatial video",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVPlayerViewController"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/VideoPlayer": {
+      "abstract": [
+        {
+          "text": "A view that displays content from a player and a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "VideoOverlay"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "VideoOverlay"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/VideoPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VideoPlayer",
+      "type": "topic",
+      "url": "/documentation/AVKit/VideoPlayer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO": {
+      "abstract": [
+        {
+          "text": "Read and write most image file formats, and access an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Image I/O",
+      "type": "topic",
+      "url": "/documentation/imageio"
+    },
+    "doc://com.apple.imageio/documentation/ImageIO/writing-spatial-photos": {
+      "abstract": [
+        {
+          "text": "Create spatial photos for visionOS by packaging a pair of left- and right-eye images as a stereo HEIC file with related spatial metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imageio/documentation/ImageIO/writing-spatial-photos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Writing spatial photos",
+      "type": "topic",
+      "url": "/documentation/imageio/writing-spatial-photos"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-Photos",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.imageio/documentation/ImageIO/writing-spatial-photos"
+      ],
+      "title": "Spatial Photos"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Spatial-Photos",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.imageio/documentation/ImageIO/writing-spatial-photos"
+              ],
+              "title": "Spatial Photos"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/imageio/creating-spatial-photos-and-videos-with-spatial-metadata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/imageio/creating-spatial-photos-and-videos-with-spatial-metadata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

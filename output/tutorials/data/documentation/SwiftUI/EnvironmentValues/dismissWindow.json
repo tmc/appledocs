@@ -1,0 +1,720 @@
+{
+  "abstract": [
+    {
+      "text": "A window dismissal action stored in a view’s environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismissWindow"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SwiftUI",
+    "externalID": "s:7SwiftUI17EnvironmentValuesV13dismissWindowAA07DismissF6ActionVvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "dismissWindow"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7SwiftUI19DismissWindowActionV",
+        "text": "DismissWindowAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "dismissWindow"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissWindow"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI19DismissWindowActionV",
+              "text": "DismissWindowAction"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "dismissWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment value to get an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for a given ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the instance to dismiss a window. You call the instance directly because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction/callAsFunction(id:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift calls when you call the instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can define a button that dismisses an auxiliary window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "        }",
+            "        #if os(macOS)",
+            "        Window(\"Auxiliary\", id: \"auxiliary\") {",
+            "            AuxiliaryContentView()",
+            "        }",
+            "        #endif",
+            "    }",
+            "}",
+            "",
+            "struct DismissWindowButton: View {",
+            "    @Environment(\\.dismissWindow) private var dismissWindow",
+            "",
+            "    var body: some View {",
+            "        Button(\"Close Auxiliary Window\") {",
+            "            dismissWindow(id: \"auxiliary\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the window was opened with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/pushWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "presenting window will reappear when this action is performed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissAction": {
+      "abstract": [
+        {
+          "text": "An action that dismisses a presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DismissAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DismissAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DismissAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismissaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissBehavior": {
+      "abstract": [
+        {
+          "text": "Programmatic window dismissal behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DismissBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DismissBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "DismissBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismissbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction": {
+      "abstract": [
+        {
+          "text": "An action that dismisses a window associated to a particular scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DismissWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DismissWindowAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DismissWindowAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismisswindowaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction/callAsFunction(id:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the window that’s associated with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callAsFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction/callAsFunction(id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callAsFunction(id:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/dismisswindowaction/callasfunction(id:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/swiftui/environment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues": {
+      "abstract": [
+        {
+          "text": "A collection of environment values propagated through a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentValues",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismiss": {
+      "abstract": [
+        {
+          "text": "An action that dismisses the current presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13DismissActionV",
+          "text": "DismissAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismiss",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismiss",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/dismiss"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismissWindow": {
+      "abstract": [
+        {
+          "text": "A window dismissal action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19DismissWindowActionV",
+          "text": "DismissWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismissWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dismissWindow",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/dismisswindow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/pushWindow": {
+      "abstract": [
+        {
+          "text": "A window presentation action stored in a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16PushWindowActionV",
+          "text": "PushWindowAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/pushWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushWindow",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/pushwindow"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Closing-windows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissWindowAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/dismiss",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DismissBehavior"
+      ],
+      "title": "Closing windows"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/environmentvalues/dismisswindow"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

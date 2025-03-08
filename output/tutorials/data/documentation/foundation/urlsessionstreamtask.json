@@ -1,0 +1,1087 @@
+{
+  "abstract": [
+    {
+      "text": "A URL session task that is stream-based.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410522,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionStreamTask",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "URLSessionStreamTask"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.11",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "URLSessionStreamTask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLSessionStreamTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLSessionTask",
+              "text": "URLSessionTask"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Many of the methods in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class are documented in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides an interface a TCP/IP connection created via ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Tasks may be created from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411587-streamtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411545-streamtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. They may also be created as a result of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " being upgraded via the HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "Upgrade:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response header and appropriate use of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411657-httpshouldusepipelining",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-1670421",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-1670438",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for information about the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Upgrade:",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object performs asynchronous reads and writes, which are enqueued and executed serially, calling a handler upon completion being on the session delegate queue. If the task is canceled, all enqueued reads and writes will call their completion handlers with an appropriate error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with APIs that accept ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, you can create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1410132-capturestreams",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "watchOS supports ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " for specific use cases. For more details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3135-low-level-networking-on-watchOS",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stream",
+      "type": "topic",
+      "url": "/documentation/foundation/stream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411545-streamtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that establishes a bidirectional TCP/IP connection using a specified network service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "streamTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NetService) -> URLSessionStreamTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411545-streamtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "streamTask(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411545-streamtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411587-streamtask": {
+      "abstract": [
+        {
+          "text": "Creates a task that establishes a bidirectional TCP/IP connection to a specified hostname and port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "streamTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withHostName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> URLSessionStreamTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411587-streamtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "streamTask(withHostName:port:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411587-streamtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411657-httpshouldusepipelining": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411657-httpshouldusepipelining",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpShouldUsePipelining",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411657-httpshouldusepipelining"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondatatask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDataTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondatatask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamdelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to stream tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionStreamDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionStreamDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamdelegate/1411625-urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamdelegate/1411625-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:streamTask:didBecome:outputStream:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamdelegate/1411625-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask": {
+      "abstract": [
+        {
+          "text": "A URL session task that is stream-based.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionStreamTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionStreamTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1407337-stopsecureconnection": {
+      "abstract": [
+        {
+          "text": "Completes any enqueued reads and writes, and closes the secure connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopSecureConnection"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1407337-stopsecureconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopSecureConnection()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1407337-stopsecureconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1410132-capturestreams": {
+      "abstract": [
+        {
+          "text": "Completes any already enqueued reads and writes, and then invokes the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamdelegate/1411625-urlsession",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " delegate message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "captureStreams"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1410132-capturestreams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "captureStreams()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1410132-capturestreams"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411347-closewrite": {
+      "abstract": [
+        {
+          "text": "Completes any enqueued reads and writes, and then closes the write side of the underlying socket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeWrite"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411347-closewrite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeWrite()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1411347-closewrite"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411558-closeread": {
+      "abstract": [
+        {
+          "text": "Completes any enqueued reads and writes, and then closes the read side of the underlying socket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeRead"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411558-closeread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeRead()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1411558-closeread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411567-startsecureconnection": {
+      "abstract": [
+        {
+          "text": "Completes any enqueued reads and writes, and establishes a secure connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSecureConnection"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411567-startsecureconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startSecureConnection()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1411567-startsecureconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411602-write": {
+      "abstract": [
+        {
+          "text": "Asynchronously writes the specified data to the stream, and calls a handler upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "(Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411602-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(_:timeout:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1411602-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411604-readdata": {
+      "abstract": [
+        {
+          "text": "Asynchronously reads a number of bytes from the stream, and calls a handler upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofMinLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, Bool, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411604-readdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readData(ofMinLength:maxLength:timeout:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/1411604-readdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/3240622-init": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/3240622-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/3240622-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/3240623-new": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/3240623-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask/3240623-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3135-low-level-networking-on-watchOS": {
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3135-low-level-networking-on-watchOS",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3135: Low-level networking on watchOS",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3135-low-level-networking-on-watchos"
+    },
+    "link-1670421": {
+      "identifier": "link-1670421",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 2817",
+      "type": "topic",
+      "url": "https://tools.ietf.org/html/rfc2817"
+    },
+    "link-1670438": {
+      "identifier": "link-1670438",
+      "kind": "article",
+      "role": "link",
+      "title": "RFC 6455",
+      "type": "topic",
+      "url": "https://tools.ietf.org/html/rfc6455"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontask"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411587-streamtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsession/1411545-streamtask",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamdelegate"
+      ],
+      "title": "Adding stream tasks to a session"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679079",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411604-readdata",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411602-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading and writing data"
+    },
+    {
+      "anchor": "1679094",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1410132-capturestreams"
+      ],
+      "kind": "taskGroup",
+      "title": "Capturing streams"
+    },
+    {
+      "anchor": "1679098",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411558-closeread",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411347-closewrite"
+      ],
+      "kind": "taskGroup",
+      "title": "Closing read and write sockets"
+    },
+    {
+      "anchor": "1679114",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1411567-startsecureconnection",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/1407337-stopsecureconnection"
+      ],
+      "kind": "taskGroup",
+      "title": "Starting and stopping secure connections"
+    },
+    {
+      "anchor": "3256436",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/3240622-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "4309180",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask/3240623-new"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessionstreamtask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessionstreamtask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

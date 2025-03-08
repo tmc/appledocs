@@ -1,0 +1,1549 @@
+{
+  "abstract": [
+    {
+      "text": "Renew your app’s authorization when an app needs updating or when a device restores from backup.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/reauthenticating-a-person-to-manage-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reauthenticating a person to manage apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your marketplace app restricts the download of apps according to specific criteria, such as signing in, or purchasing a subscription, you issue an access token that the system includes in communication with your server. When the access token expires, the system prompts a person to sign in to retrieve a new token. This reauthentication occurs in the following situations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reinstallation of your marketplace app, when a person restores their device from a backup and your alternative app marketplace is one of the apps to restore. This situation differs from the original install because it lacks the context of an existing marketplace website session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App updates, when a person interacts with your marketplace app’s UI, for example, by tapping an app’s Update button. It can also happen, when Automatic Updates are on, as the system periodically checks your server for newer versions of the installed apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " implements the OAuth2.0 specification for reauthentication described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.rfc-editor.org/rfc/rfc8693",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Reinstall-an-alternative-marketplace-from-a-backup",
+          "level": 2,
+          "text": "Reinstall an alternative marketplace from a backup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person restores their device from a backup, a previously installed alternative marketplace app and its apps display as darkened placeholders on the Home Screen. When the person taps a placeholder, the system attempts to reinstall the apps beginning with the alternative marketplace. The system calls the ",
+              "type": "text"
+            },
+            {
+              "code": "restores",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint in your ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") but the communication lacks an access or bearer token. When you restrict your alternative marketplace app’s downloads to qualified users, notice the missing access token and replace it by reauthenticating the person. Respond with ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code ",
+              "type": "text"
+            },
+            {
+              "code": "401",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "403",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the system instructs the person to log in by presenting a Home Screen prompt that reads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Verification Required ",
+            "Tap Continue and sign in to install this app."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls your ",
+              "type": "text"
+            },
+            {
+              "code": "authorization_endpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint, as specified in your server’s ",
+              "type": "text"
+            },
+            {
+              "code": "oauth-authorization-server",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration. For more information about the ",
+              "type": "text"
+            },
+            {
+              "code": "oauth-authorization-server",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example ",
+              "type": "text"
+            },
+            {
+              "code": "authorization_endpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call follows, where “example.com/authorize” is the marketplace server’s authorization endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://example.com/authorize",
+            "    ?login_hint=user-name@example.com",
+            "    &client_id=D4C1C937-D9B4-4BB6-BCD3-5E0850143EF5",
+            "    &code_challenge_method=S256",
+            "    &response_type=code",
+            "    &code_challenge=sib4eJtJBmkL312KjyoNlSFeDrpCOKnUwheZGipfnUY[...]",
+            "    &state=EE01F1C6-5123-402E-909D-71E596780759",
+            "    &redirect_uri=app-distribution-oauth://"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authorization_endpoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "login_hint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value that the system provides to identify a person’s account ID or user name on the login page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value that uniquely identifies the account, device, and marketplace combination. The system provides this value during the initial authentication and download.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "code_challenge_method",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of code challenge among Plain or SHA256.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "response_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorization processing flow; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"code\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", for this purpose.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "code_challenge",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Base64-URL-encoded string of the SHA256 hash of the code verifier. The system provides the code verifier to your token endpoint later on in the flow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "state",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value that enhances security. Return it in your authorization response.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "redirect_uri",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A special URL scheme at which the system confirms authorization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Login hints, response types, or redirect URI, see ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "https://openid.net/specs/openid-connect-core-1_0.html",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Code challenges, see the ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "https://datatracker.ietf.org/doc/html/rfc7636",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response to the call, your authorization endpoint provides a login page for the person to enter their credentials. On the login page, display the account based on the ",
+              "type": "text"
+            },
+            {
+              "code": "login_hint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your server validates the person’s credentials, your login page routes to the ",
+              "type": "text"
+            },
+            {
+              "code": "redirect_uri",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request parameter. Add an authorization code into the call by setting a ",
+              "type": "text"
+            },
+            {
+              "code": "code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to a one-time, generated value. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "app-distribution-oauth:?code=sib4eJtJBmkL312KjyoNlSFeDrpCOKnUwheZGip[...]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on generating an authorization response, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://oauth.net/2/grant-types/authorization-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the system calls your ",
+              "type": "text"
+            },
+            {
+              "code": "token_endpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and provides the authorization code. Here’s an example POST body:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "code=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImJvZGVnYS1rZXlpZCJ[...]",
+            "&code_verifier=7SJJJc6vi1D7x.SKZ4SuEijHA9C.FkASXVUo9E25ns1[...]",
+            "&client_id=D4C1C937-D9B4-4BB6-BCD3-5E0850143EF5",
+            "&grant_type=authorization_code"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "token_endpoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "code",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A one-time code for the authorization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "code_verifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A cryptographically random string of characters from which the system creates the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "code_challenge",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value that uniquely identifies the account, device, and marketplace combination. The system provides this value during the initial authentication and download.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "grant_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The grant type; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "authorization_code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", for this purpose.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response, your token endpoint sends an access token and an optional refresh token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"token_type\": \"Bearer\",",
+            "    \"issued_token_type\": \"urn:ietf:params:oauth:token-type:access_token\",",
+            "    \"expires_in\": 86400,",
+            "    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImt[...]\",",
+            "    \"scope\": \"all\",",
+            "    \"refresh_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im[...]\"",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Completion of the authentication flow authorizes the system to reinstall the app on the person’s behalf. Next, the system again calls the marketplace’s ",
+              "type": "text"
+            },
+            {
+              "code": "\"restores\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint that the ",
+              "type": "text"
+            },
+            {
+              "code": "marketplace-kit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration specifies. This time, the system provides the access or bearer token in the header. For more information about serving the ",
+              "type": "text"
+            },
+            {
+              "code": "\"restores\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reinstall-an-app-from-a-backup",
+          "level": 2,
+          "text": "Reinstall an app from a backup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the system restores your alternative marketplace app from a backup, it proceeds to reinstall the other apps from your marketplace. The system sends a POST to your ",
+              "type": "text"
+            },
+            {
+              "code": "restores",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint with a header decorated with the access token. Your marketplace app adds the token to the header by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then, your server reads the token in the request and determines the response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the access token is valid and the apps are available, return the apps for installation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the token is missing, respond from your marketplace server with an HTTP ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "401",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the token is present but invalid, respond with an HTTP ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "403",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In any of these cases, the system routes the person from the darkened app icon on the Home Screen into your alternative marketplace app to reauthenticate with a prompt that reads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Verification Required ",
+            "To install \"App 1\", you need to verify your account in Megabyte Mart."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your marketplace app launches, check for a missing or invalid access token. In either case, you can reauthenticate the person by presenting a webpage with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that enables the person to enter their credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the person signs in, store the renewed access token locally. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/didAuthenticate(account:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which instructs the system to retry the app installation. This time, your marketplace extension decorates the header of the restores endpoint POST with a renewed access token for the system to complete the reinstallation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reauthenticate-a-person-in-your-marketplace-app-or-extension",
+          "level": 2,
+          "text": "Reauthenticate a person in your marketplace app or extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your marketplace app is running while your marketplace server encounters an invalid access token, the system calls your extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation. In this callback, your marketplace app can correct the issue by reauthenticating the person. For example, you can set a flag to present a webpage in your app with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that enables the person to enter their credentials before retrying the update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can’t present UI, so if your marketplace isn’t running, you can explore reauthenticating another way, such as by exchanging a refresh token for a renewed access token with your token endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the system encounters an invalid access token while performing automatic background app updates, reauthorize the device in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to instruct the system to call your ",
+              "type": "text"
+            },
+            {
+              "code": "restores",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint again. The system calls your marketplace extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation and you supply the renewed access token to complete the update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/didAuthenticate(account:)": {
+      "abstract": [
+        {
+          "text": "Instructs iOS to reinstall an app after a required reuthorization completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didAuthenticate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "account"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/didAuthenticate(account:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didAuthenticate(account:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/applibrary/didauthenticate(account:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension": {
+      "abstract": [
+        {
+          "text": "An extension that facilitates authentication, installation, and launching a marketplace with deep links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MarketplaceExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MarketplaceExtension",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplaceextension"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)": {
+      "abstract": [
+        {
+          "text": "Adds information to the request header for communications from the operating system to your marketplace endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalHeaders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation10URLRequestV",
+          "text": "URLRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "account"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/additionalHeaders(for:account:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "additionalHeaders(for:account:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplaceextension/additionalheaders(for:account:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)": {
+      "abstract": [
+        {
+          "text": "Handles when iOS receives an unexpected response from your web server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestFailed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSHTTPURLResponse",
+          "text": "HTTPURLResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceExtension/requestFailed(with:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "requestFailed(with:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplaceextension/requestfailed(with:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/AppLicenseDeliverySDK"
+    },
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A session that an app uses to authenticate a user through a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASWebAuthenticationSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASWebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASWebAuthenticationSession"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation": {
+      "abstract": [
+        {
+          "text": "The entitlement that enables a browser to install alternative-distribution apps from a website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.browser.app-installation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation": {
+      "abstract": [
+        {
+          "text": "The entitlement that enables an app to vend other apps as an alternative app marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.marketplace.app-installation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7636": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7636",
+      "title": "RFC7636 - Proof Key for Code Exchange",
+      "titleInlineContent": [
+        {
+          "text": "RFC7636 - Proof Key for Code Exchange",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7636"
+    },
+    "https://oauth.net/2/grant-types/authorization-code": {
+      "identifier": "https://oauth.net/2/grant-types/authorization-code",
+      "title": "OAuth 2.0 Authorization Code Grant",
+      "titleInlineContent": [
+        {
+          "text": "OAuth 2.0 Authorization Code Grant",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://oauth.net/2/grant-types/authorization-code"
+    },
+    "https://openid.net/specs/openid-connect-core-1_0.html": {
+      "identifier": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "title": "OpenID Connect Core",
+      "titleInlineContent": [
+        {
+          "text": "OpenID Connect Core",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html"
+    },
+    "https://www.rfc-editor.org/rfc/rfc8693": {
+      "identifier": "https://www.rfc-editor.org/rfc/rfc8693",
+      "title": "RFC 8693",
+      "titleInlineContent": [
+        {
+          "text": "RFC 8693",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.rfc-editor.org/rfc/rfc8693"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.marketplace.app-installation",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation",
+        "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK"
+      ],
+      "title": "Authorization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/reauthenticating-a-person-to-manage-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

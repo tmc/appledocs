@@ -1,0 +1,993 @@
+{
+  "abstract": [
+    {
+      "text": "Secure your communications with Apple Push Notification service (APNs) by using stateless authentication tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-token-based-connection-to-apns"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Establishing a token-based connection to APNs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Token-based authentication offers a stateless way to communicate with APNs. Stateless communication is faster than certificate-based communication because it doesn’t require APNs to look up the certificate, or other information, related to your provider server. There are other advantages to using token-based authentication:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use the same token from multiple provider servers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use one token to distribute notifications for all or a subset of your company’s apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Token-based requests are slightly larger than certificate-based requests because each request contains the token. You must also update and encrypt your tokens at least once an hour using the provider token signing key that Apple provides you. To learn more about key creation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-keys/create-a-private-key/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Team-scoped-keys",
+          "level": 3,
+          "text": "Team-scoped keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use team-scoped keys to generate authentication tokens for sending notifications to any topic in a team. These keys restrict usage to either Sandbox or Production, enhancing security. They apply to all existing and new topics in the team. Each environment can have a maximum of two keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you have existing team-scoped keys that work in both the Sandbox and Production environments it will continue to be supported. However, it’s recommended to use different, environment-specific keys to create distinct workflows and to safely manage your development process.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Topic-specific-keys",
+          "level": 3,
+          "text": "Topic-specific keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use topic-specific keys to generate authentication tokens for sending notifications to specific team topics within a single environment. These keys provide granular control and simplify management. You can create a maximum of 200 keys for Sandbox and 200 for Production, with up to 400 topics per topic-based key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A topic-specific key can have at most one related key in the same environment. When you connect to the APNs server, you can use authentication tokens from both the topic-based key and its related key (if available) for push notification requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "APNs doesn’t support authentication tokens from multiple developer accounts over a single connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Obtain-an-encryption-key-and-key-ID-from-Apple",
+          "level": 3,
+          "text": "Obtain an encryption key and key ID from Apple",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need an APNs authentication token signing key to generate the tokens that your server uses. You request this key from your developer account on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/account/resources/keys/list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as shown in the following image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4286508",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you request a key, Apple gives you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A 10-character string with the Key ID. You must include this string in your JSON tokens. You can find instructions to get this ID in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An authentication token signing key, specified as a text file (with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".p8",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file extension).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Secure both pieces of information carefully. You use the authentication token signing key to encrypt your JSON tokens, so this key must remain private to prevent anyone else from generating those tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you suspect that you may have a compromised authentication token signing key, revoke it and request a new one. (You revoke the key from your developer account on ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in the same place where you created it). For maximum security, close all of your existing HTTP/2 connections to APNs and establish new connections before making new requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed instructions on how to use an authentication token, see the ",
+              "type": "text"
+            },
+            {
+              "code": "authorization",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header field in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-and-encrypt-your-JSON-token",
+          "level": 3,
+          "text": "Create and encrypt your JSON token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The token that you include with your notification requests uses the JSON Web Token (JWT) specification. The following table describes the four key-value pairs the token itself contains:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The encryption algorithm you used to encrypt the token. APNs supports only the ES256 algorithm, so set the value of this key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ES256",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The 10-character Key ID you obtained from your developer account; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier",
+                      "isActive": true,
+                      "overridingTitle": "Get a key identifier",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Get a key identifier",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The issuer key, the value for which is the 10-character Team ID you use for developing your company’s apps. Obtain this value from your developer account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The “issued at” time, whose value indicates the time when the JSON token generated. Specify the value as the number of seconds since Epoch, in UTC. The value must be no more than one hour from the current time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The keys divide between the header and claims payload of the JSON Web Token. The header of the token contains the encryption algorithm and Key ID, and the claims payload contains your Team ID and the token generation time. The code snippet below shows an example of a JSON token for a fictional developer account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"alg\" : \"ES256\",",
+            "   \"kid\" : \"ABC123DEFG\"",
+            "}",
+            "{",
+            "   \"iss\": \"DEF123GHIJ\",",
+            "   \"iat\": 1437179036",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the value in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "iat",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field is more than one hour old, APNs rejects any notifications containing the token, returning an ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExpiredProviderToken",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "(403)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encrypt the resulting JSON data using your authentication token signing key and the specified algorithm. Your provider server must include the resulting encrypted data with all notification requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information about the JWT specification, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Attach-your-token-to-notification-requests",
+          "level": 3,
+          "text": "Attach your token to notification requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating the POST request for a notification, include your encrypted token in the ",
+              "type": "text"
+            },
+            {
+              "code": "authorization",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header of your request. The token is in Base64URL-encoded JWT format, and is specified as ",
+              "type": "text"
+            },
+            {
+              "code": "bearer <token data>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "authorization = bearer eyAia2lkIjogIjhZTDNHM1JSWDciIH0.eyAiaXNzIjogIkM4Nk5WOUpYM0QiLCAiaWF0I",
+            "\t\t jogIjE0NTkxNDM1ODA2NTAiIH0.MEYCIQDzqyahmH1rz1s-LFNkylXEa2lZ_aOCX4daxxTZkVEGzwIhALvkClnx5m5eAT6",
+            "\t\t Lxw7LZtEQcH6JENhJTMArwLf3sXwi",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to construct your POST requests, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Refresh-your-token-regularly",
+          "level": 3,
+          "text": "Refresh your token regularly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For security, APNs requires you to refresh your token regularly. Refresh your token no more than once every 20 minutes and no less than once every 60 minutes. APNs rejects any request whose token contains a timestamp that’s more than one hour old. Similarly, APNs report an error if you use a new token more than once every 20 minutes on the same connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On your provider server, set up a recurring task to recreate your token with a current timestamp. Encrypt the token again and attach it to subsequent notification requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Team-and-bundle-ID-mapping",
+          "level": 3,
+          "text": "Team and bundle ID mapping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t map a connection to APNs to multiple teams. If you manage APNs for multiple developer accounts, open separate connection pools for each of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As part of the authentication process, APNs relates a team ID and associated bundle IDs to a connection on the first push. After the authentication process, attempting to associate a different team or sending a push to a newly added bundle ID causes an error. To send remote notifications to a new topic, add the topic to your team in App Store Connect and create new connections to APNs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For transferred apps, close and recreate any existing connections from your push provider server to APNs. If you don’t, APNs can’t start accepting push requests from the new team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you use a token from a team-scoped key during the first push, trying to send a push with a topic-specific key or a team-scoped key from a different environment results in an error.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "After you establish a connection with a topic-specific key for the initial push, using an unrelated topic-specific key, a key from a different environment, a team-scoped key, or sending to a nonassociated topic also results in an error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by installing a certificate on your provider server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a certificate-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "developer.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "developer.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    },
+    "https://developer.apple.com/account/resources/keys/list": {
+      "identifier": "https://developer.apple.com/account/resources/keys/list",
+      "title": "developer.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "developer.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/resources/keys/list"
+    },
+    "https://developer.apple.com/help/account/manage-keys/create-a-private-key/": {
+      "identifier": "https://developer.apple.com/help/account/manage-keys/create-a-private-key/",
+      "title": "Create a private key to access a service",
+      "titleInlineContent": [
+        {
+          "text": "Create a private key to access a service",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-keys/create-a-private-key/"
+    },
+    "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier": {
+      "identifier": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier",
+      "title": "Get a key identifier",
+      "titleInlineContent": [
+        {
+          "text": "Get a key identifier",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-keys/get-a-key-identifier"
+    },
+    "https://tools.ietf.org/html/rfc7519": {
+      "identifier": "https://tools.ietf.org/html/rfc7519",
+      "title": "RFC 7519",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7519",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7519"
+    },
+    "media-4286508": {
+      "alt": "Creating an authentication token signing key that supports APNs in your developer account.",
+      "identifier": "media-4286508",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f5993178cc36a886c29a80f8178ef21/media-4286508@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8f2b558578107ab6317775972c47b44/media-4286508~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Security",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns"
+      ],
+      "title": "Security"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Security",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns"
+              ],
+              "title": "Security"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/establishing-a-token-based-connection-to-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/establishing-a-token-based-connection-to-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

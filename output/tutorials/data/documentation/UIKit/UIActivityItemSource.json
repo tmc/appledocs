@@ -1,0 +1,1428 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that an activity view controller uses to retrieve the data items to act on.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIActivityItemSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIActivityItemSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIActivityItemSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIActivityItemSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this protocol in situations where you want to provide the data from one of your app’s existing objects instead of creating a separate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When implementing this protocol, your object becomes the data provider, providing the view controller with access to the items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the methods of this protocol are executed on your app’s main thread, you should avoid using this protocol in cases where the data objects might take a significant amount of time to create. When creating large data objects, consider using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivity": {
+      "abstract": [
+        {
+          "text": "An abstract class that you subclass to implement app-specific services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivity",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivity"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider": {
+      "abstract": [
+        {
+          "text": "A proxy for data that passes to an activity view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that an activity view controller uses to retrieve the data items to act on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:dataTypeIdentifierForActivityType:)": {
+      "abstract": [
+        {
+          "text": "For items that are provided as data, returns the UTI for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataTypeIdentifierForActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivity",
+          "text": "UIActivity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIActivityType",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:dataTypeIdentifierForActivityType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewController:dataTypeIdentifierForActivityType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityViewController(_:dataTypeIdentifierForActivityType:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:datatypeidentifierforactivitytype:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:itemForActivityType:)": {
+      "abstract": [
+        {
+          "text": "Returns the data object to be acted upon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemForActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivity",
+          "text": "UIActivity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIActivityType",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:itemForActivityType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewController:itemForActivityType:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "activityViewController(_:itemForActivityType:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:itemforactivitytype:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:subjectForActivityType:)": {
+      "abstract": [
+        {
+          "text": "For activities that support a subject field, returns the subject for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subjectForActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivity",
+          "text": "UIActivity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIActivityType",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:subjectForActivityType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewController:subjectForActivityType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityViewController(_:subjectForActivityType:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:subjectforactivitytype:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:thumbnailImageForActivityType:suggestedSize:)": {
+      "abstract": [
+        {
+          "text": "For activities that support a preview image, returns a thumbnail preview image for the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "thumbnailImageForActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivity",
+          "text": "UIActivity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIActivityType",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "suggestedSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:thumbnailImageForActivityType:suggestedSize:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewController:thumbnailImageForActivityType:suggestedSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityViewController(_:thumbnailImageForActivityType:suggestedSize:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:thumbnailimageforactivitytype:suggestedsize:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)": {
+      "abstract": [
+        {
+          "text": "Returns metadata to display in the preview header of the share sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerLinkMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LPLinkMetadata",
+          "text": "LPLinkMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerLinkMetadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityViewControllerLinkMetadata(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontrollerlinkmetadata(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerPlaceholderItem(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the placeholder object for the data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerPlaceholderItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerPlaceholderItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerPlaceholderItem:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "activityViewControllerPlaceholderItem(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontrollerplaceholderitem(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerShareRecipients(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerShareRecipients"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivityViewController",
+          "text": "UIActivityViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INPerson",
+          "text": "INPerson"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerShareRecipients(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityViewControllerShareRecipients:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityViewControllerShareRecipients(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsource/activityviewcontrollersharerecipients(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityviewcontroller"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-data-items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerPlaceholderItem(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:itemForActivityType:)"
+      ],
+      "title": "Getting the data items"
+    },
+    {
+      "anchor": "Providing-information-about-the-data-items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:subjectForActivityType:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:dataTypeIdentifierForActivityType:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:thumbnailImageForActivityType:suggestedSize:)"
+      ],
+      "title": "Providing information about the data items"
+    },
+    {
+      "anchor": "Providing-metadata-for-accelerated-previews",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)"
+      ],
+      "title": "Providing metadata for accelerated previews"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerShareRecipients(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIActivityItemSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-data-items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerPlaceholderItem(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:itemForActivityType:)"
+              ],
+              "title": "Getting the data items"
+            },
+            {
+              "anchor": "Providing-information-about-the-data-items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:subjectForActivityType:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:dataTypeIdentifierForActivityType:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewController(_:thumbnailImageForActivityType:suggestedSize:)"
+              ],
+              "title": "Providing information about the data items"
+            },
+            {
+              "anchor": "Providing-metadata-for-accelerated-previews",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerLinkMetadata(_:)"
+              ],
+              "title": "Providing metadata for accelerated previews"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemSource/activityViewControllerShareRecipients(_:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivity",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityItemProvider"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIActivityItemSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:thumbnailImageForActivityType:suggestedSize:)/title",
+          "value": "activityViewController:thumbnailImageForActivityType:suggestedSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:thumbnailImageForActivityType:suggestedSize:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewController:thumbnailImageForActivityType:suggestedSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/title",
+          "value": "UIActivityItemProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerPlaceholderItem(_:)/title",
+          "value": "activityViewControllerPlaceholderItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerPlaceholderItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewControllerPlaceholderItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:dataTypeIdentifierForActivityType:)/title",
+          "value": "activityViewController:dataTypeIdentifierForActivityType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:dataTypeIdentifierForActivityType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewController:dataTypeIdentifierForActivityType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerShareRecipients(_:)/title",
+          "value": "activityViewControllerShareRecipients:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerShareRecipients(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewControllerShareRecipients:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:subjectForActivityType:)/title",
+          "value": "activityViewController:subjectForActivityType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:subjectForActivityType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewController:subjectForActivityType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/title",
+          "value": "UIActivityItemSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:itemForActivityType:)/title",
+          "value": "activityViewController:itemForActivityType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewController(_:itemForActivityType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewController:itemForActivityType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerLinkMetadata(_:)/title",
+          "value": "activityViewControllerLinkMetadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemSource~1activityViewControllerLinkMetadata(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activityViewControllerLinkMetadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/title",
+          "value": "UIActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/title",
+          "value": "UIActivityViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiactivityitemsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiactivityitemsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

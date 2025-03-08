@@ -1,0 +1,968 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch one or more charts from the Apple Music Catalog.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Charts"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-catalog-{}-charts",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Charts"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Catalog Charts"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/charts"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "albums",
+                "music-videos",
+                "playlists",
+                "songs"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of the types of charts to include in the results. The possible values are ",
+                  "type": "text"
+                },
+                {
+                  "code": "albums",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "songs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "music-videos",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "types",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "most-played"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The chart to fetch for the specified types. For possible values, get all the charts by sending this endpoint without the chart parameter. The possible values for this parameter are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "chart",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Chart",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "chart",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier for the genre to use in the chart results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "genre",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "20"
+            },
+            {
+              "kind": "maximum",
+              "value": "200"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The next page or group of objects to fetch.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "cityCharts",
+                "dailyGlobalTopCharts"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request modifiers for fetching non-standard charts collections. The value ",
+                  "type": "text"
+                },
+                {
+                  "code": "cityCharts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " fetches per-city charts. The value ",
+                  "type": "text"
+                },
+                {
+                  "code": "globalTopCharts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " allows the global charts to be fetched.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "with",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ChartResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ChartResponse",
+              "text": "ChartResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the response contains an object where ",
+              "type": "text"
+            },
+            {
+              "code": "results",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains chart collections. The members for the collections are the chart types in the request and the values are ",
+              "type": "text"
+            },
+            {
+              "code": "Chart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. The ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member of each ",
+              "type": "text"
+            },
+            {
+              "code": "Chart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object contains an array of the corresponding resource ordered by popularity. For example, if the request contains the ",
+              "type": "text"
+            },
+            {
+              "code": "songs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " chart type, the object contains a ",
+              "type": "text"
+            },
+            {
+              "code": "songs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member with a value that is a ",
+              "type": "text"
+            },
+            {
+              "code": "Chart",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object containing ",
+              "type": "text"
+            },
+            {
+              "code": "Song",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. This may be a paginated response. For more information, see ",
+              "type": "text"
+            },
+            {
+              "code": "Fetch Resources by Page",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If unsuccessful, the HTTP status code indicates the error and the details are in the errors array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/catalog/us/charts?types=songs,albums,playlists&genre=20&limit=1"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"results\": {",
+                    "        \"songs\": [",
+                    "            {",
+                    "                \"chart\": \"most-played\",",
+                    "                \"name\": \"Top Songs\",",
+                    "                \"orderId\": \"most-played:songs\",",
+                    "                \"next\": \"/v1/catalog/us/charts?chart=most-played&genre=20&limit=1&offset=1&types=songs\",",
+                    "                \"data\": [",
+                    "                    {",
+                    "                        \"id\": \"635016640\",",
+                    "                        \"type\": \"songs\",",
+                    "                        \"href\": \"/v1/catalog/us/songs/635016640\",",
+                    "                        \"attributes\": {",
+                    "                            \"albumName\": \"I Love You.\",",
+                    "                            \"genreNames\": [",
+                    "                                \"Alternative\",",
+                    "                                \"Music\"",
+                    "                            ],",
+                    "                            \"trackNumber\": 4,",
+                    "                            \"releaseDate\": \"2012-12-03\",",
+                    "                            \"durationInMillis\": 240400,",
+                    "                            \"isrc\": \"USSM11300080\",",
+                    "                            \"artwork\": {",
+                    "                                \"width\": 3840,",
+                    "                                \"height\": 3840,",
+                    "                                \"url\": \"https://is4-ssl.mzstatic.com/image/thumb/Music126/v4/28/71/00/287100fb-5c31-0195-5343-e6b3625886d0/886443969834.jpg/{w}x{h}bb.jpg\",",
+                    "                                \"bgColor\": \"4b4b4b\",",
+                    "                                \"textColor1\": \"f4f4f4\",",
+                    "                                \"textColor2\": \"eaeaea\",",
+                    "                                \"textColor3\": \"d2d2d2\",",
+                    "                                \"textColor4\": \"cacaca\"",
+                    "                            },",
+                    "                            \"composerName\": \"Jesse, Zachary Abels & Jeremiah Freedman\",",
+                    "                            \"playParams\": {",
+                    "                                \"id\": \"635016640\",",
+                    "                                \"kind\": \"song\"",
+                    "                            },",
+                    "                            \"url\": \"https://music.apple.com/us/album/sweater-weather/635016635?i=635016640\",",
+                    "                            \"discNumber\": 1,",
+                    "                            \"hasLyrics\": true,",
+                    "                            \"isAppleDigitalMaster\": false,",
+                    "                            \"name\": \"Sweater Weather\",",
+                    "                            \"previews\": [",
+                    "                                {",
+                    "                                    \"url\": \"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/42/2c/9d/422c9dbc-a759-d111-3b2d-ccf81ff4f33b/mzaf_16532534404492549180.plus.aac.p.m4a\"",
+                    "                                }",
+                    "                            ],",
+                    "                            \"artistName\": \"The Neighbourhood\"",
+                    "                        }",
+                    "                    }",
+                    "                ],",
+                    "                \"href\": \"/v1/catalog/us/charts?chart=most-played&genre=20&limit=1&types=songs\"",
+                    "            }",
+                    "        ],",
+                    "        \"playlists\": [",
+                    "            {",
+                    "                \"chart\": \"most-played\",",
+                    "                \"name\": \"Top Playlists\",",
+                    "                \"orderId\": \"most-played:playlists\",",
+                    "                \"href\": \"/v1/catalog/us/charts?chart=most-played&genre=20&limit=1&types=playlists\",",
+                    "                \"data\": []",
+                    "            }",
+                    "        ],",
+                    "        \"albums\": [",
+                    "            {",
+                    "                \"chart\": \"most-played\",",
+                    "                \"name\": \"Top Albums\",",
+                    "                \"orderId\": \"most-played:albums\",",
+                    "                \"next\": \"/v1/catalog/us/charts?chart=most-played&genre=20&limit=1&offset=1&types=albums\",",
+                    "                \"data\": [",
+                    "                    {",
+                    "                        \"id\": \"1608118564\",",
+                    "                        \"type\": \"albums\",",
+                    "                        \"href\": \"/v1/catalog/us/albums/1608118564\",",
+                    "                        \"attributes\": {",
+                    "                            \"copyright\": \"℗ 2022 Bad Boy/Interscope Records\",",
+                    "                            \"genreNames\": [",
+                    "                                \"Alternative\",",
+                    "                                \"Music\"",
+                    "                            ],",
+                    "                            \"releaseDate\": \"2022-03-25\",",
+                    "                            \"upc\": \"00602445545803\",",
+                    "                            \"isMasteredForItunes\": true,",
+                    "                            \"artwork\": {",
+                    "                                \"width\": 3000,",
+                    "                                \"height\": 3000,",
+                    "                                \"url\": \"https://is3-ssl.mzstatic.com/image/thumb/Music116/v4/d9/48/6f/d9486f75-e228-26c2-9498-befd009e2a90/22UMGIM11298.rgb.jpg/{w}x{h}bb.jpg\",",
+                    "                                \"bgColor\": \"dee3e6\",",
+                    "                                \"textColor1\": \"21242d\",",
+                    "                                \"textColor2\": \"32333b\",",
+                    "                                \"textColor3\": \"474a52\",",
+                    "                                \"textColor4\": \"54565d\"",
+                    "                            },",
+                    "                            \"playParams\": {",
+                    "                                \"id\": \"1608118564\",",
+                    "                                \"kind\": \"album\"",
+                    "                            },",
+                    "                            \"url\": \"https://music.apple.com/us/album/mainstream-sellout/1608118564\",",
+                    "                            \"recordLabel\": \"Bad Boy/Interscope Records\",",
+                    "                            \"isCompilation\": false,",
+                    "                            \"trackCount\": 16,",
+                    "                            \"isSingle\": false,",
+                    "                            \"name\": \"mainstream sellout\",",
+                    "                            \"artistName\": \"Machine Gun Kelly\",",
+                    "                            \"contentRating\": \"explicit\",",
+                    "                            \"editorialNotes\": {",
+                    "                                \"standard\": \"Originally, Machine Gun Kelly wanted to name his sixth LP <i>born with horns</i>, as a nod to the way he’s felt his entire life—like an outsider, whether he’s rapping or holding a guitar. Instead, he made the song <i>mainstream sellout</i>’s opening statement: a concussive, cathartic, two-and-a-half-minute rush of early-2000s pop punk whose chorus comes like a freight train, framed by a scream. “Alienate me, I'm not the one you want,” he roars...\",",
+                    "                                \"short\": \"In Spatial Audio, MGK’s pop-punk hybrid hits like a bag of hammers.\"",
+                    "                            },",
+                    "                            \"isComplete\": true",
+                    "                        }",
+                    "                    }",
+                    "                ],",
+                    "                \"href\": \"/v1/catalog/us/charts?chart=most-played&genre=20&limit=1&types=albums\"",
+                    "            }",
+                    "        ]",
+                    "    },",
+                    "    \"meta\": {",
+                    "        \"results\": {",
+                    "            \"order\": [",
+                    "                \"most-played:songs\",",
+                    "                \"most-played:playlists\",",
+                    "                \"most-played:albums\"",
+                    "            ]",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ChartResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ChartResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChartResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChartResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/chartresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Charts": {
+      "abstract": [
+        {
+          "text": "Fetch one or more charts from the Apple Music Catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Charts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Charts"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Catalog Charts",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/charts"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ChartResponse"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/charts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

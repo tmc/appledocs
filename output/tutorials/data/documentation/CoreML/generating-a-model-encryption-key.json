@@ -1,0 +1,429 @@
+{
+  "abstract": [
+    {
+      "text": "Create a model encryption key to encrypt a compiled model or model archive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating a Model Encryption Key"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a model’s encryption key to encrypt a model archive for deployment or to encrypt a model compiled and bundled into your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must have signed in with your Apple ID in the Apple ID pane in System Preferences to generate a model encryption key in Xcode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-the-Model-Encryption-Key",
+          "level": 3,
+          "text": "Create the Model Encryption Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open a model in Xcode, click the Utilities tab, and click Create Encryption Key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3691089",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the development team that your app’s target uses from the menu, and click Continue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3694274",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode’s confirmation dialog provides an arrow button that takes you to the encryption key in Finder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3691090",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Locate-the-Model-Encryption-Key",
+          "level": 3,
+          "text": "Locate the Model Encryption Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the first button in the confirmation dialog to show the model encryption key in Finder, or navigate to the model’s enclosing folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3690965",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode saves the model encryption key file in the same folder as the original model file, and uses its base name with the ",
+              "type": "text"
+            },
+            {
+              "code": ".mlmodelkey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension. For example, the encryption key for a model named ",
+              "type": "text"
+            },
+            {
+              "code": "Classifier.mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the name ",
+              "type": "text"
+            },
+            {
+              "code": "Classifier.mlmodelkey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the same directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this model encryption file to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encrypt a model archive as you generate it using Xcode (see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Generating a Model Archive",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encrypt a model that Xcode includes in your app’s bundle as it compiles the model (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app": {
+      "abstract": [
+        {
+          "text": "Encrypt your app’s built-in model at compile time by adding a compiler flag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting a Model in Your App",
+      "type": "topic",
+      "url": "/documentation/coreml/encrypting-a-model-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3690965": {
+      "alt": "Screenshot of a Finder window showing one selected file, Classifier dot ML-model-key, which is next to its related file, Classifier dot ML-model.",
+      "identifier": "media-3690965",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf3cf689c60ce65332ae1a538c223514/media-3690965@2x.png"
+        }
+      ]
+    },
+    "media-3691089": {
+      "alt": "Screenshot of a Model window in Xcode highlighting the Utilities tab halfway down the window, and the “Create Encryption Key” button below it on the left.",
+      "identifier": "media-3691089",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4247a10c563525aa726aeb05a38d9d4e/media-3691089@2x.png"
+        }
+      ]
+    },
+    "media-3691090": {
+      "alt": "Screenshot of an Xcode confirmation dialog, “Model Key Generated”, highlighting a circular button with an inscribed right arrow to the right of the text, “Classifier dot ML model key saved to disk.” The dialog has two additional informational tips: The first reads, “Encrypt this model for a specific target by navigating to Build Phases (right arrow), Compile Sources and adding “dash-dash path to dot ML model key” to the model’s Compiler Flags.” The second reads, “Optionally, to encrypt a model for Cloud Kit deployment, you can use this dot ML model key when you generate a Model Archive.”",
+      "identifier": "media-3691090",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/94a0ae878525634e39afcc5608592fa7/media-3691090@2x.png"
+        }
+      ]
+    },
+    "media-3694274": {
+      "alt": "Screenshot of an Xcode dialog, “Generate Encryption Key” prompting the user with text that reads, “Choose the development team you would like to associate with this encryption key. This team should match the team your app is signed with.”",
+      "identifier": "media-3694274",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10927eb9d7d2adafc9674d0c9e86a7bd/media-3694274@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-encryption",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app"
+      ],
+      "title": "Model encryption"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Model-encryption",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app"
+              ],
+              "title": "Model encryption"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/generating-a-model-encryption-key"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml/generating-a-model-encryption-key"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
